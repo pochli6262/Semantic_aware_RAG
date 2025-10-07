@@ -1,12 +1,12 @@
 """
 4
-RETRIEVAL_MODE=2 python3 final_rag_baseline.py
+RETRIEVAL_MODE=2 python3 mode456.py
 
 5
-RETRIEVAL_MODE=3 python3 final_rag_baseline.py
+RETRIEVAL_MODE=3 python3 mode456.py
 
 6
-RETRIEVAL_MODE=4 python3 final_rag_baseline.py
+RETRIEVAL_MODE=4 python3 mode456.py
 """
 
 

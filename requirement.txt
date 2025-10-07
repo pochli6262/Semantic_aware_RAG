@@ -1,0 +1,7 @@
+faiss-cpu
+numpy
+tqdm
+transformers
+openai
+torch
+pandas
