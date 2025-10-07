@@ -216,17 +216,3 @@ In one ConDefects example, the buggy code failed to enforce strict superiority c
 * Extend to **multi-line and multi-file repairs**.
 * Explore additional code representation models to enhance semantic precision.
 
----
-
-## 🪪 License
-
-MIT License © 2025 Liao Po-Chun
-
----
-
-## 📎 Citation
-
-If you use this work, please cite:
-
-> Liao, P.-C. (2025). *Semantic-Aware RAG for Competitive Programming Repair.*
-> Undergraduate Research Project, National Taiwan University.
