@@ -1,3 +1,20 @@
 
 Tool/__pycache__/Info.cpython-311.pyc
 Tool/__pycache__/RunTest.cpython-311.pyc
+
+# macOS 系統檔
+.DS_Store
+
+# Python 暫存檔
+__pycache__/
+*.pyc
+
+# Jupyter、log、暫存資料
+*.log
+*.tmp
+*.ipynb_checkpoints/
+
+# 大型輸出資料
+*.zip
+*.csv
+*.pkl
