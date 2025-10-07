@@ -1,0 +1,1 @@
+The string "Friday" is misspelled as "Friay" in the last conditional, so the program won't print 1 when the input is "Friday".

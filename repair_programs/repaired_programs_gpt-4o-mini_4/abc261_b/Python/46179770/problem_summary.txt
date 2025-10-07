@@ -1,0 +1,1 @@
+The bug likely arises from not accounting for the case where Player i loses to Player j but Player j does not beat Player i, specifically when the conditions for checking draws and wins are incorrectly structured.

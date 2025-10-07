@@ -1,0 +1,4 @@
+{
+  "explanation": "The buggy line compared the price of product i (s[i][0]) to the function count of product j (s[j][1]) by mistake. It should compare the prices of the two products, i.e. s[j][0]. I fixed the single incorrect comparison to use s[j][0] instead of s[j][1]. (No other diffs from the provided list were directly applicable.)",
+  "fixed_code": "n,m=map(int,input().split())\ns=[]\nfor i in range(n):\n  p,c,*f=map(int,input().split())\n  s.append([p,c,f])\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i][0]>=s[j][0] and set(s[j][2])>=set(s[i][2]) \\\n            and (s[i][0]>s[j][0] or set(s[j][2])-set(s[i][2])):\n      print(\"Yes\")\n      exit()\nprint(\"No\")"
+}

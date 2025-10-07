@@ -1,0 +1,1 @@
+The loop's condition mistakenly compares each product's price to itself instead of to the other product, and it also checks the function sets in the wrong direction so it doesn't correctly test whether the second product strictly contains the first product's functions.

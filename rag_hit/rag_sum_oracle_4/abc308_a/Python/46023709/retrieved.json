@@ -1,0 +1,35 @@
+{
+  "task": "abc308_a/Python/46023709",
+  "query_summary": "The bug is a wrong comparison operator: the code uses check_num < S[i] instead of check_num <= S[i], so it incorrectly rejects sequences where elements are equal (non-decreasing with repeats).",
+  "oracle_summary": "The bug is a wrong comparison operator: the code uses check_num < S[i] instead of check_num <= S[i], so it incorrectly rejects sequences where elements are equal (non-decreasing with repeats).",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly counts the occurrences of characters in the string by using `S.count(s)`, which leads to inaccurate results because it does not account for previous counts of the same character in the list.",
+      "diff": "--- \n+++ \n@@ -3,10 +3,9 @@\n \n for s in S:\n   num[S.count(s)] += 1\n-  \n for n in num:\n-  if n % 2 != 0:\n+  if  2 * num.index(n) != n:\n     print('No')\n     exit()\n-    \n+\n print('Yes')"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks the character at index `i-1` instead of index `i`, leading to incorrect validation of the input string.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n ans = True\n for i in range(1, 17, 2):\n-  if S[i-1]!='0':\n+  if S[i]!='0':\n     ans = False\n \n if ans:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not check for the length of the substring `T`, which should be exactly 6 digits, resulting in incorrect validations for strings that are not 6 digits long.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n if S[0].isupper() and S[-1].isupper():\n     T = S[1:-1]\n     if T.isdigit():\n-        if 100000 <= int(T) <= 999999:\n+        if 100000 <= int(T) <= 999999 and len(T) == 6:\n             print('Yes')\n         else:\n             print('No')"
+    },
+    {
+      "summary": "The buggy code fails to account for the case where the input substring is '0', which should also result in \"No\".",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = input()\n-if int(S[3:]) == 316 or int(S[3:]) > 349:\n+if int(S[3:]) == 316 or int(S[3:]) > 349 or int(S[3:]) == 0:\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses a `break` statement instead of a `continue` statement, prematurely exiting the loop when it encounters a '0' instead of allowing the loop to continue checking subsequent characters.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n count=0\n for i in range(1, 16, 2): \n     if S[i] == '0':\n-        break\n+      continue\n     else:\n         count+=1\n if count==0:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

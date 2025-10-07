@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly reads the input string by splitting it into a list, which prevents accurate counting of wins for Takahashi and Aoki.

@@ -1,0 +1,1 @@
+The code sorts all N nicknames instead of taking the first K participants (the top K ranked) and sorting only those, so it uses the wrong subset to output.

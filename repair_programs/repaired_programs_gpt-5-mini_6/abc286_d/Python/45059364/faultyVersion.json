@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was the loop `for n in range(X+1):` which iterated n upward. That lets the inner checks see DP states set earlier in the same coin iteration, effectively allowing more than B_i coins of a kind. I changed the loop to iterate n downward (`for n in range(X, -1, -1):`) so updates use only previous-iteration states and respect the coin count limits (standard knapsack DP fix).",
+  "fixed_code": "N,X=map(int,input().split())\n  \nDP=[0]*(X+1) #DP[n]=現在n円払えるか\nDP[0]=1\nfor i in range(N):\n  a,b=map(int,input().split())\n  for n in range(X, -1, -1):\n    for c in range(1,b+1):\n      if 0<=n-c*a and DP[n-c*a]:\n        DP[n]=1\nprint(\"Yes\" if DP[X] else \"No\")"
+}

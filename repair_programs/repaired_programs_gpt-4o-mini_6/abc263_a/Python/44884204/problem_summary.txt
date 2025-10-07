@@ -1,0 +1,1 @@
+The bug lies in the condition used to check the full house, as it does not account for the possible arrangement of the cards where the three and two matching numbers may appear in different orders.

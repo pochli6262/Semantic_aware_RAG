@@ -1,0 +1,1 @@
+Sorting the full product rows and then only checking pairs with j>i can miss valid superior pairs when two products have equal price but the subset relation holds only when the later product appears before the earlier one in the sorted order.

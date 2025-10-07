@@ -1,0 +1,153 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+We have five cards with integers A, B, C, D, and E written on them, one on each card.
+
+This set of five cards is called a Full house if and only if the following condition is satisfied:
+
+* the set has three cards with a same number written on them, and two cards with another same number written on them.
+
+Determine whether the set is a Full house.
+
+### Constraints
+
+* 1 \leq A,B,C,D,E\leq 13
+* Not all of A, B, C, D, and E are the same.
+* All values in input are integers.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+A B C D E
+```
+
+### Output
+
+If the set is a Full house, print `Yes`; otherwise, print `No`.
+
+---
+
+### Sample Input 1
+
+```
+1 2 1 2 1
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The set has three cards with 1 written on them and two cards with 2 written on them, so it is a Full house.
+
+---
+
+### Sample Input 2
+
+```
+12 12 11 1 2
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+The condition is not satisfied.
+
+## Your Analysis (1-sentence bug summary)
+The program only checks that there are exactly two distinct values, so it will incorrectly accept cases like four-of-a-kind plus a singleton instead of ensuring the counts are specifically 3 and 2.
+
+## Buggy Program
+x=list(map(int,input().split()))
+if len(set(x))==2:
+    print("Yes")
+else:
+    print("No")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -3,7 +3,7 @@
+ Aset = set(A)
+ ok = False
+ for a in A:
+-    if X-a in Aset:
++    if a + X in Aset:
+         ok = True
+         break
+ if ok:
+
+### Diff 2
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ x1,y1,x2,y2 = map(int,input().split())
+-if (abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3) :
++if ((abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3)) or ((abs(x1-x2)==2 and abs(y1-y2)==4) or (abs(x1-x2)==4 and abs(y1-y2)==2)) or  ((abs(x1-x2)==0 and (abs(y1-y2)==2 or abs(y1-y2)==4)) or  ((abs(x1-x2)==2 or abs(x1-x2)==4) and abs(y1-y2)==0)):
+   print("Yes")
+ else:
+   print("No")
+
+### Diff 3
+--- 
++++ 
+@@ -1,6 +1,6 @@
+ n, x, y, z = map(int, input().split())
+ 
+ if x<z<y or y<z<x:
+-  print("YES")
++  print("Yes")
+ else:
+   print("No")
+
+### Diff 4
+--- 
++++ 
+@@ -9,7 +9,7 @@
+             fj = set(I[j][2:])
+             fi = set(I[i][2:])
+             if len((fj | fi)) == len(fj):
+-                if I[i][0] > I[j][0] or len((fj | fi)) - len(fj) > 0:
++                if I[i][0] > I[j][0] or len((fj | fi)) - len(fi) > 0:
+                     print('Yes')
+                     exit()
+ print('No')
+
+### Diff 5
+--- 
++++ 
+@@ -13,7 +13,7 @@
+ for i in range(n):
+     for j in range(n):
+         if p[i] >= p[j]:
+-            if f[j].issuperset(f[i]):
++            if f[j].issuperset(f[i]) and (p[i] > p[j] or len(f[j]) > len(f[i])):
+                 print("Yes")
+                 exit(0)
+ 
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

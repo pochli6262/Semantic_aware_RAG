@@ -1,0 +1,31 @@
+{
+  "task": "abc310_c/Python/45952581",
+  "query_summary": "The likely bug is that the count of different sticks is incremented for duplicates without accounting for the fact that a stick may be counted multiple times through its reversible form.",
+  "oracle_summary": "The bug is a logic inversion in the if condition: it increments the counter when S is already in Z (S in Z) instead of when S is new (S not in Z).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the maximum dango count even when the only dango present is not separated by any sticks, failing to check if there were valid sticks present and if the maximum dango count is greater than zero.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,8 @@\n     if dango > max_dango:\n         max_dango = dango\n \n-    if stick == True:\n+\n+    if stick == True and max_dango != 0:\n         print(max_dango)\n     else:\n         print(-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses `s = \"\".join(s)` instead of `s = \" \".join(s)`, which results in concatenating the strings without spaces, leading to incorrect counting of distinct entries.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n check = set()\n for i in range(N):\n     s = li_st()\n-    s = \"\".join(s)\n+    s = \" \".join(s)\n     check.add(s)\n \n print(len(check))"
+    },
+    {
+      "summary": "The buggy code incorrectly sets `K` to `K - xcount` when `K` is greater than `xcount`, whereas it should set `K` to `N - K` in that case to maintain the correct count of remaining \"Y\" transformations.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n             S[i]=\"Y\"\n         elif S[i]==\"Y\":\n             S[i]=\"X\"\n-    K=K-xcount\n+    K=N-K\n \n hq=[]\n from heapq import *"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the variable M by incrementing it based on the cumulative count, rather than by a fixed increment of P each time it finds a match.",
+      "diff": "--- \n+++ \n@@ -4,6 +4,6 @@\n for i in range(1, N + 1):\n   if(i == M):\n     count += 1\n-    M = M + P * count\n+    M = M + P\n \n print(count)"
+    },
+    {
+      "summary": "The bug in the code is that the condition to break the inner while loop should check if `cur` is `-1` instead of `cur` being not equal to `-1`.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n count = 0\n for i in range(N-1, -1, -1):\n     while S[i] != T[cur]:\n-        if cur != -1:\n+        if cur == -1:\n             break\n         cur -= 1\n     else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

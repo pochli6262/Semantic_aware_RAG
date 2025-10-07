@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only checked whether the exact string S was already in the set Z. It relied on having previously added both a string and its reverse into Z to detect reversed duplicates. To be robust and explicit (and to ensure reversed occurrences are recognized even if only one direction was recorded), the check should test for either S or its reverse being in Z. I fixed the single line by changing the if-condition to check both S in Z or S[::-1] in Z.",
+  "fixed_code": "N = int(input())\n\nZ = set()\n\ncount = 0\nfor i in range(N):\n    S = input()\n    if S in Z or S[::-1] in Z:\n        count += 1\n    Z.add(S)\n    Z.add(S[::-1])\n\nprint(count)"
+}

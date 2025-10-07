@@ -1,0 +1,32 @@
+{
+  "task": "abc242_a/Python/45767519",
+  "query_summary": "The second branch uses X <= C instead of X <= B, erroneously applying the middle-case formula for X values up to C rather than only up to B.",
+  "oracle_summary": "The second branch uses X <= C instead of X <= B, erroneously applying the middle-case formula for X values up to C rather than only up to B.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly sets the upper limit for the binary search in the print statement to \\(10^{9}\\) instead of \\(10^{9} + 1\\), which may lead to incorrect results for certain inputs.",
+      "diff": "--- \n+++ \n@@ -20,4 +20,4 @@\n         B_num = 0\n     return A_num >= B_num\n \n-print(bisect(10 ** 9, -1, solve))\n+print(bisect(10 ** 9 + 1, -1, solve))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the lists `a` and `b` before using them in the `upper_bound` and `lower_bound` functions, which can lead to incorrect results when counting elements.",
+      "diff": "--- \n+++ \n@@ -26,6 +26,9 @@\n         else:\n             b.append(x)\n \n+    a.sort()\n+    b.sort()\n+\n     ans = 0\n     for i in a:\n         ans += upper_bound(b, i + 2 * T) - lower_bound(b, i)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the final answer by using `A[0] % g` instead of `min(A[0] % (2 * g), A[-1] % (2 * g))`, leading to an inaccurate result based on the GCD of the differences.",
+      "diff": "--- \n+++ \n@@ -30,5 +30,5 @@\n g=0\n for i in range(N-1):\n     g=GCD(g,A[i+1]-A[i])\n-ans=A[0]%g+A[-1]-A[0]\n+ans=min(A[0]%(2*g),A[-1]%(2*g))+A[-1]-A[0]\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it attempts to access the second-to-last element of a list derived from a set without sorting, which may lead to unpredictable results if the input numbers are not in order.",
+      "diff": "--- \n+++ \n@@ -11,6 +11,5 @@\n mod = 998244353\n N = int(input())\n A = set(map(int, input().split()))\n-\n-A = list(A)\n+A = sorted(A)\n print(A[-2])"
+    },
+    {
+      "summary": "The problem in the buggy code is that the upper limit for the binary search (`right`) is set to `1000000000`, which may exclude the correct answer if it is `1000000000`; it should be corrected to `1000000001`.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n     return flag\n \n left = 0\n-right = 1000000000\n+right = 1000000001\n \n while (right - left) > 1:\n     mid = (right + left)//2"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

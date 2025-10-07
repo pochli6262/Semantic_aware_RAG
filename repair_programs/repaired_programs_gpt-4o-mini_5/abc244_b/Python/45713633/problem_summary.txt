@@ -1,0 +1,1 @@
+The program incorrectly updates the direction during rotation, resulting in an incorrect calculation of Takahashi's final coordinates.

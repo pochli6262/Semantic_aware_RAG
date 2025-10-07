@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the rounding-up formula: the line ans = N + a - 1 incorrectly computes the next multiple of 5 when a == 4 (e.g., N=54 gives 57 instead of 55). I replaced it with ans = N + 5 - a so that when remainder a>=3 we correctly move up to the next water station (add 5-a). No retrieved diff directly applied; this is a direct mathematical correction.",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a <3:\n        ans=N-a\n    else:\n        ans=N+5-a\n    print(ans)\n"
+}

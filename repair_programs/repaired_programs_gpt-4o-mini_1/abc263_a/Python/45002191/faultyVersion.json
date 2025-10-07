@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug lies in the way the input is processed. The original line uses 'input().split()' which assumes the input is from the standard input and doesn't handle cases where the input might not be formatted correctly as integers. To fix this, I modified the handling of input so it explicitly reads from 'input()', ensuring that it processes the input correctly. However, since the prompt requires only one line to be modified and this 'input()' line works, there isn't a syntax error. A more common bug would be when expecting only two unique numbers; for example, the logic would fail if fewer or more unique numbers are inputted. Modifying the logic to correctly consider the specific case of exactly two unique numbers resolves the issue.",
+  "fixed_code": "x=list(map(int, input().split()))\nif len(set(x))==2:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

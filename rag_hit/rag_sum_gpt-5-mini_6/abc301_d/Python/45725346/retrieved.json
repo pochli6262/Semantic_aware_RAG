@@ -1,0 +1,29 @@
+{
+  "task": "abc301_d/Python/45725346",
+  "query_summary": "The code mistakenly checks (res + 1) << d <= n (shifting the whole sum) instead of testing res + (1 << d) <= n, so it adds the wrong value when trying to set a '?' bit.",
+  "oracle_summary": "The bug was caused by an incorrect expression \"(res + 1) << d\" (wrong operator grouping) instead of \"res + (1 << d)\", so the shift is applied to the wrong value and produces an incorrect increment.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly interprets the binary string as is, instead of reversing it before conversion to an integer and failing to account for the increment, leading to an incorrect final result.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n         print(len(a),*a,flush=True)\n \n     S = input()\n-    ans = int(S,2)\n+    ans = int(S[::-1],2) + 1\n     print(ans,flush=True)\n if __name__ == '__main__':\n     main()  "
+    },
+    {
+      "summary": "The buggy code does not check if `N` is divisible by `i`, leading to incorrect calculations and potentially accessing out-of-bounds indices within the arrays `D` and `T` when `N` is not a multiple of `i`.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,9 @@\n     S = input()\n \n     for i in range(1, N + 1):\n+        if N % i:\n+            continue\n+\n         D = [[0 for _ in range(26)] for _ in range(i)]\n         T = [0 for _ in range(i)]\n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for printing 'No', comparing `D * 2` with `N * (N - 1)` instead of `N - 1`.",
+      "diff": "--- \n+++ \n@@ -25,7 +25,7 @@\n MOD = 998244353\n \n N, D = map(int, input().split())\n-if D * 2 > N * (N - 1):\n+if D * 2 > (N - 1):\n   print('No')\n else:\n   print('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses the range `1` to `10**8 + 1`, which causes it to check too many numbers, leading to potential performance issues and incorrect behavior when comparing the digits of squares.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     max_val = int(\"\".join(s[::-1]))\n     s = list(map(int, s))\n     cnt = 0\n-    for i in range(1,10**8+1):\n+    for i in range(0,10**7):\n         if i*i > max_val:\n             break\n         lst = list(map(int, str(i*i)))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it updates the `bdic[cnt]` for a given `cnt` based on the current `dp[i + 1]` without checking if the next character in the string (i.e., `s[i + 1]`) is 'B', which may lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -28,7 +28,7 @@\n             dp[i + 1] = min(dp[i + 1], dic[cnt])\n         dp[i + 1] = min(dp[i + 1], bdic[cnt])\n         dic[cnt] = min(dic[cnt], dp[i + 1])\n-        if s[i] == 'B':\n+        if i + 1 < n and s[i + 1] == 'B':\n             bdic[cnt] = min(bdic[cnt], dp[i + 1])\n     print((n - dp[n]) // 3)\n             "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

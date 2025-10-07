@@ -1,0 +1,31 @@
+{
+  "task": "abc244_d/Python/44600103",
+  "query_summary": "The bug likely lies in the incorrect logic used to determine the possibility of achieving the desired hat configuration after an even number of operations, as it does not account for the specific swapping capabilities allowed between the Takahashis.",
+  "oracle_summary": "The condition is inverted: it prints “Yes” for an even number of mismatches, whereas it should print “Yes” only when there are zero or an odd number of differences (and “No” for 2).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly references `S[i-k]` instead of `S[~(i-k)]` when constructing the string `T`, leading to incorrect character indexing and potentially wrong results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n   n,k = map(int,input().split())\n   S = input()\n   k %= 2*n\n-  T = \"\".join(S[~i] if i < n else S[i-k] for i in range(k))\n+  T = \"\".join(S[~i] if i < n else S[~(i-k)] for i in range(k))\n   if S+T == (S+T)[::-1] and T+S == (T+S)[::-1]:\n     print(\"Yes\")\n   else:"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the `tail` by iterating over the range of `len(t)` in a forward direction instead of iterating in reverse, causing index errors and incorrect results.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     if s[i] != \"?\" and t[i] != \"?\" and s[i] != t[i]:\n         break\n     head += 1\n-for i in range(len(t)):\n+for i in range(len(t))[::-1]:\n     if s[i + len(s) - len(t)] != \"?\" and t[i] != \"?\" and s[i + len(s) - len(t)] != t[i]:\n         break\n     tail += 1"
+    },
+    {
+      "summary": "The problem in the buggy code is that the second for loop incorrectly uses `S[-i]` and `T[-i]` instead of the correct `S[-1-i]` and `T[-1-i]`, leading to incorrect tail comparison logic.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n         break\n \n for i in range(N):\n-    if S[-i] != T[-i]:\n+    if S[-1-i] != T[-1-i]:\n         is_tail = False\n         break\n "
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output as \"Yes\" if K is non-negative, without checking if K is also even, which is necessary for the correct condition.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     while N > 0:\n         K -= N % 3\n         N //= 3\n-    if K >=0:\n+    if K >= 0 and K % 2 == 0:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the list `Takahashi` is not sorted before it is compared to `test`, which can result in incorrect comparison outcomes.",
+      "diff": "--- \n+++ \n@@ -20,6 +20,8 @@\n \n l = itertools.permutations(list(range(n)))\n \n+Takahashi.sort()\n+\n for i in l:\n     # print(i)\n     test = [[0]*2 for _ in range(m)]\n@@ -30,6 +32,7 @@\n         test[j].sort()\n \n     test.sort()\n+    # print(Takahashi, test)\n \n     if Takahashi == test:\n         print('Yes')"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

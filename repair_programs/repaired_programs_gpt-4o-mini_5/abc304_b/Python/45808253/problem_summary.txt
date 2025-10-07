@@ -1,0 +1,1 @@
+The program incorrectly handles the case of truncating digits for numbers with more than four digits, leading to incorrect output when the number has five or more digits.

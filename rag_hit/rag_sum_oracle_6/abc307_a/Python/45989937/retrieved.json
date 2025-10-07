@@ -1,0 +1,33 @@
+{
+  "task": "abc307_a/Python/45989937",
+  "query_summary": "The bug is an incorrect index calculation—using s[l + i] instead of s[l + i*7] so the code advances by 1 each iteration instead of jumping by 7 and thus selects wrong elements.",
+  "oracle_summary": "The bug is an incorrect index calculation—using s[l + i] instead of s[l + i*7] so the code advances by 1 each iteration instead of jumping by 7 and thus selects wrong elements.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly iterates `x` from 1 to `10**7`, skipping the possibility of checking `x = 0` and thus missing one valid square case (0).",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = [int(x) for x in input()]\n s.sort()\n ans = 0\n-for x in range(1, 10**7):\n+for x in range(10**7):\n     t = [int(c) for c in str(x * x)]\n     if len(t) > n:\n         break"
+    },
+    {
+      "summary": "The bug in the code is that it initializes `S[i]` to 1 instead of incrementing `S[i]` by 1 when encountering each element in `a`, which prevents correct counting of occurrences for later calculations.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n S = [0 for i in range(10**6+5)]\n selfpair = 0\n for i in a: \n-    S[i] = 1\n+    S[i] += 1\n     if all([int(j) < 5 for j in str(i)]):\n         selfpair += 1\n for j in range(6):"
+    },
+    {
+      "summary": "The buggy code incorrectly replaces the value of `a[i+1]` instead of updating it by adding the computed result to the existing value.",
+      "diff": "--- \n+++ \n@@ -3,6 +3,6 @@\n \n for i in range(n-1):\n   s,t = map(int,input().split())\n-  a[i+1] = t*(a[i]//s)\n+  a[i+1] += t*(a[i]//s)\n \n print(a[-1])"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly computes the value for `ans[i][j]` by using the expression `i//23*j//23`, which does not properly account for the multiplication of the two integer divisions, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n     ans[-1].append(1)\n for i in range(n):\n   for j in range(m):\n-    ans[i][j]=(i+j+i//23*j//23)%23+1\n+    ans[i][j]=(i+j+(i//23)*(j//23))%23+1\n for i in range(n):\n   print(' '.join(map(str,ans[i])))"
+    },
+    {
+      "summary": "The buggy code has an incorrect indexing issue where it should reference `S[N-i-1]` instead of `S[i]` when determining the value to append to the `ans` string.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(N):\n   if int(S[N-i-1]) != (cur // 2**i) % 2:\n     X = (1 << N) - (1 << i)\n-    if S[i] == '1':\n+    if S[N-i-1] == '1':\n       ans += 'A' * (N-i)\n       cur = cur ^ X\n     else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

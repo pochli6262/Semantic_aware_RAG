@@ -1,0 +1,4 @@
+{
+  "explanation": "The line \"if S in A == T in A:\" uses chained comparison/membership and doesn't compare the two boolean expressions as intended. It was interpreted as \"S in (A == T)\" which is wrong. I fixed it by explicitly comparing the two boolean results with parentheses: \"if (S in A) == (T in A):\" so the condition is True when S and T are either both in A (even permutations) or both not in A (odd permutations).",
+  "fixed_code": "S=input()\nT=input()\nA=[\"R G B\",\"B R G\",\"G B R\"]\nif (S in A) == (T in A):\n    print(\"Yes\")\nelse:\n    print(\"No\")\n"
+}

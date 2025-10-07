@@ -1,0 +1,4 @@
+{
+  "explanation": "The original first if-line only checked for rows that are both '#', so it missed the case where a column contains two '#' characters. I fixed that single line by extending the condition to also check the two columns (i.e., S1[0] and S2[0], and S1[1] and S2[1]) so it detects both row and column matches. No other lines were changed.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1 == \"##\" or S2 == \"##\" or (S1[0] == \"#\" and S2[0] == \"#\") or (S1[1] == \"#\" and S2[1] == \"#\"):\n    print(\"Yes\")\nelif S1 == \".#\" and S2 == \"#.\":\n    print(\"No\")\nelif S1 == \"#.\" and S2 == \".#\":\n    print(\"No\")"
+}

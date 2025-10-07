@@ -1,0 +1,29 @@
+{
+  "task": "abc303_d/Python/45489398",
+  "query_summary": "The likely bug in the program is that it incorrectly initializes the `res` array, leading to potential out-of-bounds errors or invalid minimum calculations when processing the input string.",
+  "oracle_summary": "The bug was using an INF value that was too small (1e10) so legitimate DP costs could exceed it and be treated as \"infinite,\" corrupting the DP transitions and final result.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the inner loop incorrectly uses the variable `y` instead of `i` when calculating `res`, leading to an incorrect minimum distance calculation.",
+      "diff": "--- \n+++ \n@@ -25,7 +25,7 @@\n         for i in range(max(0,y-5), y+5):\n \n \n-            res = min(res, abs(x**2 + y**2 - d))\n+            res = min(res, abs(x**2 + i**2 - d))\n     print(int(res))\n \n "
+    },
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    },
+    {
+      "summary": "The buggy code incorrectly outputs `k-1` when there are no \"Y\" characters in the string, instead of the maximum of `0` and `k-1`, which can lead to negative results.",
+      "diff": "--- \n+++ \n@@ -34,7 +34,7 @@\n \n \n if s.count(\"Y\") == 0:\n-    print(k-1)\n+    print(max(0,k-1))\n     exit()\n \n #print(s,k,ans,r)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from `0` to `N` instead of from `1` to `N` in the even-length case when calculating the minimum answer, potentially resulting in an out-of-bounds index access or incorrect minimum calculation.",
+      "diff": "--- \n+++ \n@@ -38,7 +38,7 @@\n \n if N % 2 == 0: #偶数なら、０スタ０スタ、１スタ１スタで比べる\n     ANS = 10**50\n-    for i in range(N):\n+    for i in range(1,N):\n         ANS = min((OL[i]+OR[N-i]),ZL[i]+ZR[N-i],ANS)\n     print(ANS)\n else:"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `mod <= B` by not ensuring the printed result is non-negative, leading to potential negative output.",
+      "diff": "--- \n+++ \n@@ -41,5 +41,5 @@\n     q-=1\n     b = q * B\n     if(mod > B):print(b + B)\n-    else:print(b+mod)\n+    else:print(max(0,b+mod))\n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

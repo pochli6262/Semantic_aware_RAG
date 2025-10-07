@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code printed 'No' when the list was already sorted because it used 'sorted(S) == S' in the conditional. The intended check is to reject sequences that are not sorted, so the comparison should be 'sorted(S) != S'. I corrected that one operator so the program now rejects unsorted sequences rather than accepting them.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nfor i in range(N):\n    if sorted(S) != S or not(100 <= S[i] <= 675) or S[i]%25 != 0:\n        print('No')\n        exit()\nelse:\n    print('Yes')"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The code was checking the wrong set difference. It used len((fj | fi)) - len(fj) which equals |fi \\ fj| (functions i has that j doesn't). The problem requires checking whether j has at least one function that i lacks, i.e. |fj \\ fi|. I fixed that by replacing len((fj | fi)) - len(fj) with len((fj | fi)) - len(fi) (equivalently |fj \\ fi|).",
+  "fixed_code": "N, M = map(int, input().split())\nI = [list(map(int, input().split())) for _ in range(N)]\n\nfor i in range(N):\n    for j in range(N):\n        if i == j:\n            continue\n        if I[i][0] >= I[j][0]:\n            fj = set(I[j][2:])\n            fi = set(I[i][2:])\n            if len((fj | fi)) == len(fj):\n                if I[i][0] > I[j][0] or len((fj | fi)) - len(fi) > 0:\n                    print('Yes')\n                    exit()\nprint('No')"
+}

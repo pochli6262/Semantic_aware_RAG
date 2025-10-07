@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly counts connected components of `#` symbols instead of identifying distinct crosses of size `n` according to the specified conditions.

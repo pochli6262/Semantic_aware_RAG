@@ -1,0 +1,1 @@
+In the branch for 5-digit numbers the code mistakenly sets l[1] to 1 instead of 0, so the tens digit is incorrectly changed.

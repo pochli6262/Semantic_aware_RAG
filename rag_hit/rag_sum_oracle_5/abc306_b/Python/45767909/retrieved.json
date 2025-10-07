@@ -1,0 +1,34 @@
+{
+  "task": "abc306_b/Python/45767909",
+  "query_summary": "The loop mistakenly uses A[i] as the exponent (2 ** A[i]) instead of the loop index i (2 ** i), causing incorrect power computations.",
+  "oracle_summary": "The loop mistakenly uses A[i] as the exponent (2 ** A[i]) instead of the loop index i (2 ** i), causing incorrect power computations.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the bitwise XOR operator (^) instead of the exponentiation operator (**) to calculate the powers of A and B.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n A, B = input().split()\n A, B = int(A), int(B)\n-res = A^B + B^A\n+res = (A**B) + (B**A)\n print(res)"
+    },
+    {
+      "summary": "The buggy code uses the bitwise XOR operator (^) instead of the exponentiation operator (**), resulting in incorrect output for calculating A raised to the power of B.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n A, B = map(int, input().split())\n-print(A^B)\n+print(A**B)"
+    },
+    {
+      "summary": "The buggy code incorrectly starts the loop at 0 instead of 1, which causes it to potentially print 0 instead of the correct exponent when B equals 1.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n B=int(input())\n-for i in range(20):\n+for i in range(1,20):\n     if i**i==B:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `i` within the inner while loop that calculates `append1` and `append2`, which leads to the wrong powers of 3 being calculated for these variables.",
+      "diff": "--- \n+++ \n@@ -26,8 +26,8 @@\n append1 = 0\n append2 = 0\n \n+i = 0\n while cur > 0:\n-    i = 0\n     if cur % 3 >= 1:\n         append1 += 3**i\n     if cur % 3 >= 2:"
+    },
+    {
+      "summary": "The buggy code incorrectly starts the loop from `0`, which results in `0 ** 0` being evaluated to `1`, potentially matching the input incorrectly, while the correct code starts from `1`.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n B = int(input())\n-for i in range(19):\n+for i in range(1, 19):\n     if i ** i == B:\n         print(i)\n         exit()"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "useful_diffs_count": 4
+}

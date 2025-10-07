@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly handles the scenario where multiple consecutive balls of the same value disappear, as it does not properly check and manage the stack conditions after each insertion.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly references the loop variable 'i' from the previous loop instead of the current loop variable 'j' when checking if 'S[j]' is a multiple of 25 and within the specified range. This was inspired by the analysis which pointed out that the condition needs to reference the current index in the second loop.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)"
+}

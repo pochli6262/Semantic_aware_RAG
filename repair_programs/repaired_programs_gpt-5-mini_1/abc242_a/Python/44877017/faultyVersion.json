@@ -1,0 +1,4 @@
+{
+  "explanation": "The middle branch used the wrong expression: it set res = c / (b - a). That (1) used the input variable c incorrectly, (2) produced a value independent of x, and (3) didn't scale to the 0..100 range. The intended behavior is to linearly interpolate between 100 at x = a and 0 at x = b. I fixed that single line to compute res = 100.0 * (b - x) / (b - a), which depends on x and yields the correct percentage.",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 100.0\nelif x <= b:\n   res = 100.0 * (b - x) / (b - a)\n\nprint('%.9f' % (res))\n"
+}

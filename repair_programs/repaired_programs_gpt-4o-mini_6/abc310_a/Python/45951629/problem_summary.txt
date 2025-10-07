@@ -1,0 +1,1 @@
+The bug likely arises from incorrectly calculating the total cost using the coupon, as it mistakenly subtracts Q from P instead of simply adding the price of the dish and the discounted drink price together.

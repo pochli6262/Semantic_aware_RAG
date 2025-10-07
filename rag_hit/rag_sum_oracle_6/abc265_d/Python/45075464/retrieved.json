@@ -1,0 +1,33 @@
+{
+  "task": "abc265_d/Python/45075464",
+  "query_summary": "The code wrongly rejects w == N by checking w >= N instead of w > N, even though asum has length N+1, causing valid matches that end at the array’s end to be missed.",
+  "oracle_summary": "The code wrongly rejects w == N by checking w >= N instead of w > N, even though asum has length N+1, causing valid matches that end at the array’s end to be missed.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly initializes the variable `ans` to -1 instead of `n`, leading to an incorrect output when no valid index for the longest increasing subsequence is found.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n     for j in lst:\n         LIS[bisect_left(LIS,j)] = j\n \n-ans = -1\n+ans = n\n for i in range(n):\n     if LIS[i]==10**9:\n         ans = i"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the height `h` when `N` is odd and `A` is less than or equal to `N // 2 + 1`, resulting in the wrong condition for some test cases.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         else:\n             h = N - A\n     else:\n-        if A <= N // 2 + 1:\n+        if A <= N // 2:\n             h = N // 2 + 1\n         else:\n             h = N - A"
+    },
+    {
+      "summary": "The buggy code incorrectly appends the pair of indices `[N-2, N-1]` instead of `[N-2, N-2]` when the last element equals the current index, leading to potential index out-of-bounds errors and incorrect results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n             P.pop()\n             P.insert(N-3, i)\n             ind = N-3\n-            res.append([N-2, N-1])\n+            res.append([N-2, N-2])\n         index1 = ind\n         index2 = ind+1\n         value1 = j"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition in the second 'elif' statement incorrectly uses 'A < N' instead of 'A <= N', which could lead to incorrect results when A is equal to N.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \tN, A, B = map(int, input().split())\n \tif A <= N // 2:\n \t\tprint(\"Yes\" if B <= ((N + 1) // 2) * (N - A) else \"No\")\n-\telif A < N:\n+\telif A <= N:\n \t\tprint(\"Yes\" if B <= (N - A) ** 2 else \"No\")\n \telse:\n \t\tprint(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that the initial value of `ans` should be set to `0` instead of `1` to correctly reflect the longest non-decreasing subsequence length.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n # print(S)\n inf = 10 ** 18\n dp = [inf] * len(S)\n-ans = 1\n+ans = 0\n for i, y in enumerate(S):\n     if i == 0:\n         dp[0] = y"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

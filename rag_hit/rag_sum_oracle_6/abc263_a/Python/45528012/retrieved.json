@@ -1,0 +1,29 @@
+{
+  "task": "abc263_a/Python/45528012",
+  "query_summary": "The buggy condition includes an extra OR clause that makes it print “Yes” for just a triple or just a pair, instead of only when the numbers form a full house (three of a kind plus a pair).",
+  "oracle_summary": "The buggy condition includes an extra OR clause that makes it print “Yes” for just a triple or just a pair, instead of only when the numbers form a full house (three of a kind plus a pair).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly determines the condition for printing \"Yes\" by failing to account for the case where there are no occurrences of the middle element in the second half of the sorted list.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n         c2+=1\n     else:\n         break\n-if (n+1)//2-c1>c2:\n+if (n+1)//2-c1>c2 or c2==0:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code fails to check for the word \"the,\" which is present in the correct code's conditions for printing \"Yes.\"",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n ans = \"No\"\n for i in a:\n-    if i == \"and\" or i == \"not\" or i == \"that\" or i == \"you\":\n+    if i == \"and\" or i == \"not\" or i == \"that\" or i == \"you\" or i == \"the\":\n         print(\"Yes\")\n         exit()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the difference between `b` and `a` is non-zero rather than specifically checking if it equals 1 or 9.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b = map(int, input().split())\n \n-if b - a or b - a == 9:\n+if b - a == 1 or b - a == 9:\n   print('Yes')\n else:\n   print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the conditions for printing \"Yes\", as it only checks for specific differences in coordinates, missing additional valid cases that should be accounted for.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x1,y1,x2,y2 = map(int,input().split())\n-if (abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3) :\n+if ((abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3)) or ((abs(x1-x2)==2 and abs(y1-y2)==4) or (abs(x1-x2)==4 and abs(y1-y2)==2)) or  ((abs(x1-x2)==0 and (abs(y1-y2)==2 or abs(y1-y2)==4)) or  ((abs(x1-x2)==2 or abs(x1-x2)==4) and abs(y1-y2)==0)):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if `b` is greater than 0 instead of allowing `b` to be equal to 0, which should also result in a 'Yes' output if the bitwise condition is satisfied.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for _ in range(T):\n     a,s=map(int,input().split())\n     b=s-2*a\n-    if b>0 and a&b==0:\n+    if b>=0 and a&b==0:\n         print('Yes')\n     else:\n         print('No')"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

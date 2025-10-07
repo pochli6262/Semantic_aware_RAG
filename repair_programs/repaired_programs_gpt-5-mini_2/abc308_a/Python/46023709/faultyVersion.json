@@ -1,0 +1,4 @@
+{
+  "explanation": "The code created a sorted version check_S but never used it; instead it tested the original list S, so the ordering check could fail for inputs that are valid when sorted. I fixed the single incorrect line by using check_S[i] in the condition and update so the verification is done on the sorted list.",
+  "fixed_code": "S=list(map(int,input().split()))\ncheck_S=sorted(S)\ncheck=\"True\"\ncheck_num=0\nfor i in range (len(S)):\n    if check_num<check_S[i] and 100<=check_S[i]<=675 and check_S[i]%25==0:\n        check_num=check_S[i]\n    else:\n        check=\"False\"\nif check==\"True\":\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

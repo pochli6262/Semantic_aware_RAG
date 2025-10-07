@@ -1,0 +1,4 @@
+{
+  "explanation": "The output string on the last line had incorrect capitalization. The program printed 'takahashi' (all lowercase) but the expected name uses a capital 'T' ('Takahashi'). I fixed that single line by changing the string to 'Takahashi'. No other lines were modified.",
+  "fixed_code": "a,b,c,d = input().split()\na = int(a)\nb = int(b)\nc = int(c)\nd = int(d)\n\nprint((a+b)*(c-d))\nprint('Takahashi')"
+}

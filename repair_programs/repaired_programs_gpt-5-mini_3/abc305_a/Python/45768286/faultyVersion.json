@@ -1,0 +1,4 @@
+{
+  "explanation": "The program intended to print how many more units are needed to reach the next multiple of 5. The original expression 5 - int(input()) % 5 yields 5 when the input is already divisible by 5, but the correct answer should be 0. I fixed this by taking the result modulo 5: (5 - n%5) % 5, which gives 0 for multiples of 5 and the correct positive remainder otherwise.",
+  "fixed_code": "print((5 - int(input()) % 5) % 5)"
+}

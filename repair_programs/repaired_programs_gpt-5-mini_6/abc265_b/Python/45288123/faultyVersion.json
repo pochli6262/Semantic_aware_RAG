@@ -1,0 +1,4 @@
+{
+  "explanation": "The program allowed a move that reduced the time limit to exactly zero because it only checked `if T < 0:`. The problem states a move that makes the time limit 0 or less is not allowed, so the condition must be `if T <= 0:`. This is an off-by-one inequality fix (similar in spirit to the diffs that adjust comparison operators).",
+  "fixed_code": "from collections import defaultdict\n\nN, M, T = map(int, input().split())\nA = list(map(int, input().split()))\nXY = [list(map(int, input().split())) for _ in range(M)]\n\nd = defaultdict(int)\nfor x, y in XY:\n    d[x] = y\n\nnow = 1\nwhile now != N:\n    T -= A[now-1]\n    now += 1\n\n    if T <= 0:\n        print('No')\n        exit()\n    \n    T += d[now]\n    # print(T)\n\nprint('Yes')"
+}

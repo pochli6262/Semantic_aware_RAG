@@ -1,0 +1,29 @@
+{
+  "task": "abc307_a/Python/45989937",
+  "query_summary": "The code uses s[l + i] inside the inner loop instead of s[7*i + l], so it sums wrong (overlapping/shifted) elements rather than each consecutive block of seven.",
+  "oracle_summary": "The bug is an incorrect index calculation—using s[l + i] instead of s[l + i*7] so the code advances by 1 each iteration instead of jumping by 7 and thus selects wrong elements.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the sum of i, j, and l meets the required condition for n instead of using the correct coefficients for each variable (6, 8, and 12).",
+      "diff": "--- \n+++ \n@@ -3,6 +3,6 @@\n for i in range(101):\n   for j in range(101):\n     for k in range(101):\n-      if i+j+l>=n:\n+      if 6*i+8*j+12*k>=n:\n         ans=min(ans,i*s+j*m+l*k)\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly iterates `x` from 1 to `10**7`, skipping the possibility of checking `x = 0` and thus missing one valid square case (0).",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = [int(x) for x in input()]\n s.sort()\n ans = 0\n-for x in range(1, 10**7):\n+for x in range(10**7):\n     t = [int(c) for c in str(x * x)]\n     if len(t) > n:\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the modified string `s` before constructing the list `L` which leads to confusion about the final output of the program since the printed list of counts is based on the altered string instead.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n             s[i] = 'B'\n         else:\n             s[i] = 'A'\n-print(s)\n+\n L = []\n cur = s[0]\n cnt = 0\n@@ -19,7 +19,6 @@\n         L.append(cnt)\n         cnt = 1\n L.append(cnt)\n-print(L)\n \n ans = 1\n for l in L:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses the condition `if s < sum`, instead of the correct condition `if s <= sum`, which causes it to not produce the intended output when `s` is equal to `sum`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n   p,q=map(int, input().split())\n   sum+=p*q\n \n-if s<sum:\n+if s<=sum:\n   print(sum)\n else:\n   print(sum+k)"
+    },
+    {
+      "summary": "The bug in the code is that it initializes `S[i]` to 1 instead of incrementing `S[i]` by 1 when encountering each element in `a`, which prevents correct counting of occurrences for later calculations.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n S = [0 for i in range(10**6+5)]\n selfpair = 0\n for i in a: \n-    S[i] = 1\n+    S[i] += 1\n     if all([int(j) < 5 for j in str(i)]):\n         selfpair += 1\n for j in range(6):"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

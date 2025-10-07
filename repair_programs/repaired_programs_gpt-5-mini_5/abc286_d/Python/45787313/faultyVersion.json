@@ -1,0 +1,4 @@
+{
+  "explanation": "The inner loop iterated j only up to x-1 using `for j in range(x):`, so reachable states with sum exactly x weren't processed and couldn't be propagated to the next coin type. I fixed that line to iterate through 0..x inclusive using `for j in range(x + 1):`, so dp[i][x] is considered. (This is a simple off-by-one fix — no other logic changed.)",
+  "fixed_code": "n, x = map(int, input().split())\nA = [0 for _ in range(n)]\nB = [0 for _ in range(n)]\nfor i in range(n):\n  A[i], B[i] = map(int, input().split())\n\n# dp[i][j] -> whether it's possible to make sum j using first i kinds of coins\n# initialize\nDP = [[False for _ in range(x + 1)] for _ in range(n + 1)]\nfor i in range(n + 1):\n  DP[i][0] = True\n\nfor i in range(n):\n  for j in range(x + 1):\n    for k in range(B[i] + 1):\n      if DP[i][j]:\n        if j + (k * A[i]) <= x:\n            DP[i + 1][j + (k * A[i])] = True\n\nif DP[-1][-1]:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

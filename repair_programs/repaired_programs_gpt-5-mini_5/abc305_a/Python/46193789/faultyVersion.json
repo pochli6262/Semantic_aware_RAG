@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used range(20), which iterates i from 0 to 19 and therefore omits the water station at 100 km (i=20). I changed the loop to range(21) so i runs 0..20 and includes the final station. This is a one-line fix that directly addresses the off-by-one error described in the analysis.",
+  "fixed_code": "N=int(input())\nlist=[]\nfor i in range(21):\n  list.append(abs(N-i*5))\nIn=list.index(min(list))\nprint(In*5)\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line calculates the modulus of the user's input with 5, but it does not account for the case when the input is less than zero, which could lead to a negative result. I fixed it by using the absolute value of the modulus of the user's input with 5, which ensures that the result is non-negative.",
+  "fixed_code": "print(abs(5 - abs(int(input())) % 5))"
+}

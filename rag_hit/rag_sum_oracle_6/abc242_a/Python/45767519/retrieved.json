@@ -1,0 +1,34 @@
+{
+  "task": "abc242_a/Python/45767519",
+  "query_summary": "The second branch uses X <= C instead of X <= B, erroneously applying the middle-case formula for X values up to C rather than only up to B.",
+  "oracle_summary": "The second branch uses X <= C instead of X <= B, erroneously applying the middle-case formula for X values up to C rather than only up to B.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the value of `c2` as `dpNow + 1` instead of `dpNow + x`, leading to incorrect calculations in the dynamic programming array `dp`.",
+      "diff": "--- \n+++ \n@@ -45,7 +45,7 @@\n                 dpNow = dp[i]\n                 if dpNow == INF:\n                     continue\n-                c2 = dpNow+1\n+                c2 = dpNow+x\n                 i2 = i+d\n                 if c2 < dp2[i2]:\n                     dp2[i2] = c2"
+    },
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code incorrectly generates combinations of three distinct elements from the list `C`, which may result in duplicate combinations or invalid indices, while the correct code properly uses the second loop index for the third element to ensure unique combinations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n D=[]\n for i in range(len(C)-2):\n     for j in range(i+1,len(C)-1):\n-        for k in range(i+2,len(C)):\n+        for k in range(j+1,len(C)):\n             D.append((C[i]+C[j]+C[k])/(C[i]*C[j]*C[k]))\n D.sort()\n print(D[0])"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "useful_diffs_count": 4
+}

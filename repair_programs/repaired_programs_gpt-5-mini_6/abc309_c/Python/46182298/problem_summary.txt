@@ -1,0 +1,1 @@
+The calc function uses the wrong inequality (ab[j][0] <= num) so medicines with a_i == num are incorrectly excluded, causing an off-by-one error.

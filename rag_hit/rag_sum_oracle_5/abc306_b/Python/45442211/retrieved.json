@@ -1,0 +1,34 @@
+{
+  "task": "abc306_b/Python/45442211",
+  "query_summary": "The bug is an off-by-one error in the loop bound—using range(63) omits the last element (index 63) so the highest-order term isn't included.",
+  "oracle_summary": "The bug is an off-by-one error in the loop bound—using range(63) omits the last element (index 63) so the highest-order term isn't included.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it starts the variable `i` from 0 instead of 1, which causes it to enter an infinite loop since `pow(0,0)` is considered 1 and will never be less than a positive integer `B`.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n B = int(input())\n-i = 0\n+i = 1\n while pow(i,i) < B:\n     i += 1\n if pow(i,i) == B:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop iterates from 1 to 18 instead of 1 to 19, which causes it to miss processing numbers with 18 digits when N is larger than or equal to 10^18.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     \n ans = 0\n \n-for x in range(1,18):\n+for x in range(1,19):\n     if 10**x <= N:\n         ans += S(1,9*10**(x-1))\n         ans %= mod"
+    },
+    {
+      "summary": "The buggy code incorrectly starts the loop at 0 instead of 1, which causes it to potentially print 0 instead of the correct exponent when B equals 1.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n B=int(input())\n-for i in range(20):\n+for i in range(1,20):\n     if i**i==B:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `i` within the inner while loop that calculates `append1` and `append2`, which leads to the wrong powers of 3 being calculated for these variables.",
+      "diff": "--- \n+++ \n@@ -26,8 +26,8 @@\n append1 = 0\n append2 = 0\n \n+i = 0\n while cur > 0:\n-    i = 0\n     if cur % 3 >= 1:\n         append1 += 3**i\n     if cur % 3 >= 2:"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range `N` instead of `1` to `N-1` in the final loop, which leads to potential index out-of-bounds errors and incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n         B.append(B[i-1] + C[i-1])\n \n ans = 10 ** 20\n-for j in range(N):\n+for j in range(1, N):\n     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])\n \n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

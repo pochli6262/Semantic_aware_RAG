@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly uses `itertools.product` to generate combinations of strings, which leads to generating sequences that are not valid permutations. Instead, the program should use `itertools.permutations`, which generates all possible orderings of the input strings. This change follows the logic found in many diff patterns that emphasize correct combinatorial generation in similar scenarios.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.permutations(S)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

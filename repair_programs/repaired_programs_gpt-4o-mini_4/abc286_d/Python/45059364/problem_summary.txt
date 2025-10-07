@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly updates the DP array for combinations of coins, potentially leading to incorrect results when determining if exactly X yen can be paid.

@@ -1,0 +1,32 @@
+{
+  "task": "abc300_c/Python/45749744",
+  "query_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "oracle_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly returns 0 for cases where `n` is less than `k` and `m` is equal to `k + 1`, instead of returning a value based on `n`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     n, m, k = map(int, input().split())\n \n     if m == k + 1:\n-        print(0)\n+        print((6, 2, 4, 8)[n % 4] if n < k else 0)\n     elif n < m:\n         print((6, 2, 4, 8)[n % 4])\n     else:"
+    },
+    {
+      "summary": "The buggy code fails to account for sequences of characters after the last hyphen, resulting in potentially incorrect output when the last character is not a hyphen, as it does not check if `cur` is non-zero before updating `ans` after the loop.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     else:\n         cur += 1\n \n-if '-' in s:\n+if '-' in s and cur != 0:\n     ans = max(cur, ans)\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code fails to correctly initialize the variable `res`, which should be set to `max(0, n - 1)` instead of just `n - 1`, potentially leading to negative results for certain input cases.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         d.append(p)\n ans = 0\n for _ in range(2):\n-    res = n - 1\n+    res = max(0, n - 1)\n     frm = 0\n     if _ == 1:\n         cnt = 0"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the size `N` for the transformation by only considering `n`, instead of the maximum of both `n` and `m`, which leads to insufficient padding for the input array.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n n, m = mi()\n \n N = 1\n-while N <= n:\n+while N <= n or N <= m:\n     N *= 2\n \n a = li()"
+    },
+    {
+      "summary": "The bug in the code is that the calculation of the initial value of `ans` should use `min(n * m, n * d + pos[k])` instead of `n * d + pos[k]`, ensuring that `ans` does not exceed the maximum possible value of `n * m`.",
+      "diff": "--- \n+++ \n@@ -59,8 +59,8 @@\n     c = s.count('x')\n     d, k = divmod(k, c)\n     pos = [i for i, x in enumerate(s) if x == 'x']\n-    ans = n * d + pos[k]\n \n+    ans = min(n * m, n * d + pos[k])\n     for i in range(len(pos)):\n         j = i - k - 1\n         if j < 0:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

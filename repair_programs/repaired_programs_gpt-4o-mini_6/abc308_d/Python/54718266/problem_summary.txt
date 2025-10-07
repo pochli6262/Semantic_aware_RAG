@@ -1,0 +1,1 @@
+The program likely contains a bug in the check for the destination cell, as it incorrectly evaluates `if grid[h][w]:` instead of `if bool[h][w]:` to determine if the path reaches the bottom-right corner.

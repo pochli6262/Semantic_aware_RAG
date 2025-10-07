@@ -1,0 +1,29 @@
+{
+  "task": "abc301_d/Python/45718315",
+  "query_summary": "The bug is that when encountering a fixed '1' the code only adjusts min_val but forgets to add mask to ans and subtract mask from n, so forced '1' bits are not counted or applied.",
+  "oracle_summary": "The bug is that when encountering a fixed '1' the code only adjusts min_val but forgets to add mask to ans and subtract mask from n, so forced '1' bits are not counted or applied.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ans` with `1 << 32`, which limits the minimum value calculation, instead of using `1 << 64` as in the correct code.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N=int(input())\n S=list(input())\n C=list(map(int,input().split()))\n-ans=1<<32\n+ans=1<<64\n oi=[0]*(N+1)\n io=[0]*(N+1)\n oi_=[0]*(N+1)"
+    },
+    {
+      "summary": "The bug in the code is that the calculation of the initial value of `ans` should use `min(n * m, n * d + pos[k])` instead of `n * d + pos[k]`, ensuring that `ans` does not exceed the maximum possible value of `n * m`.",
+      "diff": "--- \n+++ \n@@ -59,8 +59,8 @@\n     c = s.count('x')\n     d, k = divmod(k, c)\n     pos = [i for i, x in enumerate(s) if x == 'x']\n-    ans = n * d + pos[k]\n \n+    ans = min(n * m, n * d + pos[k])\n     for i in range(len(pos)):\n         j = i - k - 1\n         if j < 0:"
+    },
+    {
+      "summary": "The buggy code incorrectly includes the last index of the list `ans` computation in the loop, which leads to an incorrect calculation of minimum values, while the correct code restricts the loop to `N-1`, ensuring only valid indices are considered.",
+      "diff": "--- \n+++ \n@@ -27,7 +27,7 @@\n         OI[i] = OI[i - 1]\n \n ans = set()\n-for i in range(N):\n+for i in range(N-1):\n     ans.add((OI[-1]-OI[i])+(IO[i]))\n     ans.add(IO[-1]-IO[i]+(OI[i]))\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to update the maximum count (`ans`) after exiting the loop when a sequence of non-negative characters ends, which leads to an incorrect result if the string does not end with a '-' character.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,7 @@\n     else:\n         if flag == 1:\n             cnt+=1\n+ans=max(ans,cnt)\n flag=0\n cnt=0\n for i in range(n):\n@@ -26,8 +27,8 @@\n     else:\n         if flag == 1:\n             cnt+=1\n+ans=max(ans,cnt)\n if ans == 0:\n     print(-1)\n else:\n     print(ans)\n-    "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `0` instead of `1` when the first character in the string appears only once.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s= input()\n \n if s.count(s[0])==1:\n-        print(0)\n+        print(1)\n else:\n     for i in range(1,len(s)):\n         if s[0] != s[i]:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

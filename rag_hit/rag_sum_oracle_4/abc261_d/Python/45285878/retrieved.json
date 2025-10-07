@@ -1,0 +1,29 @@
+{
+  "task": "abc261_d/Python/45285878",
+  "query_summary": "When computing dp[i][0], the buggy code adds yl[j] (the last inner-loop index) instead of yl[0], incorrectly making dp[i][0] depend on j.",
+  "oracle_summary": "When computing dp[i][0], the buggy code adds yl[j] (the last inner-loop index) instead of yl[0], incorrectly making dp[i][0] depend on j.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it initializes the `dp` array with a value of `-(10**10)` instead of `-(10**13)`, which is insufficiently low to handle the required calculations accurately.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n,m=map(int,input().split())\n A=list(map(int,input().split()))\n-dp=[[-(10**10) for i in range(m+1)]for j in range(n+1)]\n+dp=[[-(10**13) for i in range(m+1)]for j in range(n+1)]\n nowmax=2\n for i in range(1,n+1):\n   a=A[i-1]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the `dp` array with a very large value (`10**10`) that is insufficient to represent the maximum possible value needed for comparisons, resulting in incorrect minimum calculations.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(n):\n     v[i] = max(0, y[i] - (x[i] + y[i]) // 2)\n m = sum(z)\n-dp = [[10**10] * (m + 1) for _ in range(n + 1)]\n+dp = [[10**30] * (m + 1) for _ in range(n + 1)]\n dp[0][0] = 0\n for i in range(1, n + 1):\n     for j in range(m + 1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that the nested loop for `j` should iterate from `0` to `k+1` instead of `0` to `k`, which results in incorrect bounds when updating the `dp` array.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n dp[0][0][0] = 0\n \n for i in range(n):\n-    for j in range(k):\n+    for j in range(k+1):\n         for l in range(d):\n             if dp[i][j][l] == -1:\n                 continue"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value of `ans` is set to `10**18`, which may lead to incorrect results, while in the correct code it is set to `10**20`, ensuring a more appropriate initial comparison for the minimum calculation.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n dp = [[0]*(N+1), [0]*(N+1)]\n \n-ans = 10**18\n+ans = 10**20\n for i in range(N):\n     dp[0][i+1] = dp[0][i] + AB[i][0]+AB[i][1]\n     dp[1][i+1] = dp[0][i+1] + AB[i][1]*(max(0, X-i-1))"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b <= x` instead of the correct condition `b < x` to determine the output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n for i in range(n):\n \tb = min(b,d-c[i][0])\n \td = max(d,c[i][1])\n-if b<=x:\n+if b<x:\n \tprint(0)\n else:\n \tprint(b)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

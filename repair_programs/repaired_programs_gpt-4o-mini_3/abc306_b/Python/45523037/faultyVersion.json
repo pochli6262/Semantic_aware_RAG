@@ -1,0 +1,4 @@
+{
+  "explanation": "The buggy program attempts to compute a sum based on the indices of the non-zero elements in the list `a`. The maximum index `i` should only range from 0 to the length of `a` (not exceeding its length), which can be less than 63 depending on the input. I corrected the loop to iterate over `range(len(a))` instead of `range(63)`, thus preventing an IndexError when accessing `a[i]` for indices that do not exist.",
+  "fixed_code": "import sys\ninput = lambda: sys.stdin.readline().strip()\n\na = list(map(int, input().split()))\n\nans = 0\nfor i in range(len(a)):\n    if a[i] == 0:\n        continue\n    else:\n        ans += (2 ** i)\nprint(ans)"
+}

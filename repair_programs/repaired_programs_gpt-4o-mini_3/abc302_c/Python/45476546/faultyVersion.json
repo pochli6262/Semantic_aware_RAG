@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program is the condition in the nested loop that checks `if no != 1:`. This condition should check if `no == 1` instead, because we want to check if exactly one character differs between successive strings. If `no` is not equal to 1, then the answer should be 'No'. I fixed this by changing the condition to check for equality with 1.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.product(S,repeat = N)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no == 1:\n      ans = \"No\"\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

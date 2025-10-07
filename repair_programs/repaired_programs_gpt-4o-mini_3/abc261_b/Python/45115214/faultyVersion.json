@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program is with the condition that checks if the count equals N squared. The correct condition to be checked is whether the count is equal to N (the number of contestants) because it only counts the number of correct outcomes, which should equal the number of contestants for the results to be correct. I corrected the line from 'if count == N**2:' to 'if count == N:'.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\ncount = 0\nfor i in range(N):\n  for k in range(N):\n    if (i == k) and (A[i][k] == '-') :\n      count += 1\n    if (i != k) and (A[i][k] == 'W') and (A[k][i] == 'L'):\n      count += 1\n    if (i != k) and (A[k][i] == 'W') and (A[i][k] == 'L'):\n      count += 1\nif count == N:\n  print(\"correct\")\nelse:\n  print(\"incorrect\")"
+}

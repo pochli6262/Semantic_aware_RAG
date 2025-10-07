@@ -1,0 +1,1 @@
+The likely bug is that the loop iterates using `int(N/7)`, which incorrectly limits the number of weeks processed instead of iterating through all `N` weeks.

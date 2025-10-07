@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the `calc` function where it accumulates the `res` value. The current check `if ab[j][0] <= num:` incorrectly skips counting the pills for medicines that are required for days less than or equal to `num`. The calculation should instead accumulate the `b_i` values for all medicines where `ab[j][0] > num`, not the other way around. This change aligns with the logic needed to determine the total number of pills needed on any day specified by `num`. This fix was inspired by Diff 1, which suggested similar logic changes.",
+  "fixed_code": "n, k = map(int, input().split())\nab = [list(map(int, input().split())) for _ in range(n)]\n\ndef calc(num):\n    global ab\n    res = 0\n    for j in range(n):\n        if ab[j][0] > num:\n            res += ab[j][1]\n    return res\n\nl = -1\nr = 9999999999999999\nm = 0\nwhile r > l + 1:\n    m = (r + l) // 2\n    if calc(m) < k:\n        r = m\n    else:\n        l = m\nprint(r + 1)"
+}

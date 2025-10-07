@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used a specific case check (S1=='.#' and S2=='#.') to determine if the output should be 'No', which is insufficient for determining if all black squares are connected. Instead, the program needs to evaluate all possible movements between black squares. The logic was inspired by the need to check connectivity between squares, similar to how certain diff patterns handled conditions and checks between elements.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1[0] == '#' and S1[1] == '#') or (S2[0] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[0] == '#') or (S1[1] == '#' and S2[1] == '#'):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

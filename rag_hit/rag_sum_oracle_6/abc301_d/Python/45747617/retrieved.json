@@ -1,0 +1,29 @@
+{
+  "task": "abc301_d/Python/45747617",
+  "query_summary": "The bug is an incorrect prefix check when s1 is longer than s2: the code wrongly requires the extra leading characters to be all '?' (s1[:le] != '?'*le) instead of only forbidding '1's (i.e., checking s1[:le].count('1') > 0), so valid prefixes with '0' are rejected.",
+  "oracle_summary": "The bug is an incorrect prefix check when s1 is longer than s2: the code wrongly requires the extra leading characters to be all '?' (s1[:le] != '?'*le) instead of only forbidding '1's (i.e., checking s1[:le].count('1') > 0), so valid prefixes with '0' are rejected.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the loop condition in the `cnt` function should be `while s > 0:` instead of `while s >= 0:` to avoid an incorrect iteration when `s` becomes zero.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     ssum = s1[0]*s\n     remain = d-ssum\n     ret.append([s,0])\n-    while s >= 0:\n+    while s > 0:\n         s -= 1\n         remain += s1[0]\n         if remain %s2[0] == 0: k = remain//s2[0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `s` is a list of characters, but it needs to be a string for the string comparison and count operations to work correctly.",
+      "diff": "--- \n+++ \n@@ -23,6 +23,8 @@\n for _ in range(inp()):\n     n=inp()\n     s=insr()\n+    s=\"\".join(s)\n+    # print(s)\n     if s.count(\"1\")%2 or s==\"011\" or s=='110':\n         print(-1)\n         continue"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly executes the swap of sets S[a] and S[b] after printing the length of S[b], which leads to potential incorrect output in subsequent queries.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,8 @@\n         a, b = b, a\n     S[b] |= S[a]\n     S[a].clear()\n+    print(len(S[b]))\n+\n     if swap:\n         S[b], S[a] = S[a], S[b]\n \n-    print(len(S[b]))"
+    },
+    {
+      "summary": "The buggy code incorrectly prints '-1' instead of 'No' when the condition for inconsistent values in the list `S` is met.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n     S[i] -= sum(L[i:i+3])\n \n if len(set(S)) != 1 or len(set(S)) == 1 and S[0] < 0:\n-    print(-1)\n+    print('No')\n else:\n     print('Yes')\n     num = S[0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses `s = \"\".join(s)` instead of `s = \" \".join(s)`, which results in concatenating the strings without spaces, leading to incorrect counting of distinct entries.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n check = set()\n for i in range(N):\n     s = li_st()\n-    s = \"\".join(s)\n+    s = \" \".join(s)\n     check.add(s)\n \n print(len(check))"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

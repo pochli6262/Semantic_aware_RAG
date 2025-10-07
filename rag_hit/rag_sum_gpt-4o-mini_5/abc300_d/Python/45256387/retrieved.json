@@ -1,0 +1,31 @@
+{
+  "task": "abc300_d/Python/45256387",
+  "query_summary": "The likely bug is that the program incorrectly calculates the range for the variable `b`, potentially allowing `a` to equal `b` instead of ensuring that `a < b` as required by the problem statement.",
+  "oracle_summary": "The buggy version hardcodes n = 10**12 instead of reading n from input, so it ignores the intended input value.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to include the last prime number in the range by iterating only up to `k+1` instead of `k+2`, resulting in missing prime numbers needed for calculations.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n k = int((n//2) ** (1/3))\n prl[0] = 2\n cur = 1\n-for i in range(3,k+1):\n+for i in range(3,k+2):\n     if pr_jg(i):\n         prl[cur] = i\n         cur += 1"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the upper limit of the loop in the second `for` statement (for `i` in `range(1,n//a[0])`) instead of `(n-1)//a[0]+1`, leading to potential index errors or missed calculations for valid indices.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n   if a[0]<n:\n     dp1[a[0]][a[0]]=1\n else:\n-  for i in range(1,n//a[0]):\n+  for i in range(1,(n-1)//a[0]+1):\n     dp2[i*a[0]]=1\n     \n for i in range(1,n):"
+    },
+    {
+      "summary": "The buggy code contains an error where the function `solve` modifies the list `a` in place, which leads to incorrect results because the state of `a` is altered between function calls when `solve` is invoked multiple times in the loop.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n             break\n         p = list(range(1, n + 1))\n         random.shuffle(p)\n-        ans.append(list(range(1, n + 1)))\n+        ans.append(p)\n         for j in range(n):\n             a[j] += p[j]\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ng` to `len(li) - 1` instead of `len(li)`, which causes the binary search to skip the last potential index and may lead to an out-of-bounds error.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+\n def enum_primes(n):\n     prime_flag = [1] * (n + 1)\n     prime_flag[0] = 0\n@@ -18,7 +19,7 @@\n for i in range(len(li)):\n     p=li[i]\n     ok=i\n-    ng=len(li)-1\n+    ng=len(li)\n     while ng-ok>1:\n         j=(ok+ng)//2\n         q=li[j]\n@@ -30,3 +31,4 @@\n         ans+=ok-i\n \n print(ans)\n+"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to add the final prime factor (if greater than 1) to the set of prime factors, which can lead to incorrect results when calculating the number of divisors.",
+      "diff": "--- \n+++ \n@@ -13,6 +13,8 @@\n         i+=1\n     else:\n         i+=2\n+if K!=1:\n+    pr.add(K)\n \n div=[]\n div2=[]"
+    }
+  ],
+  "useful_diffs_indices": [
+    10
+  ],
+  "useful_diffs_count": 1
+}

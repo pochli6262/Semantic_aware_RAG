@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code incorrectly checks if A is equal to B-1 or B-3. The correct condition should include B being A+1 or A+3 instead to properly capture the intended logic of adjacency or specific differences. Therefore, the line 'elif A==B-1 or A==B-3:' has been corrected to 'elif A==B-1 or A==B-3:' which is actually correct but contextually might require logical re-evaluation in terms of the task, assuming we needed to compare correctly. The issue lies within the logical points being established as adjacency checks.",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A+1:\n    print('No')\nelif A==B-1 or A==B-3:\n    print('Yes')\nelse:\n    print('No')"
+}

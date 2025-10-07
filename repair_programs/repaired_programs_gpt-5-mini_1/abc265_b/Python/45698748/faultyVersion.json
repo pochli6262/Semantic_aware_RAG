@@ -1,0 +1,4 @@
+{
+  "explanation": "The final survival check used `if t < 0:` but earlier in the loop the code treats `t <= 0` as failure. This is inconsistent and incorrect: if the remaining time `t` becomes exactly 0 after the last travel, it should be considered a failure just like during the intermediate steps. I fixed that single line to `if t <= 0:` so the final check matches the earlier logic.",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= sum(a[pos : x - 1])\n    if t <= 0:\n        print(\"No\")\n        exit()\n    else:\n        t += y\n        pos = x - 1\nt -= sum(a[pos:])\nif t <= 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

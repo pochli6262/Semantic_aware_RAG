@@ -1,0 +1,1 @@
+The code applies the rotation transition unconditionally in the reverse BFS without enforcing the forward-rotation constraints (e.g., that the predecessor has at least two digits and its last digit is nonzero), so it considers invalid predecessors.

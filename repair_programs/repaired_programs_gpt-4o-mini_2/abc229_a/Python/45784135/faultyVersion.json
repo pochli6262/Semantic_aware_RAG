@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the second condition of the if statement. It checks s1[1] and s2[1], which may cause an index error if the input strings are shorter than 2 characters. The correct condition should be to check s1[0] and s2[0] to ensure we are checking the first character for both strings. This was fixed by changing s1[1] to s1[0] and s2[1] to s2[0].",
+  "fixed_code": "s1=input()\ns2=input()\n\nif (s1[0]=='#' and s2[0]=='#') or (s1[0]=='#' and s2[0]=='#'):\n    print('Yes')\nelse:\n    print('No')"
+}

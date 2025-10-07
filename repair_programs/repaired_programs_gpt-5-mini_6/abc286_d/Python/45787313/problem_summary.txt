@@ -1,0 +1,1 @@
+The loop over j uses range(x) instead of range(x+1), so achievable states at sum x aren't propagated to the next item (losing dp[i][x] → dp[i+1][x]).

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code never checked that each S_i lies between 100 and 675 (inclusive). I fixed the single conditional line that checked divisibility by 25 to also verify the required range for both arr[i-1] and arr[i]. This adds the missing second condition without changing any other lines.",
+  "fixed_code": "arr = list(map(int, input().split()))\nfl = True\nfor i in range(1, 8):\n    if arr[i - 1] > arr[i]:\n        fl = False\n    if arr[i - 1] % 25 != 0 or arr[i] % 25 != 0 or not (100 <= arr[i - 1] <= 675) or not (100 <= arr[i] <= 675):\n        fl = False\nprint(\"Yes\" if fl else \"No\")"
+}

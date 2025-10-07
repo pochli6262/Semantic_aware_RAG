@@ -1,0 +1,4 @@
+{
+  "explanation": "The line ans=N+a-1 is wrong: it adds a-1 instead of adding the distance up to the next multiple of 5. For example N=4 (a=4) that yields 7 instead of 5. I fixed that single line to add (5 - a) so the code rounds up correctly when a >= 3.",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a <3:\n        ans=N-a\n    else:\n        ans=N+5-a\n    print(ans)\n"
+}

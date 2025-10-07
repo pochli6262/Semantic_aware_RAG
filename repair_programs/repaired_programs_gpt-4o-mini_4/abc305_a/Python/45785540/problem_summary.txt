@@ -1,0 +1,1 @@
+The program incorrectly outputs 0 when Takahashi is exactly at a water station (N % 5 == 0) instead of the correct station position.

@@ -1,0 +1,1 @@
+The DP table is initialized with -MOD (−1e9+7) instead of negative infinity, so adding positive X/Y to these sentinel values can produce spurious non-sentinel states and corrupt the transitions.

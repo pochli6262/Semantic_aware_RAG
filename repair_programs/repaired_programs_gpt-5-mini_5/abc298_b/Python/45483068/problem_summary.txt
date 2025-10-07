@@ -1,0 +1,1 @@
+The loop only iterates three times (range(3)), so the code fails to check all four rotations (it misses the 270° orientation).

@@ -1,0 +1,1 @@
+The program always prints "No" afterward because the final unconditional print runs even when a valid permutation was found and "Yes" was printed.

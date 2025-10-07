@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line was `product.sort(reverse=True)`. That sorts each row lexicographically (including C_i and function ids), so products with the same price can be reordered and valid superior/inferior pairs missed. I fixed it to sort only by price in descending order using a key: `product.sort(key=lambda x: x[0], reverse=True)`. (No specific retrieved diff applied; the fix is a straightforward change to use a key function for sorting.)",
+  "fixed_code": "N, M = map(int, input().split())\nproduct = [list(map(int, input().split())) for _ in range(N)]\nproduct.sort(key=lambda x: x[0], reverse=True)\nanswer = False\n\nfor i in range(N):\n    for j in range(i+1, N):\n        Pi = product[i][0]\n        Pj = product[j][0]\n        Fi = set(product[i][2:])\n        Fj = set(product[j][2:])\n        if Fi <= Fj and (Pi > Pj or Fi < Fj):\n            answer = True\n            \nprint(\"Yes\" if answer else \"No\")                "
+}

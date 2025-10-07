@@ -1,0 +1,4 @@
+{
+  "explanation": "The program intended to check whether A and B are adjacent horizontally on a 3x3 grid: they must be on the same row and B's column index should be exactly one greater than A's. The buggy line compared ax to ay (row of A to column of A) instead of ax to bx (row of A to row of B). I fixed that comparison to ax == bx.",
+  "fixed_code": "import sys\nimport string\nimport numpy as np\nfrom collections import defaultdict, deque\nfrom math import dist\nimport itertools\nimport operator\n\nINF = -1000000000000000000\n\nA, B = map(int, input().split())\nax = (A - 1) // 3\nay = (A - 1) % 3\nbx = (B - 1) // 3\nby = (B - 1) % 3\n\nprint(\"Yes\" if ax == bx and by - ay == 1 else \"No\")"
+}

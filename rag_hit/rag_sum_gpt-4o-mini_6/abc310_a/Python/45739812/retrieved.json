@@ -1,0 +1,32 @@
+{
+  "task": "abc310_a/Python/45739812",
+  "query_summary": "The likely bug is that the program incorrectly calculates the total cost when using the coupon by not properly accounting for the discount and the price of the dish.",
+  "oracle_summary": "The bug is a wrong arithmetic expression—a typo using \"P - Q + d\" instead of the correct \"Q + d\"—so the candidate value p is computed incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly sums the elements that are strictly less than K instead of including those that are equal to K, leading to an incorrect calculation of the total sum.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n dis = 0\n for a in sa:\n-  if a < K:\n+  if a <= K:\n     dis += a\n \n print((K + 1) * K // 2 - dis)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly computes the contribution of the value `A[i]` to the result by using `S[l] + A[i]` instead of the correct term involving `r * A[i]`.",
+      "diff": "--- \n+++ \n@@ -12,5 +12,5 @@\n     m = (l + r) // 2\n     if A[i] + B[m] <= P : l = m\n     else : r = m\n-  res += (S[l] + A[i] if l >= 0 else 0) + P * (M - r)\n+  res += (S[l] + r * A[i] if l >= 0 else 0) + P * (M - r)\n print(res)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the total amount of money by multiplying `money` (which is derived from `P[3]` and `P[4]`) by `r`, instead of using a different amount for that portion of the calculation, resulting in incorrect output when `r` is greater than 0.",
+      "diff": "--- \n+++ \n@@ -15,4 +15,4 @@\n         continue\n     q, r = divmod(po, 2)\n     money = min(P[3]*2, P[4])\n-    print(money * q +  money * r)\n+    print(money * q +  min(P[3], P[4]) * r)"
+    },
+    {
+      "summary": "The problem in the buggy code is that both the 'short' and 'long' variables are mistakenly setting the 'short' variable for the second input 'q' instead of the 'long' variable, leading to incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     short=li[5]\n \n if q=='A':\n-    short=0\n+    long=0\n elif q=='B':\n     long=li[0]\n elif q=='C':"
+    },
+    {
+      "summary": "The bug in the code is that it uses a strict less than comparison (`<`) instead of a less than or equal comparison (`<=`), which can lead to missing the correct index when the sum equals X.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N, H, X = map(int,input().split())\n P = list(map(int,input().split()))\n for i in range(N):\n-    if X < H + P[i]:\n+    if X <= H + P[i]:\n         print(i+1)\n         break"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    5
+  ],
+  "useful_diffs_count": 2
+}

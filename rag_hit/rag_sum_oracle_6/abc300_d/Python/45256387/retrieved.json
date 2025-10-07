@@ -1,0 +1,31 @@
+{
+  "task": "abc300_d/Python/45256387",
+  "query_summary": "The buggy version hardcodes n = 10**12 instead of reading n from input, so it ignores the intended input value.",
+  "oracle_summary": "The buggy version hardcodes n = 10**12 instead of reading n from input, so it ignores the intended input value.",
+  "retrieved": [
+    {
+      "summary": "The buggy code contains an off-by-one error in the calculation of `m`, where it should be `m = n//2 + 1` instead of `m = n//2 + (n%2)`, which affects the logic used to determine when to print a result.",
+      "diff": "--- \n+++ \n@@ -101,7 +101,7 @@\n         i += 1\n     return lower_divisors + upper_divisors[::-1]\n n = int(input())\n-m = n//2 + (n%2)\n+m = n//2 + 1\n alist = list(map(int,input().split()))\n t = time.time()\n s = set([2,1])"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The buggy code fails to correctly initialize the variable `res`, which should be set to `max(0, n - 1)` instead of just `n - 1`, potentially leading to negative results for certain input cases.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         d.append(p)\n ans = 0\n for _ in range(2):\n-    res = n - 1\n+    res = max(0, n - 1)\n     frm = 0\n     if _ == 1:\n         cnt = 0"
+    },
+    {
+      "summary": "The problem in the buggy code is that the range for the loop is set to 2*(10**5), which may not provide enough iterations to find a day when \"day\" exceeds \"n,\" whereas the correct code uses 3*(10**5) to ensure sufficient iterations.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n, m, p = map(int, input().split())\n ans = 0\n day = m\n-for i in range(2*(10**5)):\n+for i in range(3*(10**5)):\n     if day > n:\n         ans = i\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ans` to `10**30` instead of a larger value (`10**1000`), which may result in incorrect calculations in the subsequent logic.",
+      "diff": "--- \n+++ \n@@ -38,9 +38,10 @@\n for key in res.keys():\n     pro*=B*res[key]+1\n \n-ans=10**30\n+ans=10**1000\n for key in res.keys():\n     ans=min(ans,(B*res[key]*pro//2)//res[key])\n+    \n print(ans%998244353)\n     \n     "
+    }
+  ],
+  "useful_diffs_indices": [
+    10
+  ],
+  "useful_diffs_count": 1
+}

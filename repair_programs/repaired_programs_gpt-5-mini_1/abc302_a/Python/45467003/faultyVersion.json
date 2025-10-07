@@ -1,0 +1,4 @@
+{
+  "explanation": "The buggy line 'print(1 + A // B)' attempts to compute the ceiling of A/B by always adding 1 to the integer division result. That overcounts when A is exactly divisible by B (e.g. A=4, B=2 gives 3 instead of 2). I replaced that single line with the standard integer-ceiling formula '(A + B - 1) // B', which yields the correct ceiling for positive integers.",
+  "fixed_code": "A, B = map(int, input().split())\nprint((A + B - 1) // B)\n"
+}

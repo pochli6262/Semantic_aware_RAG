@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed the result list directly (print(x)), which outputs Python list syntax like \"[3, -1]\". The problem requires printing the two coordinates separated by a space (\"3 -1\"). I changed the single incorrect line to print the two elements individually using print(x[0], x[1]) so they are printed separated by a space. No other lines were modified.",
+  "fixed_code": "array = list(map(int,input().split()))\nxy1 = array\narray = list(map(int,input().split()))\nxy2 = array\narray = list(map(int,input().split()))\nxy3 = array\nx = []\nfor i in range(2):\n  if xy1[i] == xy2[i]:\n    x.append(xy3[i])\n  elif xy1[i] == xy3[i]:\n    x.append(xy2[i])\n  else:\n    x.append(xy1[i])\nprint(x[0], x[1])"
+}

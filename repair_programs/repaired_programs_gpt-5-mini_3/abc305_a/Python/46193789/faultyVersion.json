@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only checked multiples of 5 from 0 to 95 (range(20)), so if N was near 100 the closest multiple (100) was never considered. I fixed the range to include 100 by iterating to 21. Only that single line was changed.",
+  "fixed_code": "N=int(input())\nlist=[]\nfor i in range(21):\n  list.append(abs(N-i*5))\nIn=list.index(min(list))\nprint(In*5)"
+}

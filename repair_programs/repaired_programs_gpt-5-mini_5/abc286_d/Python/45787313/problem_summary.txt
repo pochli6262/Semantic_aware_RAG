@@ -1,0 +1,1 @@
+The inner loop iterates j only up to x-1 (range(x)) instead of including x, so reachable states with sum exactly x aren't propagated to the next item.

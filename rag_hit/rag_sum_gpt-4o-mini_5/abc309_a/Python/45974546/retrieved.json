@@ -1,0 +1,31 @@
+{
+  "task": "abc309_a/Python/45974546",
+  "query_summary": "The buggy program incorrectly checks for adjacency by only considering pairs in one specific order rather than ensuring both horizontal adjacency conditions are met for both A and B.",
+  "oracle_summary": "The bug is caused by an incorrect initialization of G — it contains extra pair entries (edges) that shouldn't be present, causing incorrect matches (false positives).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list `g1`, missing some valid combinations (like \"BA\", \"CB\", \"DC\", \"ED\", and \"AE\") which are necessary for the correct logic to determine membership.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n T = input()\n \n-g1 = [\"AB\", \"BC\", \"CD\", \"DE\", \"EA\"]\n+g1 = [\"AB\",\"BA\", \"BC\", \"CB\", \"CD\", \"DC\", \"DE\", \"ED\", \"EA\", \"AE\"]\n \n if S in g1 and T in g1:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `range(b+1, W)` for the variable `d`, which should instead be `range(c+1, W)` to ensure that the indices for `c` and `d` are properly chosen for comparison.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for a in range(H-1):\n \tfor b in range(a+1, H):\n \t\tfor c in range(W-1):\n-\t\t\tfor d in range(b+1, W):\n+\t\t\tfor d in range(c+1, W):\n \t\t\t\tif A[a][c] + A[b][d] > A[b][c] + A[a][d]:\n \t\t\t\t\tFlag = False\n if Flag:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the comparison in the if statement incorrectly uses the less-than operator instead of the greater-than operator, leading to an erroneous condition for setting the flag to False.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     for w in range(W):\n         for i in range(h+1, H):\n             for j in range(w+1, W):\n-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False\n+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False\n \n if flag : print(\"Yes\")\n else : print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    8
+  ],
+  "useful_diffs_count": 1
+}

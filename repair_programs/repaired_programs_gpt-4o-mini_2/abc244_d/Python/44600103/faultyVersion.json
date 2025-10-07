@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the program is assuming the inputs will always have exactly three elements without providing any validation. If more or fewer elements are input, it will lead to an IndexError. To fix this, I changed the range in the for loop from 3 to the length of the shortest list, which allows the code to handle varying lengths of input safely.",
+  "fixed_code": "S = list(map(str, input().split()))\nT = list(map(str, input().split()))\ndiff = 0\nfor i in range(min(len(S), len(T))):\n    if S[i] != T[i]:\n        diff += 1\n\nif diff % 2 == 0:\n    print('Yes')\nelse:\n    print('No')"
+}

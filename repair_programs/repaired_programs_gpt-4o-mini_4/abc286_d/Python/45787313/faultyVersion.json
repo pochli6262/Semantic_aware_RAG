@@ -1,0 +1,4 @@
+{
+  "explanation": "The original implementation of the code has a bug in the condition for updating the dp array where `j < x` should be changed to `j <= x` in the second nested loop to ensure the entire range of sums is considered. This fix is related to the implied issue of out-of-bounds access, preventing the program from checking the last possible value of `x`. Inspired by the known fixes, ensuring bounds are correctly handled is crucial.",
+  "fixed_code": "n, x = map(int, input().split())\na = [0 for _ in range(n)]\nb = [0 for _ in range(n)]\nfor i in range(n):\n  a[i], b[i] = map(int, input().split())\n\ndp = [[False for _ in range(x + 1)] for _ in range(n + 1)]\nfor i in range(n + 1):\n  dp[i][0] = True\n\nfor i in range(n):\n  for j in range(x + 1):\n    for k in range(b[i] + 1):\n      if dp[i][j]:\n        if j + (k * a[i]) <= x:\n            dp[i + 1][j + (k * a[i])] = True\n\nif dp[-1][-1]:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'print(1 + A // B)' uses integer division. This can cause problems if B is 0, as it would raise a ZeroDivisionError. The line was corrected to handle the division more gracefully by checking if B is zero before performing the operation.",
+  "fixed_code": "A, B = map(int, input().split())\n\nif B != 0:\n    print(1 + A // B)\nelse:\n    print('Error: Division by zero')"
+}

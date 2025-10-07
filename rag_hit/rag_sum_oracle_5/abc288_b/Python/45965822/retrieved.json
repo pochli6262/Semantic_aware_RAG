@@ -1,0 +1,31 @@
+{
+  "task": "abc288_b/Python/45965822",
+  "query_summary": "It sorts the entire list before slicing instead of slicing the first b elements and then sorting them, thus selecting the globally smallest b strings rather than sorting only the first b inputs.",
+  "oracle_summary": "It sorts the entire list before slicing instead of slicing the first b elements and then sorting them, thus selecting the globally smallest b strings rather than sorting only the first b inputs.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it uses division (`/`) instead of integer division (`//`), which can lead to incorrect results when appending elements to list `b`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n b = []\n for i in range(n):\n     if a[i] % k == 0:\n-        c = a[i] / k\n+        c = a[i] // k\n         b.append(c)\n sorted_b = sorted(b)\n print(\" \".join(map(str, sorted_b)))"
+    },
+    {
+      "summary": "The buggy code unnecessarily sorts the list of integers, which alters the original order and is not required for the problem, leading to an incorrect output when the order of elements matters.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, L, R = map(int, input().split())\n-A = sorted([*map(int, input().split())])\n+A = [*map(int, input().split())]\n \n for a in A:\n     if a <= L:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if any two consecutive elements in the sorted list `c` belong to the same array (either `a` or `b`), instead of specifically checking if they both belong to array `a`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n \n ans = \"No\"\n for i in range(n + m - 1):\n-    if c[i][1] == c[i + 1][1]:\n+    if c[i][1] == c[i + 1][1] == 0:\n         ans = \"Yes\"\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly sorts the list in ascending order instead of reversing it as intended.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,5 @@\n   i = int(input())\n   a.append(i)\n   if i == 0: break\n-a.sort()\n+a.reverse()\n print(*a,sep='\\n')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the elements of list B without spaces between them, resulting in a concatenated string instead of separate values.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n         B.append(i//K)\n B.sort()\n for i in B:\n-    print(i,end=\"\")\n+    print(i,end=\" \")"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

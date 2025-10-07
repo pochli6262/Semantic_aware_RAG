@@ -1,0 +1,4 @@
+{
+  "explanation": "The single incorrect line is where the program incorrectly calculates the total cost by subtracting the discount price Q from P and then adding the dish price d. The line should directly calculate the total cost for using the coupon as Q + d. This aligns with the original problem, which simply requires summing the discounted drink price and the chosen dish price. The pattern from the known fixes indicates that proper calculations or adjustments to values are essential, which inspired the correction here.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nres = P\n\nfor d in D:\n    if (p := Q + d) < res:\n        res = p\n\nprint(res)"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program correctly builds the sequence b, but the final line print(b) prints Python's list representation (with brackets and commas). In typical contest/IO tasks the sequence should be printed as space-separated numbers. I fixed the last line to print the elements space-separated using print(*b).",
+  "fixed_code": "n = int(input())\na = list(map(int,input().split()))\n\nb = []\nfor i in range(n-1):\n    if a[i] <= a[i+1]:\n        b += list(range(a[i],a[i+1]))\n    if a[i] >= a[i+1]:\n        b += list(range(a[i],a[i+1],-1))\n        \nb.append(a[-1])\n\nprint(*b)"
+}

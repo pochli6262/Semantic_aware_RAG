@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code read the first input line into a single string a and then used a[0] and a[-1] to extract the two integers. That only works if each integer is a single digit. I fixed it by splitting the input into tokens (a = input().split()), so a[0] and a[-1] are the full numeric tokens and convert correctly to integers even when they have multiple digits.",
+  "fixed_code": "a = input().split()\nb = int(a[0])\nc = int(a[-1])\nd = []\ne = []\nfor j in range(b):\n    d.append(input())\nfor j in range(b):\n    e.append(input()) \ndef f(x, y):\n    for i in range(b):\n        for j in range(c):\n            if d[(i+x)%b][(j+y)%c] == e[i][j]:\n                pass \n            else:\n                return 0\n    return 1\nans = 0\nfor i in range(b):\n    for j in range(c):\n        if f(i, j):\n            ans = 1\nif ans:\n    print('Yes')\nelse:\n    print('No')"
+}

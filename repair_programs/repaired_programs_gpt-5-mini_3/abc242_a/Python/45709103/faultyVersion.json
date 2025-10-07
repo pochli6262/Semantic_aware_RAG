@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition incorrectly used x>a+1 which wrongly excluded the case x == a+1. The intended range is a < x <= b, so the check should be x > a and x <= b. I changed that single condition to include values immediately greater than a.",
+  "fixed_code": "a,b,c,x=list(map(int,input().split()))\nans=1.0\nif x>a and x<=b:\n    ans=c/(b-a)\nelif x>b:\n    ans=0.0\nprint('%.10f'%ans)\n"
+}

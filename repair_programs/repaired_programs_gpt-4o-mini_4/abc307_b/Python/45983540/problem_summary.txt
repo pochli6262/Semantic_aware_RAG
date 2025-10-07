@@ -1,0 +1,1 @@
+The likely bug is that the inner loop incorrectly breaks when `i` equals `j`, which prevents the program from checking all distinct pairs of strings.

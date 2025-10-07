@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only iterated for i in range(6) (i = 0..5), so the case where N is between 10^8 and 10^9-1 (which requires i = 6) was never handled and large inputs produced no output. I fixed it by extending the loop to range(7) so i runs 0..6 and the final case is covered. This is analogous to the style of fixes that increase an upper bound in a range (see Diff 5 pattern).",
+  "fixed_code": "n = int(input())\n\nfor i in range(7):\n    if n <= 10**(3 + i) - 1:\n        print((n // (10**i)) * 10**i)\n        break\n"
+}

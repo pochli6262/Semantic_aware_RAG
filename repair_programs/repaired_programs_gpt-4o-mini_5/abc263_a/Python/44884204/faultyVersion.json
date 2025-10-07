@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line only checked for one specific arrangement of the sorted card values, which is inadequate to determine if the set is a Full house. In the corrected version, the program checks the frequency of cards instead. This is inspired by the known fixes which show the importance of validating conditions by frequency instead of relying on a specific pattern (like in Diff 1).",
+  "fixed_code": "def main():\n    cards = list(map(int, input().split()))\n    assert len(cards) == 5\n\n    from collections import Counter\n    count = Counter(cards)\n    if sorted(count.values()) == [2, 3]:\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\n\nif __name__ == \"__main__\":\n    main()"
+}

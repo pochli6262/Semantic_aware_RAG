@@ -1,0 +1,4 @@
+{
+  "explanation": "The code assumed b and c could be obtained from the first and last characters of the raw input string (a[0] and a[-1]), which fails when the dimensions are multi-digit or when the input contains a space-separated pair like \"3 4\". By changing the input line to split the input into tokens (a = input().split()), the subsequent int(a[0]) and int(a[-1]) correctly parse the two numbers regardless of spacing or digit count.",
+  "fixed_code": "a = input().split()\nb = int(a[0])\nc = int(a[-1])\nd = []\ne = []\nfor j in range(b):\n    d.append(input())\nfor j in range(b):\n    e.append(input()) \ndef f(x, y):\n    for i in range(b):\n        for j in range(c):\n            if d[(i+x)%b][(j+y)%c] == e[i][j]:\n                pass \n            else:\n                return 0\n    return 1\nans = 0\nfor i in range(b):\n    for j in range(c):\n        if f(i, j):\n            ans = 1\nif ans:\n    print('Yes')\nelse:\n    print('No')\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program computed the two missing coordinates correctly into the list x, but the last line printed the list object (print(x)), which yields output like '[3, 2]'. The expected output is the two numbers separated by a space. I fixed the single incorrect line by printing the two elements explicitly with print(x[0], x[1]).",
+  "fixed_code": "array = list(map(int,input().split()))\nxy1 = array\narray = list(map(int,input().split()))\nxy2 = array\narray = list(map(int,input().split()))\nxy3 = array\nx = []\nfor i in range(2):\n  if xy1[i] == xy2[i]:\n    x.append(xy3[i])\n  elif xy1[i] == xy3[i]:\n    x.append(xy2[i])\n  else:\n    x.append(xy1[i])\nprint(x[0], x[1])"
+}

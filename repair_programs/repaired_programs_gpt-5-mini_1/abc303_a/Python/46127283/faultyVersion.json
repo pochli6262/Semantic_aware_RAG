@@ -1,0 +1,4 @@
+{
+  "explanation": "The second conditional used the wrong variable: it checked t[i] == 'o' instead of s[i] == 'o'. That meant characters in s like 'o' were never matched as equivalent to '0'. I fixed that single line to check s[i] for both '0' and 'o'.",
+  "fixed_code": "n = int(input())\ns = input()\nt = input()\n\np = 0\n\nfor i in range(n):\n    if s[i] == \"1\" or s[i] == \"l\":\n        if t[i] == \"1\" or t[i] == \"l\":\n            p += 1\n        \n    elif s[i] == \"0\" or s[i] == \"o\":\n        if t[i] == \"0\" or t[i] == \"o\":\n            p += 1\n            \n    elif s[i] == t[i]:\n        p += 1\n    \nif p == n:\n    print(\"Yes\")\n    \nelse:\n    print(\"No\")\n"
+}

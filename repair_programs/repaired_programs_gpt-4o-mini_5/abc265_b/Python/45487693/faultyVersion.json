@@ -1,0 +1,4 @@
+{
+  "explanation": "The single incorrect line was accessing the dictionary of bonus rooms using 'now + 1' instead of 'now' which refers to the current room in the context of input indices (starting from 1). By changing it to 'now', we correctly access the bonus room associated with the current room index. This was inspired by the reasoning from the problem summary regarding the correct index usage.",
+  "fixed_code": "n,m,t=map(int,input().split())\ns=list(map(int,input().split()))\ndic=dict()\nfor i in range(m):\n    a,b=map(int,input().split())\n    dic[a]=b\n\nfor now in range(1,n):\n    \n    if t-s[now-1]<0:\n        print(\"No\")\n        exit()\n    else:\n        t-=s[now-1]\n    if now in dic:\n        t+=dic[now]\n    \nprint(\"Yes\")"
+}

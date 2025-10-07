@@ -1,0 +1,29 @@
+{
+  "task": "abc229_a/Python/46233112",
+  "query_summary": "The buggy code fails to consider that the answer should be \"Yes\" when either S1 or S2 has identical first and second characters (S1[0]==S1[1] or S2[0]==S2[1]).",
+  "oracle_summary": "The buggy code fails to consider that the answer should be \"Yes\" when either S1 or S2 has identical first and second characters (S1[0]==S1[1] or S2[0]==S2[1]).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the first three characters of both strings are equal, potentially leading to errors when the strings are shorter than three characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n t = input()\n-if s[0:3] == t[0:3]:\n+if s[0:len(s)] == t[0:len(s)]:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly determines \"Yes\" if two consecutive characters are either \"a\" or \"b\", without checking that they are different, which is necessary to satisfy the desired condition.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n S = input()\n ok = [\"a\", \"b\"]\n for i in range(N-1):\n-    if S[i] in ok and S[i+1] in ok:\n+    if S[i] in ok and S[i+1] in ok and S[i] != S[i+1]:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the character 'S' instead of 'M' when determining the index for comparison.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(len(S)):\n   if S[i] == 'R':\n     R_index = i\n-  elif S[i] == 'S':\n+  elif S[i] == 'M':\n     S_index = i\n if R_index < S_index:\n   print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code fails to handle the special case where the input string is \"BA\", causing it to incorrectly evaluate as \"Yes\" instead of \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n S=input()\n ck=0\n+if S==\"BA\":\n+    exit(print(\"No\"))\n for i in range(N):\n     if S[i]!=S[-1-i]:\n         ck=1"
+    },
+    {
+      "summary": "The buggy code fails to handle the case where the second and third characters are equal but different from the first character, which should be printed as \"3\" instead of falling through to \"6\".",
+      "diff": "--- \n+++ \n@@ -5,5 +5,7 @@\n     print(\"3\")\n elif S[0]==S[1] and S[0]!=S[2]:\n     print(\"3\")\n+elif S[0]!=S[1] and S[1]==S[2]:\n+    print(\"3\")\n elif S[0]!=S[1] and S[0]!=S[2]:\n     print(\"6\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition used x%100==0 which checks whether x is divisible by 100 (i.e., last two digits are 00). The intended test was to check whether x ends with a single 0 (divisible by 10). I fixed that single line by changing 100 to 10; all other lines remain identical.",
+  "fixed_code": "x = int(input())\nprint('Yes' if x%10==0 else 'No')"
+}

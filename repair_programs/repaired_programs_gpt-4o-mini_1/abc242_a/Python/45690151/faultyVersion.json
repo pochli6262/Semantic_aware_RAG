@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition 'a < x <= b'. This condition checks if 'x' is greater than 'a' but less than or equal to 'b', but it should be checking if it is greater than 'a' and less than 'b'. I fixed it by changing the condition to 'a < x < b'.",
+  "fixed_code": "a, b, c, x = map(int, input().split())\nif x <= a:\n    print(1)\nelif a < x < b:\n    print(c/(b-a+1))\nelse:\n    print(0)"
+}

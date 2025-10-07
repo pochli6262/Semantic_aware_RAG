@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if line accessed s1[1] and s2[1] without checking that those indices exist, which causes an IndexError when an input string has length 1 (or is empty). I fixed it by adding length checks so each character access is only attempted when that position exists: check len(s1)>0 and len(s2)>0 before accessing [0], and len(s1)>1 and len(s2)>1 before accessing [1].",
+  "fixed_code": "s1=input()\ns2=input()\n\nif (len(s1)>0 and len(s2)>0 and s1[0]==\"#\" and s2[0]==\"#\") or (len(s1)>1 and len(s2)>1 and s1[1]==\"#\" and s2[1]==\"#\"):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

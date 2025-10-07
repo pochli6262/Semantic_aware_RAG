@@ -1,0 +1,33 @@
+{
+  "task": "abc300_c/Python/45723345",
+  "query_summary": "The likely bug is that the program incorrectly increments the count of crosses based on the size detected, as it does not appropriately check the requirement that at least one of the cells adjacent to the outermost layer of the cross is a dot before confirming a cross of that size.",
+  "oracle_summary": "The results array is incorrectly sized as H+1 instead of min(H, W)+1, causing extra outputs (wrong length) when the width is smaller than the height.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks the condition for compatibility between states by using the bitwise AND operation incorrectly, resulting in faulty transitions in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n for i in range(1,H+1):\n     for j in range(4):\n         for k in range(4):\n-            if (k&1)^(j&2) == 1:\n+            if (k&1)^(j>>1&1) == 1:\n                 continue\n             if maze[i-1][j^k]:\n                 if i == H:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the comparison in the if statement incorrectly uses the less-than operator instead of the greater-than operator, leading to an erroneous condition for setting the flag to False.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     for w in range(W):\n         for i in range(h+1, H):\n             for j in range(w+1, W):\n-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False\n+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False\n \n if flag : print(\"Yes\")\n else : print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it continues to check all 6 positions even when an out-of-bounds index is encountered, instead of breaking the loop, which can lead to incorrect counting of \"#\" characters.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n                 nh = h + dy[i]*j\n                 nw = w + dx[i]*j\n                 if not (0 <= nh < N and 0 <= nw < N):\n-                    continue\n+                    break\n                 if S[nh][nw] == \"#\":\n                     cnt += 1\n             else:"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `h` to zero in the second while loop that checks for the \"^\" character, which results in an infinite loop instead of starting at the last row (H-1).",
+      "diff": "--- \n+++ \n@@ -44,7 +44,7 @@\n     elif flg:\n       S[h][w] = \"*\"\n     h += 1\n-  h = 0\n+  h = H-1\n   flg = False\n   while h >= 0:\n     if S[h][w] not in (\"*\", \".\"):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

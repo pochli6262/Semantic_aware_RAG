@@ -1,0 +1,31 @@
+{
+  "task": "abc242_a/Python/45214716",
+  "query_summary": "In the middle case (a < x ≤ b), the code uses an off-by-one denominator c/(b−a+1) instead of the correct c/(b−a).",
+  "oracle_summary": "In the middle case (a < x ≤ b), the code uses an off-by-one denominator c/(b−a+1) instead of the correct c/(b−a).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if `b <= x` instead of the correct condition `b < x` to determine the output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n for i in range(n):\n \tb = min(b,d-c[i][0])\n \td = max(d,c[i][1])\n-if b<=x:\n+if b<x:\n \tprint(0)\n else:\n \tprint(b)"
+    },
+    {
+      "summary": "The buggy code fails to account for cases where all exponents in the list `c` are even and `b` is odd, leading to an incorrect result when calculating the final output.",
+      "diff": "--- \n+++ \n@@ -19,5 +19,7 @@\n     res = res * (i * b + 1) % M\n \n res = res * b % M\n+if all(i & 1 == 0 for i in c) and b & 1:\n+    res -= 1\n res = res * (M+1) // 2 % M\n print(res)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b` is the average of `a` and `c`, instead of verifying if `b` is between `a` and `c` inclusively.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b, c = map(int, input().split())\n \n-if (a + c) // 2 == b:\n+if a <= b <= c or c <= b <= a:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `x` when `a` is 1, instead of `x % m`, which could lead to an unexpected result if `x` is greater than or equal to `m`.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,x,m=map(int,input().split())\n-if a==1:print(x)\n+if a==1:print(x% m)\n else:\n \tt=pow(a,x,(a-1)*m)\n \tif t==0:t+=(a-1)*m"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for a valid solution by using `(c-a*y1//x1)%b` instead of verifying the congruence condition with `y1 % x1`.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n         y1,y2=y2,y1\n     \n     while x2:x1,y1,x2,y2=x2,y2,x1%x2,(y1-y2*(x1//x2))%b\n-    if (c-a*y1//x1)%b:return (0,0,0)\n+    if y1%x1:return (0,0,0)\n     return (1,y1//x1,(c-a*y1//x1)//b)\n     \n x,y=map(int,input().split())"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

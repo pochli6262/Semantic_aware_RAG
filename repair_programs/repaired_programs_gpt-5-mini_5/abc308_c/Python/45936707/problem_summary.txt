@@ -1,0 +1,1 @@
+The program compares success rates using floating-point division, which can introduce precision errors and lead to incorrect ordering (especially for large or equal rational rates).

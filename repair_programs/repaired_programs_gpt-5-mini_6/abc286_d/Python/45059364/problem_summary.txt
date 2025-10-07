@@ -1,0 +1,1 @@
+The DP updates iterate n upward and reuse newly set states within the same coin iteration, allowing the same coin type to be counted more than its allowed B_i.

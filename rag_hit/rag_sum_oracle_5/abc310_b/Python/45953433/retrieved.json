@@ -1,0 +1,31 @@
+{
+  "task": "abc310_b/Python/45953433",
+  "query_summary": "The bug is using len((fj | fi)) - len(fj) instead of len((fj | fi)) - len(fi) when checking whether I[i] has any additional languages beyond I[j], causing the condition to be evaluated incorrectly.",
+  "oracle_summary": "The bug is using len((fj | fi)) - len(fj) instead of len((fj | fi)) - len(fi) when checking whether I[i] has any additional languages beyond I[j], causing the condition to be evaluated incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the comparison in the if statement incorrectly uses the less-than operator instead of the greater-than operator, leading to an erroneous condition for setting the flag to False.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     for w in range(W):\n         for i in range(h+1, H):\n             for j in range(w+1, W):\n-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False\n+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False\n \n if flag : print(\"Yes\")\n else : print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the condition `lb[0] != lb[-1]` in the line that verifies `len(la) == N and len(lb) == N` and ignores the condition for `lb`, which leads to incorrect results in some cases.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n       print(\"No\")\n     continue\n \n-  if len(la) == N and len(lb) == N and la[0] != la[-1]:\n+  if len(la) == N and len(lb) == N and la[0] != la[-1] and lb[0] != lb[-1]:\n     if a == b:\n       print(\"Yes\")\n     else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    3
+  ],
+  "useful_diffs_count": 1
+}

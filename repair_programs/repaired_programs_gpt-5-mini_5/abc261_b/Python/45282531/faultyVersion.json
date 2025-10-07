@@ -1,0 +1,4 @@
+{
+  "explanation": "The original single-line condition only flagged cases where both entries were the same wrong value (W/W or L/L). The rule should instead flag any mismatch of expected reciprocal results: W must pair with L, L with W, and D with D. I replaced that single if-condition with one that checks these three reciprocity rules (if A[i][j] is 'W' but A[j][i] isn't 'L', etc.).",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\n\nfor i in range(N):\n  for j in range(N):\n    if (A[i][j] == 'W' and A[j][i] != 'L') or (A[i][j] == 'L' and A[j][i] != 'W') or (A[i][j] == 'D' and A[j][i] != 'D'):\n      print('incorrect')\n      exit()\nprint('correct')"
+}

@@ -1,0 +1,1 @@
+The code incorrectly uses strict inequalities for the range check (s[0] > 100 and s[-1] < 675) instead of allowing 100 and 675 (>= 100 and <= 675), so values exactly 100 or 675 get rejected.

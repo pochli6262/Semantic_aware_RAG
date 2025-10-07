@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line that checks if `t` is in `s + s`. The check should use the string method to confirm that `t` is a substring of `s+s`, which checks for all possible rotations of `s`. The original code did not correctly check the rotation logic. I fixed it by changing the condition from `if t in s + s:` to `if t in (s + s)[1:-1]:`, allowing it to properly validate the shifted rotations.",
+  "fixed_code": "s = input()\nt = input()\ncnt = 0\nfor i in range(3):\n    if s[i] != t[i]:\n        cnt += 1\nif cnt == 0:\n    print(\"Yes\")\nelif cnt == 3:\n    if t in (s + s)[1:-1]:\n        print(\"Yes\")\nelse:\n    print(\"No\")"
+}

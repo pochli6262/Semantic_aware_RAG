@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only checked for two '#' in the same row (S1 == \"##\" or S2 == \"##\") but did not check for two '#' in the same column. That caused column cases like \"#.\" / \"#.\" or \".#\" / \".#\" to be missed. I fixed the first if-line by adding checks for both columns: (S1[0] == '#' and S2[0] == '#') and (S1[1] == '#' and S2[1] == '#').",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1 == \"##\" or S2 == \"##\" or (S1[0] == '#' and S2[0] == '#') or (S1[1] == '#' and S2[1] == '#'):\n    print(\"Yes\")\nelif S1 == \".#\" and S2 == \"#.\":\n    print(\"No\")\nelif S1 == \"#.\" and S2 == \".#\":\n    print(\"No\")"
+}

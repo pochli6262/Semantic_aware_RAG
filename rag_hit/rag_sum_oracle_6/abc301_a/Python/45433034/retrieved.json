@@ -1,0 +1,33 @@
+{
+  "task": "abc301_a/Python/45433034",
+  "query_summary": "A leftover debug print (print(f'A:{A},T:{T}')) inside the loop produces extraneous output and breaks the program's expected output.",
+  "oracle_summary": "A leftover debug print (print(f'A:{A},T:{T}')) inside the loop produces extraneous output and breaks the program's expected output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to print the last list in T when N is odd, resulting in incomplete output.",
+      "diff": "--- \n+++ \n@@ -10,3 +10,6 @@\n for s, t in zip(S,T):\n     print(*s)\n     print(*t)\n+\n+if N % 2 == 1:\n+    print(*T[-1])"
+    },
+    {
+      "summary": "The problem in the buggy code is that the print statement inside the loop is incorrectly displaying the intermediate state of the list `A`, which may clutter the output, while the intention seems to be to only print the final value of `A[N-1]`.",
+      "diff": "--- \n+++ \n@@ -19,5 +19,5 @@\n     temp = A[i]//s\n     A[i] -= temp * s\n     A[i+1] += temp * t\n-    print(A)\n+    # print(A)\n print(A[N-1])"
+    },
+    {
+      "summary": "The problem in the buggy code is that it continues to execute and prints the entire sequence even when the input is 1, instead of exiting immediately after printing \"1\".",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n S = str(1)\n if N == 1:\n-  print(S)\n+  exit(print(S))\n for i in range(2, N+1):\n   S = S +\" \"+ str(i) + \" \" + S\n print(S)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `0` when the string `T` matches `S` either at the start or the end, instead of only when it matches both, leading to incorrect output when `S` is found at both positions.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n T = input()\n \n \n-if T == S:\n+if T[:N] == S and T[-N:] == S:\n   print(0)\n elif T[:N] == S:\n   print(1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the intermediate results inside the loop, which is not present in the correct code.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(N-1, -1, -1):\n     s = S[i]\n     if s == '1':\n-        print(i, 'A'*(i+1)+'B'*i)\n+        #print(i, 'A'*(i+1)+'B'*i)\n         ans += 'A'*(i+1)+'B'*i\n print(len(ans))\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

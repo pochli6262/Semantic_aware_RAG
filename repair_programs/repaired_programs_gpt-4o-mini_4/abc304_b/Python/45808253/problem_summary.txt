@@ -1,0 +1,1 @@
+The program incorrectly handles the truncation of digits for numbers with more than 3 digits, as it does not properly modify the correct digits and may attempt to access indices outside the range of the list.

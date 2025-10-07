@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checks if the j-th product has all functions of the i-th product by using a union operation. It should check for a strict subset relationship instead. The fixed line was inspired by the patterns in Diff 1 and Diff 3, which corrected the condition to check if the set of functions of product j includes all the functions of product i correctly by using 'set(F_j) >= set(F_i)'.",
+  "fixed_code": "N, M = map(int, input().split())\nI = [list(map(int, input().split())) for _ in range(N)]\n\nfor i in range(N):\n    for j in range(N):\n        if i == j:\n            continue\n        if I[i][0] >= I[j][0]:\n            fj = set(I[j][2:])\n            fi = set(I[i][2:])\n            if len(fj) >= len(fi) and fi.issubset(fj):\n                if I[i][0] > I[j][0] or len(fj) - len(fi) > 0:\n                    print('Yes')\n                    exit()\nprint('No')"
+}

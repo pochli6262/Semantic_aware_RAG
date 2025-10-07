@@ -1,0 +1,1 @@
+The cost table is filled using the wrong indices (e.g., cost[i][0] = c[i] and cost[i][j] = min(..., c[i-j])), so the C_j values are incorrectly mapped.

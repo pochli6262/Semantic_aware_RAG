@@ -1,0 +1,661 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+def ezpow(a, b):
+    c = 1
+    for i in range(b):
+        c = c * a
+    return c
+
+class PowMod:
+    def __init__(self, A, m=998244353):
+        self.memory = {}
+        self.A = A
+        self.m = m
+    def pow(self, b):
+        if (b == 0):
+            return 1
+        if (b == 1):
+            return self.A
+        if (b in self.memory):
+            return self.memory[b]
+        m = self.m
+        bdiv2 = b//2
+        lf = self.pow(bdiv2)
+        rg = self.pow(b-bdiv2)
+        self.memory[b] = ((lf % m) * (rg % m)) % m
+        return ((lf % m) * (rg % m)) % m
+
+
+def reciprocalMod(a, p=998244353):
+    # a**(p-2)を返す。a と p は互いに素であるのが普通。そうでないと答えが出ない可能性が大きい。
+    powMod = PowMod(a, p)
+    return powMod.pow(p-2)
+
+N = int(input())
+
+# N を 2, 3, 5で割って割り切れなければ当然確率は0。
+# まず素因数を求める。
+curN = N
+factors = {2: 0, 3: 0, 5: 0}
+while (True):
+    if (curN == 1):
+        break
+    divided = False
+    for p in [2, 3, 5]:
+        if (curN % p == 0):
+            curN /= p
+            factors[p] += 1
+            divided = True
+            break
+    if (not divided):
+        print(0)
+        exit()
+        
+
+
+#X,Y,Zは2,3,5の指数。
+# スタート地点は1(x,y,z=0,0,0)。
+# そこから1/5の確率で、x+=1, y+=1, x+=2, z+=1, x,y+=1 と遷移する。
+# x,y,zどれか1つでもオーバーしていたらそれ以降の確率は0なので計算しなくてよい。
+
+# 小さい順から取り出して調べていけば、正常に値を計算できる。
+# /5は、 5の 逆数をmod BIGPRIMEで掛けるという動作で正しく計算できる（ABC297-Eより)
+# x2の場合: dp[x+1][y][z] = dp[x][y][z] / 5 = dp[x][y][z] * mod.reciprocalMod(5) if x+1 <= X else 0
+# 結局、データ量は (X-1)(Y-1)(Z-1)個使い、N <= 10^18なので Xは10^6レベル、よってXの数は20くらい。最大は20^3となるので8000くらい。
+# DPの数的にメモリ・計算量ともに制約を満たす。
+# 求めるのは、dp[X][Y][Z]
+# 入れる順番は、予めXYZで3重ループしてlistを作っておく。
+
+X = factors[2]
+Y = factors[3]
+Z = factors[5]
+
+
+BIGPRIME = 998244353
+recip5 = reciprocalMod(5, BIGPRIME)
+order = [] # 0 ～ XYZまでを小さい順で並べる。すると後から前の値を更新ということが起こらない。
+for x in range(X+1):
+    for y in range(Y+1):
+        for z in range(Z+1):
+            order.append((ezpow(2, x) * ezpow(3, y) * ezpow(5, z), x, y, z))
+order.sort()            
+
+dp = [[[0 for _ in range(Z+1)] for _ in range(Y+1)] for _ in range(X+1)]
+dp[0][0][0] = 1
+
+#print(factors)
+#print(order)
+
+for num, x, y, z in order:
+    if (x + 1 <= X): # 2
+        dp[x+1][y][z] += (dp[x][y][z] * recip5) % BIGPRIME
+        if (x + 2 <= X): # 4
+            dp[x+2][y][z] += (dp[x][y][z] * recip5) % BIGPRIME
+        if (x + 1 <= X and y + 1 <= Y): # 6
+            dp[x+1][y+1][z] += (dp[x][y][z] * recip5) % BIGPRIME
+    if (y + 1 <= Y): # 3
+        dp[x][y+1][z] += (dp[x][y][z] * recip5) % BIGPRIME
+    if (z + 1 <= Z): # 5
+        dp[x][y][z+1] += (dp[x][y][z] * recip5) % BIGPRIME
+
+print(dp[X][Y][Z] % BIGPRIME)
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+n, m = map(int, input().split())
+aaa = list(map(int, input().split()))
+MOD = 998244353
+
+pos = [-1] * n
+for i, a in enumerate(aaa):
+    pos[a] = i
+min_aaa = min(aaa)
+
+leftmost = [0] * n
+rightmost = [0] * n
+l = pos[min_aaa]
+r = l + 1
+for a in range(min_aaa + 1, n):
+    if pos[a] == -1:
+        leftmost[a] = l
+        rightmost[a] = r
+    else:
+        l = min(l, pos[a])
+        r = max(r, pos[a] + 1)
+
+dp = [[0] * (m + 2) for _ in range(m + 1)]
+dp[0][-1] = 1
+for a in range(n - 1, min_aaa, -1):
+    ndp1 = [[0] * (m + 2) for _ in range(m + 1)]  # l が増える方向の累積和
+    ndp2 = [[0] * (m + 2) for _ in range(m + 1)]  # r が減る方向の累積和
+    if pos[a] != -1:
+        continue
+    lm = leftmost[a]
+    rm = rightmost[a]
+    for l in range(lm + 1):
+        for r in range(rm, m + 1):
+            val = dp[l][r]
+            if val == 0:
+                continue
+            ndp1[l][r] += val
+            ndp1[l][r] %= MOD
+            ndp1[lm + 1][r] -= val
+            ndp1[lm + 1][r] %= MOD
+
+            ndp2[l][r] += val
+            ndp2[l][r] %= MOD
+            ndp2[l][rm - 1] -= val
+            ndp2[l][rm - 1] %= MOD
+
+    for r in range(rm, m + 1):
+        for l in range(1, lm + 2):
+            ndp1[l][r] += ndp1[l - 1][r]
+            ndp1[l][r] %= MOD
+    for l in range(lm + 1):
+        for r in range(m - 1, rm - 2, -1):
+            ndp2[l][r] += ndp2[l][r + 1]
+            ndp2[l][r] %= MOD
+    for l in range(lm + 1):
+        for r in range(rm, m + 1):
+            ndp1[l][r] += ndp2[l][r]
+            ndp1[l][r] %= MOD
+
+    dp = ndp1
+
+
+def precompute_factorials(n, MOD):
+    f = 1
+    factorials = [1]
+    for m in range(1, n + 1):
+        f = f * m % MOD
+        factorials.append(f)
+    f = pow(f, MOD - 2, MOD)
+    finvs = [1] * (n + 1)
+    finvs[n] = f
+    for m in range(n, 1, -1):
+        f = f * m % MOD
+        finvs[m - 1] = f
+    return factorials, finvs
+
+
+if min_aaa == 0:
+    ans = 0
+    for row in dp:
+        ans += sum(row)
+    ans %= MOD
+else:
+    facts, finvs = precompute_factorials(n, MOD)
+    x = pow(2, min_aaa - 1, MOD)
+    ans = 0
+    for l in range(m):
+        for r in range(l + 1, m + 1):
+            w = r - l
+            tmp = facts[w + min_aaa] * finvs[w] % MOD * finvs[min_aaa] % MOD
+            ans += tmp * dp[l][r] % MOD * x % MOD
+            ans %= MOD
+
+print(ans)
+
+
+--- Correct Code ---
+n, m = map(int, input().split())
+aaa = list(map(int, input().split()))
+MOD = 998244353
+
+pos = [-1] * n
+for i, a in enumerate(aaa):
+    pos[a] = i
+min_aaa = min(aaa)
+
+leftmost = [0] * n
+rightmost = [0] * n
+l = pos[min_aaa]
+r = l + 1
+for a in range(min_aaa + 1, n):
+    if pos[a] == -1:
+        leftmost[a] = l
+        rightmost[a] = r
+    else:
+        l = min(l, pos[a])
+        r = max(r, pos[a] + 1)
+
+dp = [[0] * (m + 2) for _ in range(m + 1)]
+dp[0][m] = 1
+for a in range(n - 1, min_aaa, -1):
+    ndp1 = [[0] * (m + 2) for _ in range(m + 1)]  # l が増える方向の累積和
+    ndp2 = [[0] * (m + 2) for _ in range(m + 1)]  # r が減る方向の累積和
+    if pos[a] != -1:
+        continue
+    lm = leftmost[a]
+    rm = rightmost[a]
+    for l in range(lm + 1):
+        for r in range(rm, m + 1):
+            val = dp[l][r]
+            if val == 0:
+                continue
+            ndp1[l][r] += val
+            ndp1[l][r] %= MOD
+            ndp1[lm + 1][r] -= val
+            ndp1[lm + 1][r] %= MOD
+
+            ndp2[l][r] += val
+            ndp2[l][r] %= MOD
+            ndp2[l][rm - 1] -= val
+            ndp2[l][rm - 1] %= MOD
+
+    for r in range(rm, m + 1):
+        for l in range(1, lm + 2):
+            ndp1[l][r] += ndp1[l - 1][r]
+            ndp1[l][r] %= MOD
+    for l in range(lm + 1):
+        for r in range(m - 1, rm - 2, -1):
+            ndp2[l][r] += ndp2[l][r + 1]
+            ndp2[l][r] %= MOD
+    for l in range(lm + 1):
+        for r in range(rm, m + 1):
+            ndp1[l][r] += ndp2[l][r]
+            ndp1[l][r] %= MOD
+
+    dp = ndp1
+
+
+def precompute_factorials(n, MOD):
+    f = 1
+    factorials = [1]
+    for m in range(1, n + 1):
+        f = f * m % MOD
+        factorials.append(f)
+    f = pow(f, MOD - 2, MOD)
+    finvs = [1] * (n + 1)
+    finvs[n] = f
+    for m in range(n, 1, -1):
+        f = f * m % MOD
+        finvs[m - 1] = f
+    return factorials, finvs
+
+
+if min_aaa == 0:
+    ans = 0
+    for row in dp:
+        ans += sum(row)
+    ans %= MOD
+else:
+    facts, finvs = precompute_factorials(n, MOD)
+    x = pow(2, min_aaa - 1, MOD)
+    ans = 0
+    for l in range(m):
+        for r in range(l + 1, m + 1):
+            w = r - l
+            tmp = facts[w + min_aaa] * finvs[w] % MOD * finvs[min_aaa] % MOD
+            ans += tmp * dp[l][r] % MOD * x % MOD
+            ans %= MOD
+
+print(ans)
+
+
+### Example 2
+--- Buggy Code ---
+
+BigPrime = 998244353
+
+N = int(input())
+
+# ac ¥equiv 1 mod b となるcを求める
+# @lru_cache(maxsize=4096)
+# def modinv(a, b):
+#     b0 = b
+#     x0, x1 = 0, 1
+#     while a > 1:
+#         q = a // b
+#         a, b = b, a % b
+#         x0, x1 = x1 - q * x0, x0
+#     if x1 < 0:
+#         x1 += b0
+#     return x1
+
+def modinv(a, b):
+    return pow(a, b-2, b)
+
+def mod_time(a,b):
+    return (a*b) % BigPrime
+
+# 高速化のために後で使う値を計算しておく
+# M は N^2 mod BigPrime
+# n は M の modinv
+# m は n の modinv
+# poweri[i] は i^2 mod BigPrime
+# rate2jou[i] i^2/N^2 mod BigPrime
+# timesiN_i[i] i*(N-i) mod BigPrime
+# fractimesiN_i[i] i*(N-i)/N^2 mod BigPrime
+# fraci[i] i/N mod BigPrime
+# complementfraci[i] 1-(i/N) mod BigPrime
+
+n = modinv(N, BigPrime)
+M = (N ** 2) % BigPrime
+m = modinv(M, BigPrime)
+fraci = [0] * (N+1)
+complementfraci = [0] * (N+1)
+poweri = [0] * (N+1)
+rate2jou = [0] * (N+1)
+# i/N mod BigPrime
+# 1-(i/N) mod BigPrime
+for i in range(1, N+1):
+    fraci[i] = (fraci[i-1] + n) % BigPrime
+    complementfraci[i] = (BigPrime - fraci[i]+1) % BigPrime
+# i^2 mod BigPrime
+# i^2/N^2 mod BigPrime
+for i in range(1, N+1):
+    poweri[i] = (i**2) % BigPrime
+    rate2jou[i] = mod_time(poweri[i], m)
+
+
+def limitPr(init, rate):
+    init = init % BigPrime
+    rate = rate % BigPrime
+    limval = mod_time(init, modinv(BigPrime+1 - rate, BigPrime))
+    return limval
+
+def first_to_second(i):
+    return limitPr(complementfraci[i], rate2jou[i])
+
+def val_first(i):
+    return limitPr(fraci[i],rate2jou[i])
+
+ans = [0, 0]
+Prob = [[0, 0] for _ in range(N+1)]
+Prob[0] = [1, 0]
+
+for i in range(N):
+    f_s = first_to_second(i)
+    f_f = mod_time(f_s, fraci[i])
+    Prob[i+1][0] = (mod_time(f_f, Prob[i][0]) + mod_time(f_s, Prob[i][1])) % BigPrime
+    Prob[i+1][1] = (BigPrime - Prob[i+1][0]+1) % BigPrime
+    v_f = val_first(i)
+    v_s = mod_time(v_f, fraci[i])
+
+    ans[0] += (mod_time(v_f, Prob[i][0]) + mod_time(v_s, Prob[i][1])) % BigPrime
+    ans[1] += (mod_time(v_s, Prob[i][0]) + mod_time(v_f, Prob[i][1])) % BigPrime
+
+print(*ans)
+
+
+
+--- Correct Code ---
+BigPrime = 998244353
+
+N = int(input())
+
+# ac ¥equiv 1 mod b となるcを求める
+# @lru_cache(maxsize=4096)
+# def modinv(a, b):
+#     b0 = b
+#     x0, x1 = 0, 1
+#     while a > 1:
+#         q = a // b
+#         a, b = b, a % b
+#         x0, x1 = x1 - q * x0, x0
+#     if x1 < 0:
+#         x1 += b0
+#     return x1
+
+def modinv(a, b):
+    return pow(a, b-2, b)
+
+def mod_time(a,b):
+    return (a*b) % BigPrime
+
+# 高速化のために後で使う値を計算しておく
+# M は N^2 mod BigPrime
+# n は M の modinv
+# m は n の modinv
+# poweri[i] は i^2 mod BigPrime
+# rate2jou[i] i^2/N^2 mod BigPrime
+# timesiN_i[i] i*(N-i) mod BigPrime
+# fractimesiN_i[i] i*(N-i)/N^2 mod BigPrime
+# fraci[i] i/N mod BigPrime
+# complementfraci[i] 1-(i/N) mod BigPrime
+
+n = modinv(N, BigPrime)
+M = (N ** 2) % BigPrime
+m = modinv(M, BigPrime)
+fraci = [0] * (N+1)
+complementfraci = [0] * (N+1)
+poweri = [0] * (N+1)
+rate2jou = [0] * (N+1)
+# i/N mod BigPrime
+# 1-(i/N) mod BigPrime
+for i in range(1, N+1):
+    fraci[i] = (fraci[i-1] + n) % BigPrime
+    complementfraci[i] = (BigPrime - fraci[i]+1) % BigPrime
+# i^2 mod BigPrime
+# i^2/N^2 mod BigPrime
+for i in range(1, N+1):
+    poweri[i] = (i**2) % BigPrime
+    rate2jou[i] = mod_time(poweri[i], m)
+
+
+def limitPr(init, rate):
+    init = init % BigPrime
+    rate = rate % BigPrime
+    limval = mod_time(init, modinv(BigPrime+1 - rate, BigPrime))
+    return limval
+
+def first_to_second(i):
+    return limitPr(complementfraci[i], rate2jou[i])
+
+def val_first(i):
+    return limitPr(fraci[i],rate2jou[i])
+
+ans = [0, 0]
+Prob = [[0, 0] for _ in range(N+1)]
+Prob[0] = [1, 0]
+
+for i in range(N):
+    f_s = first_to_second(i)
+    f_f = mod_time(f_s, fraci[i])
+    Prob[i+1][0] = (mod_time(f_f, Prob[i][0]) + mod_time(f_s, Prob[i][1])) % BigPrime
+    Prob[i+1][1] = (BigPrime - Prob[i+1][0]+1) % BigPrime
+    v_f = val_first(i)
+    v_s = mod_time(v_f, fraci[i])
+
+    ans[0] += (mod_time(v_f, Prob[i][0]) + mod_time(v_s, Prob[i][1])) % BigPrime
+    ans[0] %= BigPrime
+    ans[1] += (mod_time(v_s, Prob[i][0]) + mod_time(v_f, Prob[i][1])) % BigPrime
+    ans[1] %= BigPrime
+
+print(*ans)
+
+
+### Example 3
+--- Buggy Code ---
+import sys
+import math
+# import pypyjit
+# pypyjit.set_param('max_unroll_recursion=-1')
+MOD = 998_244_353
+INF = 10**9
+
+sys.setrecursionlimit(10**6)  # ネスト数制限
+
+N, A1, A2, A3 = map(int, sys.stdin.readline().rstrip().split())
+
+dp = [[[[[0 for _ in range(A3)] for _ in range(A2)] for _ in range(A1)] for _ in range(8)] for _ in range(64)]
+dp[0][0][0][0][0] = 1
+
+D = {}
+# n, x, f
+D[(0, 0, 0)] = 0
+D[(0, 1, 0)] = 1
+D[(0, 0, 1)] = 1
+D[(0, 1, 1)] = 1
+D[(1, 0, 0)] = 0
+D[(1, 1, 0)] = 0
+D[(1, 0, 1)] = 0
+D[(1, 1, 1)] = 1
+
+for i in range(63):
+
+    n = N >> i & 1
+    # print(n)
+    k = pow(2, i)
+    p1 = k % A1
+    p2 = k % A2
+    p3 = k % A3
+
+    for x in range(8):
+        x1 = x >> 0 & 1
+        x2 = x >> 1 & 1
+        x3 = x >> 2 & 1
+
+        y = x1 ^ x2 ^ x3
+        # print(f" x {x3}{x2}{x1} -> {y}")
+
+        for f in range(8):
+            f1 = f >> 0 & 1
+            f2 = f >> 1 & 1
+            f3 = f >> 2 & 1
+
+            nf = 4 * D[(n, f3, x3)] + 2 * D[(n, f2, x2)] + D[(n, f1, x1)]
+            nf1 = nf >> 0 & 1
+            nf2 = nf >> 1 & 1
+            nf3 = nf >> 2 & 1
+            # print(f"n {n} / f {f3} {x3} -> {nf3} : {f2} {x2} -> {nf2} : {f1} {x1} -> {nf1}")
+
+            for r1 in range(A1):
+                nr1 = (p1 * x1 + r1) % A1
+                for r2 in range(A2):
+                    nr2 = (p2 * x2 + r2) % A2
+                    for r3 in range(A3):
+                        nr3 = (p3 * x3 + r3) % A3
+                        dp[i + 1][nf][nr1][nr2][nr3] += dp[i][f][r1][r2][r3] * (1 - y)
+                        dp[i + 1][nf][nr1][nr2][nr3] %= MOD
+
+ans = dp[63][0][0][0][0]
+# print(ans)
+# マイナス分
+ans -= 1  # 0 0 0
+
+
+def h(A1, A2):
+    g = math.gcd(A1, A2)
+    # g1 = pow(g, MOD - 2, MOD)
+    lcm = ((A1 * A2) // g) % MOD
+    # lcm1 = pow(lcm, MOD - 2, MOD)
+    print(A1, A2, lcm, N // lcm)
+    return N // lcm
+
+
+ans -= h(A1, A2)
+ans -= h(A2, A3)
+ans -= h(A3, A1)
+
+ans %= MOD
+
+print(ans)
+
+
+--- Correct Code ---
+import sys
+import math
+# import pypyjit
+# pypyjit.set_param('max_unroll_recursion=-1')
+MOD = 998_244_353
+INF = 10**9
+
+sys.setrecursionlimit(10**6)  # ネスト数制限
+
+N, A1, A2, A3 = map(int, sys.stdin.readline().rstrip().split())
+
+dp = [[[[[0 for _ in range(A3)] for _ in range(A2)] for _ in range(A1)] for _ in range(8)] for _ in range(64)]
+dp[0][0][0][0][0] = 1
+
+D = {}
+# n, x, f
+D[(0, 0, 0)] = 0
+D[(0, 1, 0)] = 1
+D[(0, 0, 1)] = 1
+D[(0, 1, 1)] = 1
+D[(1, 0, 0)] = 0
+D[(1, 1, 0)] = 0
+D[(1, 0, 1)] = 0
+D[(1, 1, 1)] = 1
+
+for i in range(63):
+
+    n = N >> i & 1
+    # print(n)
+    k = pow(2, i)
+    p1 = k % A1
+    p2 = k % A2
+    p3 = k % A3
+
+    for x in range(8):
+        x1 = x >> 0 & 1
+        x2 = x >> 1 & 1
+        x3 = x >> 2 & 1
+
+        y = x1 ^ x2 ^ x3
+        # print(f" x {x3}{x2}{x1} -> {y}")
+
+        for f in range(8):
+            f1 = f >> 0 & 1
+            f2 = f >> 1 & 1
+            f3 = f >> 2 & 1
+
+            nf = 4 * D[(n, f3, x3)] + 2 * D[(n, f2, x2)] + D[(n, f1, x1)]
+            nf1 = nf >> 0 & 1
+            nf2 = nf >> 1 & 1
+            nf3 = nf >> 2 & 1
+            # print(f"n {n} / f {f3} {x3} -> {nf3} : {f2} {x2} -> {nf2} : {f1} {x1} -> {nf1}")
+
+            for r1 in range(A1):
+                nr1 = (p1 * x1 + r1) % A1
+                for r2 in range(A2):
+                    nr2 = (p2 * x2 + r2) % A2
+                    for r3 in range(A3):
+                        nr3 = (p3 * x3 + r3) % A3
+                        dp[i + 1][nf][nr1][nr2][nr3] += dp[i][f][r1][r2][r3] * (1 - y)
+                        dp[i + 1][nf][nr1][nr2][nr3] %= MOD
+
+ans = dp[63][0][0][0][0]
+# print(ans)
+# マイナス分
+ans -= 1  # 0 0 0
+
+
+def h(A1, A2):
+    g = math.gcd(A1, A2)
+    # g1 = pow(g, MOD - 2, MOD)
+    lcm = ((A1 * A2) // g) % MOD
+    # lcm1 = pow(lcm, MOD - 2, MOD)
+    # print(A1, A2, lcm, N // lcm)
+    return N // lcm
+
+
+ans -= h(A1, A2)
+ans -= h(A2, A3)
+ans -= h(A3, A1)
+
+ans %= MOD
+
+print(ans)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

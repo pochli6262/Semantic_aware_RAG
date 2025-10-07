@@ -1,0 +1,4 @@
+{
+  "explanation": "The dictionary d was being assigned with d[x]=y for each (x,y) pair, which overwrites any previous bonus for the same day x. If there are multiple bonuses on the same day they should be accumulated. I fixed that line to sum bonuses for the same key using d.get(x,0)+y.",
+  "fixed_code": "N,M,T=list(map(int, input().split()))\nA=list(map(int, input().split()))\nd={}\nfor _ in range(M):\n    x,y=list(map(int, input().split()))\n    d[x]=d.get(x,0)+y\n\nfor i in range(N-1):\n    if i+1 in d:\n        T+=d[i+1]\n    if A[i]>T:\n        print(\"No\")\n        exit()\n    T-=A[i]\nprint(\"Yes\")"
+}

@@ -1,0 +1,1 @@
+The program incorrectly deletes characters in the `ans` list when a closing parenthesis is encountered without correctly matching it to its corresponding opening parenthesis, leading to an incorrect output.

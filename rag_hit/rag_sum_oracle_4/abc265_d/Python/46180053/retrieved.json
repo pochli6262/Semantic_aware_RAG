@@ -1,0 +1,34 @@
+{
+  "task": "abc265_d/Python/46180053",
+  "query_summary": "The bug is that the cumulative sum omits the initial 0 (using cumsum(A) instead of cumsum([0]+A)), causing an off-by-one in prefix sums and missing cases where the segment starts at index 0.",
+  "oracle_summary": "The bug is that the cumulative sum omits the initial 0 (using cumsum(A) instead of cumsum([0]+A)), causing an off-by-one in prefix sums and missing cases where the segment starts at index 0.",
+  "retrieved": [
+    {
+      "summary": "The issue in the buggy code is that the computation of `xN` mistakenly includes an additional `abs` around `sxA`, causing an incorrect calculation of the target value for `xN`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n xA = A[2::2]\n sxA = sum(xA)\n-xN = abs(abs(x - A[0]) - sxA)\n+xN = abs(x - A[0] - sxA)\n xdp = [0] * (xN + 1)\n xdp[0] = 1\n for dx in xA:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for variable `m` by using `m >= A[0]` instead of the correct `m >= 2*A[1] + A[0]`.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n   A[2]=0\n   n=2*(v[4]+v[3])+v[2]+v[1]\n   m=5*v[4]+4*v[3]+3*v[2]+2*v[1]+v[0]\n-  if n>=A[1] and m>=A[0]:\n+  if n>=A[1] and m>=2*A[1]+A[0]:\n     print('Yes')\n   else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the condition `X - a in Aset` instead of the correct condition `a + X in Aset`, leading to an incorrect result for determining whether there exists a pair of elements in the list whose sum equals X.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n Aset = set(A)\n ok = False\n for a in A:\n-    if X-a in Aset:\n+    if a + X in Aset:\n         ok = True\n         break\n if ok:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the case of `B` and `C` being zero and fails to account for it properly in the conditional logic, leading to potentially incorrect outputs for specific input values.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     print(\"Yes\")\n elif B==C and B!=0:\n     print(\"Yes\")\n-elif A==0 or D==0: # B=C=0\n+elif B==C and (A==0 or D==0): # B=C=0\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problematic code incorrectly prints the list `B` without unpacking it, causing the output format to include brackets and commas instead of being space-separated.",
+      "diff": "--- \n+++ \n@@ -17,4 +17,4 @@\n B=A1+A4+A3+A2+A5\n \n # 出力(「*」をつけるとかっこなしで出力できる)\n-print(B)\n+print(*B)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

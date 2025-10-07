@@ -1,0 +1,179 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+There is an ultramarathon course totaling 100\;\mathrm{km}.
+Water stations are set up every 5\;\mathrm{km} along the course, including the start and goal, for a total of 21.
+
+Takahashi is at the N\;\mathrm{km} point of this course.
+Find the position of the nearest water station to him.
+
+Under the constraints of this problem, it can be proven that the nearest water station is uniquely determined.
+
+### Constraints
+
+* 0\leq N\leq100
+* N is an integer.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N
+```
+
+### Output
+
+Print the distance between the start and the water station nearest to Takahashi, in kilometers, in a single line.
+
+---
+
+### Sample Input 1
+
+```
+53
+```
+
+### Sample Output 1
+
+```
+55
+```
+
+Takahashi is at the 53\;\mathrm{km} point of the course.
+The water station at the 55\;\mathrm{km} point is 2\;\mathrm{km} away, and there is no closer water station.
+Therefore, you should print 55.
+
+---
+
+### Sample Input 2
+
+```
+21
+```
+
+### Sample Output 2
+
+```
+20
+```
+
+Takahashi could also go back the way.
+
+---
+
+### Sample Input 3
+
+```
+100
+```
+
+### Sample Output 3
+
+```
+100
+```
+
+There are also water stations at the start and goal.
+Additionally, Takahashi may already be at a water station.
+
+## Your Analysis (1-sentence bug summary)
+The program incorrectly calculates the nearest water station by rounding down or up based on the distance from the current position, failing to consider that water stations are placed at fixed intervals of 5 km.
+
+## Buggy Program
+N=int(input())
+a=N%5   
+
+if a==0:
+    print(N)
+else:
+    if a <3:
+        ans=N-a
+    else:
+        ans=N+a-1
+    print(ans)
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -4,7 +4,7 @@
+ for i in range(1,19):
+   if i==1:
+     if N<9:
+-      print(N)
++      print(N*(N+1)//2)
+       exit()
+     ans += (9*10)//2
+   else:
+@@ -19,5 +19,3 @@
+       ans += (a%mod)*((a+1)%mod)//2
+       ans %= mod
+ print(ans)
+-  
+-  
+
+### Diff 2
+--- 
++++ 
+@@ -8,4 +8,4 @@
+ if p[-1]==1:
+     print(1)
+ else:
+-    print(ans)
++    print(ans+1)
+
+### Diff 3
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ N=int(input())
+-if N%3==2 or N==4:
++if N%3==2 or N<=4 :
+     print("No")
+ else:
+     print("Yes")
+
+### Diff 4
+--- 
++++ 
+@@ -1,6 +1,8 @@
+ N = int(input())
+ if N < 10:
+   print("AGC00" + str(N))
++elif 10 <= N < 42:
++  print("AGC0" + str(N))
+ elif N >= 42 :
+   A = N + 1
+   print("AGC0" + str(A))
+
+### Diff 5
+--- 
++++ 
+@@ -9,4 +9,4 @@
+ for i in B:
+   ans -= i*(i-1)/2*(N-i)
+   ans -= i*(i-1)*(i-2)/6
+-print(ans)
++print(int(ans))
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

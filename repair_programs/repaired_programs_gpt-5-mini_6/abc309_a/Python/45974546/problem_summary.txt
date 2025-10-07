@@ -1,0 +1,1 @@
+The list G wrongly includes vertical neighbor pairs (e.g., [1,4], [2,5], [3,6]), so the program can treat vertical adjacencies as horizontal.

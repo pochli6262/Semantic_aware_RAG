@@ -1,0 +1,4 @@
+{
+  "explanation": "The tie-breaker check was inverted: the code printed 'T' when the counts were equal and the last element was 'A'. The correct rule is to print 'T' when the counts are equal and the last element is 'T'. I changed S[-1] == \"A\" to S[-1] == \"T\".",
+  "fixed_code": "N = int(input())\nS = input().split()\n\nT_W = S.count('T')\nA_W = S.count('A')\nprint(\"T\" if T_W > A_W or T_W == A_W and S[-1] == \"T\" else \"A\")\n"
+}

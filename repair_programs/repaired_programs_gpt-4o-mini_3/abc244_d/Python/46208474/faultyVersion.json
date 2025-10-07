@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line is the condition in the print statement. It incorrectly checks 'count != 2' to print 'Yes' and 'No'. The correct condition should be 'count == 2' to print 'No' when two elements match, and 'Yes' otherwise.",
+  "fixed_code": "S=list(input().split())\nT=list(input().split())\ncount=0\nfor i in range(3):\n  if S[i]==T[i]:\n    count+=1\nprint(\"Yes\") if count==2 else print(\"No\")"
+}

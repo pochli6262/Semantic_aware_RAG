@@ -1,0 +1,1 @@
+The code indexes days with s[l + i] instead of s[7 * i + l], so it advances by one day per week rather than by seven and thus computes incorrect weekly sums.

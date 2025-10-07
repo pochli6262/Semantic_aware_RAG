@@ -1,0 +1,1 @@
+The code only checks for full '##' rows and the two diagonal patterns, so it fails to handle and gives no output for valid cases like both rows being "#." or both ".#" (vertical connections).

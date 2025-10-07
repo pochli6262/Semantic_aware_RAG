@@ -1,0 +1,155 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+One day, tired from going to school, Takahashi wanted to know how many days there were until Saturday.  
+We know that the day was a weekday, and the name of the day of the week was S in English.  
+How many days were there until the first Saturday after that day (including Saturday but not the starting day)?
+
+### Constraints
+
+* S is `Monday`, `Tuesday`, `Wednesday`, `Thursday`, or `Friday`.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+S
+```
+
+### Output
+
+Print the answer as an integer.
+
+---
+
+### Sample Input 1
+
+```
+Wednesday
+```
+
+### Sample Output 1
+
+```
+3
+```
+
+It was Wednesday, so there were 3 days until the first Saturday after that day.
+
+---
+
+### Sample Input 2
+
+```
+Monday
+```
+
+### Sample Output 2
+
+```
+5
+```
+
+## Your Analysis (1-sentence bug summary)
+The program contains a typo in the condition for Friday, where "Friay" should be corrected to "Friday".
+
+## Buggy Program
+s=input()
+if s=="Monday":
+    print(5)
+if s=="Tuesday":
+    print(4)
+if s=="Wednesday":
+    print(3)
+if s=="Thursday":
+    print(2)
+if s=="Friay":
+    print(1)
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -13,7 +13,7 @@
+     print(3630)
+ if s=="ecnerwala":
+     print(3613)
+-if s=="marinara":
++if s=="mnbvmar":
+     print(3555)
+ if s=="newbiedmy":
+     print(3516)
+
+### Diff 2
+--- 
++++ 
+@@ -3,7 +3,7 @@
+     print(3858)
+ if s=="ksun48":
+     print(3679)
+-if s=="Beng":
++if s=="Benq":
+     print(3658)
+ if s=="Um_nik":
+     print(3648)
+
+### Diff 3
+--- 
++++ 
+@@ -3,7 +3,7 @@
+ if S =="tourist":
+     print(3858)
+ if S == "ksun48":
+-    print(679)
++    print(3679)
+ if S == "Benq":
+     print(3658)
+ if S == "Um_nik":
+
+### Diff 4
+--- 
++++ 
+@@ -1,7 +1,7 @@
+ S = input()
+ if S[0] == S[1] and S[1] == S[2]:
+   print(1)
+-if S[0] == S[1] or S[0] == S[2] or S[1] == S[2]:
++elif S[0] == S[1] or S[0] == S[2] or S[1] == S[2]:
+   print(3)
+ else:
+   print(6)
+
+### Diff 5
+--- 
++++ 
+@@ -1,7 +1,7 @@
+ s= input()
+ 
+ if s.count(s[0])==1:
+-        print(0)
++        print(1)
+ else:
+     for i in range(1,len(s)):
+         if s[0] != s[i]:
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

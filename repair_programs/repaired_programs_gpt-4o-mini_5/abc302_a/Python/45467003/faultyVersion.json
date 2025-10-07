@@ -1,0 +1,4 @@
+{
+  "explanation": "The single incorrect line was adding 1 to the result of integer division (A // B). This approach fails in cases where A is not divisible by B, as it overestimates the required number of attacks by not accounting for the need of an additional attack when there is a remainder. The correct calculation is to use the formula (A + B - 1) // B, which accounts for any leftover stamina that would still require another attack. This idea of proper handling of division with remainder was inspired by the reasoning found in the related known fixes.",
+  "fixed_code": "A, B = map(int, input().split())\n\nprint((A + B - 1) // B)"
+}

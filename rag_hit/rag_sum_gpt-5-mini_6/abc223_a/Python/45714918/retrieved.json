@@ -1,0 +1,33 @@
+{
+  "task": "abc223_a/Python/45714918",
+  "query_summary": "The program incorrectly prints \"Yes\" for X = 0 because it only checks divisibility by 100 and doesn't enforce that there's at least one 100-yen coin (X > 0).",
+  "oracle_summary": "The code incorrectly prints \"Yes\" for x=0 by only checking x%100==0 instead of also excluding zero.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it doesn't stop the execution of the `main()` function after printing \"No\" when it encounters an 'x', leading to the possibility of printing \"Yes\" or \"No\" afterwards inappropriately.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n             ok = True\n         elif s[i] == \"x\":\n             print(\"No\")\n-            break\n+            return\n \n     if ok == True:\n         print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly only prints \"Yes\" for values greater than 4, failing to also account for the value of 1, which should also result in \"Yes\".",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-if N > 4:\n+if N > 4 or N == 1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the original value of `x` when it is a multiple of 10, instead of printing the quotient of `x` divided by 10.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x = int(input())\n if x % 10 == 0:\n-  print(x)\n+  print(x // 10)\n else:\n   print(x // 10 + 1)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly only checks if `n` is greater than or equal to 5, failing to include a condition to also print \"Yes\" when `n` equals 1.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-if n >= 5:\n+if n >= 5 or n == 1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output as \"Yes\" if K is non-negative, without checking if K is also even, which is necessary for the correct condition.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     while N > 0:\n         K -= N % 3\n         N //= 3\n-    if K >=0:\n+    if K >= 0 and K % 2 == 0:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

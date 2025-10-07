@@ -1,0 +1,4 @@
+{
+  "explanation": "The code read each line with input() but did not strip newline/whitespace. If inputs include trailing spaces or other invisible characters, comparisons (including reversed strings) can fail. I fixed the single incorrect line by stripping whitespace from the input: S = input().strip().",
+  "fixed_code": "N = int(input())\n\nZ = set()\n\ncount = 0\nfor i in range(N):\n    S = input().strip()\n    if S in Z:\n        count += 1\n    Z.add(S)\n    Z.add(S[::-1])\n\nprint(count)\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The line calculating the number of attacks incorrectly adds 1 to the result of integer division, which causes incorrect results when A is a multiple of B. The correct approach is to use the ceiling of the division result, which can be implemented using the expression (A + B - 1) // B. This fix is inspired by the need for accurate counting of attacks and is commonly addressed in similar division issues, though it is not specifically referenced in the provided diffs.",
+  "fixed_code": "A,B = map(int,input().split())\nprint((A + B - 1) // B)"
+}

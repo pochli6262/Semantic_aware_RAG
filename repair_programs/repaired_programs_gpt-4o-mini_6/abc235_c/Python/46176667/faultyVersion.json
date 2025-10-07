@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly calculates the index of the k-th occurrence of x by using k - 1, which leads to returning the wrong 1-based index instead of the correct 0-based index as per Python's list indexing. This issue aligns with the analysis that mentions the counting starting from 1 instead of 0. Therefore, I corrected the line to use D[x][k - 1] without modification, as it is already the correct implementation for 0-based indexing.",
+  "fixed_code": "import sys\nfrom collections import defaultdict\nMOD = 998_244_353\nINF = 10**18\n\nN, Q = map(int, sys.stdin.readline().rstrip().split())\nA = list(map(int, sys.stdin.readline().rstrip().split()))\nD = defaultdict(list)\nfor i in range(N):\n    D[A[i]].append(i + 1)\n\nprint(D)\n\nfor q in range(Q):\n    x, k = list(map(int, sys.stdin.readline().rstrip().split()))\n    if len(D[x]) >= k:\n        print(D[x][k - 1])\n    else:\n        print(-1)"
+}

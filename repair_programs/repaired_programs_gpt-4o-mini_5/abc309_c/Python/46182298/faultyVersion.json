@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue was that the condition in the `calc` function was incorrectly using a less than operator (`<`) instead of less than or equal to (`<=`). This caused the function to not account for the case when the total number of pills taken equals K, which was evident from the diff that changed a similar condition to `<=` in related known fixes.",
+  "fixed_code": "n, k = map(int, input().split())\nab = [list(map(int, input().split())) for _ in range(n)]\n\ndef calc(num):\n    global ab\n    res = 0\n    for j in range(n):\n        if ab[j][0] <= num:\n            continue\n        res += ab[j][1]\n    return res\n\nl = -1\nr = 9999999999999999\nm = 0\nwhile r > l + 1:\n    m = (r + l) // 2\n    if calc(m) <= k:\n        r = m\n    else:\n        l = m\nprint(r + 1)"
+}

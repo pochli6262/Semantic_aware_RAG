@@ -1,0 +1,153 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+Takahashi has recorded the number of steps he walked for N weeks. He walked A\_i steps on the i-th day.
+
+Find the total number of steps Takahashi walked each week.  
+More precisely, find the sum of the steps for the first week (the 1-st through 7-th day), the sum of the steps for the second week (the 8-th through 14-th day), and so on.
+
+### Constraints
+
+* 1 \leq N \leq 10
+* 0 \leq A\_i \leq 10^5
+* All input values are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N
+A_1 A_2 \ldots A_{7N}
+```
+
+### Output
+
+Let B\_i be the number of steps walked for the i-th week. Print B\_1,B\_2,\ldots,B\_N in this order, separated by spaces.
+
+---
+
+### Sample Input 1
+
+```
+2
+1000 2000 3000 4000 5000 6000 7000 2000 3000 4000 5000 6000 7000 8000
+```
+
+### Sample Output 1
+
+```
+28000 35000
+```
+
+For the first week, he walked 1000+2000+3000+4000+5000+6000+7000=28000 steps, and for the second week, he walked 2000+3000+4000+5000+6000+7000+8000=35000 steps.
+
+---
+
+### Sample Input 2
+
+```
+3
+14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230 78164 6286 20899 86280 34825 34211 70679 82148
+```
+
+### Sample Output 2
+
+```
+314333 419427 335328
+```
+
+## Your Analysis (1-sentence bug summary)
+The bug likely lies in the incorrect indexing of the result array, which may cause it to overwrite previous weekly totals instead of storing them separately.
+
+## Buggy Program
+N = int(input())
+A = list(map(int,input().split()))
+
+res = [0]*N
+SUM = 0
+for i in range(len(A)):
+    SUM += A[i]
+    if (i + 1)%7==0:
+        res[i//7] = SUM
+        SUM = 0
+
+print(res)
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -10,7 +10,7 @@
+     else:
+         j = A[i] - 1
+         num += 1
+-        ans.append([A[j], A[i]])
++        ans.append([i + 1, j + 1])
+         A[i], A[j] = A[j], A[i]
+ 
+ print(num)
+
+### Diff 2
+--- 
++++ 
+@@ -5,7 +5,7 @@
+     cum_sum[i + 1] = cum_sum[i] + A[i]
+ ans = 0
+ for i in range(N):
+-    if 4 < cum_sum[N] - cum_sum[i]:
++    if 3 < cum_sum[N] - cum_sum[i]:
+         ans += 1
+     else:
+         break
+
+### Diff 3
+--- 
++++ 
+@@ -4,4 +4,4 @@
+ if sum(A) > 0:
+     print(-sum(A))
+ else:
+-    print(sum(A))
++    print(-sum(A))
+
+### Diff 4
+--- 
++++ 
+@@ -9,4 +9,4 @@
+ for i in B:
+   ans -= i*(i-1)/2*(N-i)
+   ans -= i*(i-1)*(i-2)/6
+-print(ans)
++print(int(ans))
+
+### Diff 5
+--- 
++++ 
+@@ -9,5 +9,5 @@
+     for j in range(len(i)-1):
+         tmp.append(i[j+1]-i[j]-1)
+     for j in range(len(tmp)):
+-        ans += tmp[j]*(len(tmp)-j)    
++        ans += tmp[j]*((j+1)*(len(tmp)-j))    
+ print(ans)
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

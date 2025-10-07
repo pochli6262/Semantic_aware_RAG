@@ -1,0 +1,4 @@
+{
+  "explanation": "The original final line treated the case of exactly two fixed positions incorrectly (checking count != 2). For permutations of three distinct hats, the unreachable case after an even number of swaps (10^18) is when exactly one position matches (a single transposition, odd permutation). I fixed the condition to check count != 1, so we print \"Yes\" for 0 or 3 matches (even permutations) and \"No\" for 1 match (odd permutation).",
+  "fixed_code": "S=list(input().split())\nT=list(input().split())\ncount=0\nfor i in range(3):\n  if S[i]==T[i]:\n    count+=1\nprint(\"Yes\") if count!=1 else print(\"No\")"
+}

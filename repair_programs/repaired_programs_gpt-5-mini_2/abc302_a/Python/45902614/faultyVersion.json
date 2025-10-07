@@ -1,0 +1,4 @@
+{
+  "explanation": "The original second line used int(x/y)+1. Converting the float division to int then adding 1 is an incorrect way to compute the ceiling of x/y because when x is exactly divisible by y this produces a result one too large (and float->int truncation can behave incorrectly for negatives). I replaced that line with the integer-ceiling expression (x + y - 1) // y which correctly computes ceil(x/y) for positive integers using only integer arithmetic.",
+  "fixed_code": "x, y = map(int, input().split())\nprint((x + y - 1)//y)"
+}

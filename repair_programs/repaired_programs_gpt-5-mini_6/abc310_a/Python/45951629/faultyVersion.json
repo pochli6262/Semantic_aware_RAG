@@ -1,0 +1,4 @@
+{
+  "explanation": "The program computed the total cost when using the coupon as P - Q + D[i], which is incorrect. The coupon price for the drink is Q, so the total when using the coupon should be Q + D[i]. I replaced the incorrect expression with Q + D[i]. (No retrieved diff directly applied; this is a straightforward arithmetic fix.)",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nans = P\nfor i in range(N):\n    ret = Q + D[i]\n    ans = min(ans, ret)\n\nprint(ans)\n"
+}

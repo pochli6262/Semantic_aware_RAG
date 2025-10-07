@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code used a strict '>' comparison (if cnt > N - cnt), which prints 'A' in the case of a tie (cnt == N - cnt). The intended rule is to print 'T' when T's are strictly more or when tied. I fixed the condition by changing '>' to '>=' so ties favor 'T'. Only that single line was changed.",
+  "fixed_code": "N = int(input())\nS = input()\n\ncnt = 0\nfor i in S:\n    if i == \"T\":\n        cnt += 1\n\nif cnt >= N - cnt:\n    print(\"T\")\nelse:\n    print(\"A\")"
+}

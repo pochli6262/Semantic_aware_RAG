@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly updates the time limit by adding bonuses before checking if there is enough time to move, which might result in an incorrect output when Takahashi cannot move to the next room.

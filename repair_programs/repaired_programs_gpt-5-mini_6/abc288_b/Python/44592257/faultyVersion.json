@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code called s.sort(), which sorted all N nicknames. The problem requires sorting only the top K participants (the first K input strings) and printing those in lexicographical order. I fixed the line to sort only the first K elements using slice assignment (s[:k] = sorted(s[:k])), so the subsequent loop printing s[0..k-1] outputs the correct sorted top-K nicknames.",
+  "fixed_code": "n, k = map(int, input().split())\ns = [input() for _ in range(n)]\ns[:k] = sorted(s[:k])\nfor i in range(k):\n  print(s[i])"
+}

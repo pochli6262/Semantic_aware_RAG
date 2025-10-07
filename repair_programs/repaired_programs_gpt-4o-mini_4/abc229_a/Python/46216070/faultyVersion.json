@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks for the specific grid patterns incorrectly and uses 'or' without proper parentheses, which causes it to not evaluate the conditions correctly. The correct way to check both conditions requires enclosing them in parentheses. I drew inspiration from structures that have been correctly modified in the diffs, ensuring proper logical comparisons.",
+  "fixed_code": "s1 = input()\ns2 = input()\n\nif [s1, s2] == ['#.', '.#'] or [s1, s2] == ['.#', '#.']:\n    print('No')\n    exit()\nelse:\n    print('Yes')"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only prints 'No' in the else branch of the outer if, so when b == a + 1 but a % 3 == 0 nothing is printed. I fixed this by combining the two conditions into the outer if so that the else covers both cases (b != a+1 or a % 3 == 0) and will correctly print 'No'. Only the first if line was changed.",
+  "fixed_code": "a,b=map(int,input().split())\n\nif b==a+1 and a%3!=0:\n  if a%3!=0:\n    print('Yes')\nelse:\n  print('No')"
+}

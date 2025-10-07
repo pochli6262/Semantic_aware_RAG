@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed the Python list object (with brackets and commas) because the line used print(b). I changed that single line to print(*b) so the sequence elements are printed space-separated as required. (This fix is analogous to changing an unwanted list print in Diff 5 where prints were adjusted.)",
+  "fixed_code": "n = int(input())\na = list(map(int,input().split()))\n\nb = []\nfor i in range(n-1):\n    if a[i] <= a[i+1]:\n        b += list(range(a[i],a[i+1]))\n    if a[i] >= a[i+1]:\n        b += list(range(a[i],a[i+1],-1))\n        \nb.append(a[-1])\n\nprint(*b)"
+}

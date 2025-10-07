@@ -1,0 +1,1 @@
+The loop handling the up-right diagonal uses range(5, h) instead of starting at index 4 (range(4, h)), causing an off-by-one that skips valid starting rows and can miss matches.

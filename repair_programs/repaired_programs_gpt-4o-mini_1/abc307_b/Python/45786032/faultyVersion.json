@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the line that checks if the concatenation of two strings is a palindrome. The condition 's[i]+s[j]==[s[i]+s[j]][::-1]' is incorrect because '[s[i]+s[j]]' creates a list containing the concatenated string, which is why the comparison fails. It should simply compare the concatenated strings directly. I fixed this by removing the list brackets around 's[i]+s[j]'.",
+  "fixed_code": "n,*s=open(0).read().split()\nn=int(n)\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i]+s[j]==s[i]+s[j][::-1]:\n      print(\"Yes\")\n      exit()\nprint(\"No\")"
+}

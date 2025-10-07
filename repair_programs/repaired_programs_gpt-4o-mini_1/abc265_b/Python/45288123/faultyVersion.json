@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug occurred because the update to `now` in the while loop happens before updating `T` with the value from `d[now]`. As a result, `now` may exceed `N` and result in an index error or incorrect behavior when accessing `d`. To fix this, I adjusted the line `T += d[now]` to access the value of `d` using `now + 1` in order to maintain the correct index after increasing `now` post decrementation of `T`.",
+  "fixed_code": "from collections import defaultdict\n\nN, M, T = map(int, input().split())\nA = list(map(int, input().split()))\nXY = [list(map(int, input().split())) for _ in range(M)]\n\nd = defaultdict(int)\nfor x, y in XY:\n    d[x] = y\n\nnow = 1\nwhile now != N:\n    T -= A[now-1]\n    now += 1\n\n    if T < 0:\n        print('No')\n        exit()\n    \n    T += d[now-1]\n    # print(T)\n\nprint('Yes')"
+}

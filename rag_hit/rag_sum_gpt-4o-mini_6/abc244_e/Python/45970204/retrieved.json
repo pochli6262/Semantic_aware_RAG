@@ -1,0 +1,31 @@
+{
+  "task": "abc244_e/Python/45970204",
+  "query_summary": "The likely bug is that the program incorrectly manages the counting of paths through the graph, leading to erroneous results when handling the even occurrences of integer X in the sequences.",
+  "oracle_summary": "It fails to apply the final modulus, printing dp[k][t-1][0] without taking % 998244353, so the output may be unmodded and incorrect.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the final answer by using `v + v * (k in x)` instead of the correct `v + (k in x)`, which alters the intended logic for counting occurrences.",
+      "diff": "--- \n+++ \n@@ -17,6 +17,6 @@\n \n ans = 0\n for k, v in d.items():\n-  ans = max(ans, v+v*(k in x))\n+  ans = max(ans, v+(k in x))\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code does not handle the case when K equals 0 properly, which can lead to incorrect results in the dynamic programming calculation.",
+      "diff": "--- \n+++ \n@@ -12,6 +12,8 @@\n     for j in range(M):\n         dp[i+1][j] += s[max(j-K+1, 0)] - s[0]\n         dp[i+1][j] += s[M] - s[min(j+K, M)]\n+        if K == 0:\n+            dp[i+1][j] -= dp[i][j]\n         dp[i+1][j] %= mod\n \n print(sum(dp[N-1])%mod)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly allows the inner loop condition to check `j >= i` instead of `j > i`, which causes it to potentially count invalid pairs when `i` equals `j`.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n t=0\n j=N-1\n for i in range(N):\n-  while j>=i:\n+  while j>i:\n     if A[j]+A[i]>=K:\n       t+=1\n     else:\n@@ -26,7 +26,6 @@\n   dp2[0]=dp[0]*t*(t-1)%mod\n   dp2[1]=(dp[0]*t*2 +dp[1]*(t*(t-1)+t*2)) %mod\n   dp=dp2.copy()\n-\n   t-=1\n   \n ans1=dp[0]"
+    },
+    {
+      "summary": "The buggy code incorrectly runs the loop in the last section from 0 to `t+1`, instead of from 0 to `t`, leading to an off-by-one error and potentially incorrect calculations when updating `x`.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n   x*=t*(t-1)\n   x%=mod  \n   t-=1\n-for i in range(t+1):\n+for i in range(t):\n   x*=i+1\n   x%=mod\n print(x)"
+    },
+    {
+      "summary": "The buggy code fails to handle the case when K is zero correctly, leading to an incorrect range in the second loop of the nested for loop.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n     ac1.reverse()\n     for a in range(1, M-K+1):\n         dp[i][a+K] = ac0[a] % mod\n-    for a in range(K+1, M+1):\n+    for a in range(K+1 if K != 0 else K+2, M+1):\n         dp[i][a-K] = (dp[i][a-K] + ac1[a]) % mod\n print(sum(dp[N-1]) % mod)"
+    }
+  ],
+  "useful_diffs_indices": [
+    6
+  ],
+  "useful_diffs_count": 1
+}

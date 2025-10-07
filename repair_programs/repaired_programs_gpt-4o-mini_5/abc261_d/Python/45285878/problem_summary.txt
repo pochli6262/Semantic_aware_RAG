@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly calculates the streak bonuses and the transition from one toss to another, leading to incorrect updates in the dynamic programming table.

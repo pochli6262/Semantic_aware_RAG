@@ -1,0 +1,1 @@
+The program incorrectly determines connectivity between black squares based solely on specific string comparisons instead of evaluating the actual positions of the black squares on the grid.

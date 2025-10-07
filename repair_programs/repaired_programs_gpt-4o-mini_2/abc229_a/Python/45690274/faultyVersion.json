@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the function 'solve()' does not take any parameters nor does it have access to the variables 's1', 's2', and 'black'. To fix this, I modified the function signature to accept 's1', 's2', and 'black' as arguments, allowing it to use these variables correctly.",
+  "fixed_code": "def solve(s1, s2, black) -> None:\n    if black >= 3:\n        print(\"Yes\")\n        return\n\n    if (s1[0] == \"#\" and s2[1] == \"#\") or (s1[1] == \"#\" and s2[0] == \"#\"):\n        print(\"No\")\n    return\n\n\ns1 = input()\ns2 = input()\n\nblack = s1.count(\"#\")\nblack += s2.count(\"#\")\n\nsolve(s1, s2, black)"
+}

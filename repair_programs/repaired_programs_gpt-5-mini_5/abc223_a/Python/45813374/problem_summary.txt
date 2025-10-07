@@ -1,0 +1,1 @@
+The code only checks whether n is at least 100 and fails to require that n be a multiple of 100 (i.e., a sum of 100-yen coins).

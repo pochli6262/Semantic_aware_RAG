@@ -1,0 +1,29 @@
+{
+  "task": "abc309_a/Python/45782370",
+  "query_summary": "The likely bug is that the program checks for adjacency incorrectly by only looking in one direction (from A to B) instead of considering both A and B's horizontal neighbors.",
+  "oracle_summary": "The bug is caused by an incorrect hard-coded adjacency dictionary `p` (wrong neighbor tuples), so the program checks the wrong connections.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the order of Y in relation to X and Z instead of checking Z's relationship with X and Y.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, X, Y, Z = map(int, input().split())\n-if (X<Y and Y<Z) or (X>Y and Y>Z):\n+if (X<Z and Z<Y) or (X>Z and Z>Y):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

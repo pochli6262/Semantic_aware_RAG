@@ -1,0 +1,31 @@
+{
+  "task": "abc263_a/Python/44922329",
+  "query_summary": "The loop only iterates over values 1–12 (using range(12) then i+=1), so a card value of 13 is never counted and can produce an incorrect result.",
+  "oracle_summary": "The loop uses range(12) (with an extra i+=1), so it only checks values 1–12 and never counts 13, causing an off-by-one error.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly limits the range of the loop to 12 iterations instead of the necessary 40 iterations needed to correctly calculate the value of `l`.",
+      "diff": "--- \n+++ \n@@ -1,8 +1,9 @@\n+\n t = int(input())\n for i in range(t):\n     n, k = map(int, input().split())\n     l = 0\n-    for i in range(12):\n+    for i in range(40):\n         l += (n // 3**i) % 3\n     if k >= l and (k - l) % 2 == 0:\n         print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from index 3 to 15 instead of from 0 to 15, leading to an \"index out of range\" error if the input string has fewer than 16 characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n ans = \"Yes\"\n-for i in range(3,16):\n+for i in range(16):\n     if i %2 == 1 and s[i] != \"0\":\n         ans = \"No\"\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly includes '1' in the set of valid ranks, which leads to accepting invalid card inputs that should be rejected.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[]\n b=['H', 'D', 'C', 'S']\n first = set(b)\n-second = set(['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n+second = set(['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n tmp = set()\n answer = \"Yes\"\n for i in range(n):"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `range(2,2,16)` instead of `range(1,17,2)`, resulting in the loop not executing and always printing \"Yes\" regardless of the input.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n s = input()\n-for i in range(2,2,16):\n+for i in range(1,17,2):\n   if s[i] != \"0\":\n     print(\"No\")\n     break"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the loop to check uppercase letters within the range from index 1 to one less than the last character, instead of including the last character, leading to potential incorrect results.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n if s.islower():\n     print(\"No\")\n     exit()\n-for i in range(1, len(s) - 1):\n+for i in range(1, len(s)):\n     if s[i].isupper():\n         print(\"No\")\n         exit()"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

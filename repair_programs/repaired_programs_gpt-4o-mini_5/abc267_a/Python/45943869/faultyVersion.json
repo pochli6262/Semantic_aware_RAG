@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program contained a typo where 'Friday' was incorrectly written as 'Friay'. This mistake led to incorrect behavior when the input was 'Friday' as it would not match any condition in the if statements. I corrected 'Friay' to 'Friday'. This fix was inspired by the need to ensure accurate condition checking for all provided days of the week.",
+  "fixed_code": "s=input()\nif s==\"Monday\":\n    print(5)\nif s==\"Tuesday\":\n    print(4)\nif s==\"Wednesday\":\n    print(3)\nif s==\"Thursday\":\n    print(2)\nif s==\"Friday\":\n    print(1)"
+}

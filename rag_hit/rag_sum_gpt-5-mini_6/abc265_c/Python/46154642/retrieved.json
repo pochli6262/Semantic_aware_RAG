@@ -1,0 +1,33 @@
+{
+  "task": "abc265_c/Python/46154642",
+  "query_summary": "The code checks for \"W\" instead of \"R\" for rightward moves, so cells containing 'R' are never handled and rightward movement is broken.",
+  "oracle_summary": "The code mistakenly checks for 'W' instead of 'R' when handling right moves, so cells with 'R' are never recognized and right movement is mishandled.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `h` to zero in the second while loop that checks for the \"^\" character, which results in an infinite loop instead of starting at the last row (H-1).",
+      "diff": "--- \n+++ \n@@ -44,7 +44,7 @@\n     elif flg:\n       S[h][w] = \"*\"\n     h += 1\n-  h = 0\n+  h = H-1\n   flg = False\n   while h >= 0:\n     if S[h][w] not in (\"*\", \".\"):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the column position `w` is equal to `c` instead of checking if the row position `c` is equal to 1 for adjusting the `ans` variable.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   ans -= 1\n if r == h:\n   ans -= 1\n-if w == 1:\n+if c == 1:\n   ans -= 1\n if w == c:\n   ans -= 1"
+    },
+    {
+      "summary": "The buggy code incorrectly allows movement in all four directions (up, down, left, right) instead of restricting it to only two directions (right and down).",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n mp = [list(input()) for i in range(h)]\n Q = deque()\n root = [[-1]* w for i in range(h)]\n-dist = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n+dist = [(0, 1),(1, 0)]\n cnt = 0\n Q.append((0,0))\n root[0][0] = 0"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the condition for printing the result when there is exactly one pair of \"1\"s (`w2==1`) but no other groups of \"1\"s (`no_w2==0`), leading to erroneous outputs in such cases.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n     print(3)\n   elif len(L)==0:\n     print(0)\n-  elif w2==1:\n+  elif w2==1 and no_w2==0:\n     print(num_1//2+1)\n   else:\n     print(num_1//2)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

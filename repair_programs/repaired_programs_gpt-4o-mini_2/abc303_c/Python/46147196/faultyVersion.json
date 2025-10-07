@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue was in the line iterating over the string S. Using S[:-1] causes the loop to skip the last character. The correct line should use S, allowing all movements in the input string to be processed correctly.",
+  "fixed_code": "N, M, H, K = map(int, input().split())\nS = input()\nRLUD = {'R': (1, 0), 'L': (-1, 0), 'U': (0, 1), 'D': (0, -1)}\n\nhealing = set()\nfor _ in range(M):\n    x, y = map(int, input().split())\n    healing.add((x, y))\n\nx, y = 0, 0\nfor s in S:  # Corrected this line to use S instead of S[:-1]\n    H -= 1\n    if H < 0:\n        print('No')\n        exit()\n    x += RLUD[s][0]\n    y += RLUD[s][1]\n    if (x, y) not in healing:\n        continue\n    if H < K:\n        healing.remove((x, y))\n        H = K\nprint('Yes')"
+}

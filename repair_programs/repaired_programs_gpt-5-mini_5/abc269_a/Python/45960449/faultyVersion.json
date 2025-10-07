@@ -1,0 +1,4 @@
+{
+  "explanation": "The second token in the multiplication used the variable 'a' instead of 'c', so the program computed (a + b) * (a - d) rather than the required (a + b) * (c - d). I fixed that single incorrect variable reference by replacing 'a' with 'c' in the multiplication. (None of the provided diffs were directly applicable to this simple variable-name bug.)",
+  "fixed_code": "a, b, c, d  = map(int, input().split())\nprint(((a + b) * (c - d)))\nprint(\"Takahashi\")\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the handling of the reversed strings being added to the set 'k'. Particularly, the program was adding the reversed string 't' directly without checking if it's already accounted for when 's' has a length greater than 1. This leads to duplicates in the set. The corrected line checks if 't' is already in 'k' before adding it. This helps prevent adding both 's' and its reverse 't' which are effectively the same for palindromes.",
+  "fixed_code": "n=int(input())\nk=set([])\nfor i in range(n):\n  s=input()\n  S=[]\n  for i in range(len(s)):\n    S.append(s[i])\n  t=\"\"\n  for i in range(len(s)):\n    t+=S[len(s)-1-i]\n  \n  if not s in k:\n    if len(s)==1:\n      k.add(s)\n      k.add(s+str(1))\n    else:\n      k.add(s)\n      if t not in k:  # Fixed line: check if 't' already in 'k'\n        k.add(t)\n\nprint(int(len(k)/2))"
+}

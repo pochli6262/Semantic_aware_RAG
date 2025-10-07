@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code uses integer division (A//B) and adds 1 when A is not divisible by B, which can lead to incorrect results for the ceiling of the division. Instead, I fixed the line to calculate the ceiling correctly using (A + B - 1) // B, ensuring that we properly round up the result when A is not divisible by B.",
+  "fixed_code": "A,B = map(int,input().split())\nif A%B == 0:\n  print(int(A/B))\nelse:\n  print((A + B - 1) // B)"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc309_a/Python/45974546",
+  "query_summary": "The list G wrongly includes vertical neighbor pairs (e.g., [1,4], [2,5], [3,6]), so the program can treat vertical adjacencies as horizontal.",
+  "oracle_summary": "The bug is caused by an incorrect initialization of G — it contains extra pair entries (edges) that shouldn't be present, causing incorrect matches (false positives).",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list `g1`, missing some valid combinations (like \"BA\", \"CB\", \"DC\", \"ED\", and \"AE\") which are necessary for the correct logic to determine membership.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n T = input()\n \n-g1 = [\"AB\", \"BC\", \"CD\", \"DE\", \"EA\"]\n+g1 = [\"AB\",\"BA\", \"BC\", \"CB\", \"CD\", \"DC\", \"DE\", \"ED\", \"EA\", \"AE\"]\n \n if S in g1 and T in g1:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    },
+    {
+      "summary": "The buggy code fails to sort the list of coordinates before checking for the 'R' and 'L' conditions, which can lead to incorrect results when the x-coordinates are not processed in order, potentially missing valid pairs.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n \n ans = 'No'\n for i in y:\n-    yi = y[i]\n+    yi = sorted(y[i])\n     for j in range(len(yi)-1):\n         if yi[j][1] == 'R' and yi[j+1][1] == 'L':\n             ans = 'Yes'"
+    },
+    {
+      "summary": "The buggy code does not correctly account for undirected edges in the graph by only setting g1 and g2 for directed connections, rather than both directions.",
+      "diff": "--- \n+++ \n@@ -7,11 +7,13 @@\n for _ in range(m):\n     u, v = map(int, input().split())\n     g1[u - 1][v - 1] = 1\n+    g1[v - 1][u - 1] = 1\n \n g2 = [[0 for _ in range(n)] for _ in range(n)]\n for _ in range(m):\n     u, v = map(int, input().split())\n     g2[u - 1][v - 1] = 1\n+    g2[v - 1][u - 1] = 1\n \n isok = False\n for p in itertools.permutations(range(n), n):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

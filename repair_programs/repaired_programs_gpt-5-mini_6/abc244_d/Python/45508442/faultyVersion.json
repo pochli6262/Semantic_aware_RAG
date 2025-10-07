@@ -1,0 +1,4 @@
+{
+  "explanation": "The program compared the raw input strings S and T against compact strings like \"RGB\", but the input contains spaces (e.g. \"R G B\"), so membership checks always failed. I fixed the A list to also include the spaced variants (\"R G B\", \"G B R\", \"B R G\") so the existing membership test works without changing input handling. This follows the pattern from the related diffs that expanded the recognized patterns in the list.",
+  "fixed_code": "A = [\"RGB\",\"GBR\",\"BRG\",\"R G B\",\"G B R\",\"B R G\"]\n\nS = input()\nT = input()\nprint('Yes' if (S in A) == (T in A) else 'No')"
+}

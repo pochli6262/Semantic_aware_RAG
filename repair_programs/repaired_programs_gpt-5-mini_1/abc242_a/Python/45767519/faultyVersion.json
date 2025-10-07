@@ -1,0 +1,4 @@
+{
+  "explanation": "The second conditional used C as the upper bound by mistake (elif X > A and X <= C:). It should compare X to B (the intended upper bound of that interval). I fixed that single line to use B instead of C.",
+  "fixed_code": "from collections import Counter, defaultdict, deque\nfrom bisect import bisect_left, bisect_right\nfrom heapq import heapify, heappush, heappop\n\n\ndef solve():\n    A, B, C, X = map(int, input().split())\n\n    if X >= 1 and X <= A:\n        res = 1/1\n    elif X > A and X <= B:\n        N = B - A\n        res = C / N\n    else:\n        res = 0/1\n\n    print(f\"{res:.7f}\")\n\n\nsolve()\n"
+}

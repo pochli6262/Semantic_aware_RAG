@@ -1,0 +1,29 @@
+{
+  "task": "abc263_a/Python/45528012",
+  "query_summary": "The if-condition uses the wrong logical operators/parentheses so it can be true when only a triple or only a pair exists (the second clause incorrectly uses OR and duplicates checks instead of requiring both a triple and a pair).",
+  "oracle_summary": "The buggy condition includes an extra OR clause that makes it print “Yes” for just a triple or just a pair, instead of only when the numbers form a full house (three of a kind plus a pair).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `abs(a-b)== 1 or 9`, which always evaluates to true due to the truthiness of the number 9, instead of checking if the absolute difference between `a` and `b` is exactly 1 or 9.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b=map(int,input().split())\n-if abs(a-b)== 1 or 9:\n+if b - a == 1 or b - a == 9:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problematic logic in the buggy code is that it incorrectly uses an \"or\" condition (`a<n-1 or d<n-1`) instead of the intended \"and\" condition (`a<n-1 and d<n-1`), leading to incorrect results in some cases.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n,a,b,c,d=map(int,input().split())\n if abs(b-c)<=1:\n-  if b==c==0 and (a<n-1 or d<n-1):\n+  if b==c==0 and a<n-1 and d<n-1:\n     print(\"No\")\n   else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the condition `X - a in Aset` instead of the correct condition `a + X in Aset`, leading to an incorrect result for determining whether there exists a pair of elements in the list whose sum equals X.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n Aset = set(A)\n ok = False\n for a in A:\n-    if X-a in Aset:\n+    if a + X in Aset:\n         ok = True\n         break\n if ok:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

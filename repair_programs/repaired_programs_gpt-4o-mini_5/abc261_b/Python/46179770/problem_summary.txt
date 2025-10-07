@@ -1,0 +1,1 @@
+The bug likely lies in the logic used to verify whether the outcomes of the matches are consistent, as it does not correctly handle the conditions for when a match result contradicts the expected outcomes.

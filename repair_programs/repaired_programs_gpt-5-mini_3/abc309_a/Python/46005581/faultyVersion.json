@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed 'YES' in the second branch while the other positive branch prints 'Yes'. This inconsistency is likely a typo causing wrong output on strict checkers. I fixed the single incorrect line by changing 'YES' to 'Yes' so both successful branches print the same expected 'Yes'.",
+  "fixed_code": "#a = int(input());\nlist_A_B = list(map(int, input().split()));\nA = list_A_B[0]\nB = list_A_B[1]\n#x = int(input());\n\nif A%3 == 1 and B == A+1:\n    print('Yes')\nelif A%3 == 2 and B == A+1:\n    print('Yes')\nelse:\n    print('No')"
+}

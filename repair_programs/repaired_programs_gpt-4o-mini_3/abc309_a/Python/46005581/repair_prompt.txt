@@ -1,0 +1,106 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+#a = int(input());
+list_A_B = list(map(int, input().split()));
+A = list_A_B[0]
+B = list_A_B[1]
+#x = int(input());
+
+if A%3 == 1 and B == A+1:
+    print('Yes')
+elif A%3 == 2 and B == A+1:
+    print('YES')
+else:
+    print('No')
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+A,B = map(int,input().split())
+
+if B-A == 1 or A-B == 9:
+  print("Yes")
+else:
+  print("No")
+
+--- Correct Code ---
+A,B = map(int,input().split())
+
+if B-A == 1 or B-A == 9:
+  print("Yes")
+else:
+  print("No")
+
+
+### Example 2
+--- Buggy Code ---
+N, M = map(int, input().split())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+
+ans = "No"
+C = sorted(A + B)
+for i in range(len(C)-1):
+  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):
+    ans = "Yes"
+print(ans)
+
+--- Correct Code ---
+N, M = map(int, input().split())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+
+ans = "No"
+C = sorted(A + B)
+for i in range(len(C)-1):
+  if C[i] in A and C[i+1] in A:
+    ans = "Yes"
+print(ans)
+
+
+### Example 3
+--- Buggy Code ---
+# a = int(input())
+# b = input()
+a, b = map(int, input().split())
+# l = list(map(int, input().split()))
+# l = [input() for _ in range(a)]
+# l = [list(map(int, input().split())) for _ in range(a)]
+
+if b % 2 <= 1:
+    print("Yes")
+else:
+    print("No")
+
+
+--- Correct Code ---
+# a = int(input())
+# b = input()
+a, b = map(int, input().split())
+# l = list(map(int, input().split()))
+# l = [input() for _ in range(a)]
+# l = [list(map(int, input().split())) for _ in range(a)]
+
+if b==a*2 or b==a*2+1:
+    print("Yes")
+else:
+    print("No")
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

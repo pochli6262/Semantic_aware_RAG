@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program failed to check if Aoki's declared integer was already declared by Takahashi, which could lead to a crash when trying to remove it from the list. To fix it, we should declare integers starting from 1 to 2N+1, including both Takahashi and Aoki's choices, while ensuring we never declare an already selected number. The current approach does not account for a defined range of valid moves. Thus, I've replaced the initialization line of the 'ans' list to include a broader range of numbers, from 1 to 2*N + 1, as inspired by typical interactive game strategies. This change ensures all possible numbers for Takahashi to declare are available before starting the game loop.",
+  "fixed_code": "n=int(input())\nans=[i for i in range(1, 2*n+2)]\nwhile True:\n  print(ans.pop(0), flush=True)\n  tmp=int(input())\n  if tmp==0:\n    exit()\n  else:\n    ans.remove(tmp)"
+}

@@ -1,0 +1,281 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+import sys
+from functools import lru_cache, cmp_to_key
+from itertools import accumulate
+from collections import defaultdict, Counter, deque
+from math import inf, sqrt, isqrt, ceil, comb
+from bisect import bisect_left, bisect_right
+from sortedcontainers import SortedSet, SortedList
+
+# mod = 998244353
+
+
+def main():
+    # 2023-09-19 15:39:55
+    s = input()
+    n = int(input())
+
+    res = int(s.replace("?", "0"), 2)
+    if res > n:
+        print(-1)
+        return
+
+    for i, ch in enumerate(s):
+        d = len(s) - 1 - i
+        if ch == "?" and (res + 1) << d <= n:
+            res += 1 << d
+
+    print(res)
+
+
+def input() -> str:
+    return sys.stdin.readline().rstrip()
+
+
+def read_ints():
+    return map(int, input().split())
+
+
+if __name__ == "__main__":
+    main()
+
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+#!/usr/bin/env python3
+import sys
+import math
+import bisect
+from heapq import heapify, heappop, heappush
+from collections import deque, defaultdict, Counter
+from functools import lru_cache
+from fractions import Fraction
+from itertools import accumulate, combinations, permutations, product
+from sortedcontainers import SortedSet, SortedList, SortedDict
+mod = 998244353
+n = int(input())
+a = list(map(lambda x: int(x)-1, input().split()))
+m = 998244353
+
+for i in range(n):
+
+    if a[i]<i :
+        print(0)
+        exit()
+
+cnt = 0
+ans = 1
+s = set()
+for i in range(n):
+    if a[i] not in s:
+        s.add(a[i])
+        cnt += 1
+    if i == a[i]:
+        ans *= cnt
+        ans %= m
+        cnt -= 1
+print(ans)
+    
+
+
+--- Correct Code ---
+#!/usr/bin/env python3
+import sys
+import math
+import bisect
+from heapq import heapify, heappop, heappush
+from collections import deque, defaultdict, Counter
+from functools import lru_cache
+from fractions import Fraction
+from itertools import accumulate, combinations, permutations, product
+from sortedcontainers import SortedSet, SortedList, SortedDict
+mod = 998244353
+n = int(input())
+a = list(map(lambda x: int(x)-1, input().split()))
+m = 998244353
+
+for i in range(n):
+
+    if a[i]<i or a[a[i]] != a[i]:
+        print(0)
+        exit()
+
+cnt = 0
+ans = 1
+s = set()
+for i in range(n):
+    if a[i] not in s:
+        s.add(a[i])
+        cnt += 1
+    if i == a[i]:
+        ans *= cnt
+        ans %= m
+        cnt -= 1
+print(ans)
+
+
+### Example 2
+--- Buggy Code ---
+import sys, math
+from collections import deque, defaultdict, Counter
+from itertools import permutations, combinations, product
+from bisect import bisect_left, bisect_right
+from copy import deepcopy
+from fractions import Fraction
+from decimal import Decimal
+from heapq import heapify, heappop, heappush, heappushpop
+from functools import cache
+input = sys.stdin.readline
+MI = lambda: map(int, input().split())
+LI = lambda: list(map(int, input().split()))
+II = lambda: int(input())
+IR = lambda: input().rstrip()
+LIR = lambda: list(input().rstrip())
+LIRS = lambda: list(input().rstrip().split())
+INF = math.inf
+
+
+n=II()
+s=list(map(int,LIR()))
+s=sorted(s,reverse=True)
+check=''.join(map(str,s))
+temp=0
+for i in s:
+    temp*=10
+    temp+=i
+i=1
+cnt=0
+while i*i<=temp:
+    if check==''.join(sorted(str(i*i)+'0'*(n-len(str(i*i))),reverse=True)):
+        cnt+=1
+    i+=1
+print(cnt)
+
+--- Correct Code ---
+import sys, math
+from collections import deque, defaultdict, Counter
+from itertools import permutations, combinations, product
+from bisect import bisect_left, bisect_right
+from copy import deepcopy
+from fractions import Fraction
+from decimal import Decimal
+from heapq import heapify, heappop, heappush, heappushpop
+from functools import cache
+input = sys.stdin.readline
+MI = lambda: map(int, input().split())
+LI = lambda: list(map(int, input().split()))
+II = lambda: int(input())
+IR = lambda: input().rstrip()
+LIR = lambda: list(input().rstrip())
+LIRS = lambda: list(input().rstrip().split())
+INF = math.inf
+
+
+n=II()
+s=list(map(int,LIR()))
+s=sorted(s,reverse=True)
+check=''.join(map(str,s))
+temp=0
+for i in s:
+    temp*=10
+    temp+=i
+i=0
+cnt=0
+while i*i<=temp:
+    if check==''.join(sorted(str(i*i)+'0'*(n-len(str(i*i))),reverse=True)):
+        cnt+=1
+    i+=1
+print(cnt)
+
+
+### Example 3
+--- Buggy Code ---
+import sys
+sys.setrecursionlimit(5*10**5)
+input = sys.stdin.readline
+from collections import defaultdict, deque, Counter
+from heapq import heappop, heappush
+from bisect import bisect_left, bisect_right
+from math import gcd
+
+n = int(input())
+a = list(map(int,input().split()))
+mod = 998244353
+d = defaultdict(int)
+for i in range(n):
+    d[a[i]] += 1
+last = [1]
+tot = 1
+for i in range(1, 2*10**5+10):
+    cnt = len(last) - 1
+    new = []
+    di = d[i]
+    mx = (cnt + di)//2
+    for j in range(mx+1):
+        need = max(0,2*j-di)
+        new.append(last[need])
+    
+    for i in range(len(new)-1)[::-1]:
+        new[i] += new[i+1]
+        new[i] %= mod
+    last = new
+
+print(last[0] % mod)
+
+
+
+
+
+--- Correct Code ---
+import sys
+sys.setrecursionlimit(5*10**5)
+input = sys.stdin.readline
+from collections import defaultdict, deque, Counter
+from heapq import heappop, heappush
+from bisect import bisect_left, bisect_right
+from math import gcd
+
+n = int(input())
+a = list(map(int,input().split()))
+mod = 998244353
+d = defaultdict(int)
+for i in range(n):
+    d[a[i]] += 1
+last = [1]
+tot = 1
+for i in range(1, 3*10**5+10):
+    cnt = len(last) - 1
+    new = []
+    di = d[i]
+    mx = (cnt + di)//2
+    for j in range(mx+1):
+        need = max(0,2*j-di)
+        new.append(last[need])
+    
+    for i in range(len(new)-1)[::-1]:
+        new[i] += new[i+1]
+        new[i] %= mod
+    last = new
+
+print(last[0] % mod)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

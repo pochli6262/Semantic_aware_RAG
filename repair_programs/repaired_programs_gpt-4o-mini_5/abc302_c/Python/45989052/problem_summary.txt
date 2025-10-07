@@ -1,0 +1,1 @@
+The program incorrectly continues to check all permutations even after finding a valid sequence, which can lead to an IndexError if it exits the loop without a valid sequence found.

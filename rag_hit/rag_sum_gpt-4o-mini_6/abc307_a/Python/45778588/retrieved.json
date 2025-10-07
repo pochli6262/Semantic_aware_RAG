@@ -1,0 +1,32 @@
+{
+  "task": "abc307_a/Python/45778588",
+  "query_summary": "The likely bug is that the program incorrectly calculates the number of weeks by using integer division instead of directly iterating based on the value of N.",
+  "oracle_summary": "The outer loop's range mistakenly uses int(N/7) instead of int(N), so it runs far fewer iterations and fails to process most of the intended groups.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates over the range `N` instead of `1` to `N-1` in the final loop, which leads to potential index out-of-bounds errors and incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n         B.append(B[i-1] + C[i-1])\n \n ans = 10 ** 20\n-for j in range(N):\n+for j in range(1, N):\n     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for divisors of `N` by iterating `i` from 1 to 8 instead of 1 to 9, leading to the omission of the divisor 9 for values of `N` that are divisible by it.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n \n D=[]\n-for i in range(1,9):\n+for i in range(1,10):\n   if N % i ==0:\n     D.append(i)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to print the string 'N' repeated N times instead of calculating the correct numerical result represented by N.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n N = int(input())\n-print('N'*N)\n+print((10**N-1)//9*N)"
+    },
+    {
+      "summary": "The buggy code incorrectly loops from `N-2` to `1` instead of from `N-1` to `1`, leading to potential index errors and incorrect calculations in the `ans` list.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n for i in map(int, input().split()):\n     ans[i-1] = 0\n-for i in range(N-2, 0, -1):\n+for i in range(N-1, 0, -1):\n     ans[i-1] = min(ans[i-1], ans[i]+1)\n \n print('\\n'.join(map(str, ans)))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the contribution when \\( N \\neq 1 \\) by using integer division instead of modular arithmetic, leading to incorrect results when computing `ans`.",
+      "diff": "--- \n+++ \n@@ -11,6 +11,7 @@\n if N == 1:\n     ans = 1\n else:\n-    ans = dp[K] + (1-dp[K])*(N+2)//2\n+    ans = dp[K] + (1-dp[K])*pow(N-1, -1, MOD)*(N+2)*(N-1)//2\n \n print(ans%MOD)\n+"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

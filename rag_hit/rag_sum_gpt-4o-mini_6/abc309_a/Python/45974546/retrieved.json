@@ -1,0 +1,32 @@
+{
+  "task": "abc309_a/Python/45974546",
+  "query_summary": "The program incorrectly defines adjacency relationships between the numbers on the board, as it only checks for direct matches instead of using proper coordinates.",
+  "oracle_summary": "The bug is caused by an incorrect initialization of G — it contains extra pair entries (edges) that shouldn't be present, causing incorrect matches (false positives).",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list `g1`, missing some valid combinations (like \"BA\", \"CB\", \"DC\", \"ED\", and \"AE\") which are necessary for the correct logic to determine membership.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n T = input()\n \n-g1 = [\"AB\", \"BC\", \"CD\", \"DE\", \"EA\"]\n+g1 = [\"AB\",\"BA\", \"BC\", \"CB\", \"CD\", \"DC\", \"DE\", \"ED\", \"EA\", \"AE\"]\n \n if S in g1 and T in g1:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not adjust the matrix input values by subtracting 1, which is necessary for the logic that determines the correct sequence and modular conditions.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, M = map(int, input().split())\n-B = [[int(i) for i in input().split()] for _ in range(N)]\n+B = [[int(i) - 1 for i in input().split()] for _ in range(N)]\n \n flg = True\n for i in range(N):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly determines whether two nodes belong to the same connected component by failing to check if both nodes have been assigned a valid component identifier, leading to erroneous output for certain queries.",
+      "diff": "--- \n+++ \n@@ -47,7 +47,7 @@\n     u, v = map(int,input().split())\n     u -= 1\n     v -= 1\n-    if K[u] == K[v]:\n+    if K[u] == K[v] and K[u] != -1:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    8
+  ],
+  "useful_diffs_count": 2
+}

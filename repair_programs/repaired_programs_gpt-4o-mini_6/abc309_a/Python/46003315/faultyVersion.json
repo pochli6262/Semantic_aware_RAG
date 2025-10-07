@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition incorrectly checked if 'by - ay == 1', which doesn't account for the adjacency requirement correctly. The correct condition should check if the columns of squares A and B are adjacent horizontally, which can be checked using 'abs(by - ay) == 1' and 'ax == bx'. This reasoning aligns with the patterns observed in the known diffs where adjacency is confirmed based on consistent differences. Therefore, the corrected line checks if the row indices are the same (ax == bx) and the column indices are adjacent (abs(by - ay) == 1).",
+  "fixed_code": "import sys\nimport string\nimport numpy as np\nfrom collections import defaultdict, deque\nfrom math import dist\nimport itertools\nimport operator\n\nINF = -1000000000000000000\n\nA, B = map(int, input().split())\nax = (A - 1) // 3\nay = (A - 1) % 3\nbx = (B - 1) // 3\nby = (B - 1) % 3\n\nprint(\"Yes\" if ax == bx and abs(by - ay) == 1 else \"No\")"
+}

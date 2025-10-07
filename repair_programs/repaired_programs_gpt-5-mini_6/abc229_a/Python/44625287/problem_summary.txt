@@ -1,0 +1,1 @@
+The code checks the wrong concatenated patterns — it treats '.#.#' and '#.#.' as disconnected (so vertically adjacent blacks) instead of checking the diagonal patterns '.##.' and '#..#', misclassifying connected cases as "No".

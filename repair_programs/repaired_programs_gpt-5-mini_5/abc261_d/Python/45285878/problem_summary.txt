@@ -1,0 +1,1 @@
+The transition for dp[i][0] is incorrect because it uses max(dp[i-2]) and yl[j] (where j is incorrectly reused from the loop) instead of referencing the previous row and the proper bonus index, causing wrong/undefined state updates.

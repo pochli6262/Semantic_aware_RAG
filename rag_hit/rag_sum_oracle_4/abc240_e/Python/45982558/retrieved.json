@@ -1,0 +1,31 @@
+{
+  "task": "abc240_e/Python/45982558",
+  "query_summary": "The DFS incorrectly tests visited[v] to detect a leaf instead of checking whether v’s only neighbor (its parent) is visited, causing degree-1 nodes (e.g., the root) to be wrongly labeled as leaves.",
+  "oracle_summary": "The DFS incorrectly tests visited[v] to detect a leaf instead of checking whether v’s only neighbor (its parent) is visited, causing degree-1 nodes (e.g., the root) to be wrongly labeled as leaves.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly passes the parent node `u` into the recursive `dfs` call instead of the current node `v`, which disrupts the logic for tracking and updating the `ans` array based on the depth-first search traversal.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         if seen[next_v]:\n             continue\n         temp+=1\n-        dfs(u,next_v)\n+        dfs(v,next_v)\n         if ans[next_v] in set(['',S[v]]) :\n             count[v]+=1\n     if temp>0:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to correctly handle the case when `K` is zero, resulting in the output being \"No\" instead of \"Yes\" when no edges are required.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n     if vis[i] == 0 and cnt < K:\n         dfs(i)\n \n-if flg:\n+if flg or K==0:\n     print('Yes')\n     print(len(ans))\n     print(*ans)"
+    },
+    {
+      "summary": "The issue in the buggy code is that it does not handle the case where the depth of recursion exceeds a predefined limit by prematurely terminating execution or limiting the count of nodes visited.",
+      "diff": "--- \n+++ \n@@ -11,6 +11,8 @@\n def dfs(i,a):\n     global ans\n     ans+=1\n+    if ans==10**6:\n+        exit(print(10**6))\n     a.add(i)\n     for j in L[i]:\n         if j not in a:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `dc[(x,y)] <= 1` to limit the number of times an edge can be traversed, while the correct code uses `dc[(x,y)] <= 10`, which prevents premature termination of the depth-first search.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n       if ans[o] >= 0:\n         continue\n       if seen[y] < len(graph[y])-1:\n-        if dc[(x,y)] <= 1:\n+        if dc[(x,y)] <= 10:\n           stack.append((y,o,d))\n           dc[(x,y)] += 1\n           dcc[(x,y)] = d"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not limit the output of the `dfs` function, which may cause it to return a value larger than 10^6 in cases where the graph has a large number of connected vertices, leading to potential performance issues or exceeding recursion limits.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,8 @@\n             used[v] = 1\n             tmp += dfs(v)\n             used[v] = 0\n+    if tmp > 10**6:\n+        exit(print(10**6))\n     return tmp\n \n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

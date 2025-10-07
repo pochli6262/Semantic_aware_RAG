@@ -1,0 +1,33 @@
+{
+  "task": "abc300_e/Python/45250612",
+  "query_summary": "The DP transition for k+1 mistakenly uses assignment (=) instead of accumulation (+=), overwriting previous contributions to dp[i][j][k+1].",
+  "oracle_summary": "The DP transition for k+1 mistakenly uses assignment (=) instead of accumulation (+=), overwriting previous contributions to dp[i][j][k+1].",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly updates the `dp` array for the indices representing combinations of the second set of values, specifically overwriting the value for `dp[i+1][int('110',2)]` with `dp[i+1][int('011',2)]` instead of maintaining the correct state.",
+      "diff": "--- \n+++ \n@@ -40,7 +40,7 @@\n     dp[i+1][int('100',2)] = min(dp[i][int('100',2)],d[int('100',2)])\n     dp[i+1][int('011',2)] = min(dp[i][int('011',2)],d[int('011',2)],dp[i][int('001',2)]+d[int('010',2)],dp[i][int('010',2)]+d[int('001',2)])\n     dp[i+1][int('101',2)] = min(dp[i][int('101',2)],d[int('101',2)],dp[i][int('001',2)]+d[int('100',2)],dp[i][int('100',2)]+d[int('001',2)])\n-    dp[i+1][int('011',2)] = min(dp[i][int('110',2)],d[int('110',2)],dp[i][int('010',2)]+d[int('100',2)],dp[i][int('100',2)]+d[int('010',2)])\n+    dp[i+1][int('110',2)] = min(dp[i][int('110',2)],d[int('110',2)],dp[i][int('010',2)]+d[int('100',2)],dp[i][int('100',2)]+d[int('010',2)])\n     dp[i+1][int('111',2)] = min(dp[i][int('111',2)], d[int('111',2)]\\\n                                 ,dp[i][int('011',2)]+d[int('100',2)],dp[i][int('101',2)]+d[int('010',2)],dp[i][int('110',2)]+d[int('001',2)]\\\n                                 ,dp[i][int('001',2)]+d[int('110',2)],dp[i][int('010',2)]+d[int('101',2)],dp[i][int('100',2)]+d[int('011',2)])"
+    },
+    {
+      "summary": "The buggy code unnecessarily prints the intermediate `dp` array, which can clutter the output and is not present in the correct code.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,4 @@\n     for j in range(1,10):\n         dp[i+1][j] = (dp[i][j-1] + dp[i][j] + dp[i][j+1])%mod\n \n-for d in dp:\n-    print(d)\n print(sum(dp[-1])%mod)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes `dp[i][j][k]` by directly assigning `dp[i-1][j][k]` instead of taking the maximum with its current value, which can lead to incorrect results when transitioning states.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,n+1):\n   for j in range(K+1):\n     for k in range(D):\n-      dp[i][j][k]=dp[i-1][j][k]\n+      dp[i][j][k]=max(dp[i][j][k],dp[i-1][j][k])\n       if j and dp[i-1][j-1][k]!=-1:\n         nk=(k+a[i-1])%D\n         dp[i][j][nk]=max(dp[i][j][nk],dp[i-1][j-1][k]+a[i-1])"
+    },
+    {
+      "summary": "The problem in the buggy code is that the assignment of `dp[i][j]` incorrectly adds the absolute difference to `dp[i - 1][j]` rather than combining the minimum value with the absolute difference, which leads to an incorrect calculation of the dynamic programming state.",
+      "diff": "--- \n+++ \n@@ -16,6 +16,6 @@\n     for j in range(n):\n         if i == j == 0:\n             continue\n-        dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j] + abs(asumm - i * one - j))\n+        dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j]) + abs(asumm - i * one - j)\n \n print(dp[n][s % n])"
+    },
+    {
+      "summary": "The bug in the code is that it does not check if `j` is greater than or equal to 1 before decrementing it in the nested loop, which can lead to an IndexError when accessing `dp[i-1][j-1][kk-l]`.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n         for kk in range(k+1):\n             dp[i][j][kk] += dp[i-1][j][kk]\n             for l in range(1,k+1):\n-                if kk >= l:\n+                if kk >= l and j >= 1:\n                     dp[i][j][kk] += dp[i-1][j-1][kk-l] * pow(wi, l, mod) * fi[l]\n                     dp[i][j][kk] %= mod\n                     "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

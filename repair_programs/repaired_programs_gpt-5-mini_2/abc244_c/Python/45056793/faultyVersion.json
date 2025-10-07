@@ -1,0 +1,4 @@
+{
+  "explanation": "The list comprehension used range(1, n+2), which produces numbers 1 through n+1 (one too many). That extra element can cause incorrect behavior when popping/removing items. I fixed it to range(1, n+1) so ans contains exactly the numbers 1 through n.",
+  "fixed_code": "n=int(input())\nans=[i for i in range(1,n+1)]\nwhile True:\n  print(ans.pop(0), flush=True)\n  tmp=int(input())\n  if tmp==0:\n    exit()\n  else:\n    ans.remove(tmp)"
+}

@@ -1,0 +1,1 @@
+The likely bug is that the success rate is being calculated incorrectly because it does not account for the case when both A_i and B_i are zero, which leads to a division by zero error or incorrect sorting.

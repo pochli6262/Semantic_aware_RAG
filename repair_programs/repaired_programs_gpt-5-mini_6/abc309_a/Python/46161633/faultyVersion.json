@@ -1,0 +1,4 @@
+{
+  "explanation": "The original elif line treated A==B-3 (i.e. a difference of 3) as horizontal adjacency, which is incorrect — that tests vertical adjacency. The correct horizontal condition is that B is exactly A+1 (except when A is at the right edge, already handled by the first if). I replaced the faulty 'elif A==B-1 or A==B-3:' with 'elif B==A+1:' as suggested by patterns in the retrieved diffs that check for a difference of 1 (e.g. diff 1 and diff 5).",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A+1:\n    print('No')\nelif B==A+1:\n    print('Yes')\nelse:\n    print('No')"
+}

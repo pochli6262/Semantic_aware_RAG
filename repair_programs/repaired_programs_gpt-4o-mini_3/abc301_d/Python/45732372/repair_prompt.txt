@@ -1,0 +1,171 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+
+
+def solve():
+    s = input()
+
+    n = int(input())
+    ans = int(s.replace('?', '0'), 2)
+    print(ans)
+    if ans > n:
+        print(-1)
+        return
+    m = len(s)
+    for i, c in enumerate(s):
+        if c == '?' and ans + (1 << (m - 1 - i)) <= n:
+            ans += (1 << (m - 1 - i))
+    return
+
+solve()
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+def solve():
+    n=int(input())
+    s=input()
+    for k in range(1,n):
+        flag = True
+        for i in range(min(k,n-k)):
+            if s[i]<s[k+i]:
+                print("Yes")
+                return
+            elif s[i]==s[k+i]:
+                continue
+            else:
+                flag = False
+                break
+        if flag and k<=n-k:
+            print("Yes")
+            return
+    print("No")
+
+
+
+for i in range(int(input())):
+    solve()
+
+--- Correct Code ---
+def solve():
+    n=int(input())
+    s=input()
+    for k in range(1,n):
+        flag = True
+        for i in range(min(k,n-k)):
+            if s[i]<s[k+i]:
+                print("Yes")
+                return
+            elif s[i]==s[k+i]:
+                continue
+            else:
+                flag = False
+                break
+        if flag and k<n-k:
+            print("Yes")
+            return
+    print("No")
+
+
+
+for i in range(int(input())):
+    solve()
+
+
+### Example 2
+--- Buggy Code ---
+n, m = map(int, input().split())
+s = list(input())
+
+ans = 0
+cnt = 0
+muji = 0
+
+for c in s:
+  match c:
+    case "0":
+      cnt =0
+      muji = m
+    case "1":
+      if muji == 0:
+        cnt += 1
+      else:
+        muji -= 1
+    case "2":
+      cnt += 1
+  ans = max(cnt, ans)
+print(ans)
+
+--- Correct Code ---
+n, m = map(int, input().split())
+s = list(input())
+
+ans = 0
+cnt = 0
+muji = m
+
+for c in s:
+  match c:
+    case "0":
+      cnt =0
+      muji = m
+    case "1":
+      if muji == 0:
+        cnt += 1
+      else:
+        muji -= 1
+    case "2":
+      cnt += 1
+  ans = max(cnt, ans)
+print(ans)
+
+
+### Example 3
+--- Buggy Code ---
+def solve():
+    N = int(input())
+    S = input()
+    for i in range(1, N):
+        if S[0] < S[i]:
+            print('Yes')
+            return
+    print('No')
+    return
+
+T = int(input())
+for i in range(T):
+    solve()
+
+--- Correct Code ---
+def solve():
+    N = int(input())
+    S = input()
+    for i in range(1, N):
+        if S[0:i] < S[i:]:
+            print('Yes')
+            return
+    print('No')
+    return
+
+T = int(input())
+for i in range(T):
+    solve()
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

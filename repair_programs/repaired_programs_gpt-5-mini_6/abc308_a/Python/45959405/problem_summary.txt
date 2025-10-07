@@ -1,0 +1,1 @@
+The code never checks that each S_i lies between 100 and 675 (inclusive), so it doesn't enforce the required range condition.

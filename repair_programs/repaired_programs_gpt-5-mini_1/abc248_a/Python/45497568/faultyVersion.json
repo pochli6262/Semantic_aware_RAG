@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code built the set num using range(1, 10), which creates the integers 1 through 9 and omits 0. That means if the input contains the digit '0' it would never be removed from num, so the program would incorrectly report 0 as missing. I fixed the single incorrect line by using range(0, 10) (equivalently range(10)) so the set includes 0 through 9 and digits present in the input can be discarded correctly.",
+  "fixed_code": "S = input()\nnum = set([i for i in range(0, 10)])\n\nfor s in S:\n    num.discard(int(s))\n\nprint(*num)"
+}

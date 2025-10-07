@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop header 'for i in range(n):' was wrong. When i gets near n, accessing s[l+i] for l in 0..6 causes an IndexError because it reads past the end of the list. The fix is to iterate only over valid starting indices for 7-element windows: range(n-6). That ensures l+i never exceeds the last index.",
+  "fixed_code": "n = int(input())\ns = list(map(int,input().split()))\n\nfor i in range(n-6):\n  ans = 0\n  for l in range(7):\n    ans += s[l+i]\n\n  print(str(ans),\"\",end = \"\")\n"
+}

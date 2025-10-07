@@ -1,0 +1,4 @@
+{
+  "explanation": "The main issue was that the program was checking if the sorted version of the list was equal to the current list in every iteration, which is not correct. It was meant to check if each individual element fulfills the conditions. I fixed this by changing the check from 'if sorted(S) == S' to 'if S != sorted(S)' to ensure the elements are in non-decreasing order without prematurely rejecting the valid sequence. This idea is similar to the pattern observed in Diff 1 where conditions are checked more systematically.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nfor i in range(N):\n    if S != sorted(S) or not(100 <= S[i] <= 675) or S[i]%25 != 0:\n        print('No')\n        exit()\nelse:\n    print('Yes')"
+}

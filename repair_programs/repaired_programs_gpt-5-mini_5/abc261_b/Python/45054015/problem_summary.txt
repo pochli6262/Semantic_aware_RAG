@@ -1,0 +1,1 @@
+The function returns the misspelled string "correnct" instead of "correct" when the table is not contradictory.

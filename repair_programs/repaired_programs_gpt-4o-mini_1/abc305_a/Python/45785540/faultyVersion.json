@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'elif n % 5 >=3:' was incorrect because it was meant to handle cases where the remainder when dividing by 5 would lead to the next multiple of 5 being required, but the correct condition should check if 'n % 5 >= 3' to determine if we should round up to the next multiple of 5. The issue is with the treatment of the boundary case. It should have been corrected to 'elif n % 5 > 2:'. This ensures that we round up correctly at the correct thresholds.",
+  "fixed_code": "n = int(input())\nif n % 5 == 0:\n  print(0)\nelif n % 5 > 2:\n  print(n + 5 - n % 5)\nelse:\n  print(n - n % 5)"
+}

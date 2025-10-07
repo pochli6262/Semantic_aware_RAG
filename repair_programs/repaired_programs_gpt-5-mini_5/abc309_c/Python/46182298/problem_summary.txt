@@ -1,0 +1,1 @@
+The function calc has an off-by-one error: it uses <= instead of < (so medicines with a_i == num are wrongly excluded and their pills aren't counted on that day).

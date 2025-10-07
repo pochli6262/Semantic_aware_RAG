@@ -1,0 +1,32 @@
+{
+  "task": "abc310_d/Python/53176077",
+  "query_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "oracle_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes the loop in the output section to print numbers from `N` to `1`, instead of `N - 1` to `0`, resulting in off-by-one errors in the output when `M` is `0`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N, M = map(int, input().split())\n \n if M == 0:\n-    for i in range(N, 0, -1):\n+    for i in range(N - 1, -1, -1):\n         print(i)\n     exit()\n "
+    },
+    {
+      "summary": "The buggy code fails to update the `done` dictionary to mark positions as visited after pushing new items onto the priority queue, which can lead to incorrect results when checking for duplicates.",
+      "diff": "--- \n+++ \n@@ -53,12 +53,12 @@\n     if apos + 1 <= N - 1:\n         if done[apos + 1][bpos] != 1:\n             heappush(que, (A2[apos + 1][0] + B2[bpos][0], apos + 1, bpos, A2[apos + 1][1], B2[bpos][1]))\n+            done[apos + 1][bpos] = 1\n \n     if bpos + 1 <= M - 1:\n         if done[apos][bpos + 1] != 1:\n             heappush(que, (A2[apos][0] + B2[bpos + 1][0], apos, bpos + 1, A2[apos][1], B2[bpos + 1][1]))\n-\n-\n+            done[apos][bpos + 1] = 1\n else:\n     value, _, _, _, _ = heappop(que)\n     print(-value)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the `return \"Bob\"` statement is incorrectly indented inside the loop, causing it to potentially return prematurely after only evaluating the first tree node instead of after processing all nodes.",
+      "diff": "--- \n+++ \n@@ -83,7 +83,7 @@\n \t\tif count == 1 and num == 1:\n \t\t\treturn \"Alice\"\n \t\n-\t\treturn \"Bob\"\t\n+\treturn \"Bob\"\t\n \t\t\n def main():\n \tfor _ in range(T):"
+    },
+    {
+      "summary": "The buggy code does not mark the nodes as visited properly, leading to potential infinite loops or incorrect calculations, because it uses `visited[nex]` instead of `visited[nex] = True`.",
+      "diff": "--- \n+++ \n@@ -35,7 +35,7 @@\n     for nex in A[now]:\n         if visited[nex] == False:\n             stack.append(nex)\n-            visited[nex]\n+            visited[nex] = True\n             ans += T[nex]\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the index `j` by using the formula `(n - 1 - i + d) % n`, rather than the correct formula `(d - i) % n`, which leads to incorrect pairs being generated.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n     for d in S:\n         for i in range(n):\n             # ズレが異なるパターン同士は重なり合うことはないので、解として追記していく\n-            j = (n - 1 - i + d) % n\n+            j = (d - i) % n\n             ans.append((i+1, j+1))\n     return ans\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    8
+  ],
+  "useful_diffs_count": 2
+}

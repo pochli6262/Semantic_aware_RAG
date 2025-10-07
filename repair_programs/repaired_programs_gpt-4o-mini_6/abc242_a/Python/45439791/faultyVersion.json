@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line in the buggy program is 'answer = C / (B - A)', which calculates the probability incorrectly by using '(B - A)' instead of the correct count of eligible participants '(B - A + 1)'. This mistake leads to an incorrect probability calculation for Iroha-chan to receive a T-shirt. The correction was inspired by the need to consider all ranks between A and B, inclusive. Thus, changing the denominator to '(B - A + 1)' gives the correct number of participants eligible for random selection.",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X < A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A + 1)\n  print(answer)"
+}

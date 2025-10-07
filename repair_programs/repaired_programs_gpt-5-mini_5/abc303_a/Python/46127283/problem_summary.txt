@@ -1,0 +1,1 @@
+The second conditional mistakenly tests the target character instead of the source (it checks t[i] == "o" instead of checking s[i] == "o"), making the 0/o similarity check asymmetric.

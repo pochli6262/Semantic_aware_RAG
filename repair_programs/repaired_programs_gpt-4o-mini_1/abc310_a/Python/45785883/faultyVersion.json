@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is that the function getIntMap() returns a map object, which is an iterator, and when unpacking its result into n, p, and q in the main function, this can lead to a TypeError if there are not exactly three values returned from the input. The fix involves converting the map object to a list to ensure that we can unpack it properly into three variables. Thus, I changed 'return map(int, input().split())' to 'return list(map(int, input().split()))' to make sure it returns a list instead of a map object.",
+  "fixed_code": "def getIntMap():\n    return list(map(int, input().split()))\n\n\ndef getIntList():\n    return list(map(int, input().split()))\n\n\ndef main():\n    n, p, q = getIntMap()\n    a = getIntList()\n    b = min([p - q + a[i] for i in range(n)])\n\n    print(b if b < p else p)\n\n\nif __name__ == \"__main__\":\n    main()"
+}

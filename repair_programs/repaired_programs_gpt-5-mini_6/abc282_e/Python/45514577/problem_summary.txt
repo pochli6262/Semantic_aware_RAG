@@ -1,0 +1,1 @@
+The code sorts edges in ascending order and thus builds a minimum spanning tree (summing smallest edge weights) instead of selecting the maximum spanning tree required by the problem.

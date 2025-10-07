@@ -1,0 +1,32 @@
+{
+  "task": "abc308_a/Python/46165135",
+  "query_summary": "The likely bug is that the second loop checks conditions incorrectly by allowing any number outside the range of 100 to 675 without properly enforcing the constraints for multiples of 25.",
+  "oracle_summary": "The bug is an incorrect comparison operator (using >= instead of >) that wrongly rejects sequences with equal adjacent elements instead of allowing non-decreasing order.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to check that the numeric part of the string (between the two uppercase letters) is exactly six digits long, which could lead to incorrect validation of the input format.",
+      "diff": "--- \n+++ \n@@ -1,10 +1,11 @@\n+\n s = input()\n s_list = []\n for i in range(len(s)):\n     if s[i] in [chr(i) for i in range(65, 91)]:\n         s_list.append(s[i])\n if len(s_list) == 2 and s[0] in [chr(i) for i in range(65, 91)] and s[len(s) - 1] in [chr(i) for i in range(65, 91)]:\n-    if (s[0] in [chr(i) for i in range(65, 91)]) and (s[len(s) - 1] in [chr(i) for i in range(65, 91)]) and (100000 <= int(s[1:len(s) - 1]) <= 999999):\n+    if (s[0] in [chr(i) for i in range(65, 91)]) and (s[len(s) - 1] in [chr(i) for i in range(65, 91)]) and (100000 <= int(s[1:len(s) - 1]) <= 999999) and len(s[1:len(s) - 1]) == 6:\n         res = 'Yes'\n     else:\n         res = 'No'"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly compares characters in the string `S` to the integer `0` instead of the string `\"0\"`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input().strip()\n \n for i in range(1, 9):\n-  if S[2 * i - 1] != 0:\n+  if S[2 * i - 1] != \"0\":\n     print(\"No\")\n     exit()\n print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly allows the value of `S` to be 0, which should be excluded from the valid conditions, leading to potentially misleading results.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = int(input()[3:6])\n-if S != 316 and S < 350:\n+if S != 316 and S!= 0 and S < 350:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly counts the occurrences of characters in the string by using `S.count(s)`, which leads to inaccurate results because it does not account for previous counts of the same character in the list.",
+      "diff": "--- \n+++ \n@@ -3,10 +3,9 @@\n \n for s in S:\n   num[S.count(s)] += 1\n-  \n for n in num:\n-  if n % 2 != 0:\n+  if  2 * num.index(n) != n:\n     print('No')\n     exit()\n-    \n+\n print('Yes')"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks the character at index `i-1` instead of index `i`, leading to incorrect validation of the input string.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n ans = True\n for i in range(1, 17, 2):\n-  if S[i-1]!='0':\n+  if S[i]!='0':\n     ans = False\n \n if ans:"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

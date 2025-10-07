@@ -1,0 +1,31 @@
+{
+  "task": "abc301_b/Python/45970658",
+  "query_summary": "There's a stray debug print inside the loop (print(i)) that outputs each input element and produces extra unwanted lines before the final sequence.",
+  "oracle_summary": "The bug is a leftover debug statement—an unintended print(i) inside the loop—that emits each element and thus produces extraneous output breaking the program's expected output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code contains a print statement inside the loop, which causes it to output the intermediate state of the `ans` list after each iteration instead of only the final length after all operations are complete.",
+      "diff": "--- \n+++ \n@@ -14,5 +14,5 @@\n         bai = ans.pop() + 1\n         ans.pop()\n         ans.append(bai)\n-    print(ans)\n+    # print(ans)\n print(len(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the minimum length of the missing elements when the condition is met, resulting in off-by-one errors in the print statements.",
+      "diff": "--- \n+++ \n@@ -20,6 +20,6 @@\n  if len(b) == n:\n   print(1)\n  else:\n-  print(min(len(b)+1,n-len(b)+3))\n+  print(min(len(b)+1,n-len(b)+1))\n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly prints the element `A[i]` when a mismatch is found instead of `A[i] - 1`, which is necessary to obtain the correct output.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n \n for i in range(4*N-1):\n \tif A[i] != B[i//4]:\n-\t\tprint(A[i])\n+\t\tprint(A[i]-1)\n \t\texit()\n print(A[-1])"
+    },
+    {
+      "summary": "The buggy code has the output order of the final print statements reversed, causing it to print the index `i` before the resulting string `S`, instead of printing the string followed by the index.",
+      "diff": "--- \n+++ \n@@ -52,5 +52,5 @@\n for x in range(i+N,2*N):\n   ans.append(T[x])\n S = ''.join(ans)\n+print(S)\n print(i)\n-print(S)"
+    },
+    {
+      "summary": "The buggy code contains an unnecessary `print(\"\\n\")` statement, which introduces an empty line in the output after each query, but this does not affect the functionality of the code.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,6 @@\n while B - A > 0:\n     M = (A + B) // 2\n     print(*[\"?\", A, M, 1, N])\n-    print(\"\\n\")\n     a = int(input())\n     if a <= count // 2:\n         B = M\n@@ -18,7 +17,6 @@\n while D - C > 0:\n     M = (C + D) // 2\n     print(*[\"?\", 1, N, C, M])\n-    print(\"\\n\")\n     a = int(input())\n     if a <= count // 2:\n         D = M"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

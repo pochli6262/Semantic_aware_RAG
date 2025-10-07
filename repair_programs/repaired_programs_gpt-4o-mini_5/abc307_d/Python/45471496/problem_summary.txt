@@ -1,0 +1,1 @@
+The buggy program fails to correctly handle and delete nested parentheses, resulting in incorrect output when processing strings with multiple levels of parentheses.

@@ -1,0 +1,33 @@
+{
+  "task": "abc304_c/Python/45117916",
+  "query_summary": "The code wrongly checks membership in dict[0] (assuming the root is key 0) instead of using the actual root uf.find(0), causing incorrect lookups or KeyError when node 0's root isn't 0.",
+  "oracle_summary": "The code wrongly checks membership in dict[0] (assuming the root is key 0) instead of using the actual root uf.find(0), causing incorrect lookups or KeyError when node 0's root isn't 0.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it initializes the variable `ans` with 0 instead of a very small negative number (like `-INF`), which prevents the logic from correctly finding the maximum value when the computed results are negative.",
+      "diff": "--- \n+++ \n@@ -714,7 +714,7 @@\n \n # print(CA)\n # print(CB)\n-ans = 0\n+ans = -INF\n for i in range(n-m+1):\n     ans = max(ans,CB[i+m] - CB[i] - (CA[i+m] - CA[i]) * i)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly selects the right child node's index during recursion, causing it to produce erroneous results when building the tree structure since it references the wrong position in the permutation list.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n         if idx==IR-1:\n             pass\n         else:\n-            right_child[root] = I[idx+1] + 1\n+            right_child[root] = P[PL+1+(idx-IL)] + 1\n             rec(PL+1+(idx-IL),PR,idx+1,IR)\n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the values of `m` and `M` when `d` is negative, leading to incorrect results in the distance comparison and adjustments thereafter.",
+      "diff": "--- \n+++ \n@@ -708,8 +708,7 @@\n \n m = a\n M = a+d*(n-1)\n-if(d < 0):\n-    a = a+d*(n-1)\n+\n ans = min(abs(m-x),abs(M-x))\n if(d==0):\n     print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the input string `S` using the range `len(S)-1`, which leads to skipping the last character in the output.",
+      "diff": "--- \n+++ \n@@ -707,7 +707,7 @@\n N,K = MI()\n S = input()\n ans = []\n-for i in range(len(S)):\n+for i in range(len(S)-1):\n     if S[i] == \"o\" and ans.count(\"o\") <= K-1:\n         ans.append(\"o\")\n     else:"
+    },
+    {
+      "summary": "The bug in the code is that it initializes `dp[0][0]` to 1 instead of `dp[0][D-(1<<-~d)]`, which leads to incorrect state transitions and ultimately incorrect results.",
+      "diff": "--- \n+++ \n@@ -125,7 +125,7 @@\n \n D=1<<(2*d+1)\n dp=[[0]*D for i in range(n+1)]\n-dp[0][0]=1\n+dp[0][D-(1<<-~d)]=1\n for i in range(n):\n     c=a[i]\n     for b in range(D):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

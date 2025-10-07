@@ -1,0 +1,1 @@
+The code calculates the coupon total as p - q + D_i instead of q + D_i (i.e., it uses p - q rather than q), which is wrong except when p = 2q.

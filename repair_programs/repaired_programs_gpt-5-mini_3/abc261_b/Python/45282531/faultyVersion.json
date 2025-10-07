@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if condition only flagged the cases where both entries were 'W' or both were 'L'. It missed other invalid combinations such as 'W' vs 'D' or 'W' vs '-' etc. I replaced that single condition with a check that enforces the required symmetry: if A[i][j] is 'W' the opposite must be 'L', if it's 'L' the opposite must be 'W', and if it's 'D' the opposite must be 'D'. If any of those expectations fail, the result is incorrect.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\n\nfor i in range(N):\n  for j in range(N):\n    if (A[i][j] == 'W' and A[j][i] != 'L') or (A[i][j] == 'L' and A[j][i] != 'W') or (A[i][j] == 'D' and A[j][i] != 'D'):\n      print('incorrect')\n      exit()\nprint('correct')"
+}

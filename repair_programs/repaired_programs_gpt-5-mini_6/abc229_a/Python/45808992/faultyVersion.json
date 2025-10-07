@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only checked for a full row of blacks (\"##\") or the two diagonal patterns, but it missed the cases where both rows are identical (\"#.\"/\"#.\" or \".#\"/\".#\"), which give a vertical connection and should be \"Yes\". I fixed the single conditional line by adding or S1 == S2 so identical rows are treated as connected. (This is similar in spirit to fixes that add the missing condition in an OR expression, as in the diff that corrected a missing variable on the right-hand side of an or.)",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1 == \"##\" or S2 == \"##\" or S1 == S2:\n    print(\"Yes\")\nelif S1 == \".#\" and S2 == \"#.\":\n    print(\"No\")\nelif S1 == \"#.\" and S2 == \".#\":\n    print(\"No\")"
+}

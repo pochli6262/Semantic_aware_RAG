@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code never checked that each S_i is between 100 and 675 inclusive; only monotonicity and divisibility by 25 were tested. I fixed the single incorrect line by adding an explicit range check (100 <= value <= 675) for both arr[i-1] and arr[i] combined with the existing divisibility checks. No other lines were changed.",
+  "fixed_code": "arr = list(map(int, input().split()))\nfl = True\nfor i in range(1, 8):\n    if arr[i - 1] > arr[i]:\n        fl = False\n    if arr[i - 1] % 25 != 0 or arr[i] % 25 != 0 or not (100 <= arr[i - 1] <= 675 and 100 <= arr[i] <= 675):\n        fl = False\nprint(\"Yes\" if fl else \"No\")"
+}

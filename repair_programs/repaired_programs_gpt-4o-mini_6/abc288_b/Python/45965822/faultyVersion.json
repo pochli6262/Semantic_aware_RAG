@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program sorted all nicknames before selecting the top K ranked participants. The correct approach is to sort only the top K ranked participants. This issue is similar to the adjustments in the retrieved diffs where sorting is applied after proper selection of elements (noted particularly in the first diff shifting the sort position). By modifying the single line that currently sorts the entire list, we will ensure that only the first K elements are sorted, therefore fixing the program.",
+  "fixed_code": "a,b=map(int,input().split())\nc=[]\nfor i in range(a):\n    c.append(str(input()))\nc=c[:b]\nc.sort()\nfor i in c:\n  print(i)"
+}

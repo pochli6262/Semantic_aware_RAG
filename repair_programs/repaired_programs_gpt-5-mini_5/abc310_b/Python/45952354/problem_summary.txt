@@ -1,0 +1,1 @@
+The pairwise check is wrong: it compares P[i] to itself (P[i] >= P[i]) instead of to P[j], and it uses F[i] - F[j] instead of checking whether F[j] has extra functions (F[j] - F[i]).

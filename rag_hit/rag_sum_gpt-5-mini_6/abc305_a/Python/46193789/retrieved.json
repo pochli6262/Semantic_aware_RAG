@@ -1,0 +1,33 @@
+{
+  "task": "abc305_a/Python/46193789",
+  "query_summary": "The for-loop uses range(20) and thus omits the i=20 (100 km) water station, causing an off-by-one error and wrong results for positions near 100 km.",
+  "oracle_summary": "An off-by-one error: the loop uses range(20) so it omits i=20 (the 100 candidate), causing the nearest-multiple-of-5 search to miss that value.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the loop iterates from 100000 to 999999, missing the last valid 6-digit number (1000000), which should be included in the range.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n cnt=0\n #AABCDDEFE\n-for i in range(100000,999999):\n+for i in range(100000,1000000):\n     cnt+=1\n     if cnt==N:\n         print(int(str(i)[0]+str(i)[0]+str(i)[1]+str(i)[2]+str(i)[3]+str(i)[3]+str(i)[4]+str(i)[5]+str(i)[4]))"
+    },
+    {
+      "summary": "The problem in the buggy code is that the inner loop incorrectly uses `for k in range(k):` instead of `for k in range(30):`, which causes it to fail to iterate over all bit positions.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n for i in range(N):\n   w=0\n   x=A[i]\n-  for k in range(k):\n+  for k in range(30):\n     if (x>>k)&1:\n       w-=v[k]*2**k\n       w+=(N-v[k])*2**k"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop's range incorrectly goes up to 919, instead of 920, which prevents it from checking the value 919 itself.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-for i in range(N, 919):\n+for i in range(N, 920):\n     N_str = str(i)\n     if int(N_str[0]) * int(N_str[1]) == int(N_str[2]):\n         print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range `N` instead of `1` to `N-1` in the final loop, which leads to potential index out-of-bounds errors and incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n         B.append(B[i-1] + C[i-1])\n \n ans = 10 ** 20\n-for j in range(N):\n+for j in range(1, N):\n     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code has an incorrect upper limit of the range in the for loop, which is 917 instead of the correct value 920, causing it to miss valid numbers that meet the condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n \n-for i in range(N,917):\n+for i in range(N,920):\n     s = str(i)\n     if int(s[0]) * int(s[1]) == int(s[2]):\n         print(i)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

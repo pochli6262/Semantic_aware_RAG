@@ -1,0 +1,1 @@
+The code subtracts b values and tests medicines<=K between individual removals instead of grouping removals by equal a (and it also lacks a final check after the last removal), so days with the same a (and the final day) are handled incorrectly.

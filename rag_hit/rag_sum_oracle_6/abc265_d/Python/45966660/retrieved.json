@@ -1,0 +1,32 @@
+{
+  "task": "abc265_d/Python/45966660",
+  "query_summary": "The loop incorrectly iterates over range(N-3) instead of all indices 0..N-1, skipping the last three starting positions and potentially missing valid solutions near the end.",
+  "oracle_summary": "The loop incorrectly iterates over range(N-3) instead of all indices 0..N-1, skipping the last three starting positions and potentially missing valid solutions near the end.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to N in the final loop instead of from 0 to N, leading to an off-by-one error when calculating the minimum answer.",
+      "diff": "--- \n+++ \n@@ -33,5 +33,5 @@\n for i in range(N):rdp[i+1]=min(rdp[i]+A[i],R*(i+1))\n rdp.reverse()\n ans=float('inf')\n-for i in range(1,N+1):ans=min(ans,ldp[i]+rdp[i])\n+for i in range(N+1):ans=min(ans,ldp[i]+rdp[i])\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it iterates only up to 20 (instead of 50) in the loop that counts the number of times N can be divided by powers of 3, which may lead to incorrect calculations for larger values of N.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n     N, K = map(int, input().split())\n \n     cnt = 0\n-    for i in range(20, -1, -1):\n+    for i in range(50, -1, -1):\n         d, m = divmod(N, 3**i)\n         cnt += d\n         N = m"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `i` to `3**20` instead of `3**40`, which limits the counting of the number of times `N` can be divided by powers of 3.",
+      "diff": "--- \n+++ \n@@ -28,7 +28,7 @@\n     N, K = map(int, input().split())\n \n     cnt = 0\n-    i = 3**20\n+    i = 3**40\n     while N > 0 and i > 0:\n         d, m = divmod(N, i)\n         cnt += d"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `que.append((x, c_))` instead of `que.appendleft((x, c_))`, causing it to improperly re-add elements to the deque after processing.",
+      "diff": "--- \n+++ \n@@ -54,6 +54,6 @@\n         C -= d\n         c_ -= d\n         if c_ > 0:\n-          que.append((x, c_))\n+          que.appendleft((x, c_))\n       print(ans)\n resolve()"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from `0` to `N` instead of from `1` to `N` in the even-length case when calculating the minimum answer, potentially resulting in an out-of-bounds index access or incorrect minimum calculation.",
+      "diff": "--- \n+++ \n@@ -38,7 +38,7 @@\n \n if N % 2 == 0: #偶数なら、０スタ０スタ、１スタ１スタで比べる\n     ANS = 10**50\n-    for i in range(N):\n+    for i in range(1,N):\n         ANS = min((OL[i]+OR[N-i]),ZL[i]+ZR[N-i],ANS)\n     print(ANS)\n else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

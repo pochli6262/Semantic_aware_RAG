@@ -1,0 +1,31 @@
+{
+  "task": "abc301_b/Python/45340910",
+  "query_summary": "The program prints the list object (print(b)) instead of unpacking its elements (print(*b)), producing Python list syntax rather than the required space-separated numbers.",
+  "oracle_summary": "The program prints the list object (print(b)) instead of unpacking its elements (print(*b)), producing Python list syntax rather than the required space-separated numbers.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the minimum length of the missing elements when the condition is met, resulting in off-by-one errors in the print statements.",
+      "diff": "--- \n+++ \n@@ -20,6 +20,6 @@\n  if len(b) == n:\n   print(1)\n  else:\n-  print(min(len(b)+1,n-len(b)+3))\n+  print(min(len(b)+1,n-len(b)+1))\n \n "
+    },
+    {
+      "summary": "The bug in the code is that the second loop where the list `p` is populated incorrectly starts from index 0 instead of 1, leading to incorrect indexing and potential incorrect output.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in a:\n \tb[i], b[i + 1] = b[i + 1], b[i]\n p = [0] * (n + 1)\n-for i in range(n):\n+for i in range(1, n + 1):\n \tp[b[i]] = i\n b = list(range(n + 1))\n for i in a:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses division (`/`) instead of integer division (`//`), which can lead to incorrect results when appending elements to list `b`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n b = []\n for i in range(n):\n     if a[i] % k == 0:\n-        c = a[i] / k\n+        c = a[i] // k\n         b.append(c)\n sorted_b = sorted(b)\n print(\" \".join(map(str, sorted_b)))"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `1` when the sum `c` of the elements does not reach the target `n[1]`, instead of printing the total number of elements `n[0]`.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n if c == n[1]:\n     print(b)\n elif c < n[1]:\n-    print(1)\n+    print(n[0])\n else:\n     print(b - 1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the result list as a single object instead of unpacking the individual elements, resulting in the output being displayed as a list rather than a space-separated string.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     result.append(i)\n for i in range(r + 1, n + 1):\n     result.append(i)\n-print(result)\n+print(*result)"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

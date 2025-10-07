@@ -1,0 +1,33 @@
+{
+  "task": "abc242_a/Python/45767519",
+  "query_summary": "The second branch uses X <= C instead of X <= B, erroneously applying the middle-case formula for X values up to C rather than only up to B.",
+  "oracle_summary": "The second branch uses X <= C instead of X <= B, erroneously applying the middle-case formula for X values up to C rather than only up to B.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly updates the value of `c2` as `dpNow + 1` instead of `dpNow + x`, leading to incorrect calculations in the dynamic programming array `dp`.",
+      "diff": "--- \n+++ \n@@ -45,7 +45,7 @@\n                 dpNow = dp[i]\n                 if dpNow == INF:\n                     continue\n-                c2 = dpNow+1\n+                c2 = dpNow+x\n                 i2 = i+d\n                 if c2 < dp2[i2]:\n                     dp2[i2] = c2"
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to append to the `ans` list before performing a conditional check that determines the value of `ok`, resulting in potential incorrect ordering or missing elements in the final output.",
+      "diff": "--- \n+++ \n@@ -57,13 +57,13 @@\n     for i in d[v]:\n       if ans[-1] < i:\n         if A[i] < bottom or (A[i] == bottom and ok == 1):\n-          ans.append(i)\n           if ok == 0:\n             if A[ans[-1]+N] < A[i+N]:\n               ok = 1\n             elif A[ans[-1]+N] > A[i+N]:\n               ok = -1\n-\n+          ans.append(i)\n+          \n   for i in ans:\n     print(A[i],end = \" \")\n   for i in ans:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it attempts to access the second-to-last element of a list derived from a set without sorting, which may lead to unpredictable results if the input numbers are not in order.",
+      "diff": "--- \n+++ \n@@ -11,6 +11,5 @@\n mod = 998244353\n N = int(input())\n A = set(map(int, input().split()))\n-\n-A = list(A)\n+A = sorted(A)\n print(A[-2])"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the upper limit for the binary search in the print statement to \\(10^{9}\\) instead of \\(10^{9} + 1\\), which may lead to incorrect results for certain inputs.",
+      "diff": "--- \n+++ \n@@ -20,4 +20,4 @@\n         B_num = 0\n     return A_num >= B_num\n \n-print(bisect(10 ** 9, -1, solve))\n+print(bisect(10 ** 9 + 1, -1, solve))"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the value of `td` in the line `td = l + (td - l + d - 1) // d * d`, which should instead be `td = l + (td - l) // d * d` to handle the distance calculation properly.",
+      "diff": "--- \n+++ \n@@ -40,7 +40,7 @@\n             if r <= td:\n                 td = r\n             else:\n-                td = l + (td - l + d - 1) // d * d\n+                td = l + (td - l) // d * d\n             if dist[to] >= td:\n                 continue\n             dist[to] = td"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

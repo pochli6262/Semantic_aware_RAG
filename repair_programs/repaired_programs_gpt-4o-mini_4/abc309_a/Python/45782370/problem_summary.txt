@@ -1,0 +1,1 @@
+The program incorrectly checks adjacency by looking only for B in the set of adjacent numbers of A, rather than checking both A in B's adjacency list and considering their spatial arrangement on the board.

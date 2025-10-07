@@ -1,0 +1,32 @@
+{
+  "task": "abc263_a/Python/44922329",
+  "query_summary": "The likely bug is that the program incorrectly iterates from 1 to 12 instead of checking the unique card values, leading to inaccurate counts of the occurrences of each card number.",
+  "oracle_summary": "The loop uses range(12) (with an extra i+=1), so it only checks values 1–12 and never counts 13, causing an off-by-one error.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly includes '1' in the set of valid ranks, which leads to accepting invalid card inputs that should be rejected.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[]\n b=['H', 'D', 'C', 'S']\n first = set(b)\n-second = set(['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n+second = set(['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n tmp = set()\n answer = \"Yes\"\n for i in range(n):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate entries in the spawned list using `or not s in spawned`, instead of `or s in spawned`, leading to the acceptance of duplicate card inputs.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n for i in range(n):\n     s = input()\n \n-    if not s[0] in one or not s[1] in two or not s in spawned:\n+    if not s[0] in one or not s[1] in two or s in spawned:\n         print(\"No\")\n         exit(0)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if a player has exactly two yellow cards to output \"Yes\" instead of checking if they have two or more yellow cards.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     elif c == 2:\n       cards[x] += 2\n     else:\n-      if cards[x] == 2:\n+      if cards[x] >= 2:\n         print('Yes')\n       else:\n         print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly determines the answer as \"No\" if any character count is not exactly 2, without considering that counts of 0 should be ignored.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n \n ans = \"Yes\"\n for i in range(1,max(cnt)+1):\n-    if cnt.count(i) != 2:\n+    if (cnt.count(i) != 2) and (cnt.count(i) != 0) :\n         ans = \"No\"\n         break\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly counts the occurrences of characters in the string by using `S.count(s)`, which leads to inaccurate results because it does not account for previous counts of the same character in the list.",
+      "diff": "--- \n+++ \n@@ -3,10 +3,9 @@\n \n for s in S:\n   num[S.count(s)] += 1\n-  \n for n in num:\n-  if n % 2 != 0:\n+  if  2 * num.index(n) != n:\n     print('No')\n     exit()\n-    \n+\n print('Yes')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

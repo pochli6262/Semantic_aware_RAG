@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition only checks the sorted pattern where the triple is the first three cards and the pair is the last two (a a a b b). It misses the other valid full-house arrangement after sorting where the pair is first and the triple is last (a a b b b). I fixed that single line by changing the condition to test for either pattern (first three equal and last two equal) OR (first two equal and last three equal). No other lines were modified.",
+  "fixed_code": "def main():\n    cards = list(map(int, input().split()))\n    assert len(cards) == 5\n\n    cards.sort()\n    if (cards[0] == cards[1] == cards[2] and cards[3] == cards[4]) or (cards[0] == cards[1] and cards[2] == cards[3] == cards[4]):\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}

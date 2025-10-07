@@ -1,0 +1,1 @@
+The program sizes the answer array using the number of rows (n) instead of N = min(H, W), so the result array can be the wrong length (causing incorrect counts or index errors).

@@ -1,0 +1,32 @@
+{
+  "task": "abc304_c/Python/45117916",
+  "query_summary": "The code wrongly checks membership in dict[0] (assuming the root is key 0) instead of using the actual root uf.find(0), causing incorrect lookups or KeyError when node 0's root isn't 0.",
+  "oracle_summary": "The code wrongly checks membership in dict[0] (assuming the root is key 0) instead of using the actual root uf.find(0), causing incorrect lookups or KeyError when node 0's root isn't 0.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it initializes the variable `ans` with 0 instead of a very small negative number (like `-INF`), which prevents the logic from correctly finding the maximum value when the computed results are negative.",
+      "diff": "--- \n+++ \n@@ -714,7 +714,7 @@\n \n # print(CA)\n # print(CB)\n-ans = 0\n+ans = -INF\n for i in range(n-m+1):\n     ans = max(ans,CB[i+m] - CB[i] - (CA[i+m] - CA[i]) * i)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the values of `m` and `M` when `d` is negative, leading to incorrect results in the distance comparison and adjustments thereafter.",
+      "diff": "--- \n+++ \n@@ -708,8 +708,7 @@\n \n m = a\n M = a+d*(n-1)\n-if(d < 0):\n-    a = a+d*(n-1)\n+\n ans = min(abs(m-x),abs(M-x))\n if(d==0):\n     print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the input string `S` using the range `len(S)-1`, which leads to skipping the last character in the output.",
+      "diff": "--- \n+++ \n@@ -707,7 +707,7 @@\n N,K = MI()\n S = input()\n ans = []\n-for i in range(len(S)):\n+for i in range(len(S)-1):\n     if S[i] == \"o\" and ans.count(\"o\") <= K-1:\n         ans.append(\"o\")\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for duplicates in the array `A` using `len(set(A)) != A` instead of `len(set(A)) != len(A)`, which can lead to unexpected behavior and incorrect results.",
+      "diff": "--- \n+++ \n@@ -77,7 +77,7 @@\n     print(\"No\")\n     exit()\n \n-if len(set(A))!=A:\n+if len(set(A))!=len(A):\n     print(\"Yes\")\n     exit()\n "
+    },
+    {
+      "summary": "The buggy code contains an unreachable code segment after the `CTOV` function definition due to incorrect indentation, which causes the code to not function as intended.",
+      "diff": "--- \n+++ \n@@ -351,7 +351,7 @@\n         if len(S) == 0:\n             continue\n         point = S.bisect_right(x)\n-        print(S, x, point)\n+        #print(S, x, point)\n         if point == 0:\n             continue\n         S.remove(S[point - 1])"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

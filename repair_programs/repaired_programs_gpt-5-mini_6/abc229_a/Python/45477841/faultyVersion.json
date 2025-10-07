@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line only checked one diagonal arrangement (S1==\".#\" and S2==\"#.\") as disconnected, but the opposite diagonal (S1==\"#.\" and S2==\".#\") is also disconnected. I fixed that single line to test for either diagonal pattern and return \"No\" in both cases.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1==\".#\" and S2==\"#.\") or (S1==\"#.\" and S2==\".#\"):\n  print(\"No\")\nelse:\n  print(\"Yes\")"
+}

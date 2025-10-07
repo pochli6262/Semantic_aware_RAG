@@ -1,0 +1,1 @@
+print(abs(5 - abs(int(input())) % 5))

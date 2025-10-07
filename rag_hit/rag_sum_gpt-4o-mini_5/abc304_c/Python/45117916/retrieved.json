@@ -1,0 +1,29 @@
+{
+  "task": "abc304_c/Python/45117916",
+  "query_summary": "The program likely incorrectly determines whether a person is infected by only checking connections from the first person rather than all potential infections in a connected component.",
+  "oracle_summary": "The code wrongly checks membership in dict[0] (assuming the root is key 0) instead of using the actual root uf.find(0), causing incorrect lookups or KeyError when node 0's root isn't 0.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the values of `m` and `M` when `d` is negative, leading to incorrect results in the distance comparison and adjustments thereafter.",
+      "diff": "--- \n+++ \n@@ -708,8 +708,7 @@\n \n m = a\n M = a+d*(n-1)\n-if(d < 0):\n-    a = a+d*(n-1)\n+\n ans = min(abs(m-x),abs(M-x))\n if(d==0):\n     print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the variable `ans` with 0 instead of a very small negative number (like `-INF`), which prevents the logic from correctly finding the maximum value when the computed results are negative.",
+      "diff": "--- \n+++ \n@@ -714,7 +714,7 @@\n \n # print(CA)\n # print(CB)\n-ans = 0\n+ans = -INF\n for i in range(n-m+1):\n     ans = max(ans,CB[i+m] - CB[i] - (CA[i+m] - CA[i]) * i)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the input string `S` using the range `len(S)-1`, which leads to skipping the last character in the output.",
+      "diff": "--- \n+++ \n@@ -707,7 +707,7 @@\n N,K = MI()\n S = input()\n ans = []\n-for i in range(len(S)):\n+for i in range(len(S)-1):\n     if S[i] == \"o\" and ans.count(\"o\") <= K-1:\n         ans.append(\"o\")\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly interprets the input string for result bit interpretation, as it assumes the string represents a binary number directly rather than reversing it before conversion to an integer.",
+      "diff": "--- \n+++ \n@@ -491,6 +491,6 @@\n     print(K, *A[i])\n \n # 結果ビットの解釈\n-S = input()\n+S = input()[::-1]\n X = int(S, 2)+1\n print(X)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `C` with the expression `C = [X // S] * N`, leading to incorrect results in subsequent calculations because it does not account for the required multiplication with `N`.",
+      "diff": "--- \n+++ \n@@ -345,7 +345,7 @@\n W = list(map(int, input().split()))\n dp = [[-1] * N for _ in range(60)]  # dp[i][j]: j番目の要素から2^i回遷移したときの到達地点\n S = sum(W)\n-C = [X // S] * N\n+C = [(X // S) * N] * N\n nokori = X - S * (X // S)\n acc = [0]\n for w in W:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

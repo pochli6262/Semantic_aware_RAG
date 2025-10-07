@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly computes the total cost by using 'p - q + min(d)', which calculates the price of the drink after discount but does not add the price of the cheapest dish. The correct formula should check the sum of the minimum dish price and the discounted drink price. The logic is inspired by the need to compute total cost rather than subtracting discounts directly, similar to how some retrieved diffs focus on correctly minimizing or summing values rather than subtracting them.",
+  "fixed_code": "n, p, q = map(int, input().split(' '))\nd = list(map(int, input().split(' ')))\nprint(min(p, q + min(d)))"
+}

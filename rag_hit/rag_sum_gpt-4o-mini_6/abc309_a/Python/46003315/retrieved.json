@@ -1,0 +1,33 @@
+{
+  "task": "abc309_a/Python/46003315",
+  "query_summary": "The bug likely occurs because the condition to check adjacency incorrectly compares the row indices and the column difference, leading to incorrect results for horizontal adjacency.",
+  "oracle_summary": "The code used the wrong variables and condition—it compared ax to ay and required by-ay==1 instead of comparing rows (ax==bx) and checking the columns differ by 1 (abs(ay-by)==1).",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to check that consecutive elements in the same row differ by 1, which is necessary for the correct validation of the matrix structure.",
+      "diff": "--- \n+++ \n@@ -27,6 +27,8 @@\n         if j != 0:\n             if ((B[i][j] - 1) % 7) - ((B[i][j-1] - 1) % 7) != 1:\n                 ans = \"No\"\n+            if B[i][j] - B[i][j-1] != 1:\n+                ans = \"No\"\n \n print(ans)\n                 "
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks whether all nodes have been visited instead of checking if the last node has been visited, leading to incorrect output for connected component checks.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         if not visited[j]:\n             visited[j] = True\n             q.append(j)\n-if all(visited):\n+if visited[-1]:\n     print('Yes')\n else:\n     print('No')    "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly determines whether two nodes belong to the same connected component by failing to check if both nodes have been assigned a valid component identifier, leading to erroneous output for certain queries.",
+      "diff": "--- \n+++ \n@@ -47,7 +47,7 @@\n     u, v = map(int,input().split())\n     u -= 1\n     v -= 1\n-    if K[u] == K[v]:\n+    if K[u] == K[v] and K[u] != -1:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the sum of B and C is greater than zero instead of ensuring it's not equal to zero, which fails to account for valid scenarios where A or D equals N-1.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n import math\n N,A,B,C,D=(int(x) for x in input().split())\n n=math.floor(N/2)\n-if abs(B-C)<=1 and B<=n and C<=n and B+C>0:\n+if (abs(B-C)<=1 and B<=n and C<=n and B+C!=0) or A==N-1 or D==N-1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

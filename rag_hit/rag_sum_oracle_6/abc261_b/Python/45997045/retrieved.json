@@ -1,0 +1,33 @@
+{
+  "task": "abc261_b/Python/45997045",
+  "query_summary": "The buggy code fails to mark as incorrect the case where exactly one of a[i][j] or b[i][j] is 'D' (an asymmetric draw), only checking equality and skipping the 'DD' case.",
+  "oracle_summary": "The buggy code fails to mark as incorrect the case where exactly one of a[i][j] or b[i][j] is 'D' (an asymmetric draw), only checking equality and skipping the 'DD' case.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it counts the same element from list `b` for all positions of `a` even when the indices are the same, while the correct code restricts the comparison to ensure that the indices `i` and `j` are different.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n \n for i in range(n):\n     for j in range(n):\n-        if a[i] == b[j]:\n+        if i!=j and a[i] == b[j]:\n             ans2 += 1\n \n print(ans1)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if any two consecutive elements in the sorted list `c` belong to the same array (either `a` or `b`), instead of specifically checking if they both belong to array `a`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n \n ans = \"No\"\n for i in range(n + m - 1):\n-    if c[i][1] == c[i + 1][1]:\n+    if c[i][1] == c[i + 1][1] == 0:\n         ans = \"Yes\"\n \n print(ans)"
+    },
+    {
+      "summary": "The issue in the buggy code is that it incorrectly checks `b != 0` instead of `d != 0` in the conditional statement when both `b` and `c` are zero.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n,a,b,c,d = map(int, input().split())\n-print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and b != 0)) else \"Yes\")\n+print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and d != 0)) else \"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly breaks the inner loop instead of continuing when both `x` and `y` are zero, causing an error in generating valid patterns.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n   for x in range(-1, 2, 1):\n     for y in range(-1, 2, 1):\n       if x==y==0:\n-        break\n+        continue\n       b = \"\"\n       for j in range(n):\n         b = b + a[(i[0] + x*j)%n][(i[1] + y*j)%n]"
+    },
+    {
+      "summary": "The problem in the buggy code is that a necessary condition in the second for loop inside the `check` function is missing, which checks if consecutive elements in the first row of `b` differ by 1.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,10 @@\n   for i in range(m - 1):\n     if ((temp[i + 1] + 6) % 7) != ((temp[i] + 6) % 7) + 1:\n       return False\n+    if temp[i + 1] != temp[i] + 1:\n+      return False\n+\n+    \n \n \n   return True"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

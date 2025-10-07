@@ -1,0 +1,1 @@
+The program incorrectly calculates the number of attacks needed by adding 1 to the integer division of A by B instead of properly handling the case where A is not divisible by B.

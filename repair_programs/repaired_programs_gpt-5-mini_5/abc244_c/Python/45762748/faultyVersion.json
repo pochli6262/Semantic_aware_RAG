@@ -1,0 +1,4 @@
+{
+  "explanation": "The inner loop was iterating only over range(1, N+1), but valid moves are 1..2N+1. I changed that single line to iterate from 1 to 2*N+1 inclusive by using range(1, 2*N+2). This fixes the primary bug (the move range). (No diff pattern from the provided list was directly applicable; the change follows the problem summary identifying the wrong range.)",
+  "fixed_code": "N=int(input())\nbad=set()\nfor _ in range(N+1):\n    for i in range(1,2*N+2):\n        if i not in bad:\n            bad.add(i)\n            print(i)\n            bad.add(int(input()))\n            break\n"
+}

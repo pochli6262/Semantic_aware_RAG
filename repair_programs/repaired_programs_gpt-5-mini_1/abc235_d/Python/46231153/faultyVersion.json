@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the code attempted to perform the digit-rotation even when the last digit was 0. Rotating a number whose last digit is 0 would produce a leading zero (e.g. 120 -> '012' -> 12) which is not allowed in the intended operation and leads to incorrect states. I fixed that by changing the single line that decides whether to attempt rotation to additionally require that the last digit is nonzero (x%10 != 0). This prevents invalid rotations. Only that one line was changed.",
+  "fixed_code": "a,n = map(int,input().split())\nnums =[-1]*(10**6)\nfrom collections import deque\nq = deque()\nq.append(a)\nnums[a] = 1\nwhile q:\n    x = q.popleft()\n    y = x*a\n    if y<10**6 and nums[y] ==-1:\n        nums[y] = nums[x]+1\n        q.append(y)\n    if x>9 and x%10!=0:\n        X = str(x)\n        Z = X[-1]+X[:-1]\n        z = int(Z)\n        if z<10**6 and nums[z] ==-1:\n            nums[z] = nums[x]+1\n            q.append(z)\nprint(nums[n])"
+}

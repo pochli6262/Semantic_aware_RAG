@@ -1,0 +1,4 @@
+{
+  "explanation": "The original comparison in the print statement, `by - ay == 1`, was intended to check if points A and B are adjacent vertically (since ay and by are y-coordinates), but it was incorrectly comparing `by` with `ay`. The correct comparison should be `bx == ax and abs(by - ay) == 1`, which checks if they are in the same column and are adjacent in the row dimension.",
+  "fixed_code": "import sys\nimport string\nimport numpy as np\nfrom collections import defaultdict, deque\nfrom math import dist\nimport itertools\nimport operator\n\nINF = -1000000000000000000\n\nA, B = map(int, input().split())\nax = (A - 1) // 3\nay = (A - 1) % 3\nbx = (B - 1) // 3\nby = (B - 1) % 3\n\nprint(\"Yes\" if ax == bx and abs(by - ay) == 1 else \"No\")"
+}

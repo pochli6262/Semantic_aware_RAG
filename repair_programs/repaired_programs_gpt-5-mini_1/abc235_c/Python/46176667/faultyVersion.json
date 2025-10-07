@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed the internal dictionary D (print(D)), which was a leftover debug statement. That extra output corrupts the expected program output. I removed that debug print by replacing it with a no-op (pass) so the rest of the code and output behavior remain unchanged.",
+  "fixed_code": "import sys\nfrom collections import defaultdict\nMOD = 998_244_353\nINF = 10**18\n\nN, Q = map(int, sys.stdin.readline().rstrip().split())\nA = list(map(int, sys.stdin.readline().rstrip().split()))\nD = defaultdict(list)\nfor i in range(N):\n    D[A[i]].append(i + 1)\n\npass\n\nfor q in range(Q):\n    x, k = list(map(int, sys.stdin.readline().rstrip().split()))\n    if len(D[x]) >= k:\n        print(D[x][k - 1])\n    else:\n        print(-1)\n"
+}

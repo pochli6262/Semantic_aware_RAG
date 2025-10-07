@@ -1,0 +1,31 @@
+{
+  "task": "abc308_d/Python/54535139",
+  "query_summary": "The code marks adjacent cells as seen before checking whether their letter matches the next character of \"snuke\" and never unmarks them (no backtracking), so non-matching visits permanently prune valid paths.",
+  "oracle_summary": "The bug is that neighbor cells are marked as visited before checking if they match the expected \"snuke\" character, prematurely blocking valid traversal.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks whether all nodes have been visited instead of checking if the last node has been visited, leading to incorrect output for connected component checks.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         if not visited[j]:\n             visited[j] = True\n             q.append(j)\n-if all(visited):\n+if visited[-1]:\n     print('Yes')\n else:\n     print('No')    "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `seen` list for tracking visited nodes, causing it to not account for the correct range of nodes during depth-first search, which may lead to incorrect results or infinite recursion.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n prev = [-1 for _ in range(N+1)]\n seen = [False for _ in range(N+1)]\n dfs(X, prev, seen)\n-print(prev)\n+#print(prev)\n \n # ゴールから dist の数値を頼りに逆にたどり、最後に配列を反転させて経路を取得する。\n root = list()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it attempts to update the `dp` array based on previous cells without checking if the current cell (`dp[i][j]`) has been reached, potentially leading to incorrect updates for inaccessible paths.",
+      "diff": "--- \n+++ \n@@ -31,6 +31,8 @@\n dp[0][0] = 1\n for i in range(H):\n     for j in range(W):\n+        if dp[i][j] == 0:\n+            continue\n         if j < W - 1 and C[i][j + 1] == \".\":\n             dp[i][j + 1] = max(dp[i][j + 1], dp[i][j] + 1)\n         if i < H - 1 and C[i + 1][j] == \".\":"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to correctly handle the case when `K` is zero, resulting in the output being \"No\" instead of \"Yes\" when no edges are required.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n     if vis[i] == 0 and cnt < K:\n         dfs(i)\n \n-if flg:\n+if flg or K==0:\n     print('Yes')\n     print(len(ans))\n     print(*ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    3
+  ],
+  "useful_diffs_count": 1
+}

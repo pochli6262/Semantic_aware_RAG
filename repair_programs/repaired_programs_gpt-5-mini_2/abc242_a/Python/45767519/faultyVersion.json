@@ -1,0 +1,4 @@
+{
+  "explanation": "The formula for the probability was inverted. The code computed C / N (total divided by favorable) but it should compute the fraction of favorable outcomes out of the total, i.e. N / C. I fixed that single line by swapping the numerator and denominator.",
+  "fixed_code": "from collections import Counter, defaultdict, deque\nfrom bisect import bisect_left, bisect_right\nfrom heapq import heapify, heappush, heappop\n\n\ndef solve():\n    A, B, C, X = map(int, input().split())\n\n    if X >= 1 and X <= A:\n        res = 1/1\n    elif X > A and X <= C:\n        N = B - A\n        res = N / C\n    else:\n        res = 0/1\n\n    print(f\"{res:.7f}\")\n\n\nsolve()\n"
+}

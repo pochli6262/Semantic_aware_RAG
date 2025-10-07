@@ -1,0 +1,31 @@
+{
+  "task": "abc310_a/Python/45739812",
+  "query_summary": "The bug is a wrong arithmetic expression—a typo using \"P - Q + d\" instead of the correct \"Q + d\"—so the candidate value p is computed incorrectly.",
+  "oracle_summary": "The bug is a wrong arithmetic expression—a typo using \"P - Q + d\" instead of the correct \"Q + d\"—so the candidate value p is computed incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it uses the strict inequality `<` instead of the non-strict inequality `<=` in the condition to determine if the value of `i` is the first valid element, which causes it to miss cases where `i - p` equals `d`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n ret = -1\n p = -d-1\n for i in t:\n-  if i-p<d:\n+  if i-p<=d:\n     ret = i\n     break\n   p=i"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks if `p[x]` is equal to 2, instead of checking if `p[x]` is greater than or equal to 2.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n         p[x] += 2\n         \n     else:\n-        if p[x] == 2:\n+        if p[x] >= 2:\n             print(\"Yes\")\n         else:\n             print(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the answer when the first element of the list `p` is 1, failing to account for the specific case when `p[1]` is equal to 2, which should also result in `ans` being set to 0.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n=int(input())\n p=list(map(int,input().split()))\n \n-if p[0]==1:\n+if p[0]==1 and p[1]==2:\n   ans=0\n elif p[0]<p[1]:\n   ans=min(n-p[0]+1,2+p[0]-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the number of segments by not accounting for cases where the range (n - m + 1) is not perfectly divisible by p, leading to an off-by-one error in the result.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n, m, p = map(int, input().split())\n-print((n - m + 1) // p)\n+print(((n - m + 1) + p - 1) // p)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `p[0]` instead of `q[0]` in the condition check, leading to an incorrect comparison when determining if the current value `v` is greater than the smallest value in the priority queue `q`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n ans = 0\n q = []\n for v in p:\n-    if q and p[0] < v:\n+    if q and q[0] < v:\n         ans += v - heappop(q)\n         heappush(q, v)\n     heappush(q, v)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

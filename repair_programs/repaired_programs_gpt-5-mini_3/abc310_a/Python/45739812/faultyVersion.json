@@ -1,0 +1,4 @@
+{
+  "explanation": "The use of the assignment expression (walrus operator) inside the if line can be problematic in some environments or Python versions. I replaced the single-line assignment-expression with a separate assignment followed by a simple if check, keeping the logic identical but avoiding the walrus operator.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nres = P\n\nfor d in D:\n    p = P - Q + d\n    if p < res:\n        res = p\n\nprint(res)"
+}

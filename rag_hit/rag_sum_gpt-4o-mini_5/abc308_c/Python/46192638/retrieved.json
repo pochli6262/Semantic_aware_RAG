@@ -1,0 +1,31 @@
+{
+  "task": "abc308_c/Python/46192638",
+  "query_summary": "The program likely has a bug in the way it calculates the success rates, using a negative value to sort, which may lead to incorrect ordering.",
+  "oracle_summary": "The bug was using floating-point division (/) instead of integer floor division (//), causing precision loss when scaling by 10**100 and producing incorrect ordering.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates with the range in the second loop from `n-1` to `0`, which prevents it from properly checking all relevant indices; changing it to iterate from `0` to `n` fixes this issue.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n                 b[j] -= total\n             success()\n             return\n-    for i in range(n-1, 0, -1):\n+    for i in range(n):\n         if pre[-1] - pre[i] == -1:\n             for j in range(i, n):\n                 b[j] += total"
+    },
+    {
+      "summary": "The buggy code sorts the input numbers in ascending order instead of reversing them to print in descending order.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n array = []\n for i in sys.stdin.readlines():\n     array.append(int(i.rstrip()))\n-array.sort()\n+array.reverse()\n for i in array:\n     print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for non-negative values of K, using `K >= 0` instead of `K > 0`, which affects the logic for when to sort and print the list A.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n \n N, K = map(int, readline().split())\n A = list(map(int, readline().split()))\n-if K >= 0:\n+if K > 0:\n     print('Yes')\n     A.sort()\n     print(*A)"
+    },
+    {
+      "summary": "The buggy code does not check if `N` is divisible by `i`, leading to incorrect calculations and potentially accessing out-of-bounds indices within the arrays `D` and `T` when `N` is not a multiple of `i`.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,9 @@\n     S = input()\n \n     for i in range(1, N + 1):\n+        if N % i:\n+            continue\n+\n         D = [[0 for _ in range(26)] for _ in range(i)]\n         T = [0 for _ in range(i)]\n "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ans` to 0 instead of 1, which causes it to potentially return an incorrect maximum result when processing the list.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n N = read_int()\n a = read_ints()\n \n-ans = 0\n+ans = 1\n a[0], a[N - 1] = 1, 1\n for i in range(1, N):\n     if a[i] > a[i - 1]:"
+    }
+  ],
+  "useful_diffs_indices": [
+    6
+  ],
+  "useful_diffs_count": 1
+}

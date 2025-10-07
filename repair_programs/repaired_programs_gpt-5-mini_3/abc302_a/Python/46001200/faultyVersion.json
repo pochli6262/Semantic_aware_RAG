@@ -1,0 +1,4 @@
+{
+  "explanation": "The program tried to compute the ceiling of A/B but used A//B+1. That fails when A is an exact multiple of B (it adds 1 incorrectly). Replaced the print expression with (A + B - 1)//B which correctly computes ceil(A/B) using integer arithmetic.",
+  "fixed_code": "A,B = map(int,input().split())\nprint((A + B - 1)//B)"
+}

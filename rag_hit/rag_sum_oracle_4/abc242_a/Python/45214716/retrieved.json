@@ -1,0 +1,32 @@
+{
+  "task": "abc242_a/Python/45214716",
+  "query_summary": "In the middle case (a < x ≤ b), the code uses an off-by-one denominator c/(b−a+1) instead of the correct c/(b−a).",
+  "oracle_summary": "In the middle case (a < x ≤ b), the code uses an off-by-one denominator c/(b−a+1) instead of the correct c/(b−a).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the conditions for equal remainders, using modulo 6 instead of verifying if the sum is divisible by 3 and if all values are even or odd.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     c = min(x1,x2,x3)\n     b = x1+x2+x3-a-c\n \n-    if not(a % 6 == b % 6 == c % 6):\n+    if not( (a+b+c)%3==0 and a%2==b%2==c%2):\n         print(-1)\n         continue\n "
+    },
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `x` when `a` is 1, instead of `x % m`, which could lead to an unexpected result if `x` is greater than or equal to `m`.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,x,m=map(int,input().split())\n-if a==1:print(x)\n+if a==1:print(x% m)\n else:\n \tt=pow(a,x,(a-1)*m)\n \tif t==0:t+=(a-1)*m"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b <= x` instead of the correct condition `b < x` to determine the output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n for i in range(n):\n \tb = min(b,d-c[i][0])\n \td = max(d,c[i][1])\n-if b<=x:\n+if b<x:\n \tprint(0)\n else:\n \tprint(b)"
+    },
+    {
+      "summary": "The issue with the buggy code is that it incorrectly uses multiple \"if\" statements instead of \"elif\" for the condition `a==c`, which may lead to unintended prints of \"Aoki\" when \"Takahashi\" should only be printed once.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n a,b,c,d=map(int,input().split())\n if a<c:\n     print(\"Takahashi\")\n-if a==c:\n+elif a==c:\n     if b<=d:\n         print(\"Takahashi\")\n     else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was an off-by-one in calc: it skipped medicines with a_i == num, but those should still be taken on day num (since medicines are taken for a_i days including day 1). I changed the condition from <= to < so we only skip medicines with a_i < num and include a_i == num. This is an off-by-one fix pattern similar to the adjustments seen in the provided diffs that correct boundary conditions.",
+  "fixed_code": "n, k = map(int, input().split())\nab = [list(map(int, input().split())) for _ in range(n)]\n\n\ndef calc(num):\n    global ab\n    res = 0\n    for j in range(n):\n        if ab[j][0] < num:\n            continue\n        res += ab[j][1]\n    return res\n\n\nl = -1\nr = 9999999999999999\nm = 0\nwhile r > l + 1:\n    m = (r + l) // 2\n    if calc(m) < k:\n        r = m\n    else:\n        l = m\nprint(r + 1)\n"
+}

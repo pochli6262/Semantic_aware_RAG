@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition inside the loop was inverted: it used sorted(S) == S, which caused the program to print 'No' when the sequence was already non-decreasing. I changed that comparison to sorted(S) != S so the code rejects only sequences that are not non-decreasing. This fixes the reversed logic without altering any other code.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nfor i in range(N):\n    if sorted(S) != S or not(100 <= S[i] <= 675) or S[i]%25 != 0:\n        print('No')\n        exit()\nelse:\n    print('Yes')"
+}

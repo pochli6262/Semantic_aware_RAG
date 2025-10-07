@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program only checks for a specific scenario (S1 == '.#' and S2 == '#.') to return 'No'. This does not account for other configurations where black squares may not be fully connected. The corrected version checks for connectivity by evaluating the positions of the black squares instead of a hardcoded condition. This change was inspired by the logic in the diff patterns that indicate various relational checks between elements.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1[0] == '#' and S1[1] == '#') or (S2[0] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[0] == '#') or (S1[1] == '#' and S2[1] == '#'):\n  print('Yes')\nelse:\n  print('No')"
+}

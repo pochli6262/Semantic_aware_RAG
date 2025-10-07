@@ -1,0 +1,4 @@
+{
+  "explanation": "The program checks whether the two input numbers form an adjacent pair in G, but the code only tests the exact order (g[0], g[1]). Edges are undirected here, so the pair might appear in reversed order (g[1], g[0]). I fixed the if-condition to accept either order.",
+  "fixed_code": "G = [[1, 2], [2, 3], [4, 5], [5, 6], [7, 8], [8, 9], [1, 4], [4, 7], [2, 5], [5, 8], [3, 6], [6, 9]]\n\nR = list(map(int, input().split()))\n\nflag = False\nfor g in G:\n    if (R[0] == g[0] and R[1] == g[1]) or (R[0] == g[1] and R[1] == g[0]):\n        flag = True\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

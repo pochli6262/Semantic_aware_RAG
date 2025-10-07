@@ -1,0 +1,4 @@
+{
+  "explanation": "The problematic line used the expression `S[i] % 25` as a boolean condition. While Python treats non-zero integers as True and 0 as False, this is implicit and easily misread; the intent is to check that the number is NOT divisible by 25. The correct explicit check is `S[i] % 25 != 0`. I changed only that one line to make the divisibility test explicit and unambiguous.",
+  "fixed_code": "S = list(map(int,input().split()))\nfor i in range(len(S)-1):\n    if S[i] >= S[i+1] or S[i] % 25 != 0 or S[i] < 100 or S[i] > 675:\n        print(\"No\")\n        exit()\n\nif S[-1] % 25 or S[-1] < 100 or S[-1] > 675:\n    print(\"No\")\nelse: print(\"Yes\")"
+}

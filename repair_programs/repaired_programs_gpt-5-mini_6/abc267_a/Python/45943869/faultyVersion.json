@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was a misspelling: the line checked for \"Friay\" instead of the correct weekday \"Friday\", so an input of \"Friday\" never matched. I fixed that single typo to \"Friday\". This follows the simple string-correction pattern seen in the diffs (fixing an incorrect literal).",
+  "fixed_code": "s=input()\nif s==\"Monday\":\n    print(5)\nif s==\"Tuesday\":\n    print(4)\nif s==\"Wednesday\":\n    print(3)\nif s==\"Thursday\":\n    print(2)\nif s==\"Friday\":\n    print(1)\n"
+}

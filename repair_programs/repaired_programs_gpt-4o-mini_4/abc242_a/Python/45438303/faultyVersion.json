@@ -1,0 +1,4 @@
+{
+  "explanation": "The line 'print(C/(B-A))' incorrectly calculates the probability when Iroha-chan's rank is between A-th and B-th. It should calculate the probability based on the number of participants eligible for a T-shirt, which is 'B - A'. The corrected line replaces 'B - A' with 'B - A + 1' to account for the inclusion of participant B. This adjustment ensures the calculation reflects that C participants are selected from B - A + 1 eligible participants instead of B - A (inspired by the understanding of valid ranks and my general knowledge of uniform random selection).",
+  "fixed_code": "A,B,C,X = map(int,input().split())\nif X <= A:\n  print(1.000000000000)\nelif X <= B:\n  print(C/(B-A+1))\nelse:\n  print(0.000000000000)"
+}

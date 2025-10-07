@@ -1,0 +1,1 @@
+The program incorrectly calculates the minimum cost by subtracting the coupon price from the drink price instead of adding the cheapest dish price to the discounted drink price.

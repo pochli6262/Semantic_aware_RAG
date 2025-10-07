@@ -1,0 +1,1 @@
+The code only checks n >= 100 and therefore incorrectly accepts amounts like 250 that aren't multiples of 100 instead of requiring the total to be a positive multiple of 100.

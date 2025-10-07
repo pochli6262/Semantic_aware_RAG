@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the way the range is constructed when adding elements to list 'b'. The second 'if' condition should use range(a[i+1], a[i]-1, -1) instead of range(a[i], a[i+1], -1) to correctly add descending elements from a[i] to a[i+1]. This ensures we include a[i+1] and go down to a[i].",
+  "fixed_code": "n = int(input())\na = list(map(int,input().split()))\n\nb = []\nfor i in range(n-1):\n    if a[i] <= a[i+1]:\n        b += list(range(a[i],a[i+1]))\n    if a[i] >= a[i+1]:\n        b += list(range(a[i+1], a[i]+1))\n        \nb.append(a[-1])\n\nprint(b)"
+}

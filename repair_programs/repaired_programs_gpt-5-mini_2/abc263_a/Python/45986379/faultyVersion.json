@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code compared K[2] and K[3], which checks the last two elements; that is wrong for detecting two distinct values that each appear twice. For a sorted list of four numbers, the correct check is whether the two middle elements differ (K[1] != K[2]) which is true exactly when the multiset is of the form [a, a, b, b]. I fixed the index comparison to K[1] != K[2].",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and K[1] != K[2]:\n    print('Yes')\nelse:\n    print('No')"
+}

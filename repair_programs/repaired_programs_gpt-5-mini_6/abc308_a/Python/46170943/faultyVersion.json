@@ -1,0 +1,4 @@
+{
+  "explanation": "The original conditional used s[0] >100 and s[-1]<675 which incorrectly excluded the valid boundary values 100 and 675. I changed the comparisons to >= and <= so values equal to 100 or 675 are accepted. This is a simple boundary-equality fix (similar in spirit to the equality-bound fixes seen in the retrieved diffs).",
+  "fixed_code": "s=list(map(int,input().split()))\nss=sorted(s)\n\npack=[]\nif s==ss and s[0] >=100 and s[-1] <=675:\n  for i in s:\n    if i%25==0:\n      pack.append(i)\nprint(\"Yes\" if len(pack)==8 else \"No\")"
+}

@@ -1,0 +1,1 @@
+The likely bug is that the second output line incorrectly prints 'takahashi' instead of the required 'Takahashi'.

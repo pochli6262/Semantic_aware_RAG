@@ -1,0 +1,1 @@
+If n is divisible by 5 the program prints 0 instead of printing n (the correct water station position).

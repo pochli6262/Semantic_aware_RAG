@@ -1,0 +1,4 @@
+{
+  "explanation": "The code used the floating-point division operator '/' when computing the scaled ratio (A*10**100)/(A+B). That produces floats and can lose precision for very large integers, which may break the intended ordering. Replacing '/' with integer floor-division '//' keeps the computation in integers and preserves correct ordering without floating-point rounding errors. Only that line was changed.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append(((A*10**100)//(A+B), -i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(-j+1, end=' ')\nprint()\n"
+}

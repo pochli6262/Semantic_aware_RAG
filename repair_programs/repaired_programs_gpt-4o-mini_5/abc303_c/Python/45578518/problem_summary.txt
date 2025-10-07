@@ -1,0 +1,1 @@
+The likely bug is that the program does not account for the scenario where Takahashi's health reaches zero and subsequently tries to consume an item on the next move but cannot because he is already considered collapsed.

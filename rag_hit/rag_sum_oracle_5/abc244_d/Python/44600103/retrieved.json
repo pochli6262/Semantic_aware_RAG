@@ -1,0 +1,33 @@
+{
+  "task": "abc244_d/Python/44600103",
+  "query_summary": "The condition is inverted: it prints “Yes” for an even number of mismatches, whereas it should print “Yes” only when there are zero or an odd number of differences (and “No” for 2).",
+  "oracle_summary": "The condition is inverted: it prints “Yes” for an even number of mismatches, whereas it should print “Yes” only when there are zero or an odd number of differences (and “No” for 2).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the first three characters of both strings are equal, potentially leading to errors when the strings are shorter than three characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n t = input()\n-if s[0:3] == t[0:3]:\n+if s[0:len(s)] == t[0:len(s)]:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly counts the occurrences of characters in the string by using `S.count(s)`, which leads to inaccurate results because it does not account for previous counts of the same character in the list.",
+      "diff": "--- \n+++ \n@@ -3,10 +3,9 @@\n \n for s in S:\n   num[S.count(s)] += 1\n-  \n for n in num:\n-  if n % 2 != 0:\n+  if  2 * num.index(n) != n:\n     print('No')\n     exit()\n-    \n+\n print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `0` when the string `T` matches `S` either at the start or the end, instead of only when it matches both, leading to incorrect output when `S` is found at both positions.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n T = input()\n \n \n-if T == S:\n+if T[:N] == S and T[-N:] == S:\n   print(0)\n elif T[:N] == S:\n   print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly references `S[i-k]` instead of `S[~(i-k)]` when constructing the string `T`, leading to incorrect character indexing and potentially wrong results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n   n,k = map(int,input().split())\n   S = input()\n   k %= 2*n\n-  T = \"\".join(S[~i] if i < n else S[i-k] for i in range(k))\n+  T = \"\".join(S[~i] if i < n else S[~(i-k)] for i in range(k))\n   if S+T == (S+T)[::-1] and T+S == (T+S)[::-1]:\n     print(\"Yes\")\n   else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

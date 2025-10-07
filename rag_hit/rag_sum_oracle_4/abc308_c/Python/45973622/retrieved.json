@@ -1,0 +1,32 @@
+{
+  "task": "abc308_c/Python/45973622",
+  "query_summary": "The bug was caused by using floating-point division (/) instead of integer floor division (//), producing inexact values and wrong ordering due to precision/rounding errors.",
+  "oracle_summary": "The bug was caused by using floating-point division (/) instead of integer floor division (//), producing inexact values and wrong ordering due to precision/rounding errors.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to format the output as a space-separated string of numbers instead of a default list representation.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n L-=1\n \n A[L:R] = A[L:R][::-1]\n-print(A)\n+print(\" \".join(map(str, A)))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses floating-point division (/) instead of integer division (//) when calculating the value to be appended to the list X, which can lead to incorrect results due to the nature of floating-point arithmetic.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     X = []\n     for i in range(N):\n         a, b = map(int, input().split())\n-        X.append((-a*10**100 / (a+b), i))\n+        X.append((-a*10**100 // (a+b), i))\n \n     X.sort()\n     print(*[i+1 for x, i in X])"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly records the values of the indices that are being swapped instead of recording their original 1-based values, resulting in incorrect output.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     else:\n         j = A[i] - 1\n         num += 1\n-        ans.append([A[j], A[i]])\n+        ans.append([i + 1, j + 1])\n         A[i], A[j] = A[j], A[i]\n \n print(num)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses division (`/`) instead of floor division (`//`) when calculating the ratio, which may lead to incorrect results due to floating-point precision issues.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n p=[]\n for i in range(n):\n     a,b=map(int,input().split())\n-    p.append(((a*(10**100))/(a+b),i+1))\n+    p.append(((a*(10**100))//(a+b),i+1))\n p.sort(reverse=True)\n \n l=[]"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    5
+  ],
+  "useful_diffs_count": 2
+}

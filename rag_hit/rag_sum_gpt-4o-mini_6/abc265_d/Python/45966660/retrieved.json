@@ -1,0 +1,32 @@
+{
+  "task": "abc265_d/Python/45966660",
+  "query_summary": "The likely bug is that the program incorrectly checks for the existence of the required prefix sums in the set without verifying whether the corresponding indices are valid for the required tuple conditions.",
+  "oracle_summary": "The loop incorrectly iterates over range(N-3) instead of all indices 0..N-1, skipping the last three starting positions and potentially missing valid solutions near the end.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses `que.append((x, c_))` instead of `que.appendleft((x, c_))`, causing it to improperly re-add elements to the deque after processing.",
+      "diff": "--- \n+++ \n@@ -54,6 +54,6 @@\n         C -= d\n         c_ -= d\n         if c_ > 0:\n-          que.append((x, c_))\n+          que.appendleft((x, c_))\n       print(ans)\n resolve()"
+    },
+    {
+      "summary": "The bug in the code is that the condition `3 <= sum(i) <= 16 - total_length` is incorrectly checking the sum of lengths for determining valid underscore distributions, which prevents some valid combinations from being considered.",
+      "diff": "--- \n+++ \n@@ -34,7 +34,7 @@\n under = [\n     [\"_\" * j for j in i]\n     for i in product(list(range(1, 16 - total_length + 1)), repeat=N - 1)\n-    if 3 <= sum(i) <= 16 - total_length\n+    if sum(i) <= 16 - total_length\n ]\n \n for i in permutations(S):"
+    },
+    {
+      "summary": "The bug in the buggy code is that it incorrectly adds elements to the set `aset` without first checking if they are already present, which leads to incorrect computation of prefix equality.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n same = [False] * (N+1)\n same[0] = True\n for a in A:\n-    # if a in aset:continue\n+    if a in aset:continue\n     aset.add(a)\n     if a in xorset:\n         xorset.remove(a)"
+    },
+    {
+      "summary": "The buggy code improperly computes the modular arithmetic when adding the contributions from the elements beyond a certain index, causing it to potentially provide incorrect results by failing to correctly reduce terms modulo `MOD`.",
+      "diff": "--- \n+++ \n@@ -40,5 +40,5 @@\n     for i in range(N-1):\n         left_index = bisect.bisect_left(range(i+1, N), 10**8, key=lambda x:A[i] + A[x])\n         count += SA[left_index+i+1] + left_index*A[i] - SA[i+1] # MODしない項\n-        count += (A[i]*(N-left_index-1-i) + SA[N]- SA[left_index+1+i])%MOD # MODする項\n+        count += (A[i]*(N-left_index-1-i) + SA[N]- SA[left_index+1+i]) - MOD*(N-left_index-1-i) # MODする項\n     print(count)"
+    },
+    {
+      "summary": "The buggy code is missing a condition to check if the total count of elements in `Cnt` is divisible by 4 when `m` is even, which is necessary for determining the correct winner.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n     if m%2==1:\n         yn(all(Cnt[i]==0 for i in Cnt.keys()),'Bob','Alice')\n     else:\n-        yn(all((Cnt[i]==1 and Cnt[(i+(m//2))%m]==1) or (Cnt[i]==0 and Cnt[(i+(m//2))%m]==0) for i in Cnt.keys()),'Bob','Alice')\n+        yn(all((Cnt[i]==1 and Cnt[(i+(m//2))%m]==1) or (Cnt[i]==0 and Cnt[(i+(m//2))%m]==0) for i in Cnt.keys()) and sum(Cnt.values())%4==0,'Bob','Alice')\n     \n \n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

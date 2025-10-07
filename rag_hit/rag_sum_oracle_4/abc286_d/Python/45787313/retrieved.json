@@ -1,0 +1,33 @@
+{
+  "task": "abc286_d/Python/45787313",
+  "query_summary": "The DP transition loops j only up to x−1 (range(x)) instead of including x (range(x+1)), so the j = x state is never processed and cannot be propagated (e.g., with k = 0), causing valid solutions to be missed.",
+  "oracle_summary": "The DP transition loops j only up to x−1 (range(x)) instead of including x (range(x+1)), so the j = x state is never processed and cannot be propagated (e.g., with k = 0), causing valid solutions to be missed.",
+  "retrieved": [
+    {
+      "summary": "The buggy code checks if `x` and `y` are greater than the sums of `X` and `Y` respectively, instead of their absolute values, leading to incorrect results for negative target values.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n       dp_y[i + 1][j - Y[i]] = True\n \n \n-if x > sum(X) or y > sum(Y):\n+if abs(x) > sum(X) or abs(y) > sum(Y):\n   print(\"No\")\n else:\n   if dp_x[-1][x + 2 * (sum(X) + 1)] and dp_y[-1][y + 2 * (sum(Y) + 1)]:"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that a necessary condition in the second for loop inside the `check` function is missing, which checks if consecutive elements in the first row of `b` differ by 1.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,10 @@\n   for i in range(m - 1):\n     if ((temp[i + 1] + 6) % 7) != ((temp[i] + 6) % 7) + 1:\n       return False\n+    if temp[i + 1] != temp[i] + 1:\n+      return False\n+\n+    \n \n \n   return True"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the elements in the first row of the matrix by using a modulo operation that allows 0, instead of correctly identifying the elements that should not be divisible by 7.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(m-1):\n     if b[0][i]+1 != b[0][i+1]:\n         ans = False\n-    if b[0][i]%7+1 != b[0][i+1]%7:\n+    if b[0][i]%7 == 0:\n         ans = False\n     \n for i in range(n-1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    9
+  ],
+  "useful_diffs_count": 3
+}

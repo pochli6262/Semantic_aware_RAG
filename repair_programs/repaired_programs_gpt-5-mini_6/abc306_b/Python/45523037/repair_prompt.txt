@@ -1,0 +1,155 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+You are given a sequence A=(A\_0,A\_1,\dots,A\_{63}) of length 64 consisting of 0 and 1.
+
+Find A\_0 2^0 + A\_1 2^1 + \dots + A\_{63} 2^{63}.
+
+### Constraints
+
+* A\_i is 0 or 1.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+A_0 A_1 \dots A_{63}
+```
+
+### Output
+
+Print the answer as an integer.
+
+---
+
+### Sample Input 1
+
+```
+1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+```
+
+### Sample Output 1
+
+```
+13
+```
+
+A\_0 2^0 + A\_1 2^1 + \dots + A\_{63} 2^{63} = 2^0 + 2^2 + 2^3 = 13.
+
+---
+
+### Sample Input 2
+
+```
+1 0 1 0 1 0 0 0 0 1 0 0 1 1 0 1 1 1 1 0 0 0 1 0 0 1 1 1 1 1 1 0 0 0 0 1 0 1 0 1 0 1 1 1 1 0 0 1 1 0 0 0 0 1 0 1 0 1 0 1 0 0 0 0
+```
+
+### Sample Output 2
+
+```
+766067858140017173
+```
+
+## Your Analysis (1-sentence bug summary)
+The loop uses range(63) so it never processes a[63], meaning the most significant bit (A_63) is omitted from the sum.
+
+## Buggy Program
+import sys
+input = lambda: sys.stdin.readline().strip()
+
+a = list(map(int, input().split()))
+
+ans = 0
+for i in range(63):
+    if a[i] == 0:
+        continue
+    else:
+        ans += (2 ** i)
+print(ans)
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -13,7 +13,7 @@
+ 
+ for i in range(n):
+     for j in range(m):
+-        a[i][j] = (i // 23 + j // 23 + i + j) % 23 + 1
++        a[i][j] = ((i // 23) * (j // 23) + i + j) % 23 + 1
+ 
+ for v in a:
+     print(*v)
+
+### Diff 2
+--- 
++++ 
+@@ -21,7 +21,7 @@
+         print(len(a),*a,flush=True)
+ 
+     S = input()
+-    ans = int(S,2)
++    ans = int(S[::-1],2) + 1
+     print(ans,flush=True)
+ if __name__ == '__main__':
+     main()  
+
+### Diff 3
+--- 
++++ 
+@@ -7,7 +7,7 @@
+ W = ip()
+ A = []
+ for i in range(1, 101):
+-    A.append(1 + i)
++    A.append(i)
+     A.append(100 * i)
+     A.append(10000 * i)
+ print(300)
+
+### Diff 4
+--- 
++++ 
+@@ -8,7 +8,7 @@
+ A = sorted(int(input()) for _ in range(N))
+ ans = 0
+ 
+-for i in range(N-1):
++for i in range(N):
+   for j in range(i, N):
+     x = A[i] * A[j]
+     idx = bisect_left(A, x)
+
+### Diff 5
+--- 
++++ 
+@@ -27,6 +27,8 @@
+                 ans += 1
+                 f = False
+             ans += 1
++    if f:
++        ans += 1
+ 
+     return ans
+ 
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

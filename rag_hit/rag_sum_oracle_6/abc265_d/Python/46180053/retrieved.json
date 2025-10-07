@@ -1,0 +1,31 @@
+{
+  "task": "abc265_d/Python/46180053",
+  "query_summary": "The bug is that the cumulative sum omits the initial 0 (using cumsum(A) instead of cumsum([0]+A)), causing an off-by-one in prefix sums and missing cases where the segment starts at index 0.",
+  "oracle_summary": "The bug is that the cumulative sum omits the initial 0 (using cumsum(A) instead of cumsum([0]+A)), causing an off-by-one in prefix sums and missing cases where the segment starts at index 0.",
+  "retrieved": [
+    {
+      "summary": "The bug in the buggy code is that it incorrectly adds elements to the set `aset` without first checking if they are already present, which leads to incorrect computation of prefix equality.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n same = [False] * (N+1)\n same[0] = True\n for a in A:\n-    # if a in aset:continue\n+    if a in aset:continue\n     aset.add(a)\n     if a in xorset:\n         xorset.remove(a)"
+    },
+    {
+      "summary": "The buggy code improperly concatenates segments of the list 'A' by incorrectly using the indices for the slice that combines elements, resulting in missing elements from the list in the output.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N,P,Q,R,S = map(int, input().split())\n A = list(map(int, input().split()))\n \n-ans = A[:P-1] + A[R-1:S] + A[P-1:Q] + A[S:]\n+ans = A[:P-1] + A[R-1:S] + A[Q:R-1]+ A[P-1:Q] + A[S:]\n print(*ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the condition `X - a in Aset` instead of the correct condition `a + X in Aset`, leading to an incorrect result for determining whether there exists a pair of elements in the list whose sum equals X.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n Aset = set(A)\n ok = False\n for a in A:\n-    if X-a in Aset:\n+    if a + X in Aset:\n         ok = True\n         break\n if ok:"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the value of `B[0]` after processing `A[2]`, leading to potential miscalculations in subsequent checks regarding the resource allocation logic.",
+      "diff": "--- \n+++ \n@@ -36,7 +36,7 @@\n     B[1]+=B[4]\n     B[4]=0\n   B[3]-=A[2]\n-  A[0]+=A[2]\n+  B[0]+=A[2]\n   if A[1]>B[1]+B[2]+2*B[3]+2*B[4]:\n     print('No')\n     continue"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

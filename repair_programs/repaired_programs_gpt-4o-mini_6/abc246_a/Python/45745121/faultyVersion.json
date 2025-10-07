@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original print statement was that it printed a list instead of the coordinates in the required space-separated format. The print statement needed to be corrected to unpack the list values directly, so they would be printed as separate arguments rather than as a single list object. This change is inspired by common patterns where printing needs to format data correctly.",
+  "fixed_code": "array = list(map(int,input().split()))\nxy1 = array\narray = list(map(int,input().split()))\nxy2 = array\narray = list(map(int,input().split()))\nxy3 = array\nx = []\nfor i in range(2):\n  if xy1[i] == xy2[i]:\n    x.append(xy3[i])\n  elif xy1[i] == xy3[i]:\n    x.append(xy2[i])\n  else:\n    x.append(xy1[i])\nprint(x[0], x[1])"
+}

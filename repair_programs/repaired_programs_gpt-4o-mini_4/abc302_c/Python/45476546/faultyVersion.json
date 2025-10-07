@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue was in the loop checking the adjacency condition of the strings. The program did not break the loop after finding a valid sequence and thus continued to check the next combinations, which could lead to multiple incorrect outputs. The corrected line ensures that if one valid arrangement is found, the function exits properly after printing 'Yes'. This aligns with the logic from the analysis pointing towards finding a valid sequence without continuing further iterations unnecessarily.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.permutations(S, N)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n      break\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

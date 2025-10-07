@@ -1,0 +1,1 @@
+The bug likely stems from incorrectly checking if the input permutations of hats are in the predefined list `A`, rather than verifying if they can be transformed into one another through swaps.

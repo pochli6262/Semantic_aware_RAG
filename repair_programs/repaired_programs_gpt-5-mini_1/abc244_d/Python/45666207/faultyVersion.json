@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code checked if cnt%2 == 1, which tests whether the number of matching positions is odd (true for 1 or 3 matches). The intended behavior is to print \"Yes\" only when exactly one of the three positions matches, so the condition should be cnt == 1. I replaced the single incorrect line to perform an exact equality check.",
+  "fixed_code": "S = [a for a in input().split()]\nT = [a for a in input().split()]\n\ncnt = 0\nfor i in range(3):\n    if S[i] == T[i]:\n        cnt += 1\n\nif cnt == 1:\n    print(\"Yes\")\nelse:\n    print(\"No\")\n"
+}

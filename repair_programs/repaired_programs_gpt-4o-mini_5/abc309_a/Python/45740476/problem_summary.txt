@@ -1,0 +1,1 @@
+The likely bug is that the program only checks for horizontal adjacency when the two numbers are sequentially placed and does not correctly account for cases where they may not be directly next to each other on the grid.

@@ -1,0 +1,33 @@
+{
+  "task": "abc261_d/Python/45506869",
+  "query_summary": "The DP table is initialized with -MOD (a finite large negative) instead of -INF, so unreachable states can contribute to transitions and skew the maximum result.",
+  "oracle_summary": "The DP table is initialized with -MOD (a finite large negative) instead of -INF, so unreachable states can contribute to transitions and skew the maximum result.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly accumulates values in the `dp` list using addition instead of maximizing the result, leading to incorrect calculations in the dynamic programming solution for the problem.",
+      "diff": "--- \n+++ \n@@ -82,7 +82,7 @@\n     for i in range(1, N+1):\n         for a in A:\n             if i - a >= 0:\n-                dp[i] = a + (i - a) - dp[i-a]\n+                dp[i] = max(dp[i], a + (i - a) - dp[i-a])\n \n     # print(dp)\n     print(dp[-1])"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `mod <= B` by not ensuring the printed result is non-negative, leading to potential negative output.",
+      "diff": "--- \n+++ \n@@ -41,5 +41,5 @@\n     q-=1\n     b = q * B\n     if(mod > B):print(b + B)\n-    else:print(b+mod)\n+    else:print(max(0,b+mod))\n "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `C` with the expression `C = [X // S] * N`, leading to incorrect results in subsequent calculations because it does not account for the required multiplication with `N`.",
+      "diff": "--- \n+++ \n@@ -345,7 +345,7 @@\n W = list(map(int, input().split()))\n dp = [[-1] * N for _ in range(60)]  # dp[i][j]: j番目の要素から2^i回遷移したときの到達地点\n S = sum(W)\n-C = [X // S] * N\n+C = [(X // S) * N] * N\n nokori = X - S * (X // S)\n acc = [0]\n for w in W:"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates up to `N-1` in the outer loop for filling the `dp` array, resulting in one less iteration than needed, whereas the correct code iterates up to `N`.",
+      "diff": "--- \n+++ \n@@ -14,10 +14,11 @@\n \n     dp = [-INF]*(N+1)\n     dp[0] = 0\n-    for i in range(1,N):\n+    for i in range(N):\n         for j in range(N+1):\n             if j+i+1 > N: break\n             dp[j+i+1] = max(dp[j+i+1], dp[j]+width[i])\n+\n     print(dp[N])\n        \n         "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` table by setting `dp[0][-1] = 1` instead of `dp[0][m] = 1`, leading to out-of-bounds access and incorrect calculations in the dynamic programming approach.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n         r = max(r, pos[a] + 1)\n \n dp = [[0] * (m + 2) for _ in range(m + 1)]\n-dp[0][-1] = 1\n+dp[0][m] = 1\n for a in range(n - 1, min_aaa, -1):\n     ndp1 = [[0] * (m + 2) for _ in range(m + 1)]  # l が増える方向の累積和\n     ndp2 = [[0] * (m + 2) for _ in range(m + 1)]  # r が減る方向の累積和"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

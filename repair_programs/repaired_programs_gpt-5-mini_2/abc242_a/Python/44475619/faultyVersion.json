@@ -1,0 +1,4 @@
+{
+  "explanation": "The code computed the interval length as D = B - A, but when counting integers in an inclusive interval [A, B] the length must include both endpoints. This is an off-by-one error. I fixed it by changing that single line to D = B - A + 1 so the interval size is correct.",
+  "fixed_code": "inp=input().split()\nA=inp[0]\nA=int(A)\nB=inp[1]\nB=int(B)\nC=inp[2]\nC=int(C)\nX=inp[3]\nX=int(X)\nD=B-A+1\nif A>=X:\n    print(1)\nelif B<X:\n    print(0)\nelse:    \n    print(D/C)"
+}

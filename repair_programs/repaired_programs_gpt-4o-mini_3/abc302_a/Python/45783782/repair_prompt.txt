@@ -1,0 +1,73 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+A,B = map(int,input().split())
+if A%B == 0:
+  print(int(A/B))
+else:
+  print(int(A//B)+1)
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+A,B = map(int,input().split())
+if A + B == 3:
+  print("3")
+elif A + B == 4:
+  print("2")
+elif A + B == 5:
+  print("1")
+else:
+  print("-1")
+
+--- Correct Code ---
+A,B = map(int,input().split())
+if A + B == 3:
+  print("3")
+elif A + B == 4 and A != B:
+  print("2")
+elif A + B == 5:
+  print("1")
+else:
+  print("-1")
+
+
+### Example 2
+--- Buggy Code ---
+A, B = map(int, input().split())
+
+print(round(B/A, 3))
+
+
+--- Correct Code ---
+A, B = map(int, input().split())
+
+print('{:.03f}'.format(round(B/A, 3)))
+
+
+### Example 3
+--- Buggy Code ---
+A, B = map(int, input().split())
+print(A^B)
+
+--- Correct Code ---
+A, B = map(int, input().split())
+print(A**B)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line that calculates the probability does not correctly account for the number of participants between ranks (A+1) and B. The correct number of participants in that range is (B - A), not (B - A + 1). I fixed this by updating the denominator in the probability calculation to reflect the total number of participants that can receive a T-shirt in that range. This fix is inspired by the analysis in the problem summary which highlighted the calculation error.",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X < A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A)\n  print(answer)"
+}

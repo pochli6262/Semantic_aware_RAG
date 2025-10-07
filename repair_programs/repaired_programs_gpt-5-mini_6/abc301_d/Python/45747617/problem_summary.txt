@@ -1,0 +1,1 @@
+The code incorrectly strips leading '0' characters from the pattern S (shortening the bit string), which changes bit positions and yields wrong results.

@@ -1,0 +1,32 @@
+{
+  "task": "abc303_c/Python/45491344",
+  "query_summary": "The bug is a typo: the code uses the equality operator \"==\" instead of the assignment \"=\" when trying to set item[(now[0],now[1])] = 0, so picked-up items are never cleared.",
+  "oracle_summary": "The bug is a typo: the code uses the equality operator \"==\" instead of the assignment \"=\" when trying to set item[(now[0],now[1])] = 0, so picked-up items are never cleared.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it stores indices of elements in the list `A` starting from 0 instead of 1, which causes incorrect comparisons when checking membership in the set `B`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n D = defaultdict(set)\n \n for i in range(N):\n-    D[A[i]].add(i)\n+    D[A[i]].add(i+1)\n \n m = max(A)\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the set `s` incorrectly using `set((0,0))` instead of directly as `s={(0,0)}`, resulting in a different data structure and possibly affecting further operations.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n=int(input())\n S=input()\n-s=set((0,0))\n+s={(0,0)}\n x=0\n y=0\n for c in S:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the presence of elements in set `nowb` while iterating through the list `b`, leading to potential incorrect indexing and boundary issues when determining the range for valid indices in `ans`.",
+      "diff": "--- \n+++ \n@@ -44,7 +44,7 @@\n       ans[i][0]=cnt\n       cnt+=1\n       while cnt<n:\n-        if b[cnt]!=a[i]:\n+        if b[cnt] not in nowb:\n           break\n         cnt+=1\n       if not notcheck:"
+    },
+    {
+      "summary": "The bug in the code is that it does not account for the case when the same name appears for both `s` and `t`, which leads to incorrect counting in the `defaultdict` for names that are identical.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,8 @@\n     s, t = input().split()\n     name.append((s, t))\n     d[s] += 1\n+    if s == t:\n+        continue\n     d[t] += 1\n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the count of characters reaches or exceeds `K` instead of checking if the count is exactly equal to `K`.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n                 d[S[i][j]]+=1\n     check=0\n     for key,value in d.items():\n-        if value>=K:\n+        if value==K:\n             check+=1\n \n     ans=max(ans,check)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

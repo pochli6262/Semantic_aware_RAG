@@ -1,0 +1,4 @@
+{
+  "explanation": "The program omitted handling for values >= 100 that are not multiples of 100, so those inputs produced no output. I fixed the second conditional to also catch any X that is not divisible by 100 (elif X < 100 or X%100 != 0:), ensuring such cases print \"No\". This follows the idea in the retrieved diffs that extended conditions with an extra 'or' (see patterns like Diff 4/5 and the modulus check idea in Diff 2).",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100 or X%100 != 0:\n    print(\"No\")\nelif X%100 == 0:\n    print(\"Yes\")\n"
+}

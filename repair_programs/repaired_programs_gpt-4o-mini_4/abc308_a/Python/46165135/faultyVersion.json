@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program checked for monotonic non-decreasing order using `>=`, which allowed for equal adjacent elements but failed the strict non-decreasing requirement. The correct condition should use `>` instead of `>=` to ensure that each element is less than or equal to the next. This aligns with the expected logic as described in the problem statement. This fix does not correlate directly to any of the retrieved diffs, as they pertain to other issues.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nres = 'Yes'\n\nfor i in range(len(S) - 1):\n    if S[i] > S[i + 1]:\n        res = 'No'\n        break\n      \nfor i in range(len(S)):\n    if S[i] % 25 or not 100 <= S[i] <= 675:\n        res = 'No'\n        break\n      \nprint(res)"
+}

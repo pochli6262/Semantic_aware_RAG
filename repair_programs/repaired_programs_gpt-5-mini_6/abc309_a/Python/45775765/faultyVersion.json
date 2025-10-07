@@ -1,0 +1,4 @@
+{
+  "explanation": "The program only handled the specific adjacent pairs and had no default case, so for any other input it produced no output. I added a final else branch that prints \"No\" when none of the explicit (A,B) pairs match. This fixes the missing default output behavior.",
+  "fixed_code": "A,B = map(int,input().split())\nif (A,B) ==(1,2):\n  print(\"Yes\")\nelif (A,B) ==(2,3):\n  print(\"Yes\")\nelif (A,B) ==(4,5):\n  print(\"Yes\")\nelif (A,B) == (5,6):\n  print(\"Yes\")\nelif (A,B) ==(7,8):\n  print(\"Yes\")\nelif (A,B) ==(8,9):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly adds 1 to the quotient of A divided by B without accounting for any remainder, leading to an underestimation of the number of attacks required. I fixed it by correctly computing the ceiling of the division A/B to ensure that if there is any remainder, it will count as an additional attack. This adjustment aligns with the expected logic for determining the number of attacks needed, inspired by the clear explanation of the problem rather than the retrieved diffs which were not relevant here.",
+  "fixed_code": "A, B = map(int, input().split())\n\nprint((A + B - 1) // B)"
+}

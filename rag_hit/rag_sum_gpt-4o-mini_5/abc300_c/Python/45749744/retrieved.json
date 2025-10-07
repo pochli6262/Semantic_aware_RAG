@@ -1,0 +1,34 @@
+{
+  "task": "abc300_c/Python/45749744",
+  "query_summary": "The program likely has a bug in the `dfs` function where it incorrectly counts the size of crosses since it considers cells adjacent to the center in all 8 possible directions rather than checking the specific pattern required for a cross.",
+  "oracle_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the condition `(x==0)` was incorrectly stated in the final if-check, which should also consider the case when `x` equals 1, leading to potential incorrect game outcomes.",
+      "diff": "--- \n+++ \n@@ -36,8 +36,8 @@\n                 y += 1\n                 if mex == k:\n                     mex = j\n-            \n-        if (x==1 and y==1) or (mex==k and x==0):\n+\n+        if (x==1 and y==1) or (mex==k and (x==0 or x==1)):\n             print(\"Alice\")\n             break\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the return value of the recursive function `mdfs` when determining if a certain condition is met, which can lead to incorrect program behavior.",
+      "diff": "--- \n+++ \n@@ -10,8 +10,6 @@\n         if f:\n             return (1,p)\n         p[0]+=d[0]\n-        if p[0]>1:\n-          return(0,p)\n         for j in range(1,y+2):\n             p[j]|=d[j]\n     if a[x]==-1:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a strict inequality (\"<\") instead of a non-strict inequality (\"<=\") when checking if the right ant can cross the left ant, which may lead to missing valid crossing scenarios.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n count = 0\n while True:\n     while right_end < len(r_ants) and r_ants[right_end] < l_ants[l]:\n-        if r_ants[right_end] + T * 2 > l_ants[l]:\n+        if r_ants[right_end] + T * 2 >= l_ants[l]:\n             first_crossings[right_end] = l\n             q.append(right_end)\n         right_end += 1"
+    },
+    {
+      "summary": "The buggy code contains an issue in the `dfs` function where the recursive call to `dfs` should be made with `t + dt` instead of `t + dt + 1`, which incorrectly calculates the timing progression.",
+      "diff": "--- \n+++ \n@@ -55,7 +55,7 @@\n         for s in opts:\n             if not vis[s]:\n                 vis[s] = True\n-                cost = min(cost, dfs(t+dt+1,d))+1\n+                cost = min(cost, dfs(t+dt+1,d)+1)\n                 vis[s] = False\n         return dt+cost\n     "
+    },
+    {
+      "summary": "The buggy code is missing a final condition check that determines the output based on the values of the `inc` and `dec` flags, leading to incorrect results not being printed.",
+      "diff": "--- \n+++ \n@@ -28,3 +28,6 @@\n                 DFS(g,dfs_pm+v)\n             back[i]=True\n DFS(0,0)\n+\n+if inc and dec or not inc and not dec : print(\"Yes\")\n+else : print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

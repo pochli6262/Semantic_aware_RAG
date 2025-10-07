@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue was that the variable 'ans' was being reset to 'Yes' for each combination of tuples 'co' instead of being set outside the loop. This caused incorrect results when checking combinations where 'ans' should remain valid after the first combination check if it was already set to 'No'. I fixed it by moving the initialization of 'ans' into the outer loop before checking combinations.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.product(S,repeat = N)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n      break\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

@@ -1,0 +1,61 @@
+Score : 200 points
+
+### Problem Statement
+
+You are given a sequence of length N consisting of integers: A=(A\_1,\ldots,A\_N).
+
+Find the smallest non-negative integer not in (A\_1,\ldots,A\_N).
+
+### Constraints
+
+* 1 \leq N \leq 2000
+* 0 \leq A\_i \leq 2000
+* All values in input are integers.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+N
+A_1 \ldots A_N
+```
+
+### Output
+
+Print the answer.
+
+---
+
+### Sample Input 1
+
+```
+8
+0 3 2 6 2 1 0 0
+```
+
+### Sample Output 1
+
+```
+4
+```
+
+The non-negative integers are 0,1,2,3,4,\ldots.  
+We have 0,1,2,3 in A, but not 4, so the answer is 4.
+
+---
+
+### Sample Input 2
+
+```
+3
+2000 2000 2000
+```
+
+### Sample Output 2
+
+```
+0
+```

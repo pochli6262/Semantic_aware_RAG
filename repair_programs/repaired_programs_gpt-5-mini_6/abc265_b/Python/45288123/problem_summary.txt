@@ -1,0 +1,1 @@
+The code incorrectly allows a move that reduces the time limit to exactly zero because it checks `T < 0` instead of `T <= 0`.

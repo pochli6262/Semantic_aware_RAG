@@ -1,0 +1,1 @@
+The code mistakenly checks (res + 1) << d <= n (shifting the whole sum) instead of testing res + (1 << d) <= n, so it adds the wrong value when trying to set a '?' bit.

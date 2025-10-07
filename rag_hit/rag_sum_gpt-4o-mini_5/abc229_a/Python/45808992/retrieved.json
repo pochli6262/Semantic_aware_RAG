@@ -1,0 +1,31 @@
+{
+  "task": "abc229_a/Python/45808992",
+  "query_summary": "The program incorrectly assumes that specific configurations of black squares guarantee connectivity without considering other possible arrangements of the squares.",
+  "oracle_summary": "The buggy code omits the final else that should print \"Yes\" for all other inputs, so for non-matching cases it produces no output instead of \"Yes.\"",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to handle the special case where the input string is \"BA\", causing it to incorrectly evaluate as \"Yes\" instead of \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n S=input()\n ck=0\n+if S==\"BA\":\n+    exit(print(\"No\"))\n for i in range(N):\n     if S[i]!=S[-1-i]:\n         ck=1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it continues to check all 6 positions even when an out-of-bounds index is encountered, instead of breaking the loop, which can lead to incorrect counting of \"#\" characters.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n                 nh = h + dy[i]*j\n                 nw = w + dx[i]*j\n                 if not (0 <= nh < N and 0 <= nw < N):\n-                    continue\n+                    break\n                 if S[nh][nw] == \"#\":\n                     cnt += 1\n             else:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the conditional statement incorrectly uses logical operators, resulting in always evaluating `True` for any input due to improper checks.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n S = input()\n \n-if S == 'ACE' or 'BDF' or 'CEG' or 'DFA' or 'EGB' or 'FAC' or 'GBD':\n+if S == 'ACE' or S == 'BDF' or S == 'CEG' or S == 'DFA' or S == 'EGB' or S == 'FAC' or S == 'GBD':\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly determines \"Yes\" if two consecutive characters are either \"a\" or \"b\", without checking that they are different, which is necessary to satisfy the desired condition.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n S = input()\n ok = [\"a\", \"b\"]\n for i in range(N-1):\n-    if S[i] in ok and S[i+1] in ok:\n+    if S[i] in ok and S[i+1] in ok and S[i] != S[i+1]:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly allows strings that contain \"<\" and \"=\" but do not end with \">\", leading to potentially incorrect output when the conditions for a valid string format are not met.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = input()\n-if \"<\" in S and \"=\" in S:\n+if \"<\" in S and \"=\" in S and \">\" == S[-1]:\n     if S.count(\"<\") == S.count(\">\") :\n         print(\"Yes\")\n     else :"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

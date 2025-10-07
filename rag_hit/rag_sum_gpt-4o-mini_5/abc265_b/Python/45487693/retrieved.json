@@ -1,0 +1,33 @@
+{
+  "task": "abc265_b/Python/45487693",
+  "query_summary": "The likely bug is that the program incorrectly updates the time limit after consuming time to move to the next room by using the wrong index when accessing the bonus room dictionary.",
+  "oracle_summary": "The code incorrectly checks t − s[now−1] < 0 instead of <= 0, allowing the case where time becomes exactly zero to be treated as valid.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly uses `break` instead of `continue` in the outer loop after checking `if i+m > n`, which prevents further iterations that may be necessary for correct DP table updates.",
+      "diff": "--- \n+++ \n@@ -9,13 +9,14 @@\n     if dp[i][0]:\n         for k in range(m):\n             tl=t[k:]\n+\n             if i-k<0 or i+(m-k)>n:\n                 continue\n             for j in range(1,len(tl)+1):\n                 if s[i:i+j]==tl[:j]:\n                     dp[i+j][len(tl)-j]=True\n     if i+m>n:\n-        break\n+        continue\n     for j in range(1,m+1):\n         if dp[i][j]:\n             for k in range(1,m+1):"
+    },
+    {
+      "summary": "The issue in the buggy code is that it uses `elif` instead of `if` for the second condition, which prevents both conditions from being evaluated when both may be true.",
+      "diff": "--- \n+++ \n@@ -4,6 +4,6 @@\n k=3\n if t[0:n]==s:\n   k-=2\n-elif t[-n::]==s:\n+if t[-n::]==s:\n   k-=1\n print(k)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` list with a nested list comprehension that creates a list containing a single `False` element, rather than a list of length `m+1`, leading to out-of-bounds errors during indexing.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n n,m=map(int,input().split())\n s=input()\n t=input()\n-dp=[[[False]for _ in range(m+1)]for _ in range(n+1)]\n+dp=[[False for i in range(m+1)] for j in range(n+1)]\n dp[0][0]=True\n for i in range(n):\n     if i+m<=n:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc288_e/Python/41523056",
+  "query_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "oracle_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses an incorrect value for `INF`, which leads to potential issues when comparing values and affects the logic for determining maximum and second maximum values.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n # cf. https://atcoder.jp/contests/abc345/editorial/9580\n-INF = 10**10\n+INF = 10**15\n \n def solve(n, k, c, v):\n     C1 = [-1]*(k+1) # 最大の価値になる色"
+    },
+    {
+      "summary": "The code incorrectly sets the infinite cost `INF` to 99 instead of a much larger value (like `10**18`), which can cause incorrect comparisons and lead to out-of-bounds errors or inaccurate results in the dynamic programming logic.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n \n def solve(N: int, H: int, X: \"list[int]\", P: \"list[int]\", F: \"list[int]\"):\n-    INF = 99\n+    INF = 10**18\n     L = []\n     cur = 0\n     for i in range(N):"
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to access `DP[r]` for the final output, which should actually be the minimum of `DP[r-1]` and `DP[r]`, as the logic is designed to minimize the cost of adjusting values in the list.",
+      "diff": "--- \n+++ \n@@ -33,4 +33,4 @@\n             NDP[j+1]=min(NDP[j+1],DP[j]+abs(now-(x+1)))\n     DP=NDP\n \n-print(DP[r])\n+print(min(DP[r-1],DP[r]))"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `INF` as \\(10^9\\) instead of \\(10^{18}\\), which can lead to incorrect results in the `SegmentTree` computations where very large values may be needed.",
+      "diff": "--- \n+++ \n@@ -302,7 +302,7 @@\n   ans += min(d1, d2)\n   sabun[i] = abs(d1 - d2)\n \n-INF = 10**9\n+INF = 10**18\n dp = SegmentTree(n, op=lambda s, t: min(s, t), e=INF)\n dp[0] = 0\n for i in range(n-1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly computes the value of `dp[i+1][0]` by simply assigning it rather than using the maximum value from the previous state, which results in missing potentially higher productivity values.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n         if j < n - 1:\n             dp[i+1][j+1] = dp[i][j]\n         if dp[i][j] != -INF:\n-            dp[i+1][0] = dp[i][j] + productivity[j]\n+            dp[i+1][0] = max(dp[i+1][0], dp[i][j] + productivity[j])\n \n #print(productivity)\n #print(dp)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

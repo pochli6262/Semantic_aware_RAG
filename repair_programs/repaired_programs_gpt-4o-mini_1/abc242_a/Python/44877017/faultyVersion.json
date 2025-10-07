@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the code is in the line that calculates `res` for the case where `x` is between `a` and `b`. The current line is `res = c / (b - a)`, which does not account for the fact that the value of `res` should represent a percentage of `c` based on the position of `x` between `a` and `b`. The correct calculation should be `res = c * (x - a) / (b - a)`, which properly calculates the graduated percentage based on the value of `x`. This change ensures that `res` reflects the proportion of `c` corresponding to the position of `x` within the range `[a, b]`.",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 100.0\nelif x <= b:\n   res = c * (x - a) / (b - a)\n\nprint('%.9f' % (res))"
+}

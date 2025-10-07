@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition 'elif X < B:' incorrectly treats the case X == B as falling into the else branch (printing 0). The correct behavior is to include X == B in the middle branch, so the condition should be 'elif X <= B:'. I changed that single comparison operator to <= so X == B yields C/(B-A).",
+  "fixed_code": "A,B,C,X = map(int,input().split())\nif X <= A:\n  print(1.000000000000)\nelif X <= B:\n  print(C/(B-A))\nelse:\n  print(0.000000000000)"
+}

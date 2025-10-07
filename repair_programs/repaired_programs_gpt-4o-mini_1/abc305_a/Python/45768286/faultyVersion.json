@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the modulus operation was applied first, which could lead to unexpected results when input is greater than or equal to 5. By changing the order of operations, ensuring the input is converted to an integer first before applying the modulus operation, we ensure correct behavior.",
+  "fixed_code": "print(abs(5 - (int(input()) % 5)))"
+}

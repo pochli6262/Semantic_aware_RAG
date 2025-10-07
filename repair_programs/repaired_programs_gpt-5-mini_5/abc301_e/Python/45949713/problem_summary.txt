@@ -1,0 +1,1 @@
+The program stores the start position in variable s but later uses start (which remains [0,0]), so the actual start coordinates are never assigned/used correctly.

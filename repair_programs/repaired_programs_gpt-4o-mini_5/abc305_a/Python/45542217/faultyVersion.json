@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line which calculates the nearest water station is incorrect because it does not properly account for cases where Takahashi is closer to the next water station. Specifically, in the original program, when `a < 3`, the distance calculation should round down to the nearest lower multiple of 5, and otherwise round up to the nearest higher multiple of 5. The fix was inspired by the requirement to determine the unique closest water station and adapting the condition logic accordingly.",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a < 3:\n        ans=N-a\n    else:\n        ans=N+a\n    print(ans)"
+}

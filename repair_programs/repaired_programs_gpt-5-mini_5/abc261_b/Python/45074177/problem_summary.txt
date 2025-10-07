@@ -1,0 +1,1 @@
+The code never checks the case where A[i][j] == 'L' and A[j][i] == 'W', so valid L/W symmetric entries will be treated as contradictions.

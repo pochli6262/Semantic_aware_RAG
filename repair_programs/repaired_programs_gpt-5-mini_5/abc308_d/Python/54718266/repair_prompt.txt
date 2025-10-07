@@ -1,0 +1,230 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 400 points
+
+### Problem Statement
+
+We have a grid with H horizontal rows and W vertical columns.
+We denote by (i,j) the cell at the i-th row from the top and j-th column from the left.
+Each cell in the grid has a lowercase English letter written on it. The letter written on (i,j) equals the j-th character of a given string S\_i.
+
+Snuke will repeat moving to an adjacent cell sharing a side to travel from (1,1) to (H,W).
+Determine if there is a path
+in which the letters written on the visited cells (including initial (1,1) and final (H,W)) are
+`s` \rightarrow `n` \rightarrow `u` \rightarrow `k`
+\rightarrow `e` \rightarrow `s` \rightarrow `n` \rightarrow \dots, in the order of visiting.
+Here, a cell (i\_1,j\_1) is said to be an adjacent cell of (i\_2,j\_2) sharing a side if and only if |i\_1-i\_2|+|j\_1-j\_2| = 1.
+
+Formally, determine if there is a sequence of cells ((i\_1,j\_1),(i\_2,j\_2),\dots,(i\_k,j\_k)) such that:
+
+* (i\_1,j\_1) = (1,1),(i\_k,j\_k) = (H,W);
+* (i\_{t+1},j\_{t+1}) is an adjacent cell of (i\_t,j\_t) sharing a side, for all t\ (1 \leq t < k); and
+* the letter written on (i\_t,j\_t) coincides with the (((t-1) \bmod 5) + 1)-th character of `snuke`, for all t\ (1 \leq t \leq k).
+
+### Constraints
+
+* 2\leq H,W \leq 500
+* H and W are integers.
+* S\_i is a string of length W consisting of lowercase English letters.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+H W
+S_1
+S_2
+\vdots
+S_H
+```
+
+### Output
+
+Print `Yes` if there is a path satisfying the conditions in the problem statement; print `No` otherwise.
+
+---
+
+### Sample Input 1
+
+```
+2 3
+sns
+euk
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The path (1,1) \rightarrow (1,2) \rightarrow (2,2) \rightarrow (2,3) satisfies the conditions
+because they have `s` \rightarrow `n` \rightarrow `u` \rightarrow `k` written on them, in the order of visiting.
+
+---
+
+### Sample Input 2
+
+```
+2 2
+ab
+cd
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+---
+
+### Sample Input 3
+
+```
+5 7
+skunsek
+nukesnu
+ukeseku
+nsnnesn
+uekukku
+```
+
+### Sample Output 3
+
+```
+Yes
+```
+
+## Your Analysis (1-sentence bug summary)
+The final condition mistakenly checks grid[h][w] (a character) instead of the visited flag bool[h][w], so the program can print "Yes" incorrectly.
+
+## Buggy Program
+h,w=map(int,input().split())
+grid=[['.' for _ in range(w+2)]]
+for _ in range(h):
+    tmp=list(input())
+    grid.append(['.']+tmp+['.'])
+grid.append(['.' for _ in range(w+2)])
+
+if grid[1][1]!='s':
+    print('No')
+else:
+    bool=[[False for _ in range(w+2)] for __ in range(h+2)]
+    bool[1][1]=True
+    box=[(1,1)]
+    direction=[(-1,0),(1,0),(0,-1),(0,1)]
+    d=dict()
+    tmp=['s','n','u','k','e','s']
+    for i in range(5):
+        d[tmp[i]]=tmp[i+1]
+    
+    while len(box)>0:
+        H,W=box.pop()
+        for dh, dw in direction:
+            if bool[H+dh][W+dw]==False and grid[H+dh][W+dw]==d[grid[H][W]]:
+                bool[H+dh][W+dw]=True
+                box.append((H+dh,W+dw))
+
+    if grid[h][w]:
+        print('Yes')
+    else:
+        print('No')
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -44,7 +44,7 @@
+     elif flg:
+       S[h][w] = "*"
+     h += 1
+-  h = 0
++  h = H-1
+   flg = False
+   while h >= 0:
+     if S[h][w] not in ("*", "."):
+
+### Diff 2
+--- 
++++ 
+@@ -10,7 +10,7 @@
+ for k in range(4):
+   for i in range(7-2*k):
+     for j in range(7-2*k):
+-      if s[i+k+1][j]=="#" and s[i][j+k+1]=="#" and s[i+1][j+2*(k+1)]=="#" and s[i+2*(k+1)][j+k+1]=="#":
++      if s[i+k+1][j]=="#" and s[i][j+k+1]=="#" and s[i+k+1][j+2*(k+1)]=="#" and s[i+2*(k+1)][j+k+1]=="#":
+         ans+=1
+ for i in range(6):
+   for j in range(6):
+
+### Diff 3
+--- 
++++ 
+@@ -22,7 +22,7 @@
+     gi = h - 1 - gi
+     S = T
+ 
+-if sj > gj:
++if (sj > gj) or (sj == gj == 1):
+     T = [[""] * w for _ in range(h)]
+     for i in range(h):
+         for j in range(w):
+@@ -30,6 +30,8 @@
+     sj = w - 1 - sj
+     gj = w - 1 - gj
+     S = T
++
++
+ 
+ rb = [[0] * w for _ in range(h)]
+ 
+
+### Diff 4
+--- 
++++ 
+@@ -11,7 +11,7 @@
+     d.append(a-b)
+     s-=b
+ 
+-if s<=0:
++if s<0:
+   print("No")
+   exit()
+ 
+
+### Diff 5
+--- 
++++ 
+@@ -1,5 +1,4 @@
+ N = [0]*9
+-print()
+ for i in range(9):
+   l = list(map(int,input().split()))
+   if len(set(l))<9:
+@@ -21,7 +20,6 @@
+     b|=set(N[3*i+j][3:6])
+     c|=set(N[3*i+j][-3:])
+   if len(a)<9 or len(b)<9 or len(c)<9:
+-    print(i,a,b,c)
+     print("No")
+     exit()
+   a = set()
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

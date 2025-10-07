@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly returns 'Yes' for any amount n that is 100 or greater, without verifying if it is a multiple of 100 or greater than zero. The correction involves changing the condition to check if n is greater than 0 and if it is a multiple of 100 (n % 100 == 0). This fixes the logic to accurately reflect possible amounts in the purse. The fix was inspired by the concept of verifying valid conditions found in the retrieved diffs, specifically the emphasis on correct condition checks.",
+  "fixed_code": "n=int(input())\n\nif n <= 0 or n % 100 != 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

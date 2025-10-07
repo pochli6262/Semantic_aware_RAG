@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used a fixed range(63), which can cause IndexError if the input list has a different length (or ignore extra bits). The correct behavior is to iterate over the actual length of the input list. I changed the loop to for i in range(len(a)): so the code processes exactly the provided bits.",
+  "fixed_code": "import sys\ninput = lambda: sys.stdin.readline().strip()\n\na = list(map(int, input().split()))\n\nans = 0\nfor i in range(len(a)):\n    if a[i] == 0:\n        continue\n    else:\n        ans += (2 ** i)\nprint(ans)\n"
+}

@@ -1,0 +1,29 @@
+{
+  "task": "abc223_a/Python/45813374",
+  "query_summary": "The likely bug is that the program incorrectly returns \"Yes\" for any amount greater than or equal to 100, without checking whether it is a multiple of 100 or greater than 0.",
+  "oracle_summary": "The buggy code prints \"Yes\" for any n ≥ 100 but should only print \"Yes\" when n is a multiple of 100, missing the n % 100 == 0 check.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly only checks if `n` is greater than or equal to 5, failing to include a condition to also print \"Yes\" when `n` equals 1.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-if n >= 5:\n+if n >= 5 or n == 1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `n` is greater than 5 instead of including the condition that `n` should be equal to 1 or greater than 4 to return \"Yes\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n import math\n n=int(input())\n-if n>5:\n+if n>4 or n==1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the input number is greater than 2 instead of verifying if it falls within the range of 2 to 4, leading to incorrect outputs.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,3 @@\n n = int(input())\n-print(\"Yes\" if n > 2 else \"No\")\n+\n+print(\"No\" if 2 <= n <= 4 else \"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly only prints \"Yes\" for values greater than 4, failing to also account for the value of 1, which should also result in \"Yes\".",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-if N > 4:\n+if N > 4 or N == 1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the inequality is incorrectly reversed, leading to an inaccurate comparison between \\( n^2 \\) and \\( 2^n \\).",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-if n**2 > 2**n:\n+if 2**n > n**2:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

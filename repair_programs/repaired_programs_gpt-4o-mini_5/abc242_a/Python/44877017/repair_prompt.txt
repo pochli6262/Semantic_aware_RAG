@@ -1,0 +1,185 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+In a certain programming contest, T-shirts are awarded to participants according to the following rules.
+
+* All participants who ranked A-th or higher get a T-shirt.
+* Additionally, from the participants who ranked between (A+1)-th and B-th (inclusive), C participants chosen uniformly at random get a T-shirt.
+
+There were 1000 participants in this contest, and all of them got different ranks.  
+Iroha-chan, who participated in this contest, ranked X-th.  
+Find the probability that she gets a T-shirt.
+
+### Constraints
+
+* All values in input are integers.
+* 1 \le A < B \le 1000
+* 1 \le C \le B-A
+* 1 \le X \le 1000
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+A B C X
+```
+
+### Output
+
+Print the answer.
+Your output will be considered correct if the absolute or relative error from the judge's answer is at most 10^{−6}.
+
+---
+
+### Sample Input 1
+
+```
+30 500 20 103
+```
+
+### Sample Output 1
+
+```
+0.042553191489
+```
+
+Iroha-chan ranked 103-rd.  
+She will get a T-shirt if she is among the 20 participants chosen uniformly at random from the 470 participants who ranked between 31-st and 500-th, which happens with probability \frac{20}{470}=0.04255319\dots.
+
+---
+
+### Sample Input 2
+
+```
+50 500 100 1
+```
+
+### Sample Output 2
+
+```
+1.000000000000
+```
+
+Iroha-chan ranked 1-st. This time, she is guaranteed to get a T-shirt.
+
+---
+
+### Sample Input 3
+
+```
+1 2 1 1000
+```
+
+### Sample Output 3
+
+```
+0.000000000000
+```
+
+Iroha-chan ranked 1000-th. This time, she will never get a T-shirt.
+
+## Your Analysis (1-sentence bug summary)
+The program incorrectly calculates the probability of receiving a T-shirt for participants ranked between A+1 and B, as it fails to account for the total number of participants eligible for selection.
+
+## Buggy Program
+#!/usr/bin/env python3
+
+import sys
+
+a, b, c, x = map(int, input().split())
+
+res = 0.0
+if x <= a:
+   res = 100.0
+elif x <= b:
+   res = c / (b - a)
+
+print('%.9f' % (res))
+
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -1,6 +1,6 @@
+ def d(a, b, c, x):
+     t = x // (a + c)
+-    return t * (a * b) + (x - ((a + c) * t)) * b
++    return t * (a * b) + min(a, (x - ((a + c) * t))) * b
+ 
+ 
+ A, B, C, D, E, F, X = map(int, input().split())
+
+### Diff 2
+--- 
++++ 
+@@ -51,7 +51,7 @@
+ if a_mod >= d:
+     judge -= d*e
+ else:
+-    judge -= a_mod*f
++    judge -= a_mod*e
+ 
+ if judge > 0:
+     print('Takahashi')
+
+### Diff 3
+--- 
++++ 
+@@ -31,7 +31,7 @@
+     N = int(input())
+ 
+ if N == 1:
+-    print(1)
++    print("!", 1)
+     exit()
+ x = 0
+ for i in range(1, N):
+
+### Diff 4
+--- 
++++ 
+@@ -7,7 +7,7 @@
+     c = min(x1,x2,x3)
+     b = x1+x2+x3-a-c
+ 
+-    if not(a % 6 == b % 6 == c % 6):
++    if not( (a+b+c)%3==0 and a%2==b%2==c%2):
+         print(-1)
+         continue
+ 
+
+### Diff 5
+--- 
++++ 
+@@ -6,6 +6,8 @@
+ #s = input()
+ x,y,a,b,c = map(int,input().split())
+ def judge(x,y,a,b,c):
++    if (a // x) + (1 if a % x != 0 else 0) + (b // x) + (1 if b % x != 0 else 0) + (c // x) + (1 if c % x != 0 else 0) <= y:
++        return True
+     y -= (a // x) + (1 if a % x != 0 else 0)
+     if y <= 0:
+         return False
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

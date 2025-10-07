@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that the input from the user is being split into four variables, but if the user provides fewer than four inputs, it will raise a ValueError. The issue can be resolved by ensuring that the input is correctly split into four variables. This can be fixed by using 'map' to convert the inputs to integers directly in the unpacking statement.",
+  "fixed_code": "a, b, c, d = map(int, input().split())\nprint((a+b)*(c-d))\nprint('takahashi')"
+}

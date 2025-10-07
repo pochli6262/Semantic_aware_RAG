@@ -1,0 +1,32 @@
+{
+  "task": "abc310_b/Python/45953433",
+  "query_summary": "The bug is using len((fj | fi)) - len(fj) instead of len((fj | fi)) - len(fi) when checking whether I[i] has any additional languages beyond I[j], causing the condition to be evaluated incorrectly.",
+  "oracle_summary": "The bug is using len((fj | fi)) - len(fj) instead of len((fj | fi)) - len(fi) when checking whether I[i] has any additional languages beyond I[j], causing the condition to be evaluated incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not adjust the matrix input values by subtracting 1, which is necessary for the logic that determines the correct sequence and modular conditions.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, M = map(int, input().split())\n-B = [[int(i) for i in input().split()] for _ in range(N)]\n+B = [[int(i) - 1 for i in input().split()] for _ in range(N)]\n \n flg = True\n for i in range(N):"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

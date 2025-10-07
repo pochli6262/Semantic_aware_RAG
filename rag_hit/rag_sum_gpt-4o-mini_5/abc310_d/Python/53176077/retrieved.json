@@ -1,0 +1,31 @@
+{
+  "task": "abc310_d/Python/53176077",
+  "query_summary": "The likely bug is that the program does not properly handle the case where incompatible pairs prevent all players from being assigned to the required number of teams, leading to incorrect calculations of valid team configurations.",
+  "oracle_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks if `N` is greater than or equal to `K-1` instead of `K` in the conditional return statement when `M-K` equals 1.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n table = [2,4,8,6]\n def solve(N, M, K):\n     if M-K == 1:\n-        return 0 if N >= K-1 else pow(2, N, 10)\n+        return 0 if N >= K else table[(N+3)%4]\t# 多分ここがafter_contestに引っかかってる\n     if N >= M:\n \t\t# N<MになるまでNからM-Kを引く操作を高速に行う。\n \t\t# NからN-Mより大きいM-Kの倍数で引く"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the count of players using `player.count==1` instead of using `len(player) == 1`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,8 @@\n     if b in player:\n         player.remove(b)\n \n-if player.count==1:\n+if len(player)==1:\n     print(player[0])\n else:\n     print(-1)\n+    "
+    },
+    {
+      "summary": "The buggy code incorrectly checks the parity of K when determining the output for the case where the deque `T` is empty, leading to potential incorrect results when K is odd or even.",
+      "diff": "--- \n+++ \n@@ -146,7 +146,7 @@\n     T.append([1,j])\n #a\n if len(T)==0:\n-  if K%2==1:\n+  if K%2==0:\n     print(1)\n   else:\n     print(0)"
+    },
+    {
+      "summary": "The buggy code uses an incorrect logical operator in the while loop condition, resulting in an infinite loop instead of terminating when the number of iterations reaches 'n'.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n     ti.add(b)\n     ki=set()\n     x=0\n-    while (not(len(ti)==0))or(x!=n):\n+    while (not(len(ti)==0))and(x!=n):\n         x+=1\n         for i in ti:\n             for j in do:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the `return \"Bob\"` statement is incorrectly indented inside the loop, causing it to potentially return prematurely after only evaluating the first tree node instead of after processing all nodes.",
+      "diff": "--- \n+++ \n@@ -83,7 +83,7 @@\n \t\tif count == 1 and num == 1:\n \t\t\treturn \"Alice\"\n \t\n-\t\treturn \"Bob\"\t\n+\treturn \"Bob\"\t\n \t\t\n def main():\n \tfor _ in range(T):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

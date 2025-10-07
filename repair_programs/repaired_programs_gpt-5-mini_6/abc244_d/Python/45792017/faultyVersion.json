@@ -1,0 +1,4 @@
+{
+  "explanation": "The program read each input line including spaces (e.g. \"R G B\"), so indexing s[i] and t[i] compared spaces rather than the hat letters. I fixed that by normalizing both input strings to remove spaces before the comparison (using ''.join(...split())). This change replaces the single line that initialized cnt so both s and t are corrected in one edit (inspired by the idea of splitting/joining input tokens).",
+  "fixed_code": "s = input()\nt = input()\ns = ''.join(s.split()); t = ''.join(t.split()); cnt = 0\nfor i in range(3):\n    if s[i] != t[i]:\n        cnt += 1\nif cnt == 0:\n    print(\"Yes\")\nelif cnt == 3:\n    if t in s + s:\n        print(\"Yes\")\nelse:\n    print(\"No\")"
+}

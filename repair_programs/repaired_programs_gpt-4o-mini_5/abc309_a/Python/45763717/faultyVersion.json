@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition that checks for adjacency between A and B was incorrect because it used a set comparison instead of logically checking their positions on the board. Specifically, it checked if the set containing A and B is not in a set of pairs, which does not correctly identify their horizontal adjacency. The corrected logic simply checks if the difference between A and B is 1, which aligns with common practices for checking adjacency. This fix is inspired by the change noted in Diff 2, where the adjacency check is simplified and corrected.",
+  "fixed_code": "a,b=map(int,input().split())\nif abs(a-b) == 1:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

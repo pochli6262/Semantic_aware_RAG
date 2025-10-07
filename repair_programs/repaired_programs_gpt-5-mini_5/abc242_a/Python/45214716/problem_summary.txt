@@ -1,0 +1,1 @@
+The program incorrectly uses (b-a+1) as the denominator when computing the random selection probability, but there are B−A candidates between ranks A+1 and B so the denominator should be B−A.

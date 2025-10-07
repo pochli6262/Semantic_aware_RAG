@@ -1,0 +1,4 @@
+{
+  "explanation": "The original print line compared the two membership tests with ==, which is True when both S and T are in A but also True when neither is in A. The intent is to require that both S and T are in the list A, so I replaced the equality comparison with a logical AND so the condition is True only when both membership tests are True.",
+  "fixed_code": "A = [\"RGB\",\"GBR\",\"BRG\"]\n\nS = input()\nT = input()\nprint('Yes' if (S in A) and (T in A) else 'No')"
+}

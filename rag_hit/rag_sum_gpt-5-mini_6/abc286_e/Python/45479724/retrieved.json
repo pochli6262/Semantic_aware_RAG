@@ -1,0 +1,31 @@
+{
+  "task": "abc286_e/Python/45479724",
+  "query_summary": "The tie-breaker uses min(...) for equal-length routes, so the code picks the smaller souvenir total instead of maximizing the total (it should use max).",
+  "oracle_summary": "On ties in path length during the Floyd–Warshall relaxation, the buggy code picks the minimum accumulated value (using min) instead of the required maximum (using max).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates from `0` to `am` instead of `0` to `am+1`, which leads to missing the last possible iteration for `am`, resulting in an incorrect calculation of `ans`.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n         if k[i]<b[i]:\n             return False\n     return True\n-for i in range(am):\n+for i in range(am+1):\n     while check():\n         t+=1\n         if t==bm:"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the minimum cost in the final result calculation by failing to use the `min()` function, resulting in an incorrect answer being printed.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n for i in range(k1+1):\n     if dp[-1][i]>k2 or dp[-1][i]==10**5:\n         continue\n-    ans=i*c1+dp[-1][i]*c2\n+    ans=min(ans,i*c1+dp[-1][i]*c2)\n if ans==10**30:\n     print(-1)\n else:"
+    },
+    {
+      "summary": "The buggy code does not reset the variable `mi` within the inner loops, which leads to incorrect calculations of the minimum value during iterations over the lists `a` and `b`.",
+      "diff": "--- \n+++ \n@@ -13,12 +13,15 @@\n for k,i in enumerate(b):\n     if i!=0:\n         x=q[k]//i\n+        \n         if x <bmax:\n             bmax=x\n+\n mi=10**7\n if amax >bmax:\n     ans=amax\n     for i in range(amax+1)[::-1]:\n+        mi=10**7\n         for k,j in enumerate(a):\n             if b[k]!=0:\n                 y=q[k]-(i*j)\n@@ -32,16 +35,19 @@\n else:\n     ans=bmax\n     for i in range(bmax+1)[::-1]:\n+        mi=10**7\n         for k,j in enumerate(b):\n             if a[k]!=0:\n                 y=q[k]-(i*j)\n                 x=y//a[k]\n+                \n             else:\n                 x=10**7\n+            \n             if x<mi:\n                 mi=x\n+                \n         \n         if mi+i>ans:\n             ans=mi+i\n print(ans)\n-        "
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the variable `ans` to an incorrect value of `10**10`, which should be `10**40` to properly compare and find the minimum total.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n total[0]=L[0][0]+L[0][1]\n for i in range(1,n):\n   total[i]=total[i-1]+L[i][0]+L[i][1]\n-ans=10**10\n+ans=10**40\n m=10**10\n for i in range(min(n,x)):\n   num=0"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the sum of R[r-1] and C[c-1] is greater than 5 instead of comparing it to the variable n, which is intended to be the threshold for the comparison.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n ans=\"\"\n for i in range(q):\n     r,c=map(int,input().split())\n-    if R[r-1]+C[c-1]>5:\n+    if R[r-1]+C[c-1]>n:\n         ans+=\"#\"\n     else:\n         ans+=\".\""
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

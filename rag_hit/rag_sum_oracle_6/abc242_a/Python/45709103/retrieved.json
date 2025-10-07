@@ -1,0 +1,33 @@
+{
+  "task": "abc242_a/Python/45709103",
+  "query_summary": "The middle-case condition has an off-by-one error: it uses x > a+1 instead of x >= a+1, incorrectly excluding x == a+1 from the c/(b−a) case.",
+  "oracle_summary": "The middle-case condition has an off-by-one error: it uses x > a+1 instead of x >= a+1, incorrectly excluding x == a+1 from the c/(b−a) case.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for a valid solution by using `(c-a*y1//x1)%b` instead of verifying the congruence condition with `y1 % x1`.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n         y1,y2=y2,y1\n     \n     while x2:x1,y1,x2,y2=x2,y2,x1%x2,(y1-y2*(x1//x2))%b\n-    if (c-a*y1//x1)%b:return (0,0,0)\n+    if y1%x1:return (0,0,0)\n     return (1,y1//x1,(c-a*y1//x1)//b)\n     \n x,y=map(int,input().split())"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b <= x` instead of the correct condition `b < x` to determine the output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n for i in range(n):\n \tb = min(b,d-c[i][0])\n \td = max(d,c[i][1])\n-if b<=x:\n+if b<x:\n \tprint(0)\n else:\n \tprint(b)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for equal remainders, using modulo 6 instead of verifying if the sum is divisible by 3 and if all values are even or odd.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     c = min(x1,x2,x3)\n     b = x1+x2+x3-a-c\n \n-    if not(a % 6 == b % 6 == c % 6):\n+    if not( (a+b+c)%3==0 and a%2==b%2==c%2):\n         print(-1)\n         continue\n "
+    },
+    {
+      "summary": "The buggy code incorrectly iterates `x` from 1 to `d-1` instead of from 1 to `d`, which may lead to missing the case where `x` equals `d` and thus not considering `d` in calculations.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n d=int(input())\n ans=float(\"inf\")\n-for x in range(1,d):\n+for x in range(1,d+1):\n     if x**2-d>=0:\n         ans=min(ans,x**2-d)\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the value of `ans` by using the wrong formula, specifically by not properly accounting for `a` in the numerator, leading to an incorrect result.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n a,b=map(int,input().split())\n-ans=(1000*b+5)//a/1000\n+ans=(1000*b+a/2)//a/1000\n print(\"{:.3f}\".format(ans))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

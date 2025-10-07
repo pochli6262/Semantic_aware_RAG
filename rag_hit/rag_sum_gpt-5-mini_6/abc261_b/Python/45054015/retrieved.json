@@ -1,0 +1,31 @@
+{
+  "task": "abc261_b/Python/45054015",
+  "query_summary": "The function returns the misspelled string \"correnct\" instead of \"correct\", causing wrong output when the table is valid.",
+  "oracle_summary": "The buggy version misspells the final return value as \"correnct\" instead of \"correct\", causing incorrect output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly determines the output when the string of characters consists entirely of 'A's by not correctly handling the case when no 'B's are present, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         i += 1\n     while j > 0 and c[j] == 'B':\n         j -= 1\n-    if i - j == 1 and c[-1] == 'B':\n+    if i == j == 0 or (i - j == 1 and c[-1] == 'B'):\n         print('B')\n     else:\n         print('A')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly replaces the second 'T' with 'T' instead of the correct character 'C'.",
+      "diff": "--- \n+++ \n@@ -3,6 +3,6 @@\n   a=list(input())\n   for i in range(m-1):\n     if a[i]=='T' and a[i+1]=='T':\n-      a[i],a[i+1]='P','T'\n+      a[i],a[i+1]='P','C'\n   print(''.join(a))\n   "
+    },
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs \"B\" when the string contains \"B\" but does not account for the presence of \"A\" after \"B\", leading to incorrect results in scenarios where \"A\" appears after \"B\" without explicitly checking whether \"B\" was found.",
+      "diff": "--- \n+++ \n@@ -12,8 +12,7 @@\n     if s[i] == \"A\" and b:\n       flag = False\n   \n-  if(flag):\n+  if(flag and b):\n     print(\"B\")\n   else :\n     print(\"A\")\n-      "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs a space between characters in the last line of output instead of concatenating them without a space.",
+      "diff": "--- \n+++ \n@@ -13,4 +13,4 @@\n         if W - 1 == j:\n             print(ans[i][j])\n         else:\n-            print(ans[i][j],end=\" \")\n+            print(ans[i][j],end=\"\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

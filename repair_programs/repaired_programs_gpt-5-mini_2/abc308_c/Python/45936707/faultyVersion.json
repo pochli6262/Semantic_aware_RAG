@@ -1,0 +1,4 @@
+{
+  "explanation": "The computation of the ratio used the variable name 'sum' in res = a / (sum). Using the explicit expression a + b is clearer and avoids relying on the variable named sum. I replaced the division to compute the ratio directly as a / (a + b). This fixes the incorrect reference and ensures the ratio is computed from the current a and b values.",
+  "fixed_code": "import sys\n\nn = int(input())\nans = []\nfor i in range(1, n + 1):\n\ta, b = map(int, sys.stdin.readline().strip().split())\n\tsum = a + b\n\tres = a / (a + b)\n\tans.append([res, -i])\n\nans.sort(reverse = True)\nfor i in range (0, len(ans)):\n\tprint(-ans[i][1], end = \" \")"
+}

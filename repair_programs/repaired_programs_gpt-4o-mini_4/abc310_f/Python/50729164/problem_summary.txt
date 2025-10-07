@@ -1,0 +1,1 @@
+The likely bug in the program is that it incorrectly uses the modular inverse of `a[i]`, which should not be used in the accumulation of probabilities, leading to inaccurate results.

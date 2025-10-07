@@ -1,0 +1,1 @@
+The code marks neighbor cells as seen before verifying they match the required "snuke" character (and never unmarks them), which incorrectly blocks valid paths from being explored.

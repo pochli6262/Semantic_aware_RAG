@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the index computation for the lower prefix bound: the code wrote max(0, l-k-1)//K+1 which applies max() before the integer division, yielding an incorrect index when l-k-1 is negative. I fixed it by computing the division and +1 first and then applying max, i.e. max(0, (l-k-1)//K+1), so the lower prefix index is correct.",
+  "fixed_code": "N, K = map(int,input().split())\nA=list(map(int,input().split()))\nQ=int(input())\nS = [[0] for i in range(K)]\nfor i in range(N):\n    S[i%K].append(S[i%K][-1]+A[i])\n    \nfor i in range(Q):\n    l, r = map(lambda x:int(x)-1,input().split())\n    s=set()\n    for k in range(K):\n        s.add(S[k][(r-k)//K+1] - S[k][max(0, (l-k-1)//K+1)])\n    if len(s)==1:\n        print('Yes')\n    else:\n        print('No')"
+}

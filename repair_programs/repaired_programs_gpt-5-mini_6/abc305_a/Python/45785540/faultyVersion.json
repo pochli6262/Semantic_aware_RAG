@@ -1,0 +1,4 @@
+{
+  "explanation": "The code printed 0 when n was a multiple of 5 (if n%5 == 0) but should print the position n itself. I replaced the incorrect line print(0) with print(n) so that exact multiples of 5 return their own position. (This is a one-line fix; no other lines changed.)",
+  "fixed_code": "n = int(input())\nif n%5 ==0:\n  print(n)\nelif n % 5 >=3:\n  print(n+5-n%5)\nelse:\n  print(n-n%5)\n"
+}

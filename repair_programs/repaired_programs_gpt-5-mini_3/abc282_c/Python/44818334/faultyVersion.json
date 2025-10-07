@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the line that assembled the final string character-by-character (ans += s[i]). Repeated string concatenation inside a loop is both inefficient and can be error-prone. Replacing that single line with ans = ''.join(s) builds the final string correctly from the modified list of characters in one step. I changed only that one line.",
+  "fixed_code": "n=int(input())\ns=input()\ns=list(s)\ncnt=0\nfor i in range(n):\n    if s[i]=='\"':\n        cnt+=1\n    if s[i]==\",\":\n        if cnt%2==1:\n            s[i]=\".\"\nans=\"\"\nfor i in range(n):\n    ans=''.join(s)\nprint(ans)"
+}

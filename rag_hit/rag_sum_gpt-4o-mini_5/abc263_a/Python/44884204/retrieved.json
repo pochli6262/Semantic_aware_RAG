@@ -1,0 +1,29 @@
+{
+  "task": "abc263_a/Python/44884204",
+  "query_summary": "The bug likely lies in the condition for checking the Full house, which only considers one specific pattern of sorted card values instead of accounting for all valid combinations.",
+  "oracle_summary": "The program only checks for a full house with the triple first and pair last (indices 0–2 and 3–4), missing the symmetric case where the pair comes first and the triple last (indices 0–1 and 2–4).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if a player has exactly two yellow cards to output \"Yes\" instead of checking if they have two or more yellow cards.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     elif c == 2:\n       cards[x] += 2\n     else:\n-      if cards[x] == 2:\n+      if cards[x] >= 2:\n         print('Yes')\n       else:\n         print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate entries in the spawned list using `or not s in spawned`, instead of `or s in spawned`, leading to the acceptance of duplicate card inputs.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n for i in range(n):\n     s = input()\n \n-    if not s[0] in one or not s[1] in two or not s in spawned:\n+    if not s[0] in one or not s[1] in two or s in spawned:\n         print(\"No\")\n         exit(0)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly includes '1' in the set of valid ranks, which leads to accepting invalid card inputs that should be rejected.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[]\n b=['H', 'D', 'C', 'S']\n first = set(b)\n-second = set(['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n+second = set(['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n tmp = set()\n answer = \"Yes\"\n for i in range(n):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the length of each block set, resulting in a failure to properly validate that all blocks contain the required unique values.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n if (\n     all(len(r) == 9 for r in row)\n     and all(len(c) == 9 for c in col)\n-    and all(len(b) == 9 for b in block)\n+    and all(all(len(b) == 9 for b in br) for br in block)\n ):\n     print(\"Yes\")\n else:"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the condition for printing \"Yes\" by failing to account for the case where there are no occurrences of the middle element in the second half of the sorted list.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n         c2+=1\n     else:\n         break\n-if (n+1)//2-c1>c2:\n+if (n+1)//2-c1>c2 or c2==0:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,1 @@
+The program incorrectly adds one to the quotient of A divided by B, which leads to an off-by-one error in the number of attacks needed to deplete the enemy's stamina.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The comparison in the original condition only checks for an exact match between S1 and S2, which would not cover all cases where the inputs signify a contradiction. The logical condition should be checking if S1 and S2 represent two distinct states, so I corrected it to check if either S1 is '.#' and S2 is '#.' or the opposite. This way, it directly evaluates the state of the two inputs correctly.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1 == '.#' and S2 == '#.') or (S1 == '#.' and S2 == '.#'):\n  print('No')\nelse:\n  print('Yes')"
+}

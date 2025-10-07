@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code has a logic bug in the line where the condition checks if `n` is less than or equal to `10**(3 + i) - 1`. This check is meant to determine the range of `n` based on its magnitude in thousands, but it fails to include the values greater than `10**(3 + i) - 1` for the last iteration. The fixed line changes the order of comparison to ensure that we correctly capture all numbers in the desired range up to `10**(4 + i) - 1`. I changed `if n <= 10**(3 + i) - 1:` to `if n < 10**(3 + i):`.",
+  "fixed_code": "n = int(input())\n\nfor i in range(6):\n    if n < 10**(3 + i):\n        print((n // (10**i)) * 10**i)\n        break"
+}

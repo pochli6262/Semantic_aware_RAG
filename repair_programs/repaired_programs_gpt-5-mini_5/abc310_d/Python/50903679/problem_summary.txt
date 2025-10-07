@@ -1,0 +1,1 @@
+The forbidden-pair set only contains each pair in the original (a,b) order but the code checks (S_arr[i], S_arr[j]) which can be in the opposite order, so incompatible pairs may not be detected.

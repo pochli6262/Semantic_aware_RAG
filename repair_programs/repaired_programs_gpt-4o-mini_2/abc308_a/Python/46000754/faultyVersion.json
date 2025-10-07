@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line that checks if the list is sorted is incorrect because it checks the sorted condition for each element in the list and will return 'No' even if only one condition fails. The check for sortedness should be performed after ensuring all other conditions are satisfied. The line has been corrected to check the sorted condition only after ensuring all individual conditions for 'S[i]' are met.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nfor i in range(N):\n    if not(100 <= S[i] <= 675) or S[i] % 25 != 0:\n        print('No')\n        exit()\nif sorted(S) != S:\n    print('No')\nelse:\n    print('Yes')"
+}

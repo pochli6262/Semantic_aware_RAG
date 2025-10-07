@@ -1,0 +1,33 @@
+{
+  "task": "abc288_b/Python/45965822",
+  "query_summary": "The program sorts all N nicknames and then takes the first K, instead of selecting the top K participants (the first K input names) and sorting only those.",
+  "oracle_summary": "It sorts the entire list before slicing instead of slicing the first b elements and then sorting them, thus selecting the globally smallest b strings rather than sorting only the first b inputs.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly sorts the list in ascending order instead of reversing it as intended.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,5 @@\n   i = int(input())\n   a.append(i)\n   if i == 0: break\n-a.sort()\n+a.reverse()\n print(*a,sep='\\n')"
+    },
+    {
+      "summary": "The buggy code unnecessarily sorts the list of integers, which alters the original order and is not required for the problem, leading to an incorrect output when the order of elements matters.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, L, R = map(int, input().split())\n-A = sorted([*map(int, input().split())])\n+A = [*map(int, input().split())]\n \n for a in A:\n     if a <= L:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the final output set before printing, which may lead to the results being displayed in an unsorted manner.",
+      "diff": "--- \n+++ \n@@ -29,4 +29,4 @@\n     j += 1\n     ans.add(-total[i][1])\n \n-print(*ans, sep='\\n')\n+print(*sorted(ans), sep='\\n')"
+    },
+    {
+      "summary": "The problem in the buggy code is that the `S` list is being sorted inside the loop, which prevents it from being sorted correctly after all input entries are added.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,5 @@\n for i in range(N):\n   S[i],C[i] = input().split()\n   C[i] = int(C[i])\n-  S.sort()\n+S.sort()\n print(S[sum(C) % N])"
+    },
+    {
+      "summary": "The buggy code outputs the indices of selected elements in an unsorted order, while the corrected code ensures the output indices are presented in sorted order.",
+      "diff": "--- \n+++ \n@@ -24,4 +24,4 @@\n     Li1.append(CM+1)\n     C[CM] = -10\n \n-print(*set(Li1), sep=\"\\n\")\n+print(*sorted(Li1), sep=\"\\n\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

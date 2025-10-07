@@ -1,0 +1,4 @@
+{
+  "explanation": "The original calculation `print(c/(b-a+1))` incorrectly uses `(b-a+1)` as the denominator, which counts all participants between ranks A and B (inclusive). However, the proper number of participants eligible for random selection would be `B - A`, which only counts those ranked between (A+1) and B (inclusive), as there are exactly B - A participants in that range. This fix is inspired by a common understanding of interval range calculations in submissions. Hence, the correction changes the denominator to `B - A` instead.",
+  "fixed_code": "a,b,c,x=map(int,input().split())\nif a>=x:\n    print(1)\nelif b>=x>a:\n    print(c/(b-a))\nelse:\n    print(0)"
+}

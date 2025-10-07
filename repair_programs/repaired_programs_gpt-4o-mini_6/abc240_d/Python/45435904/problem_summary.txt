@@ -1,0 +1,1 @@
+The likely bug in the program is that it does not properly handle the case where multiple consecutive balls with the same value disappear, as it only checks and pops the last item in the deque without considering the removal of all matching groups.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that if 'X' is not found in the list 'P', the program will exit without any output or indication. To fix this, I added a 'break' statement to handle the case where 'X' is not found and print a message in that situation.",
+  "fixed_code": "N, X = map(int, input().split())\nP = list(map(int, input().split()))\n\nfor i in range(N):\n  if P[i] == X:\n    print(i)\n    break\nelse:\n  print(-1)"
+}

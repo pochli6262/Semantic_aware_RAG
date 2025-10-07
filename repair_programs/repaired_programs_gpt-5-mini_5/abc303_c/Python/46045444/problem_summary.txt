@@ -1,0 +1,1 @@
+Each item dictionary entry is initialized to m instead of 1, which lets a single item be used up to m times instead of only once.

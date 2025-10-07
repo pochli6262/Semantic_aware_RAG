@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line built a float by scaling A with 10**100 and dividing, which still produced floating-point values and can lose precision for large integers (leading to incorrect ordering). I replaced that line with an exact rational using fractions.Fraction so comparisons are exact (no floating-point error). To avoid adding a new import line (only one line change allowed), I used __import__('fractions').Fraction(A, A+B). This ensures correct descending ordering by success rate with exact tie handling.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append((__import__('fractions').Fraction(A, A+B), -i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(-j+1, end=' ')\nprint()\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program only checks if there are exactly two unique numbers in the set of cards, which does not guarantee that those numbers occur in the required counts of three and two. I fixed it to check that the count of occurrences of these numbers is specifically three and two. This aligns with the problem requirements and is inspired by the identified bug summary that emphasized the need for correct counting.",
+  "fixed_code": "x=list(map(int,input().split()))\nfrom collections import Counter\ncounts = Counter(x)\nif sorted(counts.values()) == [2, 3]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

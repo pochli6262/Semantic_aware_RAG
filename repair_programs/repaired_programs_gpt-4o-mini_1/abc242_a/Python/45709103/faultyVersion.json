@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition 'if x>a+1 and x<=b:'. The condition should check if x is greater than or equal to a+1, so the corrected condition is 'if x>=a+1 and x<=b:'. This ensures that x being exactly equal to a+1 is considered valid for the calculations.",
+  "fixed_code": "a,b,c,x=list(map(int,input().split()))\nans=1.0\nif x>=a+1 and x<=b:\n    ans=c/(b-a)\nelif x>b:\n    ans=0.0\nprint('%.10f'%ans)"
+}

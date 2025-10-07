@@ -1,0 +1,1 @@
+The program reads S and T with spaces (e.g. "R G B") but compares them to compact strings like "RGB", so the membership checks always fail.

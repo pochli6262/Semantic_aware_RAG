@@ -1,0 +1,211 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 400 points
+
+### Problem Statement
+
+We have a grid with H horizontal rows and W vertical columns.
+We denote by (i,j) the cell at the i-th row from the top and j-th column from the left.
+Each cell in the grid has a lowercase English letter written on it. The letter written on (i,j) equals the j-th character of a given string S\_i.
+
+Snuke will repeat moving to an adjacent cell sharing a side to travel from (1,1) to (H,W).
+Determine if there is a path
+in which the letters written on the visited cells (including initial (1,1) and final (H,W)) are
+`s` \rightarrow `n` \rightarrow `u` \rightarrow `k`
+\rightarrow `e` \rightarrow `s` \rightarrow `n` \rightarrow \dots, in the order of visiting.
+Here, a cell (i\_1,j\_1) is said to be an adjacent cell of (i\_2,j\_2) sharing a side if and only if |i\_1-i\_2|+|j\_1-j\_2| = 1.
+
+Formally, determine if there is a sequence of cells ((i\_1,j\_1),(i\_2,j\_2),\dots,(i\_k,j\_k)) such that:
+
+* (i\_1,j\_1) = (1,1),(i\_k,j\_k) = (H,W);
+* (i\_{t+1},j\_{t+1}) is an adjacent cell of (i\_t,j\_t) sharing a side, for all t\ (1 \leq t < k); and
+* the letter written on (i\_t,j\_t) coincides with the (((t-1) \bmod 5) + 1)-th character of `snuke`, for all t\ (1 \leq t \leq k).
+
+### Constraints
+
+* 2\leq H,W \leq 500
+* H and W are integers.
+* S\_i is a string of length W consisting of lowercase English letters.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+H W
+S_1
+S_2
+\vdots
+S_H
+```
+
+### Output
+
+Print `Yes` if there is a path satisfying the conditions in the problem statement; print `No` otherwise.
+
+---
+
+### Sample Input 1
+
+```
+2 3
+sns
+euk
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The path (1,1) \rightarrow (1,2) \rightarrow (2,2) \rightarrow (2,3) satisfies the conditions
+because they have `s` \rightarrow `n` \rightarrow `u` \rightarrow `k` written on them, in the order of visiting.
+
+---
+
+### Sample Input 2
+
+```
+2 2
+ab
+cd
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+---
+
+### Sample Input 3
+
+```
+5 7
+skunsek
+nukesnu
+ukeseku
+nsnnesn
+uekukku
+```
+
+### Sample Output 3
+
+```
+Yes
+```
+
+## Your Analysis (1-sentence bug summary)
+The code marks adjacent cells as seen before checking whether their letter matches the next character of "snuke" and never unmarks them (no backtracking), so non-matching visits permanently prune valid paths.
+
+## Buggy Program
+from sys import setrecursionlimit
+H, W = map(int, input().split())
+S = [input() for _ in [0]*H]
+dir = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+setrecursionlimit(300000)
+seen = [[False]*W for _ in [0]*H]
+def func(y, x, p):
+    if y == H-1 and x == W-1:
+        print("Yes")
+        exit()
+
+    for ay, ax in dir:
+        ny, nx = y + ay, x + ax
+        if 0 <= ny < H and 0 <= nx < W:
+            if seen[ny][nx]:    continue
+            seen[ny][nx] = True
+            if S[ny][nx] == "snuke"[p]:
+                func(ny, nx, (p+1)%5)
+    return
+
+if S[0][0] == "s":
+    seen[0][0] = True
+    func(0, 0, 1)
+print("No")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -29,7 +29,7 @@
+ S = input()
+ s = set()
+ if "p" not in S or "d" not in S:
+-    print(S)
++    print("d" * N)
+     exit()
+ idxP = S.index("p")
+ dp = str.maketrans({"d": "p", "p": "d"})
+
+### Diff 2
+--- 
++++ 
+@@ -41,7 +41,7 @@
+     if vis[i] == 0 and cnt < K:
+         dfs(i)
+ 
+-if flg:
++if flg or K==0:
+     print('Yes')
+     print(len(ans))
+     print(*ans)
+
+### Diff 3
+--- 
++++ 
+@@ -12,7 +12,7 @@
+             else:
+                 flag = False
+                 break
+-        if flag and k<=n-k:
++        if flag and k<n-k:
+             print("Yes")
+             return
+     print("No")
+
+### Diff 4
+--- 
++++ 
+@@ -11,7 +11,7 @@
+     d.append(a-b)
+     s-=b
+ 
+-if s<=0:
++if s<0:
+   print("No")
+   exit()
+ 
+
+### Diff 5
+--- 
++++ 
+@@ -18,7 +18,7 @@
+     
+     flg = True
+     for j in range(m):
+-        if j <= m-n or A[j-m+n] == "0":
++        if j < m-n or A[j-m+n] == "0":
+             tmp = 2**(m-j-1)
+             if x + y + tmp == s[i]:
+                 flg = False
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

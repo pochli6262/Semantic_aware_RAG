@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition compared s[i][0] (the first value p of item i) to s[j][1] (the second value c of item j). That was incorrect: the intent is to compare the p values of the two items. I fixed the single line by replacing s[j][1] with s[j][0], so the code now correctly checks p_i >= p_j.",
+  "fixed_code": "n,m=map(int,input().split())\ns=[]\nfor i in range(n):\n  p,c,*f=map(int,input().split())\n  s.append([p,c,f])\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i][0]>=s[j][0] and set(s[j][2])>=set(s[i][2]) \\\n            and (s[i][0]>s[j][0] or set(s[j][2])-set(s[i][2])):\n      print(\"Yes\")\n      exit()\nprint(\"No\")"
+}

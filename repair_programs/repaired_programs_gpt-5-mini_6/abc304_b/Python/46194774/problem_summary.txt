@@ -1,0 +1,1 @@
+The code misses the final case for N in [10^8, 10^9-1] — the else branch does nothing (None) so it fails to print the required truncated value for those large inputs.

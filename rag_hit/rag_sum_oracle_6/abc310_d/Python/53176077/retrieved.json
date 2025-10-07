@@ -1,0 +1,33 @@
+{
+  "task": "abc310_d/Python/53176077",
+  "query_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "oracle_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to correctly manage and manipulate the list indices and sizes for the \"see\" and \"notsee\" lists, leading to potential index errors and incorrect final outputs.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n         see.append(notsee.pop(-1))\n         #print(see)\n     notsee.append(see.pop(0))\n-    print(see)\n+   #print(see)\n    #長さが変わる前に保存\n     for j in range(1, a-prelen):\n         notsee.append(see.pop(-1))"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the index `j` by using the formula `(n - 1 - i + d) % n`, rather than the correct formula `(d - i) % n`, which leads to incorrect pairs being generated.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n     for d in S:\n         for i in range(n):\n             # ズレが異なるパターン同士は重なり合うことはないので、解として追記していく\n-            j = (n - 1 - i + d) % n\n+            j = (d - i) % n\n             ans.append((i+1, j+1))\n     return ans\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it checks the condition involving the variable `ind` incorrectly, leading to incorrect matches being reported based on the wrong index in the output logic.",
+      "diff": "--- \n+++ \n@@ -23,4 +23,4 @@\n for i in range(M):\n     if S[i] != T[i] and S[i] != '?' and T[i] != '?':\n         chk = False\n-    print('Yes' if chk and N - M + i >= ind else 'No')\n+    print('Yes' if chk and i >= ind else 'No')"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates through the list of pairs one element short in the for loop, preventing the last element from being considered in the logic that determines the value of `ans`.",
+      "diff": "--- \n+++ \n@@ -9,11 +9,10 @@\n   ans = n % 2\n else:\n   ans = l[0][0] ^ (n - l[-1][0] - 1)\n-  for i in range(1,len(l) - 1):\n+  for i in range(1,len(l)):\n     if l[i][1] == l[i-1][1]:\n       ans ^= 1\n if ans != 0:\n   print(\"Takahashi\")\n else:\n   print(\"Aoki\")\n-    "
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `if j - a < 0` inside the inner loop, which can lead to missing valid indices in the `sets` and may cause incorrect results.",
+      "diff": "--- \n+++ \n@@ -18,8 +18,6 @@\n \n for i, a in enumerate(A, start=1):\n     for j in range(a % i, N, i):\n-        if j - a < 0:\n-            break\n         sets[j].add((j - a) // i)\n \n for i in range(1, M+1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

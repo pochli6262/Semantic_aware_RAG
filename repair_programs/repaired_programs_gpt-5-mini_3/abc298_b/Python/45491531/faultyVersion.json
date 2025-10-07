@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only tried 3 rotations (90°, 180°, 270°) and never tested the original orientation (0°). By changing the loop to iterate 4 times, the code checks all four possible rotations (including the original after the 4th rotation), ensuring no valid match is missed.",
+  "fixed_code": "#!/usr/bin/env python3\n\n\ndef r(a):\n    a = a[::-1]\n    a = list(map(list, zip(*a)))\n    return a\n\n\nn = int(input())\na = [list(input().split()) for _ in range(n)]\nb = [list(input().split()) for _ in range(n)]\n\nf = True\nfor _ in range(4):\n    a = r(a)\n\n    f = True\n    for al, bl in zip(a, b):\n        for av, bv in zip(al, bl):\n            if av == \"1\":\n                if bv == \"0\":\n                    f = False\n                    break\n        if not f:\n            break\n\n    if f:\n        print(\"Yes\")\n        exit()\nprint(\"No\")\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the condition checking for the last element of the list S. The logic states to print 'T' when T_W is equal to A_W and the last element is 'A', which is incorrect in the context of counting victories. The expression should check if the last element is 'T' instead of 'A' in that specific case to ensure A wins on a tie with T being last.",
+  "fixed_code": "N = int(input())\nS = input().split()\n\nT_W = S.count('T')\nA_W = S.count('A')\nprint(\"T\" if T_W > A_W or (T_W == A_W and S[-1] == \"T\") else \"A\")"
+}

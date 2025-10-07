@@ -1,0 +1,4 @@
+{
+  "explanation": "The original second line used float division and int(...) + 1: int(x/y) + 1. That gives an incorrect off-by-one when x is exactly divisible by y (e.g., x=4, y=2 yields 3 instead of 2) and can be affected by floating-point rounding. I replaced that line with an integer-ceiling division formula (x + y - 1) // y, which computes the correct ceiling of x/y for positive integers using only integer arithmetic. Only that single line was changed.",
+  "fixed_code": "x, y = map(int, input().split())\nprint((x + y - 1) // y)\n"
+}

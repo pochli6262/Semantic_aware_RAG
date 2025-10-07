@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition `if f[j].issuperset(f[i])`. This condition was incorrectly checking whether the set of features of j (the potential superior) is a superset of the features of i (the current one). Instead, it should check whether i's features are a subset of j's features. I changed `issuperset` to `issubset` to fix the logic.",
+  "fixed_code": "n, m = map(int, input().split())\n\np = []\nc = []\nf = []\n\nfor i in range(n):\n    l = list(map(int, input().split()))\n    p.append(l[0])\n    c.append(l[1])\n    f.append(set(l[2:]))\n\nfor i in range(n):\n    for j in range(n):\n        if p[i] >= p[j]:\n            if f[i].issubset(f[j]):\n                print(\"Yes\")\n                exit(0)\n\nprint(\"No\")"
+}

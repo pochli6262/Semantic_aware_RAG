@@ -1,0 +1,1 @@
+The code incorrectly checks "t > i" (the loop index) before subtracting the move cost, instead of checking whether the current time t is greater than the required cost a[i].

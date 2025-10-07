@@ -1,0 +1,4 @@
+{
+  "explanation": "The second loop used the wrong index variable: it referenced S[i] (leftover from the previous loop) instead of S[j], so the code repeatedly checked the same element instead of every element. I fixed that single token by replacing S[i] with S[j] so each element is properly validated.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)\n"
+}

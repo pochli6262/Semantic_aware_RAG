@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only checks specific pairs of numbers for adjacency, which is incorrect as it does not account for the entire layout of the board. The correct condition should check if the difference between B and A is 1 for horizontal adjacency, as inspired by Diff 1.",
+  "fixed_code": "A,B = map(int,input().split())\nif B-A == 1:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc301_e/Python/45949713",
+  "query_summary": "The likely bug is that the program may incorrectly calculate distances or states in the dynamic programming part, potentially leading to returning an incorrect maximum count of candy squares that can be visited before reaching the goal square.",
+  "oracle_summary": "The start coordinates were never updated because of a typo—`s=[i,j]` was used instead of `start=[i,j]`, leaving `start` at its default [0,0] and producing incorrect distances.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the maximum value by skipping the check for unvisited cells (those with `dp[i][h][w] == -1`) during the final maximum search, leading to potentially incorrect results.",
+      "diff": "--- \n+++ \n@@ -29,6 +29,8 @@\n for i in range(trial+1):\n     for h in range(H):\n         for w in range(W):\n+            if dp[i][h][w] == -1:\n+                continue\n             maxv = max(maxv,dp[i][h][w]+A[h][w]*(K-i))\n             \n print(maxv)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value of `hp` passed to the `dfs` function is `0`, which causes the condition `if hp < dic[i]` to always be false for the first node, preventing the correct handling of the health points needed for traversal.",
+      "diff": "--- \n+++ \n@@ -33,5 +33,5 @@\n     for nex in G[i]:\n         dfs(nex,hp-1)\n \n-dfs(0,0)\n+dfs(0,-1)\n print(count)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range of `N` in the last loop where it calculates `ans`, while the correct code should iterate over `N+1` to ensure all elements of `ruiseki_l` and `ruiseki_r` are considered.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+\n class Input_kyopro:\n     def II(self): return int(input())\n     def MI(self): return map( int,input().split())\n@@ -25,8 +26,6 @@\n for i in range(N):\n     ruiseki_r[i+1]=min(ruiseki_r[i+1],ruiseki_r[i])\n ans=float('inf')\n-for i in range(N):\n+for i in range(N+1):\n     ans=min(ans,ruiseki_l[i]+ruiseki_r[-i-1]+s)\n print(ans)\n-\n-    "
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not handle cases where the input `x` exceeds the maximum possible index for `M * N`, which could lead to incorrect values being processed in the `solve` function.",
+      "diff": "--- \n+++ \n@@ -13,6 +13,8 @@\n         return a[i]\n     return a[-1]*((i-1)//N)+a[(i-1)%N+1]\n def solve(x,i):\n+    if x>N*M:\n+        return 0\n     if ruiseki(x)-ruiseki(i)<=K:\n         return 1\n     return 0"
+    },
+    {
+      "summary": "The buggy code mistakenly iterates over the edges of the graph instead of all possible vertices when updating the DP table, which leads to incorrect calculations of the shortest paths.",
+      "diff": "--- \n+++ \n@@ -28,7 +28,7 @@\n     for u in range(n):\n         if s & (1 << u) == 0:\n             continue\n-        for v, w in graph[u]:\n+        for v in range(n):\n             dp[s | (1 << v)][v] = min(dp[s | (1 << v)][v], dp[s][u] + d[u][v])\n \n ans = INF"
+    }
+  ],
+  "useful_diffs_indices": [
+    3
+  ],
+  "useful_diffs_count": 1
+}

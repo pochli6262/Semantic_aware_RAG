@@ -1,0 +1,1 @@
+The bug likely occurs because the program only considers the minimum binary representation of the string by replacing '?' with '0', without appropriately generating all possible combinations for '?' and evaluating their values against N.

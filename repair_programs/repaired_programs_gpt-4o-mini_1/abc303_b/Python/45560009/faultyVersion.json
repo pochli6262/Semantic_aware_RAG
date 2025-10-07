@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where the adjacency matrix 'hunaka' is initialized. The dimensions should be 'n' by 'n' to represent edges between nodes, rather than incorrectly assuming it should just initialize a square matrix. The line should use '[[1] * n for _ in range(m)]' instead of the current initialization. This ensures that the matrix accurately represents connections given the pairs of nodes.",
+  "fixed_code": "n,m = map(int,input().split())\nhunaka = [[1] * n for _ in range(n)]\nfor _ in range(m):\n    a = list(map(int,input().split()))\n    for i in range (len(a) - 1):\n        x,y = a[i],a[i+1]\n        hunaka[x-1][y-1]=0\n        hunaka[y-1][x-1]=0\nans = sum(sum(row) for row in hunaka) - n\nprint(ans/2)"
+}

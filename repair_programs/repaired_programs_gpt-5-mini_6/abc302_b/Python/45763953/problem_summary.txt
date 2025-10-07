@@ -1,0 +1,1 @@
+The right-up diagonal loop uses range(5, h) (an off-by-one) so it skips possible matches that start at row index 4 (zero-based).

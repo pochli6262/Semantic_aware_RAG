@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition `elif s[i] == '0' or t[i] == 'o':` incorrectly checks `t[i] == 'o'` instead of `s[i] == '0' or t[i] == '0'`. This leads to incorrect counting of matching characters between strings s and t. I fixed the condition to check for '0' in both s and t correctly.",
+  "fixed_code": "n = int(input())\ns = input()\nt = input()\n\np = 0\n\nfor i in range(n):\n    if s[i] == '1' or s[i] == 'l':\n        if t[i] == '1' or t[i] == 'l':\n            p += 1\n        \n    elif s[i] == '0' or t[i] == '0':\n        if t[i] == '0' or t[i] == '0':\n            p += 1\n            \n    elif s[i] == t[i]:\n        p += 1\n    \nif p == n:\n    print('Yes')\n    \nelse:\n    print('No')"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line prints 'takahashi' with a lowercase 't' instead of 'Takahashi' with an uppercase 'T'. I fixed this by changing 'takahashi' to 'Takahashi'. This change is inspired by the corresponding diff patterns that highlight the importance of exact string matching for the output.",
+  "fixed_code": "a,b,c,d = input().split()\na = int(a)\nb = int(b)\nc = int(c)\nd = int(d)\n\nprint((a+b)*(c-d))\nprint('Takahashi')"
+}

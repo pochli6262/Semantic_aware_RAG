@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the code is in the condition for adding to 'res' when encountering a '?'. The original code does not check whether adding '1 << (m - 1 - i)' will result in a value less than or equal to 'n'. The check should be changed to allow the addition only if adding a '1' to the binary representation will keep 'res' within the limit of 'n'. Therefore, the correct line should ensure that updating 'res' with this addition doesn't exceed 'n'. This was fixed by changing the line that performs this check.",
+  "fixed_code": "if __name__ == '__main__':\n    s = str(input())\n    n = int(input())\n    m = len(s)\n    res = 0\n    for i in range(m):\n        if s[i] == \"1\":\n            res += (1 << (m - 1 - i))\n    if res > n:\n        res = -1\n    else:\n        for i in range(m - 1, -1, -1):\n            if s[i] == \"?\" and res + (1 << (m - 1 - i)) <= n:\n                res += (1 << (m - 1 - i))\n    print(res)"
+}

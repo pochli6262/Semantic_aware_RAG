@@ -1,0 +1,31 @@
+{
+  "task": "abc302_b/Python/45763953",
+  "query_summary": "The program likely has an issue with correctly handling the conditions for checking diagonals, especially when verifying if the centers of the cells are on a common line at regular intervals.",
+  "oracle_summary": "Off-by-one error in the \"right-up diagonal\" loop: it uses range(5, h) instead of range(4, h), so diagonals starting at row index 4 are never checked.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code occurs in the section where the boundaries are handled, specifically in the logic for managing the coordinates when checking grid positions; this results in invalid index access due to incorrect handling of edge cases when the dimensions of the grid are not properly considered.",
+      "diff": "--- \n+++ \n@@ -168,7 +168,7 @@\n             w*(h-1)-1:w*h-2,}\n \n #テストケースをhackしますごめんなさい\n-if h*w < 1000:\n+if h*w < 200:\n     for j in range(1,w-1):\n         corner[j] = j+1\n     for j in range(w-2,1,-1):"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `mtx` array with values and checks, which leads to incorrect behavior when processing the grid and the union-find operations. Specifically, it mistakenly uses `-1` to indicate a wall instead of correctly identifying the valid points, causing logical errors during union operations and leading to inconsistencies in the final count of connected components.",
+      "diff": "--- \n+++ \n@@ -97,7 +97,7 @@\n for i in range(h):\n     for j in range(w):\n         direction=[(-1,-1), (-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]\n-        if mtx[i*w+j] != -1:\n+        if mtx[i*w+j] == -2:\n             continue\n         for a,b in direction:\n             if  0 <= i+a < h and 0 <= j+b < w:"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the maximum value by skipping the check for unvisited cells (those with `dp[i][h][w] == -1`) during the final maximum search, leading to potentially incorrect results.",
+      "diff": "--- \n+++ \n@@ -29,6 +29,8 @@\n for i in range(trial+1):\n     for h in range(H):\n         for w in range(W):\n+            if dp[i][h][w] == -1:\n+                continue\n             maxv = max(maxv,dp[i][h][w]+A[h][w]*(K-i))\n             \n print(maxv)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it attempts to update the `dp` array based on previous cells without checking if the current cell (`dp[i][j]`) has been reached, potentially leading to incorrect updates for inaccessible paths.",
+      "diff": "--- \n+++ \n@@ -31,6 +31,8 @@\n dp[0][0] = 1\n for i in range(H):\n     for j in range(W):\n+        if dp[i][j] == 0:\n+            continue\n         if j < W - 1 and C[i][j + 1] == \".\":\n             dp[i][j + 1] = max(dp[i][j + 1], dp[i][j] + 1)\n         if i < H - 1 and C[i + 1][j] == \".\":"
+    },
+    {
+      "summary": "The buggy code fails to correctly compute the minimum ANS by checking the condition for updating ANS in the segment comparison, leading to incorrect results due to an improper condition for determining whether the lines defined by points intersect.",
+      "diff": "--- \n+++ \n@@ -79,7 +79,7 @@\n         ANS=min(ANS,b)\n         continue\n \n-    if ((a-c)*(0-b) - (b-d)*(0-a))*((a-c)*(10**100-b) - (b-d)*(10**100-a))<0:\n+    if (a<b and c>d) or (a>b and c<d):\n         ANS=min(ANS,(a*(b-d)/(a-c)-b)/((b-d)/(a-c)-1))\n \n print(1/ANS*(hosei))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

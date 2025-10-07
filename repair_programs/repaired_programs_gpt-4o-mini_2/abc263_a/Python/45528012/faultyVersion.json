@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition checks if either all three of the first three elements are equal and the last two are equal, or if the first three are equal or the last two are equal, which doesn't correctly capture the intended logic of checking for one set of triplets and one pair. The corrected line combines the logical conditions properly.",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif ((a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4])) or ((a[0]==a[1] and a[1]==a[2]) and not (a[3]==a[4])):  \n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

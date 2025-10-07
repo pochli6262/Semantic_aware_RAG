@@ -1,0 +1,32 @@
+{
+  "task": "abc301_d/Python/45732372",
+  "query_summary": "The code mistakenly prints the initial value after replacing '?' (a stray debug print) and never prints the final computed ans, so the program produces incorrect output.",
+  "oracle_summary": "The code prints the initial ans prematurely (before checking if it's > n and before maximizing '?' bits), causing incorrect output order and results.",
+  "retrieved": [
+    {
+      "summary": "The buggy code is missing a necessary indentation level for the `print(ans)` statement, which causes it to be outside the loop and will not print the maximum contiguous count correctly.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n ans = 0\n cnt = 0\n-muji = 0\n+muji = m\n \n for c in s:\n   match c:"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ans` to 1 instead of 0, leading to an incorrect count of iterations in the while loop.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n #入力\n n, m, p = map(int, input().split())\n \n-ans = 1\n+ans = 0\n \n while m <= n:\n     ans += 1"
+    },
+    {
+      "summary": "The problem in the buggy code is that the final output does not apply the modulo operation to the sum of `ans1` and `ans2`, which can lead to incorrect results if this sum exceeds the modulo value.",
+      "diff": "--- \n+++ \n@@ -26,4 +26,4 @@\n     if s[i] == \"?\":\n       ans2 *= 2\n       ans2 %= MOD\n-print(ans1 + ans2)\n+print((ans1 + ans2) % MOD)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to update the maximum count (`ans`) after exiting the loop when a sequence of non-negative characters ends, which leads to an incorrect result if the string does not end with a '-' character.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,7 @@\n     else:\n         if flag == 1:\n             cnt+=1\n+ans=max(ans,cnt)\n flag=0\n cnt=0\n for i in range(n):\n@@ -26,8 +27,8 @@\n     else:\n         if flag == 1:\n             cnt+=1\n+ans=max(ans,cnt)\n if ans == 0:\n     print(-1)\n else:\n     print(ans)\n-    "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly sets `ans` to `3` when it should set it to `1` in the final conditional block, leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -31,6 +31,6 @@\n         else:\n             ans = 1\n     else:\n-        ans = 3\n+        ans = 1\n         \n print('!',ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

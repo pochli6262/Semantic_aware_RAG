@@ -1,0 +1,1 @@
+The program checks the wrong 4-character patterns ('.#.#' and '#.#.') after concatenation instead of the actual diagonal-disconnected patterns ('.##.' and '#..#'), so it misidentifies disconnected diagonal cases.

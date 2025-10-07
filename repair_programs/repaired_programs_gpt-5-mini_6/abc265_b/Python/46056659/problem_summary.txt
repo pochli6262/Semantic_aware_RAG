@@ -1,0 +1,1 @@
+The code uses A[i] > T to check move feasibility, so it incorrectly allows moves that reduce the time to exactly 0, but the problem forbids any move that makes the time limit 0 or less.

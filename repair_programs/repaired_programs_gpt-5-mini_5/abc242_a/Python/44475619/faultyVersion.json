@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed D/C (the reciprocal) instead of C/D when computing the probability for the random selection case. I fixed the single incorrect line by printing C/D so the probability is computed as (number chosen) / (number of eligible participants). This directly addresses the bug; no related diff was needed for this simple arithmetic fix.",
+  "fixed_code": "inp=input().split()\nA=inp[0]\nA=int(A)\nB=inp[1]\nB=int(B)\nC=inp[2]\nC=int(C)\nX=inp[3]\nX=int(X)\nD=B-A\nif A>=X:\n    print(1)\nelif B<X:\n    print(0)\nelse:    \n    print(C/D)\n"
+}

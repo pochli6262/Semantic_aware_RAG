@@ -1,0 +1,4 @@
+{
+  "explanation": "The line t -= sum(a[pos : x - 1]) is incorrect because it assumes x is always ahead of the current position. The islands are arranged in a circle, so when moving from a higher-index island to a lower-index island you must wrap around and include the tail and head segments. I replaced that single line with a conditional expression that subtracts the correct travel cost whether or not wrapping is needed.",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= (sum(a[pos : x - 1]) if pos <= x - 1 else sum(a[pos:]) + sum(a[: x - 1]))\n    if t <= 0:\n        print(\"No\")\n        exit()\n    else:\n        t += y\n        pos = x - 1\nt -= sum(a[pos:])\nif t < 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

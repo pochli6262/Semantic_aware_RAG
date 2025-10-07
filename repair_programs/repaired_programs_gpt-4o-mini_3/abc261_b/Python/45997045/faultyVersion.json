@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition that checks if the characters at a[i][j] and b[i][j] are equal. The intention is to ensure that we skip the comparison if the indices i and j are the same (diagonal). However, the existing condition does not handle the case where both characters are 'D' correctly. Therefore, we need to adjust the logic to ensure we only check if a[i][j] is equal to b[i][j] if they are not the same indices, and if they are not both 'D'.",
+  "fixed_code": "n = int(input())\na = [list(input()) for _ in range(n)]\nb = []\nfor i in range(n):\n  tmp = []\n  for j in range(n):\n    tmp.append(a[j][i])\n  b.append(tmp)\nans = \"correct\"\nfor i in range(n):\n  for j in range(n):\n    if i == j:\n      continue\n    if a[i][j] == b[i][j]:\n      if a[i][j] != 'D':\n        ans = \"incorrect\"\n        break\nprint(ans)"
+}

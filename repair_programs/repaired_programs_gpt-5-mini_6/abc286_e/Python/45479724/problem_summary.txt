@@ -1,0 +1,1 @@
+The tie-breaker uses min(...) for equal-length routes, so the code picks the smaller souvenir total instead of maximizing the total (it should use max).

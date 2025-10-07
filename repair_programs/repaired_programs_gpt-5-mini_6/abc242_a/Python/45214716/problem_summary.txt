@@ -1,0 +1,1 @@
+The program uses (b - a + 1) as the denominator when computing the probability for ranks A+1..B, causing an off-by-one error instead of using (b - a).

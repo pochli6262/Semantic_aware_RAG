@@ -1,0 +1,4 @@
+{
+  "explanation": "The if condition mistakenly repeated the same check and therefore did not test the alternative grouping (two equal at start and three equal at end). I replaced the second part of the OR with the correct check for a[0]==a[1] and a[2]==a[3]==a[4], so the code now correctly detects either a 3-2 or 2-3 grouping after sorting.",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif ((a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4])) or ((a[0]==a[1]) and (a[2]==a[3] and a[3]==a[4])):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

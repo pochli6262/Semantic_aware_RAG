@@ -1,0 +1,1 @@
+The program uses N/2 + 1 as the win threshold (and even special-cases the last index) instead of using ceil(N/2) (e.g., (N+1)//2), so it waits for the wrong number of wins and mishandles tie cases.

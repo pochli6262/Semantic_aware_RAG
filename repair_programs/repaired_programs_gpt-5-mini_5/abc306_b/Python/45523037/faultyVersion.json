@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used range(63) which iterates i = 0..62, so the final element A_63 was never processed (an off-by-one error). I fixed that single line to iterate through all 64 indices by using range(64).",
+  "fixed_code": "import sys\ninput = lambda: sys.stdin.readline().strip()\n\na = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n    if a[i] == 0:\n        continue\n    else:\n        ans += (2 ** i)\nprint(ans)\n"
+}

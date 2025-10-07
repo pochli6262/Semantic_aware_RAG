@@ -1,0 +1,32 @@
+{
+  "task": "abc244_c/Python/45056793",
+  "query_summary": "The program initializes ans as the numbers 1..(n+1) instead of the required range 1..(2n+1), so it omits many legal moves.",
+  "oracle_summary": "The list ans is initialized with numbers 1..n+1 instead of 1..2n+1, making it too small and missing half the required values.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly loops from `N-2` to `1` instead of from `N-1` to `1`, leading to potential index errors and incorrect calculations in the `ans` list.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n for i in map(int, input().split()):\n     ans[i-1] = 0\n-for i in range(N-2, 0, -1):\n+for i in range(N-1, 0, -1):\n     ans[i-1] = min(ans[i-1], ans[i]+1)\n \n print('\\n'.join(map(str, ans)))"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the final value of `ans` by subtracting `n` instead of the square of the integer square root of `n`.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n for i in range(1, int(n**0.5)+1):\n     ans += n//i\n \n-ans = ans*2 - n\n+ans = ans*2 - (int(n**0.5))**2\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly increments each element in the `ans` list by 5 instead of adding `n`, which results in incorrect output.",
+      "diff": "--- \n+++ \n@@ -11,4 +11,4 @@\n for i in range(n):\n     print(*ans)\n     for j in range(n):\n-        ans[j] += 5\n+        ans[j] += n"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of `n-1` repeatedly for each iteration, instead of printing a decreasing sequence from `n-1` down to `0`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,5 @@\n n=int(input())\n for i in range(n):\n-  print(n-1)\n+    print(n-i)\n+\n print(0)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly appends the range (n - 1, n - 3) in the first if condition, where it should append (n - 2, n - 2) instead.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     if p[j] != j + 1 and j < n - 2:\n         ind = p.index(j + 1)\n         if ind == n - 1:\n-            ans.append((n - 1, n - 3))\n+            ans.append((n - 2, n - 2))\n             p = p[: n - 3] + [p[n - 1]] + p[n - 3 : n - 1]\n         else:\n             ans.append((ind + 1, j))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    8
+  ],
+  "useful_diffs_count": 2
+}

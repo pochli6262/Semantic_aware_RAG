@@ -1,0 +1,1 @@
+The for-loop uses range(20) and thus omits the i=20 (100 km) water station, causing an off-by-one error and wrong results for positions near 100 km.

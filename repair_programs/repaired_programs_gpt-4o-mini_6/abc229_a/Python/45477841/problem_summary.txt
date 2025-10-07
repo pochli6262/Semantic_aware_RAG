@@ -1,0 +1,1 @@
+The bug likely lies in the incorrect logic used to determine connectivity between black squares, as it only checks one specific case instead of evaluating all possible connections in the grid.

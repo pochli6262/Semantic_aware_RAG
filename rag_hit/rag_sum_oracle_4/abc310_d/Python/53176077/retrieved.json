@@ -1,0 +1,33 @@
+{
+  "task": "abc310_d/Python/53176077",
+  "query_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "oracle_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the parity of K when determining the output for the case where the deque `T` is empty, leading to potential incorrect results when K is odd or even.",
+      "diff": "--- \n+++ \n@@ -146,7 +146,7 @@\n     T.append([1,j])\n #a\n if len(T)==0:\n-  if K%2==1:\n+  if K%2==0:\n     print(1)\n   else:\n     print(0)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the `return \"Bob\"` statement is incorrectly indented inside the loop, causing it to potentially return prematurely after only evaluating the first tree node instead of after processing all nodes.",
+      "diff": "--- \n+++ \n@@ -83,7 +83,7 @@\n \t\tif count == 1 and num == 1:\n \t\t\treturn \"Alice\"\n \t\n-\t\treturn \"Bob\"\t\n+\treturn \"Bob\"\t\n \t\t\n def main():\n \tfor _ in range(T):"
+    },
+    {
+      "summary": "The buggy code does not mark the nodes as visited properly, leading to potential infinite loops or incorrect calculations, because it uses `visited[nex]` instead of `visited[nex] = True`.",
+      "diff": "--- \n+++ \n@@ -35,7 +35,7 @@\n     for nex in A[now]:\n         if visited[nex] == False:\n             stack.append(nex)\n-            visited[nex]\n+            visited[nex] = True\n             ans += T[nex]\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code uses an incorrect logical operator in the while loop condition, resulting in an infinite loop instead of terminating when the number of iterations reaches 'n'.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n     ti.add(b)\n     ki=set()\n     x=0\n-    while (not(len(ti)==0))or(x!=n):\n+    while (not(len(ti)==0))and(x!=n):\n         x+=1\n         for i in ti:\n             for j in do:"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the number of complete cycles that can be taken after the pre-cycle portion, leading to an incorrect result when calculating the answer by using integer division (`//`) instead of the correct expression for the maximum value in the cycle.",
+      "diff": "--- \n+++ \n@@ -40,6 +40,6 @@\n #答えの出力\n ans = 0\n ans +=befS[min(len(befcycle),K)]\n-ans +=aftS[len(aftcycle)]*((K-len(befcycle))//len(aftcycle))\n+ans +=aftS[len(aftcycle)]*(max(K-len(befcycle),0)//len(aftcycle))\n ans +=aftS[max(K-len(befcycle),0)%len(aftcycle)]\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

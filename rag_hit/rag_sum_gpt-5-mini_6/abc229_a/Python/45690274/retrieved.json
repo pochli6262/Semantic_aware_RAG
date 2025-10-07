@@ -1,0 +1,31 @@
+{
+  "task": "abc229_a/Python/45690274",
+  "query_summary": "When there are exactly two black squares that are adjacent, the function prints nothing because there's no else branch to output \"Yes\" (only the diagonal case prints \"No\").",
+  "oracle_summary": "The buggy code lacks the else branch after the diagonal-check, so when black < 3 and that condition is false it produces no output instead of printing \"Yes.\"",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it does not handle the case where the input string has a length of 2 but is not 'oo', incorrectly printing 'Yes' without properly differentiating that case from the valid inputs.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n if (len(s) == 2 and s == 'oo'):\n     print('No')\n     exit()\n-else:\n+elif(len(s) == 2):\n     print('Yes')\n     exit()\n if (len(s) == 1):"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `n` equals 0, failing to print \"No\" for that condition.",
+      "diff": "--- \n+++ \n@@ -3,6 +3,8 @@\n n = int(s)\n if n > 349:\n   print(\"No\")\n+elif n == 0:\n+  print(\"No\")\n elif n == 316:\n   print(\"No\")\n else:"
+    },
+    {
+      "summary": "The buggy code is missing an `else` statement for the second `if` block, which causes it to incorrectly print \"No\" when the second condition is not met, instead of maintaining the proper logic flow.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n if S[0].isupper():\n   if (len(S)>= 2 and S[1:].islower()) or len(S) == 1:\n     print(\"Yes\")\n+  else:\n+    print(\"No\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code fails to handle the special case where the input string is \"BA\", causing it to incorrectly evaluate as \"Yes\" instead of \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n S=input()\n ck=0\n+if S==\"BA\":\n+    exit(print(\"No\"))\n for i in range(N):\n     if S[i]!=S[-1-i]:\n         ck=1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it doesn't stop the execution of the `main()` function after printing \"No\" when it encounters an 'x', leading to the possibility of printing \"Yes\" or \"No\" afterwards inappropriately.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n             ok = True\n         elif s[i] == \"x\":\n             print(\"No\")\n-            break\n+            return\n \n     if ok == True:\n         print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    3
+  ],
+  "useful_diffs_count": 1
+}

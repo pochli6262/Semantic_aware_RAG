@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the program occurs because the line 'T += d[now]' is executed before 'now' is incremented. This causes an index error when 'now' equals N at the end of the loop. The correction is to adjust 'd[now]' to 'd[now - 1]' before incrementing 'now'. This ensures we retrieve the correct value associated with the previous 'now' index.",
+  "fixed_code": "from collections import defaultdict\n\nN, M, T = map(int, input().split())\nA = list(map(int, input().split()))\nXY = [list(map(int, input().split())) for _ in range(M)]\n\nd = defaultdict(int)\nfor x, y in XY:\n    d[x] = y\n\nnow = 1\nwhile now != N:\n    T -= A[now-1]\n    now += 1\n\n    if T < 0:\n        print('No')\n        exit()\n    \n    T += d[now - 1]  # Corrected line\n    # print(T)\n\nprint('Yes')"
+}

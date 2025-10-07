@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the line where the maximum value is calculated for the case when i != 1. The variable 'j' was being used instead of '0' when calculating yl[j]. It should use yl[0] since it is trying to access the initial condition. I fixed this by replacing 'yl[j]' with 'yl[0]' in that specific line.",
+  "fixed_code": "n,m = map(int, input().split())\nxl = list(map(int, input().split()))\ncyl = [list(map(int, input().split())) for _ in range(m)]\nyl = [0] * n  \nfor c,y in cyl:\n    yl[c-1] = y\n\ndp = [[0] * (n) for i in range(n)]\n\nfor i in range(n):\n    if i == 0:\n        dp[i][0] = xl[0] + yl[0]\n    else:\n        for j in range(1,i+1):\n            dp[i][j] = dp[i-1][j-1] + xl[i] + yl[j]\n        if i != 1:\n            dp[i][0] = max(dp[i-2]) + xl[i] + yl[0]\nprint(max(dp[n-1]))"
+}

@@ -1,0 +1,1 @@
+The index math for prefix sums incorrectly uses max(0, l-k-1)//K+1 (clamping before division) so negative (l-k-1) values are handled wrongly and produce incorrect prefix-sum indices.

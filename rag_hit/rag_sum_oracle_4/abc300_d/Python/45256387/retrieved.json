@@ -1,0 +1,29 @@
+{
+  "task": "abc300_d/Python/45256387",
+  "query_summary": "The buggy version hardcodes n = 10**12 instead of reading n from input, so it ignores the intended input value.",
+  "oracle_summary": "The buggy version hardcodes n = 10**12 instead of reading n from input, so it ignores the intended input value.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ng` to `len(li) - 1` instead of `len(li)`, which causes the binary search to skip the last potential index and may lead to an out-of-bounds error.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+\n def enum_primes(n):\n     prime_flag = [1] * (n + 1)\n     prime_flag[0] = 0\n@@ -18,7 +19,7 @@\n for i in range(len(li)):\n     p=li[i]\n     ok=i\n-    ng=len(li)-1\n+    ng=len(li)\n     while ng-ok>1:\n         j=(ok+ng)//2\n         q=li[j]\n@@ -30,3 +31,4 @@\n         ans+=ok-i\n \n print(ans)\n+"
+    },
+    {
+      "summary": "The buggy code fails to include the last prime number in the range by iterating only up to `k+1` instead of `k+2`, resulting in missing prime numbers needed for calculations.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n k = int((n//2) ** (1/3))\n prl[0] = 2\n cur = 1\n-for i in range(3,k+1):\n+for i in range(3,k+2):\n     if pr_jg(i):\n         prl[cur] = i\n         cur += 1"
+    },
+    {
+      "summary": "The buggy code incorrectly assigns values to `li[a]` without considering the maximum value, which can result in losing the highest assignment for that index.",
+      "diff": "--- \n+++ \n@@ -72,7 +72,7 @@\n st=set()\n for i in range(n):\n     a,b=IIS()\n-    li[a]=b\n+    li[a]=max(li[a],b)\n     st.add(b)\n     idx=max(idx,a)\n cnt=[]"
+    },
+    {
+      "summary": "The buggy code does not account for the case when K is even, which can lead to incorrect results since it does not reduce K by a factor of 2 before further calculations.",
+      "diff": "--- \n+++ \n@@ -48,6 +48,8 @@\n     if K%4==0 or K%5==0:\n         print(-1)\n         continue\n+    if K%2==0:\n+        K//=2\n     pk=prime(K)\n     pk[3]+=2\n     l=9*K"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly appends the range (n - 1, n - 3) in the first if condition, where it should append (n - 2, n - 2) instead.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     if p[j] != j + 1 and j < n - 2:\n         ind = p.index(j + 1)\n         if ind == n - 1:\n-            ans.append((n - 1, n - 3))\n+            ans.append((n - 2, n - 2))\n             p = p[: n - 3] + [p[n - 1]] + p[n - 3 : n - 1]\n         else:\n             ans.append((ind + 1, j))"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line `t += v[i]` should be placed after the check to see if there is enough time to move to the next room. This ensures that Takahashi does not use the bonus time before verifying if moving to the next room consumes his remaining time. The fix is inspired by the reasoning in the problem summary, where the time must not be updated before confirming that there is sufficient time to make the move.",
+  "fixed_code": "n,m,t=map(int,input().split())\na=list(map(int,input().split()))\nv=[0]*n\nfor i in range(m):\n  x,y=map(int,input().split())\n  v[x-1]=y\nfor i in range(n-1):\n  if t>0:\n    if t<a[i]:\n      print('No')\n      break\n    t-=a[i]\n    t+=v[i]\n  else:\n    print('No')\n    break\nelse:\n  print('Yes')"
+}

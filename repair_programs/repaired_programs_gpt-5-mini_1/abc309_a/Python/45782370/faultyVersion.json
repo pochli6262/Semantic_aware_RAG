@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line if B in p[A]: can raise a KeyError if A is not a key in the dictionary p (for example if input contains 0 or any other invalid number). I replaced that single line with if B in p.get(A, ()): which uses dict.get to return an empty tuple when A is not present, avoiding the exception and yielding the intended \"No\" result for invalid or non-adjacent inputs.",
+  "fixed_code": "p = {1:(2, 4), 2:(1, 5, 3), 3:(2, 6), 4:(1, 5, 7), 5:(2, 4, 6, 8), 6:(3, 5, 9), 7:(4, 8), 8:(5, 7, 9), 9:(6, 8)}\n\nA, B = map(int, input().split())\n\nif B in p.get(A, ()):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

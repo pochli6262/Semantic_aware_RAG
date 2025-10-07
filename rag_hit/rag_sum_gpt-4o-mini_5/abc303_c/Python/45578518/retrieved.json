@@ -1,0 +1,29 @@
+{
+  "task": "abc303_c/Python/45578518",
+  "query_summary": "The likely bug is that the program does not account for the scenario where Takahashi's health reaches zero and subsequently tries to consume an item on the next move but cannot because he is already considered collapsed.",
+  "oracle_summary": "A leftover debug statement (`print(items)`) produces extra output and thus corrupts the program's expected output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to properly maintain the state of the priority queue used for tracking reachable vertices, as it does not convert the queue to a list before manipulation, leading to incorrect behavior during the state updates.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,7 @@\n \n N = ir()\n P = [[] for _ in range(N)]\n+# 0は原点\n S = [0]\n G = [0]\n potionidx = []\n@@ -48,6 +49,7 @@\n         # k番目の薬をまだ使っていない且つその薬に到達可能\n         if not i & (1<<k) and dp[i][1] & (1<<k):\n             q, potionbit, power = dp[i]\n+            q = list(q)\n             potion = G[potionidx[k]]\n             power *= potion\n             power = min(power, 10**9)"
+    },
+    {
+      "summary": "The buggy code uses an incorrect logical operator in the while loop condition, resulting in an infinite loop instead of terminating when the number of iterations reaches 'n'.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n     ti.add(b)\n     ki=set()\n     x=0\n-    while (not(len(ti)==0))or(x!=n):\n+    while (not(len(ti)==0))and(x!=n):\n         x+=1\n         for i in ti:\n             for j in do:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not account for the scenario where the last element is (t=1, d=0), which prevents correct handling of cases when no attacks are possible just before reaching a certain threshold.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n from bisect import *\n \n n, h = map(int, input().split())\n-td = [tuple(map(int, input().split())) for _ in range(n)]\n+td = [tuple(map(int, input().split())) for _ in range(n)] + [(1, 0)]\n td.sort() # t の小さい順\n \n prod_max = [t * d for t, d in td]"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case where the `diff` list is generated, as it does not account for the scenario where there are no \"Y\" characters in the input string, which could lead to an index error when accessing `y_pos`.",
+      "diff": "--- \n+++ \n@@ -32,8 +32,6 @@\n     res = K\n     s = 0\n     for d in diff:\n-        if d == 0:  # 元々Yが隣り合っている\n-            res += 1\n         s += d\n         if s <= K:\n             res += 1"
+    },
+    {
+      "summary": "The buggy code fails to update the `done` dictionary to mark positions as visited after pushing new items onto the priority queue, which can lead to incorrect results when checking for duplicates.",
+      "diff": "--- \n+++ \n@@ -53,12 +53,12 @@\n     if apos + 1 <= N - 1:\n         if done[apos + 1][bpos] != 1:\n             heappush(que, (A2[apos + 1][0] + B2[bpos][0], apos + 1, bpos, A2[apos + 1][1], B2[bpos][1]))\n+            done[apos + 1][bpos] = 1\n \n     if bpos + 1 <= M - 1:\n         if done[apos][bpos + 1] != 1:\n             heappush(que, (A2[apos][0] + B2[bpos + 1][0], apos, bpos + 1, A2[apos][1], B2[bpos + 1][1]))\n-\n-\n+            done[apos][bpos + 1] = 1\n else:\n     value, _, _, _, _ = heappop(que)\n     print(-value)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

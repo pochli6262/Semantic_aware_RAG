@@ -1,0 +1,33 @@
+{
+  "task": "abc288_e/Python/41523056",
+  "query_summary": "The likely bug is that the cost array is incorrectly initialized and updated, leading to incorrect calculations of the total cost for acquiring the desired items.",
+  "oracle_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses an incorrect value for `INF`, which leads to potential issues when comparing values and affects the logic for determining maximum and second maximum values.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n # cf. https://atcoder.jp/contests/abc345/editorial/9580\n-INF = 10**10\n+INF = 10**15\n \n def solve(n, k, c, v):\n     C1 = [-1]*(k+1) # 最大の価値になる色"
+    },
+    {
+      "summary": "The problem in the buggy code is that the final computation of the answer incorrectly iterates from 0 to `n+1` instead of 0 to `n+2`, leading to an off-by-one error which may generate incorrect results.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n         dp[i][min(x,j)][m] %= mod\n \n ans = 0\n-for j in range(n+1):\n+for j in range(n+2):\n   ans += dp[-1][j][k]\n   ans %= mod\n "
+    },
+    {
+      "summary": "The buggy code incorrectly uses the comparison operator `>` instead of `>=` for price comparison, which may lead to incorrect logic in determining if one item is \"better\" than another.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n             # F\n             F_j = PCF[j][2:PCF[j][1]+2]\n             # すべて満たす条件\n-            if (P_i > P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n+            if (P_i >= P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n                 ans = True # True == 1\n                 # print(i,j,F_i,F_j)\n "
+    },
+    {
+      "summary": "The buggy code fails to apply the modulo operation to the final answer printed, potentially resulting in incorrect output for large values.",
+      "diff": "--- \n+++ \n@@ -99,7 +99,7 @@\n         dp[i][j]%=mod\n for j in range(1,m+1):\n     ans+=(kai[j-1]*dp[m][j]%mod)*pow(n,m-j,mod)%mod\n-print(ans)\n+print(ans%mod)\n \n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` table by setting `dp[0][-1] = 1` instead of `dp[0][m] = 1`, leading to out-of-bounds access and incorrect calculations in the dynamic programming approach.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n         r = max(r, pos[a] + 1)\n \n dp = [[0] * (m + 2) for _ in range(m + 1)]\n-dp[0][-1] = 1\n+dp[0][m] = 1\n for a in range(n - 1, min_aaa, -1):\n     ndp1 = [[0] * (m + 2) for _ in range(m + 1)]  # l が増える方向の累積和\n     ndp2 = [[0] * (m + 2) for _ in range(m + 1)]  # r が減る方向の累積和"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    6,
+    10
+  ],
+  "useful_diffs_count": 3
+}

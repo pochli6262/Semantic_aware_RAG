@@ -1,0 +1,756 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+from collections import deque, defaultdict
+from decimal import Decimal
+from bisect import bisect_left, bisect_right
+from heapq import heapify, heappush, heappop
+from itertools import permutations, combinations
+from random import randrange, choices
+from string import ascii_lowercase, ascii_uppercase
+from os import environ
+from copy import deepcopy
+import math
+import sys
+sys.setrecursionlimit(10000000)
+
+
+class UnionFind():
+    def __init__(self, n):
+        self.n = n
+        self.parents = [-1] * n
+
+    def find(self, x):
+        if self.parents[x] < 0:
+            return x
+        else:
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+
+    def union(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+
+        if x == y:
+            return
+
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+
+    def size(self, x):
+        return -self.parents[self.find(x)]
+
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+
+    def group_count(self):
+        return len(self.roots())
+
+    def all_group_members(self):
+        group_members = defaultdict(list)
+        for member in range(self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+
+    def __str__(self):
+        return '\n'.join(f'{r}: {m}' for r, m in self.all_group_members().items())
+
+
+s = input().split()
+t = input().split()
+
+
+def f(cnt, s0, s1, s2):
+    if cnt == 10:
+        return s0 == s[0] and s1 == s[1] and s2 == s[2]
+    return f(cnt + 1, s1, s0, s2) or f(cnt + 1, s0, s2, s1) or f(cnt + 1, s2, s1, s0)
+
+
+ans = f(0, s[0], s[1], s[2])
+print('Yes') if ans else print('No')
+
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+import sys, math, bisect, heapq, copy, decimal, random, fractions
+from itertools import permutations, combinations, product, accumulate, groupby
+from collections import defaultdict, deque, Counter
+input = lambda: sys.stdin.readline().rstrip()
+sys.setrecursionlimit(10 ** 8)
+"""
+n = int(input())
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+a = [list(map(int, input().split())) for _ in range(n)]
+s = input()
+s = list(input())
+s = [input() for _ in range(n)]
+"""
+class UnionFind():
+    def __init__(self, n):
+        self.n = n
+        self.parents = [-1] * n
+
+    def find(self, x):
+        if self.parents[x] < 0:
+            return x
+        else:
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+
+    def union(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+
+        if x == y:
+            return
+
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+
+    def size(self, x):
+        return -self.parents[self.find(x)]
+
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+
+    def group_count(self):
+        return len(self.roots())
+
+    def all_group_members(self):
+        group_members = defaultdict(list)
+        for member in range(self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+
+    def __str__(self):
+        return '\n'.join(f'{r}: {m}' for r, m in self.all_group_members().items())
+
+##########################
+n, m, q = map(int, input().split())
+E = [list(map(int, input().split())) for _ in range(m)]
+Q = [list(map(int, input().split())) for _ in range(q)]
+
+for i in range(m):
+    E[i][0] -= 1
+    E[i][1] -= 1
+for i in range(q):
+    Q[i][0] -= 1
+    Q[i][1] -= 1
+    Q[i].append(i) #index(3)
+
+uf = UnionFind(n)
+
+E.sort(key=lambda x: x[2])
+Q.sort(key=lambda x: x[2])
+que = deque(Q)
+
+res = [""] * q
+
+for v, w, c in E:
+    while len(que) > 0 and que[0][2] <= c:
+        V, W, C, I = que.popleft()
+
+        if uf.same(V, W):
+            res[I] = "No"
+        else:
+            res[I] = "Yes"
+            
+    uf.union(v, w)
+
+while len(que) > 0:
+    V, W, C, I = que.popleft()
+
+    if uf.same(V, W):
+        res[I] = "No"
+    else:
+        res[I] = "Yes"
+
+print(res)
+exit()
+for i in res: print(i)
+
+
+--- Correct Code ---
+import sys, math, bisect, heapq, copy, decimal, random, fractions
+from itertools import permutations, combinations, product, accumulate, groupby
+from collections import defaultdict, deque, Counter
+input = lambda: sys.stdin.readline().rstrip()
+sys.setrecursionlimit(10 ** 8)
+"""
+n = int(input())
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+a = [list(map(int, input().split())) for _ in range(n)]
+s = input()
+s = list(input())
+s = [input() for _ in range(n)]
+"""
+class UnionFind():
+    def __init__(self, n):
+        self.n = n
+        self.parents = [-1] * n
+
+    def find(self, x):
+        if self.parents[x] < 0:
+            return x
+        else:
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+
+    def union(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+
+        if x == y:
+            return
+
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+
+    def size(self, x):
+        return -self.parents[self.find(x)]
+
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+
+    def group_count(self):
+        return len(self.roots())
+
+    def all_group_members(self):
+        group_members = defaultdict(list)
+        for member in range(self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+
+    def __str__(self):
+        return '\n'.join(f'{r}: {m}' for r, m in self.all_group_members().items())
+
+##########################
+n, m, q = map(int, input().split())
+E = [list(map(int, input().split())) for _ in range(m)]
+Q = [list(map(int, input().split())) for _ in range(q)]
+
+for i in range(m):
+    E[i][0] -= 1
+    E[i][1] -= 1
+for i in range(q):
+    Q[i][0] -= 1
+    Q[i][1] -= 1
+    Q[i].append(i) #index(3)
+
+uf = UnionFind(n)
+
+E.sort(key=lambda x: x[2])
+Q.sort(key=lambda x: x[2])
+que = deque(Q)
+
+res = [""] * q
+
+for v, w, c in E:
+    while len(que) > 0 and que[0][2] <= c:
+        V, W, C, I = que.popleft()
+
+        if uf.same(V, W):
+            res[I] = "No"
+        else:
+            res[I] = "Yes"
+            
+    uf.union(v, w)
+
+while len(que) > 0:
+    V, W, C, I = que.popleft()
+
+    if uf.same(V, W):
+        res[I] = "No"
+    else:
+        res[I] = "Yes"
+
+
+for i in res: print(i)
+
+
+### Example 2
+--- Buggy Code ---
+import sys
+ni = lambda :int(input())
+na = lambda :list(map(int,input().split()))
+yes = lambda :print("yes");Yes = lambda :print("Yes");YES = lambda : print("YES")
+no = lambda :print("no");No = lambda :print("No");NO = lambda : print("NO")
+#######################################################################
+
+from collections import defaultdict
+ 
+class UnionFind():
+    def __init__(self, n):
+        self.n = n
+        self.parents = [-1] * n
+ 
+    def find(self, x):
+        if self.parents[x] < 0:
+            return x
+        else:
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+ 
+    def union(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+ 
+        if x == y:
+            return
+ 
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+ 
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+ 
+    def size(self, x):
+        return -self.parents[self.find(x)]
+ 
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+ 
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+ 
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+ 
+    def group_count(self):
+        return len(self.roots())
+ 
+    def all_group_members(self):
+        group_members = defaultdict(list)
+        for member in range(self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+ 
+    def __str__(self):
+        return '\n'.join(f'{r}: {m}' for r, m in self.all_group_members().items())
+n, m = na()
+e = []
+for i in range(m):
+    u,v = na()
+    u-=1
+    v-=1
+    e.append((u,v))
+
+k = ni()
+x = [i-1 for i in na()]
+xx = [0] * m
+for i in range(k):
+    xx[x[i]] = 1
+uf = UnionFind(n)
+deg = [0] * n
+for i in range(m):
+    u,v = e[i]
+    if xx[i] ^ 1:
+        uf.union(u,v)
+    else:
+        deg[u]^=1
+        deg[v]^=1
+
+
+d = uf.all_group_members()
+ans = 0
+for i in d:
+    r = 0
+    for j in d[i]:
+        r ^= deg[i]
+    #print(d[i], r)
+    ans += r
+if ans <= 2:
+    Yes()
+else:
+    No()
+
+
+--- Correct Code ---
+import sys
+ni = lambda :int(input())
+na = lambda :list(map(int,input().split()))
+yes = lambda :print("yes");Yes = lambda :print("Yes");YES = lambda : print("YES")
+no = lambda :print("no");No = lambda :print("No");NO = lambda : print("NO")
+#######################################################################
+
+from collections import defaultdict
+ 
+class UnionFind():
+    def __init__(self, n):
+        self.n = n
+        self.parents = [-1] * n
+ 
+    def find(self, x):
+        if self.parents[x] < 0:
+            return x
+        else:
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+ 
+    def union(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+ 
+        if x == y:
+            return
+ 
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+ 
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+ 
+    def size(self, x):
+        return -self.parents[self.find(x)]
+ 
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+ 
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+ 
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+ 
+    def group_count(self):
+        return len(self.roots())
+ 
+    def all_group_members(self):
+        group_members = defaultdict(list)
+        for member in range(self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+ 
+    def __str__(self):
+        return '\n'.join(f'{r}: {m}' for r, m in self.all_group_members().items())
+n, m = na()
+e = []
+for i in range(m):
+    u,v = na()
+    u-=1
+    v-=1
+    e.append((u,v))
+
+k = ni()
+x = [i-1 for i in na()]
+xx = [0] * m
+for i in range(k):
+    xx[x[i]] = 1
+uf = UnionFind(n)
+deg = [0] * n
+for i in range(m):
+    u,v = e[i]
+    if xx[i] ^ 1:
+        uf.union(u,v)
+    else:
+        deg[u]^=1
+        deg[v]^=1
+
+
+d = uf.all_group_members()
+ans = 0
+for i in d:
+    r = 0
+    for j in d[i]:
+        r ^= deg[j]
+    #print(d[i], r)
+    ans += r
+if ans <= 2:
+    Yes()
+else:
+    No()
+
+
+### Example 3
+--- Buggy Code ---
+import collections,sys,math,functools,operator,itertools,bisect,heapq,decimal,string,time,random
+#sys.setrecursionlimit(10**9)
+#sys.set_int_max_str_digits(0
+class UnionFind():
+    def __init__(self, n):
+        self.n = n
+        self.parents = [-1] * n
+
+    def find(self, x):
+        if self.parents[x] < 0:
+            return x
+        else:
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+
+    def union(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+
+        if x == y:
+            return
+
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+
+    def size(self, x):
+        return -self.parents[self.find(x)]
+
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+
+    def group_count(self):
+        return len(self.roots())
+
+    def all_group_members(self):
+        group_members = collections.defaultdict(list)
+        for member in range(self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+
+    def __str__(self):
+        return ''.join(f'{r}: {m}' for r, m in self.all_group_members().items())
+input = sys.stdin.readline
+#n = int(input())
+#alist = list(map(int,input().split()))
+#alist = []
+#s = input()
+n,m,k = map(int,input().split())
+if k % 2 == 1:
+    exit(print('No'))
+edge = [[] for i in range(n)]
+uf = UnionFind(n)
+c = collections.defaultdict(int)
+for i in range(m):
+    u,v = map(int,input().split())
+    u-=1
+    v-=1
+    if uf.same(u,v) == True:
+        continue
+    uf.union(u,v)
+    c[(u,v)] = i
+
+    edge[u].append(v)
+    edge[v].append(u)
+#for i in range(n):
+#    alist.append(list(map(int,input().split())))
+ans = []
+lamp = [0 for i in range(n)]
+l = 0
+p = [-1 for i in range(n)]
+for i in range(n):
+    if i != uf.find(i):
+        continue
+    d = collections.deque()
+    d.append(~i)
+    d.append(i)
+    if l == k:
+        break
+    while d:
+        if l == k:
+            break
+        now = d.pop()
+        if now < 0:
+            now = ~now
+            if now == 0:
+                continue
+            if lamp[now] == 0:
+                if l < k:
+                    l -= lamp[now] + lamp[p[now]]
+                    lamp[now] ^= 1
+                    lamp[p[now]] ^= 1
+                    l += lamp[now] + lamp[p[now]]
+                    ans.append((now,p[now]))
+        else:
+            for j in edge[now]:
+                if j == p[now]:
+                    continue
+                p[j] = now
+                d.append(~j)
+                d.append(j)
+if l != k:
+    print('No')
+else:
+    assert sum(lamp) == k
+    print('Yes')
+    print(len(ans))
+    for i,j in ans:
+        print(c[min(i,j),max(i,j)]+1,end=' ')
+
+--- Correct Code ---
+import collections,sys,math,functools,operator,itertools,bisect,heapq,decimal,string,time,random
+#sys.setrecursionlimit(10**9)
+#sys.set_int_max_str_digits(0
+class UnionFind():
+    def __init__(self, n):
+        self.n = n
+        self.parents = [-1] * n
+
+    def find(self, x):
+        if self.parents[x] < 0:
+            return x
+        else:
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+
+    def union(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+
+        if x == y:
+            return
+
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+
+    def size(self, x):
+        return -self.parents[self.find(x)]
+
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+
+    def group_count(self):
+        return len(self.roots())
+
+    def all_group_members(self):
+        group_members = collections.defaultdict(list)
+        for member in range(self.n):
+            group_members[self.find(member)].append(member)
+        return group_members
+
+    def __str__(self):
+        return ''.join(f'{r}: {m}' for r, m in self.all_group_members().items())
+input = sys.stdin.readline
+#n = int(input())
+#alist = list(map(int,input().split()))
+#alist = []
+#s = input()
+n,m,k = map(int,input().split())
+if k % 2 == 1:
+    exit(print('No'))
+edge = [[] for i in range(n)]
+uf = UnionFind(n)
+c = collections.defaultdict(int)
+for i in range(m):
+    u,v = map(int,input().split())
+    u-=1
+    v-=1
+    if uf.same(u,v) == True:
+        continue
+    uf.union(u,v)
+    c[(u,v)] = i
+
+    edge[u].append(v)
+    edge[v].append(u)
+#for i in range(n):
+#    alist.append(list(map(int,input().split())))
+ans = []
+lamp = [0 for i in range(n)]
+l = 0
+p = [-1 for i in range(n)]
+for i in range(n):
+    if i != uf.find(i):
+        continue
+    d = collections.deque()
+    d.append(~i)
+    d.append(i)
+    if l == k:
+        break
+    while d:
+        if l == k:
+            break
+        now = d.pop()
+        if now < 0:
+            now = ~now
+            if now == i:
+                continue
+            if lamp[now] == 0:
+                if l < k:
+                    l -= lamp[now] + lamp[p[now]]
+                    lamp[now] ^= 1
+                    lamp[p[now]] ^= 1
+                    l += lamp[now] + lamp[p[now]]
+                    ans.append((now,p[now]))
+        else:
+            for j in edge[now]:
+                if j == p[now]:
+                    continue
+                p[j] = now
+                d.append(~j)
+                d.append(j)
+if l != k:
+    print('No')
+else:
+    assert sum(lamp) == k
+    print('Yes')
+    print(len(ans))
+    for i,j in ans:
+        print(c[min(i,j),max(i,j)]+1,end=' ')
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

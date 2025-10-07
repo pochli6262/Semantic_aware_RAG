@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition that checks if K has exactly 2 distinct values and accesses K[2] and K[3], which assumes K has at least 4 elements. This can lead to an IndexError if K has less than 4 elements after sorting. The condition should be updated to check that the length of K is at least 4 before accessing K[2] and K[3].",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and len(K) >= 4 and K[2] != K[3]:\n    print('Yes')\nelse:\n    print('No')"
+}

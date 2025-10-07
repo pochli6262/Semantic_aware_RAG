@@ -1,0 +1,4 @@
+{
+  "explanation": "The original conditional allowed abs(a-b) == 3 (and only tried to special-case {3,4} and {6,7}), so numbers that are vertically separated could be mistaken for horizontal neighbors. I replaced that single line with a check that both numbers are on the same row and differ by 1: (a-1)//3 == (b-1)//3 and abs(a-b) == 1. This is inspired by the simpler check B-A == 1 in the retrieved diffs but is more robust by ensuring the two numbers lie in the same row.",
+  "fixed_code": "a,b=map(int,input().split())\nif (a-1)//3 == (b-1)//3 and abs(a-b) == 1:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

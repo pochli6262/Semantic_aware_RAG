@@ -1,0 +1,4 @@
+{
+  "explanation": "The program was incorrectly treating the boundary values 100 and 675 as invalid because it used >= 675 and <= 100. The intended check is that values must lie between 100 and 675 inclusive, so the comparisons should be > 675 or < 100 to mark values outside the allowed range. I changed that single comparison line accordingly.",
+  "fixed_code": "S = list(map(int, input().split()))\nS_sort = S.copy()\nS_sort.sort()\nbad=0\nfor i in range(8):\n    if S==S_sort:\n            if S[i]>675 or S[i]<100:\n                bad+=1\n            else:\n                for j in range(8):\n                    if not S[j]%25==0:\n                        bad+=1\n    else:\n        bad+=1\n    \nif bad==0:\n    print('Yes')\nelse:\n    print('No')"
+}

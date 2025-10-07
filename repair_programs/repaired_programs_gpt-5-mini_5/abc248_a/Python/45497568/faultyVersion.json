@@ -1,0 +1,4 @@
+{
+  "explanation": "The code initialized the set of digits with range(1, 10), which omitted 0. If the input string was missing '0', the program would produce an empty set and print nothing. I fixed that line to use range(10) so the set contains 0–9. (This mirrors the kind of range-start change seen in Diff 4 where the range was adjusted to include 0.)",
+  "fixed_code": "S = input()\nnum = set([i for i in range(10)])\n\nfor s in S:\n    num.discard(int(s))\n\nprint(*num)"
+}

@@ -1,0 +1,35 @@
+{
+  "task": "abc301_b/Python/46199451",
+  "query_summary": "The program prints the Python list representation (with brackets and commas) instead of outputting the numbers as space-separated integers.",
+  "oracle_summary": "The program prints the Python list object (with brackets and commas) instead of outputting the sequence of numbers space-separated, because it uses print(ans_list) instead of print(*ans_list).",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to output the even numbers in a space-separated format, instead printing them as a list.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n for i in range(n):\n   if a[i] % 2 ==0:\n     x.append(a[i])\n-print(x)\n+print(*x,sep = ' ')"
+    },
+    {
+      "summary": "The buggy code fails to format the output as a space-separated string of numbers instead of a default list representation.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n L-=1\n \n A[L:R] = A[L:R][::-1]\n-print(A)\n+print(\" \".join(map(str, A)))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the result list as a single object instead of unpacking the individual elements, resulting in the output being displayed as a list rather than a space-separated string.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     result.append(i)\n for i in range(r + 1, n + 1):\n     result.append(i)\n-print(result)\n+print(*result)"
+    },
+    {
+      "summary": "The buggy code prints the list of indices as a list with brackets, while the correct code prints the indices as space-separated values.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n \tfor j in range(N):\n \t\tif A[j]:\n \t\t\tans.append(j+1)\n-\tprint(ans)\n+\tprint(*ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the list as a single object instead of unpacking its elements, resulting in the output format being incorrect.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n for i in range(1,N):\n   ans.append(S[i]-S[i-1])\n \n-print(ans)\n+print(*ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that when reading the M (x, y) bonus entries the code uses d[x] = y which overwrites any previous bonus for the same x. If multiple bonuses apply to the same city, only the last one is kept. The fix is to accumulate bonuses with d[x] += y so all bonuses at the same city are summed.",
+  "fixed_code": "from collections import defaultdict\n\nN, M, T = map(int, input().split())\nA = list(map(int, input().split()))\nXY = [list(map(int, input().split())) for _ in range(M)]\n\nd = defaultdict(int)\nfor x, y in XY:\n    d[x] += y\n\nnow = 1\nwhile now != N:\n    T -= A[now-1]\n    now += 1\n\n    if T < 0:\n        print('No')\n        exit()\n    \n    T += d[now]\n    # print(T)\n\nprint('Yes')"
+}

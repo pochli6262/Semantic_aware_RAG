@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line `total -= arr[i][1]` does not check if `i` has exceeded the bounds of the `arr` list, leading to potential index errors when the program tries to access an out of range index. To prevent this and ensure that it only accesses valid indices, I added the condition `if i < len(arr)` before attempting to decrease the total. This change aligns with the concept of handling bounds which is reflected in the retrieved diffs, especially Diff 2, which highlights the importance of ensuring that index accesses are validated.",
+  "fixed_code": "N, K = map(int, input().split())\narr = []\ntotal = 0\nfor i in range(N):\n  tmp1, tmp2 = map(int, input().split())\n  arr.append([tmp1,tmp2])\n  total += tmp2\narr.sort()\n\nif total < K:\n  print(1)\n  exit()\n\ni = 0\nwhile 1:\n  if i < len(arr):\n    total -= arr[i][1]\n  if total <= K:\n    print(arr[i][0]+1)\n    exit()\n  i += 1"
+}

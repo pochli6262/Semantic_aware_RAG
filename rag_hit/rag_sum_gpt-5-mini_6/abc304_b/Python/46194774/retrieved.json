@@ -1,0 +1,31 @@
+{
+  "task": "abc304_b/Python/46194774",
+  "query_summary": "The code misses the final case for N in [10^8, 10^9-1] — the else branch does nothing (None) so it fails to print the required truncated value for those large inputs.",
+  "oracle_summary": "The program is missing the conditional branch that handles numbers in the range 10^8 to 10^9−1, so inputs in that range fall through to the else and produce no output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to handle cases where N is between 10 and 41, resulting in those values not producing any output.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n if N < 10:\n   print(\"AGC00\" + str(N))\n+elif 10 <= N < 42:\n+  print(\"AGC0\" + str(N))\n elif N >= 42 :\n   A = N + 1\n   print(\"AGC0\" + str(A))"
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to print the string 'N' repeated N times instead of calculating the correct numerical result represented by N.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n N = int(input())\n-print('N'*N)\n+print((10**N-1)//9*N)"
+    },
+    {
+      "summary": "The bug in the code is that when `N` is less than 42, it incorrectly concatenates '0' in front of `N` instead of formatting it to ensure it has three digits.",
+      "diff": "--- \n+++ \n@@ -3,4 +3,4 @@\n if N >= 42:\n     print(f\"AGC{N + 1:03}\")\n else:\n-    print('AGC' + '0' + str(N))\n+    print(f\"AGC{N:03}\")"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `k` is less than `N` instead of less than or equal to `N`, which may cause it to miss valid outputs.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for i in range(n, 1, -1):\n   k = i **3\n   k_str = str(k)\n-  if (k < N) and (k_str == k_str[::-1]):\n+  if (k <= N) and (k_str == k_str[::-1]):\n     print(k)\n     exit()\n print(1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc261_b/Python/45282531",
+  "query_summary": "The bug likely lies in incorrectly checking for contradictions since it does not account for the cases where one player won and the other lost, or where both players drew, leading to potential false positives in contradiction detection.",
+  "oracle_summary": "It fails to enforce that draws are reciprocal, allowing cases like A[i][j]=='D' and A[j][i] != 'D' (or vice versa) to be considered correct.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints 'No' instead of 'Lose' when the winning conditions are not met.",
+      "diff": "--- \n+++ \n@@ -11,4 +11,4 @@\n if N%2==1:\n   print('Win')\n else:\n-  print('No')\n+  print('Lose')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the comparison in the if statement incorrectly uses the less-than operator instead of the greater-than operator, leading to an erroneous condition for setting the flag to False.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     for w in range(W):\n         for i in range(h+1, H):\n             for j in range(w+1, W):\n-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False\n+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False\n \n if flag : print(\"Yes\")\n else : print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for a vertical bingo by referencing the wrong index (using `boolss[i][n]` instead of `boolss[n][j]`), which results in incorrect vertical bingo detection.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         bingo = True\n     vertical = True\n     for n in range(N):\n-        if boolss[i][n] == False:\n+        if boolss[n][j] == False:\n             vertical = False\n             break\n     if vertical:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the equality operator (`==`) instead of the assignment operator (`=`) to set the value of `check` to `True`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(len(S)-2):\n   count += 1\n   if S[i] == \"A\" and S[i+1] == \"B\" and S[i+2] == \"C\":\n-    check == True\n+    check = True\n     break\n \n if check == True:"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

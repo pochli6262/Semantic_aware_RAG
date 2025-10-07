@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'In=list.index(min(list))' is trying to find the index of the minimum value in the list using the variable name 'In', which is not valid in Python since 'In' should not be capitalized (it may also cause confusion with the keyword 'in'). I corrected it to 'index=min(list)' to use a valid variable name.",
+  "fixed_code": "N=int(input())\nlist=[]\nfor i in range(20):\n  list.append(abs(N-i*5))\nindex=list.index(min(list))\nprint(index*5)"
+}

@@ -1,0 +1,1 @@
+The bug likely lies in the incorrect use of the condition checks that do not adequately separate the validation of the monotonicity from the checks for bounds and multiples of 25.

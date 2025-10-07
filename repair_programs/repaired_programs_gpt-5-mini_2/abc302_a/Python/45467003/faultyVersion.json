@@ -1,0 +1,4 @@
+{
+  "explanation": "The second line always adds 1 to the floor division (A // B), which is incorrect when A is an exact multiple of B. That produces an off-by-one result in those cases. I replaced that line with a correct integer ceiling-division formula (A + B - 1) // B so it only rounds up when there is a nonzero remainder.",
+  "fixed_code": "A, B = map(int, input().split())\n\nprint((A + B - 1) // B)"
+}

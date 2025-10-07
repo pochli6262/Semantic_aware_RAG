@@ -1,0 +1,1 @@
+The bug likely stems from an incorrect conditional check that fails to properly evaluate both conditions when determining if traveling between black squares is impossible.

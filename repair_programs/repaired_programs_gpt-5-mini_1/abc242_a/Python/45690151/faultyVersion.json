@@ -1,0 +1,4 @@
+{
+  "explanation": "The middle branch used c as the numerator (c/(b-a+1)), but the correct numerator is the count of integers in [x, b], which is (b - x + 1). I replaced c with (b - x + 1) so the probability is computed correctly as (b - x + 1)/(b - a + 1).",
+  "fixed_code": "a, b, c, x = map(int, input().split())\nif x <= a:\n    print(1)\nelif a < x <= b:\n    print((b - x + 1)/(b - a + 1))\nelse:\n    print(0)\n"
+}

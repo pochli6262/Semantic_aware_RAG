@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the second for loop where it incorrectly checked the condition 'if not(S[i] % 25 == 0 and 100 <= S[i] <= 675)'. The variable 'i' is used here instead of 'j', causing it to always check the last index from the first loop. The correction involves changing 'i' to 'j' to ensure that each element in the list S is checked properly during the second loop.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)"
+}

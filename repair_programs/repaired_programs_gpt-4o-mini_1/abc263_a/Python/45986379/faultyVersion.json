@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition that checked the sorted list `K` for its length and values. The original code assumes there are at least 4 elements to access K[2] and K[3], which can lead to an IndexError if the length of `K` is less than 4. The corrected line changes the check to ensure that the list has at least 4 elements before accessing those indices.",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and len(K) >= 4 and K[2] != K[3]:\n    print('Yes')\nelse:\n    print('No')"
+}

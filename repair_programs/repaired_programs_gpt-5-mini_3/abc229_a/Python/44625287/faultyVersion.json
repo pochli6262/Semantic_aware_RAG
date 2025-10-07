@@ -1,0 +1,4 @@
+{
+  "explanation": "The if condition was written so that the second operand of the or was a bare string (always truthy), which makes the condition always true and the program always print 'No'. I fixed the condition by comparing S to the second pattern as well (adding the missing `S == '#.#.'`).",
+  "fixed_code": "S = input() + input()\n\nif S == '.#.#' or S == '#.#.':\n    print('No')\nelse:\n    print('Yes')"
+}

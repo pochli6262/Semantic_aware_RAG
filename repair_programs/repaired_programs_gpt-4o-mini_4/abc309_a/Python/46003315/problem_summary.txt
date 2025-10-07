@@ -1,0 +1,1 @@
+The bug likely arises from incorrectly checking the condition for horizontal adjacency by using the wrong indices in the comparison between A and B's coordinates.

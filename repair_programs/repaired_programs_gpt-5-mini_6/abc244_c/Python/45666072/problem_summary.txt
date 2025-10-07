@@ -1,0 +1,1 @@
+The program prints the pop method object instead of calling it (it uses print(num_set.pop, ...) rather than print(num_set.pop(), ...)).

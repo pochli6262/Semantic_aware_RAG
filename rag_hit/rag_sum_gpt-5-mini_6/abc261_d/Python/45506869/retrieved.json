@@ -1,0 +1,32 @@
+{
+  "task": "abc261_d/Python/45506869",
+  "query_summary": "The dp array is initialized with -MOD (−1e9+7) as the sentinel, which is not negative enough so adding X and Y can turn those unreachable entries into large positive values and enable invalid transitions.",
+  "oracle_summary": "The DP table is initialized with -MOD (a finite large negative) instead of -INF, so unreachable states can contribute to transitions and skew the maximum result.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly accumulates values in the `dp` list using addition instead of maximizing the result, leading to incorrect calculations in the dynamic programming solution for the problem.",
+      "diff": "--- \n+++ \n@@ -82,7 +82,7 @@\n     for i in range(1, N+1):\n         for a in A:\n             if i - a >= 0:\n-                dp[i] = a + (i - a) - dp[i-a]\n+                dp[i] = max(dp[i], a + (i - a) - dp[i-a])\n \n     # print(dp)\n     print(dp[-1])"
+    },
+    {
+      "summary": "The bug in the code is that it initializes `dp[0][0]` to 1 instead of `dp[0][D-(1<<-~d)]`, which leads to incorrect state transitions and ultimately incorrect results.",
+      "diff": "--- \n+++ \n@@ -125,7 +125,7 @@\n \n D=1<<(2*d+1)\n dp=[[0]*D for i in range(n+1)]\n-dp[0][0]=1\n+dp[0][D-(1<<-~d)]=1\n for i in range(n):\n     c=a[i]\n     for b in range(D):"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `mod <= B` by not ensuring the printed result is non-negative, leading to potential negative output.",
+      "diff": "--- \n+++ \n@@ -41,5 +41,5 @@\n     q-=1\n     b = q * B\n     if(mod > B):print(b + B)\n-    else:print(b+mod)\n+    else:print(max(0,b+mod))\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that the calculation of the first element in the `dp` array is incorrect, as it uses `X+4*N-11` instead of the correct `X+2*N-8`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n g=lambda:map(int,input().split());N,M=g();P=list(g());D=998244353;f=lambda i:i*i+i;dp=[0,0,1];h=lambda x:pow(max(1,x),-1,D);A=0\n-for m in range(M):a,b,c=dp;X=(N-2)*(N-3)//2+1;dp=[(a*(X+4*N-11)+b*(N-3))%D,(a*4+b*(X+N-2)+c*(2*N-4))%D,(b+c*X)%D]\n+for m in range(M):a,b,c=dp;X=(N-2)*(N-3)//2+1;dp=[(a*(X+2*N-8)+b*(N-3))%D,(a*4+b*(X+N-2)+c*(2*N-4))%D,(b+c*X)%D]\n for i,j in zip(P,P[1:]):s=f(i-1)+f(j-1)+f(N-i)+f(N-j);t=abs(i-j);A=(A+dp[2]*t+dp[1]*(s-t*4)*h(4*N-8)+dp[0]*((N**3-N)//3-s+t*2)*h(N*N-5*N+6))%D\n print(A)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initialization of the DP array at `DP[1+M+1][1+M+1]=-1` should be `DP[1+M][1+M]=-1`.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n \n \n DP[1][1]=1\n-DP[1+M+1][1+M+1]=-1\n+DP[1+M][1+M]=-1\n \n for i in range(1,N+5):\n     for j in range(1,N+5):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    9
+  ],
+  "useful_diffs_count": 2
+}

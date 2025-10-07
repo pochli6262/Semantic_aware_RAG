@@ -1,0 +1,1 @@
+The rotation loop starts at 1 instead of 0, so the code never checks the 0-degree (original) orientation of A.

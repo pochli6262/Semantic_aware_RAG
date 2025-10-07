@@ -1,0 +1,4 @@
+{
+  "explanation": "The program expects the integer n on the first input line and the binary string s on the second. The original code read s first and then tried to convert the next input to int, which fails when the actual first line is the integer. I fixed this by replacing the line that read n so it first converts the already-read s (which actually contains n) to int, then reads the real string s from the next input line. Only that single line was changed.",
+  "fixed_code": "if __name__ == '__main__':\n    s = str(input())\n    n = int(s); s = str(input())\n    m = len(s)\n    res = 0\n    for i in range(m):\n        if s[i] == \"1\":\n            res += (1 << (m - 1 - i))\n    if res > n:\n        res = -1\n    else:\n        for i in range(m - 1, -1, -1):\n            if s[i] == \"?\" and res + (1 << (m - 1 - i)) <= n:\n                res += (1 << (m - 1 - i))\n    print(res)"
+}

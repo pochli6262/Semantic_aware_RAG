@@ -1,0 +1,1 @@
+The bug likely lies in the incorrect logical condition used to check for the combination of three identical cards and two identical cards, leading to false positives for non-Full house sets.

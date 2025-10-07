@@ -1,0 +1,32 @@
+{
+  "task": "abc309_a/Python/45775765",
+  "query_summary": "The program only checks specific pairs of adjacent numbers instead of evaluating all possible horizontal adjacencies on the board.",
+  "oracle_summary": "The code is missing a final else branch to handle cases where (A,B) doesn't match any listed pair, so it fails to print \"No\" for unmatched inputs.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `ok` with pairs starting from (0,1) instead of (1,2), which causes valid input pairs like (1,2) to be excluded.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b = map(int,input().split())\n-ok = [(i,i+1) for i in range(9)]\n+ok = [(i,i+1) for i in range(1,10)]\n ok.append((1,10))\n if (a,b) in ok:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    },
+    {
+      "summary": "The buggy code fails to check if consecutive elements in the same row of the input matrix `b` are exactly 1 apart, which is necessary for the problem's requirements.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,8 @@\n   for j in range(M-1):\n     if ((b[j+1] - 1) % 7) - ((b[j] - 1) % 7) != 1:\n       ans = 'No'\n+    if b[j+1] - b[j] != 1:\n+      ans = 'No'\n   B.append(b)\n \n for i in range(N-1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

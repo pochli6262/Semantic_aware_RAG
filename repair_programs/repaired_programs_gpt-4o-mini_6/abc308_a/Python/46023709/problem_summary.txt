@@ -1,0 +1,1 @@
+The program incorrectly checks the monotonically non-decreasing condition by only comparing each element with the last valid number instead of ensuring all previous elements are also less than or equal to the current element.

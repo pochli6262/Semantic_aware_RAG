@@ -1,0 +1,33 @@
+{
+  "task": "abc235_d/Python/45465231",
+  "query_summary": "The visited/pruning logic uses defaultdict(int) with default 0, so a node that legitimately has count 0 (e.g. the start N) is treated as \"unvisited\" and the di[x] <= cnt check fails, breaking correct pruning.",
+  "oracle_summary": "The buggy code allows rotating x even when its second digit is 0, causing an invalid rotation that drops leading zeros (reduces the digit count), whereas the correct code forbids rotation by checking str(x)[1] == '0'.",
+  "retrieved": [
+    {
+      "summary": "The buggy code is missing the number 123456789 in the candidate list `cand`, which causes it to potentially overlook valid increasing sequences that should be returned for certain values of X.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n             print(i)\n             exit()\n else:\n-    cand = [12345678, 23456789, 76543210, 87654321, 98765432, 876543210, 987654321, 9876543210]\n+    cand = [12345678, 23456789, 76543210, 87654321, 98765432, 876543210, 987654321, 9876543210, 123456789]\n     cand.append(int(s[0] * len(s)))\n     if s[0] == '9':\n         cand.append(int('1' * (len(s) + 1)))"
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `x` is initialized to -1000, which may prevent it from handling larger intervals properly, whereas the correct code sets `x` to a much smaller value (-1e10) to correctly manage larger ranges.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n     P.append((r, l))\n P.sort()\n ans = 0\n-x = -1000\n+x = - 1e10\n for i in range(N):\n     r, l = P[i]\n     if l > x + D - 1:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to check if a node has already been visited before processing it in the first BFS traversal, leading to potential incorrect or duplicate entries in the `ans1` list.",
+      "diff": "--- \n+++ \n@@ -39,6 +39,8 @@\n q.append((-1, 0))\n while q:\n     pre, node = q.pop()\n+    if visited[node] == 1:\n+        continue\n     if pre >= 0:\n         ans1.append((pre + 1, node + 1))\n     visited[node] = 1"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the threshold `h` for counting elements, using `(n+1)//2` instead of the correct formula `(n+2)//2`, which affects the logic for determining if enough elements satisfy the condition.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n # for i in range():\n n=ipt()[0]\n a=ipt()\n-h=(n+1)//2\n+h=(n+2)//2\n import random\n for i in range(30):\n     s=random.randint(0,n-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it updates the `bdic[cnt]` for a given `cnt` based on the current `dp[i + 1]` without checking if the next character in the string (i.e., `s[i + 1]`) is 'B', which may lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -28,7 +28,7 @@\n             dp[i + 1] = min(dp[i + 1], dic[cnt])\n         dp[i + 1] = min(dp[i + 1], bdic[cnt])\n         dic[cnt] = min(dic[cnt], dp[i + 1])\n-        if s[i] == 'B':\n+        if i + 1 < n and s[i + 1] == 'B':\n             bdic[cnt] = min(bdic[cnt], dp[i + 1])\n     print((n - dp[n]) // 3)\n             "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

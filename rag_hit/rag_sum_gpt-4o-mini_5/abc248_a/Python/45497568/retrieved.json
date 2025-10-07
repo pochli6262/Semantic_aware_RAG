@@ -1,0 +1,32 @@
+{
+  "task": "abc248_a/Python/45497568",
+  "query_summary": "The program mistakenly initializes the set of missing digits to include only numbers from 1 to 9 rather than the full range of digits from 0 to 9.",
+  "oracle_summary": "The initial digit set uses range(1,10) instead of range(0,10), omitting 0 so it’s never considered or reported as a missing digit.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for valid input characters by only allowing digits \"1\" to \"9\", instead of including \"0\" in its validation criteria.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = list(input())\n-x = [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n+x = [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n if len(S) != 8:\n     print(\"No\")\n     exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not format the numbers with leading zeros, resulting in mismatches when comparing strings like \"ABC001\" to \"ABC1\".",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     print(\"No\")\n     exit()\n for x in range(1,350):\n-    x=str(x)\n+    x=str(x).zfill(3)\n     num=('ABC'+x)\n     if num==S:\n         print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code has an incorrect upper limit of the range in the for loop, which is 917 instead of the correct value 920, causing it to miss valid numbers that meet the condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n \n-for i in range(N,917):\n+for i in range(N,920):\n     s = str(i)\n     if int(s[0]) * int(s[1]) == int(s[2]):\n         print(i)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `num1` is incorrectly initialized to 1 instead of 0, which causes the algorithm to miss potential square numbers that could match the sorted input string.",
+      "diff": "--- \n+++ \n@@ -4,11 +4,12 @@\n S=list(input())\n S.sort()\n ans=0\n-num1=1\n+num1=0\n num2=N\n for i in S:\n     if i==\"0\":\n         num2-=1\n+\n while len(str(num1**2))<=len(S):\n     s=list(str(num1**2))\n     s.sort()"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for numbers up to 1999 instead of 2000, causing it to potentially miss the case where 2000 is missing from the set.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = set(map(int, input().split()))\n \n-for i in range(2000):\n+for i in range(2001):\n   if i not in A:\n     print(i)\n     break"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

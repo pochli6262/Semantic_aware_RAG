@@ -1,0 +1,1 @@
+The program uses 0-based player indices (now = 0..N-1) while the hate pairs are stored with 1-based input values, so incompatibility checks never match and are effectively ignored.

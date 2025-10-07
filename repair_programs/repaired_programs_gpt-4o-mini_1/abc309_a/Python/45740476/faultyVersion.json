@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug lies in the if condition that checks if 'b' is equal to 'a+1'. If this condition is false, the code will skip the nested if block and directly execute the else statement, which means it will print 'No' even if 'b' could be equal to 'a+1' but 'a' % 3 is not equal to 0. The corrected line checks if 'b' is equal to 'a+1' and only if that condition is true, it should then check the 'a' % 3 condition. Thus, I changed the structure of the if conditions allowing the program to print 'Yes' when 'b' is indeed 'a+1' and 'a' % 3 does not equal 0.",
+  "fixed_code": "a,b=map(int,input().split())\n\nif b==a+1:\n  if a%3!=0:\n    print('Yes')\n  else:\n    print('No')\nelse:\n  print('No')"
+}

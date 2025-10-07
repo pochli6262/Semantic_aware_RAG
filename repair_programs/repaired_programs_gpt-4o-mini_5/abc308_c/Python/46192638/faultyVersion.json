@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculated the success rate by multiplying by -1 and raising the success rate to a higher precision, which caused incorrect sorting. I replaced this line with a direct calculation of success rate without modification, inspired by common practices from the retrieved diffs that highlight the use of straightforward sorting mechanisms.",
+  "fixed_code": "import sys\n\ninput = sys.stdin.readline\n# sys.setrecursionlimit(10**6)\n\ndef main():\n    N = int(input())\n    l = []\n    for i in range(N):\n        a, b = map(int, input().split())\n        l.append((a / (a + b), i + 1))  # Corrected line: no negative multiplication\n    l.sort(reverse=True)  # Sort in descending order based on success rate\n    for i in range(N):\n        print(l[i][1], end=' ')\n    print()\n\nif __name__ == '__main__':\n    main()"
+}

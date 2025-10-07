@@ -1,0 +1,4 @@
+{
+  "explanation": "The code computed the numeric value ans with all '?' set to '0', then greedily turned some '?' into '1' to maximize ans without exceeding n — but it never printed the final updated ans. Instead it printed the initial ans too early. The simplest single-line fix (keeping all other lines identical) is to print the final ans at the end of the function. I replaced the final lone return with print(ans) so the updated value is output after the greedy updates.",
+  "fixed_code": "def solve():\n    s = input()\n\n    n = int(input())\n    ans = int(s.replace('?', '0'), 2)\n    print(ans)\n    if ans > n:\n        print(-1)\n        return\n    m = len(s)\n    for i, c in enumerate(s):\n        if c == '?' and ans + (1 << (m - 1 - i)) <= n:\n            ans += (1 << (m - 1 - i))\n    print(ans)\n\nsolve()"
+}

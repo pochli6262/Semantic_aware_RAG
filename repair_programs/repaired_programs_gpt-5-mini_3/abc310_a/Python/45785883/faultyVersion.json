@@ -1,0 +1,4 @@
+{
+  "explanation": "The conditional expression in the print line was error-prone. It used `b if b < p else p`, which can be confusing about the equality case. The correct and clear intent is to output the smaller of b and p. I replaced the conditional with Python's min(b, p) which directly returns the lesser value and avoids any ambiguity.",
+  "fixed_code": "def getIntMap():\n    return map(int, input().split())\n\n\ndef getIntList():\n    return list(map(int, input().split()))\n\n\ndef main():\n    n, p, q = getIntMap()\n    a = getIntList()\n    b = min([p - q + a[i] for i in range(n)])\n\n    print(min(b, p))\n\n\nif __name__ == \"__main__\":\n    main()"
+}

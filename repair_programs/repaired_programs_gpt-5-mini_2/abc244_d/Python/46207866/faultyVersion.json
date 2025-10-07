@@ -1,0 +1,4 @@
+{
+  "explanation": "The final print line was using cnt%2==0 (even) to decide the answer, but the intended condition is that the number of differing positions should be odd. I fixed that single line to check cnt%2==1 so the program prints \"Yes\" when the count of mismatches is odd and \"No\" otherwise.",
+  "fixed_code": "S1,S2,S3 = input().split()\nT1,T2,T3 = input().split()\ncnt = 0\nif S1 != T1:\n    cnt += 1\nif S2 != T2:\n    cnt += 1\nif S3 != T3:\n    cnt += 1\nprint(\"Yes\" if cnt%2==1 else \"No\")"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc305_a/Python/46193789",
+  "query_summary": "An off-by-one error: the loop uses range(20) so it omits i=20 (the 100 candidate), causing the nearest-multiple-of-5 search to miss that value.",
+  "oracle_summary": "An off-by-one error: the loop uses range(20) so it omits i=20 (the 100 candidate), causing the nearest-multiple-of-5 search to miss that value.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range `N` instead of `1` to `N-1` in the final loop, which leads to potential index out-of-bounds errors and incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n         B.append(B[i-1] + C[i-1])\n \n ans = 10 ** 20\n-for j in range(N):\n+for j in range(1, N):\n     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for missing integers in the input list A only up to N instead of the full range of possible values (0 to 2000), potentially missing valid output values.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(2001):\n     if i not in A:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The buggy code has an incorrect upper limit of the range in the for loop, which is 917 instead of the correct value 920, causing it to miss valid numbers that meet the condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n \n-for i in range(N,917):\n+for i in range(N,920):\n     s = str(i)\n     if int(s[0]) * int(s[1]) == int(s[2]):\n         print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of absolute differences between adjacent elements in the list and does not correctly handle the maximum value to be printed along with the computed sum, resulting in an incorrect output.",
+      "diff": "--- \n+++ \n@@ -2,4 +2,4 @@\n input=lambda:sys.stdin.readline().rstrip()\n N=int(input())\n A=list(map(int,input().split()))\n-print(sum([abs(A[i-1]-A[i]) for i in range(N)])//2)\n+print(max(sum([abs(A[i-1]-A[i]) for i in range(N)])//2,*A))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

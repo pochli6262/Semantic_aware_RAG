@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where we set the variable 'ans' to 'Yes' inside the 'for co in com:' loop. After determining that 'no' is not equal to 1, we should break out of the inner loop instead of changing 'ans' to 'No' and continuing. This way, we can directly check if any pair of consecutive strings differs at exactly one position. The corrected version properly handles the logic for consistently returning 'Yes' or 'No' based on the conditions checked.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.product(S,repeat = N)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n      break\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

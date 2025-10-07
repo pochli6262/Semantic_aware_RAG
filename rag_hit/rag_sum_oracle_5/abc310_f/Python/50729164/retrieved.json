@@ -1,0 +1,35 @@
+{
+  "task": "abc310_f/Python/50729164",
+  "query_summary": "The bug was that the transition for choosing values >10 was omitted — the dp[i+1][bit] += dp[i][bit] * max(0, a[i]-10) * inv term was missing, so contributions from those choices were never added.",
+  "oracle_summary": "The bug was that the transition for choosing values >10 was omitted — the dp[i+1][bit] += dp[i][bit] * max(0, a[i]-10) * inv term was missing, so contributions from those choices were never added.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly updates the last element of the `dp_` array by multiplying `dp[m+1]` with `m` instead of `m+1`, leading to an incorrect final calculation.",
+      "diff": "--- \n+++ \n@@ -37,7 +37,7 @@\n         dp_[i+1] += dp[i]*(m-i)\n         dp_[i+1] %= mod\n         # print(m-i)\n-      dp_[m+1] += dp[m+1]*m\n+      dp_[m+1] += dp[m+1]*(m+1)\n       dp_[m+1] %= mod\n     dp = dp_\n     # print(dp)"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the range in the second loop to `-10` to `9`, which should be `-10` to `10` to properly include all possible sums.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     if -1000 <= ns <= 1000:\n       ndp[ns] += dp[s]\n       ndp[ns] %= MOD\n-  for s in range(-10, 10):\n+  for s in range(-10, 11):\n     if s == 0: continue\n     ns = s + a\n     if -1000 <= ns <= 1000:"
+    },
+    {
+      "summary": "The bug in the code is that it fails to prevent exceeding the bounds of the array `dp` when filling values for cases where `s[i]` is 1, potentially leading to an IndexError or incorrect results, as it does not correctly manage the upper limit for `j`.",
+      "diff": "--- \n+++ \n@@ -37,6 +37,8 @@\n         dp[i+1][n] %= MOD\n     else:\n         for j in range(n):\n+            if j == (m+1):\n+                break\n             dp[i+1][j+1] += dp[i][j]\n     \n     # print(dp)"
+    },
+    {
+      "summary": "The bug in the buggy code is that the inner loop iterates from `mini = 1` to `n`, instead of from `mini = 0` to `n`, which may lead to incorrect index access when updating the `dp` table.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n   ai = a[i]\n   new = [[0]*(n+1) for i in range(k+1)] \n   for j in range(k+1):\n-    for mini in range(1, n+1):\n+    for mini in range(n+1):\n       if mini >= ai and j >= 1:\n         new[j][mini] += dp[j-1][mini]\n       if mini >= ai:"
+    },
+    {
+      "summary": "The bug in the code is in the loop iterating over `diff` for cases where `a` is -1; it should iterate from 0 to `2*D+1` instead of `2*D+2`, which causes it to access out-of-bounds indices in the bitmask representation.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,6 @@\n N,D = map(int, input().split())\n A =[int(i) for i in input().split()]\n+\n \n mod = 998244353\n S = 1<<(2*D+2)\n@@ -21,7 +22,7 @@\n             if s&1==0:\n                 continue\n             t = s>>1\n-            for diff in range(0,2*D+2):\n+            for diff in range(0,2*D+1):\n                 if t>>diff&1:\n                     continue\n                 dp[i+1][t|(1<<diff)] += dp[i][s]"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

@@ -1,0 +1,1 @@
+The code compares success rates using a floating-point expression (-a * 10**100 / (a + b)), which can introduce precision errors (and thus wrong ordering) for large integers instead of using exact integer comparisons.

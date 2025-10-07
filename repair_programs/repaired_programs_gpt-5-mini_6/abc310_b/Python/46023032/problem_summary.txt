@@ -1,0 +1,1 @@
+The code calls product.sort(reverse=True) which sorts by the entire row (including C and function ids) so products with equal price can be reordered incorrectly and valid superior/inferior pairs may be missed.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculates the total number of valid configurations by not properly considering the circular arrangement of the people. The formula used did not account for the fact that adjacent people must have different integers in a circular arrangement. The correct calculations need to use a combinatorial approach, as inspired by the patterns in the retrieved diffs, particularly in the counts related to combinations that avoid adjacent duplicates. Therefore, the variable 'answer' must be replaced with a more proper calculation involving powers and modulo operations. The line is corrected to compute a modified formula correctly reflecting the circular nature of the arrangements.",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nif M == 1 and N > 1:\n    print(0)\nelse:\n    answer = (M - 1) * pow(M, N - 1, mod) % mod\n    print(answer)"
+}

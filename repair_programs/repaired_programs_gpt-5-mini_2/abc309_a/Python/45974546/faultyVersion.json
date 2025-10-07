@@ -1,0 +1,4 @@
+{
+  "explanation": "The code only checked for the exact pair order (R[0] == g[0] and R[1] == g[1]), so inputs where the two nodes are given in the reverse order (e.g. '2 1') were treated as not present. I fixed the single line to check both orders (original and reversed) so the edge is recognized regardless of input order.",
+  "fixed_code": "G = [[1, 2], [2, 3], [4, 5], [5, 6], [7, 8], [8, 9], [1, 4], [4, 7], [2, 5], [5, 8], [3, 6], [6, 9]]\n\nR = list(map(int, input().split()))\n\nflag = False\nfor g in G:\n    if (R[0] == g[0] and R[1] == g[1]) or (R[0] == g[1] and R[1] == g[0]):\n        flag = True\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

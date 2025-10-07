@@ -1,0 +1,1 @@
+The code mistakenly compares s[i][0] (price of i) with s[j][1] (the function count of j) instead of s[j][0] (the price of j), so the price comparison uses the wrong field.

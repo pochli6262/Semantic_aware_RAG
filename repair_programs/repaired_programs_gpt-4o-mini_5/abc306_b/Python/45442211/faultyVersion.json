@@ -1,0 +1,4 @@
+{
+  "explanation": "The original buggy program iterates from 0 to 62, missing the contribution of the last element A[63] to the total sum. This was fixed by changing the loop range to include 63. This adjustment is similar to common fixes found in the retrieved diffs where iterations were adjusted to ensure all necessary elements were processed.",
+  "fixed_code": "A = list(map(int,input().split()))\nS = 0\n\nimport math\n\nfor i in range(64):\n    S = S + A[i]*(pow(2,i))\n    \nprint(S)"
+}

@@ -1,0 +1,1 @@
+The top row is appended to rotate_list twice (there's an extra for i in range(N) loop), so the perimeter list has extra elements and the rotation is computed incorrectly.

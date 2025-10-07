@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition 'if S in A == T in A:' is incorrect because it combines two boolean expressions which leads to unexpected results. The corrected line is 'if S in A and T in A:' which separately checks if both S and T are elements of list A.",
+  "fixed_code": "S=input()\nT=input()\nA=[\"R G B\",\"B R G\",\"G B R\"]\nif S in A and T in A:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

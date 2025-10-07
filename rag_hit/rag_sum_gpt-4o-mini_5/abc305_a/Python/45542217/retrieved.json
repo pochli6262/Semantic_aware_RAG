@@ -1,0 +1,33 @@
+{
+  "task": "abc305_a/Python/45542217",
+  "query_summary": "The likely bug is that the program does not correctly account for when Takahashi is closer to the next water station less than 3 km ahead, potentially leading to incorrect output when N is not an exact multiple of 5.",
+  "oracle_summary": "The code uses the wrong formula for rounding up to the next multiple of 5—it computes N+a-1 instead of N+(5-a), producing an incorrect (off-by-2) result when N%5 == 4.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly increments `N` by 1 when `n` is even, which leads to an incorrect calculation of the condition for outputting \"Yes\" or \"No\".",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if n%2==1:\n       N=n\n     else:\n-      N=n+1\n+      N=n\n     if min(n-a,(N+1)//2)*(n-a)>=b:\n         print(\"Yes\")\n     else:"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly formats the output string for numbers between 10 and 41 by using \"AGC00\" instead of \"AGC0\".",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n elif int(N) <10:\n     print(\"AGC00\"+ N)\n else:\n-    print(\"AGC00\"+ N)\n+    print(\"AGC0\"+ N)"
+    },
+    {
+      "summary": "The problem in the buggy code lies in an incorrect calculation or condition check when trying to adjust the value of K based on the parity of N and other conditions, which may lead to incorrect outputs for some inputs.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n           else:\n             print(K + 1)\n         else:\n-          if (N - 1) & ((K - 1) // 2) == (K - 1) // 2:\n+          if (N - 1) & ((K - 1) // 2 - 1) == (K - 1) // 2 - 1:\n             print(K - 2)\n           else:\n             print(K + 1)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition for 'Takahashi' by using `T > A` instead of the correct condition `T < A`.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   \n if T == A:\n   print('Draw')\n-elif T > A:\n+elif T < A:\n   print('Takahashi')\n else:\n   print('Aoki')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    6
+  ],
+  "useful_diffs_count": 3
+}

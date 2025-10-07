@@ -1,0 +1,31 @@
+{
+  "task": "abc310_b/Python/45742461",
+  "query_summary": "The code mistakenly compares s[i][0] (price of i) with s[j][1] (the function count of j) instead of s[j][0] (the price of j), so the price comparison uses the wrong field.",
+  "oracle_summary": "The bug is a wrong index in the first comparison: the code mistakenly uses s[j][1] (the other item's cost) instead of s[j][0] (the other item's price), so it compares the wrong field.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `s[j]!=\"?\"!=t[j]` instead of `s[j]!=\"?\" and s[j]!=t[j]` when comparing characters, which leads to incorrect results when checking for mismatches.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         ng.add(i)\n print(\"Yes\" if len(ng)==0 else \"No\")\n for j in range(n):\n-    if t[j]!=\"?\" and s[j]!=t[j]:\n+    if s[j]!=t[j] and s[j]!=\"?\"!=t[j]:\n         ng.add(j)\n     else:\n         ng.discard(j)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses the index `i-j` when checking conditions for the points, which leads to an incorrect calculation of whether the configuration of points is valid.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         a=k;b=min(b,k)\n     x=[s[(i+a)%4][0]-s[(i+b)%4][0],s[(i+a)%4][1]-s[(i+b)%4][1]]#0=x[1]*x-x[0]*y+c\n     c=x[0]*s[(i+b)%4][1]-x[1]*s[(i+b)%4][0]\n-    if (x[1]*s[i][0]-x[0]*s[i][1]+c)*(x[1]*s[i-j][0]-x[0]*s[i-j][1]+c)>0:\n+    if (x[1]*s[i][0]-x[0]*s[i][1]+c)*(x[1]*s[(i+j)%4][0]-x[0]*s[(i+j)%4][1]+c)>0:\n       cn+=1\n   if cn==3:\n     exit(print(\"No\"))"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the variable `r`, leading to an incorrect output when `r` equals 0, which should instead be set to 7.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,8 @@\n A = [list(map(int,input().split())) for _ in range(n)]\n start = A[0][0]\n r = start- (start//7)*7\n+if r == 0:\n+  r = 7\n if r+m-1>7:\n   print(\"No\")\n   exit()"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,29 @@
+{
+  "task": "abc309_d/Python/46051654",
+  "query_summary": "The BFS function always enqueues 0 (q.append(0)) instead of the provided start node s, so dfs(s) incorrectly always starts from node 0.",
+  "oracle_summary": "The traversal function enqueues the constant node 0 instead of the provided start node s, so distances are computed from the wrong source.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it uses `q.append((v, 1 - s))` instead of `q.appendleft((v, 1 - s))`, causing the order of processing nodes to be incorrect when switching states.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n     if v in sw:\n         dist[v][1 - s] = dist[v][s]\n         sw.discard(v)\n-        q.append((v, 1 - s))\n+        q.appendleft((v, 1 - s))\n     for to, a in g[v]:\n         if a == s:\n             continue"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses `d.append(j)` instead of `d.appendleft(j)`, which causes the breadth-first search (BFS) to function incorrectly and may lead to incomplete or incorrect distance calculations in the `dist2` array.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n             if dist2[i][j] !=-1:\n                 continue\n             dist2[i][j] =dist2[i][v] +1\n-            d.append(j)\n+            d.appendleft(j)\n q =int(input())\n for _ in range(q):\n     s, t=map(int, input().split())"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `dq.pop()` instead of `dq.popleft()` when dequeuing elements in the BFS implementation, leading to a depth-first traversal instead of the intended breadth-first traversal.",
+      "diff": "--- \n+++ \n@@ -67,7 +67,7 @@\n     dist[sh][sw]=0\n     used[sh][sw]=0\n     while(dq):\n-        nowh,noww=dq.pop()\n+        nowh,noww=dq.popleft()\n         if (nowh,noww)==(gh,gw):\n             break\n         # print(nowh,noww)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the lengths of the deques in `A` only for indices 0 to n-1 instead of 0 to n, potentially leading to missing checks for the deque at index n, which can cause an incorrect output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n     if t==2:\n         A[x].append(i)\n \n-for i in range(n):\n+for i in range(n+1):\n     if len(A[i])>0:\n         print(-1)\n         exit()"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `ans` list with `-1` instead of `0`, leading to incorrect output for unvisited edges.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     edges[b[i]].append((a[i], i))\n \n # DFS\n-ans = [-1] * m\n+ans = [0] * m\n visited = [0] * n\n for root in range(n):\n     if visited[root]:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

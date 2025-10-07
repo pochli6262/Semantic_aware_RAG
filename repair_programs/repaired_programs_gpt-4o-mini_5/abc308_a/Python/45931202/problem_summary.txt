@@ -1,0 +1,1 @@
+The likely bug in the program is that it checks for the conditions in a way that the output could prematurely print "No" before verifying all necessary conditions for all elements in the sequence, particularly the monotonic condition is incorrectly implemented using `>=` instead of `<=`.

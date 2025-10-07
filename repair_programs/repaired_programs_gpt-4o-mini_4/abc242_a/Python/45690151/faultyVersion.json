@@ -1,0 +1,4 @@
+{
+  "explanation": "The line 'print(c/(b-a+1))' incorrectly calculates the probability of Iroha-chan receiving a T-shirt when her rank falls between A-th and B-th. The correct calculation should consider the number of participants eligible for a T-shirt in that range, which is 'b - a'. This inspired the fix, as it emphasizes counting only the ranks from (A+1) to B-th. Thus, the fix updates the line to 'print(c / (b - a))'.",
+  "fixed_code": "a, b, c, x = map(int, input().split())\nif x <= a:\n    print(1)\nelif a < x <= b:\n    print(c / (b - a))\nelse:\n    print(0)"
+}

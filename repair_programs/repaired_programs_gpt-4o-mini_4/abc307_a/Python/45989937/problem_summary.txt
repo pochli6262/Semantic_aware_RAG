@@ -1,0 +1,1 @@
+The likely bug is that the inner loop incorrectly indexes the list by using `s[l+i]` instead of `s[i*7 + l]`, leading to incorrect summation of the steps for each week.

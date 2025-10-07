@@ -1,0 +1,4 @@
+{
+  "explanation": "The error was in the input collection where the second input was taken without considering the possibility of whitespace characters. The program should take the inputs and strip any additional whitespace. Therefore, I changed the line that combines the inputs, ensuring that both inputs are stripped of leading and trailing whitespace.",
+  "fixed_code": "S = input().strip() + input().strip()\n\nif S == '.#.#' or S == '#.#.' :\n    print('No')\nelse:\n    print('Yes')"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'print(C/(B-A))' does not handle the case where B equals A, which can result in a division by zero error. To fix this, I changed the line to 'print(C/(B-A) if B > A else 0.000000000000)' to ensure that it only attempts the division when B is greater than A, otherwise it prints 0.000000000000.",
+  "fixed_code": "A,B,C,X = map(int,input().split())\nif X <= A:\n  print(1.000000000000)\nelif X < B:\n  print(C/(B-A) if B > A else 0.000000000000)\nelse:\n  print(0.000000000000)"
+}

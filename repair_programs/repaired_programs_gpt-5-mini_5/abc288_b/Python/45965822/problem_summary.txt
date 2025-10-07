@@ -1,0 +1,1 @@
+The program sorts all N nicknames and takes the first K, but the problem requires taking the top K (the first K input names) and then sorting only those, so it may select the wrong names.

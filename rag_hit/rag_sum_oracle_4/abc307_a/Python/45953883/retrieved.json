@@ -1,0 +1,31 @@
+{
+  "task": "abc307_a/Python/45953883",
+  "query_summary": "The bug is simply using print(res) which prints the Python list representation instead of print(*res) to output the elements space-separated as required.",
+  "oracle_summary": "The bug is simply using print(res) which prints the Python list representation instead of print(*res) to output the elements space-separated as required.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly records the values of the indices that are being swapped instead of recording their original 1-based values, resulting in incorrect output.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     else:\n         j = A[i] - 1\n         num += 1\n-        ans.append([A[j], A[i]])\n+        ans.append([i + 1, j + 1])\n         A[i], A[j] = A[j], A[i]\n \n print(num)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the difference between the cumulative sum and the current sum is greater than 4 instead of the correct value of 3.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n     cum_sum[i + 1] = cum_sum[i] + A[i]\n ans = 0\n for i in range(N):\n-    if 4 < cum_sum[N] - cum_sum[i]:\n+    if 3 < cum_sum[N] - cum_sum[i]:\n         ans += 1\n     else:\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the sum of the list A instead of its negative value when the sum is less than or equal to zero.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n if sum(A) > 0:\n     print(-sum(A))\n else:\n-    print(sum(A))\n+    print(-sum(A))"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the contribution of gaps between indices by using `(len(tmp)-j)` instead of the correct factor of `((j+1)*(len(tmp)-j))`.",
+      "diff": "--- \n+++ \n@@ -9,5 +9,5 @@\n     for j in range(len(i)-1):\n         tmp.append(i[j+1]-i[j]-1)\n     for j in range(len(tmp)):\n-        ans += tmp[j]*(len(tmp)-j)    \n+        ans += tmp[j]*((j+1)*(len(tmp)-j))    \n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

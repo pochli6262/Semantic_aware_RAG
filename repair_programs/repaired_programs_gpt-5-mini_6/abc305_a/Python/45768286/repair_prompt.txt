@@ -1,0 +1,153 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+There is an ultramarathon course totaling 100\;\mathrm{km}.
+Water stations are set up every 5\;\mathrm{km} along the course, including the start and goal, for a total of 21.
+
+Takahashi is at the N\;\mathrm{km} point of this course.
+Find the position of the nearest water station to him.
+
+Under the constraints of this problem, it can be proven that the nearest water station is uniquely determined.
+
+### Constraints
+
+* 0\leq N\leq100
+* N is an integer.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N
+```
+
+### Output
+
+Print the distance between the start and the water station nearest to Takahashi, in kilometers, in a single line.
+
+---
+
+### Sample Input 1
+
+```
+53
+```
+
+### Sample Output 1
+
+```
+55
+```
+
+Takahashi is at the 53\;\mathrm{km} point of the course.
+The water station at the 55\;\mathrm{km} point is 2\;\mathrm{km} away, and there is no closer water station.
+Therefore, you should print 55.
+
+---
+
+### Sample Input 2
+
+```
+21
+```
+
+### Sample Output 2
+
+```
+20
+```
+
+Takahashi could also go back the way.
+
+---
+
+### Sample Input 3
+
+```
+100
+```
+
+### Sample Output 3
+
+```
+100
+```
+
+There are also water stations at the start and goal.
+Additionally, Takahashi may already be at a water station.
+
+## Your Analysis (1-sentence bug summary)
+The program computes and prints the distance to the next 5-km mark (5 - N%5) instead of the nearest water station's position, producing wrong outputs such as printing 5 when N is already at a station.
+
+## Buggy Program
+print(abs(5-int(input())%5))
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -1 +1 @@
+-print(int(input())%100)
++print(input()[1:])
+
+### Diff 2
+--- 
++++ 
+@@ -1 +1 @@
+-print(int(input()) % 100)
++print('%02d' % (int(input()) % 100))
+
+### Diff 3
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ 
+ for i in range(k):
+   p, q = divmod(x, 10**(i+1))
+-  if q >= 5:
++  if q//10**i >= 5:
+     p += 1
+   x = p*10**(i+1)
+ print(x)
+
+### Diff 4
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ x = int(input())
+ if x % 10 == 0:
+-  print(x)
++  print(x // 10)
+ else:
+   print(x // 10 + 1)
+
+### Diff 5
+--- 
++++ 
+@@ -1,4 +1,4 @@
+ n = input()
+ n = int(n)
+-for i in range(10,-1,-1):
++for i in range(n,-1,-1):
+     print(i)
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

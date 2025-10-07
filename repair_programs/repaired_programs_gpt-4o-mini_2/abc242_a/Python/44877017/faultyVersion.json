@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue was with the line calculating `res` for the condition when `x` is between `a` and `b`. The original code assigned `res` as `c / (b - a)`, which doesn't consider the proportion of `x` between `a` and `b`. The corrected line should use the formula to properly calculate the percentage of the points remaining in the range based on the value of `x`. The fix involves calculating the linear interpolation value based on the position of `x` within the range.",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 100.0\nelif x <= b:\n   res = c * (b - x) / (b - a)\n\nprint('%.9f' % (res))"
+}

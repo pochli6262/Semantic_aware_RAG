@@ -1,0 +1,1 @@
+The condition uses n%5 >= 2 so a remainder of 2 gets rounded up to the next multiple of 5 instead of being rounded down to the nearest water station.

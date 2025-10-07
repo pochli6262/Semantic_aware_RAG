@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the code occurs because `S` is created by concatenating two inputs, but the equality checks are against specific string values. The program intends to check if the concatenated input equals either of the target patterns, but the logic does not cover other potential input cases effectively. Adjusting it to allow for any additional characters by checking if `S` contains those patterns is a more effective solution. Thus, I fixed it by changing the line to check for substring presence using the 'in' operator.",
+  "fixed_code": "S = input() + input()\n\nif '.#.#' in S or '#.#.' in S:\n    print('No')\nelse:\n    print('Yes')"
+}

@@ -1,0 +1,1 @@
+The program's sorted-order check is reversed: it prints "No" when S is already non-decreasing because it tests sorted(S) == S instead of checking sorted(S) != S.

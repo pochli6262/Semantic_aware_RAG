@@ -1,0 +1,1 @@
+The inner loop uses "break" when i == j, which prematurely exits the loop and causes many j values to be skipped instead of just skipping the self-pair.

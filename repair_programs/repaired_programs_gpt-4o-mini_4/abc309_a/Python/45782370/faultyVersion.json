@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks only if B is in the set of numbers adjacent to A, which does not correctly ensure that A and B are horizontally adjacent on the board. The corrected line checks if A and B are adjacent horizontally by validating their positions on the grid layout. This aligns with the intended adjacency check in Diff 4, which checks the difference between A and B on the assumption that they are placed in a single row.",
+  "fixed_code": "p = {1:(2, 4), 2:(1, 5, 3), 3:(2, 6), 4:(1, 5, 7), 5:(2, 4, 6, 8), 6:(3, 5, 9), 7:(4, 8), 8:(5, 7, 9), 9:(6, 8)}\n\nA, B = map(int, input().split())\n\nif abs(A - B) == 1 and not (A == 3 and B == 4) and not (A == 6 and B == 5):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

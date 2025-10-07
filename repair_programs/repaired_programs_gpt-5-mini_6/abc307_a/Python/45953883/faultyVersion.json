@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed the Python list object directly (print(res)), which outputs brackets and commas. The problem requires space-separated week sums. I fixed the final line to unpack the list so the numbers are printed separated by spaces (print(*res)). None of the retrieved diffs directly applied to this fix.",
+  "fixed_code": "N = int(input())\nA = list(map(int,input().split()))\n\nres = [0]*N\nSUM = 0\nfor i in range(len(A)):\n    SUM += A[i]\n    if (i + 1)%7==0:\n        res[i//7] = SUM\n        SUM = 0\n\nprint(*res)"
+}

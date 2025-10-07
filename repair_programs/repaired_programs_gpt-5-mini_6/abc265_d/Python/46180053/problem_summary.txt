@@ -1,0 +1,1 @@
+The code builds cumulative sums from numpy.cumsum without including the initial 0 prefix sum, so it fails to detect segments that start at index 0.

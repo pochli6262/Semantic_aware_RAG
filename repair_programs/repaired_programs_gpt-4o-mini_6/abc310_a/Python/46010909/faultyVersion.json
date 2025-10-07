@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculated the total amount by subtracting the discount price Q from the regular price P and adding the minimum dish price a. Instead, it should add the discount price Q to the minimum dish price a and compare that total with the regular price P. Thus, the correct comparison should be 'min(p, q + a)'. This fix was inspired by the realization that the sum was unintentionally using the improper subtraction of Q instead of its correct addition to the minimum dish cost.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = min(d_list)\n\nprint(min(p, q + a))"
+}

@@ -1,0 +1,101 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+n = int(input())
+if n <= 10**3-1:
+    print(n)
+elif n <= 10**4-1:
+    print(n - n%10)
+elif n <= 10**5-1:
+    print(n - n%100)
+elif n <= 10**6-1:
+    print(n - n%1000)
+elif n <= 10**7-1:
+    print(n - n%10000)
+elif n <= 10**8-1:
+    print(n - n%100000)
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+n = int(input())
+
+for i in range(919):
+  if i <= 99:
+    continue
+  elif i < n:
+    continue
+  else:
+    if int(str(i)[0]) * int(str(i)[1]) == int(str(i)[2]):
+      print(i)
+      exit()
+
+
+--- Correct Code ---
+n = int(input())
+
+for i in range(920):
+  if i <= 99:
+    continue
+  elif i < n:
+    continue
+  else:
+    if int(str(i)[0]) * int(str(i)[1]) == int(str(i)[2]):
+      print(i)
+      exit()
+
+
+### Example 2
+--- Buggy Code ---
+n = input()
+n = int(n)
+for i in range(10,-1,-1):
+    print(i)
+
+--- Correct Code ---
+n = input()
+n = int(n)
+for i in range(n,-1,-1):
+    print(i)
+
+
+### Example 3
+--- Buggy Code ---
+N = int(input())
+n = 10**6
+for i in range(n, 1, -1):
+  k = i **3
+  k_str = str(k)
+  if (k < N) and (k_str == k_str[::-1]):
+    print(k)
+    exit()
+print(1)
+
+--- Correct Code ---
+N = int(input())
+n = 10**6
+for i in range(n, 1, -1):
+  k = i **3
+  k_str = str(k)
+  if (k <= N) and (k_str == k_str[::-1]):
+    print(k)
+    exit()
+print(1)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

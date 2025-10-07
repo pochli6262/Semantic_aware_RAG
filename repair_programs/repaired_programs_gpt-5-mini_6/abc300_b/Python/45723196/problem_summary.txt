@@ -1,0 +1,1 @@
+The program reads H and W by converting only the first and last characters of the first input line (a[0] and a[-1]) instead of parsing the full integers, so multi-digit dimensions are interpreted incorrectly.

@@ -1,0 +1,1 @@
+The code incorrectly uses input()[:-1] to strip the line ending (and splits on " "), which can remove a valid character or mis-parse input when there is no trailing newline or different whitespace, causing wrong parsing of N, P, Q, R or A.

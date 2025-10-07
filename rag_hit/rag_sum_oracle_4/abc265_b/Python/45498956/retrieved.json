@@ -1,0 +1,31 @@
+{
+  "task": "abc265_b/Python/45498956",
+  "query_summary": "The loop wrongly compares t to the loop index i (t > i) instead of to the required cost a[i] (t > a[i]), causing an incorrect feasibility check.",
+  "oracle_summary": "The loop wrongly compares t to the loop index i (t > i) instead of to the required cost a[i] (t > a[i]), causing an incorrect feasibility check.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for the variable `r`, leading to an incorrect output when `r` equals 0, which should instead be set to 7.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,8 @@\n A = [list(map(int,input().split())) for _ in range(n)]\n start = A[0][0]\n r = start- (start//7)*7\n+if r == 0:\n+  r = 7\n if r+m-1>7:\n   print(\"No\")\n   exit()"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if any two consecutive elements in the sorted list `c` belong to the same array (either `a` or `b`), instead of specifically checking if they both belong to array `a`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n \n ans = \"No\"\n for i in range(n + m - 1):\n-    if c[i][1] == c[i + 1][1]:\n+    if c[i][1] == c[i + 1][1] == 0:\n         ans = \"Yes\"\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `break` instead of `continue` in the outer loop after checking `if i+m > n`, which prevents further iterations that may be necessary for correct DP table updates.",
+      "diff": "--- \n+++ \n@@ -9,13 +9,14 @@\n     if dp[i][0]:\n         for k in range(m):\n             tl=t[k:]\n+\n             if i-k<0 or i+(m-k)>n:\n                 continue\n             for j in range(1,len(tl)+1):\n                 if s[i:i+j]==tl[:j]:\n                     dp[i+j][len(tl)-j]=True\n     if i+m>n:\n-        break\n+        continue\n     for j in range(1,m+1):\n         if dp[i][j]:\n             for k in range(1,m+1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

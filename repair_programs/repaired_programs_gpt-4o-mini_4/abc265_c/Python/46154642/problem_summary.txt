@@ -1,0 +1,1 @@
+The program incorrectly checks for the character 'W' instead of 'R', which is likely causing the movement conditions to fail for rightward transitions.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The code used min(d_list) but it should use max(d_list). The program compares two possible total costs and one option applies the largest available discount (the maximum d), so taking the minimum element was incorrect. I fixed that single line by replacing min with max.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = max(d_list)\n\nprint(min(p-q+a,p))"
+}

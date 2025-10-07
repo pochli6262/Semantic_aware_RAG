@@ -1,0 +1,29 @@
+{
+  "task": "abc303_d/Python/45489398",
+  "query_summary": "The bug was using an INF value that was too small (1e10) so legitimate DP costs could exceed it and be treated as \"infinite,\" corrupting the DP transitions and final result.",
+  "oracle_summary": "The bug was using an INF value that was too small (1e10) so legitimate DP costs could exceed it and be treated as \"infinite,\" corrupting the DP transitions and final result.",
+  "retrieved": [
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition in the while loop for adjusting `total`, leading to an incorrect calculation of the adjustment needed to ensure that `(total - M) % N == 0`.",
+      "diff": "--- \n+++ \n@@ -45,7 +45,7 @@\n     # print(ans)\n \n     idx = 0\n-    while total%N != 0:\n+    while (total-M)%N != 0:\n         ans[idx] += 1\n         idx += 1\n         total += 1"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the `vals[v]` value in the section handling infinite weights; it mistakenly adds `val` to `vals[u]` instead of adding the edge weight `c`.",
+      "diff": "--- \n+++ \n@@ -61,7 +61,7 @@\n                 end[v] = 1\n                 tmp = -INF\n                 for c,u in ns[v]:\n-                    tmp = max(tmp, vals[u]+val)\n+                    tmp = max(tmp, vals[u]+c)\n                 vals[v] = tmp\n                 hp(q, (vals[v], v))\n                     "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly initializes the counter `cnt` as 1 if `ins[0]` is truthy, instead of checking if `ins[0]` is greater than or equal to zero.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n     ins[x-1] = max(ins[x-1], y)\n q = [(0, ins[0])]\n visit = [0]*N\n-cnt = 1 if ins[0] else 0\n+cnt = 1 if ins[0] >= 0 else 0\n while len(q):\n     s, i = q.pop()    \n     for v in tree[s]:"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `mod <= B` by not ensuring the printed result is non-negative, leading to potential negative output.",
+      "diff": "--- \n+++ \n@@ -41,5 +41,5 @@\n     q-=1\n     b = q * B\n     if(mod > B):print(b + B)\n-    else:print(b+mod)\n+    else:print(max(0,b+mod))\n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

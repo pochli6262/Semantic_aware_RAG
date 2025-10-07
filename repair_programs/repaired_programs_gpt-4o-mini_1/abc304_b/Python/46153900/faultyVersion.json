@@ -1,0 +1,4 @@
+{
+  "explanation": "The name 'range' in the function definition shadows the built-in range function in Python. It is causing a conflict because Python expects the standard behavior of 'range' but instead finds a user-defined function. I fixed it by renaming the function to 'get_range' to avoid this conflict.",
+  "fixed_code": "N = int(input())\n\ndef get_range(n):\n    if(n < 10**3):\n        return 0\n    elif(10**3 <= n < 10**4):\n        return 1\n    elif(10**4 <= n < 10**5):\n        return 2\n    elif(10**5 <= n < 10**6):\n        return 3\n    elif(10**6 <= n < 10**7):\n        return 4\n    elif(10**7 <= n < 10**8):\n        return 5\n    elif(10**8 <= n < 10**9):\n        return 6\n    \nprint(round(N, -get_range(N)))"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original program is that in the second loop, the variable 'i' is being used instead of 'j' to index the list S. This leads to incorrect checking of the conditions against the elements of S. I fixed the line to use 'j' instead of 'i'.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)"
+}

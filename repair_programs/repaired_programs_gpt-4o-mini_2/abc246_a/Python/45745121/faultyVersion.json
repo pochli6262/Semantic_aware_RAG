@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the assignment of the variable xy1. It should not be directly assigned from array after taking input because array is being reused later for xy2 and xy3. Instead, I should create a separate copy of the list. This was corrected by using xy1 = array.copy() to ensure that xy1 retains the initial values from the input separately.",
+  "fixed_code": "array = list(map(int,input().split()))\nxy1 = array.copy()\narray = list(map(int,input().split()))\nxy2 = array\narray = list(map(int,input().split()))\nxy3 = array\nx = []\nfor i in range(2):\n  if xy1[i] == xy2[i]:\n    x.append(xy3[i])\n  elif xy1[i] == xy3[i]:\n    x.append(xy2[i])\n  else:\n    x.append(xy1[i])\nprint(x)"
+}

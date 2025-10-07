@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was caused by adding both the original string S and its reverse S[::-1] to the set Z, which leads to incorrect counting of duplicates. The line that needed correction is where we check if the original string S is already in the set Z. Since we also added `S[::-1]` to the set, it might count mirrored words as duplicates. The fixed code checks only for original strings already in Z.",
+  "fixed_code": "N = int(input())\n\nZ = set()\n\ncount = 0\nfor i in range(N):\n    S = input()\n    if S in Z or S[::-1] in Z:\n        count += 1\n    Z.add(S)\n    Z.add(S[::-1])\n\nprint(count)"
+}

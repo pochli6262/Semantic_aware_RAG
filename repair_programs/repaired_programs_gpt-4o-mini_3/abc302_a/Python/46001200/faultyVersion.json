@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line prints the integer division of A by B and adds 1, which may not work as intended for certain values of A and B, particularly when A is not a multiple of B. The correct approach should be to ensure that we are calculating the number of complete groups of size B from A, which can be done using the expression (A + B - 1) // B. This way, we achieve the ceiling effect of the division.",
+  "fixed_code": "A, B = map(int, input().split())\nprint((A + B - 1) // B)"
+}

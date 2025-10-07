@@ -1,0 +1,297 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+n, x = map(int, input().split())
+a = [0 for _ in range(n)]
+b = [0 for _ in range(n)]
+for i in range(n):
+  a[i], b[i] = map(int, input().split())
+
+dp = [[False for _ in range(x + 1)] for _ in range(n + 1)]
+for i in range(n + 1):
+  dp[i][0] = True
+
+for i in range(n):
+  for j in range(x):
+    for k in range(b[i] + 1):
+      if dp[i][j]:
+        if j + (k * a[i]) <= x:
+            dp[i + 1][j + (k * a[i])] = True
+
+if dp[-1][-1]:
+  print("Yes")
+else:
+  print("No")  
+
+
+
+
+
+
+
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+
+n, x, y = map(int, input().split())
+a = list(map(int, input().split()))
+X = []
+Y = []
+
+for i in range(n):
+  if i %2 == 0:
+    X.append(a[i])
+  else:
+    Y.append(a[i])
+
+dp_x = [[False for _ in range(4 * (sum(X) + 1))] for _ in range(len(X) + 1)]
+dp_y = [[False for _ in range(4 * (sum(Y) + 1))] for _ in range(len(Y) + 1)]
+dp_x[0][2 * (sum(X) + 1)] = True
+dp_y[0][2 * (sum(Y) + 1)] = True
+
+for i in range(len(X)):
+  for j in range(4 * (sum(X) + 1)):
+    if dp_x[i][j]:
+      if i != 0:
+        dp_x[i + 1][j + X[i]] = True
+        dp_x[i + 1][j - X[i]] = True
+      else:
+        dp_x[i + 1][j + X[i]] = True  
+
+for i in range(len(Y)):
+  for j in range(4 * (sum(Y) + 1)):
+    if dp_y[i][j]:
+      dp_y[i + 1][j + Y[i]] = True
+      dp_y[i + 1][j - Y[i]] = True
+
+
+if x > sum(X) or y > sum(Y):
+  print("No")
+else:
+  if dp_x[-1][x + 2 * (sum(X) + 1)] and dp_y[-1][y + 2 * (sum(Y) + 1)]:
+    print("Yes")
+  else:
+    print("No")  
+
+
+--- Correct Code ---
+n, x, y = map(int, input().split())
+a = list(map(int, input().split()))
+X = []
+Y = []
+
+for i in range(n):
+  if i %2 == 0:
+    X.append(a[i])
+  else:
+    Y.append(a[i])
+
+dp_x = [[False for _ in range(4 * (sum(X) + 1))] for _ in range(len(X) + 1)]
+dp_y = [[False for _ in range(4 * (sum(Y) + 1))] for _ in range(len(Y) + 1)]
+dp_x[0][2 * (sum(X) + 1)] = True
+dp_y[0][2 * (sum(Y) + 1)] = True
+
+for i in range(len(X)):
+  for j in range(4 * (sum(X) + 1)):
+    if dp_x[i][j]:
+      if i != 0:
+        dp_x[i + 1][j + X[i]] = True
+        dp_x[i + 1][j - X[i]] = True
+      else:
+        dp_x[i + 1][j + X[i]] = True  
+
+for i in range(len(Y)):
+  for j in range(4 * (sum(Y) + 1)):
+    if dp_y[i][j]:
+      dp_y[i + 1][j + Y[i]] = True
+      dp_y[i + 1][j - Y[i]] = True
+
+
+if abs(x) > sum(X) or abs(y) > sum(Y):
+  print("No")
+else:
+  if dp_x[-1][x + 2 * (sum(X) + 1)] and dp_y[-1][y + 2 * (sum(Y) + 1)]:
+    print("Yes")
+  else:
+    print("No")
+
+
+### Example 2
+--- Buggy Code ---
+n,s=map(int, input().split())
+c=[0]*n
+d=[]
+for i in range(n):
+  a,b=map(int, input().split())
+  if a<=b:
+    d.append(b-a)
+    s-=a
+  else:
+    c[i]=1
+    d.append(a-b)
+    s-=b
+
+if s<=0:
+  print("No")
+  exit()
+
+dp=[[0]*(s+1) for _ in range(n+1)]
+dp[0][0]=1
+for i in range(n):
+  D=d[i]
+  for j in range(s+1):
+    if dp[i][j]==1:
+      dp[i+1][j]=1
+      if j+D<=s:
+        dp[i+1][j+D]=1
+
+if dp[-1][-1]==0:
+  print("No")
+  exit()
+
+ans=""
+e=["H","T"]
+now=s
+for i in reversed(range(n)):
+  if dp[i][now]==1:
+    ans+=e[c[i]]
+  else:
+    ans+=e[(c[i]+1)%2]
+    now-=d[i]
+
+
+
+ans=ans[::-1]
+print("Yes")
+print(ans)
+
+--- Correct Code ---
+n,s=map(int, input().split())
+c=[0]*n
+d=[]
+for i in range(n):
+  a,b=map(int, input().split())
+  if a<=b:
+    d.append(b-a)
+    s-=a
+  else:
+    c[i]=1
+    d.append(a-b)
+    s-=b
+
+if s<0:
+  print("No")
+  exit()
+
+dp=[[0]*(s+1) for _ in range(n+1)]
+dp[0][0]=1
+for i in range(n):
+  D=d[i]
+  for j in range(s+1):
+    if dp[i][j]==1:
+      dp[i+1][j]=1
+      if j+D<=s:
+        dp[i+1][j+D]=1
+
+if dp[-1][-1]==0:
+  print("No")
+  exit()
+
+ans=""
+e=["H","T"]
+now=s
+for i in reversed(range(n)):
+  if dp[i][now]==1:
+    ans+=e[c[i]]
+  else:
+    ans+=e[(c[i]+1)%2]
+    now-=d[i]
+
+
+
+ans=ans[::-1]
+print("Yes")
+print(ans)
+
+
+### Example 3
+--- Buggy Code ---
+n, m = map(int, input().split())
+b = [None for _ in range(n)]
+for i in range(n):
+  b[i] = list(map(int, input().split()))
+
+def check():
+  c = list(map(list, zip(*b)))
+  for i in range(m):
+    for j in range(n - 1):
+      if c[i][j + 1] != c[i][j] + 7:
+        return False
+      
+  temp = b[0]
+  for i in range(m - 1):
+    if ((temp[i + 1] + 6) % 7) != ((temp[i] + 6) % 7) + 1:
+      return False
+
+
+  return True
+
+if check():
+  print("Yes")
+else:
+  print("No")
+  
+
+
+
+
+    
+
+--- Correct Code ---
+n, m = map(int, input().split())
+b = [None for _ in range(n)]
+for i in range(n):
+  b[i] = list(map(int, input().split()))
+
+def check():
+  c = list(map(list, zip(*b)))
+  for i in range(m):
+    for j in range(n - 1):
+      if c[i][j + 1] != c[i][j] + 7:
+        return False
+      
+  temp = b[0]
+  for i in range(m - 1):
+    if ((temp[i + 1] + 6) % 7) != ((temp[i] + 6) % 7) + 1:
+      return False
+    if temp[i + 1] != temp[i] + 1:
+      return False
+
+    
+
+
+  return True
+
+if check():
+  print("Yes")
+else:
+  print("No")
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

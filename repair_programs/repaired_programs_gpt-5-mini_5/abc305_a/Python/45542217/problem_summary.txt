@@ -1,0 +1,1 @@
+The code mishandles remainder 4 — it computes N + 3 (using N + a - 1) instead of N + 1 to reach the next multiple of 5, so numbers with a=4 are rounded incorrectly.

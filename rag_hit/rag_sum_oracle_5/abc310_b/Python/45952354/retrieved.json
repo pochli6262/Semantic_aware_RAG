@@ -1,0 +1,31 @@
+{
+  "task": "abc310_b/Python/45952354",
+  "query_summary": "A typo in the inner conditional uses P[i] >= P[i] and (F[i] - F[j]) instead of P[i] >= P[j] and (F[j] - F[i]), so the dominance check compares an element with itself and reverses the feature-difference direction.",
+  "oracle_summary": "A typo in the inner conditional uses P[i] >= P[i] and (F[i] - F[j]) instead of P[i] >= P[j] and (F[j] - F[i]), so the dominance check compares an element with itself and reverses the feature-difference direction.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the comparison in the if statement incorrectly uses the less-than operator instead of the greater-than operator, leading to an erroneous condition for setting the flag to False.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     for w in range(W):\n         for i in range(h+1, H):\n             for j in range(w+1, W):\n-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False\n+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False\n \n if flag : print(\"Yes\")\n else : print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `range(b+1, W)` for the variable `d`, which should instead be `range(c+1, W)` to ensure that the indices for `c` and `d` are properly chosen for comparison.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for a in range(H-1):\n \tfor b in range(a+1, H):\n \t\tfor c in range(W-1):\n-\t\t\tfor d in range(b+1, W):\n+\t\t\tfor d in range(c+1, W):\n \t\t\t\tif A[a][c] + A[b][d] > A[b][c] + A[a][d]:\n \t\t\t\t\tFlag = False\n if Flag:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

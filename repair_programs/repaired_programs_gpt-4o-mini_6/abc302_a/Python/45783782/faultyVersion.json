@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly calculates the number of attacks when A is divisible by B. The condition 'if A % B == 0' results in returning A / B, which is correct when A is zero or less, but does not account for the need for one more attack to ensure stamina becomes zero or lower. The corrected version ensures that we always round up using integer math, aligning with the problem statement. The fix was inspired by recognizing the need to correctly handle cases where A is exactly divisible by B, similar to how some diffs emphasize correct conditional handling.",
+  "fixed_code": "A,B = map(int,input().split())\nif A % B == 0:\n  print(int(A // B))\nelse:\n  print(int(A // B) + 1)"
+}

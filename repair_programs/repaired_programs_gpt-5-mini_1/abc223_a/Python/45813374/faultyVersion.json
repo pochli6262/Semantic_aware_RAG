@@ -1,0 +1,4 @@
+{
+  "explanation": "The logic was inverted: the code checked if n < 100 but then printed \"No\" in that branch and \"Yes\" otherwise. To make the program print \"Yes\" when n < 100 and \"No\" when n >= 100 by changing only one line, I reversed the condition to if n >= 100:. That way the existing prints remain unchanged and the overall behavior is corrected.",
+  "fixed_code": "n=int(input())\n\nif n>=100:\n    print(\"No\")\nelse:\n    print(\"Yes\")\n"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc309_c/Python/45895898",
+  "query_summary": "The likely bug in the program is that it returns the first day on which the total number of pills exceeds K instead of the first day on which it is K or less.",
+  "oracle_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly sets the right boundary of the binary search to \\(10^6\\) instead of \\(10^7\\), which might limit the maximum number of servings that can be checked.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n       judge = True\n   return judge\n   \n-L, R = 0, 10**6\n+L, R = 0, 10**7\n while R-L > 1:\n   C = (R+L)//2\n   if canmake(C):\n@@ -23,4 +23,3 @@\n     R = C\n     \n print(L)\n-    "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if the count of unique elements after a certain point is greater than 'k' instead of checking if it is greater than or equal to 'k', which would cause it to return the wrong result in some cases.",
+      "diff": "--- \n+++ \n@@ -43,7 +43,7 @@\n             j += 1\n         from itertools import groupby\n         c = len(list(groupby(a[j+1:])))\n-        print(\"No\" if c > k else \"Yes\")\n+        print(\"No\" if c >= k else \"Yes\")\n \n \n for _ in range(t):"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `if num + b < K` instead of `if num + b <= K`, which leads to an off-by-one error when determining whether to update the day variable.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n     num = 0\n \n     for a, b in reversed(Q):\n-        if num + b < K:\n+        if num + b <= K:\n             num += b\n         else:\n             day = a + 1"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to N in the final loop instead of from 0 to N, leading to an off-by-one error when calculating the minimum answer.",
+      "diff": "--- \n+++ \n@@ -33,5 +33,5 @@\n for i in range(N):rdp[i+1]=min(rdp[i]+A[i],R*(i+1))\n rdp.reverse()\n ans=float('inf')\n-for i in range(1,N+1):ans=min(ans,ldp[i]+rdp[i])\n+for i in range(N+1):ans=min(ans,ldp[i]+rdp[i])\n print(ans)"
+    },
+    {
+      "summary": "The buggy code has a logic error in the condition that checks whether `c` is greater than zero (`if c > 0:`), which should allow the computation of `tmp0` and `tmp1`. It mistakenly contains an incorrect condition check that results in the logic incorrectly processing the input and may lead to incorrect output.",
+      "diff": "--- \n+++ \n@@ -65,7 +65,7 @@\n     ans = res0 + res1\n #     print(ans)\n     # print(ans)\n-    if ind>=0:\n+    if c>0:\n         v0 = v0orig[:]\n         v1 = v1orig[:]\n         tmp0 = tmp1 = 0"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

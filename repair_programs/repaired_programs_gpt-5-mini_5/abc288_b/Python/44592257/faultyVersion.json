@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 's.sort()' sorted all N nicknames, but the task requires sorting only the top K participants (the first K input strings). I replaced that single line with 's = s[:k]; s.sort()' so we first take the first K nicknames and then sort them. No retrieved diff directly applied to this simple fix.",
+  "fixed_code": "n, k = map(int, input().split())\ns = [input() for _ in range(n)]\ns = s[:k]; s.sort()\nfor i in range(k):\n  print(s[i])"
+}

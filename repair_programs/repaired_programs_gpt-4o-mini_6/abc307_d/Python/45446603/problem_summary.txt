@@ -1,0 +1,1 @@
+The bug likely lies in the incorrect deletion of characters from the `ans` list when a closing parenthesis `)` is encountered, which may result in leaving unmatched characters or failing to properly remove the intended contiguous substrings.

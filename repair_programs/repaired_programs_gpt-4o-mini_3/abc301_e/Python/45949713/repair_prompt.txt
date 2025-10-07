@@ -1,0 +1,324 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+class Input_kyopro:
+    def II(self): return int(input())
+    def MI(self): return map( int,input().split())
+    def MS(self): return map(str,input().split())
+    def LMI(self): return list(self.MI())
+    def LMS(self): return list(self.MS())
+    def LLI(self,N): return [self.LMI() for _ in range(N)]
+    def LLS(self,N): return [self.LMS() for _ in range(N)]
+    def LS(self,N): return [input() for _ in range(N)]
+    def LSL(self,N): return [list(input()) for _ in range(N)]
+    def LI(self,N): return [self.II() for _ in range(N)]
+I=Input_kyopro()
+#入力
+from collections import deque
+H,W,T=I.MI()
+a=I.LSL(H)
+dx=[1,0,-1,0]
+dy=[0,1,0,-1]
+start=[0,0]
+g=[0,0]
+ls=[]
+for i in range(H):
+    for j in range(W):
+        if a[i][j]=='S':
+            s=[i,j]
+        if a[i][j]=='G':
+            g=[i,j]
+        if a[i][j]=='o':
+            ls.append([i,j])
+cnt=len(ls)
+d=[[[0]*W for _ in range(H)] for _ in range(cnt)]
+def dist(i,j):
+    res=[[float('inf')]*W for _ in range(H)]
+    res[i][j]=0
+    q=deque()
+    q.append([i,j])
+    while q:
+        i,j=q.popleft()
+        for k in range(4):
+            if 0<=i+dx[k]<H and 0<=j+dy[k]<W:
+                if res[i+dx[k]][j+dy[k]]!=float('inf') or a[i+dx[k]][j+dy[k]]=='#':
+                    continue
+                res[i+dx[k]][j+dy[k]]=res[i][j]+1
+                q.append([i+dx[k],j+dy[k]])
+    return res
+
+for i in range(cnt):
+    d[i]=dist(ls[i][0],ls[i][1])
+dp=[[float('inf')]*(cnt) for _ in range(1<<cnt)]
+for i in range(cnt):
+    dp[1<<i][i]=d[i][start[0]][start[1]]
+for s in range(1,1<<cnt):
+    for last in range(cnt):
+        if dp[s][last]==float('inf'):
+            continue
+        for nx in range(cnt):
+            if s>>nx&1:
+                continue
+            dp[s|1<<nx][nx]=min(dp[s|1<<nx][nx],dp[s][last]+d[last][ls[nx][0]][ls[nx][1]])
+ans=-1
+if dist(start[0],start[1])[g[0]][g[1]]<=T:
+    ans=0
+for s in range(1,1<<cnt):
+    for last in range(cnt):
+        if dp[s][last]+d[last][g[0]][g[1]]<=T:
+            now=0
+            for i in range(cnt):
+                if s>>i&1:
+                    now+=1
+            ans=max(ans,now)
+print(ans)
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+class Input_kyopro:
+    def II(self): return int(input())
+    def MI(self): return map( int,input().split())
+    def MS(self): return map(str,input().split())
+    def LMI(self): return list(self.MI())
+    def LMS(self): return list(self.MS())
+    def LLI(self,N): return [self.LMI() for _ in range(N)]
+    def LLS(self,N): return [self.LMS() for _ in range(N)]
+    def LS(self,N): return [input() for _ in range(N)]
+    def LSL(self,N): return [list(input()) for _ in range(N)]
+    def LI(self,N): return [self.II() for _ in range(N)]
+I=Input_kyopro()
+#入力
+N,L,R=I.MI()
+A=I.LMI()
+ruiseki_l=[0]*(N+1)
+s=sum(A)
+for i in range(N):
+    ruiseki_l[i+1]=ruiseki_l[i]+L-A[i]
+for i in range(N):
+    ruiseki_l[i+1]=min(ruiseki_l[i+1],ruiseki_l[i])
+ruiseki_r=[0]*(N+1)
+for i in range(N):
+    ruiseki_r[i+1]=ruiseki_r[i]+R-A[-i-1]
+for i in range(N):
+    ruiseki_r[i+1]=min(ruiseki_r[i+1],ruiseki_r[i])
+ans=float('inf')
+for i in range(N):
+    ans=min(ans,ruiseki_l[i]+ruiseki_r[-i-1]+s)
+print(ans)
+
+    
+
+--- Correct Code ---
+class Input_kyopro:
+    def II(self): return int(input())
+    def MI(self): return map( int,input().split())
+    def MS(self): return map(str,input().split())
+    def LMI(self): return list(self.MI())
+    def LMS(self): return list(self.MS())
+    def LLI(self,N): return [self.LMI() for _ in range(N)]
+    def LLS(self,N): return [self.LMS() for _ in range(N)]
+    def LS(self,N): return [input() for _ in range(N)]
+    def LSL(self,N): return [list(input()) for _ in range(N)]
+    def LI(self,N): return [self.II() for _ in range(N)]
+I=Input_kyopro()
+#入力
+N,L,R=I.MI()
+A=I.LMI()
+ruiseki_l=[0]*(N+1)
+s=sum(A)
+for i in range(N):
+    ruiseki_l[i+1]=ruiseki_l[i]+L-A[i]
+for i in range(N):
+    ruiseki_l[i+1]=min(ruiseki_l[i+1],ruiseki_l[i])
+ruiseki_r=[0]*(N+1)
+for i in range(N):
+    ruiseki_r[i+1]=ruiseki_r[i]+R-A[-i-1]
+for i in range(N):
+    ruiseki_r[i+1]=min(ruiseki_r[i+1],ruiseki_r[i])
+ans=float('inf')
+for i in range(N+1):
+    ans=min(ans,ruiseki_l[i]+ruiseki_r[-i-1]+s)
+print(ans)
+
+
+### Example 2
+--- Buggy Code ---
+class Input_kyopro:
+    def II(self): return int(input())
+    def MI(self): return map( int,input().split())
+    def MS(self): return map(str,input().split())
+    def LMI(self): return list(self.MI())
+    def LMS(self): return list(self.MS())
+    def LLI(self,N): return [self.LMI() for _ in range(N)]
+    def LLS(self,N): return [self.LMS() for _ in range(N)]
+    def LS(self,N): return [input() for _ in range(N)]
+    def LSL(self,N): return [list(input()) for _ in range(N)]
+    def LI(self,N): return [self.II() for _ in range(N)]
+I=Input_kyopro()
+#入力
+from collections import defaultdict
+import sys
+sys.setrecursionlimit(10**8)
+N,M=I.MI()
+p=I.LMI()
+xy=I.LLI(M)
+dic=defaultdict(lambda : -1)
+for x,y in xy:
+    dic[x-1]=max(dic[x-1],y)
+G=[[] for _ in range(N)]
+for i in range(N-1):
+    G[p[i]-1].append(i+1)
+count=0
+def dfs(i,hp):
+    global count
+    if hp<dic[i]:
+        hp=dic[i]
+    if hp>=0:
+        count+=1
+    for nex in G[i]:
+        dfs(nex,hp-1)
+
+dfs(0,0)
+print(count)
+
+--- Correct Code ---
+class Input_kyopro:
+    def II(self): return int(input())
+    def MI(self): return map( int,input().split())
+    def MS(self): return map(str,input().split())
+    def LMI(self): return list(self.MI())
+    def LMS(self): return list(self.MS())
+    def LLI(self,N): return [self.LMI() for _ in range(N)]
+    def LLS(self,N): return [self.LMS() for _ in range(N)]
+    def LS(self,N): return [input() for _ in range(N)]
+    def LSL(self,N): return [list(input()) for _ in range(N)]
+    def LI(self,N): return [self.II() for _ in range(N)]
+I=Input_kyopro()
+#入力
+from collections import defaultdict
+import sys
+sys.setrecursionlimit(10**8)
+N,M=I.MI()
+p=I.LMI()
+xy=I.LLI(M)
+dic=defaultdict(lambda : -1)
+for x,y in xy:
+    dic[x-1]=max(dic[x-1],y)
+G=[[] for _ in range(N)]
+for i in range(N-1):
+    G[p[i]-1].append(i+1)
+count=0
+def dfs(i,hp):
+    global count
+    if hp<dic[i]:
+        hp=dic[i]
+    if hp>=0:
+        count+=1
+    for nex in G[i]:
+        dfs(nex,hp-1)
+
+dfs(0,-1)
+print(count)
+
+
+### Example 3
+--- Buggy Code ---
+def II() : return int(input())
+def MI() : return map(int,input().split())
+def MS() : return map(str,input().split())
+def LMI() : return list(MI())
+def LMS() : return list(MS())
+def LLI(N) : return [LMI() for _ in range(N)]
+def LLS(N): return [LMS() for _ in range(N)]
+def LS(N) : return [input() for _ in range(N)]
+def LI(N) : return [II() for _ in range(N)]
+#入力
+def ruiseki(i):
+    if i<=N:
+        return a[i]
+    return a[-1]*((i-1)//N)+a[(i-1)%N+1]
+def solve(x,i):
+    if ruiseki(x)-ruiseki(i)<=K:
+        return 1
+    return 0
+N,M,K=MI()
+S=input()
+a=[0]*(N+1)
+for i in range(N):
+    if S[i]=='x':
+        a[i+1]+=1
+for i in range(1,N+1):
+    a[i]+=a[i-1]
+ans=0
+for i in range(N):
+    ok=i
+    ng=10**15
+    while abs(ok-ng)>1:
+        mid=(ok+ng)//2
+        if solve(mid,i):
+            ok=mid
+        else:
+            ng=mid
+    ans=max(ok-i,ans)
+print(ans)
+
+--- Correct Code ---
+def II() : return int(input())
+def MI() : return map(int,input().split())
+def MS() : return map(str,input().split())
+def LMI() : return list(MI())
+def LMS() : return list(MS())
+def LLI(N) : return [LMI() for _ in range(N)]
+def LLS(N): return [LMS() for _ in range(N)]
+def LS(N) : return [input() for _ in range(N)]
+def LI(N) : return [II() for _ in range(N)]
+#入力
+def ruiseki(i):
+    if i<=N:
+        return a[i]
+    return a[-1]*((i-1)//N)+a[(i-1)%N+1]
+def solve(x,i):
+    if x>N*M:
+        return 0
+    if ruiseki(x)-ruiseki(i)<=K:
+        return 1
+    return 0
+N,M,K=MI()
+S=input()
+a=[0]*(N+1)
+for i in range(N):
+    if S[i]=='x':
+        a[i+1]+=1
+for i in range(1,N+1):
+    a[i]+=a[i-1]
+ans=0
+for i in range(N):
+    ok=i
+    ng=10**15
+    while abs(ok-ng)>1:
+        mid=(ok+ng)//2
+        if solve(mid,i):
+            ok=mid
+        else:
+            ng=mid
+    ans=max(ok-i,ans)
+print(ans)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

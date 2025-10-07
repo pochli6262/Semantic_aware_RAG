@@ -1,0 +1,1 @@
+The bug likely lies in the handling of the time limit increase from bonus rooms, as it does not correctly account for the possibility of moving to a room with a time increase before the time deduction for moving to the next room.

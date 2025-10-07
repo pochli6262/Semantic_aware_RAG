@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only iterated over 1–9 (range(1, 10)), so if the missing digit was 0 it would never be checked. I fixed that single line to include 0 by iterating over range(10). This is a boundary-fix similar in spirit to the diffs that adjust range boundaries (e.g., Diff 2).",
+  "fixed_code": "s = input()\n\nA = [int(x) for x in s]\n\nfor i in range(10):\n    if i not in A:\n        print(i)\n        exit()\n"
+}

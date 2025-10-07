@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition 'if t > i', which should actually be 'if t > (i + 1)' to correctly check if the accumulated time exceeds the current index (time step). This adjustment ensures that we allow for the correct comparison based on how time progresses with each step.",
+  "fixed_code": "n,m,t=map(int,input().split())\na=list(map(int,input().split()))\nv=[0]*n\nfor i in range(m):\n  x,y=map(int,input().split())\n  v[x-1]=y\nfor i in range(n-1):\n  t+=v[i]\n  if t>(i + 1):\n    t-=a[i]\n  else:\n    print('No')\n    break\nelse:\n  print('Yes')"
+}

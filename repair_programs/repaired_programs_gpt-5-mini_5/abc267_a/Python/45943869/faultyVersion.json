@@ -1,0 +1,4 @@
+{
+  "explanation": "The last conditional used the misspelled string literal \"Friay\" so the program never matched input \"Friday\" and didn't print 1. I corrected the spelling to \"Friday\" so the condition works as intended. (No retrieved diff was directly applicable; this is a simple typo fix.)",
+  "fixed_code": "s=input()\nif s==\"Monday\":\n    print(5)\nif s==\"Tuesday\":\n    print(4)\nif s==\"Wednesday\":\n    print(3)\nif s==\"Thursday\":\n    print(2)\nif s==\"Friday\":\n    print(1)\n"
+}

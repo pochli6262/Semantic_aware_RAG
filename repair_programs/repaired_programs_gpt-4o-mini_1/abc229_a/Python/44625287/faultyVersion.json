@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the way the input is concatenated. When the user enters two inputs without a newline in between, the variable S may not match the intended patterns. To fix it, we need to make sure the input is read as a single string that includes the newlines, so we can revise the input method to capture two separate inputs properly.",
+  "fixed_code": "S = input() + '\n' + input()\n\nif S == '.#.#\\n' or S == '#.#.\\n':\n    print('No')\nelse:\n    print('Yes')"
+}

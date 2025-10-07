@@ -1,0 +1,29 @@
+{
+  "task": "abc303_b/Python/45560009",
+  "query_summary": "The likely bug is that the program incorrectly initializes the adjacency matrix, thereby misrepresenting pairs of individuals who are adjacent in photos.",
+  "oracle_summary": "The bug is using the floating-point division operator (\"/\") instead of integer floor division (\"//\"), causing the final count to be returned as a float instead of an integer.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly computes the value for `ans[i][j]` by using the expression `i//23*j//23`, which does not properly account for the multiplication of the two integer divisions, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n     ans[-1].append(1)\n for i in range(n):\n   for j in range(m):\n-    ans[i][j]=(i+j+i//23*j//23)%23+1\n+    ans[i][j]=(i+j+(i//23)*(j//23))%23+1\n for i in range(n):\n   print(' '.join(map(str,ans[i])))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly skips the even-indexed rows, preventing them from being processed and swapped, leading to an incomplete transformation of the matrix.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[[i*n+j+1 for j in range(n)]for i in range(n)]\n # for i in a:print(i)\n for i in range(n):\n-    if i%2==0:continue\n+    # if i%2==0:continue\n     for j in range(n//2):\n         a[i][2*j],a[i][2*j+1]=a[i][2*j+1],a[i][2*j]\n for i in a:print(*i)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a condition `if rowsum[r] >= 0 or colsum[c] >= rowsum[r]:` which can lead to incorrect calculations during the adjustments of the matrix, instead of the intended condition `if rowsum[r] > 0 or colsum[c] >= rowsum[r]:` found in the correct code.",
+      "diff": "--- \n+++ \n@@ -51,7 +51,7 @@\n c = W-1\n \n while r >= 0 and c >= 0 and colsum[c] < 0:\n-    if rowsum[r] >= 0 or colsum[c] >= rowsum[r]:\n+    if rowsum[r] > 0 or colsum[c] >= rowsum[r]:\n         for i in range(r):\n             x = B[i][c]\n             if x != 0:\n@@ -97,7 +97,6 @@\n         rowsum[r] = 0\n         r -= 1\n \n-\n for i in range(H):\n     for j in range(W):\n         A[rowidx[i]][colidx[j]] = B[i][j]"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `XY[j][0]` in the inequality, instead of the correct `XY[j][1]`, which leads to inaccurate calculations for determining if points are collinear.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n   for j in range(i+1,N):\n     for k in range(j+1,N):\n       #print(i,j,k)\n-      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][0]-XY[i][0])*(XY[k][0]-XY[i][0]):\n+      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][1]-XY[i][1])*(XY[k][0]-XY[i][0]):\n         count+=1\n print(count)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the indices for pairing elements in the final sum, leading to wrong results in the output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,8 @@\n+\n n, m, *a = map(int, open(0).read().split())\n a.sort()\n ans = sum(i*i for i in a)\n pairs = n - m\n for i in range(pairs):\n-    ans += 2 * a[i] * a[i+pairs]\n+    ans += 2 * a[i] * a[pairs+pairs-1-i]\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

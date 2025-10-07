@@ -1,0 +1,4 @@
+{
+  "explanation": "The program contained a stray debug print (print(items)) that writes the set of item coordinates to stdout and corrupts the required single-line output (Yes/No). I replaced that debug print with a no-op (pass) so the program's behavior is unchanged except that it no longer prints debugging information. This is a single-line fix removing the unintended output.",
+  "fixed_code": "N, M, H, K = map(int, input().split())\nS = input()\nitems = set(tuple(map(int, input().split())) for _ in range(M))\npass\n    \n# シミュレーションする\nres = True\nx, y = 0, 0\nfor c in S:\n    # 移動する\n    if c == 'R': x += 1\n    elif c == 'L': x -= 1\n    elif c == 'U': y += 1\n    else: y -= 1\n\n    # 体力を 1 減らす (0 未満になったら倒れる)\n    H -= 1\n    if H < 0: res = False\n\n    # アイテムがあって体力が不足していたら回復する\n    if (x, y) in items and H < K:\n        H = K\n        items.remove((x, y))  # アイテムを削除する\n\nprint(\"Yes\" if res else \"No\")"
+}

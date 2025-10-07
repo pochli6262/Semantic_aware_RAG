@@ -1,0 +1,31 @@
+{
+  "task": "abc308_a/Python/46165135",
+  "query_summary": "The bug is an incorrect comparison operator (using >= instead of >) that wrongly rejects sequences with equal adjacent elements instead of allowing non-decreasing order.",
+  "oracle_summary": "The bug is an incorrect comparison operator (using >= instead of >) that wrongly rejects sequences with equal adjacent elements instead of allowing non-decreasing order.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly counts the occurrences of characters in the string by using `S.count(s)`, which leads to inaccurate results because it does not account for previous counts of the same character in the list.",
+      "diff": "--- \n+++ \n@@ -3,10 +3,9 @@\n \n for s in S:\n   num[S.count(s)] += 1\n-  \n for n in num:\n-  if n % 2 != 0:\n+  if  2 * num.index(n) != n:\n     print('No')\n     exit()\n-    \n+\n print('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly compares characters in the string `S` to the integer `0` instead of the string `\"0\"`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input().strip()\n \n for i in range(1, 9):\n-  if S[2 * i - 1] != 0:\n+  if S[2 * i - 1] != \"0\":\n     print(\"No\")\n     exit()\n print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `S[8]` instead of `S[7]` for the bitwise OR operation on `S[1]` when constructing the `column` list, which can lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n if S[0]:\n     exit(print(\"No\"))\n-column = [S[6], S[3], S[1] | S[8], S[0] | S[4], S[2] | S[8], S[5], S[9]]\n+column = [S[6], S[3], S[1] | S[7], S[0] | S[4], S[2] | S[8], S[5], S[9]]\n for i in range(7):\n     for j in range(i + 1, 7):\n         for k in range(j + 1, 7):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not check for the length of the substring `T`, which should be exactly 6 digits, resulting in incorrect validations for strings that are not 6 digits long.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n if S[0].isupper() and S[-1].isupper():\n     T = S[1:-1]\n     if T.isdigit():\n-        if 100000 <= int(T) <= 999999:\n+        if 100000 <= int(T) <= 999999 and len(T) == 6:\n             print('Yes')\n         else:\n             print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for valid input characters by only allowing digits \"1\" to \"9\", instead of including \"0\" in its validation criteria.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = list(input())\n-x = [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n+x = [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n if len(S) != 8:\n     print(\"No\")\n     exit()"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

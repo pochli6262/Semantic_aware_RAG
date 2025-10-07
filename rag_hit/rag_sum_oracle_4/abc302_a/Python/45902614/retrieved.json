@@ -1,0 +1,29 @@
+{
+  "task": "abc302_a/Python/45902614",
+  "query_summary": "The code uses float division with int(x/y)+1 rather than performing integer ceiling division, causing off-by-one and floating-point rounding errors (e.g., when x is an exact multiple of y).",
+  "oracle_summary": "The code uses float division with int(x/y)+1 rather than performing integer ceiling division, causing off-by-one and floating-point rounding errors (e.g., when x is an exact multiple of y).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for differences between `x` and `y` without ensuring that `y` is greater than `x`, which could lead to incorrect output for cases where `y < x`.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n x, y = map(int, input().split())\n-print(\"Yes\" if y - x == 2 or x - y == 3 else \"No\")\n+print(\"Yes\" if 0 < y - x <= 2 or 0 < x - y <= 3 else \"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints \"YES\" instead of the correctly capitalized \"Yes\" in the output.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, x, y, z = map(int, input().split())\n \n if x<z<y or y<z<x:\n-  print(\"YES\")\n+  print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the logical conditions for determining the range of y-x, leading to an inverted output when comparing the difference against the values -3 and 3.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x,y = map(int, input().split())\n \n-if y-x <= -3 or y-x > 3:\n+if y-x >= -3 and y-x < 3:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks specific conditions for returning -1 instead of accurately determining if any number is greater than the sum of the other two, which is required to identify an invalid triangle.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n x,y,z = map(int, input().split())\n-print(-1 if x == y == 0 and z == 1 or x == z == 0 and y == 1 or y == z == 0 and x == 1 else max(x, y, z))\n+print(-1 if x > y + z or y > x + z or z > x + y else max(x, y, z))"
+    },
+    {
+      "summary": "The buggy code contains a typo in the string assignment where \"atcorder\" should be corrected to \"atcoder\".",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-c = \"atcorder\"\n+c = \"atcoder\"\n \n x, y = map(int, input().split())\n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

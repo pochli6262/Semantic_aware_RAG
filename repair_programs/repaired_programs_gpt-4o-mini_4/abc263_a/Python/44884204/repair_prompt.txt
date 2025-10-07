@@ -1,0 +1,165 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+We have five cards with integers A, B, C, D, and E written on them, one on each card.
+
+This set of five cards is called a Full house if and only if the following condition is satisfied:
+
+* the set has three cards with a same number written on them, and two cards with another same number written on them.
+
+Determine whether the set is a Full house.
+
+### Constraints
+
+* 1 \leq A,B,C,D,E\leq 13
+* Not all of A, B, C, D, and E are the same.
+* All values in input are integers.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+A B C D E
+```
+
+### Output
+
+If the set is a Full house, print `Yes`; otherwise, print `No`.
+
+---
+
+### Sample Input 1
+
+```
+1 2 1 2 1
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The set has three cards with 1 written on them and two cards with 2 written on them, so it is a Full house.
+
+---
+
+### Sample Input 2
+
+```
+12 12 11 1 2
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+The condition is not satisfied.
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the program only checks one specific arrangement of the sorted cards and does not account for other valid configurations of a Full house, leading to incorrect results for some valid inputs.
+
+## Buggy Program
+def main():
+    cards = list(map(int, input().split()))
+    assert len(cards) == 5
+
+    cards.sort()
+    if cards[0] == cards[1] and cards[0] == cards[2] and cards[0] != cards[3] and cards[3] == cards[4]:
+        print("Yes")
+    else:
+        print("No")
+
+
+if __name__ == "__main__":
+    main()
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -11,7 +11,7 @@
+     elif c == 2:
+       cards[x] += 2
+     else:
+-      if cards[x] == 2:
++      if cards[x] >= 2:
+         print('Yes')
+       else:
+         print('No')
+
+### Diff 2
+--- 
++++ 
+@@ -9,7 +9,7 @@
+             ok = True
+         elif s[i] == "x":
+             print("No")
+-            break
++            return
+ 
+     if ok == True:
+         print("Yes")
+
+### Diff 3
+--- 
++++ 
+@@ -5,7 +5,7 @@
+         print("Yes")
+         A.sort()
+         print(*A)
+-    elif sum(A)>=0:
++    elif sum(A)>=K:
+         print("Yes")
+         A.sort(reverse=True)
+         print(*A)
+
+### Diff 4
+--- 
++++ 
+@@ -41,7 +41,7 @@
+         if (N+K) % (2*l) == 0:
+             print("Yes")
+             continue
+-        elif (N+k) % l == 0:
++        elif (N+K) % l == 0:
+             for i in range(l):
+                 if S[i] != S[l-i-1]:
+                     break
+
+### Diff 5
+--- 
++++ 
+@@ -9,7 +9,7 @@
+     firstB = s.index("B")
+     secondB = s.rindex("B")
+ 
+-    if firstB+secondB % 2 == 0:
++    if (secondB-firstB) % 2 == 0:
+         print("No")
+         return
+     
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

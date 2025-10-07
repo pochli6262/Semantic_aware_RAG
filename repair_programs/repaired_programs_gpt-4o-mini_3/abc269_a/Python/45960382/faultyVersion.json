@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program calculates the expression (a+b)*(c-d) correctly but prints 'takahashi' in lowercase. The correct output should capitalize the first letter, resulting in 'Takahashi'. Therefore, I corrected the print statement to output 'Takahashi' with the appropriate capitalization.",
+  "fixed_code": "a,b,c,d = input().split()\na = int(a)\nb = int(b)\nc = int(c)\nd = int(d)\n\nprint((a+b)*(c-d))\nprint('Takahashi')"
+}

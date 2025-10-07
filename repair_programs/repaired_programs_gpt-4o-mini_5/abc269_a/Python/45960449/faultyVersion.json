@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculates the expression as (a - d) instead of the correct expression (c - d). I fixed it by changing the line to use the correct expression as per the problem statement. This aligns with the underlying issue identified in the bug analysis.",
+  "fixed_code": "a, b, c, d  = map(int, input().split())\nprint(((a + b) * (c - d)))\nprint(\"Takahashi\")"
+}

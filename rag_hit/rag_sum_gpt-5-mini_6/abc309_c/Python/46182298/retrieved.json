@@ -1,0 +1,32 @@
+{
+  "task": "abc309_c/Python/46182298",
+  "query_summary": "The calc function uses the wrong inequality (ab[j][0] <= num) so medicines with a_i == num are incorrectly excluded, causing an off-by-one error.",
+  "oracle_summary": "The binary search uses the wrong comparison (calc(m) < k instead of calc(m) <= k), causing incorrect updates of l/r and an off-by-one error in the final result.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the variable `val` is incorrectly initialized to 0 instead of `n`, which leads to incorrect calculations in the `calc` function.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n def calc(x):\n     ret = []\n-    val = 0\n+    val = n\n     for i in range(n):\n         if x < n - 1 - i:\n             val = i"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the upper limit of the binary search range to \\(10^{12}\\) instead of the required \\(10^{16}\\}.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n for _ in range(n):\n     num = int(input())\n     l = 0\n-    r = 10 ** 12\n+    r = 10 ** 16\n     md = (l + r) // 2\n     while l + 1 < r:\n         ret = calc(md)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses float division for `a[i]/k`, resulting in decimal outputs instead of integer outputs as intended.",
+      "diff": "--- \n+++ \n@@ -3,4 +3,4 @@\n \n for i in range(n):\n   if a[i]%k==0:\n-    print(a[i]/k, end=\" \")\n+    print(int(a[i]/k), end=\" \")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop iterates over the range from 1 to M, which causes it to skip the case when `i` is 0, leading to incorrect calculations in the combination function `C` since it uses `i-1` as an argument.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n cnt = 0\n total = 0\n ans = 1\n-for i in range(1, M):\n+for i in range(M):\n   if i in A:\n     cnt += 1\n     continue"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the total number of valid values when \\( a \\) is less than or equal to \\( b \\), instead of calculating the maximum between \\( n - a + 1 \\) and 0.",
+      "diff": "--- \n+++ \n@@ -1,8 +1,9 @@\n n, a, b = map(int, input().split())\n if a <= b:\n-    print(n)\n+    print(max(n - a + 1, 0))\n else:\n     if n < a:\n         print(0)\n     else:\n         print((n // a - 1) * b + min(b - 1, n % a) + 1)\n+"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc301_b/Python/46199451",
+  "query_summary": "The program prints the Python list object (with brackets and commas) instead of outputting the sequence of numbers space-separated, because it uses print(ans_list) instead of print(*ans_list).",
+  "oracle_summary": "The program prints the Python list object (with brackets and commas) instead of outputting the sequence of numbers space-separated, because it uses print(ans_list) instead of print(*ans_list).",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it prints the result list as a single object instead of unpacking the individual elements, resulting in the output being displayed as a list rather than a space-separated string.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     result.append(i)\n for i in range(r + 1, n + 1):\n     result.append(i)\n-print(result)\n+print(*result)"
+    },
+    {
+      "summary": "The buggy code contains a print statement inside the loop, which causes it to output the intermediate state of the `ans` list after each iteration instead of only the final length after all operations are complete.",
+      "diff": "--- \n+++ \n@@ -14,5 +14,5 @@\n         bai = ans.pop() + 1\n         ans.pop()\n         ans.append(bai)\n-    print(ans)\n+    # print(ans)\n print(len(ans))"
+    },
+    {
+      "summary": "The buggy code fails to output the even numbers in a space-separated format, instead printing them as a list.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n for i in range(n):\n   if a[i] % 2 ==0:\n     x.append(a[i])\n-print(x)\n+print(*x,sep = ' ')"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly appends the range (n - 1, n - 3) in the first if condition, where it should append (n - 2, n - 2) instead.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     if p[j] != j + 1 and j < n - 2:\n         ind = p.index(j + 1)\n         if ind == n - 1:\n-            ans.append((n - 1, n - 3))\n+            ans.append((n - 2, n - 2))\n             p = p[: n - 3] + [p[n - 1]] + p[n - 3 : n - 1]\n         else:\n             ans.append((ind + 1, j))"
+    },
+    {
+      "summary": "The buggy code prints the list of indices as a list with brackets, while the correct code prints the indices as space-separated values.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n \tfor j in range(N):\n \t\tif A[j]:\n \t\t\tans.append(j+1)\n-\tprint(ans)\n+\tprint(*ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,1 @@
+The program sorts edges in ascending order and applies Kruskal to get a minimum spanning tree, but the problem requires choosing edges to form a maximum spanning tree (edges should be considered in descending order).

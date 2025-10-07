@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition 'if x>a+1 and x<=b:' wrongly treats rank A+1 as guaranteed a T-shirt. It should check if x is greater than A (x>a) and at most B, so that rank A+1 falls into the random-selection range with probability C/(B-A). I fixed that single comparison to 'x>a'. No external diff was needed.",
+  "fixed_code": "a,b,c,x=list(map(int,input().split()))\nans=1.0\nif x>a and x<=b:\n    ans=c/(b-a)\nelif x>b:\n    ans=0.0\nprint('%.10f'%ans)\n"
+}

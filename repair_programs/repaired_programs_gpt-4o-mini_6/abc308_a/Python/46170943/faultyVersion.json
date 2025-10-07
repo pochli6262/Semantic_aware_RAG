@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checked the range condition with 's[0] > 100 and s[-1] < 675', which incorrectly excluded the values 100 and 675. It should be 's[0] >= 100 and s[-1] <= 675' to include those boundary values. This fix is inspired by the general understanding that range checks should use 'greater than or equal to' (>=) and 'less than or equal to' (<=).",
+  "fixed_code": "s=list(map(int,input().split()))\nss=sorted(s)\n\npack=[]\nif s==ss and s[0] >= 100 and s[-1] <= 675:\n  for i in s:\n    if i%25==0:\n      pack.append(i)\nprint(\"Yes\" if len(pack)==8 else \"No\")"
+}

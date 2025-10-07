@@ -1,0 +1,29 @@
+{
+  "task": "abc304_b/Python/45808253",
+  "query_summary": "The bug is a typo in the 5-digit case that sets l[1] = 1 instead of l[1] = 0, so the second-most-significant digit isn't zeroed out.",
+  "oracle_summary": "The bug is a typo in the 5-digit case that sets l[1] = 1 instead of l[1] = 0, so the second-most-significant digit isn't zeroed out.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses `L[r] -= -1` instead of `L[r] -= 1`, leading to an incorrect decrement of values in the array.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for _ in range(N):\n     l, r = map(int, input().split())\n     L[l] += 1\n-    L[r] -= -1\n+    L[r] -= 1\n for i in range(num):\n     L[i+1] += L[i]\n "
+    },
+    {
+      "summary": "The buggy code incorrectly sets the upper limit of the binary search (`r`) as `10**9` instead of `10**9 + 1`, which can cause incorrect behavior when determining the minimum value of `l`.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n   H.append((dist[u],u))\n H.sort()\n l = 0\n-r = 10**9\n+r = 10**9 + 1\n while r - l > 1:\n   X = (l + r)//2\n   B = [0 for i in range(N)]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `ans` in the condition where `l < r`, leading to an off-by-one error when determining the correct minimum value.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n \n ans = 0\n if l < r:\n-    ans = min(i + 1 + 1, 1 + N - i)\n+    ans = min(i + 1 + 1, 1 + N - i - 1)\n else:\n     ans = min(i + 1, 2 + N - i - 1)\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `print(l[0]+1)` instead of `print(f\"! {l[0]+1}\")` to format the output in the required manner.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n         if abs(r[0]-l[0]) <= 1:\n             break\n     \n-    print(l[0]+1)\n+    print(f\"! {l[0]+1}\")\n             \n if __name__ == \"__main__\":\n     main()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs the final result with 'print(l)' instead of 'print('!', l)' as required to indicate the final answer.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n \ta = input()\n \tif a=='0': l = m\n \telse     : r = m\n-print(l)\n+print('!', l)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

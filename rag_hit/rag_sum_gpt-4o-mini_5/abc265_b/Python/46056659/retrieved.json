@@ -1,0 +1,32 @@
+{
+  "task": "abc265_b/Python/46056659",
+  "query_summary": "The likely bug is that the program checks the time limit against the movement cost before applying the bonus from the bonus rooms, causing it to potentially prematurely decide \"No\" before considering all available time increases.",
+  "oracle_summary": "The code uses a strict “>” comparison (A[i] > T) instead of “>=”, wrongly allowing progress when the cost equals the remaining time, which should result in “No.”",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly adds the penalty instead of subtracting it when M is less than X.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n if M >= X:\n     print(T)\n else:\n-    print(T + (X - M) * D)\n+    print(T - (X - M) * D)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    },
+    {
+      "summary": "The buggy code has an issue in the comparison logic of the if statement, where it incorrectly uses `<=` and `>=` instead of `<` and `>`, leading to potential off-by-one errors in the calculations.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n #[0,L),[L,R),[R,N)\n for L in range(N+1):\n     for R in range(L, N+1):\n-        if S-(N-R)*M<=0 or (S-(N-R)*M) >= M*(R-L):\n+        if S-(N-R)*M<0 or (S-(N-R)*M) > M*(R-L):\n             continue\n         if R==L:\n             z = (B[N]-B[R])*M"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

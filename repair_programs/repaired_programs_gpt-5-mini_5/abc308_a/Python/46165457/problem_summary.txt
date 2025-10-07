@@ -1,0 +1,1 @@
+The code wrongly treats 100 and 675 as invalid by using S[i] >= 675 or S[i] <= 100 instead of checking S[i] > 675 or S[i] < 100 (thus rejecting the inclusive endpoints).

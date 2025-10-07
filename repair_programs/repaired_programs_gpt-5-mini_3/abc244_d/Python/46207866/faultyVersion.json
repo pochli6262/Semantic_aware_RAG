@@ -1,0 +1,4 @@
+{
+  "explanation": "The program expects to read three characters from each input line (each line is a 3-character string like \"abc\"), but using input().split() tries to split on whitespace and fails to unpack when the line has no spaces. The fix is to read the characters directly from the input string by removing .split() for the first input assignment so the three characters are unpacked correctly.",
+  "fixed_code": "S1,S2,S3 = input()\nT1,T2,T3 = input().split()\ncnt = 0\nif S1 != T1:\n    cnt += 1\nif S2 != T2:\n    cnt += 1\nif S3 != T3:\n    cnt += 1\nprint(\"Yes\" if cnt%2==0 else \"No\")"
+}

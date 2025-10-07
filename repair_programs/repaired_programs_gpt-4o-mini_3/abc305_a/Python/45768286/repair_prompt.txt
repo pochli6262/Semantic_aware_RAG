@@ -1,0 +1,61 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+print(abs(5-int(input())%5))
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+print(int(input())%100)
+
+--- Correct Code ---
+print(input()[1:])
+
+
+### Example 2
+--- Buggy Code ---
+print(int(input()) % 100)
+
+--- Correct Code ---
+print('%02d' % (int(input()) % 100))
+
+
+### Example 3
+--- Buggy Code ---
+x, k = map(int, input().split())
+
+for i in range(k):
+  p, q = divmod(x, 10**(i+1))
+  if q >= 5:
+    p += 1
+  x = p*10**(i+1)
+print(x)
+
+
+--- Correct Code ---
+x, k = map(int, input().split())
+
+for i in range(k):
+  p, q = divmod(x, 10**(i+1))
+  if q//10**i >= 5:
+    p += 1
+  x = p*10**(i+1)
+print(x)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The code incorrectly rejects solutions where the third segment ends at the end of the array because it uses 'w>=N' — but w==N is allowed (w can be N). I fixed the single line by changing the boundary check from 'w>=N' to 'w>N' so that w==N is accepted. This is a simple off-by-one boundary fix (similar in spirit to diffs that adjust comparisons by +1).",
+  "fixed_code": "from bisect import bisect_left as bl\nN,P,Q,R = list(map(int,input().split()))\nA = list(map(int,input().split()))\nasum = [0]\nfor n in range(N):\n    asum.append(asum[-1]+A[n])\nfor x in range(N):\n    a = asum[x]\n    y = bl(asum,P+a)\n    if y>=N or asum[y]-a!=P : continue\n    a = asum[y]\n    z = bl(asum,Q+a)\n    if z>=N or asum[z]-a!=Q : continue\n    a = asum[z]\n    w = bl(asum,R+a)\n    if w>N or asum[w]-a!=R : continue\n    print(\"Yes\")\n    break\nelse:\n    print(\"No\")"
+}

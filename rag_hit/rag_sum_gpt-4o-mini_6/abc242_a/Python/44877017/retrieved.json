@@ -1,0 +1,29 @@
+{
+  "task": "abc242_a/Python/44877017",
+  "query_summary": "The program incorrectly calculates the probability of getting a T-shirt for participants ranked between A+1 and B by not considering that the selection is made uniformly from the correct number of eligible participants.",
+  "oracle_summary": "When x <= a, the buggy code sets res to 100.0 instead of 1.0, erroneously outputting a percentage rather than a probability.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the value of `ans` by using the wrong formula, specifically by not properly accounting for `a` in the numerator, leading to an incorrect result.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n a,b=map(int,input().split())\n-ans=(1000*b+5)//a/1000\n+ans=(1000*b+a/2)//a/1000\n print(\"{:.3f}\".format(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if the values of `b` and `c` are equal or differ by 1 without considering the absolute difference, which results in failing to correctly identify valid cases for the \"XY\" condition.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n def check(a,b,c,d):\n     #XY\n-    if b-c==1: return 1\n+    if abs(b-c)==1: return 1\n     #YY,XX\n     if b == c:\n         if b==0:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition `c[i] * a[i] > 0` instead of `c[i] - a[i]*X > 0`, which affects the logic determining whether to set `s` to 0 in the case where `a[i] == b[i]`.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     r = X\n     for i in range(n):\n         if a[i] == b[i]:\n-            if c[i] * a[i] > 0:\n+            if c[i] - a[i]*X > 0:\n                 s = 0\n                 break\n         elif b[i] - a[i] > 0:"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the value of `j` by not ensuring it is non-negative, which can lead to invalid results when determining the minimum number of items needed.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n     limit0 = (di + l[0] - 1) // l[0]\n     for i0, v in enumerate(dp):\n         for i in range(0, min(limit0, k[0] - i0) + 1):\n-            j = (di - l[0] * i + l[1] - 1) // l[1]\n+            j = max(0, (di - l[0] * i + l[1] - 1) // l[1])\n             v1 = v + j\n             if v1 <= k[1] and v1 < newdp[i0 + i]:\n                 newdp[i0 + i] = v1"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

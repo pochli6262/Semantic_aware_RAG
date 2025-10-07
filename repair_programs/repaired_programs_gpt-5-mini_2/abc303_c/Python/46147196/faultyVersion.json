@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used S[:-1], which mistakenly skips the last move of the string S. This can make the simulation incorrect if the final move leads to death or to a healing cell. I fixed that single line to iterate over all characters in S by using for s in S: so the final move is processed.",
+  "fixed_code": "N, M, H, K = map(int, input().split())\nS = input()\nRLUD = {'R': (1, 0), 'L': (-1, 0), 'U': (0, 1), 'D': (0, -1)}\n\nhealing = set()\nfor _ in range(M):\n    x, y = map(int, input().split())\n    healing.add((x, y))\n\nx, y = 0, 0\nfor s in S:\n    H -= 1\n    if H < 0:\n        print('No')\n        exit()\n    x += RLUD[s][0]\n    y += RLUD[s][1]\n    if (x, y) not in healing:\n        continue\n    if H < K:\n        healing.remove((x, y))\n        H = K\nprint('Yes')"
+}

@@ -1,0 +1,1 @@
+The program incorrectly calculates the success rates by using negative values, which leads to incorrect sorting order.

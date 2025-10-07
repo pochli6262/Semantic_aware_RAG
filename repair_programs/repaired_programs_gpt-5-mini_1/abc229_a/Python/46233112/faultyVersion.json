@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition compared S1[1] == S2[1], which checks the second character of each string. The intended check is to compare the last characters of the two strings. Using index -1 accesses the last character in Python, so I replaced S1[1] == S2[1] with S1[-1] == S2[-1]. Only that single line was changed.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1[0] == S2[0] or S1[-1] == S2[-1]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

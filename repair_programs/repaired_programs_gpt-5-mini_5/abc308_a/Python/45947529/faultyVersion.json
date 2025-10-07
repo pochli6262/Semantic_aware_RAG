@@ -1,0 +1,4 @@
+{
+  "explanation": "The second loop was checking S[i] instead of S[j], so it repeatedly validated the wrong element (the last i value) rather than each element in the j loop. I fixed the index from i to j so each S[j] is checked for being a multiple of 25 and within the 100–675 range.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)"
+}

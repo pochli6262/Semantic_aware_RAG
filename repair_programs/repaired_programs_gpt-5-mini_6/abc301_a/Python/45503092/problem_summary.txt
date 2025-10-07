@@ -1,0 +1,1 @@
+The code uses input().split() so S becomes a list (usually a single string) instead of the intended string of characters, causing the counts and tie-break logic to be applied incorrectly.

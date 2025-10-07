@@ -1,0 +1,1 @@
+The buggy program incorrectly checks for adjacency by only considering pairs in one specific order rather than ensuring both horizontal adjacency conditions are met for both A and B.

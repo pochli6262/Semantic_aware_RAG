@@ -1,0 +1,1 @@
+The program incorrectly uses the output 'YES' instead of 'Yes' for one of the conditions.

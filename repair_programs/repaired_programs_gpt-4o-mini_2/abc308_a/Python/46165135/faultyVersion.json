@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the condition that checks if the elements of S are divisible by 25. The original code uses 'if S[i] % 25 or not 100 <= S[i] <= 675:', which incorrectly evaluates as True if S[i] is not divisible by 25 or if it isn't in the range of 100 to 675. This means the condition will fail for any non-25 divisible number without considering the range check correctly. The corrected line properly checks if S[i] is not divisible by 25 and that it falls outside the specified range.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nres = 'Yes'\n\nfor i in range(len(S) - 1):\n    if S[i] >= S[i + 1]:\n        res = 'No'\n        break\n      \nfor i in range(len(S)):\n    if S[i] % 25 != 0 or not (100 <= S[i] <= 675):\n        res = 'No'\n        break\n      \nprint(res)"
+}

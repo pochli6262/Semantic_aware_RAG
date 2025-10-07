@@ -1,0 +1,29 @@
+{
+  "task": "abc303_b/Python/45560009",
+  "query_summary": "The bug is using the floating-point division operator (\"/\") instead of integer floor division (\"//\"), causing the final count to be returned as a float instead of an integer.",
+  "oracle_summary": "The bug is using the floating-point division operator (\"/\") instead of integer floor division (\"//\"), causing the final count to be returned as a float instead of an integer.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes the `tmp` variable inside the nested loop, causing it to not accumulate the total correctly before checking against the condition.",
+      "diff": "--- \n+++ \n@@ -1,9 +1,9 @@\n n,d=map(int,input().split())\n a=[list(map(int,input().split())) for _ in range(n)]\n a2=[[0]*n for _ in range(n)]\n+tmp=0\n for r in range(n):\n   for c in range(n):\n-    tmp=0\n     x=(a[r][c]+d*(r+c&1))%(2*d)\n     if x<=d:\n       tmp+=x"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `ans` when the range defined by `i` and `j` has zero length, leading to potential incorrect maximum calculations in this case.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n         if s < 0:\n             continue\n         if j - i == 0:\n-            ans = max(ans, s * (n - j))\n+            ans = max(ans, m * (asum[n] - asum[j]))\n             continue\n         one = s / (j - i)\n         if one > m:"
+    },
+    {
+      "summary": "The buggy code calculates `single_sz` incorrectly when `n - (n - m) * 2` results in a negative value, which can lead to incorrect array indexing and unintended behavior when summing the squares.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n a.sort(reverse=True)\n \n single_sz = n - (n-m)*2\n-print(single_sz)\n+#print(single_sz)\n \n ans = 0\n for i in range(single_sz):"
+    },
+    {
+      "summary": "The buggy code has an off-by-one error in the initialization of the array `q`, where it should be initialized with `n+2` rows instead of `n+1`.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n,M=map(int,input().split())\n-q=[[0]*(n+1) for i in range(n+1)]\n+q=[[0]*(n+1) for i in range(n+2)]\n q[0][0]=1\n q[1][0]=-1\n for i in range(n+1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly computes the value for `ans[i][j]` by using the expression `i//23*j//23`, which does not properly account for the multiplication of the two integer divisions, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n     ans[-1].append(1)\n for i in range(n):\n   for j in range(m):\n-    ans[i][j]=(i+j+i//23*j//23)%23+1\n+    ans[i][j]=(i+j+(i//23)*(j//23))%23+1\n for i in range(n):\n   print(' '.join(map(str,ans[i])))"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

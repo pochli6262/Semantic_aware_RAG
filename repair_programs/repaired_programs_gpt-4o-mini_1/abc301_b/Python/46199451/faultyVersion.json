@@ -1,0 +1,4 @@
+{
+  "explanation": "The line that needs correction is where the elements are extended to the ans_list using a generator expression. Specifically, the expression should correctly handle the case for extending the list in both increasing and decreasing sequences. In the case of decreasing sequences, it needed to go up to and including a[i + 1]. The change was made in the second extend call to ensure that the last value (a[i + 1]) is included. The corrected line is now 'ans_list.extend(i for i in range(a[i], a[i + 1] - 1, -1))'.",
+  "fixed_code": "n = int(input())\na = list(map(int, input().split()))\n\nans_list = []\nfor i in range(n - 1):\n    # print(a[i + 1] - a[i])\n    if a[i + 1] >= a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1]))\n    elif a[i + 1] < a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1] - 1, -1))\nans_list.append(a[-1])\nprint(ans_list)"
+}

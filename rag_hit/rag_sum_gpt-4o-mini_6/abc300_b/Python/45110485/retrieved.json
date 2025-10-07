@@ -1,0 +1,33 @@
+{
+  "task": "abc300_b/Python/45110485",
+  "query_summary": "The likely bug is that the program does not properly account for the changes made to `mp1` during the vertical shift before proceeding to the horizontal shift, potentially leading to incorrect comparisons with `tableB`.",
+  "oracle_summary": "The buggy code skips the (dy, dx) = (0, 0) case, so it never checks whether tableA already equals tableB without any shift.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses a condition `if rowsum[r] >= 0 or colsum[c] >= rowsum[r]:` which can lead to incorrect calculations during the adjustments of the matrix, instead of the intended condition `if rowsum[r] > 0 or colsum[c] >= rowsum[r]:` found in the correct code.",
+      "diff": "--- \n+++ \n@@ -51,7 +51,7 @@\n c = W-1\n \n while r >= 0 and c >= 0 and colsum[c] < 0:\n-    if rowsum[r] >= 0 or colsum[c] >= rowsum[r]:\n+    if rowsum[r] > 0 or colsum[c] >= rowsum[r]:\n         for i in range(r):\n             x = B[i][c]\n             if x != 0:\n@@ -97,7 +97,6 @@\n         rowsum[r] = 0\n         r -= 1\n \n-\n for i in range(H):\n     for j in range(W):\n         A[rowidx[i]][colidx[j]] = B[i][j]"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the value of `sh` when adjusting for row-based transformations, leading to improper handling of the row indexing.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n   if sh<=a:\n     sh=a-sh\n   else:\n-    sh=w-(sh-a)\n+    sh=h-(sh-a)\n   if rw<=b:\n     rw=b-rw\n   else:\n@@ -35,6 +35,7 @@\n x=sh-rh\n y=sw-rw\n \n+\n for i in range(h):\n   ansh[rh]=i\n   rh+=x\n@@ -44,14 +45,13 @@\n   answ[rw]=i\n   rw+=y\n   rw%=w\n-\n+  \n   \n ans=[[0]*w for _ in range(h)]\n \n for i in range(h):\n   for j in range(w):\n     ans[i][j]=c[ansh[i]][answ[j]]\n-\n-  \n+    \n for i in ans:\n   print(''.join(i))"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the value of `B[0]` after processing `A[2]`, leading to potential miscalculations in subsequent checks regarding the resource allocation logic.",
+      "diff": "--- \n+++ \n@@ -36,7 +36,7 @@\n     B[1]+=B[4]\n     B[4]=0\n   B[3]-=A[2]\n-  A[0]+=A[2]\n+  B[0]+=A[2]\n   if A[1]>B[1]+B[2]+2*B[3]+2*B[4]:\n     print('No')\n     continue"
+    },
+    {
+      "summary": "The buggy code incorrectly uses integer division (`//`) instead of multiplication when calculating contributions from `B[3]` and `B[4]`, leading to erroneous logic in the conditional check.",
+      "diff": "--- \n+++ \n@@ -30,6 +30,6 @@\n     B[3]-=A[2]\n     B[0]+=A[2]\n \n-    if A[1]>B[1]+B[2]+B[3]//2+B[4]//2 or A[0]+2*A[1]>B[0]+2*B[1]+3*B[2]+4*B[3]+5*B[4]:\n+    if A[1]>B[1]+B[2]+B[3]*2+B[4]*2 or A[0]+2*A[1]>B[0]+2*B[1]+3*B[2]+4*B[3]+5*B[4]:\n         ans=\"No\"\n     print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value for the `dp` array is incorrectly set to `-1`, which does not accommodate the maximum potential value, whereas it should be initialized to a sufficiently low negative value (e.g., `-1<<60`) to ensure correct maximization comparisons.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n A=[list(map(int,input().split())) for _ in range(h)]\n dp=[[0]*w for _ in range(h)]\n ans=0\n-dp=[[[-1]*w for _ in range(h)]for _ in range(h*w+10)]\n+dp=[[[-1<<60]*w for _ in range(h)]for _ in range(h*w+10)]\n dp[0][sy][sx]=0\n \n for t in range(min(h*w,k)+1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    10
+  ],
+  "useful_diffs_count": 3
+}

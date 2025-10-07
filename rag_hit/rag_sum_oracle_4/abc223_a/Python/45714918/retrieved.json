@@ -1,0 +1,32 @@
+{
+  "task": "abc223_a/Python/45714918",
+  "query_summary": "The code incorrectly prints \"Yes\" for x=0 by only checking x%100==0 instead of also excluding zero.",
+  "oracle_summary": "The code incorrectly prints \"Yes\" for x=0 by only checking x%100==0 instead of also excluding zero.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the original value of `x` when it is a multiple of 10, instead of printing the quotient of `x` divided by 10.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x = int(input())\n if x % 10 == 0:\n-  print(x)\n+  print(x // 10)\n else:\n   print(x // 10 + 1)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `n` equals 0 instead of 1 to determine if the input can be fully reduced by dividing by 2 and 3, leading to incorrect output for valid inputs.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n while n % 2 == 0:\n     n //= 2\n \n-print(\"Yes\" if n == 0 else \"No\")\n+print(\"Yes\" if n == 1 else \"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the input number is greater than 2 instead of verifying if it falls within the range of 2 to 4, leading to incorrect outputs.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,3 @@\n n = int(input())\n-print(\"Yes\" if n > 2 else \"No\")\n+\n+print(\"No\" if 2 <= n <= 4 else \"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly only checks if `n` is greater than or equal to 5, failing to include a condition to also print \"Yes\" when `n` equals 1.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-if n >= 5:\n+if n >= 5 or n == 1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the division operator (/) instead of the floor division operator (//) when calculating the quotient of x by 10 in the first condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x = int(input())\n \n if x % 10 == 0:\n-  print(int(x / 10))\n+  print(int(x // 10))\n else:\n   print(int(x // 10 + 1))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

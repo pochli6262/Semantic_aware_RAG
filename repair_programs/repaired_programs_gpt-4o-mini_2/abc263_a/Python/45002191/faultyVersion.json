@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is caused by the input reading line. The map function does not directly convert the input into integers due to the way input is processed. Instead of using 'input()', we should add 'strip()' to remove any extra whitespace that could lead to empty entries after splitting. The corrected line is: x=list(map(int, input().strip().split()))",
+  "fixed_code": "x=list(map(int,input().strip().split()))\nif len(set(x))==2:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

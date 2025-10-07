@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly assumes that the cumulative sums satisfy the condition for finding the tuple (x, y, z, w) without ensuring that the indices x, y, z, and w are distinct and in the correct order.

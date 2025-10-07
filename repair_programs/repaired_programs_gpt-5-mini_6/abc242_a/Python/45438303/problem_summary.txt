@@ -1,0 +1,1 @@
+The code incorrectly excludes the case X == B from the random-selection branch (using X < B), so it prints 0 for rank B instead of the probability C/(B−A).

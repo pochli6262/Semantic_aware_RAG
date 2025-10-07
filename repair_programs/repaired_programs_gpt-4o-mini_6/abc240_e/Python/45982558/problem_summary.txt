@@ -1,0 +1,1 @@
+The likely bug is that the program does not correctly update the answers for all vertices in a non-leaf node, leading to incorrect intervals for L_i and R_i.

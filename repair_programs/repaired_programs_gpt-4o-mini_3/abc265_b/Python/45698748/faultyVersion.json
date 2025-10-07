@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug occurs in the condition that checks if 't' is less than or equal to zero after the sum operation. The problematic line is: 'if t <= 0:'. This should check for 't < 0' instead, as the logic requires 't' to stay positive for the scenario to continue. By changing this line, we correct the logic to accurately reflect the conditions needed to continue the execution.",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= sum(a[pos : x - 1])\n    if t < 0:\n        print(\"No\")\n        exit()\n    else:\n        t += y\n        pos = x - 1\nt -= sum(a[pos:])\nif t < 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

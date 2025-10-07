@@ -1,0 +1,4 @@
+{
+  "explanation": "The first branch incorrectly printed 0 when n % 5 == 0, which causes multiples of 5 to output 0 instead of the original number. I changed that single line to print(n) so multiples of 5 are returned unchanged. No other lines were modified.",
+  "fixed_code": "n = int(input())\nif n%5 ==0:\n  print(n)\nelif n % 5 >=3:\n  print(n+5-n%5)\nelse:\n  print(n-n%5)\n"
+}

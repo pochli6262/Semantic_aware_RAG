@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program does not handle the case when the first characters do not match but the second characters do. To ensure both characters are compared correctly, I need to correct the logical condition by replacing 'or' with 'and', so that it checks if both characters from S1 and S2 do not match correctly before printing 'No'.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1[0] == S2[0] and S1[1] == S2[1]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used a hard-coded range(3), which breaks when the input lists are not exactly length 3 (it can produce incorrect counts or IndexError). I fixed that single line so the loop iterates over the common indices of S and T using range(min(len(S), len(T))). That preserves behavior for equal-length inputs but avoids errors or wrong results when lengths differ. Only that one line was changed.",
+  "fixed_code": "S = list(map(str, input().split()))\nT = list(map(str, input().split()))\ndiff = 0\nfor i in range(min(len(S), len(T))):\n    if S[i] != T[i]:\n        diff += 1\n\nif diff % 2 == 0:\n    print('Yes')\nelse:\n    print('No')"
+}

@@ -1,0 +1,29 @@
+{
+  "task": "abc303_c/Python/45578518",
+  "query_summary": "The likely bug is that the program does not correctly account for the scenario where Takahashi's health reaches exactly zero before consuming an item, allowing him to continue moving instead of collapsing.",
+  "oracle_summary": "A leftover debug statement (`print(items)`) produces extra output and thus corrupts the program's expected output.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it does not account for the scenario where the last element is (t=1, d=0), which prevents correct handling of cases when no attacks are possible just before reaching a certain threshold.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n from bisect import *\n \n n, h = map(int, input().split())\n-td = [tuple(map(int, input().split())) for _ in range(n)]\n+td = [tuple(map(int, input().split())) for _ in range(n)] + [(1, 0)]\n td.sort() # t の小さい順\n \n prod_max = [t * d for t, d in td]"
+    },
+    {
+      "summary": "The buggy code uses an incorrect logical operator in the while loop condition, resulting in an infinite loop instead of terminating when the number of iterations reaches 'n'.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n     ti.add(b)\n     ki=set()\n     x=0\n-    while (not(len(ti)==0))or(x!=n):\n+    while (not(len(ti)==0))and(x!=n):\n         x+=1\n         for i in ti:\n             for j in do:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the number of required amulets during damage computation, specifically failing to account for the case when the damage surpasses the threshold by just one, resulting in inaccurate outputs.",
+      "diff": "--- \n+++ \n@@ -140,7 +140,7 @@\n     cusum=sumseg.query(ind,n)\n     #print([cntseg.query(i,i+1) for i in range(n)])\n     #print([sumseg.query(i,i+1) for i in range(n)])\n-    needamulets[i]=cntseg.query(ind,n)-((cusum-dif)//thre_num)\n+    needamulets[i]=cntseg.query(ind,n)-((cusum-(dif+1))//thre_num)\n     \n   #print(needamulets)\n   ans=[-1]*(M+1)"
+    },
+    {
+      "summary": "The buggy code fails to handle the case when the remaining value of K is not zero after processing, as it does not output \"No\" in that scenario, leading to incorrect program behavior.",
+      "diff": "--- \n+++ \n@@ -78,3 +78,5 @@\n if K==0:\n     print(\"Yes\")\n     print(*ANS)\n+else:\n+    print(\"No\")"
+    },
+    {
+      "summary": "The buggy code fails to update the `done` dictionary to mark positions as visited after pushing new items onto the priority queue, which can lead to incorrect results when checking for duplicates.",
+      "diff": "--- \n+++ \n@@ -53,12 +53,12 @@\n     if apos + 1 <= N - 1:\n         if done[apos + 1][bpos] != 1:\n             heappush(que, (A2[apos + 1][0] + B2[bpos][0], apos + 1, bpos, A2[apos + 1][1], B2[bpos][1]))\n+            done[apos + 1][bpos] = 1\n \n     if bpos + 1 <= M - 1:\n         if done[apos][bpos + 1] != 1:\n             heappush(que, (A2[apos][0] + B2[bpos + 1][0], apos, bpos + 1, A2[apos][1], B2[bpos + 1][1]))\n-\n-\n+            done[apos][bpos + 1] = 1\n else:\n     value, _, _, _, _ = heappop(que)\n     print(-value)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

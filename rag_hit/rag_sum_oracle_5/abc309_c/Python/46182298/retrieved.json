@@ -1,0 +1,33 @@
+{
+  "task": "abc309_c/Python/46182298",
+  "query_summary": "The binary search uses the wrong comparison (calc(m) < k instead of calc(m) <= k), causing incorrect updates of l/r and an off-by-one error in the final result.",
+  "oracle_summary": "The binary search uses the wrong comparison (calc(m) < k instead of calc(m) <= k), causing incorrect updates of l/r and an off-by-one error in the final result.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly sets the upper limit of the binary search range to \\(10^{12}\\) instead of the required \\(10^{16}\\}.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n for _ in range(n):\n     num = int(input())\n     l = 0\n-    r = 10 ** 12\n+    r = 10 ** 16\n     md = (l + r) // 2\n     while l + 1 < r:\n         ret = calc(md)"
+    },
+    {
+      "summary": "The issue in the buggy code is that the upper limit for the binary search (`r`) is incorrectly set to `1 << 30` instead of `1 << 40`, which results in an insufficient search range.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, m, k = map(int, input().split())\n a = list(map(int, input().split()))\n-r = 1 << 30\n+r = 1 << 40\n l = 0\n while r - l > 1:\n     mid = (r + l) // 2"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `right` variable to the sum of elements in the list `L`, instead of `sum(L) + len(L)`, which leads to incorrect calculations during the binary search process.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, m = map(int, input().split())\n L = list(map(int, input().split()))\n-left, right = max(L), sum(L)\n+left, right = max(L), sum(L) + len(L)\n while left < right:\n     mid = (left + right) // 2\n     cur = 0"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to sort the `temp1` and `temp2` lists before performing the binary search, which is necessary for correct comparisons and count calculations.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+\n n,m,k=list(map(int,input().split()))\n \n nums1=[]\n@@ -22,6 +23,9 @@\n         temp1.append(nums1[i][0]-(nums1[i][0]+nums1[i][1])*mid)\n     for i in range(m):\n         temp2.append(nums2[i][0]-(nums2[i][0]+nums2[i][1])*mid)\n+\n+    temp1.sort()\n+    temp2.sort()\n \n     count=0\n     for i in range(n):"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value of `l` is set to `0`, which may cause the binary search to incorrectly handle cases where `m` should be larger than `0`, leading to potential incorrect calculations and an empty candidate set.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n \n cand = set()\n for a in range(10**6+1):\n-    l,r = 0, 10**6+10\n+    l,r = -1, 10**6+10\n     while r-l>1:\n         m = (l+r)//2\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

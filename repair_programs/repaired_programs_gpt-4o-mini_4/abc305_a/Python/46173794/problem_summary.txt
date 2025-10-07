@@ -1,0 +1,1 @@
+The bug likely occurs because the condition for determining whether to round up or down to the nearest water station is incorrectly handling cases where Takahashi is exactly at a water station.

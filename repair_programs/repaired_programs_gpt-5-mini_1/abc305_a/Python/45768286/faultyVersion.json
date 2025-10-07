@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line prints abs(5 - int(input()) % 5). That yields 5 when the input is already divisible by 5 (since int(input()) % 5 == 0 -> abs(5 - 0) == 5), but the correct result in that case should be 0. I fixed it by taking the result modulo 5 again: (5 - (n % 5)) % 5 produces 0 when n is divisible by 5 and gives the minimal nonnegative amount to add to reach the next multiple of 5.",
+  "fixed_code": "print((5 - int(input()) % 5) % 5)"
+}

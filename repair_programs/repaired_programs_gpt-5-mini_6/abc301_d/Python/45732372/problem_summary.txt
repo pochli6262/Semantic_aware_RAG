@@ -1,0 +1,1 @@
+The code mistakenly prints the initial value after replacing '?' (a stray debug print) and never prints the final computed ans, so the program produces incorrect output.

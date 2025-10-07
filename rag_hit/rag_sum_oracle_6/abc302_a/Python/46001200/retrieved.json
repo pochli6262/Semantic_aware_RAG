@@ -1,0 +1,33 @@
+{
+  "task": "abc302_a/Python/46001200",
+  "query_summary": "Off-by-one error: the code unconditionally adds 1 to A//B instead of using (A-1)//B+1, so it overcounts when A is exactly divisible by B.",
+  "oracle_summary": "Off-by-one error: the code unconditionally adds 1 to A//B instead of using (A-1)//B+1, so it overcounts when A is exactly divisible by B.",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses the bitwise XOR operator (^) instead of the exponentiation operator (**), resulting in incorrect output for calculating A raised to the power of B.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n A, B = map(int, input().split())\n-print(A^B)\n+print(A**B)"
+    },
+    {
+      "summary": "The buggy code does not account for the case where both A and B are equal to 2, which should return 2 instead of -1 when their sum is 4.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n A,B = map(int,input().split())\n if A + B == 3:\n   print(\"3\")\n-elif A + B == 4:\n+elif A + B == 4 and A != B:\n   print(\"2\")\n elif A + B == 5:\n   print(\"1\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the modulo in the second print statement by applying it to the result of the `pow` function multiplied by `(A-1)-1` instead of just `(A-1)`.",
+      "diff": "--- \n+++ \n@@ -4,5 +4,5 @@\n     print(X % M)\n else:\n     print(\n-        (pow(A, X, M * (A-1)-1) // (A-1)) % M\n+        ((pow(A, X, M * (A-1))-1) // (A-1)) % M\n     )"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the modulo operation by prematurely dividing the result of `pow(A,X,M*(A-1))` by `(A-1)` before subtracting 1, leading to incorrect results for cases where `A` is not equal to 1.",
+      "diff": "--- \n+++ \n@@ -2,4 +2,4 @@\n if A == 1:\n     print(X%M)\n else:\n-    print(pow(A,X,M*(A-1))//(A-1)%M)\n+    print((pow(A,X,M*(A-1))-1)//(A-1)%M)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the bitwise XOR operator (^) instead of the exponentiation operator (**) to calculate the powers of A and B.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n A, B = input().split()\n A, B = int(A), int(B)\n-res = A^B + B^A\n+res = (A**B) + (B**A)\n print(res)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,1 @@
+The code incorrectly skips checking the no-shift case (s = 0, t = 0) because it continues when dy == 0 and dx == 0, so it can miss when A already equals B.

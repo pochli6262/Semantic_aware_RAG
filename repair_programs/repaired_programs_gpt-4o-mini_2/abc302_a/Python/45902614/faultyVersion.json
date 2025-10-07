@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line has an issue with integer division. The expression 'int(x/y)' results in an integer division which can lead to incorrect rounding down of the division. To correctly calculate the ceiling of the division x/y, I used the expression '(x + y - 1) // y', which gives the correct integer result of rounding up without needing to use floating-point division.",
+  "fixed_code": "x, y = map(int, input().split())\nprint((x + y - 1) // y + 1)"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the code used min(d_list) to pick the discount/value from the list, but the intended logic requires selecting the largest value from d_list. Using min picks the smallest element and produces incorrect results. I fixed that single line by replacing min(d_list) with max(d_list) so the code uses the maximum value from the list.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = max(d_list)\n\nprint(min(p-q+a,p))"
+}

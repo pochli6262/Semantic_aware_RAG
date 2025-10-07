@@ -1,0 +1,32 @@
+{
+  "task": "abc242_a/Python/45214716",
+  "query_summary": "The likely bug is that the program inaccurately calculates the total participants eligible for random selection by using the incorrect range in the denominator of the probability formula.",
+  "oracle_summary": "In the middle case (a < x ≤ b), the code uses an off-by-one denominator c/(b−a+1) instead of the correct c/(b−a).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if `b <= x` instead of the correct condition `b < x` to determine the output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n for i in range(n):\n \tb = min(b,d-c[i][0])\n \td = max(d,c[i][1])\n-if b<=x:\n+if b<x:\n \tprint(0)\n else:\n \tprint(b)"
+    },
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates `max_k` as `ceil((b-1)/a)` instead of `ceil(b/a)`, leading to an incorrect upper limit for the loop, which may cause incorrect results.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     a, b = map(int, input().split())\n \n \n-    max_k = ceil((b-1)/a)\n+    max_k = ceil(b/a)\n \n     ans = 10**18\n     for k in range(1, max_k + 1):"
+    },
+    {
+      "summary": "The buggy code incorrectly increments the index `j` in the statement `j+=j<=i`, which can lead to an invalid random selection of indices, resulting in potential out-of-bounds errors or incorrect comparisons when calculating `A`.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n for _ in range(500):\n   i=randint(0,n-1)\n   j=randint(0,n-2)\n-  j+=j<=i\n+  j+=i<=j\n   A=abs(a[i]-a[j])\n   p=[]\n   for v in P:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The code built the correct sequence in ans_list, but the final print printed the Python list representation (with brackets and commas). Many contest/expected outputs require the sequence elements separated by spaces. I fixed the single incorrect line by unpacking the list into print so the numbers are printed space-separated: print(*ans_list).",
+  "fixed_code": "n = int(input())\na = list(map(int, input().split()))\n\nans_list = []\nfor i in range(n - 1):\n    # print(a[i + 1] - a[i])\n    if a[i + 1] >= a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1]))\n    elif a[i + 1] < a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1], -1))\nans_list.append(a[-1])\nprint(*ans_list)\n"
+}

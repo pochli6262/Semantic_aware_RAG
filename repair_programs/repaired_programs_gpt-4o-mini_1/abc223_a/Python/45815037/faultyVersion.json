@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code does not correctly account for numbers that are less than 100 but greater than 0, which should also return 'No'. The condition for printing 'Yes' was only checking if X is divisible by 100, but it should also ensure that X is at least 100. I fixed it by changing the line that checks if X is less than 100 to check if X is greater than or equal to 100.",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100:\n    print(\"No\")\nelif X >= 100 and X % 100 == 0:\n    print(\"Yes\")"
+}

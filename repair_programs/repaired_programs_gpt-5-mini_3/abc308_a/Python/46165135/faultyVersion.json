@@ -1,0 +1,4 @@
+{
+  "explanation": "The second loop's condition used S[i] % 25 directly in a boolean context. While that often works because 0 is falsy and non-zero is truthy, it's clearer and less error-prone to explicitly compare to 0. The correct condition is to check if S[i] % 25 != 0 or the value is out of the allowed range; I fixed that single line by making the remainder check explicit.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nres = 'Yes'\n\nfor i in range(len(S) - 1):\n    if S[i] >= S[i + 1]:\n        res = 'No'\n        break\n      \nfor i in range(len(S)):\n    if S[i] % 25 != 0 or not 100 <= S[i] <= 675:\n        res = 'No'\n        break\n      \nprint(res)"
+}

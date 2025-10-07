@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code checks if a set of features of the j-th item is a superset of the i-th item (f[j].issuperset(f[i])), which should actually check if features of the i-th item are a superset of the j-th item instead (f[i].issuperset(f[j])). The corrected line addresses this logic error.",
+  "fixed_code": "n, m = map(int, input().split())\n\np = []\nc = []\nf = []\n\nfor i in range(n):\n    l = list(map(int, input().split()))\n    p.append(l[0])\n    c.append(l[1])\n    f.append(set(l[2:]))\n\nfor i in range(n):\n    for j in range(n):\n        if p[i] >= p[j]:\n            if f[i].issuperset(f[j]):\n                print(\"Yes\")\n                exit(0)\n\nprint(\"No\")"
+}

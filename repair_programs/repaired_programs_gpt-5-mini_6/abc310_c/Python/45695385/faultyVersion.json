@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only treated single-character strings specially (len(s)==1) to ensure two distinct entries went into the set for counting, but missed longer palindromes (s == reversed(s)). I changed the condition to check if the string is a palindrome (s==t) so that all palindromic sticks — not just length-1 ones — get a second distinct marker added. This preserves the program's approach of inserting two representatives per equivalence class so dividing the set size by 2 yields the correct number of distinct sticks.",
+  "fixed_code": "n=int(input())\nk=set([])\nfor i in range(n):\n  s=input()\n  S=[]\n  for i in range(len(s)):\n    S.append(s[i])\n  t=\"\"\n  for i in range(len(s)):\n    t+=S[len(s)-1-i]\n  \n  if not s in k:\n    if s==t:\n      k.add(s)\n      k.add(s+str(1))\n    else:\n      k.add(s)\n      k.add(t)\n\nprint(int(len(k)/2))"
+}

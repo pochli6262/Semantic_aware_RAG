@@ -1,0 +1,33 @@
+{
+  "task": "abc309_a/Python/45963671",
+  "query_summary": "The program fails to terminate after detecting b-a != 1 (missing an exit/return), so execution continues and can produce incorrect output.",
+  "oracle_summary": "The program fails to terminate after detecting b-a != 1 (missing an exit/return), so execution continues and can produce incorrect output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the difference between `b` and `a` is non-zero rather than specifically checking if it equals 1 or 9.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b = map(int, input().split())\n \n-if b - a or b - a == 9:\n+if b - a == 1 or b - a == 9:\n   print('Yes')\n else:\n   print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the last digits of `a` and `b` differ by exactly 1, instead of allowing for the special case where they wrap around and differ by 9.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b = map(int,input().split())\n-if abs(a % 10 - b % 10) == 1:\n+if abs(a % 10 - b % 10) in [1,9]:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition involving variable 'a' multiplied by 'b' instead of 'a' multiplied by 'd' in the second conditional statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n if abs(b-c) >= 2:\n     print(\"No\")\n-elif b + c == 0 and a*b != 0:\n+elif b + c == 0 and a*d != 0:\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the last digits of `a` and `b` differ by 1, instead of checking if `b` is exactly 1 greater than `a` or if `a` is 1 and `b` is 10.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n a,b=map(int,input().split())\n-if abs(a%10-b%10)==1:\n+if b-a==1 or (a==1 and b==10):\n     print('Yes')\n else:print('No')"
+    },
+    {
+      "summary": "The buggy code fails to handle the specific case where the input length `n` is 2, which should return \"No\" if the first element of `a` does not match the first element of `b`.",
+      "diff": "--- \n+++ \n@@ -7,6 +7,8 @@\n     if a[0] != b[0]:\n       if a[0] == \"A\":\n          return False\n+      if n == 2:\n+         return False\n \n     return True\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

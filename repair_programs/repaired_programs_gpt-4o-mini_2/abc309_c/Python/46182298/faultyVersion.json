@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where the midpoint 'm' is calculated. The condition for adjusting 'r' was reversed. If 'calc(m)' is less than 'k', 'm' should move to the right (increase), which means 'l' should be updated, not 'r'. I fixed it by changing 'r = m' to 'l = m'.",
+  "fixed_code": "n, k = map(int, input().split())\nab = [list(map(int, input().split())) for _ in range(n)]\n\ndef calc(num):\n    global ab\n    res = 0\n    for j in range(n):\n        if ab[j][0] <= num:\n            continue\n        res += ab[j][1]\n    return res\n\nl = -1\nr = 9999999999999999\nm = 0\nwhile r > l + 1:\n    m = (r + l) // 2\n    if calc(m) < k:\n        l = m\n    else:\n        r = m\nprint(r + 1)"
+}

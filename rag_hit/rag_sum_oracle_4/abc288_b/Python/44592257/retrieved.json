@@ -1,0 +1,34 @@
+{
+  "task": "abc288_b/Python/44592257",
+  "query_summary": "The buggy code reads n strings instead of k, so it sorts and selects from all inputs rather than only the first k strings.",
+  "oracle_summary": "The buggy code reads n strings instead of k, so it sorts and selects from all inputs rather than only the first k strings.",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses floating-point division (/) instead of integer division (//) when appending values to list `b`, which results in incorrect output when the intention is to store integer results.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n \n for i in range(n):\n   if a[i] % k == 0:\n-      b.append(a[i] / k)\n+      b.append(a[i]//k)\n \n b.sort()\n print(*b)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses division (`/`) instead of integer division (`//`), which can lead to incorrect results when appending elements to list `b`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n b = []\n for i in range(n):\n     if a[i] % k == 0:\n-        c = a[i] / k\n+        c = a[i] // k\n         b.append(c)\n sorted_b = sorted(b)\n print(\" \".join(map(str, sorted_b)))"
+    },
+    {
+      "summary": "The buggy code incorrectly uses float division for `a[i]/k`, resulting in decimal outputs instead of integer outputs as intended.",
+      "diff": "--- \n+++ \n@@ -3,4 +3,4 @@\n \n for i in range(n):\n   if a[i]%k==0:\n-    print(a[i]/k, end=\" \")\n+    print(int(a[i]/k), end=\" \")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses the condition `if s < sum`, instead of the correct condition `if s <= sum`, which causes it to not produce the intended output when `s` is equal to `sum`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n   p,q=map(int, input().split())\n   sum+=p*q\n \n-if s<sum:\n+if s<=sum:\n   print(sum)\n else:\n   print(sum+k)"
+    },
+    {
+      "summary": "The buggy code incorrectly divides the elements divisible by `k` by 2 instead of `k`, leading to incorrect results in the output.",
+      "diff": "--- \n+++ \n@@ -4,6 +4,6 @@\n \n for i in range(n):\n   if a[i] % k == 0:\n-    ans.append(a[i]//2)\n+    ans.append(a[i]//k)\n \n print(*ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "useful_diffs_count": 4
+}

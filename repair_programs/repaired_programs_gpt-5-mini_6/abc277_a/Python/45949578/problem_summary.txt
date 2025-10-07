@@ -1,0 +1,1 @@
+The program prints the 0-based index i when it finds X instead of the required 1-based position, causing an off-by-one error.

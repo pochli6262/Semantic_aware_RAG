@@ -1,0 +1,1 @@
+The code fills '?' bits right-to-left (least significant first) instead of left-to-right, so it greedily sets low bits and can miss larger valid values that would fit by setting higher bits.

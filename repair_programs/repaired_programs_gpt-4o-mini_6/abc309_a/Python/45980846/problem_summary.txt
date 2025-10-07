@@ -1,0 +1,1 @@
+The program incorrectly checks for adjacency both horizontally and vertically, leading to incorrect results for the specified condition of horizontal adjacency only.

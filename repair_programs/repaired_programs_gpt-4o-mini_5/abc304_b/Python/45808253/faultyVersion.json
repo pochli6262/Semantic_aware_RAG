@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly handles the cases where N has more than four digits, specifically the truncation logic for those cases. Instead of setting specific digits to zero, it should simply calculate a power of ten based on the number of digits to truncate the appropriate place. I was inspired by the clarity provided in Diff 1 where I saw concise handling of different cases by utilizing mathematical operations instead of manual digit manipulation.",
+  "fixed_code": "N = int(input())\nkey = N\npoint = 0\nl = []\nwhile  key > 0:\n    s = key % 10\n    key = key // 10\n    point += 1\n    l.append(s)\n\nif point <= 3:\n    print(N)\nelif point == 4:\n    l[0] = 0\n    for i in range(point-1, -1, -1):\n        print(l[i],end='')\nelif point >= 5:\n    l[0:point-1] = [0]*(point-1)\n    for i in range(point-1, -1, -1):\n        print(l[i],end='')"
+}

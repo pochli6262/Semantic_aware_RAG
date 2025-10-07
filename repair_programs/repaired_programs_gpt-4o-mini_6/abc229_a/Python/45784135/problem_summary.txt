@@ -1,0 +1,1 @@
+The code incorrectly checks for connectivity between black squares only in the top and bottom rows, neglecting possible connections between squares across both rows.

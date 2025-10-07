@@ -1,0 +1,32 @@
+{
+  "task": "abc310_d/Python/50903679",
+  "query_summary": "The likely bug is that the program fails to correctly manage the incompatible pairs and available players during the recursive division of teams, potentially leading to incorrect counts of valid team configurations.",
+  "oracle_summary": "The forbidden-edge check used the raw ordered pair (u,v) from selections instead of normalizing to the stored (min,max) order, so conflicts were missed when the node order was reversed.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates up to `N-1` in the outer loop for filling the `dp` array, resulting in one less iteration than needed, whereas the correct code iterates up to `N`.",
+      "diff": "--- \n+++ \n@@ -14,10 +14,11 @@\n \n     dp = [-INF]*(N+1)\n     dp[0] = 0\n-    for i in range(1,N):\n+    for i in range(N):\n         for j in range(N+1):\n             if j+i+1 > N: break\n             dp[j+i+1] = max(dp[j+i+1], dp[j]+width[i])\n+\n     print(dp[N])\n        \n         "
+    },
+    {
+      "summary": "The bug in the code is that it initializes `dp[0][0]` to 1 instead of `dp[0][D-(1<<-~d)]`, which leads to incorrect state transitions and ultimately incorrect results.",
+      "diff": "--- \n+++ \n@@ -125,7 +125,7 @@\n \n D=1<<(2*d+1)\n dp=[[0]*D for i in range(n+1)]\n-dp[0][0]=1\n+dp[0][D-(1<<-~d)]=1\n for i in range(n):\n     c=a[i]\n     for b in range(D):"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `C` with the expression `C = [X // S] * N`, leading to incorrect results in subsequent calculations because it does not account for the required multiplication with `N`.",
+      "diff": "--- \n+++ \n@@ -345,7 +345,7 @@\n W = list(map(int, input().split()))\n dp = [[-1] * N for _ in range(60)]  # dp[i][j]: j番目の要素から2^i回遷移したときの到達地点\n S = sum(W)\n-C = [X // S] * N\n+C = [(X // S) * N] * N\n nokori = X - S * (X // S)\n acc = [0]\n for w in W:"
+    },
+    {
+      "summary": "The buggy code fails to correctly check for valid constraints in the loop that processes the array `A` by not considering the condition that if an element has already been assigned to a group, it should not be reassigned unless it matches its expected value, potentially leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     #最終的に i になる数字たち group[i]\n     group = [[] for _ in range(N+1)]\n     for i in range(N):\n-        if A[i] < i+1:\n+        if A[i] < i+1 or group[i+1] and A[i] != i+1:\n             print(0)\n             exit()\n         group[A[i]].append(i+1)"
+    },
+    {
+      "summary": "The buggy code incorrectly selects the right child node's index during recursion, causing it to produce erroneous results when building the tree structure since it references the wrong position in the permutation list.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n         if idx==IR-1:\n             pass\n         else:\n-            right_child[root] = I[idx+1] + 1\n+            right_child[root] = P[PL+1+(idx-IL)] + 1\n             rec(PL+1+(idx-IL),PR,idx+1,IR)\n \n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

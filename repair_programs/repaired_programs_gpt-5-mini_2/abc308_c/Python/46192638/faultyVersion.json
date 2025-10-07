@@ -1,0 +1,4 @@
+{
+  "explanation": "The problematic line attempted to scale the value by 10**100 and then used float division, which is unnecessary and can lead to incorrect comparisons due to floating-point issues or overflow. The correct approach is to compare the ratios directly. I replaced the expression with the simple float ratio -a/(a+b) so sorting orders by a/(a+b) descending as intended.",
+  "fixed_code": "import sys\n\ninput = sys.stdin.readline\n# sys.setrecursionlimit(10**6)\n\ndef main():\n    N = int(input())\n    l = []\n    for i in range(N):\n        a, b = map(int, input().split())\n        l.append((-a / (a + b), i + 1))\n    l.sort()\n    for i in range(N):\n        print(l[i][1], end=' ')\n    print()\n\nif __name__ == '__main__':\n    main()\n"
+}

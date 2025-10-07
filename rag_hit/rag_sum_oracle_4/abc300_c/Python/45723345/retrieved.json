@@ -1,0 +1,34 @@
+{
+  "task": "abc300_c/Python/45723345",
+  "query_summary": "The results array is incorrectly sized as H+1 instead of min(H, W)+1, causing extra outputs (wrong length) when the width is smaller than the height.",
+  "oracle_summary": "The results array is incorrectly sized as H+1 instead of min(H, W)+1, causing extra outputs (wrong length) when the width is smaller than the height.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the equality operator `==` instead of the assignment operator `=` when attempting to set `s[i][j]` to `0` if its value is `1`.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n             s[i][j] = max(s[i][j-1], s[i-1][j])+1\n         \n         if s[i][j] == 1:\n-            s[i][j] == 0\n+            s[i][j] = 0\n \n         if ans < s[i][j]:\n              ans = s[i][j]"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `range(b+1, W)` for the variable `d`, which should instead be `range(c+1, W)` to ensure that the indices for `c` and `d` are properly chosen for comparison.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for a in range(H-1):\n \tfor b in range(a+1, H):\n \t\tfor c in range(W-1):\n-\t\t\tfor d in range(b+1, W):\n+\t\t\tfor d in range(c+1, W):\n \t\t\t\tif A[a][c] + A[b][d] > A[b][c] + A[a][d]:\n \t\t\t\t\tFlag = False\n if Flag:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the comparison in the if statement incorrectly uses the less-than operator instead of the greater-than operator, leading to an erroneous condition for setting the flag to False.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     for w in range(W):\n         for i in range(h+1, H):\n             for j in range(w+1, W):\n-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False\n+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False\n \n if flag : print(\"Yes\")\n else : print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the count of elements in the dictionary `dic` during the window sliding process, specifically in the inner loop where `w` should be iterated but is incorrectly iterated from 1 to `w` instead of from 0 to `w`.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n                 dic2[a] = 1\n         ans[i][j + 1] = len(dic2)\n     if i < H - h:\n-        for k in range(1, w):\n+        for k in range(w):\n             a = A[i + h][k]\n             dic[a] -= 1\n             if dic[a] == 0:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

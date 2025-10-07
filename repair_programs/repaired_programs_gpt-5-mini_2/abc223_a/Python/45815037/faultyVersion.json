@@ -1,0 +1,4 @@
+{
+  "explanation": "The second condition 'elif X < 100:' was too narrow — values greater than or equal to 100 that are not multiples of 100 fell through all branches and produced no output. I changed that single line to 'elif X < 100 or X%100 != 0:' so any value that is either less than 100 or not divisible by 100 prints 'No', while multiples of 100 reach the final 'Yes' branch.",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100 or X%100 != 0:\n    print(\"No\")\nelif X%100 == 0:\n    print(\"Yes\")"
+}

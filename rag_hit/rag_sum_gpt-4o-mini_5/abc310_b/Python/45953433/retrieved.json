@@ -1,0 +1,31 @@
+{
+  "task": "abc310_b/Python/45953433",
+  "query_summary": "The likely bug is that the condition checking if the j-th product has all functions of the i-th product is incorrectly implemented by using a union operation instead of verifying a proper subset relationship.",
+  "oracle_summary": "The bug is using len((fj | fi)) - len(fj) instead of len((fj | fi)) - len(fi) when checking whether I[i] has any additional languages beyond I[j], causing the condition to be evaluated incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not adjust the matrix input values by subtracting 1, which is necessary for the logic that determines the correct sequence and modular conditions.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, M = map(int, input().split())\n-B = [[int(i) for i in input().split()] for _ in range(N)]\n+B = [[int(i) - 1 for i in input().split()] for _ in range(N)]\n \n flg = True\n for i in range(N):"
+    },
+    {
+      "summary": "The problem in the buggy code is that a necessary condition in the second for loop inside the `check` function is missing, which checks if consecutive elements in the first row of `b` differ by 1.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,10 @@\n   for i in range(m - 1):\n     if ((temp[i + 1] + 6) % 7) != ((temp[i] + 6) % 7) + 1:\n       return False\n+    if temp[i + 1] != temp[i] + 1:\n+      return False\n+\n+    \n \n \n   return True"
+    },
+    {
+      "summary": "The problem in the buggy code is that the range for `i`, `j`, and `k` in the `product` function is set to `range(N)`, which does not include the value `N`, potentially leading to incorrect calculations, whereas the correct code uses `range(N+1)` to include all valid combinations up to and including `N`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n from itertools import product\n N,S,M,L=map(int,input().split())\n ans=10**20\n-for i,j,k in product(range(N),repeat=3):\n+for i,j,k in product(range(N+1),repeat=3):\n \tif 6*i+8*j+12*k<N:\n \t\tcontinue\n \tans=min(ans,S*i+M*j+L*k)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

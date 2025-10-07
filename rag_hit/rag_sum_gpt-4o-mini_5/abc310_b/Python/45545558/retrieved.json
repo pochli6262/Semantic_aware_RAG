@@ -1,0 +1,33 @@
+{
+  "task": "abc310_b/Python/45545558",
+  "query_summary": "The likely bug is that the program incorrectly checks if product j is strictly superior to product i by misapplying the `issuperset` method instead of ensuring that all functions of product i are present in product j, while also failing to check the strict superiority conditions.",
+  "oracle_summary": "The bug is an overly permissive dominance check that treats products with equal price and features as dominating because it omits the required strict condition (p[i] > p[j] or len(f[j]) > len(f[i])).",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks if `p[x]` is equal to 2, instead of checking if `p[x]` is greater than or equal to 2.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n         p[x] += 2\n         \n     else:\n-        if p[x] == 2:\n+        if p[x] >= 2:\n             print(\"Yes\")\n         else:\n             print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses a strict inequality (greater than) instead of a non-strict inequality (greater than or equal to) when checking if the sum of H and P[i] meets or exceeds X.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n P = list(map(int, input().split()))\n \n for i in range(N):\n-    if H + P[i] > X:\n+    if H + P[i] >= X:\n         print(i + 1)\n         exit()\n "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks if the first characters of the segments `l[o]` and `m[o]` are the same, instead of explicitly comparing them, leading to potential incorrect comparisons in the condition that verifies if elements of `l` can be transformed into corresponding elements of `m`.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n for o in range(len(l)):\n   if l[o]==m[o]:\n     continue\n-  elif list(l[o])<list(m[o]) and len(l[o])>=2:\n+  elif l[o][0]==m[o][0] and l[o]<m[o] and len(l[o])>=2:\n     continue\n   else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc309_d/Python/46051654",
+  "query_summary": "The program incorrectly initializes the graph and uses wrong index references, leading to incorrect calculations of distances between the vertices.",
+  "oracle_summary": "The traversal function enqueues the constant node 0 instead of the provided start node s, so distances are computed from the wrong source.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly handles the indexing of nodes, particularly when adding edges between nodes, leading to potential out-of-bounds errors or incorrect graph construction.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n         ans = INF\n         ans = min(ans, D1[N - 1])\n         ans = min(ans, D1[N] + D2[i])\n-        ans = min(ans, D1[i] + 2 + minT)\n+        ans = min(ans, D1[i] + 1 + minT)\n         ans = min(ans, D1[N] + 1 + minT)\n         A.append(ans if ans < INF else -1)\n     print(*A)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `ans` list with `-1` instead of `0`, leading to incorrect output for unvisited edges.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     edges[b[i]].append((a[i], i))\n \n # DFS\n-ans = [-1] * m\n+ans = [0] * m\n visited = [0] * n\n for root in range(n):\n     if visited[root]:"
+    },
+    {
+      "summary": "The buggy code does not correctly handle the initialization of the `left` and `right` arrays when both are uninitialized; it should only initialize nodes that have not been assigned values in either array, leading to potential incorrect parent-child relationships in the resulting tree structure.",
+      "diff": "--- \n+++ \n@@ -46,7 +46,7 @@\n \n \n for i in range(n):\n-    if right[i * ln] > -1:\n+    if right[i * ln] > -1 or left[i * ln] > -1:\n         continue\n     p = parent[i]\n     left[i * ln] = p"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses `d.append(j)` instead of `d.appendleft(j)`, which causes the breadth-first search (BFS) to function incorrectly and may lead to incomplete or incorrect distance calculations in the `dist2` array.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n             if dist2[i][j] !=-1:\n                 continue\n             dist2[i][j] =dist2[i][v] +1\n-            d.append(j)\n+            d.appendleft(j)\n q =int(input())\n for _ in range(q):\n     s, t=map(int, input().split())"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly skips counting connected components with only one vertex (by checking if `len(link) < 2`), while the correct code checks for connected components with at least one vertex (using `len(link) < 1`), leading to incorrect calculations of the answer.",
+      "diff": "--- \n+++ \n@@ -27,7 +27,7 @@\n for i in range(n):\n     link=dfs(i)\n     num_edge=0\n-    if len(link)<2:\n+    if len(link)<1:\n         continue\n     for l in link:\n         num_edge+=len(graph[l])"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

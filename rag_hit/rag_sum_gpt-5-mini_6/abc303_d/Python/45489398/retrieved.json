@@ -1,0 +1,34 @@
+{
+  "task": "abc303_d/Python/45489398",
+  "query_summary": "The INF constant (10000000000) is far too small given X,Y,Z can be up to 1e9 and |S| up to 3e5, so total costs can exceed INF and corrupt the DP results.",
+  "oracle_summary": "The bug was using an INF value that was too small (1e10) so legitimate DP costs could exceed it and be treated as \"infinite,\" corrupting the DP transitions and final result.",
+  "retrieved": [
+    {
+      "summary": "The code incorrectly sets the infinite cost `INF` to 99 instead of a much larger value (like `10**18`), which can cause incorrect comparisons and lead to out-of-bounds errors or inaccurate results in the dynamic programming logic.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n \n def solve(N: int, H: int, X: \"list[int]\", P: \"list[int]\", F: \"list[int]\"):\n-    INF = 99\n+    INF = 10**18\n     L = []\n     cur = 0\n     for i in range(N):"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `INF` as \\(10^9\\) instead of \\(10^{18}\\), which can lead to incorrect results in the `SegmentTree` computations where very large values may be needed.",
+      "diff": "--- \n+++ \n@@ -302,7 +302,7 @@\n   ans += min(d1, d2)\n   sabun[i] = abs(d1 - d2)\n \n-INF = 10**9\n+INF = 10**18\n dp = SegmentTree(n, op=lambda s, t: min(s, t), e=INF)\n dp[0] = 0\n for i in range(n-1):"
+    },
+    {
+      "summary": "The code mistakenly initializes the `INF` variable with a value of `10**12`, which is lower than the intended maximum value of `10**18`, potentially leading to incorrect minimum calculations in the dynamic programming step.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n A=[0]+[dist(C[i],s)+dist(s,C[i+1])-dist(C[i],C[i+1]) for i in range(N-1)]+[0]\n #dp[i]:iまで見て、A[i]を含むAの元を間隔K以下で選ぶ合計の最小値\n #dp[i]=min(dp[i-1],...,dp[i-K])+A[i]\n-INF=10**12\n+INF=10**18\n dp=SegTree(min,INF,N+1)\n dp.set(0,0)\n for i in range(1,N+1):"
+    },
+    {
+      "summary": "The buggy code uses an incorrect initial value for the `INF` variable (set to `10**9` instead of `10**15`), which can lead to incorrect calculations in the dynamic programming logic that depends on a proper large value to initialize the `dp` arrays.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n         nxt_edge[i] = r\n         \n \n-INF = 10**9\n+INF = 10**15\n def cond(d):\n     dp = [INF] * (N+1)\n     dp[0] = 0"
+    },
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

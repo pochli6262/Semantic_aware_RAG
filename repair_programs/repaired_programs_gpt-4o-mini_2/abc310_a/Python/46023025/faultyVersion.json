@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original code arises from the assumption that the minimum value of 'd' should simply be subtracted from 'p' and then adjusted by 'q'. This would work if we were looking for the lowest cost directly, but we need to ensure that this calculation does not result in a negative value. Therefore, we should use max(0, p - q + min(d)) to ensure that it returns a valid minimum cost which cannot be less than zero.",
+  "fixed_code": "n, p, q = map(int, input().split(' '))\nd = list(map(int, input().split(' ')))\nprint(min(p, max(0, p - q + min(d))))"
+}

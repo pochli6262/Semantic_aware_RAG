@@ -1,0 +1,4 @@
+{
+  "explanation": "The line computing the ratio used the variable name 'sum' (res = a / (sum)). Although the code sets sum = a + b earlier, using the built-in name 'sum' as a variable is error-prone. I replaced the ratio computation to use a + b explicitly (res = a / (a + b)) so the expression is unambiguous and does not rely on the shadowed name.",
+  "fixed_code": "import sys\n\nn = int(input())\nans = []\nfor i in range(1, n + 1):\n\ta, b = map(int, sys.stdin.readline().strip().split())\n\tsum = a + b\n\tres = a / (a + b)\n\tans.append([res, -i])\n\nans.sort(reverse = True)\nfor i in range (0, len(ans)):\n\tprint(-ans[i][1], end = \" \")"
+}

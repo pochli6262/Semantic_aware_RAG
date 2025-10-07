@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly computes the probability as `D/C` instead of the actual formula which should account for the total number of participants in the range between (A+1) and B inclusive.

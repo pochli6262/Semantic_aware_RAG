@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is using floating-point division (A/B) and converting to int. That can lose precision for large integers. Since the intention is integer division (and the else branch uses integer floor division), replace print(int(A/B)) with print(A//B) to avoid float conversion and preserve exact integer result.",
+  "fixed_code": "A,B = map(int,input().split())\nif A%B == 0:\n  print(A//B)\nelse:\n  print(int(A//B)+1)"
+}

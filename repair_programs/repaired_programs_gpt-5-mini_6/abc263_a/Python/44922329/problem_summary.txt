@@ -1,0 +1,1 @@
+The loop only iterates over values 1–12 (using range(12) then i+=1), so a card value of 13 is never counted and can produce an incorrect result.

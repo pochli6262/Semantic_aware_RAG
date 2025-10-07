@@ -1,0 +1,33 @@
+{
+  "task": "abc307_d/Python/45471496",
+  "query_summary": "The code fails to remove an outer pair when inner deletions leave letters between the stored \"(\" token and a later \")\", because it flushes those letters as a separate token before checking for a matching \"(\" and thus doesn't recognize the enclosure (e.g. \"(a(b)c)\" is left as \"(ac)\" instead of being deleted).",
+  "oracle_summary": "The code fails to restore the previous text buffer after popping a matching \"(\", so when handling a ') 'it loses/doesn't resume the prior accumulated characters (temp), causing incorrect/missing output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not handle the case where there are unmatched parentheses, potentially leading to a failure to correctly manage the state of the `a` list and set `t`, which represents the characters inside the parentheses.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n     elif i==\")\":\n       #  print(a)\n         for j in a[-1]:\n-            print(t)\n+         #   print(t)\n             t.remove(j)\n         a.pop(-1)\n     elif i==\"(\":"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates 'right' as the difference between the counts of '(' and ')', instead of using the absolute difference, which leads to incorrect handling of unmatched parentheses.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n S = list(input())\n \n res = 0\n-right = S.count('(') - S.count(')')\n+right = abs(S.count('(') - S.count(')'))\n # print(right)\n left = 0\n for i in range(2*N):"
+    },
+    {
+      "summary": "The buggy code incorrectly removes all spaces from the input strings, leading to potential loss of distinct entries that should be treated separately.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n l = set()\n for i in range(n):\n-    l.add(input().replace(\" \", \"\"))\n+    l.add(input())\n print(len(l))"
+    },
+    {
+      "summary": "The buggy code incorrectly replaces \"A\" with \"B\" instead of \"BB,\" which breaks the intended transformation logic between \"A\" and \"BB.\"",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n S = input()\n \n while \"A\" in S:\n-    S = S.replace(\"A\", \"B\")\n+    S = S.replace(\"A\", \"BB\")\n while \"BB\" in S:\n     S = S.replace(\"BB\", \"A\")\n print(S)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for an empty string instead of checking for the closing bracket ')' in the second condition within the inner loop.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n           dp[i+1][j+1] += dp[i][j]\n           dp[i+1][j+1] %= mod\n           \n-      if S[i] == '' or S[i] == '?':\n+      if S[i] == ')' or S[i] == '?':\n         if j >= half:\n           dp[i+1][j] += dp[i][j]\n           dp[i+1][j] %= mod"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

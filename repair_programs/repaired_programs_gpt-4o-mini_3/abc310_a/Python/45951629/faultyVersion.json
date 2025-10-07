@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program contains a mistake in the logic used to update the variable 'ans'. Specifically, it did not account for the case where 'ret' could be less than 'P' when it had a non-trivial update when iterating through 'D'. The corrected line ensures the calculation of 'ret' is based on the correct formula for the minimum value of 'ans'. Thus, I changed the iteration line to set 'ans' to the minimum between 'ans' and 'ret'.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nans = P\nfor i in range(N):\n    ret = P - Q + D[i]\n    ans = min(ans, ret)\n\nprint(ans)"
+}

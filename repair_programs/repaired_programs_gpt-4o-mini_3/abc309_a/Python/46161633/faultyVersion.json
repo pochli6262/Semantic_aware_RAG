@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks if A is equal to B-1 or A is equal to B-3. This is incorrect for the intended logic, which needs to check if B is equal to A+1 or B is equal to A+3, hence the condition should be reversed. I corrected the condition in the line to check if B == A + 1 or B == A + 3.",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A+1:\n    print('No')\nelif B==A+1 or B==A+3:\n    print('Yes')\nelse:\n    print('No')"
+}

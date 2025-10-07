@@ -1,0 +1,1 @@
+The likely bug is that the program checks for missing digits starting from 1 instead of including 0 through 9, which results in incorrect output when the missing digit is 0.

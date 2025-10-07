@@ -1,0 +1,1 @@
+The code mistakenly prints the initial value with all '?' replaced by '0' and never prints the final adjusted answer (it only prints -1 in one branch), so the output is incorrect.

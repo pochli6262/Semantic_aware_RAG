@@ -1,0 +1,29 @@
+{
+  "task": "abc300_e/Python/45218169",
+  "query_summary": "The program likely has a bug in handling the updates to the `dp` array, as it does not ensure the values are taken modulo `BIGPRIME`, which could lead to incorrect results when updating the probabilities.",
+  "oracle_summary": "The prime-factorization loop uses curN /= p (floating-point division) instead of curN //= p (integer division), converting curN to a float and causing precision/logic errors in subsequent checks.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` table by setting `dp[0][-1] = 1` instead of `dp[0][m] = 1`, leading to out-of-bounds access and incorrect calculations in the dynamic programming approach.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n         r = max(r, pos[a] + 1)\n \n dp = [[0] * (m + 2) for _ in range(m + 1)]\n-dp[0][-1] = 1\n+dp[0][m] = 1\n for a in range(n - 1, min_aaa, -1):\n     ndp1 = [[0] * (m + 2) for _ in range(m + 1)]  # l が増える方向の累積和\n     ndp2 = [[0] * (m + 2) for _ in range(m + 1)]  # r が減る方向の累積和"
+    },
+    {
+      "summary": "The buggy code uses `break` instead of `continue` when `dp[j][k]` is zero, which prematurely terminates the innermost loop instead of skipping to the next iteration, potentially missing valid computations.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     # 置けるマス、置ける数は合計 L 個\n     for j in range(n+1)[::-1]:\n         for k in range(j,n+1)[::-1]:\n-            if dp[j][k] == 0: break\n+            if dp[j][k] == 0: continue\n             # i 個を l セット置く\n             r = finv[i]\n             for l in range(1,n+1):"
+    },
+    {
+      "summary": "The buggy code fails to ensure that the cumulative results in the `ans` list are kept within the bounds of `BigPrime`, leading to potential integer overflow issues and inaccurate results.",
+      "diff": "--- \n+++ \n@@ -77,7 +77,9 @@\n     v_s = mod_time(v_f, fraci[i])\n \n     ans[0] += (mod_time(v_f, Prob[i][0]) + mod_time(v_s, Prob[i][1])) % BigPrime\n+    ans[0] %= BigPrime\n     ans[1] += (mod_time(v_s, Prob[i][0]) + mod_time(v_f, Prob[i][1])) % BigPrime\n+    ans[1] %= BigPrime\n \n print(*ans)\n "
+    },
+    {
+      "summary": "The buggy code fails to correctly compute the least common multiples in the `h` function, as it includes a print statement that outputs unnecessary values, which might affect the program's intended functionality or lead to confusion during output.",
+      "diff": "--- \n+++ \n@@ -71,7 +71,7 @@\n     # g1 = pow(g, MOD - 2, MOD)\n     lcm = ((A1 * A2) // g) % MOD\n     # lcm1 = pow(lcm, MOD - 2, MOD)\n-    print(A1, A2, lcm, N // lcm)\n+    # print(A1, A2, lcm, N // lcm)\n     return N // lcm\n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `C` with the expression `C = [X // S] * N`, leading to incorrect results in subsequent calculations because it does not account for the required multiplication with `N`.",
+      "diff": "--- \n+++ \n@@ -345,7 +345,7 @@\n W = list(map(int, input().split()))\n dp = [[-1] * N for _ in range(60)]  # dp[i][j]: j番目の要素から2^i回遷移したときの到達地点\n S = sum(W)\n-C = [X // S] * N\n+C = [(X // S) * N] * N\n nokori = X - S * (X // S)\n acc = [0]\n for w in W:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

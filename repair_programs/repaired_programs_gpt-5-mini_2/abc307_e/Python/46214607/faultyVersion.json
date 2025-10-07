@@ -1,0 +1,4 @@
+{
+  "explanation": "The code computed pow(M-1, N, mod) but did not reduce the entire expression modulo mod. The term (-1)**(N%2)*(M-1) can be outside the modulus, so the final answer must be taken modulo mod. I fixed the single line by taking the whole sum modulo mod.",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nanswer = ((-1)**(N%2)*(M-1) + pow(M-1,N,mod)) % mod\nprint(answer)\n"
+}

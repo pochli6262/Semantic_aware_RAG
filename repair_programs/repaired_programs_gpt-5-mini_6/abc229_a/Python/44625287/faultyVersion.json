@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition compared the wrong concatenated patterns ('.#.#' and '#.#.'), which correspond to vertically aligned black squares that are actually connected. The disconnected cases are the diagonal patterns '.##.' (top-right and bottom-left) and '#..#' (top-left and bottom-right). I replaced the incorrect strings with the correct diagonal patterns so the program prints 'No' only for the truly disconnected cases.",
+  "fixed_code": "S = input() + input()\n\nif S == '.##.' or S == '#..#' :\n    print('No')\nelse:\n    print('Yes')"
+}

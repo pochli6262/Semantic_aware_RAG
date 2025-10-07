@@ -1,0 +1,35 @@
+{
+  "task": "abc286_e/Python/45479724",
+  "query_summary": "On ties in path length during the Floyd–Warshall relaxation, the buggy code picks the minimum accumulated value (using min) instead of the required maximum (using max).",
+  "oracle_summary": "On ties in path length during the Floyd–Warshall relaxation, the buggy code picks the minimum accumulated value (using min) instead of the required maximum (using max).",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not reset the variable `mi` within the inner loops, which leads to incorrect calculations of the minimum value during iterations over the lists `a` and `b`.",
+      "diff": "--- \n+++ \n@@ -13,12 +13,15 @@\n for k,i in enumerate(b):\n     if i!=0:\n         x=q[k]//i\n+        \n         if x <bmax:\n             bmax=x\n+\n mi=10**7\n if amax >bmax:\n     ans=amax\n     for i in range(amax+1)[::-1]:\n+        mi=10**7\n         for k,j in enumerate(a):\n             if b[k]!=0:\n                 y=q[k]-(i*j)\n@@ -32,16 +35,19 @@\n else:\n     ans=bmax\n     for i in range(bmax+1)[::-1]:\n+        mi=10**7\n         for k,j in enumerate(b):\n             if a[k]!=0:\n                 y=q[k]-(i*j)\n                 x=y//a[k]\n+                \n             else:\n                 x=10**7\n+            \n             if x<mi:\n                 mi=x\n+                \n         \n         if mi+i>ans:\n             ans=mi+i\n print(ans)\n-        "
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from `0` to `am` instead of `0` to `am+1`, which leads to missing the last possible iteration for `am`, resulting in an incorrect calculation of `ans`.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n         if k[i]<b[i]:\n             return False\n     return True\n-for i in range(am):\n+for i in range(am+1):\n     while check():\n         t+=1\n         if t==bm:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop bounds are incorrect; it iterates `for i in range(2, 10**6)` and `for j in range(2, 10**6)` which should be `for i in range(2, 10**6 + 1)` and `for j in range(1, 10**6 + 1)` to ensure all required indices are processed correctly.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n x10=[1]*(10**6+1)\n y59=[1]*(10**6+1)\n mody=978902437\n-for i in range(1,N+1):\n+for i in range(1,10**6+1):\n   x10[i]=x10[i-1]*10\n   x10[i]%=mod\n   y59[i]=y59[i-1]*59"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from 0 to 10^6 instead of 0 to 10^6 inclusive, resulting in the possibility of missing valid values for `number_of_a` that could lead to a higher `max_num`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n max_num = 0\n flag = False\n-for i in range(10**6):\n+for i in range(10**6 + 1):\n     number_of_a = i\n     for j in range(n):\n         if b_s[j] == 0:"
+    },
+    {
+      "summary": "The bug in the code lies in the incorrect handling of the `bool` variable, leading to potential incorrect updates of the `ans` array and premature continuation in the while loop, which may cause the algorithm to skip necessary processing of certain nodes.",
+      "diff": "--- \n+++ \n@@ -34,7 +34,7 @@\n         bool=True\n         if ans[i][k][0]>v+j:\n           ans[i][k]=[v+j,q]\n-          if ans[i][0][0]<ans[i][1][0]:\n+          if ans[i][0][0]>ans[i][1][0]:\n             ans[i][0],ans[i][1]=ans[i][1],ans[i][0]\n           heapq.heappush(hq,(v+j,i,q))\n     if bool:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

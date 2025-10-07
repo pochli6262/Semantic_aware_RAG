@@ -1,0 +1,35 @@
+{
+  "task": "abc246_a/Python/45745121",
+  "query_summary": "It prints the list object (e.g., “[x, y]”) instead of outputting the two coordinates as space-separated integers, producing the wrong output format.",
+  "oracle_summary": "It prints the list object (e.g., “[x, y]”) instead of outputting the two coordinates as space-separated integers, producing the wrong output format.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the list `X` as a single object instead of unpacking its elements for individual output.",
+      "diff": "--- \n+++ \n@@ -3,4 +3,4 @@\n while A<=B:\n   X.append(A)\n   A+=D\n-print(X)\n+print(*X)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the result list as a single object instead of unpacking the individual elements, resulting in the output being displayed as a list rather than a space-separated string.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     result.append(i)\n for i in range(r + 1, n + 1):\n     result.append(i)\n-print(result)\n+print(*result)"
+    },
+    {
+      "summary": "The buggy code fails to output the even numbers in a space-separated format, instead printing them as a list.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n for i in range(n):\n   if a[i] % 2 ==0:\n     x.append(a[i])\n-print(x)\n+print(*x,sep = ' ')"
+    },
+    {
+      "summary": "The buggy code prints a list of even numbers as a list object instead of a space-separated string, which results in an undesired output format.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n N = int(input())\n Arr = list(map(int, input().split()))\n \n-print([n for n in Arr if n % 2 == 0])\n+print(\" \".join([str(n) for n in Arr if n % 2 == 0]))"
+    },
+    {
+      "summary": "The buggy code prints the list as a single list object instead of printing its elements separated by spaces.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n         break\n for z in range(R+1,N+1):\n     num.append(z)\n-print(num)\n+print(*num)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

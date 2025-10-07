@@ -1,0 +1,1 @@
+The program incorrectly handles the truncation logic for the ranges above 10^3 by not using the correct power of ten for truncation, particularly missing the need to handle the exact boundaries correctly for each range.

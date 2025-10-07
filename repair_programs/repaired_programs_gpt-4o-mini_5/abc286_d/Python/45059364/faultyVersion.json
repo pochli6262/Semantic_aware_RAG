@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line is the inner loop condition where the DP array is updated. The condition checks if `DP[n-c*a]` is true but should actually set `DP[n]` to true once we find a valid way to form amount `n` using `c` coins of type `a`. This was inspired by diff patterns which highlight the need for proper indexing and result accumulation. The corrected version updates the `DP[n]` directly when a valid combination is found instead of checking `DP[n-c*a]` without setting it properly.",
+  "fixed_code": "N,X=map(int,input().split())\n\nDP=[0]*(X+1) #DP[n]=現在n円払えるか\nDP[0]=1\nfor i in range(N):\n  a,b=map(int,input().split())\n  for n in range(X+1):\n    for c in range(1,b+1):\n      if 0<=n-c*a and DP[n-c*a]:\n        DP[n]=1\nprint(\"Yes\" if DP[X] else \"No\")"
+}

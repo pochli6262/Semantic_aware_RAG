@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue arises from the loop that processes the elements of A. It currently runs for N-1 iterations, which causes the algo to skip the last element of A. The loop should iterate through all elements which requires it to run for N iterations instead. I changed `for i in range(N-1):` to `for i in range(N):`.",
+  "fixed_code": "N, M, T = map(int, input().split())\nA = list(map(int, input().split()))\nB = []\nfor i in range(M):\n    B.append(tuple(map(int, input().split())))\n\nfrom collections import deque\nqueA = deque(A)\nB.sort(key=lambda x: x[0])\nqueB = deque(B)\n\nans = \"Yes\"\nnowT = T\nnowP = 1\nS = set([row[0] for row in B])\n# print(S)\nfor i in range(N):  # Corrected line\n    # print(nowT)\n    p = queA.popleft()\n    if nowP in S:\n        # print(\"inS\")\n        pt = queB.popleft()\n        nowT += pt[1]\n\n    if nowT >= p:\n        nowT -= p\n        nowP += 1\n    else:\n        ans = \"No\"\n        break\n\nprint(ans)"
+}

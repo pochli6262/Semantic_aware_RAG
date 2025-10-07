@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used floating-point arithmetic (A*10**100)/(A+B) which can lose precision for large integers and lead to incorrect orderings. I replaced it with an object whose rich comparisons implement exact cross-multiplication (a1*b2 < a2*b1) so ratios are compared exactly as integers. This fixes precision/overflow issues without changing the rest of the program (inspired by the need for exact integer comparisons rather than floating approximations).",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append((type('R',(object,),{'__init__':lambda self,a,b: (setattr(self,'a',a), setattr(self,'b',b), None)[2],'__lt__':lambda self,other: self.a*other.b < other.a*self.b,'__eq__':lambda self,other: self.a*other.b == other.a*self.b})(A, A+B), -i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(-j+1, end=' ')\nprint()\n"
+}

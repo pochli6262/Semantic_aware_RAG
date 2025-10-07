@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only iterated i from 0 to 19, producing multiples 0..95. If N is closer to 100 than to 95, the program would never consider 100. Changing the loop to range(21) includes the multiple 100 and fixes that edge case.",
+  "fixed_code": "N=int(input())\nlist=[]\nfor i in range(21):\n  list.append(abs(N-i*5))\nIn=list.index(min(list))\nprint(In*5)"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc304_b/Python/45336297",
+  "query_summary": "The bug is due to a missing final conditional branch handling numbers up to 10**9-1, so inputs in that range produce no corresponding output.",
+  "oracle_summary": "The bug is due to a missing final conditional branch handling numbers up to 10**9-1, so inputs in that range produce no corresponding output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly limits the loop to `range(919)` instead of `range(920)`, causing it to miss checking the number 919.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n \n-for i in range(919):\n+for i in range(920):\n   if i <= 99:\n     continue\n   elif i < n:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a fixed range of 10 instead of the variable `n` to determine the countdown limit.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n n = input()\n n = int(n)\n-for i in range(10,-1,-1):\n+for i in range(n,-1,-1):\n     print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `k` is less than `N` instead of less than or equal to `N`, which may cause it to miss valid outputs.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for i in range(n, 1, -1):\n   k = i **3\n   k_str = str(k)\n-  if (k < N) and (k_str == k_str[::-1]):\n+  if (k <= N) and (k_str == k_str[::-1]):\n     print(k)\n     exit()\n print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly includes the case where `i` is 0, which results in `0**0` being evaluated, leading to an incorrect behavior since `0**0` is generally considered indeterminate or defined to be 1 in some contexts.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-for i in range(n+1):\n+for i in range(1,n+1):\n   if i**i > n: break\n   if i**i == n:\n     print(i)"
+    },
+    {
+      "summary": "The buggy code does not handle cases where the computed value may be negative in the expression for `ans`, leading to incorrect results when `min(n, 10**cnt + 10**(cnt//2) - 1)` is less than `10**cnt - 10**(cnt//2) + 1`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n   cnt = 2\n   while n>=10**cnt-2*10**(cnt//2):\n     ans += 1\n-    ans += min(n, 10**cnt+10**(cnt//2)-1) - (10**cnt-10**(cnt//2)-1)\n+    ans += max(0, min(n, 10**cnt+10**(cnt//2)-1) - (10**cnt-10**(cnt//2)-1))\n     cnt += 2\n   \n   print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    4,
+    5
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,1 @@
+The code incorrectly hardcodes n=100 instead of reading the input N, so it will always compute the answer for 100.

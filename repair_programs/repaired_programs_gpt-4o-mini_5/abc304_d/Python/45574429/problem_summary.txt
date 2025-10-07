@@ -1,0 +1,1 @@
+The program likely has a bug in the logic for determining the minimum number of strawberries in the chosen piece, as it incorrectly handles cases where there are fewer pieces than expected.

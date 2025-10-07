@@ -1,0 +1,4 @@
+{
+  "explanation": "The computation used min(d) but the logic requires taking the largest element from d. Using min(d) picks the smallest value, producing an incorrect result when you want the maximum contribution from the d list. I changed only the print line to use max(d) instead of min(d).",
+  "fixed_code": "n, p, q = map(int, input().split(' '))\nd = list(map(int, input().split(' ')))\nprint(min(p, p - q + max(d)))"
+}

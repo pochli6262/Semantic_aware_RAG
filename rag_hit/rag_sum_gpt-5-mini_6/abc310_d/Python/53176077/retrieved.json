@@ -1,0 +1,32 @@
+{
+  "task": "abc310_d/Python/53176077",
+  "query_summary": "The code mixes 0-based player indices in the recursive function with 1-based input pairs when storing hate relations, so the incompatibility checks always miss and are ignored.",
+  "oracle_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly computes the index `j` by using the formula `(n - 1 - i + d) % n`, rather than the correct formula `(d - i) % n`, which leads to incorrect pairs being generated.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n     for d in S:\n         for i in range(n):\n             # ズレが異なるパターン同士は重なり合うことはないので、解として追記していく\n-            j = (n - 1 - i + d) % n\n+            j = (d - i) % n\n             ans.append((i+1, j+1))\n     return ans\n "
+    },
+    {
+      "summary": "The buggy code fails to correctly manage and manipulate the list indices and sizes for the \"see\" and \"notsee\" lists, leading to potential index errors and incorrect final outputs.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n         see.append(notsee.pop(-1))\n         #print(see)\n     notsee.append(see.pop(0))\n-    print(see)\n+   #print(see)\n    #長さが変わる前に保存\n     for j in range(1, a-prelen):\n         notsee.append(see.pop(-1))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it checks the condition involving the variable `ind` incorrectly, leading to incorrect matches being reported based on the wrong index in the output logic.",
+      "diff": "--- \n+++ \n@@ -23,4 +23,4 @@\n for i in range(M):\n     if S[i] != T[i] and S[i] != '?' and T[i] != '?':\n         chk = False\n-    print('Yes' if chk and N - M + i >= ind else 'No')\n+    print('Yes' if chk and i >= ind else 'No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `if j - a < 0` inside the inner loop, which can lead to missing valid indices in the `sets` and may cause incorrect results.",
+      "diff": "--- \n+++ \n@@ -18,8 +18,6 @@\n \n for i, a in enumerate(A, start=1):\n     for j in range(a % i, N, i):\n-        if j - a < 0:\n-            break\n         sets[j].add((j - a) // i)\n \n for i in range(1, M+1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not account for the scenario where the last element is (t=1, d=0), which prevents correct handling of cases when no attacks are possible just before reaching a certain threshold.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n from bisect import *\n \n n, h = map(int, input().split())\n-td = [tuple(map(int, input().split())) for _ in range(n)]\n+td = [tuple(map(int, input().split())) for _ in range(n)] + [(1, 0)]\n td.sort() # t の小さい順\n \n prod_max = [t * d for t, d in td]"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

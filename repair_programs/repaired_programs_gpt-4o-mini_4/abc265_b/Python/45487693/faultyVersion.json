@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line is `if now+1 in dic:` which uses the wrong index to access the bonus time. It should check for `now` instead, because the bonuses are tied to the room numbers (X_i) and are indexed starting from Room 1. This specific fix can be inferred from the related known fixes, particularly Diff 1's context of looking for the correct index mappings in a similar scenario.",
+  "fixed_code": "n,m,t=map(int,input().split())\ns=list(map(int,input().split()))\ndic=dict()\nfor i in range(m):\n    a,b=map(int,input().split())\n    dic[a]=b\n\nfor now in range(1,n):\n    \n    if t-s[now-1]<0:\n        print(\"No\")\n        exit()\n    else:\n        t-=s[now-1]\n    if now in dic:\n        t+=dic[now]\n    \nprint(\"Yes\")"
+}

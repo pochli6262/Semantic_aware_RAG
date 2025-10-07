@@ -1,0 +1,1 @@
+The likely bug is that the program replaces commas with periods when they are inside of quoted sections, which should be left unchanged instead of being modified.

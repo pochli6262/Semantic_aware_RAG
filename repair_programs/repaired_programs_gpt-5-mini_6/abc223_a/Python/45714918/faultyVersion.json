@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line only checked x % 100 == 0, which wrongly accepts X = 0. Because the purse has at least one 100-yen coin, X must be a positive multiple of 100. I changed the condition to require x > 0 in addition to divisibility by 100. This follows the same pattern as the retrieved diffs that add an extra boolean condition to the existing check (e.g. adding another clause in Diff 2/3).",
+  "fixed_code": "x = int(input())\nprint('Yes' if x%100==0 and x>0 else 'No')"
+}

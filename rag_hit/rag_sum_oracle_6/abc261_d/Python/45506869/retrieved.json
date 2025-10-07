@@ -1,0 +1,33 @@
+{
+  "task": "abc261_d/Python/45506869",
+  "query_summary": "The DP table is initialized with -MOD (a finite large negative) instead of -INF, so unreachable states can contribute to transitions and skew the maximum result.",
+  "oracle_summary": "The DP table is initialized with -MOD (a finite large negative) instead of -INF, so unreachable states can contribute to transitions and skew the maximum result.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly accumulates values in the `dp` list using addition instead of maximizing the result, leading to incorrect calculations in the dynamic programming solution for the problem.",
+      "diff": "--- \n+++ \n@@ -82,7 +82,7 @@\n     for i in range(1, N+1):\n         for a in A:\n             if i - a >= 0:\n-                dp[i] = a + (i - a) - dp[i-a]\n+                dp[i] = max(dp[i], a + (i - a) - dp[i-a])\n \n     # print(dp)\n     print(dp[-1])"
+    },
+    {
+      "summary": "The bug in the code is that it initializes `dp[0][0]` to 1 instead of `dp[0][D-(1<<-~d)]`, which leads to incorrect state transitions and ultimately incorrect results.",
+      "diff": "--- \n+++ \n@@ -125,7 +125,7 @@\n \n D=1<<(2*d+1)\n dp=[[0]*D for i in range(n+1)]\n-dp[0][0]=1\n+dp[0][D-(1<<-~d)]=1\n for i in range(n):\n     c=a[i]\n     for b in range(D):"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `mod <= B` by not ensuring the printed result is non-negative, leading to potential negative output.",
+      "diff": "--- \n+++ \n@@ -41,5 +41,5 @@\n     q-=1\n     b = q * B\n     if(mod > B):print(b + B)\n-    else:print(b+mod)\n+    else:print(max(0,b+mod))\n "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` table by setting `dp[0][-1] = 1` instead of `dp[0][m] = 1`, leading to out-of-bounds access and incorrect calculations in the dynamic programming approach.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n         r = max(r, pos[a] + 1)\n \n dp = [[0] * (m + 2) for _ in range(m + 1)]\n-dp[0][-1] = 1\n+dp[0][m] = 1\n for a in range(n - 1, min_aaa, -1):\n     ndp1 = [[0] * (m + 2) for _ in range(m + 1)]  # l が増える方向の累積和\n     ndp2 = [[0] * (m + 2) for _ in range(m + 1)]  # r が減る方向の累積和"
+    },
+    {
+      "summary": "The buggy code contains a logical error in the `dp` updating section where it redundantly assigns `dp[pl+1][i][j]` to the same value twice, which could lead to incorrect state transitions.",
+      "diff": "--- \n+++ \n@@ -72,7 +72,7 @@\n     nexi,nexx,nexy = dp[i][x][y]\n     #print (nexx,nexy)\n \n-    print (nexx,nexy)\n+    #print (nexx,nexy)\n \n     diff = None\n     if x != nexx:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    9
+  ],
+  "useful_diffs_count": 3
+}

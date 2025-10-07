@@ -1,0 +1,4 @@
+{
+  "explanation": "The two branches were written as separate if statements, so when a[i] == a[i+1] both conditions are True and both branches are considered. Although the ranges are empty in that equal case, the logic should be mutually exclusive (either go up or go down). I changed the second `if` to `elif` so the branches are exclusive and the intent is clear (handle the strictly decreasing case only in the second branch).",
+  "fixed_code": "n = int(input())\na = list(map(int,input().split()))\n\nb = []\nfor i in range(n-1):\n    if a[i] <= a[i+1]:\n        b += list(range(a[i],a[i+1]))\n    elif a[i] > a[i+1]:\n        b += list(range(a[i],a[i+1],-1))\n        \nb.append(a[-1])\n\nprint(b)"
+}

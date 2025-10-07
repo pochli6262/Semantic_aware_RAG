@@ -1,0 +1,33 @@
+--- faultyVersion.py
++++ fixed.py
+@@ -29,10 +29,12 @@
+ "1".isdigit()
+ 
+ 
++
+ dh = [-1, 0, 1, 0]
+ dw = [0, -1, 0, 1]
+ dh8 = [-1, -1, -1,  0,  0,  1,  1,  1]
+ dw8 = [-1,  0,  1, -1,  1, -1,  0,  1]
++
+ 
+ def resolve():
+   inf = 10**18+1
+@@ -40,7 +42,7 @@
+   A = [int(x) for x in input()[:-1].split(" ")]
+   acc = [0] + list(accumulate(A))
+   setAcc = set(acc)
+-  for x in range(N-3):
++  for x in range(N-2):
+     base = acc[x]
+     if base + P not in setAcc: continue
+     if base + P + Q not in setAcc: continue
+@@ -48,7 +50,7 @@
+     print("Yes")
+     return
+ 
+-
+   print("No")
+ 
++
+ resolve()

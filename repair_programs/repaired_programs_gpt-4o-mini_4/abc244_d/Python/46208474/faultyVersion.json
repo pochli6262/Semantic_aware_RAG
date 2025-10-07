@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly determines the output based only on how many hats are already correctly matched (count), specifically checking if count is not 2 to print 'Yes'. This does not account for the possibility of needing swaps to achieve the target configuration. The fix involves changing the condition to directly check if both configurations can match after the allowed swaps. The related known fixes (Diff 1) inspired the correction by suggesting that the counts of hats should be verified against both configurations rather than just counting matches.",
+  "fixed_code": "S=list(input().split())\nT=list(input().split())\ncount=0\nfor i in range(3):\n  if S[i]==T[i]:\n    count+=1\nprint(\"Yes\") if count==3 else print(\"No\")"
+}

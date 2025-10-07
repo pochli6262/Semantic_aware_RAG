@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the line where the result is printed. The condition should be checking if count is equal to 2 (output 'No') or not equal to 2 (output 'Yes'). However, it mistakenly uses 'count!=2' for 'Yes' which is incorrect. It should be 'count==2' to print 'No'. So, I changed the final conditional statement accordingly.",
+  "fixed_code": "S=list(input().split())\nT=list(input().split())\ncount=0\nfor i in range(3):\n  if S[i]==T[i]:\n    count+=1\nprint(\"Yes\") if count==2 else print(\"No\")"
+}

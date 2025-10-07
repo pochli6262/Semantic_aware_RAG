@@ -1,0 +1,173 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+H,W = map(int,input().split())
+C = []
+for i in range(H):
+    C.append(list(input()))
+
+def check(y,x):
+    size = 0
+    while True:
+        if  (y + (size + 1) < H and x + (size + 1) < W and C[y+(size+1)][x+(size+1)] == '#') and \
+            (y + (size + 1) < H and x - (size + 1) >= 0 and C[y+(size+1)][x-(size+1)] == '#') and \
+            (y - (size + 1) >= 0 and x + (size + 1) < W and C[y-(size+1)][x+(size+1)] == '#') and \
+            (y - (size + 1) >= 0 and x - (size + 1) >= 0 and C[y-(size+1)][x-(size+1)] == '#'):
+            size += 1
+        else:
+            break
+    ans[size] += 1
+
+ans = [0 for _ in range(H+1)]
+
+for i in range(H):
+    for j in range(W):
+        if C[i][j] == '#':
+            check(i,j)
+
+print(*ans[1:])
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+h, w = map(int, input().split())
+c =  [input() for i in range(h)]
+
+s = [[0] * w for i in range(h)]
+s[0][0] = 1
+
+ans = 1
+
+for i in range(h):
+    for j in range(w):
+        if c[i][j] == '#' or i == j == 0:
+            continue
+
+        if i == 0 and j > 0:
+            s[i][j] = s[i][j-1]+1
+        elif i > 0 and j == 0:
+            s[i][j] = s[i-1][j]+1
+        else:
+            s[i][j] = max(s[i][j-1], s[i-1][j])+1
+        
+        if s[i][j] == 1:
+            s[i][j] == 0
+
+        if ans < s[i][j]:
+             ans = s[i][j]
+
+print(ans)
+
+--- Correct Code ---
+h, w = map(int, input().split())
+c =  [input() for i in range(h)]
+
+s = [[0] * w for i in range(h)]
+s[0][0] = 1
+
+ans = 1
+
+for i in range(h):
+    for j in range(w):
+        if c[i][j] == '#' or i == j == 0:
+            continue
+
+        if i == 0 and j > 0:
+            s[i][j] = s[i][j-1]+1
+        elif i > 0 and j == 0:
+            s[i][j] = s[i-1][j]+1
+        else:
+            s[i][j] = max(s[i][j-1], s[i-1][j])+1
+        
+        if s[i][j] == 1:
+            s[i][j] = 0
+
+        if ans < s[i][j]:
+             ans = s[i][j]
+
+print(ans)
+
+
+### Example 2
+--- Buggy Code ---
+H, W = map(int, input().split())
+A = [list(map(int, input().split())) for _ in range(H)]
+
+Flag = True
+for a in range(H-1):
+	for b in range(a+1, H):
+		for c in range(W-1):
+			for d in range(b+1, W):
+				if A[a][c] + A[b][d] > A[b][c] + A[a][d]:
+					Flag = False
+if Flag:
+	print('Yes')
+else:
+	print('No')
+
+--- Correct Code ---
+H, W = map(int, input().split())
+A = [list(map(int, input().split())) for _ in range(H)]
+
+Flag = True
+for a in range(H-1):
+	for b in range(a+1, H):
+		for c in range(W-1):
+			for d in range(c+1, W):
+				if A[a][c] + A[b][d] > A[b][c] + A[a][d]:
+					Flag = False
+if Flag:
+	print('Yes')
+else:
+	print('No')
+
+
+### Example 3
+--- Buggy Code ---
+H, W = map(int, input().split())
+A = [list(map(int, input().split())) for _ in range(H)]
+
+flag = True
+
+for h in range(H):
+    for w in range(W):
+        for i in range(h+1, H):
+            for j in range(w+1, W):
+                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False
+
+if flag : print("Yes")
+else : print("No")
+
+
+--- Correct Code ---
+H, W = map(int, input().split())
+A = [list(map(int, input().split())) for _ in range(H)]
+
+flag = True
+
+for h in range(H):
+    for w in range(W):
+        for i in range(h+1, H):
+            for j in range(w+1, W):
+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False
+
+if flag : print("Yes")
+else : print("No")
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

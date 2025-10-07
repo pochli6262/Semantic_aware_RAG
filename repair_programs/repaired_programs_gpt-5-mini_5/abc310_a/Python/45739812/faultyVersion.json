@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code computed the discounted total as P - Q + d, which is incorrect. The coupon price for the drink is Q, so the total when using the coupon with dish d should be Q + d. I fixed the single incorrect line by replacing P - Q + d with Q + d.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nres = P\n\nfor d in D:\n    if (p := Q + d) < res:\n        res = p\n\nprint(res)\n"
+}

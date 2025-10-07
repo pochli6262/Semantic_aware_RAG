@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly checks if the sequence is sorted and if each condition is met in the same loop, which may lead to premature rejection of valid sequences due to failing the sorted condition before validating individual elements properly.

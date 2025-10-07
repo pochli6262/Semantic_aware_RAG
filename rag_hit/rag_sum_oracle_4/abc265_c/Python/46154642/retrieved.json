@@ -1,0 +1,31 @@
+{
+  "task": "abc265_c/Python/46154642",
+  "query_summary": "The code mistakenly checks for 'W' instead of 'R' when handling right moves, so cells with 'R' are never recognized and right movement is mishandled.",
+  "oracle_summary": "The code mistakenly checks for 'W' instead of 'R' when handling right moves, so cells with 'R' are never recognized and right movement is mishandled.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates from 24 to 0 instead of from 25 to 0 when calculating the values of `ii`, which leads to an off-by-one error in the loop indexing.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in a:\n   l[i] += 1\n now = 0\n-for i in range(24,-1,-1):\n+for i in range(25,-1,-1):\n   ii = 2**i\n   now += l[i]*(ii**2)\n   if now > (h//ii)*(w//ii)*(ii**2):"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `h` to zero in the second while loop that checks for the \"^\" character, which results in an infinite loop instead of starting at the last row (H-1).",
+      "diff": "--- \n+++ \n@@ -44,7 +44,7 @@\n     elif flg:\n       S[h][w] = \"*\"\n     h += 1\n-  h = 0\n+  h = H-1\n   flg = False\n   while h >= 0:\n     if S[h][w] not in (\"*\", \".\"):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the equality operator `==` instead of the assignment operator `=` when attempting to set `s[i][j]` to `0` if its value is `1`.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n             s[i][j] = max(s[i][j-1], s[i-1][j])+1\n         \n         if s[i][j] == 1:\n-            s[i][j] == 0\n+            s[i][j] = 0\n \n         if ans < s[i][j]:\n              ans = s[i][j]"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the count of elements in the dictionary `dic` during the window sliding process, specifically in the inner loop where `w` should be iterated but is incorrectly iterated from 1 to `w` instead of from 0 to `w`.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n                 dic2[a] = 1\n         ans[i][j + 1] = len(dic2)\n     if i < H - h:\n-        for k in range(1, w):\n+        for k in range(w):\n             a = A[i + h][k]\n             dic[a] -= 1\n             if dic[a] == 0:"
+    }
+  ],
+  "useful_diffs_indices": [
+    3
+  ],
+  "useful_diffs_count": 1
+}

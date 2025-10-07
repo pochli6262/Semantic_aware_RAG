@@ -1,0 +1,4 @@
+{
+  "explanation": "The second line used (a - d) as the second factor, which reuses 'a' and leaves 'c' unused. The intended expression with four input values a, b, c, d is (a + b) * (c - d). I fixed that line by replacing (a - d) with (c - d).",
+  "fixed_code": "a, b, c, d  = map(int, input().split())\nprint(((a + b) * (c - d)))\nprint(\"Takahashi\")"
+}

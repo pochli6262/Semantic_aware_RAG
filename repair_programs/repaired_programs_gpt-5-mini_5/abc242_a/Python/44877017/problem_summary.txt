@@ -1,0 +1,1 @@
+The program uses 100.0 for the guaranteed probability when x <= A instead of 1.0, producing an incorrect probability value.

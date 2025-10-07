@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly handles the case where A is in the last column of a row, causing it to misidentify adjacent horizontally squares.

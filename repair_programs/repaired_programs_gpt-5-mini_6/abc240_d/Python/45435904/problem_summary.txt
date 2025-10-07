@@ -1,0 +1,1 @@
+When the deque is empty the code appends [a,1] but then still falls through to the next if/else and increments that same element again (potentially popping it), effectively counting the insertion twice.

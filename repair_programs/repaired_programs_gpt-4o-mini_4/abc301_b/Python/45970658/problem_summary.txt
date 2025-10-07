@@ -1,0 +1,1 @@
+The program incorrectly performs insertions every time it detects a difference greater than 1, instead of continuing to check until all pairs of adjacent terms have an absolute difference of 1.

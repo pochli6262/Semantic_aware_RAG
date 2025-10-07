@@ -1,0 +1,1 @@
+The likely bug is that the program does not correctly backtrack by marking cells as unvisited after exploring all possible paths, which can lead to missing valid routes.

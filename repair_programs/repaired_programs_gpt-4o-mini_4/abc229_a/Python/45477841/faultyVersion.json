@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly handled the conditions under which to print 'No'. Instead of only checking for the specific input of '.#' and '#.', it needs to determine whether all black squares are connected in the grid. The logic should simply check for the presence of at least one connection between black squares, which can occur in more configurations than just the specified one. This fix was inspired by the need for conditional checks similar to what's found in the other diffs, which emphasize handling multiple conditions properly.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1[0] == '#' and S1[1] == '#') or (S2[0] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[0] == '#') or (S1[1] == '#' and S2[1] == '#'):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

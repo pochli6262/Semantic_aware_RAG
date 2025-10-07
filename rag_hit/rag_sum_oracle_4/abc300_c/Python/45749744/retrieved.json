@@ -1,0 +1,32 @@
+{
+  "task": "abc300_c/Python/45749744",
+  "query_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "oracle_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to account for sequences of characters after the last hyphen, resulting in potentially incorrect output when the last character is not a hyphen, as it does not check if `cur` is non-zero before updating `ans` after the loop.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     else:\n         cur += 1\n \n-if '-' in s:\n+if '-' in s and cur != 0:\n     ans = max(cur, ans)\n \n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `s` is a list of characters, but it needs to be a string for the string comparison and count operations to work correctly.",
+      "diff": "--- \n+++ \n@@ -23,6 +23,8 @@\n for _ in range(inp()):\n     n=inp()\n     s=insr()\n+    s=\"\".join(s)\n+    # print(s)\n     if s.count(\"1\")%2 or s==\"011\" or s=='110':\n         print(-1)\n         continue"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value of `ng` is set to `max(l)` instead of `max(l) - 1`, which leads to an incorrect binary search range when searching for the minimum value of `x` that satisfies the condition.",
+      "diff": "--- \n+++ \n@@ -35,7 +35,7 @@\n             tmp += 1\n     return res\n \n-ng = max(l); ok = 10**9*2*10**5+2*10**5\n+ng = max(l)-1; ok = 10**9*2*10**5+2*10**5\n while ok - ng > 1:\n     mid = (ok + ng) // 2\n     if num_required_row(mid) <= m:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses an incorrect value for the modulo variable `MOD`, which should be `998244353` instead of `9998244353`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n acc = [[0]*(n+1) for _ in range(n+1)]\n dp[0][0] = 1\n acc[0] = [1]*(n+1)\n-MOD = 9998244353\n+MOD = 998244353\n \n for x in range(1,n+1):\n     dpx = dp[x]"
+    },
+    {
+      "summary": "The buggy code incorrectly assigns the variables `h` and `w` the values of `goal`, leading to incorrect calculations since `goal` should correspond to `(width, height)` but is assigned as `(height, width)`.",
+      "diff": "--- \n+++ \n@@ -46,7 +46,9 @@\n \tgoal = rot(*goal)\n \n x,y = ppl\n-h,w = goal\n+w,h = goal\n+\n+\n \n if h == 0:\n \tif x>0 and y==0:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3
+  ],
+  "useful_diffs_count": 2
+}

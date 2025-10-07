@@ -1,0 +1,32 @@
+{
+  "task": "abc300_c/Python/45749744",
+  "query_summary": "The program sizes the answer array using the number of rows (n) instead of N = min(H, W), so the result array can be the wrong length (causing incorrect counts or index errors).",
+  "oracle_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to account for sequences of characters after the last hyphen, resulting in potentially incorrect output when the last character is not a hyphen, as it does not check if `cur` is non-zero before updating `ans` after the loop.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     else:\n         cur += 1\n \n-if '-' in s:\n+if '-' in s and cur != 0:\n     ans = max(cur, ans)\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly assigns the variables `h` and `w` the values of `goal`, leading to incorrect calculations since `goal` should correspond to `(width, height)` but is assigned as `(height, width)`.",
+      "diff": "--- \n+++ \n@@ -46,7 +46,9 @@\n \tgoal = rot(*goal)\n \n x,y = ppl\n-h,w = goal\n+w,h = goal\n+\n+\n \n if h == 0:\n \tif x>0 and y==0:"
+    },
+    {
+      "summary": "The buggy code incorrectly slices the set `B` using `N // 2` instead of `len(B) // 2`, which leads to incorrect processing of the elements in the logic that follows.",
+      "diff": "--- \n+++ \n@@ -28,7 +28,7 @@\n     \n     if (len(B) // 2 & 1 == 0) and (M & 1 == 0):\n         B = sorted(B)\n-        C, D = B[:N//2], B[N//2:]\n+        C, D = B[:len(B)//2], B[len(B)//2:]\n         res = set()\n         \n         for c, d in zip(C, D):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly appends the minimum answer `ans` to the `ANS` list inside the loop iterating over `Nset`, instead of appending it after processing all elements in the set.",
+      "diff": "--- \n+++ \n@@ -27,5 +27,5 @@\n         x = max(0, math.ceil(B / k) - A)\n         y = (A + x) * k - B\n         ans = min(ans, x + y)\n-        ANS.append(ans)\n+    ANS.append(ans)\n pr_line(ANS)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the size `N` for the transformation by only considering `n`, instead of the maximum of both `n` and `m`, which leads to insufficient padding for the input array.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n n, m = mi()\n \n N = 1\n-while N <= n:\n+while N <= n or N <= m:\n     N *= 2\n \n a = li()"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

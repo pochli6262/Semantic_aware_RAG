@@ -1,0 +1,1 @@
+The bug likely occurs because the program does not correctly account for the condition that requires at least one of the specified surrounding cells to be `.` when determining the size of a cross, potentially leading to incorrect cross size calculations.

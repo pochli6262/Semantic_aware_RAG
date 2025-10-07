@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the if condition: the second alternative incorrectly uses 'or' logic and duplicates the first check, so it doesn't test for the case where the three-of-a-kind is in the last three cards. I replaced the single incorrect if line with a condition that checks either (first three equal and last two equal) OR (first two equal and last three equal).",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif (a[0]==a[1] and a[1]==a[2] and a[3]==a[4]) or (a[0]==a[1] and a[2]==a[3] and a[3]==a[4]):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

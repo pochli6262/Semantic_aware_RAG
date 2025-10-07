@@ -1,0 +1,1 @@
+The bug likely occurs because the program only checks specific conditions for adjacency and does not properly account for all horizontal pairs on the board.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition compared characters across rows (S1[0] == S2[0] or S1[1] == S2[1]) instead of checking whether those positions are black ('#') and it also missed horizontal adjacency checks. I replaced that single line with a condition that explicitly tests all four side-adjacency possibilities (two horizontal and two vertical). This fix follows the idea from the retrieved diffs that boolean conditions needed correction (use of proper comparisons and correct combination with 'or').",
+  "fixed_code": "S1 = input()\nS2 = input()\nif (S1[0] == '#' and S1[1] == '#') or (S2[0] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[0] == '#') or (S1[1] == '#' and S2[1] == '#'):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

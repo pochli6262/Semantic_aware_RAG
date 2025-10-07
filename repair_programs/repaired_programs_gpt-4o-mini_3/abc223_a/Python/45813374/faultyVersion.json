@@ -1,0 +1,4 @@
+{
+  "explanation": "The buggy program incorrectly considers any number less than 100 as 'No', which means all numbers 99 and below will result in 'No'. The correct condition should check if the number is less than or equal to 100 to produce 'No' for numbers 100 and above. Therefore, I changed the conditional comparison from 'n < 100' to 'n <= 100'.",
+  "fixed_code": "n=int(input())\n\nif n<=100:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

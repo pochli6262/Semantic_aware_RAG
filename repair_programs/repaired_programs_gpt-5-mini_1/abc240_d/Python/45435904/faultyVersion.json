@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the code used two separate if statements: after appending a new group when Q is empty, the next if still ran and entered the else branch (since the newly appended element matched), which incorrectly incremented the count. Changing the second if to elif makes it mutually exclusive with the 'Q is empty' case, so when we append because Q was empty we skip the rest of the branch for that iteration. I fixed that single line by replacing 'if Q[-1][0] != a:' with 'elif Q[-1][0] != a:'.",
+  "fixed_code": "from collections import deque\nN = int(input())\nA = list(map(int, input().split()))\n\nQ = deque()\nans = 0\n\nfor a in A:\n    ans += 1\n    if len(Q) == 0:\n        Q.append([a,1])\n    elif Q[-1][0] != a:\n        Q.append([a,1])\n    else:\n        Q[-1][1] += 1\n        if Q[-1][1] == a:\n            Q.pop()\n            ans -= a\n    print(ans)\n"
+}

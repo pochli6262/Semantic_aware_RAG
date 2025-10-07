@@ -1,0 +1,1 @@
+The sentinel INF is too small (10**12) for N up to 5000 and A_i,C_i up to 1e9, so valid DP sums can exceed INF and corrupt the min comparisons.

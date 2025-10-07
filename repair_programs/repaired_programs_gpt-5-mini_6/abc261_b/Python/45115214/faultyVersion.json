@@ -1,0 +1,4 @@
+{
+  "explanation": "The code never checked that 'D' entries are symmetric (A[i][k] == 'D' requires A[k][i] == 'D'), so draws could be mismatched and the table would be accepted incorrectly. I fixed the single condition line to also accept the symmetric 'D' case in addition to the existing W/L checks. (This change follows the pattern of extending a conditional to include an additional valid case.)",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\ncount = 0\nfor i in range(N):\n  for k in range(N):\n    if (i == k) and (A[i][k] == '-') :\n      count += 1\n    if (i != k) and (A[i][k] == 'W') and (A[k][i] == 'L'):\n      count += 1\n    if (i != k) and ((A[k][i] == 'W' and A[i][k] == 'L') or (A[i][k] == 'D' and A[k][i] == 'D')):\n      count += 1\nif count == N**2:\n  print(\"correct\")\nelse:\n  print(\"incorrect\")\n"
+}

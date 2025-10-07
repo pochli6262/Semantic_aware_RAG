@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line was incorrectly checking if the concatenation of s[i] and s[j] is equal to a list containing that same concatenation reversed. The correct comparison should check if the concatenation itself is equal to its reverse, rather than putting it in a list first. I removed the list brackets around the reversed concatenation to fix this.",
+  "fixed_code": "n,*s=open(0).read().split()\nn=int(n)\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i]+s[j]==(s[i]+s[j])[::-1]:\n      print(\"Yes\")\n      exit()\nprint(\"No\")"
+}

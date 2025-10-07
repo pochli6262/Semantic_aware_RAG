@@ -1,0 +1,4 @@
+{
+  "explanation": "The line checking if product j has all functions of product i is implemented incorrectly. The condition len((fj | fi)) == len(fj) checks the union of the function sets but does not correctly verify if fj contains all functions present in fi. The correct check should use subset relation fj.issuperset(fi) to ensure that j has all functions of i. This adjustment is inspired by the need for proper set relations to fulfill the condition outlined in the problem.",
+  "fixed_code": "N, M = map(int, input().split())\nI = [list(map(int, input().split())) for _ in range(N)]\n\nfor i in range(N):\n    for j in range(N):\n        if i == j:\n            continue\n        if I[i][0] >= I[j][0]:\n            fj = set(I[j][2:])\n            fi = set(I[i][2:])\n            if fj.issuperset(fi):\n                if I[i][0] > I[j][0] or len(fj - fi) > 0:\n                    print('Yes')\n                    exit()\nprint('No')"
+}

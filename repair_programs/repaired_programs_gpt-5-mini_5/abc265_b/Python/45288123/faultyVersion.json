@@ -1,0 +1,4 @@
+{
+  "explanation": "The problem states Takahashi cannot make a move that makes the time limit 0 or less. The buggy line used `if T < 0:` which only disallows negative time but (incorrectly) allows T == 0 after a move. I changed the check to `if T <= 0:` so moves that reduce the time to exactly zero are also forbidden. This is a simple '<' -> '<=' fix pattern similar to fixes in the retrieved diffs where boundary comparisons were tightened.",
+  "fixed_code": "from collections import defaultdict\n\nN, M, T = map(int, input().split())\nA = list(map(int, input().split()))\nXY = [list(map(int, input().split())) for _ in range(M)]\n\nd = defaultdict(int)\nfor x, y in XY:\n    d[x] = y\n\nnow = 1\nwhile now != N:\n    T -= A[now-1]\n    now += 1\n\n    if T <= 0:\n        print('No')\n        exit()\n    \n    T += d[now]\n    # print(T)\n\nprint('Yes')"
+}

@@ -1,0 +1,171 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+There is an ultramarathon course totaling 100\;\mathrm{km}.
+Water stations are set up every 5\;\mathrm{km} along the course, including the start and goal, for a total of 21.
+
+Takahashi is at the N\;\mathrm{km} point of this course.
+Find the position of the nearest water station to him.
+
+Under the constraints of this problem, it can be proven that the nearest water station is uniquely determined.
+
+### Constraints
+
+* 0\leq N\leq100
+* N is an integer.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N
+```
+
+### Output
+
+Print the distance between the start and the water station nearest to Takahashi, in kilometers, in a single line.
+
+---
+
+### Sample Input 1
+
+```
+53
+```
+
+### Sample Output 1
+
+```
+55
+```
+
+Takahashi is at the 53\;\mathrm{km} point of the course.
+The water station at the 55\;\mathrm{km} point is 2\;\mathrm{km} away, and there is no closer water station.
+Therefore, you should print 55.
+
+---
+
+### Sample Input 2
+
+```
+21
+```
+
+### Sample Output 2
+
+```
+20
+```
+
+Takahashi could also go back the way.
+
+---
+
+### Sample Input 3
+
+```
+100
+```
+
+### Sample Output 3
+
+```
+100
+```
+
+There are also water stations at the start and goal.
+Additionally, Takahashi may already be at a water station.
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the program incorrectly identifies the nearest water station when Takahashi is exactly at a water station, as it can round up unnecessarily.
+
+## Buggy Program
+n=int(input())
+print((n//5)*5+5 if n%5>=2 else (n//5)*5)
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -33,7 +33,7 @@
+             for z, w, d2 in large_goal:
+                 x_diff = max(x, z) - min(x, z)
+                 y_diff = max(y, w) - min(y, w)
+-                dist = min(dist, d1 + d2 + x_diff + y_diff + (max(x_diff, y_diff) - min(x_diff, y_diff)) / 2)
++                dist = min(dist, d1 + d2 + x_diff + y_diff + (max(x_diff, y_diff) - min(x_diff, y_diff)) // 2)
+     else:
+         for x, y, d1 in large_start:
+             for z, w, d2 in large_goal:
+
+### Diff 2
+--- 
++++ 
+@@ -10,7 +10,7 @@
+     G[i].append((x,b))
+ 
+ seen = [False] * (N+1)
+-dist = [10**10] * (N+1)
++dist = [10**15] * (N+1)
+ dist[1] = 0
+ q = [(0,1)]
+ heapq.heapify(q)
+
+### Diff 3
+--- 
++++ 
+@@ -9,7 +9,7 @@
+   
+ if T == A:
+   print('Draw')
+-elif T > A:
++elif T < A:
+   print('Takahashi')
+ else:
+   print('Aoki')
+
+### Diff 4
+--- 
++++ 
+@@ -16,7 +16,7 @@
+         for j in range(i+1,N):
+           if S[j]!='X':
+             break
+-        ans = max(ans,j-i+1)
++        ans = max(ans,j-i)
+       else:
+         ans = max(ans,1)
+   print(ans)
+
+### Diff 5
+--- 
++++ 
+@@ -74,7 +74,7 @@
+             blockY = max(blockY,-blockY)
+             if blockX > blockY:
+                 blockX,blockY = blockY, blockX
+-            dist = 2 * blockX + 3 * (blockY - blockX) + dist0 + dist1
++            dist = 2 * blockX + 3 * (blockY - blockX)//2 + dist0 + dist1
+             if dist < res:
+                 res = dist
+ 
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code incorrectly checks if the total number of pills exceeds K instead of checking if it is K or less. Specifically, the line `return res>k` should return `res<=k` to find the first day on which he has to take K pills or less. This is similar to the change suggested in Diff 1 where a similar condition is corrected.",
+  "fixed_code": "n,k=list(map(int, input().split()))\n\ndef cal(x,li):\n    res=0\n    for i in range(n):\n        if li[i][0]>=x:\n            res+=li[i][1]\n    #print(res>k)\n    return res<=k\n\nmaxday=0\nlis=[]\nfor i in range(n):\n    a,b=list(map(int, input().split()))\n    maxday=max(maxday,a)\n    lis.append([a,b])\n\nl=-1\nr=maxday\n\nwhile abs(r-l)>1:\n    mid=(l+r)//2\n    #print(l,r,mid)\n    if cal(mid,lis):#飲む量が多いか\n        l=mid\n    else:\n        r=mid\n\nif r<=0:\n    print(1)\nelse:\n    print(r)"
+}

@@ -1,0 +1,1 @@
+The code incorrectly uses the parity of matching positions (cnt%2) to decide reachability instead of checking the parity of the permutation from S to T, so it computes the wrong condition.

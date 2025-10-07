@@ -1,0 +1,33 @@
+{
+  "task": "abc300_b/Python/45110485",
+  "query_summary": "The buggy code skips the (dy, dx) = (0, 0) case, so it never checks whether tableA already equals tableB without any shift.",
+  "oracle_summary": "The buggy code skips the (dy, dx) = (0, 0) case, so it never checks whether tableA already equals tableB without any shift.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the condition to check if the first segment of the arrays `a` and `b` are equal is incorrectly using `if i<3` instead of the correct `if i-l<3`, which leads to incorrect comparisons when the pointers `l` have been modified.",
+      "diff": "--- \n+++ \n@@ -35,7 +35,7 @@\n                 return 0\n             if st(a[l:i])!=st(b[l:i]):\n                 return 0\n-            if i<3 and a[:i]!=b[:i]:\n+            if i-l<3 and a[l:i]!=b[l:i]:\n                 return 0\n             l=i+1\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if sum(Ta) == 2:` is incorrectly checking the count of odd numbers instead of ensuring that there are exactly two even numbers present in the list. This condition should be `if N - sum(Ta) == 2:`.",
+      "diff": "--- \n+++ \n@@ -120,7 +120,7 @@\n     if not ok:\n         return check(A, B)\n \n-    if sum(Ta) == 2:\n+    if N - sum(Ta) == 2:\n         X = [a for a in A if a % 2 == 0]\n         Y = [a for a in B if a % 2 == 0]\n         return X == Y"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate elements in list A using `len(set(A)) == len(A)` instead of checking for the presence of duplicates with `len(set(A)) != len(A)`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if X != Y:\n         print(\"No\")\n         return\n-    if len(set(A)) == len(A):\n+    if len(set(A)) != len(A):\n         print(\"Yes\")\n         return\n     ct = 0"
+    },
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the maximum size of the sets `A_[i]` within the loop, resulting in incorrect logic for deciding whether to print 'Yes' or 'No'; specifically, it uses `max_(0, len(A_[i]))` instead of `max(max_, len(A_[i]))`.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n   if len(A_[i])!=len(B_[i]):\n     print('No')\n     exit()\n-  max_ = max(0, len(A_[i]))\n+  max_ = max(max_, len(A_[i]))\n \n if max_>=2: \n   print('Yes')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    10
+  ],
+  "useful_diffs_count": 3
+}

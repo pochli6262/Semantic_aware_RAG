@@ -1,0 +1,33 @@
+{
+  "task": "abc286_e/Python/45479724",
+  "query_summary": "On ties in path length during the Floyd–Warshall relaxation, the buggy code picks the minimum accumulated value (using min) instead of the required maximum (using max).",
+  "oracle_summary": "On ties in path length during the Floyd–Warshall relaxation, the buggy code picks the minimum accumulated value (using min) instead of the required maximum (using max).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates from `0` to `am` instead of `0` to `am+1`, which leads to missing the last possible iteration for `am`, resulting in an incorrect calculation of `ans`.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n         if k[i]<b[i]:\n             return False\n     return True\n-for i in range(am):\n+for i in range(am+1):\n     while check():\n         t+=1\n         if t==bm:"
+    },
+    {
+      "summary": "The buggy code does not reset the variable `mi` within the inner loops, which leads to incorrect calculations of the minimum value during iterations over the lists `a` and `b`.",
+      "diff": "--- \n+++ \n@@ -13,12 +13,15 @@\n for k,i in enumerate(b):\n     if i!=0:\n         x=q[k]//i\n+        \n         if x <bmax:\n             bmax=x\n+\n mi=10**7\n if amax >bmax:\n     ans=amax\n     for i in range(amax+1)[::-1]:\n+        mi=10**7\n         for k,j in enumerate(a):\n             if b[k]!=0:\n                 y=q[k]-(i*j)\n@@ -32,16 +35,19 @@\n else:\n     ans=bmax\n     for i in range(bmax+1)[::-1]:\n+        mi=10**7\n         for k,j in enumerate(b):\n             if a[k]!=0:\n                 y=q[k]-(i*j)\n                 x=y//a[k]\n+                \n             else:\n                 x=10**7\n+            \n             if x<mi:\n                 mi=x\n+                \n         \n         if mi+i>ans:\n             ans=mi+i\n print(ans)\n-        "
+    },
+    {
+      "summary": "The buggy code includes an incorrect conditional check in the second `if` statement, using `a[i*2+1]>a[i*2]` instead of the corrected `a[i*2]>a[i*2+1]`, which could lead to incorrect behavior when trying to adjust the elements in the list.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n             a[0],a[1]=a[1],a[0]\n             q.append(1)\n     else:\n-        if a[i*2-1]<a[i*2] and  a[i*2+1]>a[i*2]:\n+        if a[i*2-1]<a[i*2] and  a[i*2]>a[i*2+1]:\n             if a[i*2-1]<a[i*2+1]:\n                 a[i*2-1],a[i*2]=a[i*2],a[i*2-1]\n                 q.append(i*2)"
+    },
+    {
+      "summary": "The buggy code incorrectly breaks the inner loop instead of continuing when both `x` and `y` are zero, causing an error in generating valid patterns.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n   for x in range(-1, 2, 1):\n     for y in range(-1, 2, 1):\n       if x==y==0:\n-        break\n+        continue\n       b = \"\"\n       for j in range(n):\n         b = b + a[(i[0] + x*j)%n][(i[1] + y*j)%n]"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `c[y-1]` instead of `c[x-1]`, leading to an incorrect index when checking the condition for the output character.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n ans=\"\"\n for i in range(q):\n   y,x=map(int,input().split())\n-  ans+=\"#\" if r[y-1]+c[y-1]>n else \".\"\n+  ans+=\"#\" if r[y-1]+c[x-1]>n else \".\"\n print (ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

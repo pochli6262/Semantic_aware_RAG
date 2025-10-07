@@ -1,0 +1,152 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+We have five cards with integers A, B, C, D, and E written on them, one on each card.
+
+This set of five cards is called a Full house if and only if the following condition is satisfied:
+
+* the set has three cards with a same number written on them, and two cards with another same number written on them.
+
+Determine whether the set is a Full house.
+
+### Constraints
+
+* 1 \leq A,B,C,D,E\leq 13
+* Not all of A, B, C, D, and E are the same.
+* All values in input are integers.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+A B C D E
+```
+
+### Output
+
+If the set is a Full house, print `Yes`; otherwise, print `No`.
+
+---
+
+### Sample Input 1
+
+```
+1 2 1 2 1
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The set has three cards with 1 written on them and two cards with 2 written on them, so it is a Full house.
+
+---
+
+### Sample Input 2
+
+```
+12 12 11 1 2
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+The condition is not satisfied.
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the program incorrectly checks for the number of unique values instead of verifying the specific counts of three cards of one number and two cards of another.
+
+## Buggy Program
+x=list(map(int,input().split()))
+if len(set(x))==2:
+    print("Yes")
+else:
+    print("No")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -24,7 +24,7 @@
+   if len(A_[i])!=len(B_[i]):
+     print('No')
+     exit()
+-  max_ = max(0, len(A_[i]))
++  max_ = max(max_, len(A_[i]))
+ 
+ if max_>=2: 
+   print('Yes')
+
+### Diff 2
+--- 
++++ 
+@@ -1,5 +1,7 @@
+ N, A, B, C, D = map(int, input().split())
+ if abs(B - C) > 1:
+     print("No")
++elif B == 0 and C == 0 and A > 0 and D > 0:
++    print("No")
+ else:
+     print("Yes")
+
+### Diff 3
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ a=[]
+ b=['H', 'D', 'C', 'S']
+ first = set(b)
+-second = set(['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])
++second = set(['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])
+ tmp = set()
+ answer = "Yes"
+ for i in range(n):
+
+### Diff 4
+--- 
++++ 
+@@ -136,4 +136,4 @@
+ 
+ if N==5: solve5()
+ if N==4: solve4()
+-else: solve3()
++if N==3: solve3()
+
+### Diff 5
+--- 
++++ 
+@@ -19,7 +19,7 @@
+     C = C - 1
+   while(X[i] >= 5 and B > 0):
+     X[i] = X[i] - 5
+-    B =  - 1
++    B = B - 1
+   while(X[i] >= 1 and A > 0):
+     X[i] = X[i] - 1
+     A = A - 1
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

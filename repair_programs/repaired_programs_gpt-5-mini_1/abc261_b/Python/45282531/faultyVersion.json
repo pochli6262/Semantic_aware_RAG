@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition only flagged the case where both entries were 'W'/'W' or 'L'/'L'. It missed other invalid combinations (for example 'W' paired with 'D' or 'W' paired with 'W' was only partially covered). The correct logic is to ensure symmetry: if A[i][j] is 'W' then A[j][i] must be 'L'; if 'L' then the other must be 'W'; if 'D' then the other must be 'D'. I fixed the single conditional line to check these required relationships and mark the matrix incorrect when any pair violates them. No other lines were changed.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\n\nfor i in range(N):\n  for j in range(N):\n    if (A[i][j] == 'W' and A[j][i] != 'L') or (A[i][j] == 'L' and A[j][i] != 'W') or (A[i][j] == 'D' and A[j][i] != 'D'):\n      print('incorrect')\n      exit()\nprint('correct')"
+}

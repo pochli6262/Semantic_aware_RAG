@@ -1,0 +1,32 @@
+{
+  "task": "abc246_a/Python/45745121",
+  "query_summary": "It prints the list object (e.g., “[x, y]”) instead of outputting the two coordinates as space-separated integers, producing the wrong output format.",
+  "oracle_summary": "It prints the list object (e.g., “[x, y]”) instead of outputting the two coordinates as space-separated integers, producing the wrong output format.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to sort the list of coordinates before checking for the 'R' and 'L' conditions, which can lead to incorrect results when the x-coordinates are not processed in order, potentially missing valid pairs.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n \n ans = 'No'\n for i in y:\n-    yi = y[i]\n+    yi = sorted(y[i])\n     for j in range(len(yi)-1):\n         if yi[j][1] == 'R' and yi[j+1][1] == 'L':\n             ans = 'Yes'"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the list `X` as a single object instead of unpacking its elements for individual output.",
+      "diff": "--- \n+++ \n@@ -3,4 +3,4 @@\n while A<=B:\n   X.append(A)\n   A+=D\n-print(X)\n+print(*X)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the final output set before printing, which may lead to the results being displayed in an unsorted manner.",
+      "diff": "--- \n+++ \n@@ -29,4 +29,4 @@\n     j += 1\n     ans.add(-total[i][1])\n \n-print(*ans, sep='\\n')\n+print(*sorted(ans), sep='\\n')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the result list as a single object instead of unpacking the individual elements, resulting in the output being displayed as a list rather than a space-separated string.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     result.append(i)\n for i in range(r + 1, n + 1):\n     result.append(i)\n-print(result)\n+print(*result)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `XY[j][0]` in the inequality, instead of the correct `XY[j][1]`, which leads to inaccurate calculations for determining if points are collinear.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n   for j in range(i+1,N):\n     for k in range(j+1,N):\n       #print(i,j,k)\n-      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][0]-XY[i][0])*(XY[k][0]-XY[i][0]):\n+      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][1]-XY[i][1])*(XY[k][0]-XY[i][0]):\n         count+=1\n print(count)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

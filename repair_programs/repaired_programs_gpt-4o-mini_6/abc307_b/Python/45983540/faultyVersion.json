@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line `if i == j: break` incorrectly uses a break statement, which stops the inner loop altogether when `i` equals `j`, thus preventing the program from checking all distinct pairs. The corrected version uses `continue` to skip the iteration when `i` is equal to `j`, allowing the program to check other combinations of distinct indices. This is inspired by the idea found in some related diffs where proper handling of loops ensures all necessary combinations are evaluated.",
+  "fixed_code": "N = int(input())\nS = []\nfor i in range(N):\n  s = input()\n  S.append(s)\n  \nflag = False\n\nfor i in range(N):\n  for j in range(N):\n    if i == j:\n      continue\n    \n    a = S[i] + S[j]\n    \n    if a == a[::-1]:\n      flag = True\n        \nprint('Yes' if flag else 'No')"
+}

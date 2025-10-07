@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code sorts the entire list of participants' nicknames before selecting the top K. This is incorrect because it should first select the top K participants based on their provided order and then sort only that subset. I corrected this line by moving the sorting operation to occur after slicing the list to get the top K participants. This aligns with the problem summary indicating only the top K should be sorted, which is similar to patterns seen where sorting operations are adjusted based on the need to limit the input size.",
+  "fixed_code": "n, k = map(int, input().split())\ns = [input() for _ in range(n)]\ns_top_k = s[:k]\ns_top_k.sort()\nfor i in range(k):\n  print(s_top_k[i])"
+}

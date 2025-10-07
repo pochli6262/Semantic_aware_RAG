@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used abs(5-int(input())%5). Due to operator precedence this computes 5 - (n % 5) and then takes the absolute value, which returns 5 when n is already divisible by 5 (should be 0). The intent is to compute how many must be added to n to reach the next multiple of 5. I fixed it by replacing the abs(...) with a final % 5: (5 - (int(input()) % 5)) % 5 so that when n % 5 == 0 the result is 0.",
+  "fixed_code": "print((5 - int(input()) % 5) % 5)\n"
+}

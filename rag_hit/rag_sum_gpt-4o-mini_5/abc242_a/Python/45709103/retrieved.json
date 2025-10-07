@@ -1,0 +1,31 @@
+{
+  "task": "abc242_a/Python/45709103",
+  "query_summary": "The bug likely lies in the incorrect handling of the ranking condition since it incorrectly calculates the total participants eligible for selection between ranks A+1 and B by using `b-a` instead of the correct range.",
+  "oracle_summary": "The middle-case condition has an off-by-one error: it uses x > a+1 instead of x >= a+1, incorrectly excluding x == a+1 from the c/(b−a) case.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly computes the minimum value of `y` using `min((q[i]-x*a[i])//b[i], x)` instead of using `y` as a reference, which leads to incorrect calculations for the `ans` result.",
+      "diff": "--- \n+++ \n@@ -11,6 +11,6 @@\n             y=-inf\n             break\n         elif b[i]>0:\n-            y=min((q[i]-x*a[i])//b[i],x)\n+            y=min((q[i]-x*a[i])//b[i],y)\n     ans=max(ans,x+y)\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    },
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code fails to account for the case where the remaining value after full cycles is less than 'a', leading to incorrect calculations of the score.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n def d(a, b, c, x):\n     t = x // (a + c)\n-    return t * (a * b) + (x - ((a + c) * t)) * b\n+    return t * (a * b) + min(a, (x - ((a + c) * t))) * b\n \n \n A, B, C, D, E, F, X = map(int, input().split())"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for equal remainders, using modulo 6 instead of verifying if the sum is divisible by 3 and if all values are even or odd.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     c = min(x1,x2,x3)\n     b = x1+x2+x3-a-c\n \n-    if not(a % 6 == b % 6 == c % 6):\n+    if not( (a+b+c)%3==0 and a%2==b%2==c%2):\n         print(-1)\n         continue\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The range check used strict inequalities (>100 and <675), which incorrectly rejected valid values equal to 100 or 675. I changed the condition to use inclusive bounds (>=100 and <=675) so values on the limits are accepted. This fixes the boundary bug while leaving the rest of the logic unchanged.",
+  "fixed_code": "s=list(map(int,input().split()))\nss=sorted(s)\n\npack=[]\nif s==ss and s[0] >=100 and s[-1]<=675:\n  for i in s:\n    if i%25==0:\n      pack.append(i)\nprint(\"Yes\" if len(pack)==8 else \"No\")"
+}

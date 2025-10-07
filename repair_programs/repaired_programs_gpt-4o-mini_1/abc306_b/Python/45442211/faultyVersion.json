@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is caused by trying to access indices in the list A up to 63, but the input list A may have fewer than 63 elements depending on the user's input. Attempting to access out-of-range indices will raise an IndexError. The fix is to modify the for loop to iterate only as many times as there are elements in list A using len(A).",
+  "fixed_code": "A = list(map(int,input().split()))\nS = 0\n\nimport math\n\nfor i in range(len(A)):\n    S = S + A[i]*(pow(2,i))\n    \nprint(S)"
+}

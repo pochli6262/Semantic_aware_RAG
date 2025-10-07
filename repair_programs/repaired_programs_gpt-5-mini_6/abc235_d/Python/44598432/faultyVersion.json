@@ -1,0 +1,4 @@
+{
+  "explanation": "The reverse-BFS was unconditionally applying the rotation predecessor, which can produce invalid predecessors (e.g., predecessors with fewer than two digits or with last digit zero that would not be permitted in the forward rotation). I fixed the single line to only consider rotation predecessors when rot(M) has at least two digits and its last digit is nonzero (rot(M) >= 10 and rot(M) % 10 != 0). This enforces the forward-rotation constraints in the reverse search.",
+  "fixed_code": "from queue import Queue\na,N=map(int,input().split())\ndef rot(N):\n    M=str(N)\n    return int(M[1:]+M[0])\nd=[10**3]*10**len(str(N))\nd[N]=0\nq=Queue()\nq.put(N)\nwhile not q.empty():\n    M=q.get()\n    if M==1:\n        break\n    if M%a==0 and d[M//a]>d[M]+1:\n        d[M//a]=d[M]+1\n        q.put(M//a)\n    if rot(M) >= 10 and rot(M) % 10 != 0 and d[rot(M)]>d[M]+1:\n        d[rot(M)]=d[M]+1\n        q.put(rot(M))\nprint(d[1] if d[1]!=10**3 else -1)"
+}

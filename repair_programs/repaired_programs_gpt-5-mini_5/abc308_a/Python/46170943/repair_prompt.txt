@@ -1,0 +1,178 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+Given eight integers S\_1,S\_2,\dots, and S\_8,
+print `Yes` if they satisfy all of the following three conditions, and `No` otherwise.
+
+* The sequence (S\_1,S\_2,\dots,S\_8) is monotonically non-decreasing. In other words, S\_1 \leq S\_2 \leq \dots \leq S\_8.
+* S\_1,S\_2,\dots, and S\_8 are all between 100 and 675, inclusive.
+* S\_1,S\_2,\dots, and S\_8 are all multiples of 25.
+
+### Constraints
+
+* 0\leq S\_i \leq 1000
+* All input values are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+S_1 S_2 \dots S_8
+```
+
+### Output
+
+Print the answer.
+
+---
+
+### Sample Input 1
+
+```
+125 175 250 300 400 525 600 650
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+They satisfy all of the three conditions.
+
+---
+
+### Sample Input 2
+
+```
+100 250 300 400 325 575 625 675
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+They violate the first condition because S\_4 > S\_5.
+
+---
+
+### Sample Input 3
+
+```
+0 23 24 145 301 413 631 632
+```
+
+### Sample Output 3
+
+```
+No
+```
+
+They violate the second and third conditions.
+
+## Your Analysis (1-sentence bug summary)
+The code incorrectly uses strict inequalities for the range check (s[0] > 100 and s[-1] < 675) instead of allowing 100 and 675 (>= 100 and <= 675), so values exactly 100 or 675 get rejected.
+
+## Buggy Program
+s=list(map(int,input().split()))
+ss=sorted(s)
+
+pack=[]
+if s==ss and s[0] >100 and s[-1]<675:
+  for i in s:
+    if i%25==0:
+      pack.append(i)
+print("Yes" if len(pack)==8 else "No")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -22,7 +22,7 @@
+     S[i] -= sum(L[i:i+3])
+ 
+ if len(set(S)) != 1 or len(set(S)) == 1 and S[0] < 0:
+-    print(-1)
++    print('No')
+ else:
+     print('Yes')
+     num = S[0]
+
+### Diff 2
+--- 
++++ 
+@@ -10,7 +10,7 @@
+ for k in range(4):
+   for i in range(7-2*k):
+     for j in range(7-2*k):
+-      if s[i+k+1][j]=="#" and s[i][j+k+1]=="#" and s[i+1][j+2*(k+1)]=="#" and s[i+2*(k+1)][j+k+1]=="#":
++      if s[i+k+1][j]=="#" and s[i][j+k+1]=="#" and s[i+k+1][j+2*(k+1)]=="#" and s[i+2*(k+1)][j+k+1]=="#":
+         ans+=1
+ for i in range(6):
+   for j in range(6):
+
+### Diff 3
+--- 
++++ 
+@@ -22,6 +22,8 @@
+                 return "No"
+         else:
+             return "No"
++    else:
++        return "No"
+ 
+ 
+ s = str(input())
+
+### Diff 4
+--- 
++++ 
+@@ -17,7 +17,7 @@
+       L[0]=1
+     if i+1==10:
+       L[6]=1
+-if S[0]==1:
++if S[0]=="1":
+   print("No")
+   sys.exit()
+ flag=0
+
+### Diff 5
+--- 
++++ 
+@@ -1,10 +1,11 @@
++
+ s = input()
+ s_list = []
+ for i in range(len(s)):
+     if s[i] in [chr(i) for i in range(65, 91)]:
+         s_list.append(s[i])
+ if len(s_list) == 2 and s[0] in [chr(i) for i in range(65, 91)] and s[len(s) - 1] in [chr(i) for i in range(65, 91)]:
+-    if (s[0] in [chr(i) for i in range(65, 91)]) and (s[len(s) - 1] in [chr(i) for i in range(65, 91)]) and (100000 <= int(s[1:len(s) - 1]) <= 999999):
++    if (s[0] in [chr(i) for i in range(65, 91)]) and (s[len(s) - 1] in [chr(i) for i in range(65, 91)]) and (100000 <= int(s[1:len(s) - 1]) <= 999999) and len(s[1:len(s) - 1]) == 6:
+         res = 'Yes'
+     else:
+         res = 'No'
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

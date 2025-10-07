@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program is that the second loop's range for 'j' should go up to 'x + 1' instead of 'x'. This is necessary because we need to check all possible weight combinations from 0 to x. By using 'x', we miss the possibility of achieving the exact weight of x. I corrected this by changing 'for j in range(x):' to 'for j in range(x + 1):'.",
+  "fixed_code": "n, x = map(int, input().split())\na = [0 for _ in range(n)]\nb = [0 for _ in range(n)]\nfor i in range(n):\n  a[i], b[i] = map(int, input().split())\n\ndp = [[False for _ in range(x + 1)] for _ in range(n + 1)]\nfor i in range(n + 1):\n  dp[i][0] = True\n\nfor i in range(n):\n  for j in range(x + 1):\n    for k in range(b[i] + 1):\n      if dp[i][j]:\n        if j + (k * a[i]) <= x:\n            dp[i + 1][j + (k * a[i])] = True\n\nif dp[-1][-1]:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

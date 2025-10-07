@@ -1,0 +1,115 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+n, m = map(int, input().split())
+c = input().split()
+d = input().split()
+p = list(map(int, input().split()))
+ds = {d[i]: p[1 + i] for i in range(m)}
+s = 0
+for i in c:
+    if i not in ds:
+        print(p[0])
+    else:
+        s += ds[i]
+print(s)
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+n, m = map(int, input().split())
+d = [1]
+while len(d) < n:
+  d = d + [sum(d)] + d
+d = d[:n - 1]
+d += [sum(d) + 1]
+for i in range(1, n):
+  d[i] += d[i - 1]
+sub = (sum(d) - m) // n + 1
+for i in range(n):
+  d[i] -= sub
+d[-1] -= sum(d) - m
+print(*d)
+
+--- Correct Code ---
+n, m = map(int, input().split())
+d = [1]
+while len(d) < n:
+  d = d + [sum(d) + 1] + d
+d = d[:n - 1]
+d += [sum(d) + 1]
+for i in range(1, n):
+  d[i] += d[i - 1]
+sub = (sum(d) - m) // n + 1
+for i in range(n):
+  d[i] -= sub
+d[-1] -= sum(d) - m
+print(*d)
+
+
+### Example 2
+--- Buggy Code ---
+n, m, p = map(int, input().split())
+print((n - m + 1) // p)
+
+--- Correct Code ---
+n, m, p = map(int, input().split())
+print(((n - m + 1) + p - 1) // p)
+
+
+### Example 3
+--- Buggy Code ---
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(range(n + 1))
+for i in a:
+	b[i], b[i + 1] = b[i + 1], b[i]
+p = [0] * (n + 1)
+for i in range(n):
+	p[b[i]] = i
+b = list(range(n + 1))
+for i in a:
+	if b[i] == 1:
+		print(p[b[i + 1]])
+	elif b[i + 1] == 1:
+		print(p[b[i]])
+	else:
+		print(p[1])
+	b[i], b[i + 1] = b[i + 1], b[i]
+
+--- Correct Code ---
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(range(n + 1))
+for i in a:
+	b[i], b[i + 1] = b[i + 1], b[i]
+p = [0] * (n + 1)
+for i in range(1, n + 1):
+	p[b[i]] = i
+b = list(range(n + 1))
+for i in a:
+	if b[i] == 1:
+		print(p[b[i + 1]])
+	elif b[i + 1] == 1:
+		print(p[b[i]])
+	else:
+		print(p[1])
+	b[i], b[i + 1] = b[i + 1], b[i]
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

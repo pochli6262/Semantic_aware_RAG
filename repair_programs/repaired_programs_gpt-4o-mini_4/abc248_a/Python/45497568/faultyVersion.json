@@ -1,0 +1,4 @@
+{
+  "explanation": "The program incorrectly initializes the set with digits from 1 to 9 instead of 0 to 9, which leads to an incorrect missing digit being reported. I fixed it by changing the range from (1, 10) to (0, 10). This aligns with the problem statement that requires a check for all digits from 0 to 9. This fix is inspired by the problem analysis which indicates that the range must include 0.",
+  "fixed_code": "S = input()\nnum = set([i for i in range(0, 10)])\n\nfor s in S:\n    num.discard(int(s))\n\nprint(*num)"
+}

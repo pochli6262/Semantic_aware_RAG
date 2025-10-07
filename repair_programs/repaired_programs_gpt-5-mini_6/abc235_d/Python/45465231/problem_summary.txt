@@ -1,0 +1,1 @@
+The visited/pruning logic uses defaultdict(int) with default 0, so a node that legitimately has count 0 (e.g. the start N) is treated as "unvisited" and the di[x] <= cnt check fails, breaking correct pruning.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue with the original code is in the conditional statement where it checks the occurrences of values in the list. Specifically, the logic should evaluate the conditions for all five elements, but it currently does not cover the case when there are three of one number and two of another. The condition was incorrectly set to use 'or' instead of 'and'. I fixed the line where 'or' was used on the second part of the condition to 'and' to properly reflect the logic of finding one triplet and one pair.",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif ((a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4])) or ((a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4])):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

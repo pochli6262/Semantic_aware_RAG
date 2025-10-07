@@ -1,0 +1,1 @@
+The code mixes 0-based player indices in the recursive function with 1-based input pairs when storing hate relations, so the incompatibility checks always miss and are ignored.

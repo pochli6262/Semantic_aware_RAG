@@ -1,0 +1,4 @@
+{
+  "explanation": "The program had a leftover debug statement print(items) that printed the item set and corrupted the required single-line output (Yes/No). I removed that debug print by commenting out that single line so the program only prints the final result. No other lines were changed.",
+  "fixed_code": "N, M, H, K = map(int, input().split())\nS = input()\nitems = set(tuple(map(int, input().split())) for _ in range(M))\n# print(items)\n    \n# シミュレーションする\nres = True\nx, y = 0, 0\nfor c in S:\n    # 移動する\n    if c == 'R': x += 1\n    elif c == 'L': x -= 1\n    elif c == 'U': y += 1\n    else: y -= 1\n\n    # 体力を 1 減らす (0 未満になったら倒れる)\n    H -= 1\n    if H < 0: res = False\n\n    # アイテムがあって体力が不足していたら回復する\n    if (x, y) in items and H < K:\n        H = K\n        items.remove((x, y))  # アイテムを削除する\n\nprint(\"Yes\" if res else \"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original code lies in the sorting logic where it only sorts by success rate but does not properly account for indices when there are ties. The correct approach is to modify the negative index handling to ensure that if two people have the same success rate, the one with the smaller index (person number) should come first. This was inspired by the need to ensure tie-breaking in the sorting process.",
+  "fixed_code": "import sys\n\nn = int(input())\nans = []\nfor i in range(1, n + 1):\n\tA, B = map(int, sys.stdin.readline().strip().split())\n\tsum = A + B\n\tres = A / (sum)\n\tans.append((res, i))\n\nans.sort(key=lambda x: (-x[0], x[1]))\nfor i in range (0, len(ans)):\n\tprint(ans[i][1], end = \" \")"
+}

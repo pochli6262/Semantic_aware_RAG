@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was the condition `if t>i:` — it incorrectly compared the remaining time `t` to the loop index `i` instead of to the required cost `a[i]`. Also, you must allow going forward when you have exactly enough time, so the comparison should be `>=`. I fixed that line to `if t>=a[i]:`.",
+  "fixed_code": "n,m,t=map(int,input().split())\na=list(map(int,input().split()))\nv=[0]*n\nfor i in range(m):\n  x,y=map(int,input().split())\n  v[x-1]=y\nfor i in range(n-1):\n  t+=v[i]\n  if t>=a[i]:\n    t-=a[i]\n  else:\n    print('No')\n    break\nelse:\n  print('Yes')\n"
+}

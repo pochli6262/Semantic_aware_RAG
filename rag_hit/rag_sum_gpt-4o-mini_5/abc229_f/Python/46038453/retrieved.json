@@ -1,0 +1,33 @@
+{
+  "task": "abc229_f/Python/46038453",
+  "query_summary": "The likely bug is that the program incorrectly initializes or updates the dynamic programming table, leading to errors in calculating the minimum total weight of edges to be deleted for achieving a bipartite graph.",
+  "oracle_summary": "The DP transition for dp[i+1][1][0] wrongly adds B[i−1] when coming from dp[i][0][0], overcounting the cost—it should be dp[i][0][0] (no +B[i−1]).",
+  "retrieved": [
+    {
+      "summary": "The buggy code mistakenly iterates over the edges of the graph instead of all possible vertices when updating the DP table, which leads to incorrect calculations of the shortest paths.",
+      "diff": "--- \n+++ \n@@ -28,7 +28,7 @@\n     for u in range(n):\n         if s & (1 << u) == 0:\n             continue\n-        for v, w in graph[u]:\n+        for v in range(n):\n             dp[s | (1 << v)][v] = min(dp[s | (1 << v)][v], dp[s][u] + d[u][v])\n \n ans = INF"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value for `minng` is incorrectly set to `1000000007`, which should instead be set to a value greater than any possible sum of weights, such as `2000000001`, to ensure accurate computation of the minimum sum of the two smallest weights.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n ok = float(\"inf\")\n # ng = 0\n \n-minng = 1000000007\n+minng = 2000000001\n for i in range(1, n+1):\n     graph[i].sort(key=lambda x: x[1])\n     if ok > graph[i][0][1]:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not check for infinite distances when updating the shortest paths in the Floyd-Warshall algorithm and in the dynamic programming step, which can lead to incorrect results when there are unreachable nodes.",
+      "diff": "--- \n+++ \n@@ -9,6 +9,7 @@\n for j in range(N):\n   for i in range(N):\n     for k in range(N):\n+      if D[i][j]==INF or D[j][k]==INF:continue\n       D[i][k]=min(D[i][k],D[i][j]+D[j][k])\n #dp[bit][i]:bitを訪問済、最後がiの最短距離\n dp=[[INF for _ in range(N)] for _ in range(1<<N)]\n@@ -20,6 +21,7 @@\n       continue\n     nbit=bit|(1<<j)\n     for i in range(N):\n+      if dp[bit][i]==INF or D[i][j]==INF:continue\n       dp[nbit][j]=min(dp[nbit][j],dp[bit][i]+D[i][j])\n \n ans=min(dp[-1])"
+    },
+    {
+      "summary": "The buggy code contains a logical error in the `dp` updating section where it redundantly assigns `dp[pl+1][i][j]` to the same value twice, which could lead to incorrect state transitions.",
+      "diff": "--- \n+++ \n@@ -72,7 +72,7 @@\n     nexi,nexx,nexy = dp[i][x][y]\n     #print (nexx,nexy)\n \n-    print (nexx,nexy)\n+    #print (nexx,nexy)\n \n     diff = None\n     if x != nexx:"
+    },
+    {
+      "summary": "The buggy code incorrectly reuses the previous state's dp array without creating a copy, leading to unintended side effects when updating values in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,6 @@\n         del(tmp[0])\n         S.append(tmp) \n \n-\n     INF = 10**18\n     # dp[i] : i番目の袋から出した後\n     # dp[i][j] : j文字目まで完成しているときの最小スコア\n@@ -15,7 +14,7 @@\n     \n     for i in range(1, N+1):\n         # 何も取り出さないとき\n-        dp[i] = dp[i-1]\n+        dp[i] = dp[i-1].copy()\n \n         for s in S[i-1]:\n             # j:足す前の文字数"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

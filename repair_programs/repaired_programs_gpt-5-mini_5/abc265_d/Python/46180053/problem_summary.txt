@@ -1,0 +1,1 @@
+The program builds prefix sums starting from A[0] and omits the initial 0 prefix, so it will miss solutions where the first segment begins at index 0.

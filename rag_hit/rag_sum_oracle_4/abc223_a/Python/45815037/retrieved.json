@@ -1,0 +1,31 @@
+{
+  "task": "abc223_a/Python/45815037",
+  "query_summary": "The buggy code lacks a branch for X ≥ 100 that aren’t multiples of 100, so it outputs nothing instead of “No” in those cases.",
+  "oracle_summary": "The buggy code lacks a branch for X ≥ 100 that aren’t multiples of 100, so it outputs nothing instead of “No” in those cases.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the result for negative values of X, while the correct code checks if X is divisible by 10 to determine the appropriate result.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n X = int(input())\n-if X < 0:\n+if X % 10 == 0:\n     result = int(X//10)\n else:\n     result = int(X//10 + 1)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the original value of `x` when it is a multiple of 10, instead of printing the quotient of `x` divided by 10.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x = int(input())\n if x % 10 == 0:\n-  print(x)\n+  print(x // 10)\n else:\n   print(x // 10 + 1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the order of Y in relation to X and Z instead of checking Z's relationship with X and Y.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, X, Y, Z = map(int, input().split())\n-if (X<Y and Y<Z) or (X>Y and Y>Z):\n+if (X<Z and Z<Y) or (X>Z and Z>Y):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the line `B = - 1` incorrectly decrements the variable `B` instead of `B = B - 1`, leading to an unintended effect on the count of available coins of denomination 5.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n     C = C - 1\n   while(X[i] >= 5 and B > 0):\n     X[i] = X[i] - 5\n-    B =  - 1\n+    B = B - 1\n   while(X[i] >= 1 and A > 0):\n     X[i] = X[i] - 1\n     A = A - 1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses floating-point division instead of integer division, leading to incorrect results when calculating `ans`.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n X = int(input())\n-ans = (X+10-1)/10\n+ans = (X+10-1)//10\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

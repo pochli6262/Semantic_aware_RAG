@@ -1,0 +1,31 @@
+{
+  "task": "abc265_d/Python/46180053",
+  "query_summary": "The likely bug is that the program does not account for the constraints on the indices x, y, z, and w, leading to potential index violations in the cumulative sum checks.",
+  "oracle_summary": "The bug is that the cumulative sum omits the initial 0 (using cumsum(A) instead of cumsum([0]+A)), causing an off-by-one in prefix sums and missing cases where the segment starts at index 0.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for the presence of sums in the `sum_set` by iterating through `range(w)` instead of `range(1, w + 1)`, leading to an off-by-one error when counting valid sums.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n \n cnt = 0\n for i in range(w):\n-    if i in sum_set:\n+    if i+1 in sum_set:\n         cnt+=1\n \n print(cnt)"
+    },
+    {
+      "summary": "The issue in the buggy code is that the computation of `xN` mistakenly includes an additional `abs` around `sxA`, causing an incorrect calculation of the target value for `xN`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n xA = A[2::2]\n sxA = sum(xA)\n-xN = abs(abs(x - A[0]) - sxA)\n+xN = abs(x - A[0] - sxA)\n xdp = [0] * (xN + 1)\n xdp[0] = 1\n for dx in xA:"
+    },
+    {
+      "summary": "The bug in the buggy code is that it incorrectly adds elements to the set `aset` without first checking if they are already present, which leads to incorrect computation of prefix equality.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n same = [False] * (N+1)\n same[0] = True\n for a in A:\n-    # if a in aset:continue\n+    if a in aset:continue\n     aset.add(a)\n     if a in xorset:\n         xorset.remove(a)"
+    },
+    {
+      "summary": "The buggy code fails to correctly compute the minimum ANS by checking the condition for updating ANS in the segment comparison, leading to incorrect results due to an improper condition for determining whether the lines defined by points intersect.",
+      "diff": "--- \n+++ \n@@ -79,7 +79,7 @@\n         ANS=min(ANS,b)\n         continue\n \n-    if ((a-c)*(0-b) - (b-d)*(0-a))*((a-c)*(10**100-b) - (b-d)*(10**100-a))<0:\n+    if (a<b and c>d) or (a>b and c<d):\n         ANS=min(ANS,(a*(b-d)/(a-c)-b)/((b-d)/(a-c)-1))\n \n print(1/ANS*(hosei))"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the variable `a` in the second nested loop, resulting in an invalid range and potentially using the wrong variable to access values from list `A`.",
+      "diff": "--- \n+++ \n@@ -27,7 +27,7 @@\n   for b in range(M):\n     if not a*10**6+b in Q:\n       ans = max(ans, A[a]+B[b])\n-for b in range(N):\n+for a in range(N):\n   for b in range(l_b):\n     if not a*10**6+b in Q:\n       ans = max(ans, A[a]+B[b])"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks if the first characters of S1 and S2 are the same or if the second characters are the same, which does not account for connectivity between black squares that are not in the same row or column. This is insufficient for checking if all black squares are connected. Instead, to correctly assess connectivity, we need to check adjacent positions. The logic is inspired by the need to ensure all black squares can be reached from each other, similar to the approach highlighted in different diff examples where a proper comparison of connected elements should be made rather than relying on direct column or row checks.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif (S1[0] == '#' and S1[1] == '#') or (S2[0] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[0] == '#') or (S1[1] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[1] == '#') or (S1[1] == '#' and S2[0] == '#'):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

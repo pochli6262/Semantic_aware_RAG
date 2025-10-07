@@ -1,0 +1,29 @@
+{
+  "task": "abc300_e/Python/45218169",
+  "query_summary": "The prime-factorization loop uses curN /= p (floating-point division) instead of curN //= p (integer division), converting curN to a float and causing precision/logic errors in subsequent checks.",
+  "oracle_summary": "The prime-factorization loop uses curN /= p (floating-point division) instead of curN //= p (integer division), converting curN to a float and causing precision/logic errors in subsequent checks.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to ensure that the cumulative results in the `ans` list are kept within the bounds of `BigPrime`, leading to potential integer overflow issues and inaccurate results.",
+      "diff": "--- \n+++ \n@@ -77,7 +77,9 @@\n     v_s = mod_time(v_f, fraci[i])\n \n     ans[0] += (mod_time(v_f, Prob[i][0]) + mod_time(v_s, Prob[i][1])) % BigPrime\n+    ans[0] %= BigPrime\n     ans[1] += (mod_time(v_s, Prob[i][0]) + mod_time(v_f, Prob[i][1])) % BigPrime\n+    ans[1] %= BigPrime\n \n print(*ans)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly outputs `1` instead of the correct value `2` when `N` is `1`, leading to a logical error in the program's result.",
+      "diff": "--- \n+++ \n@@ -55,7 +55,7 @@\n def main():\n     N = int(input())\n     if N == 1:\n-        print(1);exit()\n+        print(2);exit()\n     ans = 1\n     for i in range(1,N+1):\n         ans *= 2*i"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `C` with the expression `C = [X // S] * N`, leading to incorrect results in subsequent calculations because it does not account for the required multiplication with `N`.",
+      "diff": "--- \n+++ \n@@ -345,7 +345,7 @@\n W = list(map(int, input().split()))\n dp = [[-1] * N for _ in range(60)]  # dp[i][j]: j番目の要素から2^i回遷移したときの到達地点\n S = sum(W)\n-C = [X // S] * N\n+C = [(X // S) * N] * N\n nokori = X - S * (X // S)\n acc = [0]\n for w in W:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the operator precedence by not enclosing `(3*N)` in parentheses, leading to an incorrect division operation.",
+      "diff": "--- \n+++ \n@@ -18,4 +18,4 @@\n N = INT()\n X = sorted(LI())\n \n-print(sum(X[N:4*N]) / 3*N)\n+print(sum(X[N:4*N]) / (3*N))"
+    },
+    {
+      "summary": "The buggy code fails to correctly compute the least common multiples in the `h` function, as it includes a print statement that outputs unnecessary values, which might affect the program's intended functionality or lead to confusion during output.",
+      "diff": "--- \n+++ \n@@ -71,7 +71,7 @@\n     # g1 = pow(g, MOD - 2, MOD)\n     lcm = ((A1 * A2) // g) % MOD\n     # lcm1 = pow(lcm, MOD - 2, MOD)\n-    print(A1, A2, lcm, N // lcm)\n+    # print(A1, A2, lcm, N // lcm)\n     return N // lcm\n \n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

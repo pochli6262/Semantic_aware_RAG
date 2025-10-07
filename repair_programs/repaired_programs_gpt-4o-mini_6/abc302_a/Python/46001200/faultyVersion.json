@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'print(A//B+1)' incorrectly adds 1 to the quotient, which doesn't account for whether an additional attack is necessary based on the remainder. The correct approach is to use ceiling division to determine the minimum number of attacks needed. This can be achieved by adjusting the calculation to (A + B - 1) // B, which effectively rounds up when there's any remainder. This fix is not directly referenced in the diffs provided but aligns with standard practices for handling division in similar problems.",
+  "fixed_code": "A, B = map(int,input().split())\nprint((A + B - 1) // B)"
+}

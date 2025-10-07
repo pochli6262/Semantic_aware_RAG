@@ -1,0 +1,1 @@
+The program prints "YES" (all caps) instead of the expected "Yes".

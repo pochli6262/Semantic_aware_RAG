@@ -1,0 +1,29 @@
+{
+  "task": "abc300_b/Python/45723196",
+  "query_summary": "The program reads H and W by converting only the first and last characters of the first input line (a[0] and a[-1]) instead of parsing the full integers, so multi-digit dimensions are interpreted incorrectly.",
+  "oracle_summary": "It reads the two dimensions by taking the first and last characters of the input string instead of splitting tokens, causing incorrect parsing for multi-digit numbers or spaces.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly compares the values of `a` and `b` using only a simple comparison, which can lead to incorrect results; it should compare the pairs `(a,h)` and `(b,w)` to handle the dimensions correctly.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n h,w,a,b = map(int,input().split())\n def f(h,w,a,b):\n-  if a > b:\n+  if (a,h) > (b,w):\n     return [(y,x) for x,y in f(w,h,b,a)]\n   if h == 1:\n     return [(0,y) for y in range(w)]"
+    },
+    {
+      "summary": "The buggy code fails to check if the total number of full partitions of a, b, and c using the first dimension x fits within y before proceeding with further calculations, which could lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,8 @@\n #s = input()\n x,y,a,b,c = map(int,input().split())\n def judge(x,y,a,b,c):\n+    if (a // x) + (1 if a % x != 0 else 0) + (b // x) + (1 if b % x != 0 else 0) + (c // x) + (1 if c % x != 0 else 0) <= y:\n+        return True\n     y -= (a // x) + (1 if a % x != 0 else 0)\n     if y <= 0:\n         return False"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for zero values using `if x==0 or y==0`, while the correct code checks for negative values with `if x<=0 or y<=0`, allowing for proper handling of inputs that are zero or negative.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x, y, a, b, c = map(int, input().split())\n def solve_two(x, y, a, b):\n-    if x==0 or y==0:\n+    if x<=0 or y<=0:\n         return False\n     res = ((a+x-1)//x+(b+x-1)//x <= y) or ((a+y-1)//y+(b+y-1)//y <= x)\n     return res\n@@ -16,4 +16,3 @@\n \n ans = solve_three(x, y, a, b, c)\n print('Yes' if ans else 'No')\n-"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b` is odd or even instead of validating whether `b` is equal to `2a` or `2a + 1`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n # l = [input() for _ in range(a)]\n # l = [list(map(int, input().split())) for _ in range(a)]\n \n-if b % 2 <= 1:\n+if b==a*2 or b==a*2+1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition involving variable 'a' multiplied by 'b' instead of 'a' multiplied by 'd' in the second conditional statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n if abs(b-c) >= 2:\n     print(\"No\")\n-elif b + c == 0 and a*b != 0:\n+elif b + c == 0 and a*d != 0:\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

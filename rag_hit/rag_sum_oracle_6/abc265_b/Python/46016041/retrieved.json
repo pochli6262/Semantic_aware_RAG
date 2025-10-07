@@ -1,0 +1,34 @@
+{
+  "task": "abc265_b/Python/46016041",
+  "query_summary": "The code uses a non-strict check (nowT >= p) allowing moves that leave time zero, but it should require strictly more time (nowT > p) to prevent T from reaching zero.",
+  "oracle_summary": "The code uses a non-strict check (nowT >= p) allowing moves that leave time zero, but it should require strictly more time (nowT > p) to prevent T from reaching zero.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks if `p[x]` is equal to 2, instead of checking if `p[x]` is greater than or equal to 2.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n         p[x] += 2\n         \n     else:\n-        if p[x] == 2:\n+        if p[x] >= 2:\n             print(\"Yes\")\n         else:\n             print(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code mistakenly initializes the variable `que` with `T0[:min(len(T1),M)]` instead of `T0[:min(len(T0),M)]`, which leads to incorrect handling of the elements from T0.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n T2.sort(reverse=True)\n import heapq\n ans = 0\n-que = T0[:min(len(T1),M)]\n+que = T0[:min(len(T0),M)]\n ans = sum(que)\n #print(ans)\n now = ans"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "useful_diffs_count": 4
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The code used min(d_list) but it should use the largest value from d_list. The expression p - q + a is intended to apply the best (maximum) benefit from d_list, so a must be max(d_list). I fixed that single line to use max instead of min.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = max(d_list)\n\nprint(min(p-q+a,p))"
+}

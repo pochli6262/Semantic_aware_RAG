@@ -1,0 +1,32 @@
+{
+  "task": "abc309_a/Python/46005581",
+  "query_summary": "The bug is a simple typo: the second branch prints \"YES\" (wrong case) instead of the required \"Yes\", producing incorrect output.",
+  "oracle_summary": "The bug is a simple typo: the second branch prints \"YES\" (wrong case) instead of the required \"Yes\", producing incorrect output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly outputs 'Yes' for the input 'BA', which should result in 'No'.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n n=int(input())\n s=input()\n-print('No' if s[0]=='A' and s[-1]=='B' else 'Yes')\n+\n+print('No' if (s[0]=='A' and s[-1]=='B') or s=='BA' else 'Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints \"YES\" instead of the correctly capitalized \"Yes\" in the output.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, x, y, z = map(int, input().split())\n \n if x<z<y or y<z<x:\n-  print(\"YES\")\n+  print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for the string \"AB\" instead of \"BA\" to determine when to print \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n=int(input())\n s=list(input())\n-if \"\".join(s)==\"AB\":\n+if \"\".join(s)==\"BA\":\n     print(\"No\")\n     exit()\n if s[0]==\"B\":"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    },
+    {
+      "summary": "The buggy code fails to check for the word \"the,\" which is present in the correct code's conditions for printing \"Yes.\"",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n ans = \"No\"\n for i in a:\n-    if i == \"and\" or i == \"not\" or i == \"that\" or i == \"you\":\n+    if i == \"and\" or i == \"not\" or i == \"that\" or i == \"you\" or i == \"the\":\n         print(\"Yes\")\n         exit()\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

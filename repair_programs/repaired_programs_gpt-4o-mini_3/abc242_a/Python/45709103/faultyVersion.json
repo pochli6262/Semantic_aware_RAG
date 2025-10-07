@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program does not correctly handle the case when x is equal to a+1. It should include the scenario when x is exactly a + 1, which should count towards the valid range for calculating ans. I modified the condition in the first 'if' statement to include equality for x with a + 1.",
+  "fixed_code": "a,b,c,x=list(map(int,input().split()))\nans=1.0\nif x>=a+1 and x<=b:\n    ans=c/(b-a)\nelif x>b:\n    ans=0.0\nprint('%.10f'%ans)"
+}

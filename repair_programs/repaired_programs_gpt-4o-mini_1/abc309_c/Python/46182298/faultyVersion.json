@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the while loop should check if `calc(m) >= k` instead of `calc(m) < k`. This is because we want to narrow down the search space until we find the minimum `m` such that the result of `calc(m)` is at least `k`. The original condition incorrectly moved the right boundary, failing to find the correct value.",
+  "fixed_code": "n, k = map(int, input().split())\nab = [list(map(int, input().split())) for _ in range(n)]\n\ndef calc(num):\n    global ab\n    res = 0\n    for j in range(n):\n        if ab[j][0] <= num:\n            continue\n        res += ab[j][1]\n    return res\n\nl = -1\nr = 9999999999999999\nm = 0\nwhile r > l + 1:\n    m = (r + l) // 2\n    if calc(m) >= k:\n        l = m\n    else:\n        r = m\nprint(r + 1)"
+}

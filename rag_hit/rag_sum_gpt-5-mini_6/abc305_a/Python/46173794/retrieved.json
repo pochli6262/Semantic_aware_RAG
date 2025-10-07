@@ -1,0 +1,33 @@
+{
+  "task": "abc305_a/Python/46173794",
+  "query_summary": "The condition uses n%5 >= 2 so a remainder of 2 gets rounded up to the next multiple of 5 instead of being rounded down to the nearest water station.",
+  "oracle_summary": "Off-by-one logic error: the condition uses n%5>=2 instead of n%5>2, so values with remainder 2 are incorrectly rounded up.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the condition for counting elements in the final sum incorrectly uses `a[i] >= 5` instead of the correct condition `a[i] >= 4`.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,5 @@\n     a[j]+=a[i]\n ans=0\n for i in range(n):\n-  ans+= a[i]>=5\n+  ans+= a[i]>=4\n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that the condition `N==4` in the first `if` statement should be replaced with `N<=4` to correctly handle the case when `N` is equal to or less than 4.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N=int(input())\n-if N%3==2 or N==4:\n+if N%3==2 or N<=4 :\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses division (`/`) instead of floor division (`//`) when calculating the ratio, which may lead to incorrect results due to floating-point precision issues.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n p=[]\n for i in range(n):\n     a,b=map(int,input().split())\n-    p.append(((a*(10**100))/(a+b),i+1))\n+    p.append(((a*(10**100))//(a+b),i+1))\n p.sort(reverse=True)\n \n l=[]"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the division operator (/) instead of the floor division operator (//) when calculating the quotient of x by 10 in the first condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x = int(input())\n \n if x % 10 == 0:\n-  print(int(x / 10))\n+  print(int(x // 10))\n else:\n   print(int(x // 10 + 1))"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `n` is greater than 5 instead of including the condition that `n` should be equal to 1 or greater than 4 to return \"Yes\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n import math\n n=int(input())\n-if n>5:\n+if n>4 or n==1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed the 0-based index i when it found X, but the problem expects a 1-based position. I changed print(i) to print(i+1) to fix the off-by-one error (inspired by diffs that use i+1 in similar fixes).",
+  "fixed_code": "N, X = map(int, input().split())\nP = list(map(int, input().split()))\n\nfor i in range(N):\n  if P[i] == X:\n    print(i+1)\n    break"
+}

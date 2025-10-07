@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program only checked that there are exactly two distinct values (len(set(x))==2), which incorrectly accepts cases like four-of-a-kind plus a singleton. I replaced that condition with a counts check that ensures the multiset of counts is exactly [2,3] (i.e. one value appears twice and the other appears three times). This change fixes the logic while modifying exactly one line.",
+  "fixed_code": "x=list(map(int,input().split()))\nif sorted([x.count(v) for v in set(x)])==[2,3]:\n    print(\"Yes\")\nelse:\n    print(\"No\")\n"
+}

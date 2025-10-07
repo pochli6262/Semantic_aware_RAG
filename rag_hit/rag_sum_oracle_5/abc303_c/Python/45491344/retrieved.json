@@ -1,0 +1,32 @@
+{
+  "task": "abc303_c/Python/45491344",
+  "query_summary": "The bug is a typo: the code uses the equality operator \"==\" instead of the assignment \"=\" when trying to set item[(now[0],now[1])] = 0, so picked-up items are never cleared.",
+  "oracle_summary": "The bug is a typo: the code uses the equality operator \"==\" instead of the assignment \"=\" when trying to set item[(now[0],now[1])] = 0, so picked-up items are never cleared.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the count of characters reaches or exceeds `K` instead of checking if the count is exactly equal to `K`.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n                 d[S[i][j]]+=1\n     check=0\n     for key,value in d.items():\n-        if value>=K:\n+        if value==K:\n             check+=1\n \n     ans=max(ans,check)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it stores indices of elements in the list `A` starting from 0 instead of 1, which causes incorrect comparisons when checking membership in the set `B`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n D = defaultdict(set)\n \n for i in range(N):\n-    D[A[i]].add(i)\n+    D[A[i]].add(i+1)\n \n m = max(A)\n "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly sets the value of `INF` as `10 ** 18 + 1` instead of `10 ** 20`, which limits the range of the `now` variable and can lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n for t, d in inout:\n     D[t].append(t + d)\n \n-INF = 10 ** 18 + 1\n+INF = 10 ** 20\n event = sorted(D.keys())\n event.append(INF)\n ans = 0"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

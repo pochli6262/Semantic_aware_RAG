@@ -1,0 +1,4 @@
+{
+  "explanation": "One line had a misspelled weekday: \"Friay\". Because of the typo, the condition never matched when the user entered \"Friday\". I fixed that line by correcting the spelling to \"Friday\" so the check will succeed and print 1 for Friday.",
+  "fixed_code": "s=input()\nif s==\"Monday\":\n    print(5)\nif s==\"Tuesday\":\n    print(4)\nif s==\"Wednesday\":\n    print(3)\nif s==\"Thursday\":\n    print(2)\nif s==\"Friday\":\n    print(1)\n"
+}

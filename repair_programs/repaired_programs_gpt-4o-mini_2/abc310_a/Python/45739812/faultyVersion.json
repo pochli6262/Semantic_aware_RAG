@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the calculation of 'p'. The line calculates 'P - Q + d' when it should calculate 'P - d + Q' in order to find the correct minimum over possible values. I fixed it by changing the order of operations in that single line.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nres = P\n\nfor d in D:\n    if (p := P - d + Q) < res:\n        res = p\n\nprint(res)"
+}

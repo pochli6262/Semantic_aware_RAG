@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/44598432",
+  "query_summary": "The code applies the rotation transition unconditionally in the reverse BFS without enforcing the forward-rotation constraints (e.g., that the predecessor has at least two digits and its last digit is nonzero), so it considers invalid predecessors.",
+  "oracle_summary": "The buggy code always applies the rotation, even when it creates a leading zero and reduces the digit count, whereas it should only rotate when the number of digits is preserved (len(str(M)) == len(str(rot(M)))).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly increments the `forwards` counter when `a` equals 1, which leads to incorrect behavior in identifying the conditions for \"forwards.\"",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n                 # print(\"backwards\")\n                 return i + 1\n             \n-        if (a - N) % (N - 1) == 0 and a != N ** 2:\n+        if (a - N) % (N - 1) == 0 and a != N ** 2 and a != 1:\n             forwards += 1\n             if forwards == N:\n                 # print(\"forwards\")"
+    },
+    {
+      "summary": "The buggy code fails to reverse the final output string, resulting in the incorrect order of characters being displayed.",
+      "diff": "--- \n+++ \n@@ -18,4 +18,4 @@\n     if count==8:\n         a\n \n-print(\"\".join(ans)[:-1])\n+print(\"\".join(ans)[:-1][::-1])"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for conditions within the while loop, allowing the loop to continue even when there are multiple vertices in the deque, which can lead to invalid outputs or unintended behavior.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n dq = deque([i for i in range(1,N+1) if deg[i] == 0])\n \n P = []\n-while dq:\n+while dq and len(dq) < 2:\n     x = dq.popleft()\n     P.append(x)\n     for to_x in to[x]:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if b:` incorrectly evaluates the binary digit as a truthy value instead of converting it to an integer, leading to incorrect calculations in the final summation.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n #print(\"MM =\", MM)\n #print(\"L =\", L)\n for i in range(L):\n-  b = MM[-i-1]\n+  b = int(MM[-i-1])\n   if b:\n     ans += B[i]\n     ans %= MOD"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for reaching the target node at `N + M` instead of the correct target node at `M` in the breadth-first search implementation.",
+      "diff": "--- \n+++ \n@@ -13,15 +13,17 @@\n q.append(1)\n D = [1<<61] * (N+M+1)\n D[1] = 0\n+\n while q:\n     u = q.popleft()\n     d = D[u]\n     for v in graph[u]:\n         if D[v] <= d + 1:\n             continue\n-        if v == N + M:\n+        if v == M:\n             print(d//2)\n             exit()\n         D[v] = d + 1\n         q.append(v)\n+        \n print(-1)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

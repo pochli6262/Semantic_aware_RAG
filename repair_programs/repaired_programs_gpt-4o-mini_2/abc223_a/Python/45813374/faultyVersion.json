@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the comparison operator used with the variable 'n'. The requirement is likely to check for values that are equal to or greater than 100, thus the comparison operator should be changed from '<' to '>=', which ensures that any input value of 100 or above will result in 'Yes'.",
+  "fixed_code": "n=int(input())\n\nif n>=100:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

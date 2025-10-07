@@ -1,0 +1,33 @@
+{
+  "task": "abc265_b/Python/45288123",
+  "query_summary": "The bug is using T < 0 instead of T <= 0 to detect failure after each move, incorrectly allowing the case T == 0 to continue and possibly print \"Yes\" when it should be \"No.\"",
+  "oracle_summary": "The bug is using T < 0 instead of T <= 0 to detect failure after each move, incorrectly allowing the case T == 0 to continue and possibly print \"Yes\" when it should be \"No.\"",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it does not account for the case when the same name appears for both `s` and `t`, which leads to incorrect counting in the `defaultdict` for names that are identical.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,8 @@\n     s, t = input().split()\n     name.append((s, t))\n     d[s] += 1\n+    if s == t:\n+        continue\n     d[t] += 1\n \n "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if an element in `A` has already been used before popping from the `idx` list, which can lead to an index error when trying to access `idx[a]`.",
+      "diff": "--- \n+++ \n@@ -10,11 +10,11 @@\n used = set()\n ans = []\n for a in A:\n+    idx[a].pop()\n     if a in used:\n         continue\n     while ans and ans[-1] > a and idx[ans[-1]]:\n         used.discard(ans.pop())\n     ans.append(a)\n     used.add(a)\n-    idx[a].pop()\n print(*ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the variable `tmp` instead of `a` when discarding from the `naname[1]` set, which causes an error when trying to remove items during the counting process.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,6 @@\n cnt = 0\n for a in A:\n     a -= 1\n-\n     i = a // n\n     j = a % n\n     tate[i].discard(a)\n@@ -28,7 +27,7 @@\n     if i == j:\n         naname[0].discard(a)\n     if i + j == n - 1:\n-        naname[1].discard(tmp)\n+        naname[1].discard(a)\n     cnt += 1\n     if (\n         len(tate[i]) == 0"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for printing \"No\", leading to incorrect output when both `s[i]` and `t[i]` are the same and their count exceeds 2.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,6 @@\n   d[s[i]] += 1\n   d[t[i]] += 1\n for i in range(n):\n-  if d[s[i]] >= 2 and d[t[i]] >= 2:\n+  if (s[i] == t[i] and d[s[i]] > 2) or (s[i] != t[i] and d[s[i]] >= 2 and d[t[i]] >= 2):\n     exit(print(\"No\"))\n print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

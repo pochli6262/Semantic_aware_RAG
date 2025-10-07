@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checks only if the current number is greater than 'check_num' and does not ensure the monotonically non-decreasing condition by validating against all previous elements. It should compare S[i] with S[i-1] to confirm that the sequence is non-decreasing. The corrected line is inspired by the need for thorough comparisons observed in many related fixes that ensure proper validations. ",
+  "fixed_code": "S=list(map(int,input().split()))\ncheck=\"True\"\ncheck_num=0\nfor i in range (len(S)):\n    if (i == 0 or S[i] >= S[i-1]) and 100<=S[i]<=675 and S[i]%25==0:\n        check_num=S[i]\n    else:\n        check=\"False\"\nif check==\"True\":\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

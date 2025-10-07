@@ -1,0 +1,77 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+a,b=map(int,input().split())
+
+if b==a+1:
+  if a%3!=0:
+    print('Yes')
+else:
+  print('No')
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+a,b=map(int,input().split())
+if abs(a%10-b%10)==1:
+    print('Yes')
+else:print('No')
+
+--- Correct Code ---
+a,b=map(int,input().split())
+if b-a==1 or (a==1 and b==10):
+    print('Yes')
+else:print('No')
+
+
+### Example 2
+--- Buggy Code ---
+a,b=map(int,input().split())
+if abs(a-b)== 1 or 9:
+    print("Yes")
+else:
+    print("No")
+
+
+--- Correct Code ---
+a,b=map(int,input().split())
+if b - a == 1 or b - a == 9:
+    print("Yes")
+else:
+    print("No")
+
+
+### Example 3
+--- Buggy Code ---
+a, b = map(int, input().split())
+
+if b - a or b - a == 9:
+  print('Yes')
+else:
+  print('No')
+
+--- Correct Code ---
+a, b = map(int, input().split())
+
+if b - a == 1 or b - a == 9:
+  print('Yes')
+else:
+  print('No')
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

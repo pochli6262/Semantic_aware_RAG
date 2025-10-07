@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that ans is initialized to P. That causes the final answer to never exceed P, so if all computed ret values are greater than P the code will incorrectly return P instead of the minimum ret. The fix is to initialize ans to a sufficiently large sentinel (here 10**18) so min(ans, ret) correctly yields the smallest ret.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nans = 10**18\nfor i in range(N):\n    ret = P - Q + D[i]\n    ans = min(ans, ret)\n\nprint(ans)\n"
+}

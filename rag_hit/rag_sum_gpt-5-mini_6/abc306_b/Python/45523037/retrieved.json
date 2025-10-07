@@ -1,0 +1,32 @@
+{
+  "task": "abc306_b/Python/45523037",
+  "query_summary": "The loop uses range(63) so it never processes a[63], meaning the most significant bit (A_63) is omitted from the sum.",
+  "oracle_summary": "An off-by-one error: the for loop uses range(63) instead of range(64), so the bit at index 63 is never processed and the highest-value bit is omitted.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `a[i][j]` by adding `i // 23` and `j // 23` instead of multiplying them, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n \n for i in range(n):\n     for j in range(m):\n-        a[i][j] = (i // 23 + j // 23 + i + j) % 23 + 1\n+        a[i][j] = ((i // 23) * (j // 23) + i + j) % 23 + 1\n \n for v in a:\n     print(*v)"
+    },
+    {
+      "summary": "The buggy code incorrectly interprets the binary string as is, instead of reversing it before conversion to an integer and failing to account for the increment, leading to an incorrect final result.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n         print(len(a),*a,flush=True)\n \n     S = input()\n-    ans = int(S,2)\n+    ans = int(S[::-1],2) + 1\n     print(ans,flush=True)\n if __name__ == '__main__':\n     main()  "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the variable `f` by using `x` instead of `sum_f * x`, which leads to an incorrect accumulation of values during the iteration.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     f = 0\n     for c in s:\n         x = int(c)\n-        f = (f * 10 + x) % MOD\n+        f = (f * 10 + sum_f * x) % MOD\n         sum_f += f\n     print(f)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the upper limit `hi` as `min(r + 1, 2 * lo)` instead of the correct `min(r + 1, 1 << (i + 1))`, which leads to incorrect output when counting the valid ranges.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n \n for i in range(60):\n     lo = max(l, 1 << i)\n-    hi = min(r + 1, 2 * lo)\n+    hi = min(r + 1, 1 << (i + 1))\n \n     if hi >= lo and n & (1 << i):\n         out += hi - lo"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the index for populating the bits array by using `(j*le+x)` instead of the correct `(j*62+x)`, leading to potential out-of-bounds access when processing edges in the adjacency matrix.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n     for j in range(le):\n         num = 0\n         for x in range(62):\n-            if j*le+x < n and e[i][j*le+x]:\n+            if j*62+x < n and e[i][j*62+x]:\n                 num |= 1<<x\n         bi.append(num)\n     bits.append(bi)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

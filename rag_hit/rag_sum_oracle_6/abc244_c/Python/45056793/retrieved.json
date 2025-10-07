@@ -1,0 +1,33 @@
+{
+  "task": "abc244_c/Python/45056793",
+  "query_summary": "The list ans is initialized with numbers 1..n+1 instead of 1..2n+1, making it too small and missing half the required values.",
+  "oracle_summary": "The list ans is initialized with numbers 1..n+1 instead of 1..2n+1, making it too small and missing half the required values.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the value of `n-1` repeatedly for each iteration, instead of printing a decreasing sequence from `n-1` down to `0`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,5 @@\n n=int(input())\n for i in range(n):\n-  print(n-1)\n+    print(n-i)\n+\n print(0)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly appends the range (n - 1, n - 3) in the first if condition, where it should append (n - 2, n - 2) instead.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     if p[j] != j + 1 and j < n - 2:\n         ind = p.index(j + 1)\n         if ind == n - 1:\n-            ans.append((n - 1, n - 3))\n+            ans.append((n - 2, n - 2))\n             p = p[: n - 3] + [p[n - 1]] + p[n - 3 : n - 1]\n         else:\n             ans.append((ind + 1, j))"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over a range defined by `max(1, n-1)`, which may lead to skipping the last element of the sorted list `a`, thus potentially producing incorrect results for certain input sizes.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=a[1:]\n cnt=0\n ans='Yes'\n-for i in range(max(1,n-1)):\n+for i in range(n-1):\n   if(i>=1 and a[i]==a[i-1]):\n     cnt+=1\n   else:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop condition should be `while i <= n` instead of `while i < n`, which prevents the largest power of 2 that is less than or equal to `n` from being included in the list `L`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n=int(input())\n i=1\n L=[]\n-while i<n:\n+while i<=n:\n     if i&n:\n         L+=[i]\n     i*=2"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly increments each element in the `ans` list by 5 instead of adding `n`, which results in incorrect output.",
+      "diff": "--- \n+++ \n@@ -11,4 +11,4 @@\n for i in range(n):\n     print(*ans)\n     for j in range(n):\n-        ans[j] += 5\n+        ans[j] += n"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

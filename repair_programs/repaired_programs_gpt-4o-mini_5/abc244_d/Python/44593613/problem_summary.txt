@@ -1,0 +1,1 @@
+The bug likely lies in the recursive function that checks the hat configurations, as it does not account for the fact that multiple swaps can yield the same configuration and does not correctly handle the required 10^18 operations.

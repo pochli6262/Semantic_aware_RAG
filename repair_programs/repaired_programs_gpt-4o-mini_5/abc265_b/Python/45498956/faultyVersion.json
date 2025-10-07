@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the comparison condition where the remaining time 't' was being checked against the loop index 'i', instead of the time required to move to the next room 'a[i]'. This should check if 't' is greater than or equal to 'a[i]' instead, ensuring Takahashi has enough time to make the move. This correction aligns with the logic of ensuring enough time is available for movement, similar to insights from Diff 1. The corrected line is 'if t >= a[i]:' instead of 'if t > i:'.",
+  "fixed_code": "n,m,t=map(int,input().split())\na=list(map(int,input().split()))\nv=[0]*n\nfor i in range(m):\n  x,y=map(int,input().split())\n  v[x-1]=y\nfor i in range(n-1):\n  t+=v[i]\n  if t >= a[i]:\n    t-=a[i]\n  else:\n    print('No')\n    break\nelse:\n  print('Yes')"
+}

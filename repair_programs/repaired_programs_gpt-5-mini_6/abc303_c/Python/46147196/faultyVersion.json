@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop was iterating over S[:-1], omitting the final move; this is an off-by-one error. I fixed it by iterating over all characters in S (for s in S). This is a standard off-by-one correction similar in spirit to other diffs that address boundary errors (e.g., off-by-one checks in Diff1 and Diff5).",
+  "fixed_code": "N, M, H, K = map(int, input().split())\nS = input()\nRLUD = {'R': (1, 0), 'L': (-1, 0), 'U': (0, 1), 'D': (0, -1)}\n\nhealing = set()\nfor _ in range(M):\n    x, y = map(int, input().split())\n    healing.add((x, y))\n\nx, y = 0, 0\nfor s in S:\n    H -= 1\n    if H < 0:\n        print('No')\n        exit()\n    x += RLUD[s][0]\n    y += RLUD[s][1]\n    if (x, y) not in healing:\n        continue\n    if H < K:\n        healing.remove((x, y))\n        H = K\nprint('Yes')"
+}

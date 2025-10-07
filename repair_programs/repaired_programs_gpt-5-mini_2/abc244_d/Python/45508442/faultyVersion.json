@@ -1,0 +1,4 @@
+{
+  "explanation": "The original print line compared whether S and T were both (or both not) members of a hard-coded list A of rotations of \"RGB\". That only works if S and T are rotations of \"RGB\" specifically. The intended check is whether T is a rotation of S. I fixed the single incorrect line by replacing the membership/equality test with a rotation check (T in S+S), which is the standard way to test if T is a cyclic rotation of S.",
+  "fixed_code": "A = [\"RGB\",\"GBR\",\"BRG\"]\n\nS = input()\nT = input()\nprint('Yes' if T in S+S else 'No')"
+}

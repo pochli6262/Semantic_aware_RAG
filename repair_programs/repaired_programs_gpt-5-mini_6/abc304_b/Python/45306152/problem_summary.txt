@@ -1,0 +1,1 @@
+The loop only iterates i from 0 to 5, so the case for N between 10^8 and 10^9-1 (truncating six digits) is missing and large N produce no output.

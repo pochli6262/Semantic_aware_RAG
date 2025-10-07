@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code checks if S is in A and compares it to whether T is also in A. However, this does not correctly handle the case where S or T might be an entry in A. The comparison should use the logical equality of the two conditions rather than a direct equality check. Therefore, I changed the line to use '==' to correctly evaluate the truthiness of both conditions instead of simply checking if they are equal in value.",
+  "fixed_code": "A = [\"RGB\",\"GBR\",\"BRG\"]\n\nS = input()\nT = input()\nprint('Yes' if (S in A) == (T in A) else 'No')"
+}

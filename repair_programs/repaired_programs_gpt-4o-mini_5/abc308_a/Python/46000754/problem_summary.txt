@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly checks for the sorted order, allowing the output to be "Yes" even if the sequence is not monotonically non-decreasing if the first element is within the specified range and a multiple of 25.

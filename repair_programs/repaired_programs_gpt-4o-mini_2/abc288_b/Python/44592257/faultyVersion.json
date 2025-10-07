@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is that the program attempts to print the first 'k' elements from the sorted list, but if 'k' is greater than 'n', it will lead to an IndexError. The incorrect line is the one that takes input for 'k'. We need to ensure 'k' does not exceed 'n'. I modified the line to restrict 'k' to be the lesser of itself and 'n'.",
+  "fixed_code": "n, k = map(int, input().split())\nif k > n:\n    k = n\ns = [input() for _ in range(n)]\ns.sort()\nfor i in range(k):\n  print(s[i])"
+}

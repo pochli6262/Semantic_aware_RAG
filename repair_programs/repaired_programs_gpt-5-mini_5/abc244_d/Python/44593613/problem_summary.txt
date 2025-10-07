@@ -1,0 +1,1 @@
+The recursion's base case mistakenly compares the current hat arrangement to the original s instead of comparing it to the target t.

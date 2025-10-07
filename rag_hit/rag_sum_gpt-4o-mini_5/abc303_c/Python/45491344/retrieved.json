@@ -1,0 +1,33 @@
+{
+  "task": "abc303_c/Python/45491344",
+  "query_summary": "The likely bug is that the line intended to remove the item from the dictionary (to prevent it from being consumed again) uses `==` instead of `=`.",
+  "oracle_summary": "The bug is a typo: the code uses the equality operator \"==\" instead of the assignment \"=\" when trying to set item[(now[0],now[1])] = 0, so picked-up items are never cleared.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the count of characters reaches or exceeds `K` instead of checking if the count is exactly equal to `K`.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n                 d[S[i][j]]+=1\n     check=0\n     for key,value in d.items():\n-        if value>=K:\n+        if value==K:\n             check+=1\n \n     ans=max(ans,check)"
+    },
+    {
+      "summary": "The bug in the code is that it does not account for the case when the same name appears for both `s` and `t`, which leads to incorrect counting in the `defaultdict` for names that are identical.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,8 @@\n     s, t = input().split()\n     name.append((s, t))\n     d[s] += 1\n+    if s == t:\n+        continue\n     d[t] += 1\n \n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it attempts to access the value of `dic[k2]` without removing the key `k2` from the dictionary, which can lead to a KeyError if `k2` is not present.",
+      "diff": "--- \n+++ \n@@ -13,8 +13,8 @@\n     if M%2:\n         exit(print('Alice'))\n     k2 = (k + M//2) % M\n-    dic[k2]\n     if dic[k2] == 0:\n         exit(print('Alice'))\n+    del dic[k2]\n     blue += 1\n print('Alice' if blue%2 else 'Bob')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it stores indices of elements in the list `A` starting from 0 instead of 1, which causes incorrect comparisons when checking membership in the set `B`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n D = defaultdict(set)\n \n for i in range(N):\n-    D[A[i]].add(i)\n+    D[A[i]].add(i+1)\n \n m = max(A)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly prints `0` when the `key` is `INF`, which is unnecessary and misleading since it may disrupt the expected output of the program.",
+      "diff": "--- \n+++ \n@@ -10,8 +10,6 @@\n \n for i, value in enumerate(P):\n     key = S[S.bisect_left(value)]\n-    if key == INF:\n-        print(0)\n     if key is not INF and key is not - INF:\n         dic[value] = dic.pop(key)\n         S.discard(value)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

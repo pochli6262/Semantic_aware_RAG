@@ -1,0 +1,4 @@
+{
+  "explanation": "The line that updates the variable 'ans' to 'No' was not resetting for each combination of strings. This caused the program to incorrectly carry over the value from previous iterations. By setting 'ans' to 'Yes' at the start of the loop for each combination, it ensures the correct evaluation for each sequence. This concept aligns with the approach observed in the related diffs where state variables are reset for each iteration to prevent cross-contamination of results.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.permutations(S)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

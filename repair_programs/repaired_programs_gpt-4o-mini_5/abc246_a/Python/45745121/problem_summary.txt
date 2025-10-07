@@ -1,0 +1,1 @@
+The program incorrectly prints a list instead of the coordinates of the missing vertex in the specified format.

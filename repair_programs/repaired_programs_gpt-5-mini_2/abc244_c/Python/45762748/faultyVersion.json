@@ -1,0 +1,4 @@
+{
+  "explanation": "The outer loop used range(N+1), which makes one extra iteration after all numbers have been added to 'bad'. In that extra iteration the inner loop finds no i not in 'bad', so it doesn't print or read input — causing the interaction to stall or behave incorrectly. I fixed it by changing the outer loop to range(N) so the code performs exactly N iterations.",
+  "fixed_code": "N=int(input())\nbad=set()\nfor _ in range(N):\n    for i in range(1,N+1):\n        if i not in bad:\n            bad.add(i)\n            print(i)\n            bad.add(int(input()))\n            break\n"
+}

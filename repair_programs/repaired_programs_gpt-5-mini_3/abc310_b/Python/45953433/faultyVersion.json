@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the subset check. The code intended to test whether the set of features of j is a subset of the set of features of i, but it incorrectly compared the union size to len(fj). The correct comparison is that the union size equals len(fi) (i.e., fj ⊆ fi). I fixed that single line so the subset check works as intended; the rest of the logic remains unchanged.",
+  "fixed_code": "N, M = map(int, input().split())\nI = [list(map(int, input().split())) for _ in range(N)]\n\nfor i in range(N):\n    for j in range(N):\n        if i == j:\n            continue\n        if I[i][0] >= I[j][0]:\n            fj = set(I[j][2:])\n            fi = set(I[i][2:])\n            if len((fj | fi)) == len(fi):\n                if I[i][0] > I[j][0] or len((fj | fi)) - len(fj) > 0:\n                    print('Yes')\n                    exit()\nprint('No')"
+}

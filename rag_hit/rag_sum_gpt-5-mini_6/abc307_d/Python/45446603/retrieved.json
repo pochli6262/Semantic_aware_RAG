@@ -1,0 +1,33 @@
+{
+  "task": "abc307_d/Python/45446603",
+  "query_summary": "The code pushes the original string index i onto the stack but then uses it to slice the growing/modified ans list, causing incorrect index mismatches when deletions have already altered ans.",
+  "oracle_summary": "The code records the original string index for \"(\" (i) instead of the current position in the built answer (len(ans)), so later deletions use incorrect slice bounds and remove the wrong characters.",
+  "retrieved": [
+    {
+      "summary": "The code incorrectly handles the logic for counting connected components, leading to incorrect answers when processing queries related to connections.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n for i in range(Q):\n     query = [*map(int, input().split())]\n     if query[0] == 2:\n-        if len(dic[1]) == 0:\n+        if len(dic[query[1]]) == 0:\n             ans -= 1\n         for j in dic[query[1]]:\n             dic[j].remove(query[1])"
+    },
+    {
+      "summary": "The code incorrectly processes the segments of 'p's in the input string by failing to check for the length of the segments when appending to the list `ans`, which can lead to duplicate results being generated and printed.",
+      "diff": "--- \n+++ \n@@ -32,8 +32,6 @@\n   ans.append(S[:sta]+T+S[back+1:])\n   for i in range(len(psta)-2,-1,-1):\n     a,back=psta[i]\n-    if a!=cnt:\n-      break\n     #print(sta,back)\n     T=S[sta:back+1]\n     T=\"\".join(list(reversed(T)))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly sets `ans` to `3` when it should set it to `1` in the final conditional block, leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -31,6 +31,6 @@\n         else:\n             ans = 1\n     else:\n-        ans = 3\n+        ans = 1\n         \n print('!',ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly sets `ans` to the index `i` when the last character is reached, instead of setting it to `i + 1`.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n T = list(input())\n for i in range(len(T)):\n     if i == len(T)-1:\n-        ans = i\n+        ans = i+1\n         break\n     if S[i] != T[i]:\n         ans = i+1"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the value of `a[now]` instead of `a[i]` when appending to the `ans` list, which results in the wrong pair of indices being recorded.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n for i in range(n):\n   while a[i] != i:\n     now = a[i]\n-    ans.append([now+1,a[now]+1])\n+    ans.append([i+1,a[i]+1])\n     a[i], a[now] = a[now], a[i]\n     \n print(len(ans))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

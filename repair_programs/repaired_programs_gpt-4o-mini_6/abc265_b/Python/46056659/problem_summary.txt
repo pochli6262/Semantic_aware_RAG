@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly checks for bonus room updates using `if i+1 in d` instead of `if i+2 in d`, leading to missed bonuses for the correct room transitions.

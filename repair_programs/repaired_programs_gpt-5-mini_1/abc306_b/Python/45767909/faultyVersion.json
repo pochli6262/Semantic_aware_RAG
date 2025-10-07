@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop line used A[i] as the exponent (ans += A[i] * 2 ** A[i]), which incorrectly raises 2 to the value of the element instead of to the element's position. I changed the exponent to i so each element is weighted by 2**i (ans += A[i] * 2 ** i).",
+  "fixed_code": "A = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n  ans += A[i] * 2 ** i\nprint(ans)"
+}

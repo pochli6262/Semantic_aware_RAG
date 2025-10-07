@@ -1,0 +1,29 @@
+{
+  "task": "abc244_c/Python/45666072",
+  "query_summary": "The buggy code prints the set’s pop method object (num_set.pop) instead of calling it (num_set.pop()), so it outputs a function reference and doesn’t remove/print an element from the set.",
+  "oracle_summary": "The buggy code prints the set’s pop method object (num_set.pop) instead of calling it (num_set.pop()), so it outputs a function reference and doesn’t remove/print an element from the set.",
+  "retrieved": [
+    {
+      "summary": "The buggy code has an incorrect range in the for loop, which causes an \"index out of range\" error when accessing elements of the list P.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n P = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(1, N + 1):\n   if P[-i] > P[-i - 1]:\n     continue\n   else:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the minimum moves needed to bring the number 1 to the end of the list, specifically in the calculation of the last print statement.",
+      "diff": "--- \n+++ \n@@ -17,4 +17,4 @@\n     if P[idx+1] == 2:\n         print(min(idx, N-idx+2))  # 1を先頭に持ってくる\n     else:\n-        print(min(idx+1, N-idx-1+2)+1)  # 1を末尾に持ってくる\n+        print(min(idx+1+1, 1+(N-idx-1)))  # 1を末尾に持ってくる"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `elif` instead of `if` for checking the condition of the odd numbers, causing it to only calculate the sum of odd numbers if the even number condition is false, potentially missing valid combinations.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n ans = -1\n if len(even)>=2:\n     ans = max(ans, even[0]+even[1])\n-elif len(odd)>=2:\n+if len(odd)>=2:\n     ans = max(ans, odd[0]+odd[1])\n \n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that the condition checks if the sum of the remaining elements is greater than 4, instead of greater than or equal to 4, which leads to an incorrect count.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     P = 0\n     \n     for n in range(N):\n-      if sum(A[n:]) > 4:\n+      if sum(A[n:]) >= 4:\n         P += 1\n     \n     print(P)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the calculation of `planb` in the \"jun\" case is incorrect by using `N - a + 1` instead of the correct `N - a + 2`.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n \n if order == \"jun\":\n     plana = a\n-    planb = N - a + 1\n+    planb = N - a + 2\n else:\n     plana = N - a\n     planb = a + 2"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

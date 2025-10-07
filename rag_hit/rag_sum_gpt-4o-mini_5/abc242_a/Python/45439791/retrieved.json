@@ -1,0 +1,32 @@
+{
+  "task": "abc242_a/Python/45439791",
+  "query_summary": "The likely bug is that the program incorrectly calculates the probability by using the total number of participants between ranks A and B instead of the actual number of participants eligible for random selection, which is limited to (B - A).",
+  "oracle_summary": "It uses X < A instead of X <= A, so when X equals A it outputs C/(B−A) instead of 1.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    },
+    {
+      "summary": "The buggy code does not account for the additional condition that both B and C must be non-zero while A and D are greater than zero, leading to incorrect output in certain cases.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,7 @@\n N, A, B, C, D = map(int, input().split())\n if abs(B - C) > 1:\n     print(\"No\")\n+elif B == 0 and C == 0 and A > 0 and D > 0:\n+    print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it only checks for values of A from 1 to 14, instead of the correct range of 1 to 15, which excludes the possibility of finding a match for B when A equals 15.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n B = int(input())\n \n-for A in range(1,15) :\n+for A in range(1,16) :\n     pow = 1\n     for j in range(A) :\n         pow *= A"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

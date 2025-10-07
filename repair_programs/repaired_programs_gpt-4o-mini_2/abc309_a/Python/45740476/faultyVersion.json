@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that the 'if' statement for checking if 'b' equals 'a + 1' does not properly encapsulate the condition for printing 'Yes' or 'No'. The 'else' statement should be part of the same if block. I fixed this by making the 'else' statement part of the first 'if' block by adding the necessary indentation, ensuring correct logic flow.",
+  "fixed_code": "a,b=map(int,input().split())\n\nif b==a+1:\n  if a%3!=0:\n    print('Yes')\n  else:\n    print('No')"
+}

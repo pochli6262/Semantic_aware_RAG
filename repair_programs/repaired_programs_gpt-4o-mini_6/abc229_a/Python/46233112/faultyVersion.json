@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checks if any row or column contains two black squares, which does not guarantee connectivity. Instead, we need to check for actual adjacency of black squares. I fixed it by checking adjacent squares directly. This approach is inspired by the requirement that connection must only happen between squares that share a side, similar to the logic in the retrieved diffs which checks adjacency or relationships between elements.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif (S1[0] == '#' and S1[1] == '#') or (S2[0] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[0] == '#') or (S1[1] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[1] == '#') or (S1[1] == '#' and S2[0] == '#'):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

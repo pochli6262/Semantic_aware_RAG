@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop iterates for range(N-1), so the code processes only the first N-1 days and skips the last day's event and consumption. That can incorrectly report success when the final day's consumption would actually make T negative. I fixed the loop to iterate over all N days by changing range(N-1) to range(N).",
+  "fixed_code": "N,M,T=list(map(int, input().split()))\nA=list(map(int, input().split()))\nd={}\nfor _ in range(M):\n    x,y=list(map(int, input().split()))\n    d[x]=y\n\nfor i in range(N):\n    if i+1 in d:\n        T+=d[i+1]\n    if A[i]>T:\n        print(\"No\")\n        exit()\n    T-=A[i]\nprint(\"Yes\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop header used a fixed range(1, 8), which fails to compare the last element (and won't work for arrays of other lengths). I changed the loop to iterate up to len(arr) so all adjacent pairs are checked.",
+  "fixed_code": "arr = list(map(int, input().split()))\nfl = True\nfor i in range(1, len(arr)):\n    if arr[i - 1] > arr[i]:\n        fl = False\n    if arr[i - 1] % 25 != 0 or arr[i] % 25 != 0:\n        fl = False\nprint(\"Yes\" if fl else \"No\")"
+}

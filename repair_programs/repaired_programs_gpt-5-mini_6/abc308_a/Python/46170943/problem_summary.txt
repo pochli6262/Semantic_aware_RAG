@@ -1,0 +1,1 @@
+The code uses strict bounds s[0] > 100 and s[-1] < 675, wrongly excluding valid boundary values 100 and 675 instead of allowing >=100 and <=675.

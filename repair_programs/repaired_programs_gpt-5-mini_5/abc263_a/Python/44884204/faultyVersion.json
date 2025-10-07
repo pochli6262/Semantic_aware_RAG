@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line only tested the sorted order where the three-of-a-kind appears in the first three slots and the pair in the last two. That misses the valid case where the pair comes first and the triplet last (after sorting). I replaced that single conditional with one that checks both sorted patterns: (three, then two) OR (two, then three).",
+  "fixed_code": "def main():\n    cards = list(map(int, input().split()))\n    assert len(cards) == 5\n\n    cards.sort()\n    if (cards[0] == cards[1] == cards[2] and cards[3] == cards[4] and cards[2] != cards[3]) or (cards[0] == cards[1] and cards[2] == cards[3] == cards[4] and cards[1] != cards[2]):\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\n\nif __name__ == \"__main__\":\n    main()"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The error is in the condition that checks if Takahashi can move to the next room. The line 'if A[i]>T:' incorrectly checks if he can move given the time left. It should be 'if A[i] > T:' indicating that he cannot move if the time required to move is strictly greater than the remaining time. This correction aligns with the understanding that if the time required is equal to the remaining time, he can still proceed. This is inspired by the common practice in similar problems where boundaries are checked precisely.",
+  "fixed_code": "N,M,T=list(map(int, input().split()))\nA=list(map(int, input().split()))\nd={}\nfor _ in range(M):\n    x,y=list(map(int, input().split()))\n    d[x]=y\n\nfor i in range(N-1):\n    if i+1 in d:\n        T+=d[i+1]\n    if A[i] > T:\n        print(\"No\")\n        exit()\n    T-=A[i]\nprint(\"Yes\")"
+}

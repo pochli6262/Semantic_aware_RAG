@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if condition only checked if n < 100, so values like 250 would be (incorrectly) accepted. The correct requirement is that the amount must be at least 100 and a multiple of 100. I changed the if-line to reject numbers that are less than 100 or not divisible by 100 (inspired by the need to check divisibility in addition to the minimum, as indicated by the bug summary).",
+  "fixed_code": "n=int(input())\n\nif n%100!=0 or n<100:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly checks two specific indices of the input strings for the '#' character. The intended behavior is to see if any character in the strings is a '#'. The incorrect line thus needs to be changed to check if either string includes the '#' character anywhere. I fixed it by changing the condition to check if '#' is in either string.",
+  "fixed_code": "s1=input()\ns2=input()\n\nif \"#\" in s1 or \"#\" in s2:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

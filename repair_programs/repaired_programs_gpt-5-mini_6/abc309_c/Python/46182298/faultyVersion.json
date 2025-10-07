@@ -1,0 +1,4 @@
+{
+  "explanation": "The calc function used the condition `if ab[j][0] <= num: continue`, which incorrectly skipped medicines whose a_i equals num. For day num we must include medicines with a_i >= num, so we should only skip those with a_i < num. I fixed the inequality to `<` so medicines with a_i == num are counted. This is a one-character inequality fix (inspired by the pattern of correcting <= vs < in the related diffs).",
+  "fixed_code": "n, k = map(int, input().split())\nab = [list(map(int, input().split())) for _ in range(n)]\n\n\ndef calc(num):\n    global ab\n    res = 0\n    for j in range(n):\n        if ab[j][0] < num:\n            continue\n        res += ab[j][1]\n    return res\n\n\nl = -1\nr = 9999999999999999\nm = 0\nwhile r > l + 1:\n    m = (r + l) // 2\n    if calc(m) < k:\n        r = m\n    else:\n        l = m\nprint(r + 1)\n"
+}

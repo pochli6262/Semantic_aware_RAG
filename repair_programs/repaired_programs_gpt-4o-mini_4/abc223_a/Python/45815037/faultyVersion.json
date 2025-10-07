@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly handles cases for inputs less than 100 that are not 0. The line checking if 'X < 100' should be adjusted to account for the fact that Takahashi's purse must contain at least one 100-yen coin. Therefore, the condition should only check if 'X' is greater than or equal to 100 and is a multiple of 100. Inspired by the diff patterns that emphasize the importance of ensuring valid multiples, the corrected line enables proper handling of the validation. The fix is to change the line that only checks for 'X' being greater than or equal to 100. The output should correctly return 'No' for non-100 multiples and also allows for 'Yes' when it is a valid total amount. ",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100:\n    print(\"No\")\nelif X % 100 == 0:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

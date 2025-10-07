@@ -1,0 +1,33 @@
+{
+  "task": "abc307_d/Python/45446603",
+  "query_summary": "The bug likely lies in the incorrect deletion of characters from the `ans` list when a closing parenthesis `)` is encountered, which may result in leaving unmatched characters or failing to properly remove the intended contiguous substrings.",
+  "oracle_summary": "The code records the original string index for \"(\" (i) instead of the current position in the built answer (len(ans)), so later deletions use incorrect slice bounds and remove the wrong characters.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly sets `ans` to `3` when it should set it to `1` in the final conditional block, leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -31,6 +31,6 @@\n         else:\n             ans = 1\n     else:\n-        ans = 3\n+        ans = 1\n         \n print('!',ans)"
+    },
+    {
+      "summary": "The code incorrectly handles the logic for counting connected components, leading to incorrect answers when processing queries related to connections.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n for i in range(Q):\n     query = [*map(int, input().split())]\n     if query[0] == 2:\n-        if len(dic[1]) == 0:\n+        if len(dic[query[1]]) == 0:\n             ans -= 1\n         for j in dic[query[1]]:\n             dic[j].remove(query[1])"
+    },
+    {
+      "summary": "The buggy code fails to account for sequences of characters after the last hyphen, resulting in potentially incorrect output when the last character is not a hyphen, as it does not check if `cur` is non-zero before updating `ans` after the loop.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     else:\n         cur += 1\n \n-if '-' in s:\n+if '-' in s and cur != 0:\n     ans = max(cur, ans)\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to append to the `ans` list before performing a conditional check that determines the value of `ok`, resulting in potential incorrect ordering or missing elements in the final output.",
+      "diff": "--- \n+++ \n@@ -57,13 +57,13 @@\n     for i in d[v]:\n       if ans[-1] < i:\n         if A[i] < bottom or (A[i] == bottom and ok == 1):\n-          ans.append(i)\n           if ok == 0:\n             if A[ans[-1]+N] < A[i+N]:\n               ok = 1\n             elif A[ans[-1]+N] > A[i+N]:\n               ok = -1\n-\n+          ans.append(i)\n+          \n   for i in ans:\n     print(A[i],end = \" \")\n   for i in ans:"
+    },
+    {
+      "summary": "The buggy code incorrectly constructs the string `ans` by appending the pattern \"RWBBWR\" to it in a loop, instead of prepending it, which leads to an incorrect output for the desired string.",
+      "diff": "--- \n+++ \n@@ -95,7 +95,7 @@\n         ans=\"RWWRBBBBB\"\n     while(len(ans)!=n-1):\n         #654321\n-        ans+=\"RWBBWR\"\n+        ans=\"RWBBWR\"+ans\n     print(\"Yes\")\n     for i in range(n-1):\n         print(ans[i]*(n-1-i))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,1 @@
+The bug likely occurs because the program does not handle the case where N is exactly 10^9 - 1, leading to an incorrect output for that input value.

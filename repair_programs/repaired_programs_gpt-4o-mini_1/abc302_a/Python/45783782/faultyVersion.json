@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the line where the result for the else statement is calculated. The expression 'int(A//B) + 1' is incorrect because it calculates the floor division and adds 1, which doesn't yield the correct ceiling value when A is not divisible by B. The correct approach is to calculate 'int(A/B)' and use 'int(A/B) + (A % B > 0)' to correctly round up. This essentially checks if there is any remainder, and if so, it adds 1 to the integer division result.",
+  "fixed_code": "A,B = map(int,input().split())\nif A%B == 0:\n  print(int(A/B))\nelse:\n  print(int(A/B) + (A % B > 0))"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc300_e/Python/45250612",
+  "query_summary": "The code uses pow(5, mod-2, mod) (inverse of 5) for transition probabilities instead of the inverse of 6, so the probability weights are incorrect.",
+  "oracle_summary": "The DP transition for k+1 mistakenly uses assignment (=) instead of accumulation (+=), overwriting previous contributions to dp[i][j][k+1].",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly applies the modulo operation to the `coef` variable after left-shifting it, which can lead to incorrect results in the calculations of the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -60,7 +60,7 @@\n                                     dp2[nst1][nst2][nst3][nr1][nr2][nr3] %= MOD\n     dp = dp2\n     coef <<= 1\n-    coef %= MOD\n+#    coef %= MOD\n \n ans = 0\n for st1 in [-1, 0]:"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `0` when there is only one input pair instead of the correct output, which should be `2`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     a,b=map(int,input().split())\n     c.append((a,b))\n if n==1:\n-    print(0)\n+    print(2)\n else:\n     dp=[[0]*2 for i in range(n)]\n     for j in range(2):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses a modulo constant of \\(10^9 + 7\\) instead of the correct constant \\(998244353\\), leading to incorrect results when calculating large values.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-MOD = 10**9+7\n+MOD = 998244353\n n = int(input())\n arr = list(map(lambda x:n-int(x), input().split()))\n dp = [[0]*n for i in range(n)]"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `pow(M, Z - m, MOD)` instead of `pow(i - 1, Z - m, MOD)` in the nested loop for calculating combinations, leading to incorrect results in the computation of probabilities.",
+      "diff": "--- \n+++ \n@@ -54,6 +54,6 @@\n         # Z個の零要素中N-K+1-C個以上をi以上に置換える\n         for m in range(N-K+1-C, Z+1):\n #            print(f'i={i}, comb({Z},{m})*pow({M-i+1},{m})*pow({M},{Z-m})')\n-            NC = (NC + comb(Z,m)*pow(M-i+1,m,MOD)*pow(M,Z-m,MOD)) % MOD\n+            NC = (NC + comb(Z,m)*pow(M-i+1,m,MOD)*pow(i-1,Z-m,MOD)) % MOD\n \n print((NC*NAI)%MOD)"
+    },
+    {
+      "summary": "The buggy code uses an incorrect modulus value (10^9 + 7) instead of the required modulus value (998244353), which can lead to incorrect calculations and results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         return 0\n     return (g1[n] * g2[r] % mod) * g2[n-r] % mod\n \n-mod = 10**9 + 7\n+mod = 998244353\n N = 2*10**5\n g1 = [1]*(N+1)\n g2 = [1]*(N+1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    5
+  ],
+  "useful_diffs_count": 2
+}

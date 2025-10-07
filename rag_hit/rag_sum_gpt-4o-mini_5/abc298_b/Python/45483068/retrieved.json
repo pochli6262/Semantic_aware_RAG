@@ -1,0 +1,33 @@
+{
+  "task": "abc298_b/Python/45483068",
+  "query_summary": "The likely bug is that the program does not correctly account for the possibility of multiple rotations of the matrix A, as it relies on a fixed number of iterations rather than checking all potential rotations.",
+  "oracle_summary": "The loop runs only three times, so it never checks the 270° rotation (fourth orientation) of A, causing missed matches; it should iterate four times.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for even indices instead of odd indices in the second loop, causing it to misidentify whether the rearranged list `B` satisfies the required conditions.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     else:\n         B[2*i-N]=A[i]\n for i in range(N):\n-    if i%2!=0:\n+    if i%2==0:\n         continue\n     if B[i-1]<B[i] and B[i]>B[i+1]:\n         continue"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code fails to check if consecutive elements in the same row of the input matrix `b` are exactly 1 apart, which is necessary for the problem's requirements.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,8 @@\n   for j in range(M-1):\n     if ((b[j+1] - 1) % 7) - ((b[j] - 1) % 7) != 1:\n       ans = 'No'\n+    if b[j+1] - b[j] != 1:\n+      ans = 'No'\n   B.append(b)\n \n for i in range(N-1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not adjust the matrix input values by subtracting 1, which is necessary for the logic that determines the correct sequence and modular conditions.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, M = map(int, input().split())\n-B = [[int(i) for i in input().split()] for _ in range(N)]\n+B = [[int(i) - 1 for i in input().split()] for _ in range(N)]\n \n flg = True\n for i in range(N):"
+    },
+    {
+      "summary": "The buggy code fails to check that consecutive elements in the same row differ by 1, which is necessary for the correct validation of the matrix structure.",
+      "diff": "--- \n+++ \n@@ -27,6 +27,8 @@\n         if j != 0:\n             if ((B[i][j] - 1) % 7) - ((B[i][j-1] - 1) % 7) != 1:\n                 ans = \"No\"\n+            if B[i][j] - B[i][j-1] != 1:\n+                ans = \"No\"\n \n print(ans)\n                 "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original check for the card arrangement was incorrect. The condition checks for three matching cards (cards[0]) and two matching cards (cards[3] and cards[4]) but does not account for the possibility of having a different three paired with two matching pairs. The corrected condition is now simplified to check if the first card matches the second and third, and then the fourth and fifth must match (implying four cards including two pairs).",
+  "fixed_code": "def main():\n    cards = list(map(int, input().split()))\n    assert len(cards) == 5\n\n    cards.sort()\n    if cards[0] == cards[1] and cards[3] == cards[4]:\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\n\nif __name__ == \"__main__\":\n    main()"
+}

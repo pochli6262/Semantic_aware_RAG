@@ -1,0 +1,1 @@
+The bug likely arises from incorrectly calculating the probability when Iroha-chan's rank is between A+1 and B, as it uses the total range (B-A) instead of the number of eligible participants (B-A) minus one for those above A.

@@ -1,0 +1,1 @@
+The program incorrectly uses "Friay" instead of "Friday", leading to incorrect behavior for the input corresponding to that day.

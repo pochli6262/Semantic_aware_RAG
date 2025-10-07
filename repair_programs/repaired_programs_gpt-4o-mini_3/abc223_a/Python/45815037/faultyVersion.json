@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program does not handle the cases where X is greater than or equal to 100 but not a multiple of 100. The line checking for X%100 should be updated to ensure that any X greater than or equal to 100 that is not a multiple of 100 also gets handled correctly by adding an additional condition for that case.",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100:\n    print(\"No\")\nelif X % 100 == 0:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

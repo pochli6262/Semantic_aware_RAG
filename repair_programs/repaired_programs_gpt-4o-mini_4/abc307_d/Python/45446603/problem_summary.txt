@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly deletes characters from the `ans` list using the indices from `sakuzyo`, potentially leading to index errors or unintended deletions when nested parentheses are involved.

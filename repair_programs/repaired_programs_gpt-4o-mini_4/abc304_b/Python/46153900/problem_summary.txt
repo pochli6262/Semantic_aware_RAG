@@ -1,0 +1,1 @@
+The bug likely lies in the use of the name "range" for the function, which shadows the built-in `range` function and may lead to unexpected behavior or errors.

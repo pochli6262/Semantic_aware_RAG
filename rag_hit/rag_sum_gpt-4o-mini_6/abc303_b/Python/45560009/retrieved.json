@@ -1,0 +1,32 @@
+{
+  "task": "abc303_b/Python/45560009",
+  "query_summary": "The likely bug is that the program incorrectly calculates the number of pairs by subtracting `n` from the total, which distorts the final count of pairs that may be in a bad mood.",
+  "oracle_summary": "The bug is using the floating-point division operator (\"/\") instead of integer floor division (\"//\"), causing the final count to be returned as a float instead of an integer.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the indices for pairing elements in the final sum, leading to wrong results in the output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,8 @@\n+\n n, m, *a = map(int, open(0).read().split())\n a.sort()\n ans = sum(i*i for i in a)\n pairs = n - m\n for i in range(pairs):\n-    ans += 2 * a[i] * a[i+pairs]\n+    ans += 2 * a[i] * a[pairs+pairs-1-i]\n print(ans)"
+    },
+    {
+      "summary": "The buggy code calculates `single_sz` incorrectly when `n - (n - m) * 2` results in a negative value, which can lead to incorrect array indexing and unintended behavior when summing the squares.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n a.sort(reverse=True)\n \n single_sz = n - (n-m)*2\n-print(single_sz)\n+#print(single_sz)\n \n ans = 0\n for i in range(single_sz):"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `(j+d)%n+1` instead of `(j+i)%n+1` in the nested loop, causing it to fail to generate the correct pairs for the given conditions.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n print(\"Yes\")\n for i in range(1,d+1):\n     for j in range(n):\n-        print(j+1,(j+d)%n+1)\n+        print(j+1,(j+i)%n+1)\n         "
+    },
+    {
+      "summary": "The buggy code incorrectly updates the combinations by failing to account for the subtraction of elements that are too far apart (greater than `m`), leading to incorrect results in the final summation.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,8 @@\n   nq=[0]*(k+1)\n   for j in range(k):\n     nq[j+1]+=q[j]\n+    if j+m+1<=k:\n+      nq[j+m+1]-=q[j]\n   for j in range(k):\n     nq[j+1]+=nq[j]\n     nq[j+1]%=M"
+    },
+    {
+      "summary": "The problem in the buggy code is that the final computation of the answer incorrectly iterates from 0 to `n+1` instead of 0 to `n+2`, leading to an off-by-one error which may generate incorrect results.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n         dp[i][min(x,j)][m] %= mod\n \n ans = 0\n-for j in range(n+1):\n+for j in range(n+2):\n   ans += dp[-1][j][k]\n   ans %= mod\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

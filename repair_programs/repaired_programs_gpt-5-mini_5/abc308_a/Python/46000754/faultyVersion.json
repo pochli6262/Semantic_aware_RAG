@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop condition mistakenly used sorted(S) == S which treats already non-decreasing sequences as invalid. I changed that equality check to != so we only reject when the sequence is not non-decreasing. This fixes the inverted logic (changed == to !=).",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nfor i in range(N):\n    if sorted(S) != S or not(100 <= S[i] <= 675) or S[i]%25 != 0:\n        print('No')\n        exit()\nelse:\n    print('Yes')"
+}

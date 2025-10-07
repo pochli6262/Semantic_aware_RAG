@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly subtracted the coupon price from the drink price instead of adding the cheapest dish price to the discounted drink price. The fixed line now correctly adds the minimum dish price to the discounted drink price (q + a). This change is inspired by the requirement to calculate the total cost when using the coupon efficiently, similar to the necessary conditions identified in the supplied samples and problem statement.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = min(d_list)\n\nprint(min(q + a, p))"
+}

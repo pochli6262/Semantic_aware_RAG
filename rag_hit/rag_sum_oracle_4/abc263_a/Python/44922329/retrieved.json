@@ -1,0 +1,32 @@
+{
+  "task": "abc263_a/Python/44922329",
+  "query_summary": "The loop uses range(12) (with an extra i+=1), so it only checks values 1–12 and never counts 13, causing an off-by-one error.",
+  "oracle_summary": "The loop uses range(12) (with an extra i+=1), so it only checks values 1–12 and never counts 13, causing an off-by-one error.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates from index 3 to 15 instead of from 0 to 15, leading to an \"index out of range\" error if the input string has fewer than 16 characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n ans = \"Yes\"\n-for i in range(3,16):\n+for i in range(16):\n     if i %2 == 1 and s[i] != \"0\":\n         ans = \"No\"\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `ok` with pairs starting from (0,1) instead of (1,2), which causes valid input pairs like (1,2) to be excluded.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b = map(int,input().split())\n-ok = [(i,i+1) for i in range(9)]\n+ok = [(i,i+1) for i in range(1,10)]\n ok.append((1,10))\n if (a,b) in ok:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for the string \"AB\" instead of \"BA\" to determine when to print \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n=int(input())\n s=list(input())\n-if \"\".join(s)==\"AB\":\n+if \"\".join(s)==\"BA\":\n     print(\"No\")\n     exit()\n if s[0]==\"B\":"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if `b` is greater than 0 instead of allowing `b` to be equal to 0, which should also result in a 'Yes' output if the bitwise condition is satisfied.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for _ in range(T):\n     a,s=map(int,input().split())\n     b=s-2*a\n-    if b>0 and a&b==0:\n+    if b>=0 and a&b==0:\n         print('Yes')\n     else:\n         print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the range of the loop to 12 iterations instead of the necessary 40 iterations needed to correctly calculate the value of `l`.",
+      "diff": "--- \n+++ \n@@ -1,8 +1,9 @@\n+\n t = int(input())\n for i in range(t):\n     n, k = map(int, input().split())\n     l = 0\n-    for i in range(12):\n+    for i in range(40):\n         l += (n // 3**i) % 3\n     if k >= l and (k - l) % 2 == 0:\n         print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code checks if the set of unique elements in the list has a length of 2, which means there are exactly two distinct numbers. However, it doesn't account for the case when the input might contain duplicates of one of those two numbers, which would still satisfy the condition. The correct check should determine if there are exactly two distinct values present in the list, rather than just checking the length of the set. To fix this, we need to adjust the input reading to ensure it captures two distinct numbers correctly.",
+  "fixed_code": "x = list(map(int, input().split()))\nif len(set(x)) == 2:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

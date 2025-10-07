@@ -1,0 +1,4747 @@
+--------------------------------------------------
+start task abc265_d code: 46180053_faulty
+task abc265_d code: 46180053_faulty
+test: sample_02.txt result: True
+test: sample_03.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: False
+test: after_contest01.txt result: True
+test: random_22.txt result: True
+test: random_20.txt result: True
+test: random_21.txt result: True
+test: random_19.txt result: False
+test: random_18.txt result: True
+pass rate: 0.8181818181818182
+--------------------------------------------------
+start task abc265_d code: 45075464_faulty
+task abc265_d code: 45075464_faulty
+test: sample_02.txt result: True
+test: sample_03.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: after_contest01.txt result: True
+test: random_22.txt result: False
+test: random_20.txt result: True
+test: random_21.txt result: False
+test: random_19.txt result: False
+test: random_18.txt result: False
+pass rate: 0.6363636363636364
+--------------------------------------------------
+start task abc265_d code: 45966660_faulty
+task abc265_d code: 45966660_faulty
+test: sample_02.txt result: True
+test: sample_03.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: after_contest01.txt result: True
+test: random_22.txt result: False
+test: random_20.txt result: True
+test: random_21.txt result: False
+test: random_19.txt result: False
+test: random_18.txt result: False
+pass rate: 0.6363636363636364
+--------------------------------------------------
+start task abc244_e code: 45970204_faulty
+task abc244_e code: 45970204_faulty
+test: star_02.txt result: True
+test: raw_03.txt result: True
+test: raw_02.txt result: True
+test: star_01.txt result: True
+test: raw_01.txt result: True
+test: sample_02.txt result: True
+test: large2_01.txt result: True
+test: sample_03.txt result: True
+test: sample_01.txt result: True
+test: large2_02.txt result: True
+test: large_07.txt result: True
+test: small_02.txt result: True
+test: small_03.txt result: True
+test: large_06.txt result: True
+test: large_04.txt result: True
+test: large_10.txt result: True
+test: small_01.txt result: True
+test: small_15.txt result: True
+test: small_14.txt result: True
+test: large_05.txt result: True
+test: tree_02.txt result: True
+test: small_04.txt result: True
+test: small_10.txt result: True
+test: large_01.txt result: True
+test: small_11.txt result: True
+test: small_05.txt result: True
+test: tree_03.txt result: True
+test: tree_01.txt result: True
+test: small_13.txt result: True
+test: small_07.txt result: True
+test: large_02.txt result: True
+test: large_03.txt result: True
+test: small_06.txt result: True
+test: small_12.txt result: True
+test: small_08.txt result: True
+test: small_09.txt result: True
+test: large_08.txt result: True
+test: large_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc300_e code: 45250612_faulty
+task abc300_e code: 45250612_faulty
+test: 02_random_06.txt result: True
+test: 02_random_04.txt result: True
+test: 02_random_05.txt result: True
+test: 02_random_01.txt result: True
+test: 02_random_00.txt result: True
+test: 02_random_02.txt result: True
+test: 02_random_03.txt result: True
+test: 00_sample_03.txt result: True
+test: 01_small_04.txt result: True
+test: 01_small_05.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 01_small_07.txt result: True
+test: 01_small_06.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_small_02.txt result: True
+test: 01_small_03.txt result: True
+test: 01_small_01.txt result: True
+test: 01_small_00.txt result: True
+test: 03_limited_00.txt result: True
+test: 03_limited_01.txt result: True
+test: 03_limited_03.txt result: True
+test: 03_limited_02.txt result: True
+test: 03_limited_05.txt result: True
+test: 03_limited_04.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc300_e code: 45218169_faulty
+task abc300_e code: 45218169_faulty
+test: 02_random_06.txt result: True
+test: 02_random_04.txt result: True
+test: 02_random_05.txt result: True
+test: 02_random_01.txt result: True
+test: 02_random_00.txt result: True
+test: 02_random_02.txt result: True
+test: 02_random_03.txt result: True
+test: 00_sample_03.txt result: True
+test: 01_small_04.txt result: True
+test: 01_small_05.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 01_small_07.txt result: True
+test: 01_small_06.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_small_02.txt result: True
+test: 01_small_03.txt result: True
+test: 01_small_01.txt result: True
+test: 01_small_00.txt result: True
+test: 03_limited_00.txt result: True
+test: 03_limited_01.txt result: False
+test: 03_limited_03.txt result: False
+test: 03_limited_02.txt result: True
+test: 03_limited_05.txt result: False
+test: 03_limited_04.txt result: True
+pass rate: 0.88
+--------------------------------------------------
+start task abc282_c code: 44818334_faulty
+task abc282_c code: 44818334_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_11.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_13.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_12.txt result: True
+test: 01_test_16.txt result: True
+test: 01_test_02.txt result: True
+test: 01_test_03.txt result: True
+test: 01_test_17.txt result: True
+test: 01_test_01.txt result: True
+test: 01_test_15.txt result: True
+test: 01_test_14.txt result: True
+test: 00_sample_03.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc300_b code: 45110485_faulty
+task abc300_b code: 45110485_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 04_corner2_01.txt result: True
+test: 04_corner2_00.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 04_corner2_02.txt result: True
+test: 01_random_06.txt result: True
+test: 02_h_eq_2_w_eq_2_07.txt result: True
+test: 02_h_eq_2_w_eq_2_13.txt result: True
+test: 02_h_eq_2_w_eq_2_12.txt result: True
+test: 02_h_eq_2_w_eq_2_06.txt result: True
+test: 02_h_eq_2_w_eq_2_10.txt result: True
+test: 02_h_eq_2_w_eq_2_04.txt result: False
+test: 02_h_eq_2_w_eq_2_05.txt result: True
+test: 02_h_eq_2_w_eq_2_11.txt result: True
+test: 02_h_eq_2_w_eq_2_15.txt result: True
+test: 02_h_eq_2_w_eq_2_01.txt result: False
+test: 02_h_eq_2_w_eq_2_00.txt result: True
+test: 02_h_eq_2_w_eq_2_14.txt result: True
+test: 02_h_eq_2_w_eq_2_02.txt result: True
+test: 02_h_eq_2_w_eq_2_03.txt result: True
+test: 03_corner1_03.txt result: True
+test: 00_sample_03.txt result: True
+test: 00_sample_02.txt result: True
+test: 03_corner1_02.txt result: True
+test: 03_corner1_00.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 03_corner1_01.txt result: True
+test: 03_corner1_05.txt result: True
+test: 02_h_eq_2_w_eq_2_08.txt result: True
+test: 02_h_eq_2_w_eq_2_09.txt result: True
+test: 03_corner1_04.txt result: True
+test: 03_corner1_06.txt result: True
+pass rate: 0.9473684210526315
+--------------------------------------------------
+start task abc300_b code: 45723196_faulty
+task abc300_b code: 45723196_faulty
+test: 01_random_02.txt result: False
+test: 01_random_03.txt result: False
+test: 01_random_01.txt result: False
+test: 01_random_00.txt result: False
+test: 01_random_04.txt result: False
+test: 04_corner2_01.txt result: False
+test: 04_corner2_00.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 04_corner2_02.txt result: True
+test: 01_random_06.txt result: False
+test: 02_h_eq_2_w_eq_2_07.txt result: True
+test: 02_h_eq_2_w_eq_2_13.txt result: True
+test: 02_h_eq_2_w_eq_2_12.txt result: True
+test: 02_h_eq_2_w_eq_2_06.txt result: True
+test: 02_h_eq_2_w_eq_2_10.txt result: True
+test: 02_h_eq_2_w_eq_2_04.txt result: True
+test: 02_h_eq_2_w_eq_2_05.txt result: True
+test: 02_h_eq_2_w_eq_2_11.txt result: True
+test: 02_h_eq_2_w_eq_2_15.txt result: True
+test: 02_h_eq_2_w_eq_2_01.txt result: True
+test: 02_h_eq_2_w_eq_2_00.txt result: True
+test: 02_h_eq_2_w_eq_2_14.txt result: True
+test: 02_h_eq_2_w_eq_2_02.txt result: True
+test: 02_h_eq_2_w_eq_2_03.txt result: True
+test: 03_corner1_03.txt result: True
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: True
+test: 03_corner1_02.txt result: True
+test: 03_corner1_00.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 03_corner1_01.txt result: True
+test: 03_corner1_05.txt result: True
+test: 02_h_eq_2_w_eq_2_08.txt result: True
+test: 02_h_eq_2_w_eq_2_09.txt result: True
+test: 03_corner1_04.txt result: True
+test: 03_corner1_06.txt result: True
+pass rate: 0.7894736842105263
+--------------------------------------------------
+start task abc244_b code: 45713633_faulty
+task abc244_b code: 45713633_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: 003.txt result: True
+test: 017.txt result: True
+test: 016.txt result: True
+test: 002.txt result: True
+test: 014.txt result: True
+test: 000.txt result: True
+test: 001.txt result: True
+test: 015.txt result: True
+test: 011.txt result: True
+test: 005.txt result: True
+test: 004.txt result: True
+test: 010.txt result: True
+test: 006.txt result: True
+test: 012.txt result: True
+test: 013.txt result: True
+test: 007.txt result: True
+test: 022.txt result: True
+test: 021.txt result: True
+test: 009.txt result: True
+test: 008.txt result: True
+test: 020.txt result: True
+test: 018.txt result: True
+test: 019.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc265_c code: 46154642_faulty
+task abc265_c code: 46154642_faulty
+test: 03_max_03.txt result: True
+test: 03_max_02.txt result: True
+test: 03_max_00.txt result: True
+test: 03_max_01.txt result: True
+test: 03_max_04.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 02_random_2_02.txt result: True
+test: 01_random_1_02.txt result: True
+test: 02_random_2_00.txt result: True
+test: 01_random_1_00.txt result: True
+test: 01_random_1_01.txt result: True
+test: 02_random_2_01.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc308_a code: 45931202_faulty
+task abc308_a code: 45931202_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_03.txt result: True
+test: 02_handmade_02.txt result: True
+test: 02_handmade_00.txt result: True
+test: 02_handmade_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc308_a code: 45959405_faulty
+task abc308_a code: 45959405_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: False
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_03.txt result: False
+test: 02_handmade_02.txt result: True
+test: 02_handmade_00.txt result: True
+test: 02_handmade_01.txt result: False
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 0.85
+--------------------------------------------------
+start task abc308_a code: 46170943_faulty
+task abc308_a code: 46170943_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_03.txt result: True
+test: 02_handmade_02.txt result: True
+test: 02_handmade_00.txt result: True
+test: 02_handmade_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc308_a code: 46165457_faulty
+task abc308_a code: 46165457_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_03.txt result: True
+test: 02_handmade_02.txt result: True
+test: 02_handmade_00.txt result: True
+test: 02_handmade_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc308_a code: 46023709_faulty
+task abc308_a code: 46023709_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_03.txt result: True
+test: 02_handmade_02.txt result: True
+test: 02_handmade_00.txt result: True
+test: 02_handmade_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc308_a code: 46000754_faulty
+task abc308_a code: 46000754_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_03.txt result: True
+test: 02_handmade_02.txt result: True
+test: 02_handmade_00.txt result: True
+test: 02_handmade_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc308_a code: 46165135_faulty
+task abc308_a code: 46165135_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: False
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_03.txt result: True
+test: 02_handmade_02.txt result: True
+test: 02_handmade_00.txt result: True
+test: 02_handmade_01.txt result: True
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: False
+test: 01_random_09.txt result: True
+pass rate: 0.85
+--------------------------------------------------
+start task abc308_a code: 45947529_faulty
+task abc308_a code: 45947529_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_03.txt result: True
+test: 02_handmade_02.txt result: True
+test: 02_handmade_00.txt result: True
+test: 02_handmade_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc302_a code: 45902614_faulty
+task abc302_a code: 45902614_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc302_a code: 45467003_faulty
+task abc302_a code: 45467003_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc302_a code: 46001200_faulty
+task abc302_a code: 46001200_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc302_a code: 45783782_faulty
+task abc302_a code: 45783782_faulty
+test: test_01.txt result: False
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: False
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.8666666666666667
+--------------------------------------------------
+start task abc246_a code: 45745121_faulty
+task abc246_a code: 45745121_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: 003.txt result: True
+test: 002.txt result: True
+test: 014.txt result: True
+test: 000.txt result: True
+test: 001.txt result: True
+test: 015.txt result: True
+test: 011.txt result: True
+test: 005.txt result: True
+test: 004.txt result: True
+test: 010.txt result: True
+test: 006.txt result: True
+test: 012.txt result: True
+test: 013.txt result: True
+test: 007.txt result: True
+test: 009.txt result: True
+test: 008.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc288_d code: 45491126_faulty
+task abc288_d code: 45491126_faulty
+test: example1.txt result: False
+test: example0.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc269_a code: 45960382_faulty
+task abc269_a code: 45960382_faulty
+test: 01_random_02.txt result: True
+test: 02_zero_01.txt result: True
+test: 02_zero_00.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc269_a code: 45960449_faulty
+task abc269_a code: 45960449_faulty
+test: 01_random_02.txt result: True
+test: 02_zero_01.txt result: True
+test: 02_zero_00.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc269_a code: 45960652_faulty
+task abc269_a code: 45960652_faulty
+test: 01_random_02.txt result: True
+test: 02_zero_01.txt result: True
+test: 02_zero_00.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc286_e code: 45479724_faulty
+task abc286_e code: 45479724_faulty
+test: hand_04.txt result: False
+test: example_01.txt result: False
+test: example_00.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc261_b code: 45074177_faulty
+task abc261_b code: 45074177_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_03.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_14.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc261_b code: 46179770_faulty
+task abc261_b code: 46179770_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_03.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_14.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc261_b code: 45115214_faulty
+task abc261_b code: 45115214_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_03.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_14.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: False
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+pass rate: 0.9444444444444444
+--------------------------------------------------
+start task abc261_b code: 45282531_faulty
+task abc261_b code: 45282531_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_03.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_14.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc261_b code: 45054015_faulty
+task abc261_b code: 45054015_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_03.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_14.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc261_b code: 45997045_faulty
+task abc261_b code: 45997045_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_03.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_14.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc304_c code: 45117916_faulty
+task abc304_c code: 45117916_faulty
+test: sample00.txt result: False
+test: sample01.txt result: False
+test: sample02.txt result: False
+test: testcase24.txt result: False
+test: testcase30.txt result: False
+test: testcase18.txt result: False
+test: testcase19.txt result: False
+test: testcase31.txt result: False
+test: testcase25.txt result: False
+test: testcase33.txt result: False
+test: testcase27.txt result: False
+test: testcase26.txt result: False
+test: testcase32.txt result: False
+test: testcase22.txt result: False
+test: testcase23.txt result: False
+test: testcase09.txt result: False
+test: testcase21.txt result: False
+test: testcase34.txt result: False
+test: testcase20.txt result: False
+test: testcase08.txt result: False
+test: testcase05.txt result: False
+test: testcase11.txt result: False
+test: testcase10.txt result: False
+test: testcase04.txt result: False
+test: testcase12.txt result: False
+test: testcase06.txt result: False
+test: testcase07.txt result: False
+test: testcase13.txt result: False
+test: testcase17.txt result: False
+test: testcase03.txt result: False
+test: testcase02.txt result: False
+test: testcase16.txt result: False
+test: testcase28.txt result: False
+test: testcase00.txt result: False
+test: testcase14.txt result: False
+test: testcase15.txt result: False
+test: testcase01.txt result: False
+test: testcase29.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc304_d code: 45574429_faulty
+task abc304_d code: 45574429_faulty
+test: example1.txt result: True
+test: example0.txt result: False
+pass rate: 0.5
+--------------------------------------------------
+start task abc240_d code: 45435904_faulty
+task abc240_d code: 45435904_faulty
+test: test_15.txt result: True
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_16.txt result: False
+test: test_17.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.16666666666666666
+--------------------------------------------------
+start task abc263_a code: 45986379_faulty
+task abc263_a code: 45986379_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_02.txt result: False
+test: 01_test_03.txt result: True
+test: 01_test_01.txt result: False
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 0.8333333333333334
+--------------------------------------------------
+start task abc263_a code: 44922329_faulty
+task abc263_a code: 44922329_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_02.txt result: True
+test: 01_test_03.txt result: True
+test: 01_test_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc263_a code: 45972944_faulty
+task abc263_a code: 45972944_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_02.txt result: True
+test: 01_test_03.txt result: True
+test: 01_test_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc263_a code: 45002191_faulty
+task abc263_a code: 45002191_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_02.txt result: True
+test: 01_test_03.txt result: True
+test: 01_test_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc263_a code: 44884204_faulty
+task abc263_a code: 44884204_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_02.txt result: True
+test: 01_test_03.txt result: True
+test: 01_test_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc263_a code: 45528012_faulty
+task abc263_a code: 45528012_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_05.txt result: False
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: False
+test: 01_test_02.txt result: False
+test: 01_test_03.txt result: True
+test: 01_test_01.txt result: False
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: False
+pass rate: 0.5833333333333334
+--------------------------------------------------
+start task abc288_e code: 41523056_faulty
+task abc288_e code: 41523056_faulty
+test: example1.txt result: False
+test: example0.txt result: False
+test: 003.txt result: False
+test: 017.txt result: False
+test: 016.txt result: False
+test: 002.txt result: False
+test: 014.txt result: True
+test: 000.txt result: False
+test: 028.txt result: False
+test: 029.txt result: False
+test: 001.txt result: False
+test: 015.txt result: True
+test: 039.txt result: False
+test: 011.txt result: False
+test: 005.txt result: True
+test: 004.txt result: False
+test: 010.txt result: False
+test: 038.txt result: False
+test: 006.txt result: False
+test: 012.txt result: False
+test: 013.txt result: False
+test: 007.txt result: False
+test: 022.txt result: False
+test: 036.txt result: False
+test: 037.txt result: False
+test: 023.txt result: False
+test: 035.txt result: False
+test: 021.txt result: False
+test: 009.txt result: False
+test: 008.txt result: False
+test: 020.txt result: False
+test: 034.txt result: False
+test: 018.txt result: False
+test: 030.txt result: False
+test: 024.txt result: False
+test: 025.txt result: False
+test: 031.txt result: False
+test: 019.txt result: False
+test: 027.txt result: False
+test: 033.txt result: False
+test: 032.txt result: False
+test: 026.txt result: False
+test: 041.txt result: False
+test: 040.txt result: False
+pass rate: 0.06818181818181818
+--------------------------------------------------
+start task abc267_a code: 45943869_faulty
+task abc267_a code: 45943869_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_04.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc288_b code: 44592257_faulty
+task abc288_b code: 44592257_faulty
+test: sample00.txt result: False
+test: sample01.txt result: False
+test: sample02.txt result: False
+test: testcase09.txt result: False
+test: testcase08.txt result: False
+test: testcase05.txt result: False
+test: testcase11.txt result: False
+test: testcase10.txt result: False
+test: testcase04.txt result: False
+test: testcase12.txt result: False
+test: testcase06.txt result: False
+test: testcase07.txt result: False
+test: testcase13.txt result: False
+test: testcase03.txt result: False
+test: testcase02.txt result: False
+test: testcase00.txt result: False
+test: testcase14.txt result: False
+test: testcase15.txt result: False
+test: testcase01.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc288_b code: 45965822_faulty
+task abc288_b code: 45965822_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample02.txt result: True
+test: testcase09.txt result: True
+test: testcase08.txt result: True
+test: testcase05.txt result: True
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: True
+test: testcase13.txt result: True
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase00.txt result: True
+test: testcase14.txt result: True
+test: testcase15.txt result: True
+test: testcase01.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc225_d code: 45240176_faulty
+task abc225_d code: 45240176_faulty
+test: example0.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc244_c code: 45762748_faulty
+task abc244_c code: 45762748_faulty
+test: example0.txt result: False
+test: 003.txt result: False
+test: 002.txt result: False
+test: 000.txt result: False
+test: 001.txt result: False
+test: 011.txt result: False
+test: 005.txt result: False
+test: 004.txt result: False
+test: 010.txt result: False
+test: 006.txt result: False
+test: 012.txt result: False
+test: 013.txt result: False
+test: 007.txt result: False
+test: 009.txt result: False
+test: 008.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc244_c code: 45056793_faulty
+task abc244_c code: 45056793_faulty
+test: example0.txt result: False
+test: 003.txt result: False
+test: 002.txt result: False
+test: 000.txt result: False
+test: 001.txt result: False
+test: 011.txt result: False
+test: 005.txt result: False
+test: 004.txt result: False
+test: 010.txt result: False
+test: 006.txt result: False
+test: 012.txt result: False
+test: 013.txt result: False
+test: 007.txt result: False
+test: 009.txt result: False
+test: 008.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc244_c code: 45666072_faulty
+task abc244_c code: 45666072_faulty
+test: example0.txt result: False
+test: 003.txt result: False
+test: 002.txt result: False
+test: 000.txt result: False
+test: 001.txt result: False
+test: 011.txt result: False
+test: 005.txt result: False
+test: 004.txt result: False
+test: 010.txt result: False
+test: 006.txt result: False
+test: 012.txt result: False
+test: 013.txt result: False
+test: 007.txt result: False
+test: 009.txt result: False
+test: 008.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc300_c code: 45723345_faulty
+task abc300_c code: 45723345_faulty
+test: 01_random_02.txt result: False
+test: 01_random_03.txt result: False
+test: 01_random_01.txt result: False
+test: 02_corner_01.txt result: False
+test: 02_corner_00.txt result: False
+test: 01_random_14.txt result: False
+test: 01_random_00.txt result: False
+test: 01_random_04.txt result: False
+test: 01_random_10.txt result: False
+test: 01_random_11.txt result: False
+test: 01_random_05.txt result: False
+test: 01_random_13.txt result: False
+test: 01_random_07.txt result: False
+test: 01_random_06.txt result: False
+test: 01_random_12.txt result: False
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 01_random_08.txt result: False
+test: 01_random_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc300_c code: 45749744_faulty
+task abc300_c code: 45749744_faulty
+test: 01_random_02.txt result: False
+test: 01_random_03.txt result: False
+test: 01_random_01.txt result: False
+test: 02_corner_01.txt result: True
+test: 02_corner_00.txt result: False
+test: 01_random_14.txt result: False
+test: 01_random_00.txt result: False
+test: 01_random_04.txt result: False
+test: 01_random_10.txt result: False
+test: 01_random_11.txt result: False
+test: 01_random_05.txt result: False
+test: 01_random_13.txt result: False
+test: 01_random_07.txt result: False
+test: 01_random_06.txt result: False
+test: 01_random_12.txt result: False
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: False
+test: 01_random_09.txt result: False
+pass rate: 0.09523809523809523
+--------------------------------------------------
+start task abc265_b code: 46056659_faulty
+task abc265_b code: 46056659_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: False
+test: hand_01.txt result: True
+test: random_23.txt result: True
+test: random_22.txt result: False
+test: random_21.txt result: True
+pass rate: 0.6666666666666666
+--------------------------------------------------
+start task abc265_b code: 45487693_faulty
+task abc265_b code: 45487693_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: False
+test: hand_01.txt result: True
+test: random_23.txt result: False
+test: random_22.txt result: True
+test: random_21.txt result: True
+pass rate: 0.6666666666666666
+--------------------------------------------------
+start task abc265_b code: 46016041_faulty
+task abc265_b code: 46016041_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: hand_01.txt result: True
+test: random_23.txt result: False
+test: random_22.txt result: False
+test: random_21.txt result: True
+pass rate: 0.6666666666666666
+--------------------------------------------------
+start task abc265_b code: 45498956_faulty
+task abc265_b code: 45498956_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: True
+test: hand_01.txt result: True
+test: random_23.txt result: True
+test: random_22.txt result: False
+test: random_21.txt result: True
+pass rate: 0.6666666666666666
+--------------------------------------------------
+start task abc265_b code: 45288123_faulty
+task abc265_b code: 45288123_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: True
+test: hand_01.txt result: True
+test: random_23.txt result: False
+test: random_22.txt result: True
+test: random_21.txt result: True
+pass rate: 0.6666666666666666
+--------------------------------------------------
+start task abc265_b code: 45698748_faulty
+task abc265_b code: 45698748_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: True
+test: hand_01.txt result: False
+test: random_23.txt result: True
+test: random_22.txt result: True
+test: random_21.txt result: True
+pass rate: 0.6666666666666666
+--------------------------------------------------
+start task abc265_b code: 45798886_faulty
+task abc265_b code: 45798886_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: False
+test: hand_01.txt result: False
+test: random_23.txt result: True
+test: random_22.txt result: True
+test: random_21.txt result: True
+pass rate: 0.6666666666666666
+--------------------------------------------------
+start task abc282_e code: 45514577_faulty
+task abc282_e code: 45514577_faulty
+test: example1.txt result: False
+test: example0.txt result: False
+test: 003.txt result: False
+test: 017.txt result: False
+test: 016.txt result: False
+test: 002.txt result: False
+test: 014.txt result: True
+test: 000.txt result: False
+test: 001.txt result: False
+test: 015.txt result: False
+test: 011.txt result: False
+test: 005.txt result: False
+test: 004.txt result: False
+test: 010.txt result: False
+test: 006.txt result: True
+test: 012.txt result: False
+test: 013.txt result: False
+test: 007.txt result: False
+test: 022.txt result: False
+test: 023.txt result: False
+test: 021.txt result: False
+test: 009.txt result: False
+test: 008.txt result: False
+test: 020.txt result: False
+test: 018.txt result: False
+test: 024.txt result: False
+test: 025.txt result: False
+test: 019.txt result: False
+pass rate: 0.07142857142857142
+--------------------------------------------------
+start task abc300_d code: 45256387_faulty
+task abc300_d code: 45256387_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: True
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.17647058823529413
+--------------------------------------------------
+start task abc244_d code: 45792017_faulty
+task abc244_d code: 45792017_faulty
+test: BRG_RGB.txt result: True
+test: RBG_RGB.txt result: False
+test: GBR_RGB.txt result: True
+test: GRB_RGB.txt result: False
+test: BGR_RGB.txt result: True
+test: sample_01.txt result: True
+test: BGR_GBR.txt result: False
+test: RGB_GBR.txt result: True
+test: BRG_GBR.txt result: False
+test: GRB_GBR.txt result: True
+test: GBR_GBR.txt result: True
+test: RBG_GBR.txt result: True
+test: RBG_RBG.txt result: False
+test: RGB_BRG.txt result: True
+test: BGR_BGR.txt result: True
+test: GBR_RBG.txt result: True
+test: GRB_RBG.txt result: False
+test: BRG_RBG.txt result: True
+test: BGR_BRG.txt result: True
+test: RGB_BGR.txt result: True
+test: BRG_BGR.txt result: True
+test: RBG_BRG.txt result: True
+test: RGB_RBG.txt result: True
+test: GRB_BRG.txt result: True
+test: GBR_BRG.txt result: False
+test: RBG_BGR.txt result: False
+test: BRG_BRG.txt result: True
+test: BGR_RBG.txt result: False
+test: GBR_BGR.txt result: True
+test: GRB_BGR.txt result: False
+test: BGR_GRB.txt result: False
+test: RGB_GRB.txt result: True
+test: BRG_GRB.txt result: True
+test: GBR_GRB.txt result: True
+test: GRB_GRB.txt result: True
+test: RBG_GRB.txt result: False
+pass rate: 0.6666666666666666
+--------------------------------------------------
+start task abc244_d code: 45508442_faulty
+task abc244_d code: 45508442_faulty
+test: BRG_RGB.txt result: False
+test: RBG_RGB.txt result: True
+test: GBR_RGB.txt result: False
+test: GRB_RGB.txt result: True
+test: BGR_RGB.txt result: True
+test: sample_01.txt result: False
+test: BGR_GBR.txt result: False
+test: RGB_GBR.txt result: True
+test: BRG_GBR.txt result: True
+test: GRB_GBR.txt result: True
+test: GBR_GBR.txt result: False
+test: RBG_GBR.txt result: False
+test: RBG_RBG.txt result: True
+test: RGB_BRG.txt result: True
+test: BGR_BGR.txt result: False
+test: GBR_RBG.txt result: True
+test: GRB_RBG.txt result: True
+test: BRG_RBG.txt result: False
+test: BGR_BRG.txt result: False
+test: RGB_BGR.txt result: False
+test: BRG_BGR.txt result: False
+test: RBG_BRG.txt result: False
+test: RGB_RBG.txt result: False
+test: GRB_BRG.txt result: False
+test: GBR_BRG.txt result: True
+test: RBG_BGR.txt result: True
+test: BRG_BRG.txt result: True
+test: BGR_RBG.txt result: True
+test: GBR_BGR.txt result: False
+test: GRB_BGR.txt result: True
+test: BGR_GRB.txt result: False
+test: RGB_GRB.txt result: True
+test: BRG_GRB.txt result: False
+test: GBR_GRB.txt result: False
+test: GRB_GRB.txt result: True
+test: RBG_GRB.txt result: True
+pass rate: 0.5
+--------------------------------------------------
+start task abc244_d code: 45311340_faulty
+task abc244_d code: 45311340_faulty
+test: BRG_RGB.txt result: True
+test: RBG_RGB.txt result: True
+test: GBR_RGB.txt result: True
+test: GRB_RGB.txt result: True
+test: BGR_RGB.txt result: True
+test: sample_01.txt result: True
+test: BGR_GBR.txt result: True
+test: RGB_GBR.txt result: True
+test: BRG_GBR.txt result: True
+test: GRB_GBR.txt result: True
+test: GBR_GBR.txt result: True
+test: RBG_GBR.txt result: True
+test: RBG_RBG.txt result: True
+test: RGB_BRG.txt result: False
+test: BGR_BGR.txt result: False
+test: GBR_RBG.txt result: True
+test: GRB_RBG.txt result: True
+test: BRG_RBG.txt result: False
+test: BGR_BRG.txt result: True
+test: RGB_BGR.txt result: True
+test: BRG_BGR.txt result: True
+test: RBG_BRG.txt result: True
+test: RGB_RBG.txt result: True
+test: GRB_BRG.txt result: True
+test: GBR_BRG.txt result: False
+test: RBG_BGR.txt result: True
+test: BRG_BRG.txt result: True
+test: BGR_RBG.txt result: False
+test: GBR_BGR.txt result: True
+test: GRB_BGR.txt result: False
+test: BGR_GRB.txt result: False
+test: RGB_GRB.txt result: True
+test: BRG_GRB.txt result: True
+test: GBR_GRB.txt result: True
+test: GRB_GRB.txt result: False
+test: RBG_GRB.txt result: False
+pass rate: 0.75
+--------------------------------------------------
+start task abc244_d code: 46208474_faulty
+task abc244_d code: 46208474_faulty
+test: BRG_RGB.txt result: False
+test: RBG_RGB.txt result: True
+test: GBR_RGB.txt result: False
+test: GRB_RGB.txt result: True
+test: BGR_RGB.txt result: False
+test: sample_01.txt result: True
+test: BGR_GBR.txt result: True
+test: RGB_GBR.txt result: False
+test: BRG_GBR.txt result: True
+test: GRB_GBR.txt result: False
+test: GBR_GBR.txt result: False
+test: RBG_GBR.txt result: True
+test: RBG_RBG.txt result: True
+test: RGB_BRG.txt result: True
+test: BGR_BGR.txt result: True
+test: GBR_RBG.txt result: False
+test: GRB_RBG.txt result: False
+test: BRG_RBG.txt result: False
+test: BGR_BRG.txt result: True
+test: RGB_BGR.txt result: False
+test: BRG_BGR.txt result: False
+test: RBG_BRG.txt result: False
+test: RGB_RBG.txt result: False
+test: GRB_BRG.txt result: False
+test: GBR_BRG.txt result: True
+test: RBG_BGR.txt result: True
+test: BRG_BRG.txt result: True
+test: BGR_RBG.txt result: True
+test: GBR_BGR.txt result: False
+test: GRB_BGR.txt result: False
+test: BGR_GRB.txt result: True
+test: RGB_GRB.txt result: True
+test: BRG_GRB.txt result: False
+test: GBR_GRB.txt result: True
+test: GRB_GRB.txt result: True
+test: RBG_GRB.txt result: False
+pass rate: 0.5
+--------------------------------------------------
+start task abc244_d code: 45666207_faulty
+task abc244_d code: 45666207_faulty
+test: BRG_RGB.txt result: True
+test: RBG_RGB.txt result: True
+test: GBR_RGB.txt result: True
+test: GRB_RGB.txt result: True
+test: BGR_RGB.txt result: True
+test: sample_01.txt result: False
+test: BGR_GBR.txt result: True
+test: RGB_GBR.txt result: True
+test: BRG_GBR.txt result: True
+test: GRB_GBR.txt result: True
+test: GBR_GBR.txt result: True
+test: RBG_GBR.txt result: False
+test: RBG_RBG.txt result: False
+test: RGB_BRG.txt result: True
+test: BGR_BGR.txt result: True
+test: GBR_RBG.txt result: False
+test: GRB_RBG.txt result: True
+test: BRG_RBG.txt result: True
+test: BGR_BRG.txt result: True
+test: RGB_BGR.txt result: True
+test: BRG_BGR.txt result: True
+test: RBG_BRG.txt result: True
+test: RGB_RBG.txt result: True
+test: GRB_BRG.txt result: True
+test: GBR_BRG.txt result: True
+test: RBG_BGR.txt result: False
+test: BRG_BRG.txt result: True
+test: BGR_RBG.txt result: True
+test: GBR_BGR.txt result: True
+test: GRB_BGR.txt result: True
+test: BGR_GRB.txt result: True
+test: RGB_GRB.txt result: True
+test: BRG_GRB.txt result: True
+test: GBR_GRB.txt result: True
+test: GRB_GRB.txt result: True
+test: RBG_GRB.txt result: False
+pass rate: 0.8333333333333334
+--------------------------------------------------
+start task abc244_d code: 44593613_faulty
+task abc244_d code: 44593613_faulty
+test: BRG_RGB.txt result: False
+test: RBG_RGB.txt result: False
+test: GBR_RGB.txt result: False
+test: GRB_RGB.txt result: False
+test: BGR_RGB.txt result: False
+test: sample_01.txt result: False
+test: BGR_GBR.txt result: False
+test: RGB_GBR.txt result: False
+test: BRG_GBR.txt result: False
+test: GRB_GBR.txt result: False
+test: GBR_GBR.txt result: False
+test: RBG_GBR.txt result: False
+test: RBG_RBG.txt result: False
+test: RGB_BRG.txt result: False
+test: BGR_BGR.txt result: False
+test: GBR_RBG.txt result: False
+test: GRB_RBG.txt result: False
+test: BRG_RBG.txt result: False
+test: BGR_BRG.txt result: False
+test: RGB_BGR.txt result: False
+test: BRG_BGR.txt result: False
+test: RBG_BRG.txt result: False
+test: RGB_RBG.txt result: False
+test: GRB_BRG.txt result: False
+test: GBR_BRG.txt result: False
+test: RBG_BGR.txt result: False
+test: BRG_BRG.txt result: False
+test: BGR_RBG.txt result: False
+test: GBR_BGR.txt result: False
+test: GRB_BGR.txt result: False
+test: BGR_GRB.txt result: False
+test: RGB_GRB.txt result: False
+test: BRG_GRB.txt result: False
+test: GBR_GRB.txt result: False
+test: GRB_GRB.txt result: False
+test: RBG_GRB.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc244_d code: 44600103_faulty
+task abc244_d code: 44600103_faulty
+test: BRG_RGB.txt result: False
+test: RBG_RGB.txt result: True
+test: GBR_RGB.txt result: False
+test: GRB_RGB.txt result: True
+test: BGR_RGB.txt result: False
+test: sample_01.txt result: True
+test: BGR_GBR.txt result: True
+test: RGB_GBR.txt result: False
+test: BRG_GBR.txt result: True
+test: GRB_GBR.txt result: False
+test: GBR_GBR.txt result: True
+test: RBG_GBR.txt result: False
+test: RBG_RBG.txt result: True
+test: RGB_BRG.txt result: True
+test: BGR_BGR.txt result: True
+test: GBR_RBG.txt result: False
+test: GRB_RBG.txt result: False
+test: BRG_RBG.txt result: False
+test: BGR_BRG.txt result: False
+test: RGB_BGR.txt result: True
+test: BRG_BGR.txt result: False
+test: RBG_BRG.txt result: False
+test: RGB_RBG.txt result: False
+test: GRB_BRG.txt result: False
+test: GBR_BRG.txt result: True
+test: RBG_BGR.txt result: True
+test: BRG_BRG.txt result: True
+test: BGR_RBG.txt result: True
+test: GBR_BGR.txt result: False
+test: GRB_BGR.txt result: True
+test: BGR_GRB.txt result: True
+test: RGB_GRB.txt result: False
+test: BRG_GRB.txt result: False
+test: GBR_GRB.txt result: False
+test: GRB_GRB.txt result: True
+test: RBG_GRB.txt result: True
+pass rate: 0.5
+--------------------------------------------------
+start task abc244_d code: 46207866_faulty
+task abc244_d code: 46207866_faulty
+test: BRG_RGB.txt result: False
+test: RBG_RGB.txt result: True
+test: GBR_RGB.txt result: True
+test: GRB_RGB.txt result: False
+test: BGR_RGB.txt result: True
+test: sample_01.txt result: False
+test: BGR_GBR.txt result: False
+test: RGB_GBR.txt result: True
+test: BRG_GBR.txt result: True
+test: GRB_GBR.txt result: False
+test: GBR_GBR.txt result: True
+test: RBG_GBR.txt result: False
+test: RBG_RBG.txt result: True
+test: RGB_BRG.txt result: True
+test: BGR_BGR.txt result: False
+test: GBR_RBG.txt result: True
+test: GRB_RBG.txt result: False
+test: BRG_RBG.txt result: True
+test: BGR_BRG.txt result: False
+test: RGB_BGR.txt result: False
+test: BRG_BGR.txt result: False
+test: RBG_BRG.txt result: False
+test: RGB_RBG.txt result: False
+test: GRB_BRG.txt result: False
+test: GBR_BRG.txt result: True
+test: RBG_BGR.txt result: True
+test: BRG_BRG.txt result: True
+test: BGR_RBG.txt result: True
+test: GBR_BGR.txt result: False
+test: GRB_BGR.txt result: True
+test: BGR_GRB.txt result: True
+test: RGB_GRB.txt result: False
+test: BRG_GRB.txt result: False
+test: GBR_GRB.txt result: False
+test: GRB_GRB.txt result: True
+test: RBG_GRB.txt result: True
+pass rate: 0.5
+--------------------------------------------------
+start task abc229_f code: 46038453_faulty
+task abc229_f code: 46038453_faulty
+test: example1.txt result: False
+test: example0.txt result: False
+test: 003.txt result: False
+test: 017.txt result: False
+test: 002.txt result: False
+test: 000.txt result: False
+test: 001.txt result: False
+test: 004.txt result: False
+test: 006.txt result: False
+test: 007.txt result: False
+test: 021.txt result: False
+test: 009.txt result: False
+test: 008.txt result: False
+test: 020.txt result: False
+test: 019.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc229_a code: 45477841_faulty
+task abc229_a code: 45477841_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: test_01.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc229_a code: 46233112_faulty
+task abc229_a code: 46233112_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: test_01.txt result: False
+test: test_02.txt result: True
+test: test_03.txt result: False
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: False
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+pass rate: 0.7692307692307693
+--------------------------------------------------
+start task abc229_a code: 45808992_faulty
+task abc229_a code: 45808992_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: test_01.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc229_a code: 44996770_faulty
+task abc229_a code: 44996770_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: test_01.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc229_a code: 45784135_faulty
+task abc229_a code: 45784135_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: test_01.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc229_a code: 45690274_faulty
+task abc229_a code: 45690274_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: False
+test: test_01.txt result: True
+test: test_02.txt result: False
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+pass rate: 0.6153846153846154
+--------------------------------------------------
+start task abc229_a code: 46216070_faulty
+task abc229_a code: 46216070_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: test_01.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc229_a code: 44625287_faulty
+task abc229_a code: 44625287_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: test_01.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc242_a code: 45767519_faulty
+task abc242_a code: 45767519_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc242_a code: 45709103_faulty
+task abc242_a code: 45709103_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc242_a code: 44475619_faulty
+task abc242_a code: 44475619_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc242_a code: 45438303_faulty
+task abc242_a code: 45438303_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc242_a code: 45690151_faulty
+task abc242_a code: 45690151_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc242_a code: 44877017_faulty
+task abc242_a code: 44877017_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc242_a code: 45439791_faulty
+task abc242_a code: 45439791_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc242_a code: 45214716_faulty
+task abc242_a code: 45214716_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: test_15.txt result: False
+test: test_01.txt result: False
+test: test_14.txt result: False
+test: test_02.txt result: False
+test: test_03.txt result: False
+test: test_07.txt result: False
+test: test_13.txt result: False
+test: test_12.txt result: False
+test: test_06.txt result: False
+test: test_10.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_11.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc248_f code: 53199737_faulty
+task abc248_f code: 53199737_faulty
+test: random_02.txt result: False
+test: random_03.txt result: False
+test: hand_05.txt result: False
+test: random_01.txt result: False
+test: random_00.txt result: False
+test: hand_04.txt result: False
+test: hand_00.txt result: False
+test: random_10.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_11.txt result: False
+test: hand_01.txt result: False
+test: hand_03.txt result: False
+test: random_07.txt result: False
+test: random_06.txt result: False
+test: hand_02.txt result: False
+test: random_08.txt result: False
+test: random_09.txt result: False
+test: example_01.txt result: False
+test: example_00.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc240_e code: 45982558_faulty
+task abc240_e code: 45982558_faulty
+test: example1.txt result: False
+test: example0.txt result: False
+test: example2.txt result: False
+test: 000.txt result: False
+test: 012.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc261_d code: 45285878_faulty
+task abc261_d code: 45285878_faulty
+test: hand_06.txt result: True
+test: random_02.txt result: True
+test: random_03.txt result: False
+test: hand_05.txt result: False
+test: random_15.txt result: False
+test: random_01.txt result: False
+test: random_00.txt result: False
+test: random_14.txt result: False
+test: hand_04.txt result: True
+test: random_10.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_11.txt result: False
+test: hand_01.txt result: False
+test: hand_03.txt result: False
+test: random_07.txt result: False
+test: random_13.txt result: False
+test: random_12.txt result: False
+test: random_06.txt result: False
+test: hand_02.txt result: True
+test: random_08.txt result: False
+test: random_09.txt result: False
+test: example_01.txt result: False
+test: example_00.txt result: False
+pass rate: 0.16666666666666666
+--------------------------------------------------
+start task abc261_d code: 46044177_faulty
+task abc261_d code: 46044177_faulty
+test: hand_06.txt result: True
+test: random_02.txt result: False
+test: random_03.txt result: False
+test: hand_05.txt result: False
+test: random_15.txt result: False
+test: random_01.txt result: False
+test: random_00.txt result: False
+test: random_14.txt result: False
+test: hand_04.txt result: False
+test: random_10.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_11.txt result: False
+test: hand_01.txt result: False
+test: hand_03.txt result: False
+test: random_07.txt result: False
+test: random_13.txt result: False
+test: random_12.txt result: False
+test: random_06.txt result: False
+test: hand_02.txt result: False
+test: random_08.txt result: False
+test: random_09.txt result: False
+test: example_01.txt result: False
+test: example_00.txt result: False
+pass rate: 0.041666666666666664
+--------------------------------------------------
+start task abc261_d code: 45506869_faulty
+task abc261_d code: 45506869_faulty
+test: hand_06.txt result: False
+test: random_02.txt result: True
+test: random_03.txt result: True
+test: hand_05.txt result: False
+test: random_15.txt result: False
+test: random_01.txt result: False
+test: random_00.txt result: False
+test: random_14.txt result: False
+test: hand_04.txt result: False
+test: random_10.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_11.txt result: False
+test: hand_01.txt result: False
+test: hand_03.txt result: False
+test: random_07.txt result: False
+test: random_13.txt result: False
+test: random_12.txt result: False
+test: random_06.txt result: False
+test: hand_02.txt result: True
+test: random_08.txt result: False
+test: random_09.txt result: False
+test: example_01.txt result: False
+test: example_00.txt result: False
+pass rate: 0.125
+--------------------------------------------------
+start task abc286_d code: 45059364_faulty
+task abc286_d code: 45059364_faulty
+test: hand_06.txt result: True
+test: killer_23.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_17.txt result: False
+test: random_03.txt result: False
+test: killer_22.txt result: True
+test: hand_07.txt result: True
+test: hand_05.txt result: True
+test: killer_08.txt result: True
+test: killer_20.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: random_14.txt result: True
+test: killer_21.txt result: True
+test: killer_09.txt result: True
+test: hand_04.txt result: True
+test: hand_00.txt result: True
+test: killer_25.txt result: True
+test: killer_19.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: killer_18.txt result: True
+test: killer_24.txt result: False
+test: hand_01.txt result: False
+test: hand_03.txt result: True
+test: killer_26.txt result: False
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: False
+test: random_06.txt result: True
+test: killer_27.txt result: True
+test: hand_02.txt result: True
+test: killer_16.txt result: True
+test: killer_02.txt result: True
+test: random_23.txt result: True
+test: random_22.txt result: True
+test: killer_03.txt result: True
+test: killer_17.txt result: True
+test: killer_01.txt result: True
+test: killer_15.txt result: True
+test: random_08.txt result: False
+test: random_20.txt result: True
+test: random_21.txt result: True
+test: random_09.txt result: False
+test: killer_14.txt result: False
+test: killer_00.txt result: True
+test: hand_09.txt result: True
+test: killer_04.txt result: True
+test: killer_10.txt result: True
+test: random_25.txt result: True
+test: random_19.txt result: True
+test: random_18.txt result: False
+test: random_24.txt result: True
+test: killer_11.txt result: True
+test: killer_05.txt result: True
+test: hand_08.txt result: True
+test: killer_13.txt result: True
+test: killer_07.txt result: True
+test: killer_06.txt result: True
+test: killer_12.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: False
+test: example_00.txt result: True
+pass rate: 0.835820895522388
+--------------------------------------------------
+start task abc286_d code: 45471607_faulty
+task abc286_d code: 45471607_faulty
+test: hand_06.txt result: True
+test: killer_23.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_17.txt result: True
+test: random_03.txt result: True
+test: killer_22.txt result: False
+test: hand_07.txt result: True
+test: hand_05.txt result: True
+test: killer_08.txt result: True
+test: killer_20.txt result: False
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: random_14.txt result: False
+test: killer_21.txt result: True
+test: killer_09.txt result: True
+test: hand_04.txt result: True
+test: hand_00.txt result: True
+test: killer_25.txt result: True
+test: killer_19.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: killer_18.txt result: True
+test: killer_24.txt result: True
+test: hand_01.txt result: True
+test: hand_03.txt result: True
+test: killer_26.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: False
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: killer_27.txt result: True
+test: hand_02.txt result: True
+test: killer_16.txt result: True
+test: killer_02.txt result: True
+test: random_23.txt result: True
+test: random_22.txt result: True
+test: killer_03.txt result: False
+test: killer_17.txt result: True
+test: killer_01.txt result: True
+test: killer_15.txt result: True
+test: random_08.txt result: True
+test: random_20.txt result: False
+test: random_21.txt result: False
+test: random_09.txt result: True
+test: killer_14.txt result: True
+test: killer_00.txt result: True
+test: hand_09.txt result: True
+test: killer_04.txt result: True
+test: killer_10.txt result: True
+test: random_25.txt result: True
+test: random_19.txt result: True
+test: random_18.txt result: True
+test: random_24.txt result: True
+test: killer_11.txt result: True
+test: killer_05.txt result: True
+test: hand_08.txt result: False
+test: killer_13.txt result: True
+test: killer_07.txt result: True
+test: killer_06.txt result: True
+test: killer_12.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.8805970149253731
+--------------------------------------------------
+start task abc286_d code: 45787313_faulty
+task abc286_d code: 45787313_faulty
+test: hand_06.txt result: True
+test: killer_23.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_17.txt result: True
+test: random_03.txt result: True
+test: killer_22.txt result: True
+test: hand_07.txt result: True
+test: hand_05.txt result: True
+test: killer_08.txt result: True
+test: killer_20.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: random_14.txt result: True
+test: killer_21.txt result: True
+test: killer_09.txt result: True
+test: hand_04.txt result: True
+test: hand_00.txt result: True
+test: killer_25.txt result: True
+test: killer_19.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: killer_18.txt result: True
+test: killer_24.txt result: True
+test: hand_01.txt result: True
+test: hand_03.txt result: True
+test: killer_26.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: killer_27.txt result: True
+test: hand_02.txt result: True
+test: killer_16.txt result: True
+test: killer_02.txt result: True
+test: random_23.txt result: True
+test: random_22.txt result: True
+test: killer_03.txt result: True
+test: killer_17.txt result: True
+test: killer_01.txt result: True
+test: killer_15.txt result: True
+test: random_08.txt result: True
+test: random_20.txt result: True
+test: random_21.txt result: True
+test: random_09.txt result: True
+test: killer_14.txt result: True
+test: killer_00.txt result: True
+test: hand_09.txt result: True
+test: killer_04.txt result: True
+test: killer_10.txt result: True
+test: random_25.txt result: True
+test: random_19.txt result: True
+test: random_18.txt result: True
+test: random_24.txt result: True
+test: killer_11.txt result: True
+test: killer_05.txt result: True
+test: hand_08.txt result: True
+test: killer_13.txt result: True
+test: killer_07.txt result: True
+test: killer_06.txt result: True
+test: killer_12.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc248_a code: 45497568_faulty
+task abc248_a code: 45497568_faulty
+test: random_02.txt result: True
+test: random_03.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: hand_00.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: hand_01.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc248_a code: 45470045_faulty
+task abc248_a code: 45470045_faulty
+test: random_02.txt result: True
+test: random_03.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: hand_00.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: hand_01.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc223_a code: 45815037_faulty
+task abc223_a code: 45815037_faulty
+test: sample_02.txt result: False
+test: case_09.txt result: True
+test: case_08.txt result: True
+test: sample_01.txt result: True
+test: sample_00.txt result: True
+test: case_06.txt result: False
+test: case_07.txt result: True
+test: case_05.txt result: True
+test: case_04.txt result: False
+test: case_10.txt result: False
+test: case_00.txt result: True
+test: case_01.txt result: True
+test: case_03.txt result: True
+test: case_02.txt result: True
+pass rate: 0.7142857142857143
+--------------------------------------------------
+start task abc223_a code: 45714918_faulty
+task abc223_a code: 45714918_faulty
+test: sample_02.txt result: True
+test: case_09.txt result: True
+test: case_08.txt result: True
+test: sample_01.txt result: True
+test: sample_00.txt result: True
+test: case_06.txt result: True
+test: case_07.txt result: True
+test: case_05.txt result: True
+test: case_04.txt result: True
+test: case_10.txt result: True
+test: case_00.txt result: True
+test: case_01.txt result: True
+test: case_03.txt result: True
+test: case_02.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc223_a code: 45813374_faulty
+task abc223_a code: 45813374_faulty
+test: sample_02.txt result: True
+test: case_09.txt result: True
+test: case_08.txt result: True
+test: sample_01.txt result: True
+test: sample_00.txt result: True
+test: case_06.txt result: True
+test: case_07.txt result: True
+test: case_05.txt result: True
+test: case_04.txt result: True
+test: case_10.txt result: True
+test: case_00.txt result: True
+test: case_01.txt result: True
+test: case_03.txt result: True
+test: case_02.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc304_b code: 45577481_faulty
+task abc304_b code: 45577481_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample03.txt result: True
+test: sample02.txt result: True
+test: testcase09.txt result: True
+test: testcase08.txt result: True
+test: testcase05.txt result: True
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: True
+test: testcase13.txt result: True
+test: testcase17.txt result: False
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: True
+test: testcase00.txt result: False
+test: testcase14.txt result: True
+test: testcase15.txt result: True
+test: testcase01.txt result: True
+pass rate: 0.9090909090909091
+--------------------------------------------------
+start task abc304_b code: 45808253_faulty
+task abc304_b code: 45808253_faulty
+test: sample00.txt result: False
+test: sample01.txt result: True
+test: sample03.txt result: True
+test: sample02.txt result: True
+test: testcase09.txt result: True
+test: testcase08.txt result: True
+test: testcase05.txt result: True
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: True
+test: testcase13.txt result: True
+test: testcase17.txt result: False
+test: testcase03.txt result: False
+test: testcase02.txt result: True
+test: testcase16.txt result: False
+test: testcase00.txt result: False
+test: testcase14.txt result: False
+test: testcase15.txt result: False
+test: testcase01.txt result: True
+pass rate: 0.6818181818181818
+--------------------------------------------------
+start task abc304_b code: 45336297_faulty
+task abc304_b code: 45336297_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample03.txt result: True
+test: sample02.txt result: True
+test: testcase09.txt result: True
+test: testcase08.txt result: True
+test: testcase05.txt result: False
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: True
+test: testcase13.txt result: False
+test: testcase17.txt result: True
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: False
+test: testcase00.txt result: True
+test: testcase14.txt result: True
+test: testcase15.txt result: True
+test: testcase01.txt result: True
+pass rate: 0.8636363636363636
+--------------------------------------------------
+start task abc304_b code: 46153900_faulty
+task abc304_b code: 46153900_faulty
+test: sample00.txt result: True
+test: sample01.txt result: False
+test: sample03.txt result: False
+test: sample02.txt result: False
+test: testcase09.txt result: False
+test: testcase08.txt result: True
+test: testcase05.txt result: False
+test: testcase11.txt result: True
+test: testcase10.txt result: False
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: False
+test: testcase07.txt result: True
+test: testcase13.txt result: False
+test: testcase17.txt result: False
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: False
+test: testcase00.txt result: False
+test: testcase14.txt result: False
+test: testcase15.txt result: False
+test: testcase01.txt result: True
+pass rate: 0.4090909090909091
+--------------------------------------------------
+start task abc304_b code: 45306152_faulty
+task abc304_b code: 45306152_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample03.txt result: False
+test: sample02.txt result: False
+test: testcase09.txt result: True
+test: testcase08.txt result: False
+test: testcase05.txt result: False
+test: testcase11.txt result: False
+test: testcase10.txt result: False
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: False
+test: testcase07.txt result: False
+test: testcase13.txt result: True
+test: testcase17.txt result: False
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: False
+test: testcase00.txt result: False
+test: testcase14.txt result: False
+test: testcase15.txt result: False
+test: testcase01.txt result: True
+pass rate: 0.4090909090909091
+--------------------------------------------------
+start task abc304_b code: 46194774_faulty
+task abc304_b code: 46194774_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample03.txt result: True
+test: sample02.txt result: True
+test: testcase09.txt result: True
+test: testcase08.txt result: False
+test: testcase05.txt result: True
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: True
+test: testcase13.txt result: True
+test: testcase17.txt result: False
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: True
+test: testcase00.txt result: False
+test: testcase14.txt result: True
+test: testcase15.txt result: True
+test: testcase01.txt result: True
+pass rate: 0.8636363636363636
+--------------------------------------------------
+start task abc298_e code: 46008577_faulty
+task abc298_e code: 46008577_faulty
+test: sample00.txt result: True
+test: sample01.txt result: False
+test: sample02.txt result: False
+test: testcase24.txt result: False
+test: testcase18.txt result: True
+test: testcase19.txt result: False
+test: testcase25.txt result: False
+test: testcase22.txt result: False
+test: testcase23.txt result: True
+test: testcase09.txt result: False
+test: testcase21.txt result: False
+test: testcase20.txt result: False
+test: testcase08.txt result: True
+test: testcase05.txt result: True
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: False
+test: testcase07.txt result: True
+test: testcase13.txt result: False
+test: testcase17.txt result: True
+test: testcase03.txt result: False
+test: testcase02.txt result: True
+test: testcase16.txt result: True
+test: testcase00.txt result: False
+test: testcase14.txt result: False
+test: testcase15.txt result: False
+test: testcase01.txt result: True
+pass rate: 0.4827586206896552
+--------------------------------------------------
+start task abc235_c code: 46176667_faulty
+task abc235_c code: 46176667_faulty
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc277_a code: 45949578_faulty
+task abc277_a code: 45949578_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: example2.txt result: True
+test: testcase3.txt result: True
+test: testcase2.txt result: True
+test: testcase0.txt result: True
+test: testcase1.txt result: True
+test: testcase5.txt result: True
+test: testcase4.txt result: True
+test: testcase6.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc277_a code: 45114990_faulty
+task abc277_a code: 45114990_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: example2.txt result: True
+test: testcase3.txt result: True
+test: testcase2.txt result: True
+test: testcase0.txt result: True
+test: testcase1.txt result: True
+test: testcase5.txt result: True
+test: testcase4.txt result: True
+test: testcase6.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc298_b code: 45491531_faulty
+task abc298_b code: 45491531_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample02.txt result: True
+test: testcase18.txt result: True
+test: testcase19.txt result: True
+test: testcase09.txt result: True
+test: testcase21.txt result: True
+test: testcase20.txt result: True
+test: testcase08.txt result: True
+test: testcase05.txt result: True
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: True
+test: testcase13.txt result: True
+test: testcase17.txt result: True
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: True
+test: testcase00.txt result: True
+test: testcase14.txt result: True
+test: testcase15.txt result: True
+test: testcase01.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc298_b code: 45279577_faulty
+task abc298_b code: 45279577_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample02.txt result: True
+test: testcase18.txt result: True
+test: testcase19.txt result: True
+test: testcase09.txt result: True
+test: testcase21.txt result: True
+test: testcase20.txt result: True
+test: testcase08.txt result: True
+test: testcase05.txt result: False
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: False
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: True
+test: testcase13.txt result: True
+test: testcase17.txt result: True
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: True
+test: testcase00.txt result: True
+test: testcase14.txt result: True
+test: testcase15.txt result: True
+test: testcase01.txt result: True
+pass rate: 0.92
+--------------------------------------------------
+start task abc298_b code: 45996525_faulty
+task abc298_b code: 45996525_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample02.txt result: True
+test: testcase18.txt result: True
+test: testcase19.txt result: True
+test: testcase09.txt result: True
+test: testcase21.txt result: True
+test: testcase20.txt result: True
+test: testcase08.txt result: True
+test: testcase05.txt result: True
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: True
+test: testcase13.txt result: True
+test: testcase17.txt result: True
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: True
+test: testcase00.txt result: True
+test: testcase14.txt result: True
+test: testcase15.txt result: True
+test: testcase01.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc298_b code: 45483068_faulty
+task abc298_b code: 45483068_faulty
+test: sample00.txt result: True
+test: sample01.txt result: True
+test: sample02.txt result: True
+test: testcase18.txt result: True
+test: testcase19.txt result: True
+test: testcase09.txt result: True
+test: testcase21.txt result: True
+test: testcase20.txt result: True
+test: testcase08.txt result: True
+test: testcase05.txt result: False
+test: testcase11.txt result: True
+test: testcase10.txt result: True
+test: testcase04.txt result: True
+test: testcase12.txt result: True
+test: testcase06.txt result: True
+test: testcase07.txt result: False
+test: testcase13.txt result: True
+test: testcase17.txt result: True
+test: testcase03.txt result: True
+test: testcase02.txt result: True
+test: testcase16.txt result: True
+test: testcase00.txt result: True
+test: testcase14.txt result: True
+test: testcase15.txt result: True
+test: testcase01.txt result: True
+pass rate: 0.92
+--------------------------------------------------
+start task abc235_d code: 44415594_faulty
+task abc235_d code: 44415594_faulty
+test: 02_a_eq_3_02.txt result: False
+test: 02_a_eq_3_01.txt result: True
+test: 02_a_eq_3_00.txt result: True
+test: 04_max_00.txt result: True
+test: 99_after_contest_00.txt result: True
+test: 00_sample_03.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 03_random_00.txt result: True
+test: 01_a_eq_2_05.txt result: True
+test: 01_a_eq_2_04.txt result: False
+test: 03_random_01.txt result: True
+test: 03_random_03.txt result: True
+test: 05_min_00.txt result: True
+test: 03_random_02.txt result: True
+test: 01_a_eq_2_03.txt result: True
+test: 01_a_eq_2_02.txt result: True
+test: 01_a_eq_2_00.txt result: True
+test: 01_a_eq_2_01.txt result: True
+pass rate: 0.9
+--------------------------------------------------
+start task abc235_d code: 45465231_faulty
+task abc235_d code: 45465231_faulty
+test: 02_a_eq_3_02.txt result: False
+test: 02_a_eq_3_01.txt result: False
+test: 02_a_eq_3_00.txt result: True
+test: 04_max_00.txt result: False
+test: 99_after_contest_00.txt result: False
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: True
+test: 03_random_00.txt result: False
+test: 01_a_eq_2_05.txt result: False
+test: 01_a_eq_2_04.txt result: False
+test: 03_random_01.txt result: True
+test: 03_random_03.txt result: False
+test: 05_min_00.txt result: True
+test: 03_random_02.txt result: False
+test: 01_a_eq_2_03.txt result: True
+test: 01_a_eq_2_02.txt result: False
+test: 01_a_eq_2_00.txt result: False
+test: 01_a_eq_2_01.txt result: True
+pass rate: 0.3
+--------------------------------------------------
+start task abc235_d code: 44598432_faulty
+task abc235_d code: 44598432_faulty
+test: 02_a_eq_3_02.txt result: False
+test: 02_a_eq_3_01.txt result: False
+test: 02_a_eq_3_00.txt result: True
+test: 04_max_00.txt result: False
+test: 99_after_contest_00.txt result: False
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 03_random_00.txt result: False
+test: 01_a_eq_2_05.txt result: True
+test: 01_a_eq_2_04.txt result: False
+test: 03_random_01.txt result: False
+test: 03_random_03.txt result: True
+test: 05_min_00.txt result: False
+test: 03_random_02.txt result: False
+test: 01_a_eq_2_03.txt result: False
+test: 01_a_eq_2_02.txt result: False
+test: 01_a_eq_2_00.txt result: False
+test: 01_a_eq_2_01.txt result: False
+pass rate: 0.15
+--------------------------------------------------
+start task abc235_d code: 46231153_faulty
+task abc235_d code: 46231153_faulty
+test: 02_a_eq_3_02.txt result: True
+test: 02_a_eq_3_01.txt result: False
+test: 02_a_eq_3_00.txt result: True
+test: 04_max_00.txt result: True
+test: 99_after_contest_00.txt result: True
+test: 00_sample_03.txt result: True
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 03_random_00.txt result: True
+test: 01_a_eq_2_05.txt result: True
+test: 01_a_eq_2_04.txt result: True
+test: 03_random_01.txt result: True
+test: 03_random_03.txt result: False
+test: 05_min_00.txt result: True
+test: 03_random_02.txt result: True
+test: 01_a_eq_2_03.txt result: True
+test: 01_a_eq_2_02.txt result: True
+test: 01_a_eq_2_00.txt result: False
+test: 01_a_eq_2_01.txt result: False
+pass rate: 0.65
+--------------------------------------------------
+start task abc310_c code: 45695385_faulty
+task abc310_c code: 45695385_faulty
+test: example0.txt result: False
+test: 017.txt result: False
+test: 016.txt result: False
+test: 014.txt result: False
+test: 000.txt result: False
+test: 001.txt result: False
+test: 015.txt result: False
+test: 006.txt result: False
+test: 007.txt result: False
+test: 021.txt result: False
+test: 008.txt result: False
+test: 020.txt result: False
+test: 018.txt result: False
+test: 019.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc310_c code: 45952581_faulty
+task abc310_c code: 45952581_faulty
+test: example0.txt result: True
+test: 017.txt result: True
+test: 016.txt result: True
+test: 014.txt result: True
+test: 000.txt result: True
+test: 001.txt result: True
+test: 015.txt result: True
+test: 006.txt result: True
+test: 007.txt result: True
+test: 021.txt result: True
+test: 008.txt result: True
+test: 020.txt result: True
+test: 018.txt result: True
+test: 019.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_d code: 53176077_faulty
+task abc310_d code: 53176077_faulty
+test: 01_random_16.txt result: True
+test: 03_small_48.txt result: True
+test: 01_random_17.txt result: False
+test: 01_random_15.txt result: True
+test: 01_random_14.txt result: True
+test: 01_random_04.txt result: False
+test: 01_random_10.txt result: False
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_13.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_28.txt result: True
+test: 02_handmade_29.txt result: True
+test: 03_small_38.txt result: True
+test: 03_small_39.txt result: False
+test: 02_handmade_22.txt result: True
+test: 03_small_37.txt result: True
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: True
+test: 03_small_36.txt result: True
+test: 02_handmade_23.txt result: True
+test: 02_handmade_21.txt result: True
+test: 03_small_34.txt result: False
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 03_small_35.txt result: True
+test: 02_handmade_20.txt result: True
+test: 02_handmade_18.txt result: True
+test: 02_handmade_24.txt result: True
+test: 02_handmade_30.txt result: True
+test: 02_handmade_31.txt result: True
+test: 02_handmade_25.txt result: True
+test: 02_handmade_19.txt result: True
+test: 03_small_32.txt result: True
+test: 02_handmade_27.txt result: True
+test: 02_handmade_26.txt result: True
+test: 03_small_33.txt result: True
+test: 03_small_40.txt result: True
+test: 03_small_41.txt result: True
+test: 01_random_08.txt result: False
+test: 03_small_43.txt result: False
+test: 03_small_42.txt result: False
+test: 01_random_09.txt result: True
+test: 03_small_46.txt result: True
+test: 03_small_47.txt result: True
+test: 03_small_45.txt result: True
+test: 03_small_44.txt result: False
+pass rate: 0.7959183673469388
+--------------------------------------------------
+start task abc310_d code: 50903679_faulty
+task abc310_d code: 50903679_faulty
+test: 01_random_16.txt result: True
+test: 03_small_48.txt result: True
+test: 01_random_17.txt result: True
+test: 01_random_15.txt result: True
+test: 01_random_14.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: False
+test: 01_random_11.txt result: False
+test: 01_random_05.txt result: True
+test: 01_random_13.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 02_handmade_28.txt result: True
+test: 02_handmade_29.txt result: True
+test: 03_small_38.txt result: True
+test: 03_small_39.txt result: True
+test: 02_handmade_22.txt result: True
+test: 03_small_37.txt result: False
+test: 00_sample_03.txt result: True
+test: 00_sample_02.txt result: True
+test: 03_small_36.txt result: True
+test: 02_handmade_23.txt result: True
+test: 02_handmade_21.txt result: True
+test: 03_small_34.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 03_small_35.txt result: True
+test: 02_handmade_20.txt result: True
+test: 02_handmade_18.txt result: True
+test: 02_handmade_24.txt result: True
+test: 02_handmade_30.txt result: True
+test: 02_handmade_31.txt result: True
+test: 02_handmade_25.txt result: True
+test: 02_handmade_19.txt result: True
+test: 03_small_32.txt result: True
+test: 02_handmade_27.txt result: True
+test: 02_handmade_26.txt result: True
+test: 03_small_33.txt result: True
+test: 03_small_40.txt result: True
+test: 03_small_41.txt result: True
+test: 01_random_08.txt result: True
+test: 03_small_43.txt result: True
+test: 03_small_42.txt result: True
+test: 01_random_09.txt result: True
+test: 03_small_46.txt result: True
+test: 03_small_47.txt result: True
+test: 03_small_45.txt result: True
+test: 03_small_44.txt result: True
+pass rate: 0.9387755102040817
+--------------------------------------------------
+start task abc310_b code: 46010800_faulty
+task abc310_b code: 46010800_faulty
+test: 02_corner_16.txt result: True
+test: 02_corner_17.txt result: True
+test: 01_random_03.txt result: True
+test: 02_corner_15.txt result: True
+test: 01_random_14.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_13.txt result: False
+test: 01_random_07.txt result: False
+test: 01_random_06.txt result: False
+test: 01_random_12.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: False
+test: 02_corner_18.txt result: False
+pass rate: 0.7368421052631579
+--------------------------------------------------
+start task abc310_b code: 45545558_faulty
+task abc310_b code: 45545558_faulty
+test: 02_corner_16.txt result: True
+test: 02_corner_17.txt result: True
+test: 01_random_03.txt result: True
+test: 02_corner_15.txt result: True
+test: 01_random_14.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_13.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+test: 02_corner_18.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_b code: 45953433_faulty
+task abc310_b code: 45953433_faulty
+test: 02_corner_16.txt result: True
+test: 02_corner_17.txt result: True
+test: 01_random_03.txt result: True
+test: 02_corner_15.txt result: True
+test: 01_random_14.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_13.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+test: 02_corner_18.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_b code: 45742461_faulty
+task abc310_b code: 45742461_faulty
+test: 02_corner_16.txt result: True
+test: 02_corner_17.txt result: True
+test: 01_random_03.txt result: True
+test: 02_corner_15.txt result: True
+test: 01_random_14.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_13.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+test: 02_corner_18.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_b code: 45952354_faulty
+task abc310_b code: 45952354_faulty
+test: 02_corner_16.txt result: True
+test: 02_corner_17.txt result: True
+test: 01_random_03.txt result: False
+test: 02_corner_15.txt result: True
+test: 01_random_14.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_13.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+test: 02_corner_18.txt result: True
+pass rate: 0.9473684210526315
+--------------------------------------------------
+start task abc310_b code: 46023032_faulty
+task abc310_b code: 46023032_faulty
+test: 02_corner_16.txt result: True
+test: 02_corner_17.txt result: True
+test: 01_random_03.txt result: False
+test: 02_corner_15.txt result: True
+test: 01_random_14.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_13.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 01_random_12.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+test: 02_corner_18.txt result: True
+pass rate: 0.9473684210526315
+--------------------------------------------------
+start task abc307_c code: 46162555_faulty
+task abc307_c code: 46162555_faulty
+test: random2_02.txt result: True
+test: random2_03.txt result: True
+test: random2_01.txt result: True
+test: random2_00.txt result: True
+test: random2_04.txt result: True
+test: random2_05.txt result: True
+test: random2_07.txt result: True
+test: random2_06.txt result: True
+test: hand_06.txt result: True
+test: random_02.txt result: True
+test: random_03.txt result: True
+test: hand_07.txt result: True
+test: hand_05.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: hand_04.txt result: True
+test: hand_00.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: hand_01.txt result: True
+test: hand_03.txt result: True
+test: random_07.txt result: True
+test: random_06.txt result: True
+test: hand_02.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+test: example_02.txt result: True
+test: example_03.txt result: True
+test: random2_08.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+test: random2_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc307_d code: 45471496_faulty
+task abc307_d code: 45471496_faulty
+test: sample_04.txt result: True
+test: sample_02.txt result: True
+test: sample_03.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: False
+test: random_17.txt result: True
+test: random_03.txt result: True
+test: random_29.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_14.txt result: True
+test: random_28.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: False
+test: random_38.txt result: True
+test: random_39.txt result: False
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: False
+test: random_06.txt result: True
+test: random_23.txt result: False
+test: random_37.txt result: True
+test: random_36.txt result: True
+test: random_22.txt result: False
+test: random_08.txt result: True
+test: random_34.txt result: True
+test: random_20.txt result: False
+test: random_21.txt result: False
+test: random_35.txt result: True
+test: random_09.txt result: True
+test: random_31.txt result: False
+test: random_25.txt result: True
+test: random_19.txt result: True
+test: random_18.txt result: True
+test: random_24.txt result: False
+test: random_30.txt result: True
+test: random_26.txt result: False
+test: random_32.txt result: True
+test: random_33.txt result: True
+test: random_27.txt result: False
+test: random_40.txt result: True
+test: random_41.txt result: True
+test: random_43.txt result: True
+test: random_42.txt result: True
+test: random_44.txt result: True
+pass rate: 0.75
+--------------------------------------------------
+start task abc307_d code: 45446603_faulty
+task abc307_d code: 45446603_faulty
+test: sample_04.txt result: False
+test: sample_02.txt result: False
+test: sample_03.txt result: True
+test: sample_01.txt result: False
+test: random_02.txt result: False
+test: random_16.txt result: False
+test: random_17.txt result: True
+test: random_03.txt result: True
+test: random_29.txt result: False
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_14.txt result: True
+test: random_28.txt result: False
+test: random_10.txt result: False
+test: random_04.txt result: False
+test: random_38.txt result: False
+test: random_39.txt result: False
+test: random_05.txt result: False
+test: random_11.txt result: False
+test: random_07.txt result: False
+test: random_13.txt result: False
+test: random_12.txt result: False
+test: random_06.txt result: False
+test: random_23.txt result: False
+test: random_37.txt result: False
+test: random_36.txt result: False
+test: random_22.txt result: False
+test: random_08.txt result: False
+test: random_34.txt result: False
+test: random_20.txt result: False
+test: random_21.txt result: True
+test: random_35.txt result: True
+test: random_09.txt result: True
+test: random_31.txt result: False
+test: random_25.txt result: False
+test: random_19.txt result: True
+test: random_18.txt result: True
+test: random_24.txt result: False
+test: random_30.txt result: False
+test: random_26.txt result: False
+test: random_32.txt result: True
+test: random_33.txt result: False
+test: random_27.txt result: False
+test: random_40.txt result: False
+test: random_41.txt result: False
+test: random_43.txt result: True
+test: random_42.txt result: True
+test: random_44.txt result: True
+pass rate: 0.3125
+--------------------------------------------------
+start task abc303_b code: 45560009_faulty
+task abc303_b code: 45560009_faulty
+test: 02_rnd_02.txt result: False
+test: 02_rnd_00.txt result: False
+test: 02_rnd_01.txt result: False
+test: 01_small_04.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 01_small_02.txt result: False
+test: 01_small_03.txt result: False
+test: 01_small_01.txt result: False
+test: 01_small_00.txt result: False
+test: 03_same_01.txt result: False
+test: 03_same_00.txt result: False
+test: 03_same_02.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc309_b code: 45722179_faulty
+task abc309_b code: 45722179_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_12.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc301_a code: 45347926_faulty
+task abc301_a code: 45347926_faulty
+test: 01_random_02.txt result: False
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: False
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: False
+test: 01_random_08.txt result: False
+test: 01_random_09.txt result: True
+pass rate: 0.7333333333333333
+--------------------------------------------------
+start task abc301_a code: 45503092_faulty
+task abc301_a code: 45503092_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_10.txt result: True
+test: 01_random_11.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: False
+test: 01_random_08.txt result: False
+test: 01_random_09.txt result: True
+pass rate: 0.8666666666666667
+--------------------------------------------------
+start task abc301_a code: 45433034_faulty
+task abc301_a code: 45433034_faulty
+test: 01_random_02.txt result: False
+test: 01_random_03.txt result: False
+test: 01_random_01.txt result: False
+test: 01_random_00.txt result: False
+test: 01_random_04.txt result: False
+test: 01_random_10.txt result: False
+test: 01_random_11.txt result: False
+test: 01_random_05.txt result: False
+test: 01_random_07.txt result: False
+test: 01_random_06.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 01_random_08.txt result: False
+test: 01_random_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc301_a code: 45927126_faulty
+task abc301_a code: 45927126_faulty
+test: 01_random_02.txt result: False
+test: 01_random_03.txt result: False
+test: 01_random_01.txt result: False
+test: 01_random_00.txt result: False
+test: 01_random_04.txt result: False
+test: 01_random_10.txt result: False
+test: 01_random_11.txt result: False
+test: 01_random_05.txt result: False
+test: 01_random_07.txt result: False
+test: 01_random_06.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 01_random_08.txt result: False
+test: 01_random_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc305_a code: 45768286_faulty
+task abc305_a code: 45768286_faulty
+test: 01_random_03.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc305_a code: 45435091_faulty
+task abc305_a code: 45435091_faulty
+test: 01_random_03.txt result: False
+test: 01_random_04.txt result: False
+test: 01_random_05.txt result: False
+test: 01_random_07.txt result: False
+test: 01_random_06.txt result: False
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 01_random_08.txt result: False
+test: 01_random_09.txt result: False
+pass rate: 0.1
+--------------------------------------------------
+start task abc305_a code: 46193789_faulty
+task abc305_a code: 46193789_faulty
+test: 01_random_03.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc305_a code: 45542217_faulty
+task abc305_a code: 45542217_faulty
+test: 01_random_03.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: False
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: False
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: False
+pass rate: 0.7
+--------------------------------------------------
+start task abc305_a code: 45785540_faulty
+task abc305_a code: 45785540_faulty
+test: 01_random_03.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc305_a code: 46173794_faulty
+task abc305_a code: 46173794_faulty
+test: 01_random_03.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc307_e code: 46214607_faulty
+task abc307_e code: 46214607_faulty
+test: sample_02.txt result: False
+test: sample_03.txt result: False
+test: sample_01.txt result: False
+test: random_02.txt result: False
+test: random_16.txt result: False
+test: random_17.txt result: False
+test: random_03.txt result: False
+test: random_15.txt result: False
+test: random_01.txt result: False
+test: random_14.txt result: False
+test: random_10.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_11.txt result: False
+test: hand_01.txt result: False
+test: random_07.txt result: False
+test: random_13.txt result: False
+test: random_12.txt result: False
+test: random_06.txt result: False
+test: hand_02.txt result: False
+test: random_08.txt result: False
+test: random_09.txt result: False
+test: random_19.txt result: False
+test: random_18.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc307_b code: 45786032_faulty
+task abc307_b code: 45786032_faulty
+test: hand_06.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_17.txt result: True
+test: random_03.txt result: True
+test: hand_05.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: random_14.txt result: True
+test: hand_04.txt result: True
+test: hand_00.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: hand_01.txt result: True
+test: hand_03.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: hand_02.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+test: random_19.txt result: True
+test: random_18.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc307_b code: 45983540_faulty
+task abc307_b code: 45983540_faulty
+test: hand_06.txt result: True
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_17.txt result: True
+test: random_03.txt result: True
+test: hand_05.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: random_14.txt result: True
+test: hand_04.txt result: True
+test: hand_00.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: hand_01.txt result: True
+test: hand_03.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: hand_02.txt result: True
+test: random_08.txt result: True
+test: random_09.txt result: True
+test: random_19.txt result: True
+test: random_18.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc309_c code: 45772102_faulty
+task abc309_c code: 45772102_faulty
+test: 04_hand_00.txt result: True
+test: 04_hand_01.txt result: False
+test: 01_srnd_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 01_srnd_00.txt result: True
+test: 01_srnd_02.txt result: True
+test: 00_sample_00.txt result: False
+test: 01_srnd_03.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_srnd_04.txt result: True
+test: 01_srnd_05.txt result: True
+pass rate: 0.8181818181818182
+--------------------------------------------------
+start task abc309_c code: 45738581_faulty
+task abc309_c code: 45738581_faulty
+test: 04_hand_00.txt result: False
+test: 04_hand_01.txt result: True
+test: 01_srnd_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 01_srnd_00.txt result: True
+test: 01_srnd_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 01_srnd_03.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_srnd_04.txt result: True
+test: 01_srnd_05.txt result: True
+pass rate: 0.9090909090909091
+--------------------------------------------------
+start task abc309_c code: 45895898_faulty
+task abc309_c code: 45895898_faulty
+test: 04_hand_00.txt result: False
+test: 04_hand_01.txt result: False
+test: 01_srnd_01.txt result: False
+test: 00_sample_02.txt result: False
+test: 01_srnd_00.txt result: False
+test: 01_srnd_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 01_srnd_03.txt result: False
+test: 00_sample_01.txt result: False
+test: 01_srnd_04.txt result: False
+test: 01_srnd_05.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc309_c code: 46182298_faulty
+task abc309_c code: 46182298_faulty
+test: 04_hand_00.txt result: True
+test: 04_hand_01.txt result: True
+test: 01_srnd_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 01_srnd_00.txt result: True
+test: 01_srnd_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 01_srnd_03.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_srnd_04.txt result: True
+test: 01_srnd_05.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc309_d code: 46051654_faulty
+task abc309_d code: 46051654_faulty
+test: 01_small_08.txt result: True
+test: 01_small_09.txt result: True
+test: 01_small_04.txt result: True
+test: 01_small_10.txt result: True
+test: 01_small_11.txt result: True
+test: 01_small_05.txt result: True
+test: 00_sample_00.txt result: True
+test: 01_small_07.txt result: True
+test: 01_small_06.txt result: True
+test: 01_small_12.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_small_02.txt result: True
+test: 01_small_03.txt result: True
+test: 01_small_01.txt result: True
+test: 01_small_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc303_c code: 46045444_faulty
+task abc303_c code: 46045444_faulty
+test: 01_test_04.txt result: False
+test: 01_test_10.txt result: False
+test: 01_test_11.txt result: False
+test: 01_test_05.txt result: False
+test: 01_test_13.txt result: False
+test: 01_test_07.txt result: False
+test: 01_test_06.txt result: False
+test: 01_test_12.txt result: False
+test: 01_test_16.txt result: False
+test: 01_test_17.txt result: False
+test: 01_test_15.txt result: False
+test: 01_test_14.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_01.txt result: False
+test: 01_test_18.txt result: False
+test: 01_test_08.txt result: False
+test: 01_test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc303_c code: 45491344_faulty
+task abc303_c code: 45491344_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_11.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_13.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_12.txt result: True
+test: 01_test_16.txt result: True
+test: 01_test_17.txt result: True
+test: 01_test_15.txt result: True
+test: 01_test_14.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_18.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc303_c code: 45578518_faulty
+task abc303_c code: 45578518_faulty
+test: 01_test_04.txt result: False
+test: 01_test_10.txt result: False
+test: 01_test_11.txt result: False
+test: 01_test_05.txt result: False
+test: 01_test_13.txt result: False
+test: 01_test_07.txt result: False
+test: 01_test_06.txt result: False
+test: 01_test_12.txt result: False
+test: 01_test_16.txt result: False
+test: 01_test_17.txt result: False
+test: 01_test_15.txt result: False
+test: 01_test_14.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_01.txt result: False
+test: 01_test_18.txt result: False
+test: 01_test_08.txt result: False
+test: 01_test_09.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc303_c code: 46147196_faulty
+task abc303_c code: 46147196_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_11.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_13.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_12.txt result: True
+test: 01_test_16.txt result: True
+test: 01_test_17.txt result: True
+test: 01_test_15.txt result: True
+test: 01_test_14.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_18.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc303_d code: 45489398_faulty
+task abc303_d code: 45489398_faulty
+test: 03_max_03.txt result: False
+test: 03_max_02.txt result: False
+test: 03_max_00.txt result: False
+test: 03_max_01.txt result: False
+test: 02_rnd_03.txt result: False
+test: 02_rnd_02.txt result: True
+test: 02_rnd_00.txt result: True
+test: 02_rnd_01.txt result: True
+test: 02_rnd_05.txt result: False
+test: 04_border_00.txt result: False
+test: 04_border_01.txt result: False
+test: 02_rnd_04.txt result: False
+test: 02_rnd_06.txt result: True
+test: 04_border_03.txt result: True
+test: 01_small_08.txt result: False
+test: 01_small_09.txt result: True
+test: 04_border_02.txt result: True
+test: 02_rnd_07.txt result: False
+test: 01_small_04.txt result: True
+test: 01_small_05.txt result: True
+test: 00_sample_02.txt result: True
+test: 02_rnd_09.txt result: True
+test: 00_sample_00.txt result: True
+test: 01_small_07.txt result: False
+test: 01_small_06.txt result: True
+test: 00_sample_01.txt result: True
+test: 02_rnd_08.txt result: True
+test: 01_small_02.txt result: True
+test: 01_small_03.txt result: True
+test: 01_small_01.txt result: True
+test: 01_small_00.txt result: True
+pass rate: 0.6129032258064516
+--------------------------------------------------
+start task abc303_d code: 45744343_faulty
+task abc303_d code: 45744343_faulty
+test: 03_max_03.txt result: True
+test: 03_max_02.txt result: True
+test: 03_max_00.txt result: True
+test: 03_max_01.txt result: True
+test: 02_rnd_03.txt result: False
+test: 02_rnd_02.txt result: False
+test: 02_rnd_00.txt result: False
+test: 02_rnd_01.txt result: False
+test: 02_rnd_05.txt result: False
+test: 04_border_00.txt result: False
+test: 04_border_01.txt result: False
+test: 02_rnd_04.txt result: False
+test: 02_rnd_06.txt result: False
+test: 04_border_03.txt result: True
+test: 01_small_08.txt result: False
+test: 01_small_09.txt result: False
+test: 04_border_02.txt result: False
+test: 02_rnd_07.txt result: True
+test: 01_small_04.txt result: False
+test: 01_small_05.txt result: False
+test: 00_sample_02.txt result: False
+test: 02_rnd_09.txt result: False
+test: 00_sample_00.txt result: True
+test: 01_small_07.txt result: False
+test: 01_small_06.txt result: False
+test: 00_sample_01.txt result: True
+test: 02_rnd_08.txt result: True
+test: 01_small_02.txt result: False
+test: 01_small_03.txt result: True
+test: 01_small_01.txt result: True
+test: 01_small_00.txt result: True
+pass rate: 0.3870967741935484
+--------------------------------------------------
+start task abc308_b code: 45960039_faulty
+task abc308_b code: 45960039_faulty
+test: 01_test_04.txt result: True
+test: 01_test_10.txt result: True
+test: 01_test_05.txt result: True
+test: 01_test_07.txt result: True
+test: 01_test_06.txt result: True
+test: 01_test_02.txt result: True
+test: 01_test_03.txt result: True
+test: 01_test_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_test_08.txt result: True
+test: 01_test_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc302_b code: 45763953_faulty
+task abc302_b code: 45763953_faulty
+test: random_02.txt result: True
+test: random_16.txt result: True
+test: random_17.txt result: True
+test: random_03.txt result: True
+test: random_29.txt result: True
+test: random_15.txt result: True
+test: random_01.txt result: True
+test: random_00.txt result: True
+test: random_14.txt result: True
+test: random_28.txt result: True
+test: random_10.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_11.txt result: True
+test: random_07.txt result: True
+test: random_13.txt result: True
+test: random_12.txt result: True
+test: random_06.txt result: True
+test: random_23.txt result: True
+test: random_22.txt result: True
+test: random_08.txt result: True
+test: random_20.txt result: True
+test: random_21.txt result: True
+test: random_09.txt result: True
+test: random_25.txt result: True
+test: random_19.txt result: True
+test: random_18.txt result: True
+test: random_24.txt result: True
+test: random_26.txt result: True
+test: random_27.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc306_b code: 45767909_faulty
+task abc306_b code: 45767909_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 02_same_00.txt result: True
+test: 02_same_01.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc306_b code: 45442211_faulty
+task abc306_b code: 45442211_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 02_same_00.txt result: True
+test: 02_same_01.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc306_b code: 45523037_faulty
+task abc306_b code: 45523037_faulty
+test: 01_random_02.txt result: True
+test: 01_random_03.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 01_random_04.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 01_random_06.txt result: True
+test: 02_same_00.txt result: True
+test: 02_same_01.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 01_random_08.txt result: True
+test: 01_random_09.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc304_a code: 45720608_faulty
+task abc304_a code: 45720608_faulty
+test: example1.txt result: False
+test: example0.txt result: False
+test: 003.txt result: False
+test: 002.txt result: False
+test: 000.txt result: False
+test: 001.txt result: False
+test: 011.txt result: False
+test: 005.txt result: False
+test: 004.txt result: False
+test: 010.txt result: False
+test: 006.txt result: False
+test: 007.txt result: False
+test: 009.txt result: False
+test: 008.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc302_c code: 45476546_faulty
+task abc302_c code: 45476546_faulty
+test: test_29.txt result: True
+test: test_15.txt result: True
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_14.txt result: True
+test: test_28.txt result: True
+test: test_02.txt result: True
+test: test_16.txt result: True
+test: test_17.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_13.txt result: True
+test: test_12.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_34.txt result: True
+test: test_20.txt result: True
+test: test_21.txt result: True
+test: test_35.txt result: True
+test: test_09.txt result: True
+test: test_23.txt result: True
+test: test_36.txt result: True
+test: test_22.txt result: True
+test: test_26.txt result: True
+test: test_32.txt result: True
+test: test_33.txt result: True
+test: test_27.txt result: True
+test: test_31.txt result: True
+test: test_25.txt result: True
+test: test_19.txt result: True
+test: test_18.txt result: True
+test: test_24.txt result: True
+test: test_30.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+test: after_contest_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc302_c code: 45989052_faulty
+task abc302_c code: 45989052_faulty
+test: test_29.txt result: True
+test: test_15.txt result: True
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_14.txt result: True
+test: test_28.txt result: True
+test: test_02.txt result: True
+test: test_16.txt result: True
+test: test_17.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_13.txt result: True
+test: test_12.txt result: True
+test: test_06.txt result: True
+test: test_10.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_11.txt result: True
+test: test_08.txt result: True
+test: test_34.txt result: True
+test: test_20.txt result: True
+test: test_21.txt result: True
+test: test_35.txt result: True
+test: test_09.txt result: True
+test: test_23.txt result: True
+test: test_36.txt result: True
+test: test_22.txt result: True
+test: test_26.txt result: True
+test: test_32.txt result: True
+test: test_33.txt result: True
+test: test_27.txt result: True
+test: test_31.txt result: True
+test: test_25.txt result: True
+test: test_19.txt result: True
+test: test_18.txt result: True
+test: test_24.txt result: True
+test: test_30.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+test: after_contest_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc308_d code: 54535139_faulty
+task abc308_d code: 54535139_faulty
+test: 02_random2_07.txt result: True
+test: 02_random2_13.txt result: True
+test: 01_random_02.txt result: True
+test: 03_handmade_04.txt result: True
+test: 01_random_03.txt result: True
+test: 02_random2_12.txt result: False
+test: 02_random2_06.txt result: False
+test: 02_random2_10.txt result: False
+test: 02_random2_04.txt result: True
+test: 01_random_01.txt result: True
+test: 01_random_00.txt result: True
+test: 02_random2_05.txt result: True
+test: 02_random2_11.txt result: True
+test: 01_random_04.txt result: False
+test: 02_random2_15.txt result: True
+test: 02_random2_01.txt result: False
+test: 03_handmade_03.txt result: False
+test: 03_handmade_02.txt result: True
+test: 02_random2_00.txt result: False
+test: 02_random2_14.txt result: True
+test: 01_random_05.txt result: True
+test: 01_random_07.txt result: True
+test: 02_random2_02.txt result: False
+test: 02_random2_16.txt result: True
+test: 03_handmade_00.txt result: True
+test: 03_handmade_01.txt result: True
+test: 02_random2_17.txt result: True
+test: 02_random2_03.txt result: False
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 02_random2_19.txt result: False
+test: 02_random2_18.txt result: True
+test: 02_random2_08.txt result: False
+test: 02_random2_09.txt result: True
+pass rate: 0.6944444444444444
+--------------------------------------------------
+start task abc308_d code: 54718266_faulty
+task abc308_d code: 54718266_faulty
+test: 02_random2_07.txt result: True
+test: 02_random2_13.txt result: True
+test: 01_random_02.txt result: True
+test: 03_handmade_04.txt result: True
+test: 01_random_03.txt result: True
+test: 02_random2_12.txt result: False
+test: 02_random2_06.txt result: False
+test: 02_random2_10.txt result: False
+test: 02_random2_04.txt result: True
+test: 01_random_01.txt result: False
+test: 01_random_00.txt result: True
+test: 02_random2_05.txt result: True
+test: 02_random2_11.txt result: False
+test: 01_random_04.txt result: True
+test: 02_random2_15.txt result: True
+test: 02_random2_01.txt result: False
+test: 03_handmade_03.txt result: False
+test: 03_handmade_02.txt result: True
+test: 02_random2_00.txt result: True
+test: 02_random2_14.txt result: True
+test: 01_random_05.txt result: False
+test: 01_random_07.txt result: False
+test: 02_random2_02.txt result: False
+test: 02_random2_16.txt result: False
+test: 03_handmade_00.txt result: True
+test: 03_handmade_01.txt result: True
+test: 02_random2_17.txt result: False
+test: 02_random2_03.txt result: True
+test: 01_random_06.txt result: True
+test: 00_sample_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: True
+test: 02_random2_19.txt result: False
+test: 02_random2_18.txt result: True
+test: 02_random2_08.txt result: True
+test: 02_random2_09.txt result: True
+pass rate: 0.5833333333333334
+--------------------------------------------------
+start task abc308_c code: 45973622_faulty
+task abc308_c code: 45973622_faulty
+test: 01_test_01.txt result: False
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_01.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc308_c code: 46192638_faulty
+task abc308_c code: 46192638_faulty
+test: 01_test_01.txt result: False
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_01.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc308_c code: 45936707_faulty
+task abc308_c code: 45936707_faulty
+test: 01_test_01.txt result: False
+test: 00_sample_03.txt result: False
+test: 00_sample_02.txt result: False
+test: 00_sample_01.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc310_a code: 46023025_faulty
+task abc310_a code: 46023025_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: 003.txt result: True
+test: 002.txt result: True
+test: 000.txt result: True
+test: 001.txt result: True
+test: 011.txt result: True
+test: 005.txt result: True
+test: 004.txt result: True
+test: 010.txt result: True
+test: 006.txt result: True
+test: 012.txt result: True
+test: 007.txt result: True
+test: 009.txt result: True
+test: 008.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_a code: 45951629_faulty
+task abc310_a code: 45951629_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: 003.txt result: True
+test: 002.txt result: True
+test: 000.txt result: True
+test: 001.txt result: True
+test: 011.txt result: True
+test: 005.txt result: True
+test: 004.txt result: True
+test: 010.txt result: True
+test: 006.txt result: True
+test: 012.txt result: True
+test: 007.txt result: True
+test: 009.txt result: True
+test: 008.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_a code: 46010909_faulty
+task abc310_a code: 46010909_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: 003.txt result: True
+test: 002.txt result: True
+test: 000.txt result: True
+test: 001.txt result: True
+test: 011.txt result: True
+test: 005.txt result: True
+test: 004.txt result: True
+test: 010.txt result: True
+test: 006.txt result: True
+test: 012.txt result: True
+test: 007.txt result: True
+test: 009.txt result: True
+test: 008.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_a code: 45739812_faulty
+task abc310_a code: 45739812_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: 003.txt result: True
+test: 002.txt result: True
+test: 000.txt result: True
+test: 001.txt result: True
+test: 011.txt result: True
+test: 005.txt result: True
+test: 004.txt result: True
+test: 010.txt result: True
+test: 006.txt result: True
+test: 012.txt result: True
+test: 007.txt result: True
+test: 009.txt result: True
+test: 008.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_a code: 45785883_faulty
+task abc310_a code: 45785883_faulty
+test: example1.txt result: True
+test: example0.txt result: True
+test: 003.txt result: True
+test: 002.txt result: True
+test: 000.txt result: True
+test: 001.txt result: True
+test: 011.txt result: True
+test: 005.txt result: True
+test: 004.txt result: True
+test: 010.txt result: True
+test: 006.txt result: True
+test: 012.txt result: True
+test: 007.txt result: True
+test: 009.txt result: True
+test: 008.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc310_f code: 50729164_faulty
+task abc310_f code: 50729164_faulty
+test: example1.txt result: False
+test: example0.txt result: True
+test: 003.txt result: True
+test: 017.txt result: False
+test: 016.txt result: True
+test: 002.txt result: False
+test: 014.txt result: True
+test: 000.txt result: False
+test: 028.txt result: True
+test: 029.txt result: True
+test: 001.txt result: True
+test: 015.txt result: False
+test: 011.txt result: False
+test: 005.txt result: True
+test: 004.txt result: True
+test: 010.txt result: True
+test: 006.txt result: False
+test: 012.txt result: False
+test: 013.txt result: False
+test: 007.txt result: True
+test: 022.txt result: False
+test: 036.txt result: False
+test: 037.txt result: False
+test: 023.txt result: True
+test: 035.txt result: False
+test: 021.txt result: False
+test: 009.txt result: False
+test: 008.txt result: True
+test: 020.txt result: False
+test: 034.txt result: False
+test: 018.txt result: False
+test: 030.txt result: False
+test: 024.txt result: True
+test: 025.txt result: True
+test: 031.txt result: False
+test: 019.txt result: True
+test: 027.txt result: False
+test: 033.txt result: False
+test: 032.txt result: False
+test: 026.txt result: True
+pass rate: 0.425
+--------------------------------------------------
+start task abc309_a code: 45963671_faulty
+task abc309_a code: 45963671_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: False
+test: test_06.txt result: False
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_08.txt result: False
+test: test_09.txt result: False
+test: example_02.txt result: False
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.46153846153846156
+--------------------------------------------------
+start task abc309_a code: 45980846_faulty
+task abc309_a code: 45980846_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc309_a code: 46003315_faulty
+task abc309_a code: 46003315_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc309_a code: 45763717_faulty
+task abc309_a code: 45763717_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: False
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_08.txt result: False
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.8461538461538461
+--------------------------------------------------
+start task abc309_a code: 45775765_faulty
+task abc309_a code: 45775765_faulty
+test: test_01.txt result: False
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: False
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.8461538461538461
+--------------------------------------------------
+start task abc309_a code: 45740476_faulty
+task abc309_a code: 45740476_faulty
+test: test_01.txt result: True
+test: test_00.txt result: False
+test: test_02.txt result: True
+test: test_03.txt result: False
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: False
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.7692307692307693
+--------------------------------------------------
+start task abc309_a code: 45974546_faulty
+task abc309_a code: 45974546_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: False
+test: test_05.txt result: False
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.8461538461538461
+--------------------------------------------------
+start task abc309_a code: 45782370_faulty
+task abc309_a code: 45782370_faulty
+test: test_01.txt result: False
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: False
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: False
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 0.7692307692307693
+--------------------------------------------------
+start task abc309_a code: 46005581_faulty
+task abc309_a code: 46005581_faulty
+test: test_01.txt result: True
+test: test_00.txt result: True
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: True
+test: example_00.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc309_a code: 46161633_faulty
+task abc309_a code: 46161633_faulty
+test: test_01.txt result: True
+test: test_00.txt result: False
+test: test_02.txt result: True
+test: test_03.txt result: True
+test: test_07.txt result: True
+test: test_06.txt result: True
+test: test_04.txt result: True
+test: test_05.txt result: True
+test: test_08.txt result: True
+test: test_09.txt result: True
+test: example_02.txt result: True
+test: example_01.txt result: False
+test: example_00.txt result: True
+pass rate: 0.8461538461538461
+--------------------------------------------------
+start task abc301_b code: 45970658_faulty
+task abc301_b code: 45970658_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: False
+test: random_02.txt result: False
+test: random_03.txt result: False
+test: random_01.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_07.txt result: False
+test: random_06.txt result: False
+test: random_08.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc301_b code: 46199451_faulty
+task abc301_b code: 46199451_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: False
+test: random_02.txt result: False
+test: random_03.txt result: False
+test: random_01.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_07.txt result: False
+test: random_06.txt result: False
+test: random_08.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc301_b code: 45340910_faulty
+task abc301_b code: 45340910_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: False
+test: random_02.txt result: False
+test: random_03.txt result: False
+test: random_01.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_07.txt result: False
+test: random_06.txt result: False
+test: random_08.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc301_e code: 45949713_faulty
+task abc301_e code: 45949713_faulty
+test: 01_random1_08.txt result: True
+test: 01_random1_20.txt result: True
+test: 01_random1_21.txt result: True
+test: 01_random1_09.txt result: False
+test: 02_random2_04.txt result: False
+test: 01_random1_23.txt result: True
+test: 01_random1_22.txt result: True
+test: 02_random2_01.txt result: True
+test: 02_random2_00.txt result: False
+test: 02_random2_02.txt result: False
+test: 01_random1_19.txt result: True
+test: 01_random1_18.txt result: True
+test: 01_random1_24.txt result: False
+test: 02_random2_03.txt result: False
+test: 04_random4_02.txt result: False
+test: 04_random4_03.txt result: True
+test: 04_random4_01.txt result: False
+test: 04_random4_00.txt result: False
+test: 05_handmade_01.txt result: False
+test: 04_random4_04.txt result: False
+test: 04_random4_05.txt result: False
+test: 05_handmade_00.txt result: True
+test: 04_random4_07.txt result: True
+test: 04_random4_06.txt result: False
+test: 03_random3_01.txt result: False
+test: 00_sample_02.txt result: True
+test: 03_random3_00.txt result: True
+test: 03_random3_02.txt result: True
+test: 04_random4_08.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 04_random4_09.txt result: False
+test: 03_random3_03.txt result: True
+test: 01_random1_15.txt result: True
+test: 01_random1_01.txt result: False
+test: 01_random1_00.txt result: True
+test: 01_random1_14.txt result: False
+test: 01_random1_02.txt result: False
+test: 01_random1_16.txt result: True
+test: 01_random1_17.txt result: True
+test: 01_random1_03.txt result: False
+test: 01_random1_07.txt result: True
+test: 01_random1_13.txt result: True
+test: 01_random1_12.txt result: True
+test: 01_random1_06.txt result: True
+test: 01_random1_10.txt result: False
+test: 01_random1_04.txt result: True
+test: 01_random1_05.txt result: True
+test: 01_random1_11.txt result: False
+pass rate: 0.5102040816326531
+--------------------------------------------------
+start task abc301_d code: 45718315_faulty
+task abc301_d code: 45718315_faulty
+test: 02_random2_07.txt result: True
+test: 02_random2_06.txt result: True
+test: 02_random2_04.txt result: True
+test: 02_random2_05.txt result: True
+test: 02_random2_01.txt result: True
+test: 02_random2_00.txt result: True
+test: 02_random2_02.txt result: True
+test: 02_random2_03.txt result: True
+test: 04_random4_02.txt result: False
+test: 04_random4_03.txt result: False
+test: 04_random4_01.txt result: False
+test: 04_random4_00.txt result: False
+test: 04_random4_04.txt result: False
+test: 04_random4_05.txt result: False
+test: 04_random4_07.txt result: False
+test: 04_random4_06.txt result: False
+test: 03_random3_01.txt result: False
+test: 00_sample_02.txt result: True
+test: 03_random3_00.txt result: False
+test: 03_random3_02.txt result: False
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: False
+test: 03_random3_03.txt result: False
+test: 03_random3_07.txt result: False
+test: 03_random3_06.txt result: False
+test: 03_random3_04.txt result: False
+test: 03_random3_05.txt result: False
+test: 01_random1_01.txt result: False
+test: 06_handmade_00.txt result: True
+test: 05_random5_04.txt result: False
+test: 05_random5_05.txt result: False
+test: 06_handmade_01.txt result: False
+test: 01_random1_00.txt result: False
+test: 01_random1_02.txt result: False
+test: 06_handmade_03.txt result: False
+test: 05_random5_07.txt result: False
+test: 05_random5_06.txt result: False
+test: 06_handmade_02.txt result: True
+test: 01_random1_03.txt result: False
+test: 05_random5_02.txt result: False
+test: 05_random5_03.txt result: False
+test: 01_random1_04.txt result: True
+test: 06_handmade_05.txt result: False
+test: 05_random5_01.txt result: False
+test: 05_random5_00.txt result: False
+test: 06_handmade_04.txt result: False
+pass rate: 0.2826086956521739
+--------------------------------------------------
+start task abc301_d code: 45747617_faulty
+task abc301_d code: 45747617_faulty
+test: 02_random2_07.txt result: True
+test: 02_random2_06.txt result: True
+test: 02_random2_04.txt result: True
+test: 02_random2_05.txt result: True
+test: 02_random2_01.txt result: True
+test: 02_random2_00.txt result: True
+test: 02_random2_02.txt result: True
+test: 02_random2_03.txt result: True
+test: 04_random4_02.txt result: False
+test: 04_random4_03.txt result: True
+test: 04_random4_01.txt result: True
+test: 04_random4_00.txt result: True
+test: 04_random4_04.txt result: True
+test: 04_random4_05.txt result: True
+test: 04_random4_07.txt result: True
+test: 04_random4_06.txt result: True
+test: 03_random3_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 03_random3_00.txt result: True
+test: 03_random3_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 03_random3_03.txt result: True
+test: 03_random3_07.txt result: True
+test: 03_random3_06.txt result: True
+test: 03_random3_04.txt result: True
+test: 03_random3_05.txt result: True
+test: 01_random1_01.txt result: True
+test: 06_handmade_00.txt result: True
+test: 05_random5_04.txt result: True
+test: 05_random5_05.txt result: True
+test: 06_handmade_01.txt result: True
+test: 01_random1_00.txt result: True
+test: 01_random1_02.txt result: True
+test: 06_handmade_03.txt result: True
+test: 05_random5_07.txt result: True
+test: 05_random5_06.txt result: True
+test: 06_handmade_02.txt result: True
+test: 01_random1_03.txt result: True
+test: 05_random5_02.txt result: True
+test: 05_random5_03.txt result: True
+test: 01_random1_04.txt result: True
+test: 06_handmade_05.txt result: True
+test: 05_random5_01.txt result: True
+test: 05_random5_00.txt result: True
+test: 06_handmade_04.txt result: True
+pass rate: 0.9782608695652174
+--------------------------------------------------
+start task abc301_d code: 45732372_faulty
+task abc301_d code: 45732372_faulty
+test: 02_random2_07.txt result: False
+test: 02_random2_06.txt result: False
+test: 02_random2_04.txt result: False
+test: 02_random2_05.txt result: False
+test: 02_random2_01.txt result: False
+test: 02_random2_00.txt result: False
+test: 02_random2_02.txt result: False
+test: 02_random2_03.txt result: False
+test: 04_random4_02.txt result: False
+test: 04_random4_03.txt result: True
+test: 04_random4_01.txt result: False
+test: 04_random4_00.txt result: False
+test: 04_random4_04.txt result: False
+test: 04_random4_05.txt result: False
+test: 04_random4_07.txt result: False
+test: 04_random4_06.txt result: False
+test: 03_random3_01.txt result: False
+test: 00_sample_02.txt result: False
+test: 03_random3_00.txt result: True
+test: 03_random3_02.txt result: False
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: False
+test: 03_random3_03.txt result: False
+test: 03_random3_07.txt result: False
+test: 03_random3_06.txt result: False
+test: 03_random3_04.txt result: False
+test: 03_random3_05.txt result: False
+test: 01_random1_01.txt result: False
+test: 06_handmade_00.txt result: True
+test: 05_random5_04.txt result: False
+test: 05_random5_05.txt result: False
+test: 06_handmade_01.txt result: True
+test: 01_random1_00.txt result: True
+test: 01_random1_02.txt result: False
+test: 06_handmade_03.txt result: False
+test: 05_random5_07.txt result: False
+test: 05_random5_06.txt result: False
+test: 06_handmade_02.txt result: False
+test: 01_random1_03.txt result: False
+test: 05_random5_02.txt result: False
+test: 05_random5_03.txt result: False
+test: 01_random1_04.txt result: False
+test: 06_handmade_05.txt result: False
+test: 05_random5_01.txt result: True
+test: 05_random5_00.txt result: True
+test: 06_handmade_04.txt result: False
+pass rate: 0.15217391304347827
+--------------------------------------------------
+start task abc301_d code: 45723653_faulty
+task abc301_d code: 45723653_faulty
+test: 02_random2_07.txt result: True
+test: 02_random2_06.txt result: True
+test: 02_random2_04.txt result: True
+test: 02_random2_05.txt result: True
+test: 02_random2_01.txt result: True
+test: 02_random2_00.txt result: True
+test: 02_random2_02.txt result: True
+test: 02_random2_03.txt result: True
+test: 04_random4_02.txt result: False
+test: 04_random4_03.txt result: False
+test: 04_random4_01.txt result: False
+test: 04_random4_00.txt result: False
+test: 04_random4_04.txt result: False
+test: 04_random4_05.txt result: False
+test: 04_random4_07.txt result: False
+test: 04_random4_06.txt result: False
+test: 03_random3_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 03_random3_00.txt result: False
+test: 03_random3_02.txt result: True
+test: 00_sample_00.txt result: False
+test: 00_sample_01.txt result: True
+test: 03_random3_03.txt result: False
+test: 03_random3_07.txt result: False
+test: 03_random3_06.txt result: False
+test: 03_random3_04.txt result: False
+test: 03_random3_05.txt result: False
+test: 01_random1_01.txt result: True
+test: 06_handmade_00.txt result: True
+test: 05_random5_04.txt result: False
+test: 05_random5_05.txt result: True
+test: 06_handmade_01.txt result: False
+test: 01_random1_00.txt result: True
+test: 01_random1_02.txt result: True
+test: 06_handmade_03.txt result: False
+test: 05_random5_07.txt result: False
+test: 05_random5_06.txt result: False
+test: 06_handmade_02.txt result: True
+test: 01_random1_03.txt result: False
+test: 05_random5_02.txt result: True
+test: 05_random5_03.txt result: False
+test: 01_random1_04.txt result: True
+test: 06_handmade_05.txt result: False
+test: 05_random5_01.txt result: False
+test: 05_random5_00.txt result: True
+test: 06_handmade_04.txt result: True
+pass rate: 0.4782608695652174
+--------------------------------------------------
+start task abc301_d code: 45725346_faulty
+task abc301_d code: 45725346_faulty
+test: 02_random2_07.txt result: True
+test: 02_random2_06.txt result: True
+test: 02_random2_04.txt result: True
+test: 02_random2_05.txt result: True
+test: 02_random2_01.txt result: True
+test: 02_random2_00.txt result: True
+test: 02_random2_02.txt result: True
+test: 02_random2_03.txt result: True
+test: 04_random4_02.txt result: True
+test: 04_random4_03.txt result: True
+test: 04_random4_01.txt result: True
+test: 04_random4_00.txt result: True
+test: 04_random4_04.txt result: True
+test: 04_random4_05.txt result: True
+test: 04_random4_07.txt result: True
+test: 04_random4_06.txt result: True
+test: 03_random3_01.txt result: True
+test: 00_sample_02.txt result: True
+test: 03_random3_00.txt result: True
+test: 03_random3_02.txt result: True
+test: 00_sample_00.txt result: True
+test: 00_sample_01.txt result: True
+test: 03_random3_03.txt result: True
+test: 03_random3_07.txt result: True
+test: 03_random3_06.txt result: True
+test: 03_random3_04.txt result: True
+test: 03_random3_05.txt result: True
+test: 01_random1_01.txt result: True
+test: 06_handmade_00.txt result: True
+test: 05_random5_04.txt result: True
+test: 05_random5_05.txt result: True
+test: 06_handmade_01.txt result: True
+test: 01_random1_00.txt result: True
+test: 01_random1_02.txt result: True
+test: 06_handmade_03.txt result: True
+test: 05_random5_07.txt result: True
+test: 05_random5_06.txt result: True
+test: 06_handmade_02.txt result: True
+test: 01_random1_03.txt result: True
+test: 05_random5_02.txt result: True
+test: 05_random5_03.txt result: True
+test: 01_random1_04.txt result: True
+test: 06_handmade_05.txt result: True
+test: 05_random5_01.txt result: True
+test: 05_random5_00.txt result: True
+test: 06_handmade_04.txt result: True
+pass rate: 1.0
+--------------------------------------------------
+start task abc307_a code: 45953883_faulty
+task abc307_a code: 45953883_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: False
+test: random_02.txt result: False
+test: random_03.txt result: False
+test: random_01.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_07.txt result: False
+test: random_06.txt result: False
+test: random_08.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc307_a code: 45989937_faulty
+task abc307_a code: 45989937_faulty
+test: sample_02.txt result: False
+test: sample_01.txt result: False
+test: random_02.txt result: False
+test: random_03.txt result: False
+test: random_01.txt result: False
+test: random_04.txt result: False
+test: random_05.txt result: False
+test: random_07.txt result: False
+test: random_06.txt result: False
+test: random_08.txt result: False
+pass rate: 0.0
+--------------------------------------------------
+start task abc307_a code: 45778588_faulty
+task abc307_a code: 45778588_faulty
+test: sample_02.txt result: True
+test: sample_01.txt result: True
+test: random_02.txt result: True
+test: random_03.txt result: True
+test: random_01.txt result: True
+test: random_04.txt result: True
+test: random_05.txt result: True
+test: random_07.txt result: True
+test: random_06.txt result: True
+test: random_08.txt result: True
+pass rate: 1.0
+Run command called with:
+destination_directory = repaired_programs_gpt-4o-mini_exp7
+task = None
+test = None

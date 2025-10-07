@@ -1,0 +1,1 @@
+The program fails to correctly handle values of N that are exactly equal to 10^3, 10^4, 10^5, 10^6, 10^7, and 10^8 by truncating digits that should not be truncated according to the specified ranges.

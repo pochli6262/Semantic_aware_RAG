@@ -1,0 +1,4 @@
+{
+  "explanation": "The code was counting positions where S and T are equal (using '=='), but the intended check is to count positions that differ. I changed the comparison operator from '==' to '!=', so cnt counts mismatches; the parity test then correctly determines whether the number of differing positions is odd.",
+  "fixed_code": "S = [a for a in input().split()]\nT = [a for a in input().split()]\n\ncnt = 0\nfor i in range(3):\n    if S[i] != T[i]:\n        cnt += 1\n\nif cnt%2 == 1:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

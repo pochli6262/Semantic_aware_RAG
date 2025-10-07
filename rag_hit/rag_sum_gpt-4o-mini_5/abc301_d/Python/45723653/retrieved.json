@@ -1,0 +1,29 @@
+{
+  "task": "abc301_d/Python/45723653",
+  "query_summary": "The likely bug in the program is that it fails to properly handle multiple combinations of `?` in the string, potentially resulting in the incorrect calculation of the maximum value less than or equal to N.",
+  "oracle_summary": "The bug was caused by iterating over the bit positions in reverse (least significant first) when filling '?'s, breaking the required greedy choice order — it should scan from most significant to least significant.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs -1 only when the longest sequence of non-hyphen characters is equal to `n-2`, failing to account for the case where there are no non-hyphen characters at all (represented by `m` being 0).",
+      "diff": "--- \n+++ \n@@ -7,6 +7,6 @@\n     m=max(m,x)\n     x=0\n   else: x+=1\n-if m==n-2:\n+if m==n-2 or m==0:\n   print(-1)\n else: print(m)"
+    },
+    {
+      "summary": "The buggy code fails to correctly initialize the variable `res`, which should be set to `max(0, n - 1)` instead of just `n - 1`, potentially leading to negative results for certain input cases.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         d.append(p)\n ans = 0\n for _ in range(2):\n-    res = n - 1\n+    res = max(0, n - 1)\n     frm = 0\n     if _ == 1:\n         cnt = 0"
+    },
+    {
+      "summary": "The bug in the code occurs in the condition where `C > 1`, where the initial value of `m` should be set to `0` instead of `INF` to correctly calculate the maximum difference in sums.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n INF = 10**18\n \n if C > 1:\n-    m = INF\n+    m = 0\n     ans = -INF\n     for i in range(N):\n         m = min(m, S[i + 1])"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the value of `m` as `2147483647` instead of `2**61-1`, which can lead to hash collisions and incorrect results for larger input sizes.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = [input() for _ in range(n)]\n \n \n-m = 2147483647 # 2**31-1\n+m = 2**61-1 # 2**31-1\n \n from collections import defaultdict\n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `k` is less than `N` instead of less than or equal to `N`, which may cause it to miss valid outputs.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for i in range(n, 1, -1):\n   k = i **3\n   k_str = str(k)\n-  if (k < N) and (k_str == k_str[::-1]):\n+  if (k <= N) and (k_str == k_str[::-1]):\n     print(k)\n     exit()\n print(1)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

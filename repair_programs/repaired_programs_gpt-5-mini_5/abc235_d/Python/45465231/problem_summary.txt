@@ -1,0 +1,1 @@
+The code applies the inverse rotation unconditionally and never checks that the predecessor's last digit is nonzero (i.e., that the forward rotation was allowed), so it explores illegal rotation transitions.

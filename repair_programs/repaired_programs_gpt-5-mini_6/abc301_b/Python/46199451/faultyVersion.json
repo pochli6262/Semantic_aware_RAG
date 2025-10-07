@@ -1,0 +1,4 @@
+{
+  "explanation": "The program was printing the Python list object (with brackets and commas) by using print(ans_list). The problem requires the numbers printed as space-separated integers. I replaced the print(ans_list) line with print(' '.join(map(str, ans_list))) so the list elements are converted to strings and joined with spaces. Only that single line was changed.",
+  "fixed_code": "n = int(input())\na = list(map(int, input().split()))\n\nans_list = []\nfor i in range(n - 1):\n    # print(a[i + 1] - a[i])\n    if a[i + 1] >= a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1]))\n    elif a[i + 1] < a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1], -1))\nans_list.append(a[-1])\nprint(' '.join(map(str, ans_list)))"
+}

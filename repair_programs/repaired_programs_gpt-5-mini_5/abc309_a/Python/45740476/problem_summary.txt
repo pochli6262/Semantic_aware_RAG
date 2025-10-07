@@ -1,0 +1,1 @@
+If b == a+1 but a is divisible by 3 (e.g., 3 4), the program produces no output because there's no else for the inner if, so it fails to print "No".

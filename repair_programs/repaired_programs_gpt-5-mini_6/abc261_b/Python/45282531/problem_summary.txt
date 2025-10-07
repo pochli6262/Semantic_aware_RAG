@@ -1,0 +1,1 @@
+The code only flags symmetric "W"/"W" or "L"/"L" pairs but fails to verify that a 'W' must correspond to an 'L' and that 'D' must correspond to 'D', so many contradictory combinations (e.g. 'W' vs 'D') go undetected.

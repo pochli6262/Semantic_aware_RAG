@@ -1,0 +1,32 @@
+{
+  "task": "abc308_c/Python/45973622",
+  "query_summary": "The code computes and compares success rates using huge floating-point values (A*10**100/(A+B)), which can lose precision and therefore produce incorrect ordering.",
+  "oracle_summary": "The bug was caused by using floating-point division (/) instead of integer floor division (//), producing inexact values and wrong ordering due to precision/rounding errors.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it uses division (`/`) instead of floor division (`//`) when calculating the ratio, which may lead to incorrect results due to floating-point precision issues.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n p=[]\n for i in range(n):\n     a,b=map(int,input().split())\n-    p.append(((a*(10**100))/(a+b),i+1))\n+    p.append(((a*(10**100))//(a+b),i+1))\n p.sort(reverse=True)\n \n l=[]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses floating-point division (/) instead of integer division (//) when calculating the value to be appended to the list X, which can lead to incorrect results due to the nature of floating-point arithmetic.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     X = []\n     for i in range(N):\n         a, b = map(int, input().split())\n-        X.append((-a*10**100 / (a+b), i))\n+        X.append((-a*10**100 // (a+b), i))\n \n     X.sort()\n     print(*[i+1 for x, i in X])"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the list `B` in a way that prioritizes elements with the same value but in reverse index order, which is necessary for correct distance calculation between indices in the final comparison.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n B = []\n for i, a in enumerate(A):\n     B.append((a, i))\n-B.sort()\n+B.sort(key=lambda x: (x[0], -x[1]))\n INF = N + 10\n ans = INF\n now = -1"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the output as `max(B-A+1,0)` instead of `max((A-B+1)//2,0)`, which leads to incorrect results for the given range of values.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n     a,b=map(int,input().split())\n     A=max(A,a)\n     B=min(B,b)\n-    print(max(B-A+1,0))   \n+    print(max((A-B+1)//2,0))   "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

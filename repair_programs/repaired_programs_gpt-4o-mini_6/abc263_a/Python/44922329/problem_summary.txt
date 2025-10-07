@@ -1,0 +1,1 @@
+The program incorrectly loops from 0 to 11 instead of 1 to 13, causing it to miss card values that could form a Full house.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The else: line was aligned with the outer if, so it paired with the outer condition instead of the inner one. That caused no output when b==a+1 but a%3==0. I fixed this by indenting the else so it matches the inner if, ensuring a 'No' is printed when the inner condition fails.",
+  "fixed_code": "a,b=map(int,input().split())\n\nif b==a+1:\n  if a%3!=0:\n    print('Yes')\n  else:\n    print('No')\n"
+}

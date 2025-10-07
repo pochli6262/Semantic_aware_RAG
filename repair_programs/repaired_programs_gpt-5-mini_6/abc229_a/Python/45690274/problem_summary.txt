@@ -1,0 +1,1 @@
+When there are exactly two black squares that are adjacent, the function prints nothing because there's no else branch to output "Yes" (only the diagonal case prints "No").

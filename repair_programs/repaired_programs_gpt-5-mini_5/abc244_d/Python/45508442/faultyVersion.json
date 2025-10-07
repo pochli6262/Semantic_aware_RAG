@@ -1,0 +1,4 @@
+{
+  "explanation": "The program compared the raw input lines (which are given with spaces, e.g. \"R G B\") against A = [\"RGB\",\"GBR\",\"BRG\"], so membership always failed. I fixed the single incorrect line by making A contain the spaced forms that match the input format (e.g. \"R G B\"). This keeps the rest of the code unchanged and makes the membership checks work for both S and T.",
+  "fixed_code": "A = [\"R G B\",\"G B R\",\"B R G\"]\n\nS = input()\nT = input()\nprint('Yes' if (S in A) == (T in A) else 'No')"
+}

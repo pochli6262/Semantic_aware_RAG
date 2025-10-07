@@ -1,0 +1,677 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+N,T,M=map(int,input().split())
+#たかだか10人しかいません
+hate=set()
+
+for _ in range(M):
+    a,b=map(int,input().split())
+    hate.add((a,b))
+    hate.add((b,a))
+    
+
+def f(now):
+    if now==N:
+        #nowをNから波及させていくが、そのとき、ちゃんとteamsがTになっていれば1を返すようにする。
+        return 1 if len(teams)==T else 0
+
+    ans=0
+    
+    for i in range(len(teams)):
+        if len(teams[i])>0:
+            for t in teams[i]:
+                if (now,t) in hate:
+                    #相性悪い人がいる場合
+                    break
+            else:
+                #いない場合
+                teams[i].add(now)
+                ans+=f(now+1)
+                teams[i].remove(now)
+                
+    if len(teams)<T:
+        teams.append(set([now]))
+        ans+=f(now+1)
+        teams.pop()
+        
+    return ans
+
+teams=[]
+print(f(0))
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+mod=998244353
+mod_syou=119
+mod_log=23
+mod_kon=3
+root=pow(mod_kon,mod_syou,mod)
+rootinv=pow(root,mod-2,mod)
+bbeki=[0]*(mod_log+1)
+bbeki2=[0]*(mod_log+1)
+beki_dic=dict()
+this=1
+for i in range(mod_log+1):
+  beki_dic[this]=i
+  this*=2
+def beki_mae():
+  x=root
+  beki=1
+  for i in range(mod_log,-1,-1):
+    bbeki[i]=x
+    x=x**2
+    x%=mod
+  x=rootinv
+  beki=1
+  for i in range(mod_log,-1,-1):
+    bbeki2[i]=x
+    x=x**2
+    x%=mod
+beki_mae()
+def rev(i,k):
+  ans=0
+  s=bin(i)[2:]
+  for i in range(len(s)):
+    if s[len(s)-1-i]=="1":
+      ans+=2**(k-1-i)
+  return ans
+def NTT_len(a):#a<=2^Nを満たす最小のNを返す
+  k=1
+  b=0
+  for i in range(100):
+    if k>=a:
+      break
+    else:
+      k*=2
+      b+=1
+  return b
+def NTT_change0(A,k):#長さ2^kにする
+  N=len(A)
+  A=A+[0]*(2**k-N)
+  NTT_change(A)
+  return A
+def NTT_change(A):#Aをstart<=k<finまでNTT変換,f(x^i)(i=0~N-1)を求める
+  N=len(A)
+  le=N
+  while le>1:
+    x=bbeki[beki_dic[le]]
+    for st in range(N//le):
+      this=1
+      for i in range(le//2):
+        l=A[st*le+i]
+        r=A[st*le+i+le//2]
+        A[st*le+i]=(l+r)%mod
+        A[st*le+i+le//2]=((l-r)*this)%mod
+        this*=x
+        this%=mod
+    le//=2
+
+def NTT_invchange0(A,k):#長さ2^kにする
+  N=len(A)
+  A=A+[0]*(2**k-N)
+  NTT_invchange(A)
+  return A
+def NTT_invchange(A):#Aをstart<=k<finまでNTT変換,f(x^i)(i=0~N-1)を求める
+  N=len(A)
+  le=2
+  while le<=N:
+    x=bbeki2[beki_dic[le]]
+    for st in range(N//le):
+      this=1
+      for i in range(le//2):
+        l=A[st*le+i]
+        r=A[st*le+i+le//2]*this
+        r%=mod
+        A[st*le+i]=(l+r)%mod
+        A[st*le+i+(le//2)]=(l-r)%mod
+        this*=x
+        this%=mod
+    le*=2
+  invN=pow(N,mod-2,mod)
+  for i in range(N):
+    A[i]*=invN
+    A[i]%=mod
+def NTT_time(A,B):#A,Bの畳み込み
+  n=len(A)
+  m=len(B)
+  k=NTT_len(n+m-1)
+  A=NTT_change0(A,k)
+  B=NTT_change0(B,k)
+  c=list()
+  for i in range(len(A)):
+    c.append(A[i]*B[i]%mod)
+  c=NTT_invchange0(c,k)
+  return c[:n+m-1]
+
+def NTTinv(f):
+  """
+  1/f=gをreturn
+  """
+  le=len(f)
+  this_roop=NTT_len(len(f))
+  c=pow(int(f[0]),mod-2,mod)
+  g=[c]
+  a=1
+  for i in range(this_roop):
+      a*=2
+      S=NTT_time(g,f)[:a]
+      S=[-i%mod for i in S]
+      S[0]+=2
+      g=NTT_time(g,S)[:a]
+  return g[:le]
+#f[0]==0の時バグりそう。
+
+#f[0]==0の時バグりそう。
+
+N,K=map(int,input().split())
+c=list(map(int,input().split()))
+mod=998244353
+d=dict()
+for i in c:
+  if i in d:
+    d[i]+=1
+  else:
+    d[i]=1
+X=list()
+for i in d:
+  if d[i]==1:
+    continue
+  else:
+    X.append(d[i])
+X.sort()
+T=[1]
+#(1+x)...(1+(d[i]-1)x)を全体にかける
+#print(X)
+from collections import deque
+T=deque()
+for i in X:
+  for j in range(1,i):
+    T.append([1,j])
+#a
+if len(T)==0:
+  if K%2==1:
+    print(1)
+  else:
+    print(0)
+  exit()
+while len(T)>1:
+  a=T.popleft()
+  b=T.popleft()
+  T.append(NTT_time(a,b))
+
+#print(T)
+ans=0
+for i in range(len(T[0])):
+  if i%2==K%2 and i<=K:
+    ans+=T[0][i]
+    ans%=mod
+print(ans)
+
+--- Correct Code ---
+mod=998244353
+mod_syou=119
+mod_log=23
+mod_kon=3
+root=pow(mod_kon,mod_syou,mod)
+rootinv=pow(root,mod-2,mod)
+bbeki=[0]*(mod_log+1)
+bbeki2=[0]*(mod_log+1)
+beki_dic=dict()
+this=1
+for i in range(mod_log+1):
+  beki_dic[this]=i
+  this*=2
+def beki_mae():
+  x=root
+  beki=1
+  for i in range(mod_log,-1,-1):
+    bbeki[i]=x
+    x=x**2
+    x%=mod
+  x=rootinv
+  beki=1
+  for i in range(mod_log,-1,-1):
+    bbeki2[i]=x
+    x=x**2
+    x%=mod
+beki_mae()
+def rev(i,k):
+  ans=0
+  s=bin(i)[2:]
+  for i in range(len(s)):
+    if s[len(s)-1-i]=="1":
+      ans+=2**(k-1-i)
+  return ans
+def NTT_len(a):#a<=2^Nを満たす最小のNを返す
+  k=1
+  b=0
+  for i in range(100):
+    if k>=a:
+      break
+    else:
+      k*=2
+      b+=1
+  return b
+def NTT_change0(A,k):#長さ2^kにする
+  N=len(A)
+  A=A+[0]*(2**k-N)
+  NTT_change(A)
+  return A
+def NTT_change(A):#Aをstart<=k<finまでNTT変換,f(x^i)(i=0~N-1)を求める
+  N=len(A)
+  le=N
+  while le>1:
+    x=bbeki[beki_dic[le]]
+    for st in range(N//le):
+      this=1
+      for i in range(le//2):
+        l=A[st*le+i]
+        r=A[st*le+i+le//2]
+        A[st*le+i]=(l+r)%mod
+        A[st*le+i+le//2]=((l-r)*this)%mod
+        this*=x
+        this%=mod
+    le//=2
+
+def NTT_invchange0(A,k):#長さ2^kにする
+  N=len(A)
+  A=A+[0]*(2**k-N)
+  NTT_invchange(A)
+  return A
+def NTT_invchange(A):#Aをstart<=k<finまでNTT変換,f(x^i)(i=0~N-1)を求める
+  N=len(A)
+  le=2
+  while le<=N:
+    x=bbeki2[beki_dic[le]]
+    for st in range(N//le):
+      this=1
+      for i in range(le//2):
+        l=A[st*le+i]
+        r=A[st*le+i+le//2]*this
+        r%=mod
+        A[st*le+i]=(l+r)%mod
+        A[st*le+i+(le//2)]=(l-r)%mod
+        this*=x
+        this%=mod
+    le*=2
+  invN=pow(N,mod-2,mod)
+  for i in range(N):
+    A[i]*=invN
+    A[i]%=mod
+def NTT_time(A,B):#A,Bの畳み込み
+  n=len(A)
+  m=len(B)
+  k=NTT_len(n+m-1)
+  A=NTT_change0(A,k)
+  B=NTT_change0(B,k)
+  c=list()
+  for i in range(len(A)):
+    c.append(A[i]*B[i]%mod)
+  c=NTT_invchange0(c,k)
+  return c[:n+m-1]
+
+def NTTinv(f):
+  """
+  1/f=gをreturn
+  """
+  le=len(f)
+  this_roop=NTT_len(len(f))
+  c=pow(int(f[0]),mod-2,mod)
+  g=[c]
+  a=1
+  for i in range(this_roop):
+      a*=2
+      S=NTT_time(g,f)[:a]
+      S=[-i%mod for i in S]
+      S[0]+=2
+      g=NTT_time(g,S)[:a]
+  return g[:le]
+#f[0]==0の時バグりそう。
+
+#f[0]==0の時バグりそう。
+
+N,K=map(int,input().split())
+c=list(map(int,input().split()))
+mod=998244353
+d=dict()
+for i in c:
+  if i in d:
+    d[i]+=1
+  else:
+    d[i]=1
+X=list()
+for i in d:
+  if d[i]==1:
+    continue
+  else:
+    X.append(d[i])
+X.sort()
+T=[1]
+#(1+x)...(1+(d[i]-1)x)を全体にかける
+#print(X)
+from collections import deque
+T=deque()
+for i in X:
+  for j in range(1,i):
+    T.append([1,j])
+#a
+if len(T)==0:
+  if K%2==0:
+    print(1)
+  else:
+    print(0)
+  exit()
+while len(T)>1:
+  a=T.popleft()
+  b=T.popleft()
+  T.append(NTT_time(a,b))
+
+#print(T)
+ans=0
+for i in range(len(T[0])):
+  if i%2==K%2 and i<=K:
+    ans+=T[0][i]
+    ans%=mod
+print(ans)
+
+
+### Example 2
+--- Buggy Code ---
+from itertools import permutations as perm
+from itertools import combinations, product, combinations_with_replacement, groupby, accumulate
+from fractions import Fraction
+from collections import *
+from sys import stdin
+from bisect import *
+from heapq import *
+
+#import numpy as np
+# from math import *
+ 
+g   = lambda : stdin.readline().strip()
+#[gl[0], dl[1], ...]
+gl  = lambda : g().split()
+#gl -> int
+gil = lambda : [int(var) for var in gl()]
+#[n] = gil("A") -> n = A
+#[n,m] = gil("A B") -> n = A, M = B
+#n=gil("A B C D ...") -> n = [A, B, C, D, ...]
+
+gfl = lambda : [float(var) for var in gl()]
+
+gcl = lambda : list(g())
+
+gbs = lambda : [int(var) for var in g()]
+#[n]= gbs("A") -> n = A
+
+arr = lambda l:" ".join(str(n) for n in l)  
+#arr([1,2,3,...]) -> "1 2 3 ..." 配列で答えをprintする時に使う
+
+mod = int(1e9)+7
+inf = 2**30
+
+[T]=gil()
+def query():
+	[N,K]=gil()
+	
+	Tree = [[] for i in range(N+1)]
+	P = gil()
+	A = gil()
+
+	for i,p in enumerate(P,1):
+		p -= 1
+		Tree[p].append(i)
+		Tree[i].append(p)
+
+	P=[-1]+P
+	
+	for i in range(N):
+				
+		num = 0
+		s = set()
+		q = [i]
+		while q:
+			now = q.pop()
+			if A[now] == -1:
+				num += 1
+			else:
+				s.add(A[now])
+			
+			for nex in Tree[now]:
+				if nex == P[now]-1:
+					continue
+				q.append(nex)
+			
+		mex = -1
+		need = [0]*(K+1)
+		for j in range(K+1):
+			if j in s:
+				need[j]=1
+		
+		if need[K] or num > 1:
+			continue #"Bob"かもしれない
+		
+		count = 0
+		
+		for j in range(K):
+			if need[j] == 0:
+				count += 1
+				
+		if count == 0:
+			return "Alice"
+		if count == 1 and num == 1:
+			return "Alice"
+	
+		return "Bob"	
+		
+def main():
+	for _ in range(T):
+		print(query())
+
+if __name__ == '__main__':
+	main()
+
+--- Correct Code ---
+from itertools import permutations as perm
+from itertools import combinations, product, combinations_with_replacement, groupby, accumulate
+from fractions import Fraction
+from collections import *
+from sys import stdin
+from bisect import *
+from heapq import *
+
+#import numpy as np
+# from math import *
+ 
+g   = lambda : stdin.readline().strip()
+#[gl[0], dl[1], ...]
+gl  = lambda : g().split()
+#gl -> int
+gil = lambda : [int(var) for var in gl()]
+#[n] = gil("A") -> n = A
+#[n,m] = gil("A B") -> n = A, M = B
+#n=gil("A B C D ...") -> n = [A, B, C, D, ...]
+
+gfl = lambda : [float(var) for var in gl()]
+
+gcl = lambda : list(g())
+
+gbs = lambda : [int(var) for var in g()]
+#[n]= gbs("A") -> n = A
+
+arr = lambda l:" ".join(str(n) for n in l)  
+#arr([1,2,3,...]) -> "1 2 3 ..." 配列で答えをprintする時に使う
+
+mod = int(1e9)+7
+inf = 2**30
+
+[T]=gil()
+def query():
+	[N,K]=gil()
+	
+	Tree = [[] for i in range(N+1)]
+	P = gil()
+	A = gil()
+
+	for i,p in enumerate(P,1):
+		p -= 1
+		Tree[p].append(i)
+		Tree[i].append(p)
+
+	P=[-1]+P
+	
+	for i in range(N):
+				
+		num = 0
+		s = set()
+		q = [i]
+		while q:
+			now = q.pop()
+			if A[now] == -1:
+				num += 1
+			else:
+				s.add(A[now])
+			
+			for nex in Tree[now]:
+				if nex == P[now]-1:
+					continue
+				q.append(nex)
+			
+		mex = -1
+		need = [0]*(K+1)
+		for j in range(K+1):
+			if j in s:
+				need[j]=1
+		
+		if need[K] or num > 1:
+			continue #"Bob"かもしれない
+		
+		count = 0
+		
+		for j in range(K):
+			if need[j] == 0:
+				count += 1
+				
+		if count == 0:
+			return "Alice"
+		if count == 1 and num == 1:
+			return "Alice"
+	
+	return "Bob"	
+		
+def main():
+	for _ in range(T):
+		print(query())
+
+if __name__ == '__main__':
+	main()
+
+
+### Example 3
+--- Buggy Code ---
+import sys
+sys.setrecursionlimit(10**8)
+inf = float("INF")
+from collections import deque, defaultdict, Counter
+from itertools import product, combinations, permutations
+from heapq import heapify, heappop, heappush
+def I():   return input()
+def II():  return int(input())
+def IS():  return input().split()
+def MII(): return map(int, input().split())
+def LI():  return list(input())
+def LII(): return list(map(int, input().split()))
+def SII(): return set(map(int, input().split()))
+def LSI(): return list(map(str, input().split()))
+
+N = II()
+T = []
+A = [list() for _ in range(N)]
+
+for i in range(N):
+    t, k, *a = MII() # 技i 習得には Ti時間必要、事前に k個の技を習得しておく必要あり
+    T.append(t)
+    for num in a:
+        A[i].append(num-1)
+
+stack = list()
+visited = [False]*N
+stack.append(N-1)
+
+ans = T[N-1]
+
+while stack:
+    now = stack.pop()
+
+    for nex in A[now]:
+        if visited[nex] == False:
+            stack.append(nex)
+            visited[nex]
+            ans += T[nex]
+
+print(ans)
+
+
+
+--- Correct Code ---
+import sys
+sys.setrecursionlimit(10**8)
+inf = float("INF")
+from collections import deque, defaultdict, Counter
+from itertools import product, combinations, permutations
+from heapq import heapify, heappop, heappush
+def I():   return input()
+def II():  return int(input())
+def IS():  return input().split()
+def MII(): return map(int, input().split())
+def LI():  return list(input())
+def LII(): return list(map(int, input().split()))
+def SII(): return set(map(int, input().split()))
+def LSI(): return list(map(str, input().split()))
+
+N = II()
+T = []
+A = [list() for _ in range(N)]
+
+for i in range(N):
+    t, k, *a = MII() # 技i 習得には Ti時間必要、事前に k個の技を習得しておく必要あり
+    T.append(t)
+    for num in a:
+        A[i].append(num-1)
+
+stack = list()
+visited = [False]*N
+stack.append(N-1)
+
+ans = T[N-1]
+
+while stack:
+    now = stack.pop()
+
+    for nex in A[now]:
+        if visited[nex] == False:
+            stack.append(nex)
+            visited[nex] = True
+            ans += T[nex]
+
+print(ans)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

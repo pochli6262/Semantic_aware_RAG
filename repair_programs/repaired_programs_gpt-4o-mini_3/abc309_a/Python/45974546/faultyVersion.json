@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the program is in the condition used to check for the presence of the pair in the graph G. The program is checking for the exact match of R[0] and R[1] with g[0] and g[1], but it should also account for the possibility that the connection could be in reverse. Therefore, the corrected line checks if either (R[0], R[1]) or (R[1], R[0]) is present in the graph G.",
+  "fixed_code": "G = [[1, 2], [2, 3], [4, 5], [5, 6], [7, 8], [8, 9], [1, 4], [4, 7], [2, 5], [5, 8], [3, 6], [6, 9]]\n\nR = list(map(int, input().split()))\n\nflag = False\nfor g in G:\n    if (R[0] == g[0] and R[1] == g[1]) or (R[0] == g[1] and R[1] == g[0]):\n        flag = True\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc265_b/Python/46016041",
+  "query_summary": "The likely bug is that the program does not correctly handle the scenario where multiple bonus rooms are encountered consecutively before moving forward, potentially causing it to miss additional time gains.",
+  "oracle_summary": "The code uses a non-strict check (nowT >= p) allowing moves that leave time zero, but it should require strictly more time (nowT > p) to prevent T from reaching zero.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for conditions within the while loop, allowing the loop to continue even when there are multiple vertices in the deque, which can lead to invalid outputs or unintended behavior.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n dq = deque([i for i in range(1,N+1) if deg[i] == 0])\n \n P = []\n-while dq:\n+while dq and len(dq) < 2:\n     x = dq.popleft()\n     P.append(x)\n     for to_x in to[x]:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if `P` is greater than or equal to `N` instead of `N + 1`, leading to an incorrect early exit condition for the case where the number of people `P` is at least the number of groups `N`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n P,B,N,M = map(int,input().split())\n LR = [tuple(map(int,input().split())) for _ in range(M)]\n \n-if P >= N:\n+if P >= N+1:\n     exit(print('Yes'))\n \n INF = 10**18"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that the calculation of the upper bound in the variable `r` should be `min(N-M+1, idx+M)` instead of `min(N-M, idx+M)`, which incorrectly restricts the range of indices being checked for matches.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n     # print(S)\n \n     l = max(0,idx-M)\n-    r = min(N-M,idx+M)\n+    r = min(N-M+1,idx+M)\n \n     for k in range(l,r) :\n         if chk(S[k:k+M],T) :"
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `ans` is initialized to 0 instead of a very small value (negative infinity), which prevents the correct calculation of the maximum result when there are potential valid configurations.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(N):\n     cum_sum[i + 1] = cum_sum[i] + A[i]\n \n-ans = 0\n+ans = -(1 << 60)\n res = 0\n que = deque()\n A = A[::-1]"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

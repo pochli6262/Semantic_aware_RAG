@@ -1,0 +1,1 @@
+The program computes the coupon option as p - q + min(D) instead of the correct q + min(D), so it uses the wrong formula for the discounted total.

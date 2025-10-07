@@ -1,0 +1,1 @@
+The bug likely lies in the way health recovery items are stored and identified, as the program incorrectly initializes item counts, causing an item at a location to never be consumed or mismanaged during recovery.

@@ -1,0 +1,1 @@
+The likely bug is in the condition checks within the `calc` function that incorrectly accumulate the total number of pills based on the day, resulting in an incorrect output for when Takahashi first takes K pills or less.

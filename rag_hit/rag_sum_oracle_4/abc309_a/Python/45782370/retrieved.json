@@ -1,0 +1,29 @@
+{
+  "task": "abc309_a/Python/45782370",
+  "query_summary": "The bug is caused by an incorrect hard-coded adjacency dictionary `p` (wrong neighbor tuples), so the program checks the wrong connections.",
+  "oracle_summary": "The bug is caused by an incorrect hard-coded adjacency dictionary `p` (wrong neighbor tuples), so the program checks the wrong connections.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the condition `X - a in Aset` instead of the correct condition `a + X in Aset`, leading to an incorrect result for determining whether there exists a pair of elements in the list whose sum equals X.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n Aset = set(A)\n ok = False\n for a in A:\n-    if X-a in Aset:\n+    if a + X in Aset:\n         ok = True\n         break\n if ok:"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks if `p[x]` is equal to 2, instead of checking if `p[x]` is greater than or equal to 2.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n         p[x] += 2\n         \n     else:\n-        if p[x] == 2:\n+        if p[x] >= 2:\n             print(\"Yes\")\n         else:\n             print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

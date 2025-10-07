@@ -1,0 +1,34 @@
+{
+  "task": "abc308_a/Python/46165135",
+  "query_summary": "The monotonicity check wrongly uses >= instead of >, so equal adjacent values are treated as a violation.",
+  "oracle_summary": "The bug is an incorrect comparison operator (using >= instead of >) that wrongly rejects sequences with equal adjacent elements instead of allowing non-decreasing order.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the less than or equal to operator (<=) instead of the strict less than operator (<) when comparing substrings, leading to potential false positives in the condition check.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   base = S[0]\n   isOk = False\n   for i in range(1,N):\n-    if S[:i] <= S[i:]:\n+    if S[:i] < S[i:]:\n       isOk = True\n       print(\"Yes\")\n       break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for `350 - s` by using the expression `350 - s > 0` instead of the intended chained comparison `350 > 350 - s > 0`, which leads to logical errors in the condition evaluation.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n S = input()\n s = int(S[3:])\n-print('Yes' if 350 - s > 0 and s != 316 else 'No')\n+print('Yes' if 350 > 350 - s > 0 and s != 316 else 'No')"
+    },
+    {
+      "summary": "The buggy code incorrectly allows the value of `S` to be 0, which should be excluded from the valid conditions, leading to potentially misleading results.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = int(input()[3:6])\n-if S != 316 and S < 350:\n+if S != 316 and S!= 0 and S < 350:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `a` is not equal to 316 while also allowing `a` to be zero, which should not be included in the valid range.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n a = int(s[3:])\n-if a != 316 and 0 <= a < 350 :\n+if a != 316 and 0 < a < 350 :\n   print('Yes')\n else :\n   print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly allows strings that contain \"<\" and \"=\" but do not end with \">\", leading to potentially incorrect output when the conditions for a valid string format are not met.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = input()\n-if \"<\" in S and \"=\" in S:\n+if \"<\" in S and \"=\" in S and \">\" == S[-1]:\n     if S.count(\"<\") == S.count(\">\") :\n         print(\"Yes\")\n     else :"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

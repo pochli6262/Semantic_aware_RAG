@@ -1,0 +1,33 @@
+{
+  "task": "abc307_d/Python/45471496",
+  "query_summary": "The code fails to restore the previous text buffer after popping a matching \"(\", so when handling a ') 'it loses/doesn't resume the prior accumulated characters (temp), causing incorrect/missing output.",
+  "oracle_summary": "The code fails to restore the previous text buffer after popping a matching \"(\", so when handling a ') 'it loses/doesn't resume the prior accumulated characters (temp), causing incorrect/missing output.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it fails to append the incremented value of `temp` back to the deque `tfe` after popping elements, which can lead to incorrect results and an inconsistent state of the deque.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,8 @@\n         while tfe and tfe[-1] == temp:\n             temp += 1\n             tfe.pop()\n+        tfe.append(temp)\n     else:\n         tfe.append(temp)\n+print(len(tfe))\n     \n-        "
+    },
+    {
+      "summary": "The buggy code does not handle the case where there are unmatched parentheses, potentially leading to a failure to correctly manage the state of the `a` list and set `t`, which represents the characters inside the parentheses.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n     elif i==\")\":\n       #  print(a)\n         for j in a[-1]:\n-            print(t)\n+         #   print(t)\n             t.remove(j)\n         a.pop(-1)\n     elif i==\"(\":"
+    },
+    {
+      "summary": "The buggy code does not correctly handle consecutive \"U\" commands, leading to incorrect popping from the deque.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n q = deque()\n for s in S:\n     if q:\n-        if s == \"U\":\n+        if s == \"U\" and q[-1] != \"U\":\n             q.pop()\n         else:\n             q.append(s)"
+    },
+    {
+      "summary": "The buggy code incorrectly removes all spaces from the input strings, leading to potential loss of distinct entries that should be treated separately.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n l = set()\n for i in range(n):\n-    l.add(input().replace(\" \", \"\"))\n+    l.add(input())\n print(len(l))"
+    },
+    {
+      "summary": "The buggy code incorrectly formats the output by printing the node indices as they are (0-based) instead of converting them to 1-based format, which is corrected in the working code.",
+      "diff": "--- \n+++ \n@@ -52,4 +52,4 @@\n   ans = ans[:-1]\n \n print(len(ans))\n-print(' '.join(map(str, ans)))\n+print(' '.join(map(str, [a + 1 for a in ans])))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

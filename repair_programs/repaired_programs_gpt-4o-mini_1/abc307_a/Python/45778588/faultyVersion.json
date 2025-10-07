@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the calculation of the range for the outer loop. The original range 'int(N/7)' does not correctly account for cases where N is not a multiple of 7, which may cause an IndexError when creating sublists. The corrected line should be 'range((N + 6) // 7)' to ensure all elements are processed without exceeding the list bounds.",
+  "fixed_code": "N = int(input())\nl = list(map(int,input().split()))\nlis = []\nd = []\nb = 0\nfor j in range((N + 6) // 7):\n  for k in l[7*b:7*(b+1)]:\n      lis.append(k)\n  d.append(sum(lis))\n  lis.clear()\n  b += 1\nprint(*d)"
+}

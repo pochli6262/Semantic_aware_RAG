@@ -1,0 +1,4 @@
+{
+  "explanation": "The code incorrectly treated a guaranteed T-shirt as probability 100.0 instead of 1.0. I changed the line res = 100.0 to res = 1.0 so the probability is correctly represented as 1 (not 100).",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 1.0\nelif x <= b:\n   res = c / (b - a)\n\nprint('%.9f' % (res))\n"
+}

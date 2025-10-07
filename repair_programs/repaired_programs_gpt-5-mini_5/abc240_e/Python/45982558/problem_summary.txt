@@ -1,0 +1,1 @@
+The leaf check uses "len(graph[v]) == 1 and visited[v]", which misclassifies the root as a leaf when it has one neighbor and also fails for a single-node tree (degree 0).

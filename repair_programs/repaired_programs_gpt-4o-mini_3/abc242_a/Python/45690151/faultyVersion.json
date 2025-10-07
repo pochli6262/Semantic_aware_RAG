@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original program is that the expression 'c/(b-a+1)' does not handle the case correctly when 'b' is equal to 'a'. In such scenarios, the calculation 'b - a + 1' would result in 1, which could lead to confusion. The fixed version replaces the division with 'c' directly when 'b' equals 'a'.",
+  "fixed_code": "a, b, c, x = map(int, input().split())\nif x <= a:\n    print(1)\nelif a < x <= b:\n    print(c if b == a else c/(b-a+1))\nelse:\n    print(0)"
+}

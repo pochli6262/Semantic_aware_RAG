@@ -1,0 +1,1 @@
+The likely bug is that the program fails to correctly account for the total number of pills consumed on each day, resulting in an incorrect calculation of when Takahashi first takes K pills or less.

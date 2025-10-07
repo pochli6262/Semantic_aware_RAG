@@ -1,0 +1,4 @@
+{
+  "explanation": "The if-condition used the wrong logical operator and duplicated the same check, so it effectively tested only \"first three equal OR last two equal\" instead of the two possible full-house patterns after sorting. I replaced the second part with the correct check for the pattern where the first two are equal and the last three are equal. (No retrieved diff directly applied to this logical fix.)",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif ((a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4])) or ((a[0]==a[1]) and (a[2]==a[3] and a[3]==a[4])):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

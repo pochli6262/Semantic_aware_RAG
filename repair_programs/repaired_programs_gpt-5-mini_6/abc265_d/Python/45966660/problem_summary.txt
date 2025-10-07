@@ -1,0 +1,1 @@
+The code uses input()[:-1] to strip the line ending, which can accidentally drop the last character of the line (e.g. the last digit) when there's no trailing newline, leading to incorrect parsing of the integers.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition used the wrong comparison for the sorting check. The code rejected the list when it was already sorted (sorted(S) == S), but it should reject when the list is not sorted. I changed '==' to '!=' so the program prints 'No' when the sequence is not sorted (and still checks the value/range constraints for each element).",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nfor i in range(N):\n    if sorted(S) != S or not(100 <= S[i] <= 675) or S[i]%25 != 0:\n        print('No')\n        exit()\nelse:\n    print('Yes')"
+}

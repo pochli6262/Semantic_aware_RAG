@@ -1,0 +1,1 @@
+The program fails to print "No" for non-adjacent inputs because it only checks specific adjacent pairs and has no default else branch to output "No".

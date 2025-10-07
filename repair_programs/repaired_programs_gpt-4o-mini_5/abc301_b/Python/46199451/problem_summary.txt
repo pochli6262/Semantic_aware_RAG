@@ -1,0 +1,1 @@
+The program incorrectly uses the index `i` instead of the value `i` when extending `ans_list`, preventing the correct intermediate values from being inserted between the adjacent elements.

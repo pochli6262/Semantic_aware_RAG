@@ -1,0 +1,35 @@
+{
+  "task": "abc286_d/Python/45059364",
+  "query_summary": "The DP iterates n in increasing order, causing newly set states to be reused within the same coin type and thus allowing unlimited uses (ignoring the bound b); it must iterate n in descending order to enforce the bounded count.",
+  "oracle_summary": "The DP iterates n in increasing order, causing newly set states to be reused within the same coin type and thus allowing unlimited uses (ignoring the bound b); it must iterate n in descending order to enforce the bounded count.",
+  "retrieved": [
+    {
+      "summary": "The buggy code contains a logical error in the `dp` updating section where it redundantly assigns `dp[pl+1][i][j]` to the same value twice, which could lead to incorrect state transitions.",
+      "diff": "--- \n+++ \n@@ -72,7 +72,7 @@\n     nexi,nexx,nexy = dp[i][x][y]\n     #print (nexx,nexy)\n \n-    print (nexx,nexy)\n+    #print (nexx,nexy)\n \n     diff = None\n     if x != nexx:"
+    },
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes `dp[i][j][k]` by directly assigning `dp[i-1][j][k]` instead of taking the maximum with its current value, which can lead to incorrect results when transitioning states.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,n+1):\n   for j in range(K+1):\n     for k in range(D):\n-      dp[i][j][k]=dp[i-1][j][k]\n+      dp[i][j][k]=max(dp[i][j][k],dp[i-1][j][k])\n       if j and dp[i-1][j-1][k]!=-1:\n         nk=(k+a[i-1])%D\n         dp[i][j][nk]=max(dp[i][j][nk],dp[i-1][j-1][k]+a[i-1])"
+    },
+    {
+      "summary": "The buggy code incorrectly reuses the previous state's dp array without creating a copy, leading to unintended side effects when updating values in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,6 @@\n         del(tmp[0])\n         S.append(tmp) \n \n-\n     INF = 10**18\n     # dp[i] : i番目の袋から出した後\n     # dp[i][j] : j文字目まで完成しているときの最小スコア\n@@ -15,7 +14,7 @@\n     \n     for i in range(1, N+1):\n         # 何も取り出さないとき\n-        dp[i] = dp[i-1]\n+        dp[i] = dp[i-1].copy()\n \n         for s in S[i-1]:\n             # j:足す前の文字数"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `break` instead of `continue` in the outer loop after checking `if i+m > n`, which prevents further iterations that may be necessary for correct DP table updates.",
+      "diff": "--- \n+++ \n@@ -9,13 +9,14 @@\n     if dp[i][0]:\n         for k in range(m):\n             tl=t[k:]\n+\n             if i-k<0 or i+(m-k)>n:\n                 continue\n             for j in range(1,len(tl)+1):\n                 if s[i:i+j]==tl[:j]:\n                     dp[i+j][len(tl)-j]=True\n     if i+m>n:\n-        break\n+        continue\n     for j in range(1,m+1):\n         if dp[i][j]:\n             for k in range(1,m+1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

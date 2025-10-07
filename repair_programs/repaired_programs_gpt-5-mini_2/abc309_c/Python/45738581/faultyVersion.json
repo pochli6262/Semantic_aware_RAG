@@ -1,0 +1,4 @@
+{
+  "explanation": "The code treated the case total == K incorrectly. When the sum of all b_i equals K, the answer should be 1, but the original code only handled total < K and continued into the loop, producing a wrong result. I fixed the single line to check total <= K so the equal case is handled immediately.",
+  "fixed_code": "N, K = map(int, input().split())\narr = []\ntotal = 0\nfor i in range(N):\n  tmp1, tmp2 = map(int, input().split())\n  arr.append([tmp1,tmp2])\n  total += tmp2\narr.sort()\n\nif total <= K:\n  print(1)\n  exit()\n\ni = 0\nwhile 1:\n  total -= arr[i][1]\n  if total <= K:\n    print(arr[i][0]+1)\n    exit()\n  i += 1"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc288_e/Python/41523056",
+  "query_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "oracle_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses an incorrect value for `INF`, which leads to potential issues when comparing values and affects the logic for determining maximum and second maximum values.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n # cf. https://atcoder.jp/contests/abc345/editorial/9580\n-INF = 10**10\n+INF = 10**15\n \n def solve(n, k, c, v):\n     C1 = [-1]*(k+1) # 最大の価値になる色"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the index `j` by using the formula `(n - 1 - i + d) % n`, rather than the correct formula `(d - i) % n`, which leads to incorrect pairs being generated.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n     for d in S:\n         for i in range(n):\n             # ズレが異なるパターン同士は重なり合うことはないので、解として追記していく\n-            j = (n - 1 - i + d) % n\n+            j = (d - i) % n\n             ans.append((i+1, j+1))\n     return ans\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that the final computation of the answer incorrectly iterates from 0 to `n+1` instead of 0 to `n+2`, leading to an off-by-one error which may generate incorrect results.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n         dp[i][min(x,j)][m] %= mod\n \n ans = 0\n-for j in range(n+1):\n+for j in range(n+2):\n   ans += dp[-1][j][k]\n   ans %= mod\n "
+    },
+    {
+      "summary": "The buggy code contains a mistake in the `subsolve2` function where it incorrectly prints the output for the final array `a`, missing the required space before the '!', leading to output formatting issues.",
+      "diff": "--- \n+++ \n@@ -109,7 +109,7 @@\n         print(f' {i+1}')\n         t = iinput()\n         a[i] = (t - c) % 2\n-    print('!')\n+    print('!', end='')\n     for i in range(n):\n         print(f' {a[i]}', end='')\n     print()"
+    },
+    {
+      "summary": "The buggy code uses `break` instead of `continue` when `dp[j][k]` is zero, which prematurely terminates the innermost loop instead of skipping to the next iteration, potentially missing valid computations.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     # 置けるマス、置ける数は合計 L 個\n     for j in range(n+1)[::-1]:\n         for k in range(j,n+1)[::-1]:\n-            if dp[j][k] == 0: break\n+            if dp[j][k] == 0: continue\n             # i 個を l セット置く\n             r = finv[i]\n             for l in range(1,n+1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    10
+  ],
+  "useful_diffs_count": 2
+}

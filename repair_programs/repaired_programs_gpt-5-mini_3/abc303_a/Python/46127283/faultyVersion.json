@@ -1,0 +1,4 @@
+{
+  "explanation": "The second conditional incorrectly checked t[i] == 'o' when it should check s[i] == 'o'. That made the branch test the wrong string for the '0'/'o' equivalence. I changed that one line so both parts of the condition examine s[i].",
+  "fixed_code": "n = int(input())\ns = input()\nt = input()\n\np = 0\n\nfor i in range(n):\n    if s[i] == \"1\" or s[i] == \"l\":\n        if t[i] == \"1\" or t[i] == \"l\":\n            p += 1\n        \n    elif s[i] == \"0\" or s[i] == \"o\":\n        if t[i] == \"0\" or t[i] == \"o\":\n            p += 1\n            \n    elif s[i] == t[i]:\n        p += 1\n    \nif p == n:\n    print(\"Yes\")\n    \nelse:\n    print(\"No\")\n"
+}

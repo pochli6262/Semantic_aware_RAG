@@ -1,0 +1,31 @@
+{
+  "task": "abc310_d/Python/53176077",
+  "query_summary": "The likely bug is that the program does not properly manage the `teams` variable, leading to incorrect team membership checks for incompatible pairs and potentially missing valid configurations.",
+  "oracle_summary": "The program fails to convert the 1-based person indices from input to 0-based (missing the -1), so hate pairs reference the wrong IDs and break the grouping logic.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to correctly manage and manipulate the list indices and sizes for the \"see\" and \"notsee\" lists, leading to potential index errors and incorrect final outputs.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n         see.append(notsee.pop(-1))\n         #print(see)\n     notsee.append(see.pop(0))\n-    print(see)\n+   #print(see)\n    #長さが変わる前に保存\n     for j in range(1, a-prelen):\n         notsee.append(see.pop(-1))"
+    },
+    {
+      "summary": "The buggy code does not mark the nodes as visited properly, leading to potential infinite loops or incorrect calculations, because it uses `visited[nex]` instead of `visited[nex] = True`.",
+      "diff": "--- \n+++ \n@@ -35,7 +35,7 @@\n     for nex in A[now]:\n         if visited[nex] == False:\n             stack.append(nex)\n-            visited[nex]\n+            visited[nex] = True\n             ans += T[nex]\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the parity of K when determining the output for the case where the deque `T` is empty, leading to potential incorrect results when K is odd or even.",
+      "diff": "--- \n+++ \n@@ -146,7 +146,7 @@\n     T.append([1,j])\n #a\n if len(T)==0:\n-  if K%2==1:\n+  if K%2==0:\n     print(1)\n   else:\n     print(0)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it checks if the pair `(i, j)` is in `pat` instead of checking if it is in the `ng_set`, which leads to incorrect exclusion of invalid pairs.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n ans = -1\n for i, a in enumerate(A):\n     for b, j in P:\n-        if (i, j) in pat:\n+        if (i, j) in ng_set:\n             continue\n         ans = max(ans, a+b)\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if a match has been established in the `match` method of the `Bipartile_Matching` class by using the bitwise NOT operator (`~`) instead of checking for equality to `-1`, leading to erroneous condition evaluations.",
+      "diff": "--- \n+++ \n@@ -89,7 +89,6 @@\n     L=len(t2n)\n     G=Bipartile_Matching(L,N)\n \n-\n     for i in range(N):\n         for k in range(N):\n             t=i2t[i][j][k]\n@@ -105,7 +104,7 @@\n \n     # マッチングを解いて数を数える\n     cnt=G.match()\n-\n+    \n     if cnt==N:return True\n     else:return False\n \n@@ -182,7 +181,7 @@\n     # ここで時間について二分探索しながら\n     # 辺の追加を行ってマッチングが成立する\n     # 最小の時間を求めるのか\n-    res=min(res,meguru_bisearch(-1,len(n2t[j]),j))\n+    res=min(res,meguru_bisearch(-1,max(n2t[j]),j))\n \n if res==INF:print(-1)\n else:print(res)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

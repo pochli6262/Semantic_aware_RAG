@@ -1,0 +1,4 @@
+{
+  "explanation": "The code failed to print anything when cnt == 3 but t was not a rotation of s. The outer elif consumed that case so the final else (which prints \"No\") did not run, leaving no output. I fixed this by changing the elif line so it only becomes true when cnt == 3 AND t is in s+s; then the final else will handle the cnt==3 but non-rotation case and print \"No\". This change fixes the missing-output bug and only modifies one line.",
+  "fixed_code": "s = input()\nt = input()\ncnt = 0\nfor i in range(3):\n    if s[i] != t[i]:\n        cnt += 1\nif cnt == 0:\n    print(\"Yes\")\nelif cnt == 3 and t in s + s:\n    if t in s + s:\n        print(\"Yes\")\nelse:\n    print(\"No\")"
+}

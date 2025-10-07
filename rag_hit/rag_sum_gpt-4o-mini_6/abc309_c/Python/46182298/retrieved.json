@@ -1,0 +1,33 @@
+{
+  "task": "abc309_c/Python/46182298",
+  "query_summary": "The likely bug is that the binary search logic for finding the first day with K pills or less is incorrectly set up, leading to an off-by-one error in the final result.",
+  "oracle_summary": "The binary search uses the wrong comparison (calc(m) < k instead of calc(m) <= k), causing incorrect updates of l/r and an off-by-one error in the final result.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly sets the upper limit of the binary search range to \\(10^{12}\\) instead of the required \\(10^{16}\\}.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n for _ in range(n):\n     num = int(input())\n     l = 0\n-    r = 10 ** 12\n+    r = 10 ** 16\n     md = (l + r) // 2\n     while l + 1 < r:\n         ret = calc(md)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `if num + b < K` instead of `if num + b <= K`, which leads to an off-by-one error when determining whether to update the day variable.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n     num = 0\n \n     for a, b in reversed(Q):\n-        if num + b < K:\n+        if num + b <= K:\n             num += b\n         else:\n             day = a + 1"
+    },
+    {
+      "summary": "The buggy code incorrectly divides the elements divisible by `k` by 2 instead of `k`, leading to incorrect results in the output.",
+      "diff": "--- \n+++ \n@@ -4,6 +4,6 @@\n \n for i in range(n):\n   if a[i] % k == 0:\n-    ans.append(a[i]//2)\n+    ans.append(a[i]//k)\n \n print(*ans)"
+    },
+    {
+      "summary": "The issue in the buggy code is that the upper limit for the binary search (`r`) is incorrectly set to `1 << 30` instead of `1 << 40`, which results in an insufficient search range.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, m, k = map(int, input().split())\n a = list(map(int, input().split()))\n-r = 1 << 30\n+r = 1 << 40\n l = 0\n while r - l > 1:\n     mid = (r + l) // 2"
+    },
+    {
+      "summary": "The problem in the buggy code is that the upper limit for the binary search variable `ok` is incorrectly set to `10**9` instead of `10**12`, which may lead to an insufficient range for finding a valid solution.",
+      "diff": "--- \n+++ \n@@ -37,7 +37,7 @@\n     return True\n \n ng = -1\n-ok = 10**9\n+ok = 10**12\n while ok-ng > 1:\n     m = (ok+ng)//2\n     if is_ok(m):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

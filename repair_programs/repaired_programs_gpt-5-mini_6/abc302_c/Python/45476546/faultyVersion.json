@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code used itertools.product(S, repeat = N), which generates sequences with repeated elements. The problem requires permutations (rearrangements without repetition) of the given strings. I replaced product(...) with itertools.permutations(S, r = N) so only permutations of the N distinct strings are tested. This single-line change fixes the logic.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.permutations(S, r = N)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

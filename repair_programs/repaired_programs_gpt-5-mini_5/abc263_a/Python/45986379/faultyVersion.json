@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition `len(set(K)) == 2 and K[2] != K[3]` only tried to detect a full house by checking that the two middle elements differ, which misses the case where the three-of-a-kind occupies the last three positions (pattern a a b b b after sorting). The correct check is to ensure there are exactly two distinct values and that either the first three are equal (K[0] == K[2]) or the last three are equal (K[2] == K[4]). I replaced the single incorrect conditional line with that explicit check.",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and (K[0] == K[2] or K[2] == K[4]):\n    print('Yes')\nelse:\n    print('No')"
+}

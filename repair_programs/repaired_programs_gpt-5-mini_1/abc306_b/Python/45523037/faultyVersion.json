@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used a fixed range(63), which assumes the input list a has at least 63 elements. If a is shorter, indexing a[i] causes an IndexError. I changed the loop to iterate over range(len(a)) so it only accesses valid indices of the list.",
+  "fixed_code": "import sys\ninput = lambda: sys.stdin.readline().strip()\n\na = list(map(int, input().split()))\n\nans = 0\nfor i in range(len(a)):\n    if a[i] == 0:\n        continue\n    else:\n        ans += (2 ** i)\nprint(ans)\n"
+}

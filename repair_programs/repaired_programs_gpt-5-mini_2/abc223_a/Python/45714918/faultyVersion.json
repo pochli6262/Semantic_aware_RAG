@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition x%100==0 only checks whether the year is divisible by 100, which is not the complete rule for leap years. The correct rule: a year is a leap year if it is divisible by 400, or divisible by 4 but not by 100. I replaced the single incorrect print line with the condition implementing that rule.",
+  "fixed_code": "x = int(input())\nprint('Yes' if (x % 400 == 0) or (x % 4 == 0 and x % 100 != 0) else 'No')"
+}

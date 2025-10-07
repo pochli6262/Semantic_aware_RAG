@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line 'In=list.index(min(list))'. The issue is that 'list' is a built-in type in Python, and using it as a variable name shadows the built-in type. I changed the variable name 'list' to 'values' to avoid this conflict and ensure 'min(list)' works as expected.",
+  "fixed_code": "N=int(input())\nvalues=[]\nfor i in range(20):\n  values.append(abs(N-i*5))\nIn=values.index(min(values))\nprint(In*5)"
+}

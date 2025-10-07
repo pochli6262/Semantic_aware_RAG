@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue with the original line was in the incorrect total cost calculation when using the coupon. Specifically, the condition 'if (p := P - Q + d) < res' should not add 'd' to the discounted price 'Q' to compute the total cost because it should be 'Q + d' instead of 'P - Q + d'. This fix aligns with the intention to minimize the total expense with the coupon, as inspired by the first diff pattern. We should consider only the discounted price plus the dish cost without additional subtraction from 'P'.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nres = P\n\nfor d in D:\n    if (p := Q + d) < res:\n        res = p\n\nprint(res)"
+}

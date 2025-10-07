@@ -1,0 +1,4 @@
+{
+  "explanation": "The first branch used int(A/B), which performs floating-point division and then converts to int. That can lose precision for very large integers and is unnecessary here. Use integer division (A//B) to get the exact integer quotient. I replaced only that single line with print(A//B).",
+  "fixed_code": "A,B = map(int,input().split())\nif A%B == 0:\n  print(A//B)\nelse:\n  print(int(A//B)+1)"
+}

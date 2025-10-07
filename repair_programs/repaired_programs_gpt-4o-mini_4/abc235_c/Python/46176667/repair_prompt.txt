@@ -1,0 +1,195 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 300 points
+
+### Problem Statement
+
+We have a sequence of N numbers: A = (a\_1, a\_2, \dots, a\_N).  
+Process the Q queries explained below.
+
+* Query i: You are given a pair of integers (x\_i, k\_i). Let us look at the elements of A one by one from the beginning: a\_1, a\_2, \dots Which element will be the k\_i-th occurrence of the number x\_i?  
+  Print the index of that element, or -1 if there is no such element.
+
+### Constraints
+
+* 1 \leq N \leq 2 \times 10^5
+* 1 \leq Q \leq 2 \times 10^5
+* 0 \leq a\_i \leq 10^9 (1 \leq i \leq N)
+* 0 \leq x\_i \leq 10^9 (1 \leq i \leq Q)
+* 1 \leq k\_i \leq N (1 \leq i \leq Q)
+* All values in input are integers.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+N Q
+a_1 a_2 \dots a_N
+x_1 k_1
+x_2 k_2
+\vdots
+x_Q k_Q
+```
+
+### Output
+
+Print Q lines. The i-th line should contain the answer to Query i.
+
+---
+
+### Sample Input 1
+
+```
+6 8
+1 1 2 3 1 2
+1 1
+1 2
+1 3
+1 4
+2 1
+2 2
+2 3
+4 1
+```
+
+### Sample Output 1
+
+```
+1
+2
+5
+-1
+3
+6
+-1
+-1
+```
+
+1 occurs in A at a\_1, a\_2, a\_5. Thus, the answers to Query 1 through 4 are 1, 2, 5, -1 in this order.
+
+---
+
+### Sample Input 2
+
+```
+3 2
+0 1000000000 999999999
+1000000000 1
+123456789 1
+```
+
+### Sample Output 2
+
+```
+2
+-1
+```
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the program uses zero-based indexing when accessing a list for the k-th occurrence, whereas the problem statement specifies that k is one-based.
+
+## Buggy Program
+import sys
+from collections import defaultdict
+MOD = 998_244_353
+INF = 10**18
+
+N, Q = map(int, sys.stdin.readline().rstrip().split())
+A = list(map(int, sys.stdin.readline().rstrip().split()))
+D = defaultdict(list)
+for i in range(N):
+    D[A[i]].append(i + 1)
+
+print(D)
+
+for q in range(Q):
+    x, k = list(map(int, sys.stdin.readline().rstrip().split()))
+    if len(D[x]) >= k:
+        print(D[x][k - 1])
+    else:
+        print(-1)
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -25,10 +25,10 @@
+         Q.popleft()
+         ANS=ANS*now%mod
+         now-=1
+-        
++     
+ for v in C.values():
+     if v==1:
+         continue
+-    ANS=ANS*pow(v,mod-2,mod)%mod
++    ANS=ANS*pow(FACT[v],mod-2,mod)%mod
+ 
+ print(ANS)
+
+### Diff 2
+--- 
++++ 
+@@ -29,4 +29,4 @@
+             if i-x < 0: continue
+             dp[i] -= dp[i-x]
+     # print(t,x,dp)
+-    print(dp[k])
++    print(dp[k]%MOD)
+
+### Diff 3
+--- 
++++ 
+@@ -1,6 +1,6 @@
+ import sys
+ input = lambda: sys.stdin.readline().rstrip()
+-mod = 9982444353
++mod = 998244353
+ 
+ #  -----------------------  #
+ 
+
+### Diff 4
+--- 
++++ 
+@@ -14,7 +14,7 @@
+     d[a[i]] += 1
+ last = [1]
+ tot = 1
+-for i in range(1, 2*10**5+10):
++for i in range(1, 3*10**5+10):
+     cnt = len(last) - 1
+     new = []
+     di = d[i]
+
+### Diff 5
+--- 
++++ 
+@@ -29,7 +29,7 @@
+     S.append(s[i])
+ 
+ x = [0] * (d + 1)
+-a = -(n * d) // 2
++a = -(n * d // 2)
+ for i in range(2 * m - 1):
+     if L[i] - a >= n * d:
+         x[0] -= n * S[i]
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

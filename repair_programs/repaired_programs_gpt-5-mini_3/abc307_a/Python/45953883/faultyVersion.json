@@ -1,0 +1,4 @@
+{
+  "explanation": "The list res was initialized with length N, which is too large: the code only fills one entry per full 7-element block, so res should have one element per completed week (N//7). Initializing res with N produces many unused trailing zeros. I fixed the initialization to allocate N//7 entries.",
+  "fixed_code": "N = int(input())\nA = list(map(int,input().split()))\n\nres = [0]*(N//7)\nSUM = 0\nfor i in range(len(A)):\n    SUM += A[i]\n    if (i + 1)%7==0:\n        res[i//7] = SUM\n        SUM = 0\n\nprint(res)"
+}

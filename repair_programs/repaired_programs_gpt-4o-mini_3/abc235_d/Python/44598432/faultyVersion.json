@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is with how 'd' is initialized and accessed. The current initialization creates an excessively large array that can consume too much memory. The correct initialization should set the size of 'd' just enough for the range of numbers being processed. I replaced 'd = [10**3]*10**len(str(N))' with 'd = [10**3] * (N + 1)’ to fix the issue.",
+  "fixed_code": "from queue import Queue\n\na,N=map(int,input().split())\n\ndef rot(N):\n    M=str(N)\n    return int(M[1:]+M[0])\n\nd=[10**3] * (N + 1)\nd[N]=0\nq=Queue()\nq.put(N)\nwhile not q.empty():\n    M=q.get()\n    if M==1:\n        break\n    if M%a==0 and d[M//a]>d[M]+1:\n        d[M//a]=d[M]+1\n        q.put(M//a)\n    if d[rot(M)]>d[M]+1:\n        d[rot(M)]=d[M]+1\n        q.put(rot(M))\nprint(d[1] if d[1]!=10**3 else -1)"
+}

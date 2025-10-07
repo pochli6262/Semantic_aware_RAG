@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the loop where the condition checks for multiples of 25. The variable 'i' from the first loop was incorrectly used instead of 'j', which leads to a potential reference to an out-of-bounds index in some cases. I fixed it by replacing 'i' with 'j' in the second loop.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)"
+}

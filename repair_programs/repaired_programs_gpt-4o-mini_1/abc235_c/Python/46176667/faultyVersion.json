@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in this line: `D[A[i]].append(i + 1)`. This logic updates the defaultdict with one-based indexing, but the query expects to access elements based on zero-based indexing. When we retrieve `D[x][k - 1]`, it should correspond to `k`, hence the line should append `i` (zero-based) instead of `i + 1` (one-based). I fixed it by changing `append(i + 1)` to `append(i)`.",
+  "fixed_code": "import sys\nfrom collections import defaultdict\nMOD = 998_244_353\nINF = 10**18\n\nN, Q = map(int, sys.stdin.readline().rstrip().split())\nA = list(map(int, sys.stdin.readline().rstrip().split()))\nD = defaultdict(list)\nfor i in range(N):\n    D[A[i]].append(i)  # Changed from i + 1 to i\n\nprint(D)\n\nfor q in range(Q):\n    x, k = list(map(int, sys.stdin.readline().rstrip().split()))\n    if len(D[x]) >= k:\n        print(D[x][k - 1])\n    else:\n        print(-1)"
+}

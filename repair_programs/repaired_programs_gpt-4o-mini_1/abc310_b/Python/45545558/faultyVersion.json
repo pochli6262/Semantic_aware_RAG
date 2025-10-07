@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition 'if f[j].issuperset(f[i]):'. This was not correctly checking the relationship between the sets of friends. The correct logic for the nested loop should check if the set of friends of 'j' is strictly a superset of the friends of 'i', so the condition should be 'if f[j].issuperset(f[i]) and f[j] != f[i]:'. This ensures that they are not the same friend set.",
+  "fixed_code": "n, m = map(int, input().split())\n\np = []\nc = []\nf = []\n\nfor i in range(n):\n    l = list(map(int, input().split()))\n    p.append(l[0])\n    c.append(l[1])\n    f.append(set(l[2:]))\n\nfor i in range(n):\n    for j in range(n):\n        if p[i] >= p[j]:\n            if f[j].issuperset(f[i]) and f[j] != f[i]:\n                print(\"Yes\")\n                exit(0)\n\n\nprint(\"No\")"
+}

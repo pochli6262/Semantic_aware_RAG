@@ -1,0 +1,1 @@
+The bug likely occurs because the program checks for the wrong conditions regarding function subsets and prices, leading to incorrect conclusions about whether one product is strictly superior to another.

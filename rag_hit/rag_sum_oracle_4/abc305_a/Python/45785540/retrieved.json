@@ -1,0 +1,29 @@
+{
+  "task": "abc305_a/Python/45785540",
+  "query_summary": "The branch handling numbers divisible by 5 prints the literal 0 instead of the input n, causing incorrect output whenever n%5 == 0.",
+  "oracle_summary": "The branch handling numbers divisible by 5 prints the literal 0 instead of the input n, causing incorrect output whenever n%5 == 0.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the final value of `ans` by subtracting `n` instead of the square of the integer square root of `n`.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n for i in range(1, int(n**0.5)+1):\n     ans += n//i\n \n-ans = ans*2 - n\n+ans = ans*2 - (int(n**0.5))**2\n print(ans)"
+    },
+    {
+      "summary": "The buggy code does not handle the case when the input `n` is 0, which results in an infinite loop since the while condition `n != 0` will never be false.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,8 @@\n n = int(input()) - 1\n \n goodint = []\n-\n+if n == 0:\n+    print(0)\n while n != 0:\n     goodint.append(n % 5)\n     n //= 5"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of `n-1` repeatedly for each iteration, instead of printing a decreasing sequence from `n-1` down to `0`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,5 @@\n n=int(input())\n for i in range(n):\n-  print(n-1)\n+    print(n-i)\n+\n print(0)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly only checks if `n` is greater than or equal to 5, failing to include a condition to also print \"Yes\" when `n` equals 1.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-if n >= 5:\n+if n >= 5 or n == 1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a fixed range of 10 instead of the variable `n` to determine the countdown limit.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n n = input()\n n = int(n)\n-for i in range(10,-1,-1):\n+for i in range(n,-1,-1):\n     print(i)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

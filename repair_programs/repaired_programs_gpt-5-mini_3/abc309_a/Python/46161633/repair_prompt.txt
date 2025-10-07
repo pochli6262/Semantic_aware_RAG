@@ -1,0 +1,162 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+A,B=map(int, input().split())
+if A%3==0 and B==A+1:
+    print('No')
+elif A==B-1 or A==B-3:
+    print('Yes')
+else:
+    print('No')
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+A,B = map(int,input().split())
+
+if B-A == 1 or A-B == 9:
+  print("Yes")
+else:
+  print("No")
+
+--- Correct Code ---
+A,B = map(int,input().split())
+
+if B-A == 1 or B-A == 9:
+  print("Yes")
+else:
+  print("No")
+
+
+### Example 2
+--- Buggy Code ---
+N, A, B, C, D = map(int, input().split())
+
+if abs(B - C) > 1:
+    print("No")
+    exit()
+elif B == C:
+    if B == 0:
+        if A > 0 and D == 0:
+            if N == A + 1:
+                print("Yes")
+            else:
+                print("No")
+        elif A == 0 and D > 0:
+            if N == D + 1:
+                print("Yes")
+            else:
+                print("No")
+        elif A == 0 and D == 0:
+            if N == 0:
+                print("Yes")
+            else:
+                print("No")
+        else:
+            print("No")
+    else:
+        if B * 2 + 1 + A + D == N:
+            print("Yes")
+        else:
+            print("No")
+
+else:
+    if max(B, C) * 2 + A + D == N:
+        print("Yes")
+    else:
+        print("No")
+    
+    
+
+--- Correct Code ---
+N, A, B, C, D = map(int, input().split())
+
+if abs(B - C) > 1:
+    print("No")
+    exit()
+elif B == C:
+    if B == 0:
+        if A > 0 and D == 0:
+            if N == A + 1:
+                print("Yes")
+            else:
+                print("No")
+        elif A == 0 and D > 0:
+            if N == D + 1:
+                print("Yes")
+            else:
+                print("No")
+        elif A == 0 and D == 0:
+            if N <= 1:
+                print("Yes")
+            else:
+                print("No")
+        else:
+            print("No")
+    else:
+        if B * 2 + 1 + A + D == N:
+            print("Yes")
+        else:
+            print("No")
+
+else:
+    if max(B, C) * 2 + A + D == N:
+        print("Yes")
+    else:
+        print("No")
+
+
+### Example 3
+--- Buggy Code ---
+A,B = (map(int,input().split()))
+if A==1 and B==2:
+    print(3)
+elif A==1 and B==3:
+    print(2)
+elif A==2 and B==1:
+    print(3)
+elif A==1 and B==2:
+    print(3)
+elif A==3 and B==2:
+    print(1)
+elif A==2 and B==3:
+    print(1)
+else:
+    print(-1)
+
+--- Correct Code ---
+A,B = (map(int,input().split()))
+if A==1 and B==2:
+    print(3)
+elif A==3 and B==1:
+    print(2)
+elif A==1 and B==3:
+    print(2)
+elif A==2 and B==1:
+    print(3)
+elif A==1 and B==2:
+    print(3)
+elif A==3 and B==2:
+    print(1)
+elif A==2 and B==3:
+    print(1)
+else:
+    print(-1)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The line computing b used the wrong expression: it computed p - q + a[i], which doesn't represent the intended quantity (the sum of q and a[i]). I replaced that expression with q + a[i], so b is the minimum of q + a[i] over the list. This preserves the rest of the logic (capping the result at p) and only changes that single incorrect line.",
+  "fixed_code": "def getIntMap():\n    return map(int, input().split())\n\n\ndef getIntList():\n    return list(map(int, input().split()))\n\n\ndef main():\n    n, p, q = getIntMap()\n    a = getIntList()\n    b = min([q + a[i] for i in range(n)])\n\n    print(b if b < p else p)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}

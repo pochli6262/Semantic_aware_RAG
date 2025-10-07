@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/44598432",
+  "query_summary": "The likely bug is that the program initializes the array `d` with a fixed size based on the length of `N`, which may lead to out-of-bounds access when using larger values of `N`.",
+  "oracle_summary": "The buggy code always applies the rotation, even when it creates a leading zero and reduces the digit count, whereas it should only rotate when the number of digits is preserved (len(str(M)) == len(str(rot(M)))).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates over the range `2**N + 1`, which causes it to include an extra iteration beyond the actual possible combinations of N items, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     A_list_list.append(tmp_a)\n \n ret = 0\n-for i in range(2**N + 1):\n+for i in range(2**N):\n     for A_list,r  in zip(A_list_list,R_list):\n         tmp = 0\n         for a in A_list:"
+    },
+    {
+      "summary": "The bug in the code is that it fails to perform a modulo operation on `d[i][n]` before printing, which can lead to incorrect outputs when `d[i][n]` exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     for s in range(n+1):\n         c[s] += d[i][s] - d[i-m][s]\n         c[s] %= M\n-    print(d[i][n])\n+    print(d[i][n] % M)\n \n \n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not account for duplicate values in the `array`, leading to incorrect counts when checking if values are less than or equal to `N`.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     array.append(int(''.join(sk) + '0' * i))\n \n ans = 0\n-for a in array:\n+for a in set(array):\n     if a <= N:\n         ans += 1\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range `N` instead of `1` to `N-1` in the final loop, which leads to potential index out-of-bounds errors and incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n         B.append(B[i-1] + C[i-1])\n \n ans = 10 ** 20\n-for j in range(N):\n+for j in range(1, N):\n     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `for j in range(1, N)` instead of `for j in range(1, D+1)`, causing it to generate more connections than intended and potentially exceed the required number of edges.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n print(\"Yes\")\n ans = set()\n for i in range(N):\n-    for j in range(1, N):\n+    for j in range(1, D+1):\n         if (i, (i+j) % N) in ans or ((i + j) % N, i) in ans:\n             continue\n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

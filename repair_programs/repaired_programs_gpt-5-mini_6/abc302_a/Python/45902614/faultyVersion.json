@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used float division int(x/y)+1 which both risks precision errors for very large integers and gives an off-by-one when x is exactly divisible by y. I replaced it with an integer ceiling division formula (x + y - 1) // y which computes the minimal number of attacks using only integer arithmetic. (No retrieved diff directly applied here; the fix is the standard integer ceiling division.)",
+  "fixed_code": "x, y = map(int, input().split())\nprint((x + y - 1) // y)"
+}

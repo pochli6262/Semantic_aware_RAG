@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue with the original code is that the `index` method will raise a ValueError if the value `x` is not found in the list `p`. To handle this, we should check if `x` is in `p` before calling `index`. If `x` is not found, we can print a suitable message or return an indication that `x` is not in the list. In this case, I will implement a check for the presence of `x` first.",
+  "fixed_code": "n, x = map(int, input().split())\np = list(map(int, input().split()))\nif x in p:\n    print(p.index(x))\nelse:\n    print(-1)"
+}

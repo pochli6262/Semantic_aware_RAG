@@ -1,0 +1,32 @@
+{
+  "task": "abc308_a/Python/46165135",
+  "query_summary": "The program incorrectly checks the first condition for a monotonic non-decreasing sequence by using a greater-than-or-equal-to comparison instead of a less-than-or-equal-to comparison.",
+  "oracle_summary": "The bug is an incorrect comparison operator (using >= instead of >) that wrongly rejects sequences with equal adjacent elements instead of allowing non-decreasing order.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the less than or equal to operator (<=) instead of the strict less than operator (<) when comparing substrings, leading to potential false positives in the condition check.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   base = S[0]\n   isOk = False\n   for i in range(1,N):\n-    if S[:i] <= S[i:]:\n+    if S[:i] < S[i:]:\n       isOk = True\n       print(\"Yes\")\n       break"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for strictly less-than (`<`) instead of allowing for equal values (`<=`), which fails to identify non-decreasing sequences.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n = input()\n \n for i in range(len(n)-1):\n-    if int(n[i]) < int(n[i+1]):\n+    if int(n[i]) <= int(n[i+1]):\n         print(\"No\")\n         break\n     "
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for `350 - s` by using the expression `350 - s > 0` instead of the intended chained comparison `350 > 350 - s > 0`, which leads to logical errors in the condition evaluation.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n S = input()\n s = int(S[3:])\n-print('Yes' if 350 - s > 0 and s != 316 else 'No')\n+print('Yes' if 350 > 350 - s > 0 and s != 316 else 'No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly compares characters in the string `S` to the integer `0` instead of the string `\"0\"`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input().strip()\n \n for i in range(1, 9):\n-  if S[2 * i - 1] != 0:\n+  if S[2 * i - 1] != \"0\":\n     print(\"No\")\n     exit()\n print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly allows the value of `S` to be 0, which should be excluded from the valid conditions, leading to potentially misleading results.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = int(input()[3:6])\n-if S != 316 and S < 350:\n+if S != 316 and S!= 0 and S < 350:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The code computed the probability using B - A as the number of integers in the inclusive range [A, B], which is off-by-one. The correct count is B - A + 1, so I added +1 to the denominator to fix the inclusive range size.",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X < A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A + 1)\n  print(answer)"
+}

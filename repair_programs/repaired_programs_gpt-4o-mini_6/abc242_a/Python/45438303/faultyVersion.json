@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculated the probability of Iroha-chan getting a T-shirt when her rank falls between A and B. It used the total number of participants between ranks A and B, which is (B-A), instead of the actual number of participants ranked between (A+1) and B, which is (B - A - 1). I fixed this by replacing 'B-A' with 'B - A - 1' to correctly reference the number of participants who can be chosen uniformly from the eligible range. The fix aligns with the logic of accurately computing the probability given the constraints mentioned in the problem statement.",
+  "fixed_code": "A,B,C,X = map(int,input().split())\nif X <= A:\n  print(1.000000000000)\nelif X < B:\n  print(C/(B-A-1))\nelse:\n  print(0.000000000000)"
+}

@@ -1,0 +1,29 @@
+{
+  "task": "abc244_c/Python/45666072",
+  "query_summary": "The buggy code prints the set’s pop method object (num_set.pop) instead of calling it (num_set.pop()), so it outputs a function reference and doesn’t remove/print an element from the set.",
+  "oracle_summary": "The buggy code prints the set’s pop method object (num_set.pop) instead of calling it (num_set.pop()), so it outputs a function reference and doesn’t remove/print an element from the set.",
+  "retrieved": [
+    {
+      "summary": "The buggy code has an incorrect range in the for loop, which causes an \"index out of range\" error when accessing elements of the list P.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n P = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(1, N + 1):\n   if P[-i] > P[-i - 1]:\n     continue\n   else:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the upper limit for `n` using `n**2 < N` instead of the intended `2**n < N`, which affects the generation of subsets.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n n = 1\n-while n**2<N:n+=1\n+while 2**n<N:n+=1\n out = [[i+1 for i in range(N) if (1<<b)&i] for b in range(n)]\n print(len(out),flush=True)\n for q in out:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the minimum moves needed to bring the number 1 to the end of the list, specifically in the calculation of the last print statement.",
+      "diff": "--- \n+++ \n@@ -17,4 +17,4 @@\n     if P[idx+1] == 2:\n         print(min(idx, N-idx+2))  # 1を先頭に持ってくる\n     else:\n-        print(min(idx+1, N-idx-1+2)+1)  # 1を末尾に持ってくる\n+        print(min(idx+1+1, 1+(N-idx-1)))  # 1を末尾に持ってくる"
+    },
+    {
+      "summary": "The buggy code incorrectly records the values of the indices that are being swapped instead of recording their original 1-based values, resulting in incorrect output.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     else:\n         j = A[i] - 1\n         num += 1\n-        ans.append([A[j], A[i]])\n+        ans.append([i + 1, j + 1])\n         A[i], A[j] = A[j], A[i]\n \n print(num)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the set is non-empty instead of checking if it contains exactly one element.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n N=int(input())\n A = set(map(int, input().split()))\n-print('Yes' if len(A) else 'No')\n+print('Yes' if len(A)==1 else 'No')"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

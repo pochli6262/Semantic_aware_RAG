@@ -1,0 +1,1 @@
+The bug is in the condition (res + 1) << d <= n — it shifts (res+1) instead of adding 1<<d, so it multiplies by 2^d rather than checking res + (1<<d) <= n.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The logic of the condition in the if statement was too specific. The program only checks for the exact match of S1 and S2 being '.#' and '#.' respectively, which may not cover other valid inputs. I changed the condition to check for the 'No' case if S1 is not equal to S2, which covers more possible scenarios.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif S1 != S2:\n  print(\"No\")\nelse:\n  print(\"Yes\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checks each element separately for divisibility by 25, which can lead to incorrect results. Instead, we need to check that each element in the entire list is a multiple of 25. The fix is inspired by the need for a comprehensive condition to ensure all elements satisfy the third condition. Instead of checking 'if arr[i - 1] % 25 != 0 or arr[i] % 25 != 0', I will check 'if arr[i] % 25 != 0' at the end of the loop for the entire array.",
+  "fixed_code": "arr = list(map(int, input().split()))\nfl = True\nfor i in range(1, 8):\n    if arr[i - 1] > arr[i]:\n        fl = False\nif any(s % 25 != 0 for s in arr):\n    fl = False\nprint(\"Yes\" if fl else \"No\")"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc244_d/Python/46208474",
+  "query_summary": "The bug likely lies in the incorrect logic used to determine when to print \"Yes\" or \"No\", as it only checks for a count of matching hats but doesn't account for the actual possibility of rearranging the hats through swaps.",
+  "oracle_summary": "The buggy code increments the counter on equal elements (S[i] == T[i]) instead of on mismatches (S[i] != T[i]), thus counting matches rather than mismatches.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly determines the answer as \"No\" if any character count is not exactly 2, without considering that counts of 0 should be ignored.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n \n ans = \"Yes\"\n for i in range(1,max(cnt)+1):\n-    if cnt.count(i) != 2:\n+    if (cnt.count(i) != 2) and (cnt.count(i) != 0) :\n         ans = \"No\"\n         break\n print(ans)"
+    },
+    {
+      "summary": "The buggy code fails to check if the character sequences from strings S and T are the same at corresponding positions, which can lead to incorrect results when determining if S can be transformed into T based on their character counts.",
+      "diff": "--- \n+++ \n@@ -30,6 +30,8 @@\n             tf = False\n         if S_count[i][1] == 1 and T_count[i][1] >= 2:\n             tf = False\n+        if S_count[i][0] != T_count[i][0]:\n+            tf = False\n \n if tf:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The issue in the buggy code is that it outputs \"YES\" and \"NO\" in uppercase, while the correct code is designed to output \"Yes\" and \"No\" with capitalization for the first letter only.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n S = input()\n list = [ \"ACE\",\"BDF\",\"CEG\",\"DFA\",\"EGB\",\"FAC\",\"GBD\"]\n \n-print(\"YES\" if S in list else \"NO\")\n+print(\"Yes\" if S in list else \"No\")"
+    },
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    },
+    {
+      "summary": "The buggy code fails to handle the special case where the input string is \"BA\", causing it to incorrectly evaluate as \"Yes\" instead of \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n S=input()\n ck=0\n+if S==\"BA\":\n+    exit(print(\"No\"))\n for i in range(N):\n     if S[i]!=S[-1-i]:\n         ck=1"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

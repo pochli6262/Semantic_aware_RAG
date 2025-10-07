@@ -1,0 +1,1 @@
+The set of forbidden pairs fbdn_set only stores each pair in one order (a,b) but the code checks tuple membership in a possibly different order, so some incompatible pairs are not recognized.

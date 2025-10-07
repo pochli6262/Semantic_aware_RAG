@@ -1,0 +1,1 @@
+The program prints both the name and age (using print(*ans[...])), instead of printing only the person's name.

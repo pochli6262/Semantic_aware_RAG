@@ -1,0 +1,33 @@
+{
+  "task": "abc269_a/Python/45960652",
+  "query_summary": "The program outputs \"takahashi\" in lowercase instead of the required \"Takahashi\" with a capital T.",
+  "oracle_summary": "The program outputs \"takahashi\" in lowercase instead of the required \"Takahashi\" with a capital T.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints \"takahashi\" instead of \"Takahashi,\" which violates the expected capitalization of the output.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n ta=(x//(a+c))*a*b+min(x%(a+c),a)*b\n ao=(x//(d+f))*d*e+min(x%(d+f),d)*e\n if ta>ao:\n-  print(\"takahashi\")\n+  print(\"Takahashi\")\n elif ao>ta:\n   print(\"Aoki\")\n else:"
+    },
+    {
+      "summary": "The issue with the buggy code is that it incorrectly uses multiple \"if\" statements instead of \"elif\" for the condition `a==c`, which may lead to unintended prints of \"Aoki\" when \"Takahashi\" should only be printed once.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n a,b,c,d=map(int,input().split())\n if a<c:\n     print(\"Takahashi\")\n-if a==c:\n+elif a==c:\n     if b<=d:\n         print(\"Takahashi\")\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly spells \"Takahashi\" as \"Takahasi\" in the output statement.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     Y += y\n \n if X > Y:\n-    print(\"Takahasi\")\n+    print(\"Takahashi\")\n elif X == Y:\n     print(\"Draw\")\n else:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition for 'Takahashi' by using `T > A` instead of the correct condition `T < A`.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   \n if T == A:\n   print('Draw')\n-elif T > A:\n+elif T < A:\n   print('Takahashi')\n else:\n   print('Aoki')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the value of `t` instead of `ans` at the final conditional statement, which leads to incorrect output.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     if i+j in s:\n       t=0\n   ans|=t\n-if t:\n+if ans:\n   print('Takahashi')\n else:\n   print('Aoki')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

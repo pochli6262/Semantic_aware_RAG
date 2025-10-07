@@ -1,0 +1,1 @@
+The bug likely arises from the use of a fixed multiplier in the calculation of success rates, which can lead to precision issues and incorrect sorting due to the resulting floating-point arithmetic.

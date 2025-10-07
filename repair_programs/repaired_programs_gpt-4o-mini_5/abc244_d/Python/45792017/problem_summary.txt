@@ -1,0 +1,1 @@
+The bug likely occurs because the program incorrectly checks if all hats can be exchanged between the Takahashis when it could fail to find a valid sequence of swaps for cases where only some hats are mismatched.

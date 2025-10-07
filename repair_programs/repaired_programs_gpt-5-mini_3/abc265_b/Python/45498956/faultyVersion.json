@@ -1,0 +1,4 @@
+{
+  "explanation": "The code was checking t against the loop index i (if t>i:) which is incorrect. It should check whether the remaining time t is greater than the travel cost a[i]. I fixed that single line to compare t to a[i] (if t>a[i]:).",
+  "fixed_code": "n,m,t=map(int,input().split())\na=list(map(int,input().split()))\nv=[0]*n\nfor i in range(m):\n  x,y=map(int,input().split())\n  v[x-1]=y\nfor i in range(n-1):\n  t+=v[i]\n  if t>a[i]:\n    t-=a[i]\n  else:\n    print('No')\n    break\nelse:\n  print('Yes')\n"
+}

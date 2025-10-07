@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'b = min([p - q + a[i] for i in range(n)])' incorrectly computes the minimum value by using the expression 'p - q + a[i]'. The intended logic seems to be to find the minimum value of 'a[i] - (p - q)' instead. This can be corrected by changing the line to 'b = min([a[i] - (p - q) for i in range(n)])'.",
+  "fixed_code": "def getIntMap():\n    return map(int, input().split())\n\ndef getIntList():\n    return list(map(int, input().split()))\n\ndef main():\n    n, p, q = getIntMap()\n    a = getIntList()\n    b = min([a[i] - (p - q) for i in range(n)])\n\n    print(b if b < p else p)\n\nif __name__ == \"__main__\":\n    main()"
+}

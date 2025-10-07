@@ -1,0 +1,33 @@
+{
+  "task": "abc265_b/Python/45698748",
+  "query_summary": "The final check uses \"t < 0\" so the program incorrectly accepts cases where t == 0 (but a move that makes time 0 should be treated as failure).",
+  "oracle_summary": "The final check uses t < 0 instead of t <= 0, wrongly accepting cases where the remaining time is exactly zero as success.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The problem with the buggy code is that it incorrectly outputs 1 when `s` equals both the beginning and the end of `t`, instead of outputting 0, as it fails to check both conditions simultaneously in the first if statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = input()\n t = input()\n \n-if s == t:\n+if s == t[:n] and s == t[-n:]:\n     print(0)\n elif s == t[:n]:\n     print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for equality between `s` and `t` without considering that both conditions of being equal to the beginning and the end of `t` can be true simultaneously, which should return 0 but instead returns 1 or 2.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n s = input()\n t = input()\n \n-if s == t:\n+if s == t[:n] and s == t[-n:]:\n     print(0)\n elif s == t[:n]:\n     print(1)"
+    },
+    {
+      "summary": "The buggy code fails to handle cases where the extracted integer `t` is less than or equal to zero, incorrectly allowing such inputs to produce a \"Yes\" output when they should result in \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s=input()\n t=int(s[3:])\n-if t==316 or t>349:\n+if t==316 or t>349 or t<=0:\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

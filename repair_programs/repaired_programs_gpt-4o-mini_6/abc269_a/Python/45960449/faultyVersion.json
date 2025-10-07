@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used (a - d) instead of the correct expression (c - d) for the calculation. This change was inspired by the analysis that pointed out the mistake in the mathematical formula used for computation. The correct line ensures that the computation follows the problem statement directly.",
+  "fixed_code": "a, b, c, d  = map(int, input().split())\nprint(((a + b) * (c - d)))\nprint(\"Takahashi\")"
+}

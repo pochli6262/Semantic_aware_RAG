@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the line that builds the dictionary of bonuses: d[x]=y. If there are multiple entries for the same x, the code overwrites earlier values instead of accumulating them. I fixed it by summing bonuses for the same key using d[x] = d.get(x, 0) + y.",
+  "fixed_code": "N,M,T=list(map(int, input().split()))\nA=list(map(int, input().split()))\nd={}\nfor _ in range(M):\n    x,y=list(map(int, input().split()))\n    d[x]=d.get(x,0)+y\n\nfor i in range(N-1):\n    if i+1 in d:\n        T+=d[i+1]\n    if A[i]>T:\n        print(\"No\")\n        exit()\n    T-=A[i]\nprint(\"Yes\")\n"
+}

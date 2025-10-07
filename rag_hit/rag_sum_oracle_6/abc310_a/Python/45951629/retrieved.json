@@ -1,0 +1,32 @@
+{
+  "task": "abc310_a/Python/45951629",
+  "query_summary": "The code computes the wrong expression — it uses `P - Q + D[i]` (mixing P and subtraction) instead of `Q + D[i]`, producing incorrect candidate values.",
+  "oracle_summary": "The code computes the wrong expression — it uses `P - Q + D[i]` (mixing P and subtraction) instead of `Q + D[i]`, producing incorrect candidate values.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to `D[i-1]` instead of 1 to `D[i-1] + 1`, leading to an off-by-one error that causes it to miss the last value of `j`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n ans = 0\n for i in range(1, N+1):\n     m = list(str(i))\n-    for j in range(1, D[i-1]):\n+    for j in range(1, D[i-1]+1):\n         d = list(str(j))\n         if len(set(m + d)) == 1:\n             ans += 1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses a strict greater-than comparison (`H + P[i] > X`) instead of a greater-than-or-equal-to comparison (`H + P[i] >= X`), which causes it to miss cases where the sum is exactly equal to `X`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n min_num = 999999\n result = 0\n for i in range(N):\n-    if H + P[i] > X:\n+    if H + P[i] >= X:\n         if min_num > H + P[i]:\n             min_num = H + P[i]\n             result = i + 1"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the second element of the list `li` as `D - ans` instead of `abs(D) - ans`, which may lead to incorrect results when `D` is negative or when handling edge cases.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n     exit()\n \n ans = abs(X-A)%abs(D)\n-li = [ans,D-ans]\n+li = [ans,abs(D)-ans]\n \n if li[0] < li[1]:\n     print(li[0])"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `s` using `R % D` instead of `X % D`, leading to an incorrect output when `D` is not zero.",
+      "diff": "--- \n+++ \n@@ -13,5 +13,5 @@\n     if D == 0:\n         print(X-L)\n     else:\n-        s = (X + R % D) % D\n+        s = (X - R % D) % D\n         print(min(s, D-s))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly computes the contribution of the value `A[i]` to the result by using `S[l] + A[i]` instead of the correct term involving `r * A[i]`.",
+      "diff": "--- \n+++ \n@@ -12,5 +12,5 @@\n     m = (l + r) // 2\n     if A[i] + B[m] <= P : l = m\n     else : r = m\n-  res += (S[l] + A[i] if l >= 0 else 0) + P * (M - r)\n+  res += (S[l] + r * A[i] if l >= 0 else 0) + P * (M - r)\n print(res)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

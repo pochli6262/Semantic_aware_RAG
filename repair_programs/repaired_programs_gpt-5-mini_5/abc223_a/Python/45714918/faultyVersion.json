@@ -1,0 +1,4 @@
+{
+  "explanation": "The original single-line condition only checked x%100==0, which incorrectly accepted X=0 (no coins). I fixed that line to also require x>=100 so that at least one 100-yen coin is present. This change is similar in spirit to diffs that add an extra logical check using 'and' to enforce an additional constraint (see patterns like Diff 2).",
+  "fixed_code": "x = int(input())\nprint('Yes' if x%100==0 and x>=100 else 'No')"
+}

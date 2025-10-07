@@ -1,0 +1,1 @@
+The binary search upper bound is set to maxday rather than maxday+1, so if the first day with total ≤ K occurs after all medicines end the code can return maxday instead of maxday+1.

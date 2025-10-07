@@ -1,0 +1,4 @@
+{
+  "explanation": "The final return value was misspelled as 'correnct', so the function would output the wrong string even when the input is valid. I fixed that single line to return the correctly spelled 'correct'. No other lines were changed.",
+  "fixed_code": "def hantei(N,A):\n    for n1 in range(N):\n        for n2 in range(N):\n            if ((A[n1][n2] == \"-\" and A[n2][n1] == \"-\") \n                or (A[n1][n2] == \"W\" and A[n2][n1] == \"L\") \n                or (A[n1][n2] == \"L\" and A[n2][n1] == \"W\") \n                or (A[n1][n2] == \"D\" and A[n2][n1] == \"D\")):\n                continue\n            else:\n                return \"incorrect\"\n    return \"correct\"\n\nN = int(input())\nA = []\n\nfor _ in range(N):\n    A.append(list(str(input())))\n\nprint(hantei(N,A))"
+}

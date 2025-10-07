@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line only rejected cases with more than two distinct values (2 < len(count.values())), but it allowed cases with just one distinct value to fall through. When there is only one distinct element, a becomes a single-element list and accessing a[1] raises an IndexError. I changed the condition to require exactly two distinct values (if len(count.values()) != 2:) so the subsequent code that accesses a[0] and a[1] only runs when there are exactly two counts to examine.",
+  "fixed_code": "from collections import defaultdict\n\ncount = defaultdict(int)\n\nA=list(map(int, input().split()))\n\nfor i in range(len(A)):\n  count[A[i]] += 1\n\na = count.values()\na = list(a)\n\nif len(count.values()) != 2:\n  print(\"No\")\nelif a[0] == 3 or a[1] == 3:\n  print(\"YES\")\nelse:\n  print(\"No\")"
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc305_a/Python/45435091",
+  "query_summary": "The code incorrectly hardcodes n=100 instead of reading the input N, so it will always compute the answer for 100.",
+  "oracle_summary": "The program hardcodes n=100 instead of reading the integer from input (n=int(input())), so it doesn't use the intended user-provided value.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the final value of `ans` by subtracting `n` instead of the square of the integer square root of `n`.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n for i in range(1, int(n**0.5)+1):\n     ans += n//i\n \n-ans = ans*2 - n\n+ans = ans*2 - (int(n**0.5))**2\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to 9 instead of 1 to 10 when checking divisors of `n`, resulting in potentially missing valid divisors of `n`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n ans = \"\"\n for i in range(n + 1):\n     judge = False\n-    for j in range(1,9):\n+    for j in range(1,10):\n         if n % j == 0:\n             if i % (n / j) == 0:\n                 judge = True"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of N after each loop, which is unnecessary and leads to additional output before determining if N is equal to 1.",
+      "diff": "--- \n+++ \n@@ -2,8 +2,8 @@\n \n while N % 2 == 0:\n     N //= 2\n-print(N)\n+\n while N % 3 == 0:\n     N //= 3\n-print(N)\n+\n print(\"Yes\" if N == 1 else \"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the while loop condition should use \"less than or equal to\" (`<=`) instead of \"less than\" (`<`) to correctly include the case when `n` is exactly a power of ten.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n def sum_of_f(n):\n     ans = 0\n     n1 = 1\n-    while 10*n1 < n:\n+    while 10*n1 <= n:\n         ans += (10*n1-1-n1+1)*(10*n1-1-n1+1+1)//2\n         ans = ans % 998244353\n         n1 *= 10"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

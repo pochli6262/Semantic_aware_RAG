@@ -1,0 +1,180 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+s=input()
+if s=="Monday":
+    print(5)
+if s=="Tuesday":
+    print(4)
+if s=="Wednesday":
+    print(3)
+if s=="Thursday":
+    print(2)
+if s=="Friay":
+    print(1)
+
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+s=str(input())
+if s=="tourist":
+    print(3858)
+if s=="ksun48":
+    print(3679)
+if s=="Benq":
+    print(3658)
+if s=="Um_nik":
+    print(3648)
+if s=="apiad":
+    print(3638)
+if s=="Stonefeang":
+    print(3630)
+if s=="ecnerwala":
+    print(3613)
+if s=="marinara":
+    print(3555)
+if s=="newbiedmy":
+    print(3516)
+if s=="semiexp":
+    print(3481)
+
+--- Correct Code ---
+s=str(input())
+if s=="tourist":
+    print(3858)
+if s=="ksun48":
+    print(3679)
+if s=="Benq":
+    print(3658)
+if s=="Um_nik":
+    print(3648)
+if s=="apiad":
+    print(3638)
+if s=="Stonefeang":
+    print(3630)
+if s=="ecnerwala":
+    print(3613)
+if s=="mnbvmar":
+    print(3555)
+if s=="newbiedmy":
+    print(3516)
+if s=="semiexp":
+    print(3481)
+
+
+### Example 2
+--- Buggy Code ---
+s=str(input())
+if s=="tourist":
+    print(3858)
+if s=="ksun48":
+    print(3679)
+if s=="Beng":
+    print(3658)
+if s=="Um_nik":
+    print(3648)
+if s=="apiad":
+    print(3638)
+if s=="Stonefeang":
+    print(3630)
+if s=="ecnerwala":
+    print(3613)
+if s=="mnbvmar":
+    print(3555)
+if s=="newbiedmy":
+    print(3516)
+if s=="semiexp":
+    print(3481)
+
+--- Correct Code ---
+s=str(input())
+if s=="tourist":
+    print(3858)
+if s=="ksun48":
+    print(3679)
+if s=="Benq":
+    print(3658)
+if s=="Um_nik":
+    print(3648)
+if s=="apiad":
+    print(3638)
+if s=="Stonefeang":
+    print(3630)
+if s=="ecnerwala":
+    print(3613)
+if s=="mnbvmar":
+    print(3555)
+if s=="newbiedmy":
+    print(3516)
+if s=="semiexp":
+    print(3481)
+
+
+### Example 3
+--- Buggy Code ---
+S = input()
+
+if S =="tourist":
+    print(3858)
+if S == "ksun48":
+    print(679)
+if S == "Benq":
+    print(3658)
+if S == "Um_nik":
+    print(3648)
+if S == "apiad":
+    print(3638)
+if S == "Stonefeang":
+    print(3630)
+if S == "ecnerwala":
+    print(3613)
+if S == "mnbvmar":
+    print(3555)
+if S == "newbiedmy":
+    print(3516)
+if S == "semiexp":
+    print(3481)
+
+
+--- Correct Code ---
+S = input()
+
+if S =="tourist":
+    print(3858)
+if S == "ksun48":
+    print(3679)
+if S == "Benq":
+    print(3658)
+if S == "Um_nik":
+    print(3648)
+if S == "apiad":
+    print(3638)
+if S == "Stonefeang":
+    print(3630)
+if S == "ecnerwala":
+    print(3613)
+if S == "mnbvmar":
+    print(3555)
+if S == "newbiedmy":
+    print(3516)
+if S == "semiexp":
+    print(3481)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

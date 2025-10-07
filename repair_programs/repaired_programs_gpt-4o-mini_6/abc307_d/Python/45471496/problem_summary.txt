@@ -1,0 +1,1 @@
+The likely bug in the program is that it incorrectly handles the removal of substrings enclosed by parentheses, leading to incorrect output when matching opening and closing parentheses.

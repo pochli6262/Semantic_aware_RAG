@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line uses 'input()' directly for integer conversion, which may cause an error if the input is not an integer. The intended behavior seems to calculate the absolute difference correctly, but it does not handle the input correctly for potential non-integer values. The correction involves ensuring the input is parsed as an integer before performing the modulus operation.",
+  "fixed_code": "print(abs(5 - (int(input())) % 5))"
+}

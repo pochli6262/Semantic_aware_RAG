@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition incorrectly used x>a+1, which makes the (A+1)-th ranked participant treated as guaranteed to get a T-shirt. It should check x>a so that ranks A+1 through B are in the random selection. I fixed the condition to if x>a and x<=b:.",
+  "fixed_code": "a,b,c,x=list(map(int,input().split()))\nans=1.0\nif x>a and x<=b:\n    ans=c/(b-a)\nelif x>b:\n    ans=0.0\nprint('%.10f'%ans)\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The single-line bug is the rounding threshold. The code rounds up when n%5 >= 2, but the correct rule is to round up only when the remainder is 3 or more. I changed the comparison from >= 2 to >= 3 so numbers with remainder 3 or 4 round up, while 0, 1, 2 stay rounded down.",
+  "fixed_code": "n=int(input())\nprint((n//5)*5+5 if n%5>=3 else (n//5)*5)"
+}

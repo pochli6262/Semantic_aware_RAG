@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program printed the zero-based index of the found value instead of the required one-based index. The fix involves changing the line that prints the index to add 1 to the index in order to match the one-based indexing required by the problem statement. This fix is inspired by the diff patterns suggesting correcting indices.",
+  "fixed_code": "N, X = map(int, input().split())\nP = list(map(int, input().split()))\n\nfor i in range(N):\n  if P[i] == X:\n    print(i + 1)\n    break"
+}

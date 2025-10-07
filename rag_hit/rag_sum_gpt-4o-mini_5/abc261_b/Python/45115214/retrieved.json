@@ -1,0 +1,29 @@
+{
+  "task": "abc261_b/Python/45115214",
+  "query_summary": "The program incorrectly counts valid results as contradictions, leading to the wrong output when assessing the tournament's consistency.",
+  "oracle_summary": "The buggy code omits counting the symmetric draw case ('D' vs 'D'), so valid matrices with draws are wrongly judged incorrect.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it reads the input as a string instead of a list of integers, which leads to incorrect comparisons in the counting logic.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-A = input()\n+A = list(map(int,input().split()))\n count = 0\n for i in range(2*N-2):\n   if A[i] == A[i+2]:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the equality operator (`==`) instead of the assignment operator (`=`) to set the value of `check` to `True`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(len(S)-2):\n   count += 1\n   if S[i] == \"A\" and S[i+1] == \"B\" and S[i+2] == \"C\":\n-    check == True\n+    check = True\n     break\n \n if check == True:"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the `sa` list in the case where `W` is positive, causing the wrong indices to be modified which may lead to an incorrect final answer.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n         else:\n             if S[2 * N - i - 1] == \"(\":\n                 S[2 * N - i - 1] = \")\"\n-                sa[i] = -1\n+                sa[2 * N - i - 1] = -1\n                 W -= 2\n                 ans += B\n         i += 1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it accumulates results in the `ans` list across different iterations of the outer loop instead of resetting it for each row, leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = [list(map(int, input().split())) for _ in range(N)]\n-ans = []\n for i in range(N):\n+    ans = []\n     for j in range(N):\n         if A[i][j] == 1:\n             ans.append(j+1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition in the second 'elif' statement incorrectly uses 'A < N' instead of 'A <= N', which could lead to incorrect results when A is equal to N.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \tN, A, B = map(int, input().split())\n \tif A <= N // 2:\n \t\tprint(\"Yes\" if B <= ((N + 1) // 2) * (N - A) else \"No\")\n-\telif A < N:\n+\telif A <= N:\n \t\tprint(\"Yes\" if B <= (N - A) ** 2 else \"No\")\n \telse:\n \t\tprint(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

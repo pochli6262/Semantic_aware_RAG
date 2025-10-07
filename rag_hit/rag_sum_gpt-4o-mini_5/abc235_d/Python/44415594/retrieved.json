@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/44415594",
+  "query_summary": "The program likely suffers from incorrect initialization and handling of the `numSet` array, which may lead to improper tracking of the minimum number of moves.",
+  "oracle_summary": "The buggy code performs the rotation move without verifying that the rotated number keeps the same digit length, so rotations that introduce leading zeros (shortening the number) are incorrectly allowed.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the initial upper limit `OK` for the binary search is set to `10**9`, which is too small, leading to potential incorrect results when larger adjustments are necessary; it should be set to `10**17` as in the correct code.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n \n C=A[:]\n \n-OK=10**9\n+OK=10**17\n NG=-1\n \n while OK>NG+1:"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ng` to -1 instead of setting it to `max(L) - 2`, which leads to inaccurate results in the binary search process.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     L[i] += 1\n \n ok = 10 ** 15\n-ng = -1\n+ng = max(L) - 2\n \n def check(num):\n     wordLen = -1"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the maximum size of the sets `A_[i]` within the loop, resulting in incorrect logic for deciding whether to print 'Yes' or 'No'; specifically, it uses `max_(0, len(A_[i]))` instead of `max(max_, len(A_[i]))`.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n   if len(A_[i])!=len(B_[i]):\n     print('No')\n     exit()\n-  max_ = max(0, len(A_[i]))\n+  max_ = max(max_, len(A_[i]))\n \n if max_>=2: \n   print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly includes the last index of the list `ans` computation in the loop, which leads to an incorrect calculation of minimum values, while the correct code restricts the loop to `N-1`, ensuring only valid indices are considered.",
+      "diff": "--- \n+++ \n@@ -27,7 +27,7 @@\n         OI[i] = OI[i - 1]\n \n ans = set()\n-for i in range(N):\n+for i in range(N-1):\n     ans.add((OI[-1]-OI[i])+(IO[i]))\n     ans.add(IO[-1]-IO[i]+(OI[i]))\n "
+    },
+    {
+      "summary": "The bug in the code is that the final value of `v` in the `check` function incorrectly adds `now + 1` instead of just `now`, leading to incorrect results when determining if the condition `v <= N * Ns` is met.",
+      "diff": "--- \n+++ \n@@ -37,7 +37,7 @@\n         if now >= Ns:\n             v += Ns\n             now -= Ns\n-    v += now + 1\n+    v += now\n     return v <= N * Ns\n \n         "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

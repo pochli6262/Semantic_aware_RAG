@@ -1,0 +1,4 @@
+{
+  "explanation": "The outer loop used range(N+1) which runs one extra iteration. That off-by-one leads to an unnecessary extra pass (and can cause unexpected behavior in interactive flows or when the code expects exactly N responses). I fixed it by changing that line to for _ in range(N): so the outer loop runs exactly N times.",
+  "fixed_code": "N=int(input())\nbad=set()\nfor _ in range(N):\n    for i in range(1,N+1):\n        if i not in bad:\n            bad.add(i)\n            print(i)\n            bad.add(int(input()))\n            break\n"
+}

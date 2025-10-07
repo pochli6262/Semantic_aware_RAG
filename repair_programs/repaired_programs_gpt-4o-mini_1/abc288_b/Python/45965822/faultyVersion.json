@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code fails to handle the case where 'b' is greater than the number of unique strings inputted. Instead of slicing 'c' with 'c[0:b]', we should ensure we return only the unique strings, hence I changed it to 'c[:b]'.",
+  "fixed_code": "a,b=map(int,input().split())\nc=[]\nfor i in range(a):\n    c.append(str(input()))\nc.sort()\nc=c[:b]\nfor i in c:\n  print(i)"
+}

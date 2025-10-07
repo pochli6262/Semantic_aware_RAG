@@ -1,0 +1,1 @@
+The program reads each input line as a raw string (including spaces) instead of splitting into the three hat characters, so its indexing and comparisons operate on spaces and are incorrect.

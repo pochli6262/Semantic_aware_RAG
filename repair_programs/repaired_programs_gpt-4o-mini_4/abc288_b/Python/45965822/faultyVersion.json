@@ -1,0 +1,4 @@
+{
+  "explanation": "The wrong line is where the list of nicknames is sorted before selecting the top K participants. Instead, we need to sort only the top K ranks after they have been collected, thus maintaining the original ranking before sorting. This aligns with the problem statement requiring lexicographical order of the top K ranked participants. No specific diff pattern directly inspired this change, but it is a common logical error in processing ranks and orders.",
+  "fixed_code": "a,b=map(int,input().split())\nc=[]\nfor i in range(a):\n    c.append(str(input()))\nc=c[0:b]\nc.sort()\nfor i in c:\n  print(i)"
+}

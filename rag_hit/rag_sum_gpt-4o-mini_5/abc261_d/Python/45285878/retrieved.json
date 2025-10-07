@@ -1,0 +1,32 @@
+{
+  "task": "abc261_d/Python/45285878",
+  "query_summary": "The likely bug is that the program incorrectly calculates the streak bonuses and the transition from one toss to another, leading to incorrect updates in the dynamic programming table.",
+  "oracle_summary": "When computing dp[i][0], the buggy code adds yl[j] (the last inner-loop index) instead of yl[0], incorrectly making dp[i][0] depend on j.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it uses an incorrect value for the modulo variable `MOD`, which should be `998244353` instead of `9998244353`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n acc = [[0]*(n+1) for _ in range(n+1)]\n dp[0][0] = 1\n acc[0] = [1]*(n+1)\n-MOD = 9998244353\n+MOD = 998244353\n \n for x in range(1,n+1):\n     dpx = dp[x]"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` array for the first row, inadvertently setting `dp[0][j] = 0` for all `j`, which leads to erroneous calculations in subsequent iterations.",
+      "diff": "--- \n+++ \n@@ -5,8 +5,6 @@\n dp = [ [-inf] * (M + 1) for _ in range(N + 1) ]\n for i in range(N + 1):\n     dp[i][0] = 0\n-for j in range(M + 1):\n-    dp[0][j] = 0\n \n for i in range(1, N + 1):\n     a = A[i - 1]"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The bug in the code is that it fails to prevent exceeding the bounds of the array `dp` when filling values for cases where `s[i]` is 1, potentially leading to an IndexError or incorrect results, as it does not correctly manage the upper limit for `j`.",
+      "diff": "--- \n+++ \n@@ -37,6 +37,8 @@\n         dp[i+1][n] %= MOD\n     else:\n         for j in range(n):\n+            if j == (m+1):\n+                break\n             dp[i+1][j+1] += dp[i][j]\n     \n     # print(dp)"
+    },
+    {
+      "summary": "The bug in the buggy code is that the inner loop iterates from `mini = 1` to `n`, instead of from `mini = 0` to `n`, which may lead to incorrect index access when updating the `dp` table.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n   ai = a[i]\n   new = [[0]*(n+1) for i in range(k+1)] \n   for j in range(k+1):\n-    for mini in range(1, n+1):\n+    for mini in range(n+1):\n       if mini >= ai and j >= 1:\n         new[j][mini] += dp[j-1][mini]\n       if mini >= ai:"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    5
+  ],
+  "useful_diffs_count": 2
+}

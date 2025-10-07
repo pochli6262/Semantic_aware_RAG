@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the spelling of 'Friday', which was incorrectly typed as 'Friay'. I corrected the spelling to 'Friday'.",
+  "fixed_code": "s=input()\nif s==\"Monday\":\n    print(5)\nif s==\"Tuesday\":\n    print(4)\nif s==\"Wednesday\":\n    print(3)\nif s==\"Thursday\":\n    print(2)\nif s==\"Friday\":\n    print(1)"
+}

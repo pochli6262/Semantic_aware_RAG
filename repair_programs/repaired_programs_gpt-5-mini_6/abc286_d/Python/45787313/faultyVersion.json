@@ -1,0 +1,4 @@
+{
+  "explanation": "The inner loop over j used range(x), which omitted the target sum x itself and prevented dp states at sum x from being propagated to the next item (an off-by-one error). I fixed it by changing the loop to range(x + 1) so all sums 0..x are considered. This is an off-by-one bounds fix similar in spirit to the diffs that correct range/bound errors.",
+  "fixed_code": "n, x = map(int, input().split())\na = [0 for _ in range(n)]\nb = [0 for _ in range(n)]\nfor i in range(n):\n  a[i], b[i] = map(int, input().split())\n\ndp = [[False for _ in range(x + 1)] for _ in range(n + 1)]\nfor i in range(n + 1):\n  dp[i][0] = True\n\nfor i in range(n):\n  for j in range(x + 1):\n    for k in range(b[i] + 1):\n      if dp[i][j]:\n        if j + (k * a[i]) <= x:\n            dp[i + 1][j + (k * a[i])] = True\n\nif dp[-1][-1]:\n  print(\"Yes\")\nelse:\n  print(\"No\")\n"
+}

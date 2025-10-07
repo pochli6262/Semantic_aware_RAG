@@ -1,0 +1,4 @@
+{
+  "explanation": "The logic used to determine contradictions was incorrect; it counted `correct` cases instead of verifying them. Specifically, the conditions that checked for contradictions were flawed, and I needed to ensure that if Player i beats Player j, then Player j must lose to Player i (and similarly for the other match outcomes). For fixing this, I referenced similar patterns from the provided diffs that corrected logical conditions. The updated line ensures that contradictory match results are identified correctly.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\ncount = 0\nfor i in range(N):\n  for k in range(N):\n    if (i == k) and (A[i][k] == '-') :\n      count += 1\n    if (i != k) and (A[i][k] == 'W' and A[k][i] != 'L'):\n      count += 1\n    if (i != k) and (A[k][i] == 'W' and A[i][k] != 'L'):\n      count += 1\nif count == 0:\n  print(\"correct\")\nelse:\n  print(\"incorrect\")"
+}

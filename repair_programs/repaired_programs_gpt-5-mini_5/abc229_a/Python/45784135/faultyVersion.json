@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition only checked vertical adjacency (same column) and ignored horizontal adjacency (same row). I fixed the single conditional line to also check whether the two cells in the top row are both '#' or the two cells in the bottom row are both '#'. This adds the missing horizontal-adjacency checks (logical OR) so any adjacent black pair — vertical or horizontal — yields \"Yes\". The change is analogous to the logical-operator fixes shown in the retrieved diffs that replace/augment AND conditions with appropriate OR checks.",
+  "fixed_code": "s1=input()\ns2=input()\n\nif (s1[0]==\"#\" and s2[0]==\"#\") or (s1[1]==\"#\" and s2[1]==\"#\") or (s1[0]==\"#\" and s1[1]==\"#\") or (s2[0]==\"#\" and s2[1]==\"#\"):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

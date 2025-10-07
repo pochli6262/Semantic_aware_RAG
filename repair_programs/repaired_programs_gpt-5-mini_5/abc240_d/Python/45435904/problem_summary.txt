@@ -1,0 +1,1 @@
+When Q is empty the first if appends [a,1] but the subsequent if still runs and increments that same group, causing the initial element to be double-counted.

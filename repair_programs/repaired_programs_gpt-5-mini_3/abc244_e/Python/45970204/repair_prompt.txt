@@ -1,0 +1,261 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+n,m,k,s,t,x = map(int, input().split())
+uvl = [list(map(int, input().split())) for _ in range(m)]
+mod = 998244353
+from collections import defaultdict
+gd = defaultdict(set)
+for u,v in uvl:
+    gd[u-1].add(v-1)
+    gd[v-1].add(u-1)
+
+dp =  [[[0] * 2 for i in range(n)] for j in range(k+1)]
+dp[0][s-1][0] = 1
+for i in range(1,k+1):
+    for u, vs in gd.items():
+        for v in vs: 
+            if v == x-1:
+                dp[i][v][0] += dp[i-1][u][1]%mod
+                dp[i][v][1] += dp[i-1][u][0]%mod
+            else:
+                dp[i][v][0] += dp[i-1][u][0]%mod
+                dp[i][v][1] += dp[i-1][u][1]%mod
+print(dp[k][t-1][0])       
+
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+N, M, K = map(int, input().split())
+mod = 998244353
+
+dp = [[0]*M for _ in range(N)]
+for i in range(M):
+    dp[0][i] = 1
+
+for i in range(N-1):
+    s = [0]
+    for j in range(M):
+        s.append(s[-1]+dp[i][j])
+    for j in range(M):
+        dp[i+1][j] += s[max(j-K+1, 0)] - s[0]
+        dp[i+1][j] += s[M] - s[min(j+K, M)]
+        dp[i+1][j] %= mod
+
+print(sum(dp[N-1])%mod)
+
+
+--- Correct Code ---
+N, M, K = map(int, input().split())
+mod = 998244353
+
+dp = [[0]*M for _ in range(N)]
+for i in range(M):
+    dp[0][i] = 1
+
+for i in range(N-1):
+    s = [0]
+    for j in range(M):
+        s.append(s[-1]+dp[i][j])
+    for j in range(M):
+        dp[i+1][j] += s[max(j-K+1, 0)] - s[0]
+        dp[i+1][j] += s[M] - s[min(j+K, M)]
+        if K == 0:
+            dp[i+1][j] -= dp[i][j]
+        dp[i+1][j] %= mod
+
+print(sum(dp[N-1])%mod)
+
+
+### Example 2
+--- Buggy Code ---
+MOD = 998244353
+
+n,m = map(int, input().split())
+s = list(map(int, input().split()))
+
+if m == 0:
+    ok = True
+    for i in range(n):
+        if i == 0:
+            if s[i] == 0:
+                ok = False
+                break
+        else:
+            if s[i] == 1:
+                ok = False
+                break
+    
+    if ok:
+        print(1)
+    else:
+        print(0)
+    exit()
+
+dp = [[0 for i in range(n+1)] for i in range(n+1)]
+dp[0][0] = 1
+
+for i in range(n):
+    if s[i] == 0:
+        for j in range(n):
+            dp[i+1][j] += dp[i][j] * j
+            dp[i+1][j] %= MOD
+
+            dp[i+1][j+1] += dp[i][j] * max(m-j, 0)
+            dp[i+1][j+1] %= MOD
+        
+        dp[i+1][n] += dp[i][n] * n
+        dp[i+1][n] %= MOD
+    else:
+        for j in range(n):
+            dp[i+1][j+1] += dp[i][j]
+    
+    # print(dp)
+
+ans = 0
+for j in range(1,n+1):
+    ans += dp[n][j]
+    ans %= MOD
+
+print(ans)
+
+--- Correct Code ---
+MOD = 998244353
+
+n,m = map(int, input().split())
+s = list(map(int, input().split()))
+
+if m == 0:
+    ok = True
+    for i in range(n):
+        if i == 0:
+            if s[i] == 0:
+                ok = False
+                break
+        else:
+            if s[i] == 1:
+                ok = False
+                break
+    
+    if ok:
+        print(1)
+    else:
+        print(0)
+    exit()
+
+dp = [[0 for i in range(n+1)] for i in range(n+1)]
+dp[0][0] = 1
+
+for i in range(n):
+    if s[i] == 0:
+        for j in range(n):
+            dp[i+1][j] += dp[i][j] * j
+            dp[i+1][j] %= MOD
+
+            dp[i+1][j+1] += dp[i][j] * max(m-j, 0)
+            dp[i+1][j+1] %= MOD
+        
+        dp[i+1][n] += dp[i][n] * n
+        dp[i+1][n] %= MOD
+    else:
+        for j in range(n):
+            if j == (m+1):
+                break
+            dp[i+1][j+1] += dp[i][j]
+    
+    # print(dp)
+
+ans = 0
+for j in range(1,n+1):
+    ans += dp[n][j]
+    ans %= MOD
+
+print(ans)
+
+
+### Example 3
+--- Buggy Code ---
+N,D = map(int, input().split())
+A =[int(i) for i in input().split()]
+
+mod = 998244353
+S = 1<<(2*D+2)
+dp = [[0]*(S) for _ in range(N+1)]
+dp[0][(1<<(D+1)) - 1] = 1
+for i,a in enumerate(A):
+    if a>-1:
+        for s in range(S):
+            if s&1==0:
+                continue
+            t = s>>1
+            diff = a-(i+1) + D
+            if t>>diff&1:
+                continue
+            dp[i+1][t|(1<<diff)] += dp[i][s]
+            dp[i+1][t|(1<<diff)] %= mod
+    else:
+        for s in range(S):
+            if s&1==0:
+                continue
+            t = s>>1
+            for diff in range(0,2*D+2):
+                if t>>diff&1:
+                    continue
+                dp[i+1][t|(1<<diff)] += dp[i][s]
+                dp[i+1][t|(1<<diff)] %= mod
+# for i in range(N+1):
+#     print(dp[i][:30])
+print(dp[-1][(1<<(D+1))-1])
+
+--- Correct Code ---
+N,D = map(int, input().split())
+A =[int(i) for i in input().split()]
+
+
+mod = 998244353
+S = 1<<(2*D+2)
+dp = [[0]*(S) for _ in range(N+1)]
+dp[0][(1<<(D+1)) - 1] = 1
+for i,a in enumerate(A):
+    if a>-1:
+        for s in range(S):
+            if s&1==0:
+                continue
+            t = s>>1
+            diff = a-(i+1) + D
+            if t>>diff&1:
+                continue
+            dp[i+1][t|(1<<diff)] += dp[i][s]
+            dp[i+1][t|(1<<diff)] %= mod
+    else:
+        for s in range(S):
+            if s&1==0:
+                continue
+            t = s>>1
+            for diff in range(0,2*D+1):
+                if t>>diff&1:
+                    continue
+                dp[i+1][t|(1<<diff)] += dp[i][s]
+                dp[i+1][t|(1<<diff)] %= mod
+# for i in range(N+1):
+#     print(dp[i][:30])
+print(dp[-1][(1<<(D+1))-1])
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

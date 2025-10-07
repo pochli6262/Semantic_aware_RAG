@@ -1,0 +1,4 @@
+{
+  "explanation": "The middle branch computed res = c / (b - a), which is constant for a < x <= b and ignores x. The intended value should vary with x (linearly between a and b). I fixed that line to include (b - x) so the result depends on x: res = c * (b - x) / (b - a).",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 100.0\nelif x <= b:\n   res = c * (b - x) / (b - a)\n\nprint('%.9f' % (res))\n"
+}

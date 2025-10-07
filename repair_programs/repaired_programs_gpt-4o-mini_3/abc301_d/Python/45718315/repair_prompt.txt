@@ -1,0 +1,350 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+def get_min(s):
+    mask = 1
+    val = 0
+    for ch in s[::-1]:
+        if ch == '1':
+            val += mask
+        mask <<= 1
+    return val
+
+def I():
+    return input()
+
+def II():
+    return int(input())
+
+def solve():
+    s = I()
+    n = II()
+    min_val = get_min(s)
+    mask = 1 << (len(s) - 1)
+    if min_val > n:
+        return -1
+    ans = 0
+    for ch in s:
+        if ch == '?' and min_val + mask <= n:
+            ans += mask
+            n -= mask
+        if ch == '1':
+            min_val -= mask
+        mask >>= 1
+    return ans
+
+print(solve())
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+import sys
+from functools import lru_cache
+from collections import defaultdict
+
+
+sys.setrecursionlimit(10**9)
+def I(): return input()
+def IS(): return input().split()
+def II(): return int(input())
+def LI(): return list(input())
+def MI(): return map(int,input().split())
+def LMI(): return list(map(int,input().split()))
+def LLMI(number): return [list(map(int,input().split())) for _ in range(number)]
+
+def generate_input()->list:
+    import random
+    inputdata = []
+    n = random.randint(0, 100)
+    inputdata.append(n)
+    return inputdata
+
+
+def simple_solve(n):
+    ans = 0
+    return ans
+
+
+def solve(n, c):
+    min_cost = min(c)
+    digits = n // min_cost
+    new_c = []
+    for v in c:
+        new_c.append(v - min_cost)
+    remain_cash = n - (digits * min_cost)
+    new_c.reverse()
+    ans = []
+    for i, v in enumerate(new_c):
+        if remain_cash >= v:
+            if v == 0:
+                cnt = digits - len(ans)
+            else:
+                cnt = remain_cash // v
+                remain_cash -= cnt * v
+            for j in range(cnt):
+                ans.append(str(9-i))
+        else:
+            continue
+
+    return ''.join(ans)
+
+
+if __name__=='__main__':
+    test = False
+    if test:
+        inputdata = generate_input()
+        a = simple_solve(*inputdata)
+        b = solve(*inputdata)
+        if a != b:
+            print(*inputdata)
+            print(a, b)
+            exit(1)
+    else:
+        inputdata = []
+        inputdata.append(II())
+        inputdata.append(LMI())
+        print(solve(*inputdata))
+
+--- Correct Code ---
+import sys
+from functools import lru_cache
+from collections import defaultdict
+
+
+sys.setrecursionlimit(10**9)
+def I(): return input()
+def IS(): return input().split()
+def II(): return int(input())
+def LI(): return list(input())
+def MI(): return map(int,input().split())
+def LMI(): return list(map(int,input().split()))
+def LLMI(number): return [list(map(int,input().split())) for _ in range(number)]
+
+def generate_input()->list:
+    import random
+    inputdata = []
+    n = random.randint(0, 100)
+    inputdata.append(n)
+    return inputdata
+
+
+def simple_solve(n):
+    ans = 0
+    return ans
+
+
+def solve(n, c):
+    min_cost = min(c)
+    digits = n // min_cost
+    new_c = []
+    for v in c:
+        new_c.append(v - min_cost)
+    remain_cash = n - (digits * min_cost)
+    new_c.reverse()
+    ans = []
+    for i, v in enumerate(new_c):
+        if remain_cash >= v:
+            if v == 0:
+                cnt = digits - len(ans)
+            else:
+                cnt = remain_cash // v
+                remain_cash -= cnt * v
+            for j in range(cnt):
+                ans.append(str(9-i))
+        else:
+            continue
+        if len(ans) == digits:
+            break
+
+    return ''.join(ans)
+
+
+if __name__=='__main__':
+    test = False
+    if test:
+        inputdata = generate_input()
+        a = simple_solve(*inputdata)
+        b = solve(*inputdata)
+        if a != b:
+            print(*inputdata)
+            print(a, b)
+            exit(1)
+    else:
+        inputdata = []
+        inputdata.append(II())
+        inputdata.append(LMI())
+        print(solve(*inputdata))
+
+
+### Example 2
+--- Buggy Code ---
+def solve():
+    n,x,k = list(map(int, input().split(' ')))
+    # print(n,x,k)
+    n += 1
+    k = min(100,k)
+    ans = 0
+    depth = k
+    prev = -1
+    while x and depth >= 0:
+        # print(f'{x=} {depth=} {prev=}')
+        if prev == -1:
+            L = x*(1<<depth)
+            R = L + (1<<depth)
+        else:
+            if depth == 0:
+                L = x
+                R = x+1
+            else:
+                another_way = prev^1
+                # print(f'{another_way=}')
+                L = another_way*(1<<(depth-1))
+                R = L + (1<<(depth-1))
+        # print(L,R)
+        intersection = max(0,min(R,n)-max(0,L))
+        # print(f'{intersection=}')
+        ans += intersection
+        prev = x
+        x //= 2
+        depth -= 1
+    # print(f'{ans=}')
+    return ans
+
+t = int(input())
+
+for _ in range(t):
+    print(solve())
+
+--- Correct Code ---
+def solve():
+    n,x,k = list(map(int, input().split(' ')))
+    # print(n,x,k)
+    n += 1
+    k = min(1000,k)
+    ans = 0
+    depth = k
+    prev = -1
+    while x and depth >= 0:
+        # print(f'{x=} {depth=} {prev=}')
+        if prev == -1:
+            L = x*(1<<depth)
+            R = L + (1<<depth)
+        else:
+            if depth == 0:
+                L = x
+                R = x+1
+            else:
+                another_way = prev^1
+                # print(f'{another_way=}')
+                L = another_way*(1<<(depth-1))
+                R = L + (1<<(depth-1))
+        # print(L,R)
+        intersection = max(0,min(R,n)-max(0,L))
+        # print(f'{intersection=}')
+        ans += intersection
+        prev = x
+        x //= 2
+        depth -= 1
+    # print(f'{ans=}')
+    return ans
+
+t = int(input())
+
+for _ in range(t):
+    print(solve())
+
+
+### Example 3
+--- Buggy Code ---
+def solve():
+    n,x,k = list(map(int, input().split(' ')))
+    # print(n,x,k)
+    n += 1
+    k = min(100,k)
+    ans = 0
+    depth = k
+    prev = -1
+    while x and depth >= 0:
+        # print(f'{x=} {depth=} {prev=}')
+        if prev == -1:
+            L = x*(1<<depth)
+            R = L + (1<<depth)
+        else:
+            if depth == 0:
+                L = x
+                R = x+1
+            else:
+                another_way = prev^1
+                # print(f'{another_way=}')
+                L = another_way*(1<<(depth-1))
+                R = L + (1<<(depth-1))
+        # print(L,R)
+        intersection = max(0,min(R,n)-max(0,L))
+        # print(f'{intersection=}')
+        ans += intersection
+        prev = x
+        x //= 2
+        depth -= 1
+    # print(f'{ans=}')
+    return ans
+
+t = int(input())
+
+for _ in range(t):
+    print(solve())
+
+--- Correct Code ---
+def solve():
+    n,x,k = list(map(int, input().split(' ')))
+    # print(n,x,k)
+    n += 1
+    k = min(1000,k)
+    ans = 0
+    depth = k
+    prev = -1
+    while x and depth >= 0:
+        # print(f'{x=} {depth=} {prev=}')
+        if prev == -1:
+            L = x*(1<<depth)
+            R = L + (1<<depth)
+        else:
+            if depth == 0:
+                L = x
+                R = x+1
+            else:
+                another_way = prev^1
+                # print(f'{another_way=}')
+                L = another_way*(1<<(depth-1))
+                R = L + (1<<(depth-1))
+        # print(L,R)
+        intersection = max(0,min(R,n)-max(0,L))
+        # print(f'{intersection=}')
+        ans += intersection
+        prev = x
+        x //= 2
+        depth -= 1
+    # print(f'{ans=}')
+    return ans
+
+t = int(input())
+
+for _ in range(t):
+    print(solve())
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

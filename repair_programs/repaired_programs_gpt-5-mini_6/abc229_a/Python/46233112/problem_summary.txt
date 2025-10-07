@@ -1,0 +1,1 @@
+The code wrongly checks whether corresponding characters are equal (S1[0] == S2[0] or S1[1] == S2[1]) instead of checking that those corresponding cells are both black ('#'), so it can treat matching '.' as a connection.

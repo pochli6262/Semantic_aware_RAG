@@ -1,0 +1,1 @@
+The code erroneously skips the (s,t) = (0,0) case by continuing when dy == 0 and dx == 0, so it won't detect if A already equals B without any shifts.

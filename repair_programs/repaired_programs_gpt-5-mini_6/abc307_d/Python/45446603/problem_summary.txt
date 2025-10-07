@@ -1,0 +1,1 @@
+The code pushes the original string index i onto the stack but then uses it to slice the growing/modified ans list, causing incorrect index mismatches when deletions have already altered ans.

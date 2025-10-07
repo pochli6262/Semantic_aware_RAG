@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used a strict comparison (check_num < S[i]) which enforces strictly increasing sequence and rejects equal consecutive values. The problem requires a monotonically non-decreasing sequence (allows equality), so I changed the comparison to check_num <= S[i] to permit equal adjacent elements.",
+  "fixed_code": "S=list(map(int,input().split()))\ncheck_S=sorted(S)\ncheck=\"True\"\ncheck_num=0\nfor i in range (len(S)):\n    if check_num<=S[i] and 100<=S[i]<=675 and S[i]%25==0:\n        check_num=S[i]\n    else:\n        check=\"False\"\nif check==\"True\":\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

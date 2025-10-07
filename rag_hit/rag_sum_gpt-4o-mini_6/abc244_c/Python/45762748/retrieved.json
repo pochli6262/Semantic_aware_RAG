@@ -1,0 +1,32 @@
+{
+  "task": "abc244_c/Python/45762748",
+  "query_summary": "The program likely fails to properly track the integers declared by Aoki, leading to potential violations of the game's rules regarding already declared integers.",
+  "oracle_summary": "The inner loop searches only 1..N instead of 1..2N+1, preventing selection of valid numbers above N and causing failure once 1..N are all marked bad.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for missing integers in the input list A only up to N instead of the full range of possible values (0 to 2000), potentially missing valid output values.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(2001):\n     if i not in A:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `A[N - 1]` instead of `A[0]` for the condition checking Alice's final turn, resulting in an incorrect game outcome determination.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n N = int(input())\n A = sorted(list(map(int, input().split())), reverse=True)\n print('Alice' if A[0] > A[1] +\n-      1 else ('Alice' if (A[N - 1] - N - 1) & 1 else 'Bob'))\n+      1 else ('Alice' if (A[0] - N - 1) & 1 else 'Bob'))"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for numbers up to 1999 instead of 2000, causing it to potentially miss the case where 2000 is missing from the set.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = set(map(int, input().split()))\n \n-for i in range(2000):\n+for i in range(2001):\n   if i not in A:\n     print(i)\n     break"
+    },
+    {
+      "summary": "The buggy code has an incorrect upper limit of the range in the for loop, which is 917 instead of the correct value 920, causing it to miss valid numbers that meet the condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n \n-for i in range(N,917):\n+for i in range(N,920):\n     s = str(i)\n     if int(s[0]) * int(s[1]) == int(s[2]):\n         print(i)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop's range incorrectly goes up to 919, instead of 920, which prevents it from checking the value 919 itself.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-for i in range(N, 919):\n+for i in range(N, 920):\n     N_str = str(i)\n     if int(N_str[0]) * int(N_str[1]) == int(N_str[2]):\n         print(i)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3
+  ],
+  "useful_diffs_count": 2
+}

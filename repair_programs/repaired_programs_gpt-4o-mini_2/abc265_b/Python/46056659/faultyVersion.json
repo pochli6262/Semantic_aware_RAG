@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue arises from the line 'for i in range(N-1):' which iterates from 0 to N-2, effectively neglecting the last element at index N-1. This causes the program to not consider the last item in the list A during its checks. I fixed it by changing the range to 'for i in range(N):' to include all elements of A.",
+  "fixed_code": "N,M,T=list(map(int, input().split()))\nA=list(map(int, input().split()))\nd={}\nfor _ in range(M):\n    x,y=list(map(int, input().split()))\n    d[x]=y\n\nfor i in range(N):\n    if i+1 in d:\n        T+=d[i+1]\n    if A[i]>T:\n        print(\"No\")\n        exit()\n    T-=A[i]\nprint(\"Yes\")"
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc246_a/Python/45745121",
+  "query_summary": "The program incorrectly prints a list instead of the coordinates of the missing vertex in the specified format.",
+  "oracle_summary": "It prints the list object (e.g., “[x, y]”) instead of outputting the two coordinates as space-separated integers, producing the wrong output format.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to sort the list of coordinates before checking for the 'R' and 'L' conditions, which can lead to incorrect results when the x-coordinates are not processed in order, potentially missing valid pairs.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n \n ans = 'No'\n for i in y:\n-    yi = y[i]\n+    yi = sorted(y[i])\n     for j in range(len(yi)-1):\n         if yi[j][1] == 'R' and yi[j+1][1] == 'L':\n             ans = 'Yes'"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `XY[j][0]` in the inequality, instead of the correct `XY[j][1]`, which leads to inaccurate calculations for determining if points are collinear.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n   for j in range(i+1,N):\n     for k in range(j+1,N):\n       #print(i,j,k)\n-      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][0]-XY[i][0])*(XY[k][0]-XY[i][0]):\n+      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][1]-XY[i][1])*(XY[k][0]-XY[i][0]):\n         count+=1\n print(count)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the edges connected to both nodes x and y in the last part of the while loop, causing the second loop to check the connections of the wrong node.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n       conn[xy] -= 1\n       if conn[xy] == 1:\n         leaf.append(xy)\n-  for yx in graph[x]:\n+  for yx in graph[y]:\n     if conn[yx] > 1:\n       conn[yx] -= 1\n       if conn[yx] == 1:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the final output set before printing, which may lead to the results being displayed in an unsorted manner.",
+      "diff": "--- \n+++ \n@@ -29,4 +29,4 @@\n     j += 1\n     ans.add(-total[i][1])\n \n-print(*ans, sep='\\n')\n+print(*sorted(ans), sep='\\n')"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks if the last x-coordinate in the XY list is equal to 1 instead of checking if it equals N.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n     g = 0\n     if XY[0][0] != 1:\n         g ^= XY[0][0] - 1\n-    if XY[-1][0] != 1:\n+    if XY[-1][0] != N:\n         g ^= N - XY[-1][0]\n     \n     for i in range(M-1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

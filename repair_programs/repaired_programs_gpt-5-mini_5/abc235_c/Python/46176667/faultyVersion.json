@@ -1,0 +1,4 @@
+{
+  "explanation": "The program was printing the dictionary D (debug output) before answering queries, which produces extra output and breaks the required output format. I removed that debug print by replacing `print(D)` with `pass` so no unintended output is produced. This fix is analogous to removing stray debug prints as seen in the related diffs (e.g., Diff 4 removed a debugging print).",
+  "fixed_code": "import sys\nfrom collections import defaultdict\nMOD = 998_244_353\nINF = 10**18\n\nN, Q = map(int, sys.stdin.readline().rstrip().split())\nA = list(map(int, sys.stdin.readline().rstrip().split()))\nD = defaultdict(list)\nfor i in range(N):\n    D[A[i]].append(i + 1)\n\npass\n\nfor q in range(Q):\n    x, k = list(map(int, sys.stdin.readline().rstrip().split()))\n    if len(D[x]) >= k:\n        print(D[x][k - 1])\n    else:\n        print(-1)\n"
+}

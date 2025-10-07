@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/46231153",
+  "query_summary": "The BFS is incorrectly initialized from a (q.append(a) and nums[a]=1) instead of starting from the initial number 1, so the search uses the wrong starting state.",
+  "oracle_summary": "The code incorrectly allows rotating numbers whose last digit is 0, but the rotation should only be performed when x has at least two digits and x%10 != 0 to avoid creating invalid leading-zero states.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it uses `d.append(j)` instead of `d.appendleft(j)`, which causes the breadth-first search (BFS) to function incorrectly and may lead to incomplete or incorrect distance calculations in the `dist2` array.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n             if dist2[i][j] !=-1:\n                 continue\n             dist2[i][j] =dist2[i][v] +1\n-            d.append(j)\n+            d.appendleft(j)\n q =int(input())\n for _ in range(q):\n     s, t=map(int, input().split())"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the lengths of the deques in `A` only for indices 0 to n-1 instead of 0 to n, potentially leading to missing checks for the deque at index n, which can cause an incorrect output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n     if t==2:\n         A[x].append(i)\n \n-for i in range(n):\n+for i in range(n+1):\n     if len(A[i])>0:\n         print(-1)\n         exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses `q.append((v, 1 - s))` instead of `q.appendleft((v, 1 - s))`, causing the order of processing nodes to be incorrect when switching states.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n     if v in sw:\n         dist[v][1 - s] = dist[v][s]\n         sw.discard(v)\n-        q.append((v, 1 - s))\n+        q.appendleft((v, 1 - s))\n     for to, a in g[v]:\n         if a == s:\n             continue"
+    },
+    {
+      "summary": "The buggy code includes an incorrect conditional check in the second `if` statement, using `a[i*2+1]>a[i*2]` instead of the corrected `a[i*2]>a[i*2+1]`, which could lead to incorrect behavior when trying to adjust the elements in the list.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n             a[0],a[1]=a[1],a[0]\n             q.append(1)\n     else:\n-        if a[i*2-1]<a[i*2] and  a[i*2+1]>a[i*2]:\n+        if a[i*2-1]<a[i*2] and  a[i*2]>a[i*2+1]:\n             if a[i*2-1]<a[i*2+1]:\n                 a[i*2-1],a[i*2]=a[i*2],a[i*2-1]\n                 q.append(i*2)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the value of `a[now]` instead of `a[i]` when appending to the `ans` list, which results in the wrong pair of indices being recorded.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n for i in range(n):\n   while a[i] != i:\n     now = a[i]\n-    ans.append([now+1,a[now]+1])\n+    ans.append([i+1,a[i]+1])\n     a[i], a[now] = a[now], a[i]\n     \n print(len(ans))"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

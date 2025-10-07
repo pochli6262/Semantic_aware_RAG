@@ -1,0 +1,31 @@
+{
+  "task": "abc304_d/Python/45574429",
+  "query_summary": "The program likely has a bug in the logic for determining the minimum number of strawberries in the chosen piece, as it incorrectly handles cases where there are fewer pieces than expected.",
+  "oracle_summary": "The final print arguments are swapped: the code outputs (max, min) instead of the required (min, max) by calling print(M, n) instead of print(n, M).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly updates the value in the `f` array using `A[hh][ww]` instead of `A[nh][nw]`, leading to incorrect calculations for the maximum value after moving to a new cell.",
+      "diff": "--- \n+++ \n@@ -33,5 +33,5 @@\n             for dh, dw in moves:\n                 nh, nw = hh + dh, ww + dw\n                 if 0 <= nh < h and 0 <= nw < w:\n-                    f[i + 1][nh][nw] = max(f[i + 1][nh][nw], f[i][hh][ww] + A[hh][ww])\n+                    f[i + 1][nh][nw] = max(f[i + 1][nh][nw], f[i][hh][ww] + A[nh][nw])\n print(res)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the maximum value by subtracting 1 from the index found by `bisect.bisect_left`, rather than subtracting the current index `i`, which leads to incorrect results when evaluating the number of valid elements in the sorted list.",
+      "diff": "--- \n+++ \n@@ -4,5 +4,5 @@\n a.sort()\n ans=0\n for i in range(n):\n-    ans=max(ans,bisect.bisect_left(a,a[i]+m)-1)\n+    ans=max(ans,bisect.bisect_left(a,a[i]+m)-i)\n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that it uses `bisect.bisect_left` instead of `bisect.bisect_right`, leading to incorrect index calculations in the `can` function.",
+      "diff": "--- \n+++ \n@@ -13,11 +13,10 @@\n for i in t : T.append(engd[i])\n for i in T:\n     if len(S[i])==0 : exit(print(0))\n-\n def can(n):\n     n1,n2=0,-1\n     for i in T:\n-        p=bisect.bisect_left(S[i],n2)\n+        p=bisect.bisect_right(S[i],n2)\n         p+=n-1\n         n1+=p//len(S[i])\n         n2=S[i][p%len(S[i])]"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the threshold `h` for counting elements, using `(n+1)//2` instead of the correct formula `(n+2)//2`, which affects the logic for determining if enough elements satisfy the condition.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n # for i in range():\n n=ipt()[0]\n a=ipt()\n-h=(n+1)//2\n+h=(n+2)//2\n import random\n for i in range(30):\n     s=random.randint(0,n-1)"
+    },
+    {
+      "summary": "The buggy code incorrectly starts the outer loop from `0` to `N-1`, which causes it to miss combinations where both indices are the same when calculating the product, leading to an inaccurate count of valid pairs.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n A = sorted(int(input()) for _ in range(N))\n ans = 0\n \n-for i in range(N-1):\n+for i in range(N):\n   for j in range(i, N):\n     x = A[i] * A[j]\n     idx = bisect_left(A, x)"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

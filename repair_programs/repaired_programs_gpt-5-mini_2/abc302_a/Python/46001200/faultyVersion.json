@@ -1,0 +1,4 @@
+{
+  "explanation": "The original second line used A//B + 1 to try to compute the ceiling of A/B. That is incorrect when A is an exact multiple of B because it adds 1 unnecessarily (e.g. A=6, B=3 gives 6//3+1 = 3+1 = 4). I replaced that line with the standard integer ceiling formula (A+B-1)//B which returns the correct ceil(A/B) for positive integers without changing any other lines.",
+  "fixed_code": "A,B = map(int,input().split())\nprint((A+B-1)//B)"
+}

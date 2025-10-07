@@ -1,0 +1,1 @@
+The code assumes person 1's component is stored under dict[0] (i.e. root 0) and checks membership in dict[0], rather than using uf.find(0) or the actual root, so it fails when person 1's root is not 0.

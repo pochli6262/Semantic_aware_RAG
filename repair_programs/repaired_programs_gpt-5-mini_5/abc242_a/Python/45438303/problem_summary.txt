@@ -1,0 +1,1 @@
+The program excludes the participant ranked B from the random selection by checking X is less than B instead of allowing X to equal B, so rank B is incorrectly treated as ineligible.

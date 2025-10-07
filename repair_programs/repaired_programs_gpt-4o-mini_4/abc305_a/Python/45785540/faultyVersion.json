@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line in the original program was 'print(0)' which outputs 0 when N is exactly at a water station (N % 5 == 0), instead of the correct position which is N itself. This behavior is contrary to the problem statement that specifies to print the nearest water station's position. The fix simply involves changing 'print(0)' to 'print(n)' to output the correct position. This aligns with the expected logic and output described in the problem statement.",
+  "fixed_code": "n = int(input())\nif n%5 ==0:\n  print(n)\nelif n % 5 >=3:\n  print(n+5-n%5)\nelse:\n  print(n-n%5)"
+}

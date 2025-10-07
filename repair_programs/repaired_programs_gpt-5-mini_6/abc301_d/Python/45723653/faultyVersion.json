@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop that assigns '?' bits iterates from the least significant bit to the most significant (for i in range(m - 1, -1, -1)), so it greedily fills low bits first and can miss larger valid numbers. To maximize the value while staying ≤ N we must try to set higher (more significant) '?' bits first. I fixed the single line to iterate from most significant to least significant (for i in range(m)).",
+  "fixed_code": "if __name__ == '__main__':\n    s = str(input())\n    n = int(input())\n    m = len(s)\n    res = 0\n    for i in range(m):\n        if s[i] == \"1\":\n            res += (1 << (m - 1 - i))\n    if res > n:\n        res = -1\n    else:\n        for i in range(m):\n            if s[i] == \"?\" and res + (1 << (m - 1 - i)) <= n:\n                res += (1 << (m - 1 - i))\n    print(res)"
+}

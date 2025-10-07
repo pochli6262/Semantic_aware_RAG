@@ -1,0 +1,1 @@
+The likely bug is that the program only checks for direct connections between the black squares in the first column and the second column, ignoring the connectivity between black squares that are in the same row.

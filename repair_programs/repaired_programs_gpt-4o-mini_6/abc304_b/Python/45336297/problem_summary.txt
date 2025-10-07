@@ -1,0 +1,1 @@
+The program incorrectly uses subtraction to truncate digits, which could lead to inaccurate results for inputs at the upper limits of each specified range.

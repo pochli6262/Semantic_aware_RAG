@@ -1,0 +1,31 @@
+{
+  "task": "abc302_c/Python/45989052",
+  "query_summary": "The code uses break instead of terminating the program (exit/return) after printing \"Yes\", so execution continues and the final \"No\" is printed anyway.",
+  "oracle_summary": "The code uses break instead of terminating the program (exit/return) after printing \"Yes\", so execution continues and the final \"No\" is printed anyway.",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    },
+    {
+      "summary": "The buggy code fails to handle the special case where the input string is \"BA\", causing it to incorrectly evaluate as \"Yes\" instead of \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n S=input()\n ck=0\n+if S==\"BA\":\n+    exit(print(\"No\"))\n for i in range(N):\n     if S[i]!=S[-1-i]:\n         ck=1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it doesn't stop the execution of the `main()` function after printing \"No\" when it encounters an 'x', leading to the possibility of printing \"Yes\" or \"No\" afterwards inappropriately.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n             ok = True\n         elif s[i] == \"x\":\n             print(\"No\")\n-            break\n+            return\n \n     if ok == True:\n         print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the condition for printing \"Yes\" by failing to account for the case where there are no occurrences of the middle element in the second half of the sorted list.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n         c2+=1\n     else:\n         break\n-if (n+1)//2-c1>c2:\n+if (n+1)//2-c1>c2 or c2==0:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

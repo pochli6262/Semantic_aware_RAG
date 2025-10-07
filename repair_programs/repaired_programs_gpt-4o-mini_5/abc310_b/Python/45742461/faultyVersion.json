@@ -1,0 +1,4 @@
+{
+  "explanation": "The original comparison incorrectly checks if the price of the i-th product is greater than or equal to the number of functions of the j-th product instead of checking against the price of the j-th product. I fixed this by changing 's[j][1]' to 's[j][0]', which matches the price of the j-th product. This solution was inspired by Diff 1.",
+  "fixed_code": "n,m=map(int,input().split())\ns=[]\nfor i in range(n):\n  p,c,*f=map(int,input().split())\n  s.append([p,c,f])\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i][0]>=s[j][0] and set(s[j][2])>=set(s[i][2]) \\\n            and (s[i][0]>s[j][0] or set(s[j][2])-set(s[i][2])):\n      print(\"Yes\")\n      exit()\nprint(\"No\")"
+}

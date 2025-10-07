@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition that checks for S2 being equal to '##'. The intention seems to be to allow either input to trigger the 'Yes' response, but as written, it should also consider the 'No' conditions properly. However, to keep it simple and only modify a single line, we need to fix one of the 'No' conditions to accurately reflect the intended logic. The second condition checking for S1 and S2 must ensure mutual exclusivity for proper response. Thus, I change the second condition to correctly match the format.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1 == '##' or S2 == '##':\n    print('Yes')\nelif S1 == '.#' and S2 == '#.':\n    print('No')\nelif S1 == '#.' and S2 == '.#':\n    print('No')"
+}

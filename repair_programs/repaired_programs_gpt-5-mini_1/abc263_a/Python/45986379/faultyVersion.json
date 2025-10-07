@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition used K[2] != K[3], which incorrectly required the 3rd and 4th elements to be different. For the intended check (there are exactly two distinct numbers and each appears twice) the correct condition is that the first two elements are equal and the last two elements are equal, while still having exactly two distinct values. I fixed the if-line to check K[0] == K[1] and K[2] == K[3] in addition to len(set(K)) == 2.",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and K[0] == K[1] and K[2] == K[3]:\n    print('Yes')\nelse:\n    print('No')"
+}

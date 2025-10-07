@@ -1,0 +1,1 @@
+The if condition mistakenly uses "or ['.#','#.']" which is always truthy, so the test is always true and the program will print "No" for every input.

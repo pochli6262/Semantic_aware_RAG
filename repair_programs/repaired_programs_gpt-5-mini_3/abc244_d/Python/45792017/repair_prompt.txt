@@ -1,0 +1,108 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+s = input()
+t = input()
+cnt = 0
+for i in range(3):
+    if s[i] != t[i]:
+        cnt += 1
+if cnt == 0:
+    print("Yes")
+elif cnt == 3:
+    if t in s + s:
+        print("Yes")
+else:
+    print("No")
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+s = input()
+t = input()
+if s[0:3] == t[0:3]:
+    print('Yes')
+else:
+    print('No')
+
+--- Correct Code ---
+s = input()
+t = input()
+if s[0:len(s)] == t[0:len(s)]:
+    print('Yes')
+else:
+    print('No')
+
+
+### Example 2
+--- Buggy Code ---
+s = input()
+t = input()
+
+if len(s) > len(t) or (len(s) == len(t) and s != t):
+    print("No")
+    exit()
+else:
+    for i in range(len(s) - len(t) + 1):
+        if s[i:i+len(t)] == t:
+            print("Yes")
+            exit()
+print("No")
+
+--- Correct Code ---
+s = input()
+t = input()
+
+if len(t) > len(s) or (len(s) == len(t) and s != t):
+    print("No")
+    exit()
+else:
+    for i in range(len(s) - len(t) + 1):
+        if s[i:i+len(t)] == t:
+            print("Yes")
+            exit()
+print("No")
+
+
+### Example 3
+--- Buggy Code ---
+t=int(input())
+for i in range(t):
+  input()
+  s=input()
+  cnt=0
+  for j in range(1,len(s)-1):
+    if s[j:]>s[:j]:
+      cnt=1
+  if cnt:print("Yes")
+  else:print("No")
+
+--- Correct Code ---
+t=int(input())
+for i in range(t):
+  input()
+  s=input()
+  cnt=0
+  for j in range(1,len(s)):
+    if s[j:]>s[:j]:
+      cnt=1
+  if cnt:print("Yes")
+  else:print("No")
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

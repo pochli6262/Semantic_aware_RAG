@@ -1,0 +1,1 @@
+The program prints "No" when b-a != 1 but fails to stop, so it continues to the later checks and can output a second, incorrect result.

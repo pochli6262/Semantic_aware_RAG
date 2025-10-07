@@ -1,0 +1,4 @@
+{
+  "explanation": "The formula for the resulting price used a wrong sign. If D[i] represents an additional discount, it should be subtracted from the price (in addition to the fixed discount Q). The buggy line added D[i] instead of subtracting it, so I changed the '+' to '-' in that line.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nans = P\nfor i in range(N):\n    ret = P - Q - D[i]\n    ans = min(ans, ret)\n\nprint(ans)"
+}

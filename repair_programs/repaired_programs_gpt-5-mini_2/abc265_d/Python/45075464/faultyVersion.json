@@ -1,0 +1,4 @@
+{
+  "explanation": "The bisect_left call searches in the prefix-sum list 'asum' which has length N+1. The code compared the returned index y against N, which wrongly treats y==N (a valid index, the last prefix sum) as out-of-range. The correct bound check is against len(asum). I changed the single line that checks y to use len(asum) so only truly out-of-range insertion indices are rejected; all other lines were left identical.",
+  "fixed_code": "from bisect import bisect_left as bl\nN,P,Q,R = list(map(int,input().split()))\nA = list(map(int,input().split()))\nasum = [0]\nfor n in range(N):\n    asum.append(asum[-1]+A[n])\nfor x in range(N):\n    a = asum[x]\n    y = bl(asum,P+a)\n    if y>=len(asum) or asum[y]-a!=P : continue\n    a = asum[y]\n    z = bl(asum,Q+a)\n    if z>=N or asum[z]-a!=Q : continue\n    a = asum[z]\n    w = bl(asum,R+a)\n    if w>=N or asum[w]-a!=R : continue\n    print(\"Yes\")\n    break\nelse:\n    print(\"No\")"
+}

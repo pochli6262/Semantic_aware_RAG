@@ -1,0 +1,151 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+N = int(input())
+A = [list(map(int, input().split())) for _ in range(N)]
+B = [list(map(int, input().split())) for _ in range(N)]
+A_t = A
+l = 0
+
+for i in range(3):
+  #print(A_t)
+  for j in range(N):
+    for k in range(N):
+      if (A_t[j][k] == 1) and (B[j][k] != 1):
+          #print(A_t[j][k],B[j][k] )
+          l += 1
+
+  if l == 0:
+    print('Yes')
+    #print(B)
+    #print(A_t)
+    exit()
+  A_t = []
+  for x in zip(*A[::-1]):
+    A_t.append(list(x))
+  A = A_t
+
+  l = 0
+print('No')
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+N=int(input())
+A=list(map(int,input().split()))
+A.sort()
+if N==1:
+    print("Yes")
+    exit()
+B=[0]*N
+for i in range(N):
+    if i<=N//2:
+        B[2*i]=A[i]
+    else:
+        B[2*i-N]=A[i]
+for i in range(N):
+    if i%2!=0:
+        continue
+    if B[i-1]<B[i] and B[i]>B[i+1]:
+        continue
+    else:
+        print("No")
+        break
+else:
+    print("Yes")
+
+--- Correct Code ---
+N=int(input())
+A=list(map(int,input().split()))
+A.sort()
+if N==1:
+    print("Yes")
+    exit()
+B=[0]*N
+for i in range(N):
+    if i<=N//2:
+        B[2*i]=A[i]
+    else:
+        B[2*i-N]=A[i]
+for i in range(N):
+    if i%2==0:
+        continue
+    if B[i-1]<B[i] and B[i]>B[i+1]:
+        continue
+    else:
+        print("No")
+        break
+else:
+    print("Yes")
+
+
+### Example 2
+--- Buggy Code ---
+N, M = map(int, input().split())
+A = set(map(int, input().split()))
+B = set(map(int, input().split()))
+C = sorted(list(A | B))
+for i in range(N - 1):
+  if C[i] in A and C[i + 1] in A:
+    print('Yes')
+    exit()
+print('No')
+
+--- Correct Code ---
+N, M = map(int, input().split())
+A = set(map(int, input().split()))
+B = set(map(int, input().split()))
+C = sorted(list(A | B))
+for i in range(N + M - 1):
+  if C[i] in A and C[i + 1] in A:
+    print('Yes')
+    exit()
+print('No')
+
+
+### Example 3
+--- Buggy Code ---
+N = int(input())
+A,B=[],[]
+for i in range(N):
+  A.append(input())
+for i in range(N):
+  B.append(input())
+  
+for i in range(N):
+  if A[i] != B[i]:
+    for j in range(N):
+      if A[i][j] != B[i][j]:
+        print(i,j)
+
+--- Correct Code ---
+N = int(input())
+A,B=[],[]
+for i in range(N):
+  A.append(input())
+for i in range(N):
+  B.append(input())
+  
+for i in range(N):
+  if A[i] != B[i]:
+    for j in range(N):
+      if A[i][j] != B[i][j]:
+        print(i+1,j+1)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

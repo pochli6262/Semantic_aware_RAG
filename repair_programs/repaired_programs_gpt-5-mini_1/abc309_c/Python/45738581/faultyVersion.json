@@ -1,0 +1,4 @@
+{
+  "explanation": "The initial check used a strict less-than (total < K). If total is exactly equal to K the program should already produce 1, but the code would continue into the loop, subtract one item's weight and then produce an incorrect result. I changed the condition to <= so the program handles total == K correctly.",
+  "fixed_code": "N, K = map(int, input().split())\narr = []\ntotal = 0\nfor i in range(N):\n  tmp1, tmp2 = map(int, input().split())\n  arr.append([tmp1,tmp2])\n  total += tmp2\narr.sort()\n\nif total <= K:\n  print(1)\n  exit()\n\ni = 0\nwhile 1:\n  total -= arr[i][1]\n  if total <= K:\n    print(arr[i][0]+1)\n    exit()\n  i += 1"
+}

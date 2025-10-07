@@ -1,0 +1,32 @@
+{
+  "task": "abc265_b/Python/46056659",
+  "query_summary": "The code uses a strict “>” comparison (A[i] > T) instead of “>=”, wrongly allowing progress when the cost equals the remaining time, which should result in “No.”",
+  "oracle_summary": "The code uses a strict “>” comparison (A[i] > T) instead of “>=”, wrongly allowing progress when the cost equals the remaining time, which should result in “No.”",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for even indices instead of odd indices in the second loop, causing it to misidentify whether the rearranged list `B` satisfies the required conditions.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     else:\n         B[2*i-N]=A[i]\n for i in range(N):\n-    if i%2!=0:\n+    if i%2==0:\n         continue\n     if B[i-1]<B[i] and B[i]>B[i+1]:\n         continue"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the height `h` when `N` is odd and `A` is less than or equal to `N // 2 + 1`, resulting in the wrong condition for some test cases.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         else:\n             h = N - A\n     else:\n-        if A <= N // 2 + 1:\n+        if A <= N // 2:\n             h = N // 2 + 1\n         else:\n             h = N - A"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

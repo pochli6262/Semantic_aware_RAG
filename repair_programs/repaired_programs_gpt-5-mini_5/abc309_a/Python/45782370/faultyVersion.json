@@ -1,0 +1,4 @@
+{
+  "explanation": "The adjacency dictionary p was wrong: it included vertical neighbors (up/down) as well as horizontal ones, so pairs like (1,4) were incorrectly considered adjacent. I fixed that line to include only horizontal neighbors (left/right) for each cell. This follows the intended check of horizontal adjacency (difference of 1 within the same row), similar in spirit to the B-A==1 logic seen in related fixes.",
+  "fixed_code": "p = {1:(2,), 2:(1,3), 3:(2,), 4:(5,), 5:(4,6), 6:(5,), 7:(8,), 8:(7,9), 9:(8,)}\n\nA, B = map(int, input().split())\n\nif B in p[A]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly reads the input string by splitting it into a list using the split() method, which prevents accurate counting of wins for Takahashi and Aoki. Instead, we need to read the input string directly without splitting it. This change is inspired by the need to correctly interpret the input format as described in the problem statement.",
+  "fixed_code": "N = int(input())\nS = input()\n\nT_W = S.count('T')\nA_W = S.count('A')\nprint(\"T\" if T_W > A_W or T_W == A_W and S.index('T') < S.index('A') else \"A\")"
+}

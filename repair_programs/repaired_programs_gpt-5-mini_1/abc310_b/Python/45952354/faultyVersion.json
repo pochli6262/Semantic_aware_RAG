@@ -1,0 +1,4 @@
+{
+  "explanation": "The conditional line used the wrong indices and an improper check: it had `P[i] >= P[i]` (always true) instead of comparing P[j] to P[i], and used `(F[i] - F[j])` which is a set difference (truthy when non-empty) instead of checking for a strict superset. I fixed that single line to correctly test whether j dominates i: `P[j] >= P[i] and F[j] >= F[i]` and require a strict improvement `P[j] > P[i] or F[j] > F[i]`.",
+  "fixed_code": "N, M = map(int, input().split())\nP = [None] * N\nC = [None] * N\nF = [None] * N\nfor i in range(N):\n    tmp = list(map(int, input().split()))\n    P[i], C[i], F[i] = tmp[0], tmp[1], set(tmp[2:])\n\nflag = False\nfor i in range(N):\n    for j in range(N):\n        if P[j] >= P[i] and F[j] >= F[i] and (P[j] > P[i] or F[j] > F[i]): \n            flag = True\n            break\n    if flag:\n        break\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

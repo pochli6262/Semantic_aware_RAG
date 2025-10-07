@@ -1,0 +1,34 @@
+{
+  "task": "abc310_b/Python/46010800",
+  "query_summary": "The likely bug is that the condition for checking if product j has all functions of product i is incorrectly implemented, as it uses `issuperset` instead of checking if the size of the function sets is appropriately compared.",
+  "oracle_summary": "The bug is an incorrect inner-loop bound: it iterates over j in range(i) instead of range(n), so some required pairwise comparisons (j >= i) are never checked.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to consider the case when two lists are equal (l1 > l2) in the condition check, neglecting to return True in that scenario even when it should.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n def condition(l1,l2):\n     if l1[0] >= l2[0]:\n         if (set(l1[2:]) & set(l2[2:])) == set(l1[2:]):\n-            if len(l2) > len(l1):\n+            if len(l2) > len(l1) or (l1 > l2):\n                 return True\n             else:\n                 return False"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value of `ok` is set to `10**9`, which is not large enough to handle the possible product of `p` and `m`, while in the correct code it is set to `10**18`.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n   XY.append((x,y))\n   P.append(p)\n   \n-ok=10**9\n+ok=10**18\n ng=0\n while abs(ok-ng)>1:\n   m=(ok+ng)//2"
+    },
+    {
+      "summary": "The problem in the buggy code is that the range for `i`, `j`, and `k` in the `product` function is set to `range(N)`, which does not include the value `N`, potentially leading to incorrect calculations, whereas the correct code uses `range(N+1)` to include all valid combinations up to and including `N`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n from itertools import product\n N,S,M,L=map(int,input().split())\n ans=10**20\n-for i,j,k in product(range(N),repeat=3):\n+for i,j,k in product(range(N+1),repeat=3):\n \tif 6*i+8*j+12*k<N:\n \t\tcontinue\n \tans=min(ans,S*i+M*j+L*k)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the maximum size of the sets `A_[i]` within the loop, resulting in incorrect logic for deciding whether to print 'Yes' or 'No'; specifically, it uses `max_(0, len(A_[i]))` instead of `max(max_, len(A_[i]))`.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n   if len(A_[i])!=len(B_[i]):\n     print('No')\n     exit()\n-  max_ = max(0, len(A_[i]))\n+  max_ = max(max_, len(A_[i]))\n \n if max_>=2: \n   print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the comparison operator `>` instead of `>=` for price comparison, which may lead to incorrect logic in determining if one item is \"better\" than another.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n             # F\n             F_j = PCF[j][2:PCF[j][1]+2]\n             # すべて満たす条件\n-            if (P_i > P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n+            if (P_i >= P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n                 ans = True # True == 1\n                 # print(i,j,F_i,F_j)\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "useful_diffs_count": 4
+}

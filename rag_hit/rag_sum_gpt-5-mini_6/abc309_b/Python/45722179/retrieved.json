@@ -1,0 +1,29 @@
+{
+  "task": "abc309_b/Python/45722179",
+  "query_summary": "The outer-element list is built with the top row appended twice, so the rotation uses duplicated elements and produces an incorrect result.",
+  "oracle_summary": "The bug is caused by an unintended duplicate loop that appends the top row twice to rotate_list, corrupting the rotation order and misaligning the reassignment.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it accumulates results in the `ans` list across different iterations of the outer loop instead of resetting it for each row, leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = [list(map(int, input().split())) for _ in range(N)]\n-ans = []\n for i in range(N):\n+    ans = []\n     for j in range(N):\n         if A[i][j] == 1:\n             ans.append(j+1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly skips the even-indexed rows, preventing them from being processed and swapped, leading to an incomplete transformation of the matrix.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[[i*n+j+1 for j in range(n)]for i in range(n)]\n # for i in a:print(i)\n for i in range(n):\n-    if i%2==0:continue\n+    # if i%2==0:continue\n     for j in range(n//2):\n         a[i][2*j],a[i][2*j+1]=a[i][2*j+1],a[i][2*j]\n for i in a:print(*i)"
+    },
+    {
+      "summary": "The buggy code incorrectly records the values of the indices that are being swapped instead of recording their original 1-based values, resulting in incorrect output.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     else:\n         j = A[i] - 1\n         num += 1\n-        ans.append([A[j], A[i]])\n+        ans.append([i + 1, j + 1])\n         A[i], A[j] = A[j], A[i]\n \n print(num)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses combinations instead of permutations when iterating over groups of three elements, leading to improper counting in the corresponding logic.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n     res+=cnt\n \n \n-for p in combinations(range(4),3):\n+for p in permutations(range(4),3):\n     x,y,z=p\n     cnt=min(C[x*L+y],C[y*L+z],C[z*L+x])\n     C[x*L+y]-=cnt"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the length of the vertical list for the previous column (`vertical[col-1]`) instead of the current column (`vertical[col]`).",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     vertical[col].append(a)\n     if row == col: diagonal[0].append(a)\n     if row+col == N-1: diagonal[1].append(a)\n-    if (len(horizontal[row]) == N) or (len(vertical[col-1]) == N) or (len(diagonal[0])) == N or (len(diagonal[1])) == N:\n+    if (len(horizontal[row]) == N) or (len(vertical[col]) == N) or (len(diagonal[0])) == N or (len(diagonal[1])) == N:\n         ans = i+1\n         break\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

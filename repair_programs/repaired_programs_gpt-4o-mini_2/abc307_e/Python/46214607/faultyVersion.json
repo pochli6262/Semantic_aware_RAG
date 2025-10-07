@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is in the calculation of 'answer'. The negative power of -1 only affects the result based on whether N is odd or even, but it should correctly account for the case where itself is intended to provide an alternate sum. The proper operator is `+` instead of `-` to represent that: if N is odd it should subtract but correct use of '(-1)**(N%2)' should be kept as it is to determine the sign. The correct line should ensure that we're summing rather than misapplying subtraction. The corrected operation should allow for consistent algebraic behavior as intended. I replaced '(-1)**(N%2)*(M-1)' with '(-1)**(N%2)*(M-1)', but ensuring that if N is odd, it uses a proper formula adjustment rather than reversal.",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nanswer=(-1)**(N%2)*(M-1)+pow(M-1,N,mod)\nprint(answer)"
+}

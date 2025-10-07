@@ -1,0 +1,1 @@
+The program incorrectly checks for the presence of `S` and `T` in the list `A` instead of verifying if they can be rearranged to match each other after any number of swaps.

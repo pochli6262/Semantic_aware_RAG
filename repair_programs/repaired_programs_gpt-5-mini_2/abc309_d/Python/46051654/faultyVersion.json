@@ -1,0 +1,4 @@
+{
+  "explanation": "The BFS function always enqueued 0 instead of the given start node s (q.append(0)). That means dfs(s) ignored the s parameter and always started from node 0, producing incorrect distance arrays. I fixed it by enqueuing s (q.append(s)) so the BFS begins at the requested start node.",
+  "fixed_code": "from collections import deque\nn1, n2, m = map(int,input().split())\n\ng1, g2 = [[] for _ in range(n1)],[[] for _ in range(n2)]\ng = [[] for _ in range(n1+n2)]\n\nfor _ in range(m):\n    a,b = [int(e) -1 for e in input().split()]\n    g[a].append(b)\n    g[b].append(a)\n\ndef dfs(s):\n    dd = [-1] * (n1+n2)\n    dd[s] = 0\n    q = deque()\n    q.append(s)\n    while q:\n        now = q.popleft()\n        for b in g[now]:\n            if dd[b] == -1:\n                dd[b] = dd[now]+1\n                q.append(b)\n    return dd\n\nlen1 = max(dfs(0))\nlen2 = max(dfs(n1+n2-1))\nprint(len1+len2+1)\n"
+}

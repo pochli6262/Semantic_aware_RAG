@@ -1,0 +1,4 @@
+{
+  "explanation": "The second elif line mistakenly used t[i] == \"o\" instead of checking s[i]. That made the condition test the wrong string and broke the matching logic for '0'/'o'. I changed that line to check s[i] == \"o\" so the code consistently inspects characters of s in that branch.",
+  "fixed_code": "n = int(input())\ns = input()\nt = input()\n\np = 0\n\nfor i in range(n):\n    if s[i] == \"1\" or s[i] == \"l\":\n        if t[i] == \"1\" or t[i] == \"l\":\n            p += 1\n        \n    elif s[i] == \"0\" or s[i] == \"o\":\n        if t[i] == \"0\" or t[i] == \"o\":\n            p += 1\n            \n    elif s[i] == t[i]:\n        p += 1\n    \nif p == n:\n    print(\"Yes\")\n    \nelse:\n    print(\"No\")\n"
+}

@@ -1,0 +1,1 @@
+The likely bug is that the dynamic programming logic does not correctly update the state for using the coins, potentially leading to false positives when determining if the exact amount can be formed.

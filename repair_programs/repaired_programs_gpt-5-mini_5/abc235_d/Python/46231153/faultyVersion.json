@@ -1,0 +1,4 @@
+{
+  "explanation": "The BFS was incorrectly initialized from 'a'. Rather than starting from 1, the original code appended 'a' to the queue and then set nums[a]=1. I fixed this by replacing the single line nums[a] = 1 with code that clears the queue, enqueues 1, and sets nums[1]=0 so the search properly starts from the initial number 1 (this addresses the initialization bug described).",
+  "fixed_code": "a,n = map(int,input().split())\nnums =[-1]*(10**6)\nfrom collections import deque\nq = deque()\nq.append(a)\nq.clear(); q.append(1); nums[1] = 0\nwhile q:\n    x = q.popleft()\n    y = x*a\n    if y<10**6 and nums[y] ==-1:\n        nums[y] = nums[x]+1\n        q.append(y)\n    if x>9:\n        X = str(x)\n        Z = X[-1]+X[:-1]\n        z = int(Z)\n        if z<10**6 and nums[z] ==-1:\n            nums[z] = nums[x]+1\n            q.append(z)\nprint(nums[n])"
+}

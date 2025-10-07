@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code incorrectly checks 'if now+1 in dic' for the addition of bonuses, but this should be 'if now in dic'. This is because the current position 'now' should be used to determine if there's a bonus available at the current step, rather than checking the next position 'now+1'.",
+  "fixed_code": "n,m,t=map(int,input().split())\ns=list(map(int,input().split()))\ndic=dict()\nfor i in range(m):\n    a,b=map(int,input().split())\n    dic[a]=b\n\nfor now in range(1,n):\n    \n    if t-s[now-1]<0:\n        print(\"No\")\n        exit()\n    else:\n        t-=s[now-1]\n    if now in dic:\n        t+=dic[now]\n    \nprint(\"Yes\")"
+}

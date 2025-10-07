@@ -1,0 +1,1 @@
+The code uses pow(X, -1, mod) to get the modular inverse of X, which is not a portable/valid way to compute 1/X modulo mod (pow with a negative exponent may be unsupported/incorrect).

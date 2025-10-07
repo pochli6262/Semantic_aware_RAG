@@ -1,0 +1,4 @@
+{
+  "explanation": "The final condition used `t < 0`, which incorrectly allows the case where time becomes exactly zero after the final moves. According to the problem a move that makes the time limit 0 or less is disallowed, so the check must be `t <= 0`. This is an off-by-one/boundary fix on the inequality (similar in spirit to the diff patterns that adjust comparison operators).",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= sum(a[pos : x - 1])\n    if t <= 0:\n        print(\"No\")\n        exit()\n    else:\n        t += y\n        pos = x - 1\nt -= sum(a[pos:])\nif t <= 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

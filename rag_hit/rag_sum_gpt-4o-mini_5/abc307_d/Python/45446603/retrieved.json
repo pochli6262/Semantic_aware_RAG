@@ -1,0 +1,32 @@
+{
+  "task": "abc307_d/Python/45446603",
+  "query_summary": "The program incorrectly deletes characters in the `ans` list when a closing parenthesis is encountered without correctly matching it to its corresponding opening parenthesis, leading to an incorrect output.",
+  "oracle_summary": "The code records the original string index for \"(\" (i) instead of the current position in the built answer (len(ans)), so later deletions use incorrect slice bounds and remove the wrong characters.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not handle the case where there are unmatched parentheses, potentially leading to a failure to correctly manage the state of the `a` list and set `t`, which represents the characters inside the parentheses.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n     elif i==\")\":\n       #  print(a)\n         for j in a[-1]:\n-            print(t)\n+         #   print(t)\n             t.remove(j)\n         a.pop(-1)\n     elif i==\"(\":"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `stack_kakko[-1]` instead of popping from `stack_kakko` when processing a closing parenthesis, which leads to incorrect indexing and potentially mismatched parentheses handling.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n         if c == '(':\n             stack_kakko.append(i)\n         elif c == ')':\n-            peak = stack_kakko[-1]\n+            peak = stack_kakko.pop()\n             while stack_i[-1] > peak:\n                 idx = stack_i.pop()\n                 a_set.discard(s[idx])"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ans` to 1 instead of 0, leading to an incorrect count of iterations in the while loop.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n #入力\n n, m, p = map(int, input().split())\n \n-ans = 1\n+ans = 0\n \n while m <= n:\n     ans += 1"
+    },
+    {
+      "summary": "The code incorrectly processes the segments of 'p's in the input string by failing to check for the length of the segments when appending to the list `ans`, which can lead to duplicate results being generated and printed.",
+      "diff": "--- \n+++ \n@@ -32,8 +32,6 @@\n   ans.append(S[:sta]+T+S[back+1:])\n   for i in range(len(psta)-2,-1,-1):\n     a,back=psta[i]\n-    if a!=cnt:\n-      break\n     #print(sta,back)\n     T=S[sta:back+1]\n     T=\"\".join(list(reversed(T)))"
+    },
+    {
+      "summary": "The buggy code is missing a necessary indentation level for the `print(ans)` statement, which causes it to be outside the loop and will not print the maximum contiguous count correctly.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n ans = 0\n cnt = 0\n-muji = 0\n+muji = m\n \n for c in s:\n   match c:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

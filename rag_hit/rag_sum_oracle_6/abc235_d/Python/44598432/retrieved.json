@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/44598432",
+  "query_summary": "The buggy code always applies the rotation, even when it creates a leading zero and reduces the digit count, whereas it should only rotate when the number of digits is preserved (len(str(M)) == len(str(rot(M)))).",
+  "oracle_summary": "The buggy code always applies the rotation, even when it creates a leading zero and reduces the digit count, whereas it should only rotate when the number of digits is preserved (len(str(M)) == len(str(rot(M)))).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if b:` incorrectly evaluates the binary digit as a truthy value instead of converting it to an integer, leading to incorrect calculations in the final summation.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n #print(\"MM =\", MM)\n #print(\"L =\", L)\n for i in range(L):\n-  b = MM[-i-1]\n+  b = int(MM[-i-1])\n   if b:\n     ans += B[i]\n     ans %= MOD"
+    },
+    {
+      "summary": "The buggy code fails to reverse the final output string, resulting in the incorrect order of characters being displayed.",
+      "diff": "--- \n+++ \n@@ -18,4 +18,4 @@\n     if count==8:\n         a\n \n-print(\"\".join(ans)[:-1])\n+print(\"\".join(ans)[:-1][::-1])"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `if(M and 2**i):` instead of the bitwise operator `&`, which prevents the condition from correctly checking if the i-th bit of M is set.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n MOD = 998244353\n ret = 0\n for i in range(60):\n-    if(M and 2**i):\n+    if(M & 2**i):\n         tmp = N // ((2**i)*2)\n         ret = ret + tmp*(2**i)\n         tmp = N % ((2**i)*2)"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the new value of `m` after a sequence of digits is found to be equal, leading to potential off-by-one errors and incorrect outputs.",
+      "diff": "--- \n+++ \n@@ -38,7 +38,7 @@\n         for j in range(0,len(m)-1):\n           if m[j]==m[j+1]:\n             if j+2<len(m)-1:\n-              m = str(int(m[:j+2])-1)+'9'*(len(m)-1-j-2)\n+              m = str(int(m[:j+2])-1)+'9'*(len(m)-j-2)\n             else:\n               m = str(int(m)-1)\n             break"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

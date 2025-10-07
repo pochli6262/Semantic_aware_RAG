@@ -1,0 +1,32 @@
+{
+  "task": "abc229_a/Python/45808992",
+  "query_summary": "The buggy code omits the final else that should print \"Yes\" for all other inputs, so for non-matching cases it produces no output instead of \"Yes.\"",
+  "oracle_summary": "The buggy code omits the final else that should print \"Yes\" for all other inputs, so for non-matching cases it produces no output instead of \"Yes.\"",
+  "retrieved": [
+    {
+      "summary": "The buggy code is missing an `else` statement for the second `if` block, which causes it to incorrectly print \"No\" when the second condition is not met, instead of maintaining the proper logic flow.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n if S[0].isupper():\n   if (len(S)>= 2 and S[1:].islower()) or len(S) == 1:\n     print(\"Yes\")\n+  else:\n+    print(\"No\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code fails to handle the special case where the input string is \"BA\", causing it to incorrectly evaluate as \"Yes\" instead of \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n S=input()\n ck=0\n+if S==\"BA\":\n+    exit(print(\"No\"))\n for i in range(N):\n     if S[i]!=S[-1-i]:\n         ck=1"
+    },
+    {
+      "summary": "The buggy code fails to account for the condition where the string 'xxx' is present, which may also need to result in a 'No' output.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n     print('No')\n elif 'oo' in S:\n     print('No')\n+elif 'xxx' in S:\n+    print('No')  \n else:\n     print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly allows strings that contain \"<\" and \"=\" but do not end with \">\", leading to potentially incorrect output when the conditions for a valid string format are not met.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = input()\n-if \"<\" in S and \"=\" in S:\n+if \"<\" in S and \"=\" in S and \">\" == S[-1]:\n     if S.count(\"<\") == S.count(\">\") :\n         print(\"Yes\")\n     else :"
+    },
+    {
+      "summary": "The problem in the buggy code is that the conditional statement incorrectly uses logical operators, resulting in always evaluating `True` for any input due to improper checks.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n S = input()\n \n-if S == 'ACE' or 'BDF' or 'CEG' or 'DFA' or 'EGB' or 'FAC' or 'GBD':\n+if S == 'ACE' or S == 'BDF' or S == 'CEG' or S == 'DFA' or S == 'EGB' or S == 'FAC' or S == 'GBD':\n     print('Yes')\n else:\n     print('No')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

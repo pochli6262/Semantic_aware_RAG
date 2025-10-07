@@ -1,0 +1,35 @@
+{
+  "task": "abc263_a/Python/45986379",
+  "query_summary": "It only checks K[2] != K[3] when there are two distinct values, missing the symmetric boundary K[1] != K[2], so it wrongly rejects valid cases like [a, a, b, b].",
+  "oracle_summary": "It only checks K[2] != K[3] when there are two distinct values, missing the symmetric boundary K[1] != K[2], so it wrongly rejects valid cases like [a, a, b, b].",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the string `K` as \"ABCDEABCDE\" instead of \"ABCDEAEDCBA\", which affects the logic determining if both `S` and `T` are present in `K`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-K = \"ABCDEABCDE\"\n+K = \"ABCDEAEDCBA\"\n S = input()\n T = input()\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that the expression `B1+B2 % 2` does not correctly group the addition and modulus operations due to operator precedence, leading to an incorrect evaluation of the condition.",
+      "diff": "--- \n+++ \n@@ -1,12 +1,11 @@\n S = input()\n-\n K = S.find('K')\n B1 = S.find('B')\n B2 = S.rfind('B')\n R1 = S.find('R')\n R2 = S.rfind('R')\n \n-if B1+B2 % 2 != 0 and R1 < K < R2:\n+if ((B1+B2) % 2) != 0 and (R1 < K < R2):\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    },
+    {
+      "summary": "The buggy code incorrectly references `S[i-k]` instead of `S[~(i-k)]` when constructing the string `T`, leading to incorrect character indexing and potentially wrong results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n   n,k = map(int,input().split())\n   S = input()\n   k %= 2*n\n-  T = \"\".join(S[~i] if i < n else S[i-k] for i in range(k))\n+  T = \"\".join(S[~i] if i < n else S[~(i-k)] for i in range(k))\n   if S+T == (S+T)[::-1] and T+S == (T+S)[::-1]:\n     print(\"Yes\")\n   else:"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output as \"Yes\" if K is non-negative, without checking if K is also even, which is necessary for the correct condition.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     while N > 0:\n         K -= N % 3\n         N //= 3\n-    if K >=0:\n+    if K >= 0 and K % 2 == 0:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

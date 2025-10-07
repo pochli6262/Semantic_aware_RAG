@@ -1,0 +1,31 @@
+{
+  "task": "abc261_b/Python/46179770",
+  "query_summary": "The check for the \"L\" case is inverted: it prints \"incorrect\" when the opponent has \"W\" instead of printing \"incorrect\" when the opponent is not \"W\".",
+  "oracle_summary": "In the 'L' case, the condition is inverted: it checks kama[ipp][i] == 'W' (flagging a correct mirror as incorrect) instead of enforcing kama[ipp][i] != 'W'.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for the string \"AB\" instead of \"BA\" to determine when to print \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n=int(input())\n s=list(input())\n-if \"\".join(s)==\"AB\":\n+if \"\".join(s)==\"BA\":\n     print(\"No\")\n     exit()\n if s[0]==\"B\":"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly counts uppercase \"W\" instead of lowercase \"w\", leading to an inaccurate count of the desired character.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n n=len(s)\n answer=0\n for i in range(n):\n-  if s[i]==\"W\":\n+  if s[i]==\"w\":\n    answer+=1\n print(answer+n)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints 'No' instead of 'Lose' when the winning conditions are not met.",
+      "diff": "--- \n+++ \n@@ -11,4 +11,4 @@\n if N%2==1:\n   print('Win')\n else:\n-  print('No')\n+  print('Lose')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for the uppercase \"W\" instead of the lowercase \"w\", leading to an incorrect score calculation when counting characters.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s=list(map(str,input()))\n ans=0\n for i in range(len(s)):\n-  if s[i]==\"W\":\n+  if s[i]==\"w\":\n     ans+=2\n   else:\n     ans+=1"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

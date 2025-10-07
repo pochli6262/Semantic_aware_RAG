@@ -1,0 +1,31 @@
+{
+  "task": "abc304_b/Python/45336297",
+  "query_summary": "The bug is due to a missing final conditional branch handling numbers up to 10**9-1, so inputs in that range produce no corresponding output.",
+  "oracle_summary": "The bug is due to a missing final conditional branch handling numbers up to 10**9-1, so inputs in that range produce no corresponding output.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the loop incorrectly iterates up to 919 instead of 920, causing it to miss potential valid numbers.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-for i in range(n,919):\n+for i in range(n,920):\n     c = str(i)\n     if int(c[0])*int(c[1])==int(c[2]):\n         print(i)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly formats the output string for numbers between 10 and 41 by using \"AGC00\" instead of \"AGC0\".",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n elif int(N) <10:\n     print(\"AGC00\"+ N)\n else:\n-    print(\"AGC00\"+ N)\n+    print(\"AGC0\"+ N)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a fixed range of 10 instead of the variable `n` to determine the countdown limit.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n n = input()\n n = int(n)\n-for i in range(10,-1,-1):\n+for i in range(n,-1,-1):\n     print(i)"
+    },
+    {
+      "summary": "The buggy code fails to handle cases where N is between 10 and 41, resulting in those values not producing any output.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n if N < 10:\n   print(\"AGC00\" + str(N))\n+elif 10 <= N < 42:\n+  print(\"AGC0\" + str(N))\n elif N >= 42 :\n   A = N + 1\n   print(\"AGC0\" + str(A))"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the loop to `range(919)` instead of `range(920)`, causing it to miss checking the number 919.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n \n-for i in range(919):\n+for i in range(920):\n   if i <= 99:\n     continue\n   elif i < n:"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

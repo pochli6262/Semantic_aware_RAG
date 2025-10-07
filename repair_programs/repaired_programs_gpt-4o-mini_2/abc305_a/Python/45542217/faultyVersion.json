@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the calculation of 'ans'. The original code computes 'ans' based on the value of 'a' which is derived from 'N % 5'. However, the correct formula for 'ans' should ensure it rounds down to the nearest multiple of 5 when 'a' is less than 3. I fixed the line by ensuring we subtract the remainder from N only when 'a < 3'. The line 'ans=N-a' is replaced with 'ans=N-a if a < 3 else N + (5 - a)' to correctly calculate the next multiple of 5 in cases where 'a >= 3'.",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a < 3:\n        ans=N-a\n    else:\n        ans=N+(5-a)\n    print(ans)"
+}

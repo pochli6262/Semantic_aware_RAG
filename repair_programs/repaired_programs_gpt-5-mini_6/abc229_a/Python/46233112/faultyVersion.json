@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line compared characters for equality (S1[0] == S2[0] or S1[1] == S2[1]), which incorrectly treats matching '.' as a connection. The correct logic is: the configuration is disconnected only when there are exactly two black squares and they are on opposite corners (diagonally). I replaced the condition with one that counts '#' and checks for the diagonal-two case, then negates it so we print \"Yes\" when connected. (This fixes the mistaken equality check by explicitly testing for '#'.)",
+  "fixed_code": "S1 = input()\nS2 = input()\nif not ((S1+S2).count('#')==2 and ((S1[0]=='#' and S2[1]=='#') or (S1[1]=='#' and S2[0]=='#'))):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

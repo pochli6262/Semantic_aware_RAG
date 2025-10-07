@@ -1,0 +1,4 @@
+{
+  "explanation": "In the branch for s[j] == \"A\" the line computing dp[1][j] mistakenly added +x for the case of switching from state 0 to state 1. If the current character is 'A' and you switch to state 1 you must pay the switching cost z plus the cost of typing 'A' in state 1, which is y (not x). I changed the term +x to +y in that single line.",
+  "fixed_code": "x, y, z = map(int, input().split())\ns = input()\n\ndp = [[0]*(len(s)) for _ in range(2)]\nif s[0] == \"A\":\n    dp[0][0] = z+x\n    dp[1][0] = y\nelse:\n    dp[0][0] = z+y\n    dp[1][0] = x\nfor j in range(1, len(s)):\n    if s[j] == \"A\":\n        dp[0][j] = min(dp[0][j-1]+x, dp[1][j-1]+z+x)\n\n        dp[1][j] = min(dp[0][j-1]+z+y, dp[1][j-1]+y)\n\n    else:\n        dp[0][j] = min(dp[0][j-1]+y, dp[1][j-1]+z+y)\n        dp[1][j] = min(dp[0][j-1]+z+x, dp[1][j-1]+x)\nprint(min(dp[0][-1], dp[1][-1]))"
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc301_a/Python/45433034",
+  "query_summary": "A leftover debug print (print(f'A:{A},T:{T}')) inside the loop produces extraneous output and breaks the program's expected output.",
+  "oracle_summary": "A leftover debug print (print(f'A:{A},T:{T}')) inside the loop produces extraneous output and breaks the program's expected output.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the condition to break the inner while loop should check if `cur` is `-1` instead of `cur` being not equal to `-1`.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n count = 0\n for i in range(N-1, -1, -1):\n     while S[i] != T[cur]:\n-        if cur != -1:\n+        if cur == -1:\n             break\n         cur -= 1\n     else:"
+    },
+    {
+      "summary": "The buggy code has an incorrect indexing issue where it should reference `S[N-i-1]` instead of `S[i]` when determining the value to append to the `ans` string.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(N):\n   if int(S[N-i-1]) != (cur // 2**i) % 2:\n     X = (1 << N) - (1 << i)\n-    if S[i] == '1':\n+    if S[N-i-1] == '1':\n       ans += 'A' * (N-i)\n       cur = cur ^ X\n     else:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the intermediate results inside the loop, which is not present in the correct code.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(N-1, -1, -1):\n     s = S[i]\n     if s == '1':\n-        print(i, 'A'*(i+1)+'B'*i)\n+        #print(i, 'A'*(i+1)+'B'*i)\n         ans += 'A'*(i+1)+'B'*i\n print(len(ans))\n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses \"j + nex >= N\" instead of \"j + nex > N\" which can lead to an out-of-bounds error when checking the substring.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n             nex = 1\n             while not b:\n                 nex += 1\n-                if j + nex >= N:\n+                if j + nex > N:\n                     break\n                 if S[0:j] < S[j:j + nex]:\n                     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    3
+  ],
+  "useful_diffs_count": 1
+}

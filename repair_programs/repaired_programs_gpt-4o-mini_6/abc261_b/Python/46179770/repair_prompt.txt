@@ -1,0 +1,182 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+N players played a round-robin tournament.
+
+You are given an N-by-N table A containing the results of the matches. Let A\_{i,j} denote the element at the i-th row and j-th column of A.  
+A\_{i,j} is `-` if i=j, and `W`, `L`, or `D` otherwise.  
+A\_{i,j} is `W` if Player i beat Player j, `L` if Player i lost to Player j, and `D` if Player i drew with Player j.
+
+Determine whether the given table is contradictory.
+
+The table is said to be contradictory when some of the following holds:
+
+* There is a pair (i,j) such that Player i beat Player j, but Player j did not lose to Player i;
+* There is a pair (i,j) such that Player i lost to Player j, but Player j did not beat Player i;
+* There is a pair (i,j) such that Player i drew with Player j, but Player j did not draw with Player i.
+
+### Constraints
+
+* 2 \leq N \leq 1000
+* A\_{i,i} is `-`.
+* A\_{i,j} is `W`, `L`, or `D`, for i\neq j.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+N
+A_{1,1}A_{1,2}\ldots A_{1,N}
+A_{2,1}A_{2,2}\ldots A_{2,N}
+\vdots
+A_{N,1}A_{N,2}\ldots A_{N,N}
+```
+
+### Output
+
+If the given table is not contradictory, print `correct`; if it is contradictory, print `incorrect`.
+
+---
+
+### Sample Input 1
+
+```
+4
+-WWW
+L-DD
+LD-W
+LDW-
+```
+
+### Sample Output 1
+
+```
+incorrect
+```
+
+Player 3 beat Player 4, while Player 4 also beat Player 3, which is contradictory.
+
+---
+
+### Sample Input 2
+
+```
+2
+-D
+D-
+```
+
+### Sample Output 2
+
+```
+correct
+```
+
+There is no contradiction.
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the program does not correctly handle cases where the results of matches are not mutually exclusive, leading to incorrect contradiction checking logic.
+
+## Buggy Program
+n = int(input())
+kama = [list(input()) for i in range(n)]
+for i in range(n):
+    for ipp in range(n):
+        if kama[i][ipp] == "W":
+            if kama[ipp][i] != "L":
+                print("incorrect")
+                exit()
+        elif kama[i][ipp] == "D":
+            if kama[ipp][i] != "D":
+                print("incorrect")
+                exit()
+        elif kama[i][ipp] == "L":
+            if kama[ipp][i] == "W":
+                print("incorrect")
+                exit()
+print("correct")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -13,7 +13,7 @@
+ for i in range(n):
+     for j in range(n):
+         if p[i] >= p[j]:
+-            if f[j].issuperset(f[i]):
++            if f[j].issuperset(f[i]) and (p[i] > p[j] or len(f[j]) > len(f[i])):
+                 print("Yes")
+                 exit(0)
+ 
+
+### Diff 2
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ N=int(input())
+-if N%3==2 or N==4:
++if N%3==2 or N<=4 :
+     print("No")
+ else:
+     print("Yes")
+
+### Diff 3
+--- 
++++ 
+@@ -13,7 +13,7 @@
+   if S[i] == "D":
+     now = (now[0], now[1] - 1)
+   se.add(now)
+-if len(se) == N + 1:
++if len(se) != N + 1:
+   print("Yes")
+ else:
+   print("No")
+
+### Diff 4
+--- 
++++ 
+@@ -9,7 +9,7 @@
+             fj = set(I[j][2:])
+             fi = set(I[i][2:])
+             if len((fj | fi)) == len(fj):
+-                if I[i][0] > I[j][0] or len((fj | fi)) - len(fj) > 0:
++                if I[i][0] > I[j][0] or len((fj | fi)) - len(fi) > 0:
+                     print('Yes')
+                     exit()
+ print('No')
+
+### Diff 5
+--- 
++++ 
+@@ -41,7 +41,7 @@
+         if (N+K) % (2*l) == 0:
+             print("Yes")
+             continue
+-        elif (N+k) % l == 0:
++        elif (N+K) % l == 0:
+             for i in range(l):
+                 if S[i] != S[l-i-1]:
+                     break
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

@@ -1,0 +1,29 @@
+{
+  "task": "abc301_d/Python/45732372",
+  "query_summary": "The code prints the initial ans prematurely (before checking if it's > n and before maximizing '?' bits), causing incorrect output order and results.",
+  "oracle_summary": "The code prints the initial ans prematurely (before checking if it's > n and before maximizing '?' bits), causing incorrect output order and results.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the condition `if flag and k <= n-k:` should be `if flag and k < n-k:` to avoid printing \"Yes\" even when the two substrings are equal when `k` is exactly half of `n`.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n             else:\n                 flag = False\n                 break\n-        if flag and k<=n-k:\n+        if flag and k<n-k:\n             print(\"Yes\")\n             return\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code is missing a necessary indentation level for the `print(ans)` statement, which causes it to be outside the loop and will not print the maximum contiguous count correctly.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n ans = 0\n cnt = 0\n-muji = 0\n+muji = m\n \n for c in s:\n   match c:"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the first character of the string with each subsequent character instead of comparing the substrings from the start to the current index with the substring from the current index to the end.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n     N = int(input())\n     S = input()\n     for i in range(1, N):\n-        if S[0] < S[i]:\n+        if S[0:i] < S[i:]:\n             print('Yes')\n             return\n     print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs -1 only when the longest sequence of non-hyphen characters is equal to `n-2`, failing to account for the case where there are no non-hyphen characters at all (represented by `m` being 0).",
+      "diff": "--- \n+++ \n@@ -7,6 +7,6 @@\n     m=max(m,x)\n     x=0\n   else: x+=1\n-if m==n-2:\n+if m==n-2 or m==0:\n   print(-1)\n else: print(m)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly limits the value of `k` to a maximum of 100 instead of the intended 200, which can lead to insufficient depth in the calculation.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n     n,x,k = list(map(int, input().split(' ')))\n     # print(n,x,k)\n     n += 1\n-    k = min(100,k)\n+    k = min(200,k)\n     ans = 0\n     depth = k\n     prev = -1"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

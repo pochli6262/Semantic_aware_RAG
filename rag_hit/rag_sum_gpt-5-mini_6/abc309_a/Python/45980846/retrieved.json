@@ -1,0 +1,29 @@
+{
+  "task": "abc309_a/Python/45980846",
+  "query_summary": "The code incorrectly checks vertical adjacency as well as horizontal (comparing grid[j][i] with grid[j+1][i]), so it can print \"Yes\" for vertically adjacent numbers even though only horizontal adjacency should be considered.",
+  "oracle_summary": "The bug is an extra OR clause that incorrectly checks grid[j][i] and grid[j+1][i] (swapping i and j), causing unintended vertical/transposed pair matches and false positives instead of only checking horizontal adjacent elements.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly updates the `blocks` array using `i % n` and `j % n` instead of using `i // n` and `j // n` to determine the correct block index.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n         if not rows[i][num - 1] and not cols[j][num - 1] and not blocks[i // n][j // n][num - 1]:\n               rows[i][num - 1] = True\n               cols[j][num - 1] = True\n-              blocks[i % n][j % n][num - 1] = True\n+              blocks[i // n][j // n][num - 1] = True\n         else:\n             valid = False\n             break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for a vertical bingo by referencing the wrong index (using `boolss[i][n]` instead of `boolss[n][j]`), which results in incorrect vertical bingo detection.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         bingo = True\n     vertical = True\n     for n in range(N):\n-        if boolss[i][n] == False:\n+        if boolss[n][j] == False:\n             vertical = False\n             break\n     if vertical:"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the condition for printing \"Yes\" by failing to account for the case where there are no occurrences of the middle element in the second half of the sorted list.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n         c2+=1\n     else:\n         break\n-if (n+1)//2-c1>c2:\n+if (n+1)//2-c1>c2 or c2==0:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the conditions for printing \"Yes\", as it only checks for specific differences in coordinates, missing additional valid cases that should be accounted for.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x1,y1,x2,y2 = map(int,input().split())\n-if (abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3) :\n+if ((abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3)) or ((abs(x1-x2)==2 and abs(y1-y2)==4) or (abs(x1-x2)==4 and abs(y1-y2)==2)) or  ((abs(x1-x2)==0 and (abs(y1-y2)==2 or abs(y1-y2)==4)) or  ((abs(x1-x2)==2 or abs(x1-x2)==4) and abs(y1-y2)==0)):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `i >= 2*Odd-1` instead of the correct condition `i >= Odd+1` when determining if to print \"Yes\" for the odd numbers.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     for i in A:\n         if i % 2 == 1:\n             Odd += 1\n-            if Odd % 2 == 0 and i >= 2*Odd-1:\n+            if Odd % 2 == 0 and i >= Odd+1:\n                 print(\"Yes\")\n                 Test = 1\n                 break"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

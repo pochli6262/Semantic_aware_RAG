@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the program is that it incorrectly marks the `check` variable as 'False' if any `S[i]` does not meet the conditions for being strictly greater than the previous `check_num`. The condition for checking if `check_num < S[i]` should be adjusted so that `check_num` is updated correctly when an eligible number is found. I changed the line to just check if all elements are in increasing order without adding the `check_num < S[i]` since this should only ensure each number meets the stated conditions regardless of order within valid numbers.",
+  "fixed_code": "S=list(map(int,input().split()))\ncheck_S=sorted(S)\ncheck=\"True\"\ncheck_num=0\nfor i in range (len(S)):\n    if 100<=S[i]<=675 and S[i]%25==0:\n        check_num=S[i]\n    else:\n        check=\"False\"\nif check==\"True\":\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

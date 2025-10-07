@@ -1,0 +1,355 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+import sys
+from collections import deque, defaultdict
+from math import *
+from bisect import bisect_left, bisect_right
+input = sys.stdin.readline
+
+def get(s1, s2):
+    global n 
+    i = 0
+    while i < len(s1) and (s1[i] == '?' or s1[i] == s2[i]):
+        i += 1
+    if i == len(s1): return n
+    else:
+        if s1[i] < s2[i]:
+            v = 0
+            for j in range(i):
+                v = v * 2 + int(s2[j])
+            for j in range(i, len(s1)):
+                if s1[j] == '0': v = v * 2 
+                else:  v = v * 2 + 1
+            return v
+        else:
+            j = i - 1
+            while j >= 0 and (s1[j] != '?' or s2[j] == '0'):  
+                j -= 1
+            if j == -1: return -1
+            else:
+                v = 0
+                for k in range(j):
+                    v = v * 2 + int(s2[k])
+                v = v * 2 
+                for k in range(j+1, len(s1)):
+                    if s1[k] == '0': v = v << 1
+                    else: v = v * 2 + 1
+                return v 
+
+if __name__ == "__main__":
+    s1 = input().strip()
+    n = int(input())
+    s2 = bin(n)[2:]
+    
+    i = 0
+    while i < len(s1) - 1 and s1[i] == '0':
+        i += 1
+    s1 = s1[i:]
+    v = 0
+    if len(s1) < len(s2):
+        for x in s1:
+            if x == '0': v = v * 2
+            else: v = v * 2 + 1 
+    elif len(s1) == len(s2):
+        v = get(s1, s2)
+    else:
+        le = len(s1) - len(s2)
+        if s1[:le] != '?' * le: v = -1
+        else:
+            v = get(s1[le:], s2)
+    print(v)
+
+    
+    
+        
+
+    
+            
+
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+import sys
+from collections import deque
+input = sys.stdin.readline
+LN = 1111111
+
+def cnt(d):
+    ret = []
+    s,k = 0,0
+    if d%s1[0] == 0: s = d//s1[0]
+    else: s = d//s1[0]+1
+    ssum = s1[0]*s
+    remain = d-ssum
+    ret.append([s,0])
+    while s >= 0:
+        s -= 1
+        remain += s1[0]
+        if remain %s2[0] == 0: k = remain//s2[0]
+        else: k = remain//s2[0]+1
+        ret.append([s,k])
+    return ret
+
+N = int(input())
+D = list(map(int,input().split()))
+s1 = list(map(int,input().split())) #Len,Cost,K
+s2 = list(map(int,input().split()))
+ans = 10**24
+dp = [LN]*(s1[2]+1) # idx : num of s1, val : num of s2
+que = cnt(D[0])
+for a,b in que: 
+    if a > s1[2] or b > s2[2]: continue
+    dp[a] = b
+for i in range(1,N):
+    tmp = [LN]*(s1[2]+1)
+    que = cnt(D[i])
+    for idx,val in enumerate(dp):
+        if val == LN: continue
+        for a,b in que:
+            if idx+a > s1[2] or val+b > s2[2]: continue
+            tmp[idx+a] = min(tmp[idx+a],val+b)
+    dp = tmp
+if dp.count(LN) == s1[2]+1: print(-1)
+else:
+    for i,j in enumerate(dp): 
+        if j == LN: continue
+        ans = min(ans,i*s1[1]+j*s2[1])
+    print(ans)
+
+--- Correct Code ---
+import sys
+from collections import deque
+input = sys.stdin.readline
+LN = 1111111
+
+def cnt(d):
+    ret = []
+    s,k = 0,0
+    if d%s1[0] == 0: s = d//s1[0]
+    else: s = d//s1[0]+1
+    ssum = s1[0]*s
+    remain = d-ssum
+    ret.append([s,0])
+    while s > 0:
+        s -= 1
+        remain += s1[0]
+        if remain %s2[0] == 0: k = remain//s2[0]
+        else: k = remain//s2[0]+1
+        ret.append([s,k])
+    return ret
+
+N = int(input())
+D = list(map(int,input().split()))
+s1 = list(map(int,input().split())) #Len,Cost,K
+s2 = list(map(int,input().split()))
+ans = 10**24
+dp = [LN]*(s1[2]+1) # idx : num of s1, val : num of s2
+que = cnt(D[0])
+for a,b in que: 
+    if a > s1[2] or b > s2[2]: continue
+    dp[a] = b
+for i in range(1,N):
+    tmp = [LN]*(s1[2]+1)
+    que = cnt(D[i])
+    for idx,val in enumerate(dp):
+        if val == LN: continue
+        for a,b in que:
+            if idx+a > s1[2] or val+b > s2[2]: continue
+            tmp[idx+a] = min(tmp[idx+a],val+b)
+    dp = tmp
+if dp.count(LN) == s1[2]+1: print(-1)
+else:
+    for i,j in enumerate(dp): 
+        if j == LN: continue
+        ans = min(ans,i*s1[1]+j*s2[1])
+    print(ans)
+
+
+### Example 2
+--- Buggy Code ---
+import sys, time, random
+from collections import deque, Counter, defaultdict
+input = lambda: sys.stdin.readline().rstrip()
+ii = lambda: int(input())
+mi = lambda: map(int, input().split())
+li = lambda: list(mi())
+inf = 2 ** 61 - 1
+mod = 998244353
+
+def solve():
+    s = input()
+    n = len(s)
+    dp = [inf] * (n + 1)
+    bdic = defaultdict(lambda: inf)
+    dic = defaultdict(lambda: inf)
+    dp[0] = 0
+    dic[0] = 0
+    cnt = 0
+    if s[0] == 'B':
+        bdic[0] = 0
+    for i in range(n):
+        dp[i + 1] = min(dp[i + 1], dp[i] + 1)
+        if s[i] == 'A':
+            cnt += 1
+        else:
+            cnt -= 2
+        if s[i] == 'B':
+            dp[i + 1] = min(dp[i + 1], dic[cnt])
+        dp[i + 1] = min(dp[i + 1], bdic[cnt])
+        dic[cnt] = min(dic[cnt], dp[i + 1])
+        if s[i] == 'B':
+            bdic[cnt] = min(bdic[cnt], dp[i + 1])
+    print((n - dp[n]) // 3)
+            
+            
+        
+    
+for _ in range(ii()):
+    solve()
+
+--- Correct Code ---
+import sys, time, random
+from collections import deque, Counter, defaultdict
+input = lambda: sys.stdin.readline().rstrip()
+ii = lambda: int(input())
+mi = lambda: map(int, input().split())
+li = lambda: list(mi())
+inf = 2 ** 61 - 1
+mod = 998244353
+
+def solve():
+    s = input()
+    n = len(s)
+    dp = [inf] * (n + 1)
+    bdic = defaultdict(lambda: inf)
+    dic = defaultdict(lambda: inf)
+    dp[0] = 0
+    dic[0] = 0
+    cnt = 0
+    if s[0] == 'B':
+        bdic[0] = 0
+    for i in range(n):
+        dp[i + 1] = min(dp[i + 1], dp[i] + 1)
+        if s[i] == 'A':
+            cnt += 1
+        else:
+            cnt -= 2
+        if s[i] == 'B':
+            dp[i + 1] = min(dp[i + 1], dic[cnt])
+        dp[i + 1] = min(dp[i + 1], bdic[cnt])
+        dic[cnt] = min(dic[cnt], dp[i + 1])
+        if i + 1 < n and s[i + 1] == 'B':
+            bdic[cnt] = min(bdic[cnt], dp[i + 1])
+    print((n - dp[n]) // 3)
+            
+            
+        
+    
+for _ in range(ii()):
+    solve()
+
+
+### Example 3
+--- Buggy Code ---
+from collections import deque
+from collections import defaultdict
+from bisect import bisect_left
+import sys
+sys.setrecursionlimit(1000000)
+from heapq import heappop, heappush
+N,M=map(int, input().split())
+Pos=[]
+for _ in range(N):
+    s=input()
+    Pos.append(s)
+dis1=[1<<60]*N
+dis1[0]=0
+que=deque()
+que.append(0)
+while(que):
+    v=que.popleft()
+    for i in range(M):
+        if Pos[v][i]=="1":
+            if dis1[v]+1 < dis1[v+i+1]:
+                que.append(v+i+1)
+                dis1[v+i+1]=dis1[v]+1
+dis2=[1<<60]*N
+dis2[-1]=0
+for i in range(N-2, -1, -1):
+    for j in range(M):
+        if Pos[i][j]=="1":
+            if dis2[i+j+1]+1 < dis2[i]:
+                dis2[i]=dis2[i+j+1]+1
+Ans=[]
+for k in range(1, N-1):
+    ans=1<<60
+    for i in range(max(0, k-M+1),k):
+        for j in range(M):
+            if Pos[i][j]=="1" and i+j+1 != k:
+                ans=min(ans, dis1[i]+1+dis2[i+j+1])
+    
+    if ans==1<<60: ans=-1
+    Ans.append(ans)
+print(*Ans)
+
+--- Correct Code ---
+from collections import deque
+from collections import defaultdict
+from bisect import bisect_left
+import sys
+sys.setrecursionlimit(1000000)
+from heapq import heappop, heappush
+N,M=map(int, input().split())
+Pos=[]
+for _ in range(N):
+    s=input()
+    Pos.append(s)
+dis1=[1<<60]*N
+dis1[0]=0
+que=deque()
+que.append(0)
+while(que):
+    v=que.popleft()
+    for i in range(M):
+        if Pos[v][i]=="1":
+            if dis1[v]+1 < dis1[v+i+1]:
+                que.append(v+i+1)
+                dis1[v+i+1]=dis1[v]+1
+dis2=[1<<60]*N
+dis2[-1]=0
+for i in range(N-2, -1, -1):
+    for j in range(M):
+        if Pos[i][j]=="1":
+            if dis2[i+j+1]+1 < dis2[i]:
+                dis2[i]=dis2[i+j+1]+1
+Ans=[]
+for k in range(1, N-1):
+    ans=1<<60
+    for i in range(max(0, k-M+1),k):
+        for j in range(M):
+            if Pos[i][j]=="1" and i+j+1 > k:
+                ans=min(ans, dis1[i]+1+dis2[i+j+1])
+    
+    if ans==1<<60: ans=-1
+    Ans.append(ans)
+print(*Ans)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

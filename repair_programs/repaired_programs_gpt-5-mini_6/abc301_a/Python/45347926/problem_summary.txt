@@ -1,0 +1,1 @@
+The code never stops when a player first reaches N/2, so both t_win and a_win can become True (e.g., with "AT") and it may print both "T" and "A".

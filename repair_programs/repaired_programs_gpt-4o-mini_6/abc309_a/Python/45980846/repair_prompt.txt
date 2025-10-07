@@ -1,0 +1,171 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+We have the following 3 \times 3 board with integers from 1 through 9 written on it.
+
+![](https://img.atcoder.jp/abc309/86862b285a60054303435965fe642c67.jpg)
+
+You are given two integers A and B between 1 and 9, where A < B.
+
+Determine if the two squares with A and B written on them are adjacent horizontally.
+
+### Constraints
+
+* 1 \le A < B \le 9
+* A and B are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+A B
+```
+
+### Output
+
+Print `Yes` if the two squares with A and B written on them are adjacent horizontally, and `No` otherwise.
+
+---
+
+### Sample Input 1
+
+```
+7 8
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The two squares with 7 and 8 written on them are adjacent horizontally, so print `Yes`.
+
+---
+
+### Sample Input 2
+
+```
+1 9
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+---
+
+### Sample Input 3
+
+```
+3 4
+```
+
+### Sample Output 3
+
+```
+No
+```
+
+## Your Analysis (1-sentence bug summary)
+The program incorrectly checks for adjacency both horizontally and vertically, leading to incorrect results for the specified condition of horizontal adjacency only.
+
+## Buggy Program
+grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+a = list(map(int, input().split()))
+for i in range(3):
+  for j in range(2):
+    for k in range(2):
+      if (a[k%2] == grid[i][j] and a[(k+1)%2] == grid[i][j+1]) or (a[k%2] == grid[j][i] and a[(k+1)%2] == grid[j+1][i]):
+        exit(print("Yes"))
+print("No")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -12,7 +12,7 @@
+         if not rows[i][num - 1] and not cols[j][num - 1] and not blocks[i // n][j // n][num - 1]:
+               rows[i][num - 1] = True
+               cols[j][num - 1] = True
+-              blocks[i % n][j % n][num - 1] = True
++              blocks[i // n][j // n][num - 1] = True
+         else:
+             valid = False
+             break
+
+### Diff 2
+--- 
++++ 
+@@ -1,6 +1,6 @@
+ A,B = map(int,input().split())
+ 
+-if B-A == 1 or A-B == 9:
++if B-A == 1 or B-A == 9:
+   print("Yes")
+ else:
+   print("No")
+
+### Diff 3
+--- 
++++ 
+@@ -14,7 +14,7 @@
+         c2+=1
+     else:
+         break
+-if (n+1)//2-c1>c2:
++if (n+1)//2-c1>c2 or c2==0:
+     print("Yes")
+ else:
+     print("No")
+
+### Diff 4
+--- 
++++ 
+@@ -11,7 +11,7 @@
+     else:
+         B[2*i-N]=A[i]
+ for i in range(N):
+-    if i%2!=0:
++    if i%2==0:
+         continue
+     if B[i-1]<B[i] and B[i]>B[i+1]:
+         continue
+
+### Diff 5
+--- 
++++ 
+@@ -14,6 +14,10 @@
+   for i in range(m - 1):
+     if ((temp[i + 1] + 6) % 7) != ((temp[i] + 6) % 7) + 1:
+       return False
++    if temp[i + 1] != temp[i] + 1:
++      return False
++
++    
+ 
+ 
+   return True
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

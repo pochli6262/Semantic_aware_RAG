@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is that the program checks if the total number of medicines is less than or equal to K at the wrong place, without properly considering that the day initialization occurs at 1, thus failing to correctly identify the first day where the total pills taken is K or less. The line that needs to be changed prints AB[i - 1][0] + 1 when drugs are under the limit, which could lead to inaccurate output. I corrected this logic to ensure that the day calculation is consistent with when the medicines were taken. This was inspired by the understanding of how different days should increment based on pills taken and when to check against K.",
+  "fixed_code": "N, K = map(int, input().split())\nAB = [tuple(map(int, input().split())) for _ in range(N)]\n\nAB.sort()\nmedicines = 0\nfor i in range(N):\n    medicines += AB[i][1]\n\nfor i in range(N):\n    if medicines <= K:\n        print(AB[i][0])\n        exit(0)\n    medicines -= AB[i][1]"
+}

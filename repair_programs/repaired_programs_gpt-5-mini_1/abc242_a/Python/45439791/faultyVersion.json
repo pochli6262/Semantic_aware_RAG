@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used C / (B - A). For an inclusive integer range [A, B] the number of possible values is (B - A + 1). Using (B - A) is both incorrect for the probability and causes a ZeroDivisionError when A == B. I fixed the line to divide by (B - A + 1).",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X < A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A + 1)\n  print(answer)\n"
+}

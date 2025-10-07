@@ -1,0 +1,1 @@
+The program's check for whether the j-th product has extra functions is wrong — after confirming i's functions are a subset of j's it computes a union-based difference that is always zero, so it never detects when j actually has strictly more functions than i.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The final print line was printing both the name and the age because it used unpacking (print(*ans[...])); the problem requires printing only the name. I fixed that line to print only the name element (index 0) of the stored pair.",
+  "fixed_code": "n=int(input())\nINDEX=-1\nnow=float('inf')\nans=[]\nfor i in range(n):\n    s,a=input().split()\n    a=int(a)\n    ans.append([s,a])\n    if now>a:\n        now=a\n        INDEX=i\nfor i in range(n):\n    print(ans[(i+INDEX)%n][0])"
+}

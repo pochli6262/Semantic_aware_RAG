@@ -1,0 +1,1 @@
+The initial size check mistakenly compares PB's width to PX's height (PB[1] > PX[0]) instead of comparing it to PX's width (PX[1]).

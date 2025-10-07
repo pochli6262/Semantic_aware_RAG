@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line only checked one ordering for a full house: three equal cards first and a pair last (after sorting). It missed the symmetric case where the pair comes first and the three-of-a-kind comes last. I fixed that single line by adding an OR branch that checks the second ordering (first two equal and last three equal), and I preserved the checks that the two groups are different so five-of-a-kind won't be mistaken for a full house.",
+  "fixed_code": "def main():\n    cards = list(map(int, input().split()))\n    assert len(cards) == 5\n\n    cards.sort()\n    if (cards[0] == cards[1] and cards[0] == cards[2] and cards[0] != cards[3] and cards[3] == cards[4]) or (cards[0] == cards[1] and cards[2] == cards[3] and cards[3] == cards[4] and cards[1] != cards[2]):\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}

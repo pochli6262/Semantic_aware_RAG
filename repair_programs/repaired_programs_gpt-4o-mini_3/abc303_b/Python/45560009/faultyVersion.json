@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where the variable 'ans' is calculated. The calculation of the number of remaining edges should account for the fact that each edge is counted twice in the adjacency matrix, hence the correct calculation should avoid subtracting 'n' from the total sum directly, and instead take half of that. I replaced 'print(ans/2)' with 'print(ans // 2)' to accurately represent the count.",
+  "fixed_code": "n,m = map(int,input().split())\nhunaka = [[1] * n for _ in range(n)]\nfor _ in range(m):\n    a = list(map(int,input().split()))\n    for i in range (n-1):\n        x,y = a[i],a[i+1]\n        hunaka[x-1][y-1]=0\n        hunaka[y-1][x-1]=0\nans = sum(sum(row) for row in hunaka) - n\nprint(ans // 2)"
+}

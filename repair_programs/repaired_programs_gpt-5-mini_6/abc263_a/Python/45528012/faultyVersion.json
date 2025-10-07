@@ -1,0 +1,4 @@
+{
+  "explanation": "The if-condition was wrong: the second clause used OR and duplicated checks, so the overall condition became true when there was only a triple or only a pair. I replaced the condition with the correct Full house check — either the first three cards are equal and the last two are equal, or the first two are equal and the last three are equal. This fixes the logical grouping so both a triple and a pair are required (inspired by the diffs' pattern of correcting logical conditions).",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif ((a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4])) or ((a[0]==a[1]) and (a[2]==a[3] and a[3]==a[4])):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "There was a typo in the last condition: 'Friay' is misspelled and therefore the if never matches the input 'Friday'. I fixed that single line by correcting the spelling to 'Friday'. No other lines were changed.",
+  "fixed_code": "s=input()\nif s==\"Monday\":\n    print(5)\nif s==\"Tuesday\":\n    print(4)\nif s==\"Wednesday\":\n    print(3)\nif s==\"Thursday\":\n    print(2)\nif s==\"Friday\":\n    print(1)\n"
+}

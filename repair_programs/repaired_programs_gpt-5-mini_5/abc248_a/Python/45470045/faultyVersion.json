@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used range(1, 10), so the digit 0 was never checked; I changed it to range(10) so 0..9 are all tested. This directly addresses the bug described (missing check for 0) — Diff 4 similarly highlighted adding '0' to the set of digits to consider.",
+  "fixed_code": "s = input()\n\nA = [int(x) for x in s]\n\nfor i in range(10):\n    if i not in A:\n        print(i)\n        exit()\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the conditional check of the 'if' statement. The original line checks if the sorted list 'ss' equals the original list 's' and the first element is greater than 100 and the last element is less than 675. This makes it too restrictive since the condition of 's' being sorted (s == ss) should not be present for the function to determine if the result should be 'Yes' or 'No'. I have changed the condition to only check the range values without enforcing the sorted condition.",
+  "fixed_code": "s=list(map(int,input().split()))\nss=sorted(s)\n\npack=[]\nif s[0] > 100 and s[-1] < 675:\n  for i in s:\n    if i%25==0:\n      pack.append(i)\nprint(\"Yes\" if len(pack)==8 else \"No\")"
+}

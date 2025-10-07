@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'ans += s[l+i]' incorrectly accesses the list by using 'l+i', which can lead to an out-of-bounds error. The correct access should be based on the starting index of the week, which can be calculated as 'i*7 + l'. This was inspired by recognizing a common pattern in correctly iterating through slices of a list for summation. The modified line ensures that steps are summed properly for each week without causing index errors.",
+  "fixed_code": "n = int(input())\ns = list(map(int,input().split()))\n\nfor i in range(n):\n  ans = 0\n  for l in range(7):\n    ans += s[l + i * 7]\n\n  print(str(ans),\"\",end = \"\")"
+}

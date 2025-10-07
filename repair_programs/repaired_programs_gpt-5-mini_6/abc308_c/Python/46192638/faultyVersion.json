@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line computed success rates using floating-point arithmetic with a huge multiplier (-a * 10**100 / (a + b)), which can lose precision or be incorrect for large integers. I replaced it with an exact rational comparison by using fractions.Fraction via __import__('fractions').Fraction(a, a+b) and negating it to preserve the existing sort order logic. This fixes precision and ordering without changing other code structure.",
+  "fixed_code": "import sys\n\ninput = sys.stdin.readline\n# sys.setrecursionlimit(10**6)\n\ndef main():\n    N = int(input())\n    l = []\n    for i in range(N):\n        a, b = map(int, input().split())\n        l.append((-__import__('fractions').Fraction(a, a + b), i + 1))\n    l.sort()\n    for i in range(N):\n        print(l[i][1], end=' ')\n    print()\n\nif __name__ == '__main__':\n    main()\n"
+}

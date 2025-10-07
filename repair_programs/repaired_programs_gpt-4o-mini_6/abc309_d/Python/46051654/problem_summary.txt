@@ -1,0 +1,1 @@
+The program incorrectly initializes the graph and uses wrong index references, leading to incorrect calculations of distances between the vertices.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The last condition incorrectly checks X%100 == 0 (whether X is divisible by 100) instead of checking whether X is at least 100. That causes no output for values >= 100 that are not multiples of 100. I fixed that single line by changing the condition to 'elif X >= 100:' so the program prints \"Yes\" for any X >= 100 and \"No\" otherwise.",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100:\n    print(\"No\")\nelif X >= 100:\n    print(\"Yes\")\n"
+}

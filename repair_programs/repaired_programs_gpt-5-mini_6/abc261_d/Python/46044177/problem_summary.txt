@@ -1,0 +1,1 @@
+The DP table is initialized with zeros (not -inf/unreachable), so impossible states (streak lengths j > i) are treated as valid and allow spurious transitions using default zero values.

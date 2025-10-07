@@ -1,0 +1,31 @@
+{
+  "task": "abc307_c/Python/46162555",
+  "query_summary": "The size-check condition mistakenly compares PB[1] to PX[0], i.e., it checks B's width against X's height instead of comparing B's width to X's width.",
+  "oracle_summary": "A typographical error in the bounds check — the condition compares PB[1] to PX[0] instead of PX[1], causing an incorrect early skip/rejection of valid cases.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the initial value for the `dp` array is incorrectly set to `-1`, which does not accommodate the maximum potential value, whereas it should be initialized to a sufficiently low negative value (e.g., `-1<<60`) to ensure correct maximization comparisons.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n A=[list(map(int,input().split())) for _ in range(h)]\n dp=[[0]*w for _ in range(h)]\n ans=0\n-dp=[[[-1]*w for _ in range(h)]for _ in range(h*w+10)]\n+dp=[[[-1<<60]*w for _ in range(h)]for _ in range(h*w+10)]\n dp[0][sy][sx]=0\n \n for t in range(min(h*w,k)+1):"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the values of `a` and `b` using only a simple comparison, which can lead to incorrect results; it should compare the pairs `(a,h)` and `(b,w)` to handle the dimensions correctly.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n h,w,a,b = map(int,input().split())\n def f(h,w,a,b):\n-  if a > b:\n+  if (a,h) > (b,w):\n     return [(y,x) for x,y in f(w,h,b,a)]\n   if h == 1:\n     return [(0,y) for y in range(w)]"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a strict inequality (<) instead of a non-strict inequality (<=) when comparing the value of (X - H) to each PP, leading to potentially missing valid cases where PP equals (X - H).",
+      "diff": "--- \n+++ \n@@ -4,6 +4,6 @@\n \n for i in range(N) :\n   PP = int(P[i])\n-  if (X - H) < PP :\n+  if (X - H) <= PP :\n     print(i+1)\n     break"
+    },
+    {
+      "summary": "The buggy code incorrectly accesses the elements of the first row in the list `b` using `b[0][M:M+2]`, leading to an off-by-one error when checking conditions; it should be using `b[0][M]-1` and `b[0][M+1]-1` to adjust for zero-based indexing.",
+      "diff": "--- \n+++ \n@@ -120,7 +120,7 @@\n ans = True\n \n for M in range(m-1):\n-    b1,b2 = b[0][M:M+2]\n+    b1,b2 = b[0][M]-1,b[0][M+1]-1\n     if b1+1 != b2 or b1%7+1 != b2%7:ans = False\n \n for N in range(n-1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

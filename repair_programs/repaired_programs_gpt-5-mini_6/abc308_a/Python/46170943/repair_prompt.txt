@@ -1,0 +1,170 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+Given eight integers S\_1,S\_2,\dots, and S\_8,
+print `Yes` if they satisfy all of the following three conditions, and `No` otherwise.
+
+* The sequence (S\_1,S\_2,\dots,S\_8) is monotonically non-decreasing. In other words, S\_1 \leq S\_2 \leq \dots \leq S\_8.
+* S\_1,S\_2,\dots, and S\_8 are all between 100 and 675, inclusive.
+* S\_1,S\_2,\dots, and S\_8 are all multiples of 25.
+
+### Constraints
+
+* 0\leq S\_i \leq 1000
+* All input values are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+S_1 S_2 \dots S_8
+```
+
+### Output
+
+Print the answer.
+
+---
+
+### Sample Input 1
+
+```
+125 175 250 300 400 525 600 650
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+They satisfy all of the three conditions.
+
+---
+
+### Sample Input 2
+
+```
+100 250 300 400 325 575 625 675
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+They violate the first condition because S\_4 > S\_5.
+
+---
+
+### Sample Input 3
+
+```
+0 23 24 145 301 413 631 632
+```
+
+### Sample Output 3
+
+```
+No
+```
+
+They violate the second and third conditions.
+
+## Your Analysis (1-sentence bug summary)
+The code uses strict bounds s[0] > 100 and s[-1] < 675, wrongly excluding valid boundary values 100 and 675 instead of allowing >=100 and <=675.
+
+## Buggy Program
+s=list(map(int,input().split()))
+ss=sorted(s)
+
+pack=[]
+if s==ss and s[0] >100 and s[-1]<675:
+  for i in s:
+    if i%25==0:
+      pack.append(i)
+print("Yes" if len(pack)==8 else "No")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ s = input()
+-for i in range(2,2,16):
++for i in range(1,17,2):
+   if s[i] != "0":
+     print("No")
+     break
+
+### Diff 2
+--- 
++++ 
+@@ -17,7 +17,7 @@
+       L[0]=1
+     if i+1==10:
+       L[6]=1
+-if S[0]==1:
++if S[0]=="1":
+   print("No")
+   sys.exit()
+ flag=0
+
+### Diff 3
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ S = int(input()[3:6])
+-if S != 316 and S < 350:
++if S != 316 and S!= 0 and S < 350:
+     print("Yes")
+ else:
+     print("No")
+
+### Diff 4
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ s = s.replace("ABC","")
+ if int(s) ==316:
+   print("No")
+-elif 000 <= int(s) <= 349:
++elif 1 <= int(s) <= 349:
+   print("Yes")  
+ else:
+   print("No")
+
+### Diff 5
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ if (len(s) == 2 and s == 'oo'):
+     print('No')
+     exit()
+-else:
++elif(len(s) == 2):
+     print('Yes')
+     exit()
+ if (len(s) == 1):
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

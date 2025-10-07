@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line `if len(set(x))==2:` incorrectly checks if there are exactly two distinct numbers instead of verifying the specific counts of cards needed for a Full house. It needs to count the occurrences of each number and check if one appears three times and another appears twice. This correction aligns with the essence of a Full house as indicated in the problem description. The retrieved diffs inspired the understanding that we need a condition checking the occurrences rather than just distinct counts.",
+  "fixed_code": "x = list(map(int, input().split()))\ncards_count = {n: x.count(n) for n in set(x)}\nif sorted(cards_count.values()) == [2, 3]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The middle branch printed C/(B-A) directly. If C > (B-A) that ratio can exceed 1, but a probability must be at most 1. I fixed the single incorrect line by capping the value with min(1.0, C/(B-A)) and formatting it to 12 decimal places to match the other outputs.",
+  "fixed_code": "A,B,C,X = map(int,input().split())\nif X <= A:\n  print(1.000000000000)\nelif X < B:\n  print(\"{:.12f}\".format(min(1.0, C/(B-A))))\nelse:\n  print(0.000000000000)"
+}

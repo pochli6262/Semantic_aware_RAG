@@ -1,0 +1,32 @@
+{
+  "task": "abc309_c/Python/46182298",
+  "query_summary": "The likely bug is in the condition checks within the `calc` function that incorrectly accumulate the total number of pills based on the day, resulting in an incorrect output for when Takahashi first takes K pills or less.",
+  "oracle_summary": "The binary search uses the wrong comparison (calc(m) < k instead of calc(m) <= k), causing incorrect updates of l/r and an off-by-one error in the final result.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly sets the upper limit of the binary search range to \\(10^{12}\\) instead of the required \\(10^{16}\\}.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n for _ in range(n):\n     num = int(input())\n     l = 0\n-    r = 10 ** 12\n+    r = 10 ** 16\n     md = (l + r) // 2\n     while l + 1 < r:\n         ret = calc(md)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the values of `n`, `k`, and `l` before performing the calculations, which is unnecessary and can lead to confusion.",
+      "diff": "--- \n+++ \n@@ -1,12 +1,10 @@\n DIV = 998244353\n if True:\n     n, k, l = map(int, input().split())\n-    print(n, k, l)\n \n ans = 1\n for i in range(n):\n     m = n-k\n-    print(m)\n     diff = min(m, i)\n     ans *= l-diff\n     ans %= DIV"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition for printing 0, as it compares `n` with `m-1` and `k` instead of just checking if `m-1 == k` and ensuring `n >= m-1`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n=int(input())\n for _ in range(n):\n   n, m,k = map(int, input().split())\n-  if n==m-1==k:\n+  if m-1==k and n>=m-1:\n     print(0)\n     continue\n   if n >= m:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the `now` variable in the loop that calculates the remaining candies, leading to an incorrect calculation of the final answer.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n \n ans = start_candy + (k-start_loop)//loop_len*loop_candy\n rem = (k-start_loop)%loop_len\n-now = start_loop\n+now = candy[start_loop]%n\n for _ in range(rem):\n     ans += A[now]\n     now = ans % n"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly defines the list `R` to include only positive numbers instead of non-negative ones, which causes it to miss the case where elements equal to zero are included.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n C = lambda a, b: fa[a] * fainv[b] % P * fainv[a-b] % P if 0 <= b <= a else 0\n \n A = [int(a) * 2 - K for a in input().split()]\n-R = [a for a in A if a > 0]\n+R = [a for a in A if a >= 0]\n L = [-a for a in A if a < 0]\n SS = sorted(set(R + L), key = lambda x: -x)\n CR = Counter(R)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

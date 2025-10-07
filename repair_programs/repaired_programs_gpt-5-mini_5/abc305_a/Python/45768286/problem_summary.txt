@@ -1,0 +1,1 @@
+The program outputs a computed offset (distance to the next multiple of 5, giving 5 when N is already a multiple) based on N%5 instead of printing the actual coordinate of the nearest water station (the nearest multiple of 5).

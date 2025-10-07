@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'print(int(x/y)+1)' could lead to an incorrect result, especially when y is not greater than x, resulting in division errors or incorrect calculations. The fixed version changes it to 'print((x + y - 1) // y)', which correctly implements integer division for the number of times y can fit into x, rounded up.",
+  "fixed_code": "x, y = map(int, input().split())\nprint((x + y - 1) // y)"
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc310_b/Python/45742461",
+  "query_summary": "The bug is a wrong index in the first comparison: the code mistakenly uses s[j][1] (the other item's cost) instead of s[j][0] (the other item's price), so it compares the wrong field.",
+  "oracle_summary": "The bug is a wrong index in the first comparison: the code mistakenly uses s[j][1] (the other item's cost) instead of s[j][0] (the other item's price), so it compares the wrong field.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for the variable `r`, leading to an incorrect output when `r` equals 0, which should instead be set to 7.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,8 @@\n A = [list(map(int,input().split())) for _ in range(n)]\n start = A[0][0]\n r = start- (start//7)*7\n+if r == 0:\n+  r = 7\n if r+m-1>7:\n   print(\"No\")\n   exit()"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly allows elements that are multiples of 7 in the last column of the matrix, failing to check if such elements are in the last column before setting `ok` to False.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n             ok = False\n         if i+1 < n and B[i][j]+7 != B[i+1][j]:\n             ok = False\n-        if B[i][j]%7 == 0:\n+        if B[i][j]%7 == 0 and j+1 != m:\n             ok = False\n \n print('Yes' if ok else 'No')"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly uses `break` instead of `continue` in the outer loop after checking `if i+m > n`, which prevents further iterations that may be necessary for correct DP table updates.",
+      "diff": "--- \n+++ \n@@ -9,13 +9,14 @@\n     if dp[i][0]:\n         for k in range(m):\n             tl=t[k:]\n+\n             if i-k<0 or i+(m-k)>n:\n                 continue\n             for j in range(1,len(tl)+1):\n                 if s[i:i+j]==tl[:j]:\n                     dp[i+j][len(tl)-j]=True\n     if i+m>n:\n-        break\n+        continue\n     for j in range(1,m+1):\n         if dp[i][j]:\n             for k in range(1,m+1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

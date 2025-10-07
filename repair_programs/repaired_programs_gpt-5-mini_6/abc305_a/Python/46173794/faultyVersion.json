@@ -1,0 +1,4 @@
+{
+  "explanation": "The program rounded n to the next multiple of 5 when the remainder was >= 2, which incorrectly sends a remainder of 2 upward. The correct rule is to round up only when the remainder is >= 3 (because for remainder 2 the lower station is closer). I fixed the single comparison from 'n%5>=2' to 'n%5>=3'.",
+  "fixed_code": "n=int(input())\nprint((n//5)*5+5 if n%5>=3 else (n//5)*5)\n"
+}

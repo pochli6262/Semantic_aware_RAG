@@ -1,0 +1,29 @@
+{
+  "task": "abc244_c/Python/45666072",
+  "query_summary": "The buggy code prints the set’s pop method object (num_set.pop) instead of calling it (num_set.pop()), so it outputs a function reference and doesn’t remove/print an element from the set.",
+  "oracle_summary": "The buggy code prints the set’s pop method object (num_set.pop) instead of calling it (num_set.pop()), so it outputs a function reference and doesn’t remove/print an element from the set.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the minimum moves needed to bring the number 1 to the end of the list, specifically in the calculation of the last print statement.",
+      "diff": "--- \n+++ \n@@ -17,4 +17,4 @@\n     if P[idx+1] == 2:\n         print(min(idx, N-idx+2))  # 1を先頭に持ってくる\n     else:\n-        print(min(idx+1, N-idx-1+2)+1)  # 1を末尾に持ってくる\n+        print(min(idx+1+1, 1+(N-idx-1)))  # 1を末尾に持ってくる"
+    },
+    {
+      "summary": "The buggy code has an incorrect range in the for loop, which causes an \"index out of range\" error when accessing elements of the list P.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n P = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(1, N + 1):\n   if P[-i] > P[-i - 1]:\n     continue\n   else:"
+    },
+    {
+      "summary": "The buggy code prints the list as a single list object instead of printing its elements separated by spaces.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n         break\n for z in range(R+1,N+1):\n     num.append(z)\n-print(num)\n+print(*num)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `if j - a < 0` inside the inner loop, which can lead to missing valid indices in the `sets` and may cause incorrect results.",
+      "diff": "--- \n+++ \n@@ -18,8 +18,6 @@\n \n for i, a in enumerate(A, start=1):\n     for j in range(a % i, N, i):\n-        if j - a < 0:\n-            break\n         sets[j].add((j - a) // i)\n \n for i in range(1, M+1):"
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to print the string 'N' repeated N times instead of calculating the correct numerical result represented by N.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n N = int(input())\n-print('N'*N)\n+print((10**N-1)//9*N)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

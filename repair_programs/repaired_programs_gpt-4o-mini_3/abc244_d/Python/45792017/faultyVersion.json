@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the code is in the line that checks whether 't' is in 's + s'. The condition is only correct when 'cnt' is 3, but does not handle the case properly. The correct intention should be to check if 't' is a rotation of 's'. Therefore, we need to ensure we properly concatenate 's' with itself and check if 't' exists as a substring in this concatenated string.",
+  "fixed_code": "s = input()\nt = input()\ncnt = 0\nfor i in range(3):\n    if s[i] != t[i]:\n        cnt += 1\nif cnt == 0:\n    print(\"Yes\")\nelif cnt == 3:\n    if t in (s + s):\n        print(\"Yes\")\nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly calculates the index of the youngest person due to using the zero-based index in the loop, which can lead to an off-by-one error when printing the names in the correct order.

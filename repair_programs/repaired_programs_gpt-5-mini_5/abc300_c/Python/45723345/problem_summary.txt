@@ -1,0 +1,1 @@
+The program builds and prints answer counts based on H instead of N = min(H, W), so it outputs the wrong number of size counts (wrong length) when W < H.

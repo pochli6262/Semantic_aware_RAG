@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/44598432",
+  "query_summary": "The buggy code always applies the rotation, even when it creates a leading zero and reduces the digit count, whereas it should only rotate when the number of digits is preserved (len(str(M)) == len(str(rot(M)))).",
+  "oracle_summary": "The buggy code always applies the rotation, even when it creates a leading zero and reduces the digit count, whereas it should only rotate when the number of digits is preserved (len(str(M)) == len(str(rot(M)))).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if b:` incorrectly evaluates the binary digit as a truthy value instead of converting it to an integer, leading to incorrect calculations in the final summation.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n #print(\"MM =\", MM)\n #print(\"L =\", L)\n for i in range(L):\n-  b = MM[-i-1]\n+  b = int(MM[-i-1])\n   if b:\n     ans += B[i]\n     ans %= MOD"
+    },
+    {
+      "summary": "The buggy code incorrectly appends the value '1' instead of '2' to the list X when calculating based on the remaining value after dividing by 2.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n     X.append(4)\n tmp7=tmp6//2\n for i in range(tmp7):\n-    X.append(1)\n+    X.append(2)\n X.sort()\n ans2=str()\n for i in X:"
+    },
+    {
+      "summary": "The buggy code does not handle the case where the input value is 0, which leads to incorrect behavior since it directly tries to convert and print without checking for this special case.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n # 5進数で考える\n \n N = int(input()) - 1\n+if N == 0:\n+  print(0)\n rems = []\n while N > 0:\n   quotient = N // 5"
+    },
+    {
+      "summary": "The buggy code fails to reverse the final output string, resulting in the incorrect order of characters being displayed.",
+      "diff": "--- \n+++ \n@@ -18,4 +18,4 @@\n     if count==8:\n         a\n \n-print(\"\".join(ans)[:-1])\n+print(\"\".join(ans)[:-1][::-1])"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,1 @@
+The program incorrectly assumes that only the number of differing hats matters, neglecting the necessity of specific swap combinations to achieve the desired configuration.

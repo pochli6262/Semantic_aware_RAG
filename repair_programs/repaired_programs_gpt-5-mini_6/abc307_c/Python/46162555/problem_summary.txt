@@ -1,0 +1,1 @@
+The size-check condition mistakenly compares PB[1] to PX[0], i.e., it checks B's width against X's height instead of comparing B's width to X's width.

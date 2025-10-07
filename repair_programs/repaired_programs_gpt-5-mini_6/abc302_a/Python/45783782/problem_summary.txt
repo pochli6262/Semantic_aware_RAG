@@ -1,0 +1,1 @@
+When A is divisible by B the code uses float division (int(A/B)) which can lose precision for very large integers and produce incorrect results instead of using integer floor division.

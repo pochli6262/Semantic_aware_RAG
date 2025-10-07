@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed the Python list object itself (print(b)), which produces brackets and commas instead of the required space-separated numbers. I replaced that single line with print(*b) to unpack the list and print the elements separated by spaces. (No other lines were changed.)",
+  "fixed_code": "n = int(input())\na = list(map(int,input().split()))\n\nb = []\nfor i in range(n-1):\n    if a[i] <= a[i+1]:\n        b += list(range(a[i],a[i+1]))\n    if a[i] >= a[i+1]:\n        b += list(range(a[i],a[i+1],-1))\n        \nb.append(a[-1])\n\nprint(*b)\n"
+}

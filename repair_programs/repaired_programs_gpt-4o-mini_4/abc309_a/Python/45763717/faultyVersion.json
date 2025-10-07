@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used 'abs(a-b) in [1,3]' which incorrectly checks for adjacency. The numbers in this board layout are adjacent horizontally if their difference is 1 and they are in the same row. The correct condition should check if 'b - a == 1', ensuring only direct horizontal adjacency is considered, which is reflected in Diff 1.",
+  "fixed_code": "a,b=map(int,input().split())\nif b - a == 1:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

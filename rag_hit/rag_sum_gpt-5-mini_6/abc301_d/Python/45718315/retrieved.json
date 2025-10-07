@@ -1,0 +1,33 @@
+{
+  "task": "abc301_d/Python/45718315",
+  "query_summary": "The function wrongly mutates n and adjusts min_val inside the bit-by-bit loop, causing the greedy check to compare against a modified n/min_val instead of the original remaining threshold and producing incorrect decisions for setting '?' bits.",
+  "oracle_summary": "The bug is that when encountering a fixed '1' the code only adjusts min_val but forgets to add mask to ans and subtract mask from n, so forced '1' bits are not counted or applied.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the condition in the loop's `if` statement incorrectly uses `j <= m-n` instead of `j < m-n`, leading to incorrect logic when checking the bits of the binary representations of `A` and `S`.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     \n     flg = True\n     for j in range(m):\n-        if j <= m-n or A[j-m+n] == \"0\":\n+        if j < m-n or A[j-m+n] == \"0\":\n             tmp = 2**(m-j-1)\n             if x + y + tmp == s[i]:\n                 flg = False"
+    },
+    {
+      "summary": "The problem in the buggy code is that the calculation of the variable `mink` after checking the condition is incorrect; it mistakenly adds back `mink` instead of just assigning the value derived from `S[0] - mini - minj`.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n   print(\"Yes\")\n   mini=-mini\n   minj=-minj\n-  mink=-mink+(S[0]-mini-minj-mink)\n+  mink=S[0]-mini-minj\n   for i in range(N+2):\n     if i%3==0:\n       print(mini+a[i],end=\" \")"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ans` with `1 << 32`, which limits the minimum value calculation, instead of using `1 << 64` as in the correct code.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N=int(input())\n S=list(input())\n C=list(map(int,input().split()))\n-ans=1<<32\n+ans=1<<64\n oi=[0]*(N+1)\n io=[0]*(N+1)\n oi_=[0]*(N+1)"
+    },
+    {
+      "summary": "The buggy code fails to correctly initialize the variable `res`, which should be set to `max(0, n - 1)` instead of just `n - 1`, potentially leading to negative results for certain input cases.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         d.append(p)\n ans = 0\n for _ in range(2):\n-    res = n - 1\n+    res = max(0, n - 1)\n     frm = 0\n     if _ == 1:\n         cnt = 0"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs -1 only when the longest sequence of non-hyphen characters is equal to `n-2`, failing to account for the case where there are no non-hyphen characters at all (represented by `m` being 0).",
+      "diff": "--- \n+++ \n@@ -7,6 +7,6 @@\n     m=max(m,x)\n     x=0\n   else: x+=1\n-if m==n-2:\n+if m==n-2 or m==0:\n   print(-1)\n else: print(m)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

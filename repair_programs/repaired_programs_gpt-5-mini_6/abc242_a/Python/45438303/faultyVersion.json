@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition `elif X < B:` wrongly excluded the case X == B. According to the problem, ranks from A+1 through B (inclusive) are eligible for random selection, so the check must include B. I fixed the off-by-one by changing it to `elif X <= B:` (an inclusive bound fix similar in spirit to the off-by-one adjustments in the provided diffs).",
+  "fixed_code": "A,B,C,X = map(int,input().split())\nif X <= A:\n  print(1.000000000000)\nelif X <= B:\n  print(C/(B-A))\nelse:\n  print(0.000000000000)\n"
+}

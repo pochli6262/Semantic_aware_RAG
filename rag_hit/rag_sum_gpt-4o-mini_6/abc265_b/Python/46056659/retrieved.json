@@ -1,0 +1,32 @@
+{
+  "task": "abc265_b/Python/46056659",
+  "query_summary": "The likely bug is that the program incorrectly checks for bonus room updates using `if i+1 in d` instead of `if i+2 in d`, leading to missed bonuses for the correct room transitions.",
+  "oracle_summary": "The code uses a strict “>” comparison (A[i] > T) instead of “>=”, wrongly allowing progress when the cost equals the remaining time, which should result in “No.”",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for even indices instead of odd indices in the second loop, causing it to misidentify whether the rearranged list `B` satisfies the required conditions.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     else:\n         B[2*i-N]=A[i]\n for i in range(N):\n-    if i%2!=0:\n+    if i%2==0:\n         continue\n     if B[i-1]<B[i] and B[i]>B[i+1]:\n         continue"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the height `h` when `N` is odd and `A` is less than or equal to `N // 2 + 1`, resulting in the wrong condition for some test cases.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         else:\n             h = N - A\n     else:\n-        if A <= N // 2 + 1:\n+        if A <= N // 2:\n             h = N // 2 + 1\n         else:\n             h = N - A"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `i >= 2*Odd-1` instead of the correct condition `i >= Odd+1` when determining if to print \"Yes\" for the odd numbers.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     for i in A:\n         if i % 2 == 1:\n             Odd += 1\n-            if Odd % 2 == 0 and i >= 2*Odd-1:\n+            if Odd % 2 == 0 and i >= Odd+1:\n                 print(\"Yes\")\n                 Test = 1\n                 break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for updating `d[2]`, using `n` instead of `n-1`, which leads to an incorrect calculation of indices and can result in wrong outcomes.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n             ans = l + 1\n             break\n     b = ai - n\n-    if b % 2 == 0 and b // 2 >= 0 and b // 2 < n:\n+    if b % (n-1) == 0 and b // (n-1) >= 0 and b // (n-1) < n:\n         d[2] += 1\n         if d[2] == n:\n             ans = l + 1"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,1 @@
+The likely bug is that the program sorts all nicknames before selecting the top K participants instead of ranking them first based on their contest standings.

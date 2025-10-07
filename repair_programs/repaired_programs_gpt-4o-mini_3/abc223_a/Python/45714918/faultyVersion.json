@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program checks whether x is divisible by 100 and incorrectly outputs 'Yes' if it is, but does not handle the case where x is exactly zero. Since zero should also return 'Yes' when checking divisibility by 100, I changed the condition to check if x is zero or if it's divisible by 100.",
+  "fixed_code": "x = int(input())\nprint('Yes' if x == 0 or x % 100 == 0 else 'No')"
+}

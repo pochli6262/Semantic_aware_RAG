@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code used p.index(x), which returns a zero-based index, but the problem asks for the 1-based position k such that P_k = X. I fixed the single line by adding 1 to convert from 0-based to 1-based indexing. This follows the pattern of fixes that adjust indices by +1 (e.g., diff patterns showing i+1).",
+  "fixed_code": "n, x = map(int, input().split())\np = list(map(int, input().split()))\nprint(p.index(x) + 1)"
+}

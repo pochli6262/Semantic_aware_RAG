@@ -1,0 +1,197 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 400 points
+
+### Problem Statement
+
+Your computer has a keyboard with three keys: 'a' key, Shift key, and Caps Lock key. The Caps Lock key has a light on it.
+Initially, the light on the Caps Lock key is off, and the screen shows an empty string.
+
+You can do the following three actions any number of times in any order:
+
+* Spend X milliseconds to press only the 'a' key. If the light on the Caps Lock key is off, `a` is appended to the string on the screen; if it is on, `A` is.
+* Spend Y milliseconds to press the 'a' key and Shift key simultaneously. If the light on the Caps Lock key is off, `A` is appended to the string on the screen; if it is on, `a` is.
+* Spend Z milliseconds to press the Caps Lock key. If the light on the Caps Lock key is off, it turns on; if it is on, it turns off.
+
+Given a string S consisting of `A` and `a`, determine at least how many milliseconds you need to spend to make the string shown on the screen equal to S.
+
+### Constraints
+
+* 1 \leq X,Y,Z \leq 10^9
+* X, Y, and Z are integers.
+* 1 \leq |S| \leq 3 \times 10^5
+* S is a string consisting of `A` and `a`.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+X Y Z
+S
+```
+
+### Output
+
+Print the answer.
+
+---
+
+### Sample Input 1
+
+```
+1 3 3
+AAaA
+```
+
+### Sample Output 1
+
+```
+9
+```
+
+The following sequence of actions makes the string on the screen equal to `AAaA` in 9 milliseconds, which is the shortest possible.
+
+* Spend Z(=3) milliseconds to press the CapsLock key. The light on the Caps Lock key turns on.
+* Spend X(=1) milliseconds to press the 'a' key. `A` is appended to the string on the screen.
+* Spend X(=1) milliseconds to press the 'a' key. `A` is appended to the string on the screen.
+* Spend Y(=3) milliseconds to press the Shift key and 'a' key simultaneously. `a` is appended to the string on the screen.
+* Spend X(=1) milliseconds to press the 'a' key. `A` is appended to the string on the screen.
+
+---
+
+### Sample Input 2
+
+```
+1 1 100
+aAaAaA
+```
+
+### Sample Output 2
+
+```
+6
+```
+
+---
+
+### Sample Input 3
+
+```
+1 2 4
+aaAaAaaAAAAaAaaAaAAaaaAAAAA
+```
+
+### Sample Output 3
+
+```
+40
+```
+
+## Your Analysis (1-sentence bug summary)
+The initialization for the first character mistakenly swaps the costs for the "Caps Lock off" and "Caps Lock on" states, assigning each cost to the wrong state.
+
+## Buggy Program
+x, y, z = map(int, input().split())
+s = input()
+
+dp = [[0]*(len(s)) for _ in range(2)]
+if s[0] == "A":
+    dp[0][0] = z+x
+    dp[1][0] = y
+else:
+    dp[0][0] = z+y
+    dp[1][0] = x
+for j in range(1, len(s)):
+    if s[j] == "A":
+        dp[0][j] = min(dp[0][j-1]+x, dp[1][j-1]+z+x)
+
+        dp[1][j] = min(dp[0][j-1]+z+x, dp[1][j-1]+y)
+
+    else:
+        dp[0][j] = min(dp[0][j-1]+y, dp[1][j-1]+z+y)
+        dp[1][j] = min(dp[0][j-1]+z+x, dp[1][j-1]+x)
+print(min(dp[0][-1], dp[1][-1]))
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -4,7 +4,7 @@
+ MOD = 998244353
+ 
+ ans = 0
+-for i in range(1,len(S)-1):
++for i in range(1,len(S)):
+     s = S[:i]
+     t = S[i:]
+ 
+
+### Diff 2
+--- 
++++ 
+@@ -10,7 +10,7 @@
+ for k in range(4):
+   for i in range(7-2*k):
+     for j in range(7-2*k):
+-      if s[i+k+1][j]=="#" and s[i][j+k+1]=="#" and s[i+1][j+2*(k+1)]=="#" and s[i+2*(k+1)][j+k+1]=="#":
++      if s[i+k+1][j]=="#" and s[i][j+k+1]=="#" and s[i+k+1][j+2*(k+1)]=="#" and s[i+2*(k+1)][j+k+1]=="#":
+         ans+=1
+ for i in range(6):
+   for j in range(6):
+
+### Diff 3
+--- 
++++ 
+@@ -34,7 +34,7 @@
+       else:
+         dp[i+1][j+1]+=dp[i][j]*(25-j+1)*pow(26-cnt,-1,mod)%mod
+         dp2[i+1]+=dp[i][j]*(1-(25-j+1)*pow(26-cnt,-1,mod))%mod
+-    dp2[-1]+=dp[i][-1]
++    dp2[i+1]+=dp[i][-1]
+     check[ord(s[i])-x]+=1
+     cnt+=1
+   else:
+
+### Diff 4
+--- 
++++ 
+@@ -158,7 +158,7 @@
+ N=int(input())
+ S=input()
+ T=input()
+-X=S+S+"a"*N+T+T+"z"*N
++X=S+S+"a"*N+T+T+"z"*(N+1)
+ #print(X)
+ li=string.suffix_array(X)
+ #print(li)
+
+### Diff 5
+--- 
++++ 
+@@ -172,6 +172,8 @@
+     for i in range(N):
+         w = S()
+         words.append(w)
++    words = list(set(words))
++    N = len(words)
+     ban = set()
+     for i in range(N):
+         for j in range(N):
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

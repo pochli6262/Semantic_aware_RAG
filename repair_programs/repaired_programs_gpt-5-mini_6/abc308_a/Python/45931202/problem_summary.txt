@@ -1,0 +1,1 @@
+The code uses "S[i] >= S[i+1]" to test the non-decreasing property, which incorrectly rejects equal adjacent values even though non-decreasing allows equality.

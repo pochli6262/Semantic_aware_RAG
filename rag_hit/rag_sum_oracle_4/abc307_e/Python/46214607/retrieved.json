@@ -1,0 +1,31 @@
+{
+  "task": "abc307_e/Python/46214607",
+  "query_summary": "The program fails to reduce the result modulo 998244353 before printing, so the computed value (which can be negative or out of range) is not output mod 998244353.",
+  "oracle_summary": "The program fails to reduce the result modulo 998244353 before printing, so the computed value (which can be negative or out of range) is not output mod 998244353.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `if(M and 2**i):` instead of the bitwise operator `&`, which prevents the condition from correctly checking if the i-th bit of M is set.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n MOD = 998244353\n ret = 0\n for i in range(60):\n-    if(M and 2**i):\n+    if(M & 2**i):\n         tmp = N // ((2**i)*2)\n         ret = ret + tmp*(2**i)\n         tmp = N % ((2**i)*2)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if b:` incorrectly evaluates the binary digit as a truthy value instead of converting it to an integer, leading to incorrect calculations in the final summation.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n #print(\"MM =\", MM)\n #print(\"L =\", L)\n for i in range(L):\n-  b = MM[-i-1]\n+  b = int(MM[-i-1])\n   if b:\n     ans += B[i]\n     ans %= MOD"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the contribution when \\( N \\neq 1 \\) by using integer division instead of modular arithmetic, leading to incorrect results when computing `ans`.",
+      "diff": "--- \n+++ \n@@ -11,6 +11,7 @@\n if N == 1:\n     ans = 1\n else:\n-    ans = dp[K] + (1-dp[K])*(N+2)//2\n+    ans = dp[K] + (1-dp[K])*pow(N-1, -1, MOD)*(N+2)*(N-1)//2\n \n print(ans%MOD)\n+"
+    },
+    {
+      "summary": "The problem in the buggy code is that the `print(ans * N % M)` statement is incorrectly placed inside the loop, resulting in the output being printed multiple times instead of just once after all iterations are complete.",
+      "diff": "--- \n+++ \n@@ -1,12 +1,13 @@\n N, M = map(int, input().split())\n- \n+\n P = 1\n ans = 0\n- \n+\n for y in range(2, N + 1):\n   P = P * (N + 1 - y) % M\n   f = P * pow(N, N - y, M)\n- \n+\n   ans += f * (y - 1) * y // 2\n   ans %= M\n-  print(ans * N % M)\n+\n+print(ans * N % M)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the contribution to `ans` by using integer division instead of floor division when accumulating `ans`, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n   if (M>>i&1)==1:\n     p=2**(i+1)\n     r=N%p\n-    ans+=(N-r)/2\n+    ans+=N//p*2**i\n     if (r>=2**i):\n       ans+=(r-(2**i)+1)\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    6
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The final else branch contained only None, so when N was >= 10**8 the program produced no output. All previous branches round N down to keep the first three significant digits (zeroing the rest). I fixed the else line to follow that same pattern for larger N by printing N // 1000000 * 1000000, which rounds numbers with 9 or more digits to the nearest million (keeping the first three significant digits).",
+  "fixed_code": "N = int(input())\n\nif N <= 10 ** 3 - 1:\n    print(N)\nelif 10 ** 3 <= N <= 10 ** 4 - 1:\n    print(N // 10 * 10)\nelif 10 ** 4 <= N <= 10 ** 5 - 1:\n    print(N // 100 * 100)\nelif 10 ** 5 <= N <= 10 ** 6 - 1:\n    print(N // 1000 * 1000)\nelif 10 ** 6 <= N <= 10 ** 7 - 1:\n    print(N // 10000 * 10000)\nelif 10 ** 7 <= N <= 10 ** 8 - 1:\n    print((N // 100000) * 100000)\nelse:\n    print(N // 1000000 * 1000000)\n"
+}

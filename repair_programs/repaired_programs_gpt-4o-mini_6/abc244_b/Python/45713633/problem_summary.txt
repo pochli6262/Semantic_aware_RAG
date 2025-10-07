@@ -1,0 +1,1 @@
+The likely bug in the program is that the `rotate` method incorrectly updates the direction, leading to wrong movement calculations.

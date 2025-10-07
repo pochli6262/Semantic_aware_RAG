@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original code lies in the use of the pow function for calculating (M-1)^N % mod. The original code uses pow(M-1, N, mod) which is correct, but the line prior to it, (-1)^(N%2)*(M-1), might miscalculate when N is even, as it still returns a negative result for even N. The logic needs to be cleaned. The solution is to use the correct modulus operation with the base formula right after that calculation to avoid issues when N is even.",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\nanswer=((M-1) * (-1)**(N%2)) % mod + pow(M-1,N,mod)) % mod\nprint(answer)"
+}

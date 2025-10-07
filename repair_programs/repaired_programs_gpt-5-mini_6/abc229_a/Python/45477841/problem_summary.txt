@@ -1,0 +1,1 @@
+The code only checks for the specific diagonal pattern ".#"/"#." as disconnected and misses the symmetric diagonal pattern "#."/" .#", so it will wrongly print "Yes" for that case.

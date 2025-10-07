@@ -1,0 +1,1 @@
+The program incorrectly calculates the nearest water station by using the index of the smallest distance rather than the actual position of the station.

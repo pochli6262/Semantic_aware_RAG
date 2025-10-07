@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line is the check 'elif A==B-1 or A==B-3'. This condition should be checking if A is equal to B-1 or if A is equal to B-2 instead of B-3 to correctly handle the logic intended by the function. I changed the condition to 'elif A==B-1 or A==B-2'.",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A+1:\n    print('No')\nelif A==B-1 or A==B-2:\n    print('Yes')\nelse:\n    print('No')"
+}

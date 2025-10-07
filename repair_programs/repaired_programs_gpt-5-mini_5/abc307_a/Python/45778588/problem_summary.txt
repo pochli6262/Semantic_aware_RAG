@@ -1,0 +1,1 @@
+The outer loop uses range(int(N/7)) instead of range(N), so it runs N/7 times (too few) rather than once per week.

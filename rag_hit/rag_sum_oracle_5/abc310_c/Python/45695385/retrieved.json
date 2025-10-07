@@ -1,0 +1,34 @@
+{
+  "task": "abc310_c/Python/45695385",
+  "query_summary": "The bug is that the code checks len(s) == 1 instead of testing if s is a palindrome (s == t), so palindromic strings longer than one character are handled incorrectly.",
+  "oracle_summary": "The bug is that the code checks len(s) == 1 instead of testing if s is a palindrome (s == t), so palindromic strings longer than one character are handled incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The buggy code constructs the string `t` incorrectly when `k` is equal to or greater than `n`, leading to an unintended combination of characters from the original string and its reverse.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if k < n:\n         t = s_inv[:k]\n     else:\n-        t = s_inv + s_inv[-(k-n):]\n+        t = s_inv[:k-n] + s_inv\n     return \"Yes\" if all(is_palindrome(x) for x in [s+t, t+s]) else \"No\"\n \n t = int(input())\n@@ -16,3 +16,4 @@\n     s = input()\n     print(solve(n, k, s))\n     \n+    "
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to account for cases where the count of a character in string `s` is greater than that of the corresponding character in string `t` when the count in `t` is greater than 1, which leads to incorrect outputs in certain scenarios.",
+      "diff": "--- \n+++ \n@@ -25,5 +25,7 @@\n         flg = 0\n     if s_l[i][1] == 1 and t_l[i][1] > 1:\n         flg = 0\n+    if s_l[i][1] > t_l[i][1] > 1:\n+        flg = 0\n \n print('Yes' if flg else 'No')"
+    },
+    {
+      "summary": "The problem with the buggy code is that it incorrectly outputs 1 when `s` equals both the beginning and the end of `t`, instead of outputting 0, as it fails to check both conditions simultaneously in the first if statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = input()\n t = input()\n \n-if s == t:\n+if s == t[:n] and s == t[-n:]:\n     print(0)\n elif s == t[:n]:\n     print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `left >= N-1-right` instead of the correct condition `left > N-1-right`, leading to an incorrect determination of whether the remaining substring can form a palindrome.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n while 0<=right and S[right]=='a':\n     right-=1\n \n-if left>=N-1-right:\n+if left>N-1-right:\n     print('No')\n     exit()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `ans` list with values of \"0\" at matched indices instead of leaving them unchanged, which leads to incorrect output when characters at the same index in strings `s` and `t` are equal.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n miss=0\n for i in range(n):\n   if s[i]==t[i]:\n-    ans[i]=s[i]\n+    ans[i]=\"0\"\n     L[i]=True\n   else:\n     miss+=1"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

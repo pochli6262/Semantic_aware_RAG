@@ -1,0 +1,1 @@
+The bug likely occurs because the logic for determining a Full house is incorrectly implemented, allowing for cases with only three of a kind or just two pairs to be incorrectly evaluated as valid.

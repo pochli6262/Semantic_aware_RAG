@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used a fixed range(63), which can cause IndexError if the input list A has fewer than 63 elements or ignore extra elements if A is longer. I replaced the fixed 63 with len(A) so the loop iterates exactly over the input list's indices.",
+  "fixed_code": "A = list(map(int,input().split()))\nS = 0\n\nimport math\n\nfor i in range(len(A)):\n    S = S + A[i]*(pow(2,i))\n    \nprint(S)"
+}

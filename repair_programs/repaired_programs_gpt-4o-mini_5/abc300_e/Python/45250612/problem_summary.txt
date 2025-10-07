@@ -1,0 +1,1 @@
+The likely bug is that the program does not account for the possibility of reaching the integer N through valid die rolls before exceeding it, leading to incorrect probability calculations.

@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly counts duplicates because it adds both the original string and its reversal to the set before checking for existence, causing the count to increment prematurely.

@@ -1,0 +1,32 @@
+{
+  "task": "abc309_a/Python/45775765",
+  "query_summary": "The program only checks specific adjacent tuples and has no default case to print \"No\", so it produces no output for inputs that don't match those explicit pairs.",
+  "oracle_summary": "The code is missing a final else branch to handle cases where (A,B) doesn't match any listed pair, so it fails to print \"No\" for unmatched inputs.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes the list `ok` with pairs starting from (0,1) instead of (1,2), which causes valid input pairs like (1,2) to be excluded.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b = map(int,input().split())\n-ok = [(i,i+1) for i in range(9)]\n+ok = [(i,i+1) for i in range(1,10)]\n ok.append((1,10))\n if (a,b) in ok:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code fails to account for the specific case where the input string has exactly two characters that are different, which should also result in \"No\".",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n \n if (s[0]=='A') and (s[-1]=='B'):\n     print('No')\n+elif (len(s)==2) and (s[0]!=s[-1]):\n+    print('No')\n else:\n     print('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for the string \"AB\" instead of \"BA\" to determine when to print \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n=int(input())\n s=list(input())\n-if \"\".join(s)==\"AB\":\n+if \"\".join(s)==\"BA\":\n     print(\"No\")\n     exit()\n if s[0]==\"B\":"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

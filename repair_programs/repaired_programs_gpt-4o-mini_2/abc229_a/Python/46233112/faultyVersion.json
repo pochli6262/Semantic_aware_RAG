@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code checks if the first characters of the two strings are the same or if the second characters are the same. However, it does not handle the case where strings could be shorter than 2 characters, which would lead to an IndexError. The correct line should compare the first character of S1 with the first character of S2 and ensure both strings have at least two characters before comparing their second characters.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1[0] == S2[0] or (len(S1) > 1 and len(S2) > 1 and S1[1] == S2[1]):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

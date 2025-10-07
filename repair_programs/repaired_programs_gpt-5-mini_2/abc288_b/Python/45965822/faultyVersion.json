@@ -1,0 +1,4 @@
+{
+  "explanation": "The code appended each input as a string (using str(input())), so c.sort() performed lexicographic sorting rather than numeric sorting — e.g. '10' would come before '2'. I changed the single incorrect line to convert inputs to integers (int(input())) so the list is sorted numerically.",
+  "fixed_code": "a,b=map(int,input().split())\nc=[]\nfor i in range(a):\n    c.append(int(input()))\nc.sort()\nc=c[0:b]\nfor i in c:\n  print(i)"
+}

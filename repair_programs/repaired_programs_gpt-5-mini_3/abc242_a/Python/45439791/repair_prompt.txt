@@ -1,0 +1,133 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+A, B, C, X = map(int, input().split())
+
+if X < A:
+  print(1)
+elif X > B:
+  print(0)
+else:
+  answer = C / (B - A)
+  print(answer)
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+A, B = map(int, input().split())
+
+print(round(B/A, 3))
+
+
+--- Correct Code ---
+A, B = map(int, input().split())
+
+print('{:.03f}'.format(round(B/A, 3)))
+
+
+### Example 2
+--- Buggy Code ---
+A, B, C, D, E, F = map(int, input().split())
+N = int(input())
+X = list(map(int, input().split()))
+
+out = "Yes"
+
+for i in range(N):
+  while(X[i] >= 500 and F > 0):
+    X[i] = X[i] - 500
+    F = F - 1
+  while(X[i] >= 100 and E > 0):
+    X[i] = X[i] - 100
+    E = E - 1
+  while(X[i] >= 50 and D > 0):
+    X[i] = X[i] - 50
+    D = D - 1
+  while(X[i] >= 10 and C > 0):
+    X[i] = X[i] - 10
+    C = C - 1
+  while(X[i] >= 5 and B > 0):
+    X[i] = X[i] - 5
+    B =  - 1
+  while(X[i] >= 1 and A > 0):
+    X[i] = X[i] - 1
+    A = A - 1
+  if(X[i] != 0):
+    out = "No"
+    break
+  
+print(out)
+
+--- Correct Code ---
+A, B, C, D, E, F = map(int, input().split())
+N = int(input())
+X = list(map(int, input().split()))
+
+out = "Yes"
+
+for i in range(N):
+  while(X[i] >= 500 and F > 0):
+    X[i] = X[i] - 500
+    F = F - 1
+  while(X[i] >= 100 and E > 0):
+    X[i] = X[i] - 100
+    E = E - 1
+  while(X[i] >= 50 and D > 0):
+    X[i] = X[i] - 50
+    D = D - 1
+  while(X[i] >= 10 and C > 0):
+    X[i] = X[i] - 10
+    C = C - 1
+  while(X[i] >= 5 and B > 0):
+    X[i] = X[i] - 5
+    B = B - 1
+  while(X[i] >= 1 and A > 0):
+    X[i] = X[i] - 1
+    A = A - 1
+  if(X[i] != 0):
+    out = "No"
+    break
+  
+print(out)
+
+
+### Example 3
+--- Buggy Code ---
+A,B = map(int,input().split())
+if A + B == 3:
+  print("3")
+elif A + B == 4:
+  print("2")
+elif A + B == 5:
+  print("1")
+else:
+  print("-1")
+
+--- Correct Code ---
+A,B = map(int,input().split())
+if A + B == 3:
+  print("3")
+elif A + B == 4 and A != B:
+  print("2")
+elif A + B == 5:
+  print("1")
+else:
+  print("-1")
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

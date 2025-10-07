@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the code lies in the line 'elif n % 5 >=3:'. This condition should instead check for values where n % 5 is greater than or equal to 3 to correctly calculate the next multiple of 5 needed. The correct condition should be 'elif n % 5 > 0:' so that we cover all cases where n is not already a multiple of 5, effectively ensuring that it adds the required amount to reach the next multiple of 5.",
+  "fixed_code": "n = int(input())\nif n%5 == 0:\n  print(0)\nelif n % 5 > 0:\n  print(n + 5 - n % 5)\nelse:\n  print(n - n % 5)"
+}

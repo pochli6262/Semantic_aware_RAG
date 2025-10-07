@@ -1,0 +1,185 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+N players played a round-robin tournament.
+
+You are given an N-by-N table A containing the results of the matches. Let A\_{i,j} denote the element at the i-th row and j-th column of A.  
+A\_{i,j} is `-` if i=j, and `W`, `L`, or `D` otherwise.  
+A\_{i,j} is `W` if Player i beat Player j, `L` if Player i lost to Player j, and `D` if Player i drew with Player j.
+
+Determine whether the given table is contradictory.
+
+The table is said to be contradictory when some of the following holds:
+
+* There is a pair (i,j) such that Player i beat Player j, but Player j did not lose to Player i;
+* There is a pair (i,j) such that Player i lost to Player j, but Player j did not beat Player i;
+* There is a pair (i,j) such that Player i drew with Player j, but Player j did not draw with Player i.
+
+### Constraints
+
+* 2 \leq N \leq 1000
+* A\_{i,i} is `-`.
+* A\_{i,j} is `W`, `L`, or `D`, for i\neq j.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+N
+A_{1,1}A_{1,2}\ldots A_{1,N}
+A_{2,1}A_{2,2}\ldots A_{2,N}
+\vdots
+A_{N,1}A_{N,2}\ldots A_{N,N}
+```
+
+### Output
+
+If the given table is not contradictory, print `correct`; if it is contradictory, print `incorrect`.
+
+---
+
+### Sample Input 1
+
+```
+4
+-WWW
+L-DD
+LD-W
+LDW-
+```
+
+### Sample Output 1
+
+```
+incorrect
+```
+
+Player 3 beat Player 4, while Player 4 also beat Player 3, which is contradictory.
+
+---
+
+### Sample Input 2
+
+```
+2
+-D
+D-
+```
+
+### Sample Output 2
+
+```
+correct
+```
+
+There is no contradiction.
+
+## Your Analysis (1-sentence bug summary)
+The function returns the misspelled string "correnct" instead of "correct", causing wrong output when the table is valid.
+
+## Buggy Program
+def hantei(N,A):
+    for n1 in range(N):
+        for n2 in range(N):
+            if ((A[n1][n2] == "-" and A[n2][n1] == "-") 
+                or (A[n1][n2] == "W" and A[n2][n1] == "L") 
+                or (A[n1][n2] == "L" and A[n2][n1] == "W") 
+                or (A[n1][n2] == "D" and A[n2][n1] == "D")):
+                continue
+            else:
+                return "incorrect"
+    return "correnct"
+
+N = int(input())
+A = []
+
+for _ in range(N):
+    A.append(list(str(input())))
+
+print(hantei(N,A))
+
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -13,7 +13,7 @@
+         else:
+             h = N - A
+     else:
+-        if A <= N // 2 + 1:
++        if A <= N // 2:
+             h = N // 2 + 1
+         else:
+             h = N - A
+
+### Diff 2
+--- 
++++ 
+@@ -8,7 +8,7 @@
+         if lst[i] in out:
+             return 0
+         for s in seen:
+-            out.add(s+(s-lst[i]))
++            # out.add(s+(s-lst[i]))
+             out.add(lst[i]+(lst[i]-s))
+         seen.add(lst[i])
+     return 1
+
+### Diff 3
+--- 
++++ 
+@@ -1,4 +1,4 @@
+ N = int(input())
+ A = sorted(list(map(int, input().split())), reverse=True)
+ print('Alice' if A[0] > A[1] +
+-      1 else ('Alice' if (A[N - 1] - N - 1) & 1 else 'Bob'))
++      1 else ('Alice' if (A[0] - N - 1) & 1 else 'Bob'))
+
+### Diff 4
+--- 
++++ 
+@@ -34,7 +34,7 @@
+     if s[i] == "A" and t[i] == "B" and before_A is False:
+         print(-1)
+         exit()
+-    if s[i] == "A":
++    if t[i] == "A":
+         before_A = True
+     if s[i] == "B" and t[i] == "A":
+         last_B = True
+
+### Diff 5
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ 	N, A, B = map(int, input().split())
+ 	if A <= N // 2:
+ 		print("Yes" if B <= ((N + 1) // 2) * (N - A) else "No")
+-	elif A < N:
++	elif A <= N:
+ 		print("Yes" if B <= (N - A) ** 2 else "No")
+ 	else:
+ 		print("No")
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

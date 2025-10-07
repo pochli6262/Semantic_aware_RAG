@@ -1,0 +1,29 @@
+{
+  "task": "abc267_a/Python/45943869",
+  "query_summary": "The program misspells \"Friday\" as \"Friay\", so an input of \"Friday\" won't match and won't produce the correct output.",
+  "oracle_summary": "The final condition misspells \"Friday\" as \"Friay,\" so the program never prints 1 when the input is \"Friday.\"",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses \"marinara\" instead of the correct username \"mnbvmar\" to check user input.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     print(3630)\n if s==\"ecnerwala\":\n     print(3613)\n-if s==\"marinara\":\n+if s==\"mnbvmar\":\n     print(3555)\n if s==\"newbiedmy\":\n     print(3516)"
+    },
+    {
+      "summary": "The buggy code has an incorrect score assignment for the input \"ksun48\", where it incorrectly prints 679 instead of the correct value 3679.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n if S ==\"tourist\":\n     print(3858)\n if S == \"ksun48\":\n-    print(679)\n+    print(3679)\n if S == \"Benq\":\n     print(3658)\n if S == \"Um_nik\":"
+    },
+    {
+      "summary": "The buggy code does not handle the case where the two distinct characters in the input string are different and occur with the same frequency, leading to incorrect output when both characters appear more than once.",
+      "diff": "--- \n+++ \n@@ -9,6 +9,7 @@\n     s = S.count(S[0])\n     if s == 1:\n         print(S[0])\n+    elif S[0] == S[1]:\n+        print(S[2])\n     else:\n         print(S[1])\n-"
+    },
+    {
+      "summary": "The buggy code fails to handle inputs that do not end with \"er\" or \"ist,\" resulting in no output, while the correct code ensures an output of \"ist\" for any other input.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n s = input()\n if s[-2:] == \"er\":\n     print(\"er\")\n-elif s[-2:] == \"ist\":\n+else:\n     print(\"ist\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints \"6\" when at least two characters are the same due to the absence of an \"elif\" which causes the last \"else\" to execute incorrectly.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n if S[0] == S[1] and S[1] == S[2]:\n   print(1)\n-if S[0] == S[1] or S[0] == S[2] or S[1] == S[2]:\n+elif S[0] == S[1] or S[0] == S[2] or S[1] == S[2]:\n   print(3)\n else:\n   print(6)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

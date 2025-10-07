@@ -1,0 +1,4 @@
+{
+  "explanation": "The input variables were read in the wrong order. The program expects the starting number N and the divisor a (N a) from input, but the original code used a,N = map(int,input().split()), swapping them. I fixed that single line by reading N first and a second (N,a = map(int,input().split())). No other lines were changed.",
+  "fixed_code": "N,a=map(int,input().split())\nfrom queue import Queue\na,N= a,N\ndef rot(N):\n    M=str(N)\n    return int(M[1:]+M[0])\nd=[10**3]*10**len(str(N))\nd[N]=0\nq=Queue()\nq.put(N)\nwhile not q.empty():\n    M=q.get()\n    if M==1:\n        break\n    if M%a==0 and d[M//a]>d[M]+1:\n        d[M//a]=d[M]+1\n        q.put(M//a)\n    if d[rot(M)]>d[M]+1:\n        d[rot(M)]=d[M]+1\n        q.put(rot(M))\nprint(d[1] if d[1]!=10**3 else -1)"
+}

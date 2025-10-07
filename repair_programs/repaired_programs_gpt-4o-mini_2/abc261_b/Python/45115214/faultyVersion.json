@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition that checks for a correct game outcome uses 'count == N**2'. This condition implies that all possible game outcomes between N players should occur, but it does not account for the diagonal elements which represent self-plays (not allowed). Therefore, the correct condition to check the outcomes is 'count == N*(N-1)', which excludes the diagonal counts. I fixed this by replacing 'N**2' with 'N*(N-1)' in the if statement.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\ncount = 0\nfor i in range(N):\n  for k in range(N):\n    if (i == k) and (A[i][k] == '-') :\n      count += 1\n    if (i != k) and (A[i][k] == 'W') and (A[k][i] == 'L'):\n      count += 1\n    if (i != k) and (A[k][i] == 'W') and (A[i][k] == 'L'):\n      count += 1\nif count == N*(N-1):\n  print(\"correct\")\nelse:\n  print(\"incorrect\")"
+}

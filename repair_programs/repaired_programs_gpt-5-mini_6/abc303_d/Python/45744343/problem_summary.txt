@@ -1,0 +1,1 @@
+The DP has its caps-lock states reversed (so X and Y are used in swapped places), causing the initialization and transitions to apply the wrong costs for 'a' versus Shift+'a'.

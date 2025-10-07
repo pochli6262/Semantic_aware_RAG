@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition incorrectly checks if X is less than or equal to C instead of checking if X is ranked between A+1 and B. This logic error means that participants who should not qualify for a T-shirt are considered. The correct condition is to check if X is greater than A and less than or equal to B. The fix was inspired by the spirit of condition corrections evident in known diff patterns, where index ranges are adjusted correctly.",
+  "fixed_code": "from collections import Counter, defaultdict, deque\nfrom bisect import bisect_left, bisect_right\nfrom heapq import heapify, heappush, heappop\n\ndef solve():\n    A, B, C, X = map(int, input().split())\n\n    if X >= 1 and X <= A:\n        res = 1/1\n    elif X > A and X <= B:\n        N = B - A\n        res = C / N\n    else:\n        res = 0/1\n\n    print(f\"{res:.7f}\")\n\nsolve()"
+}

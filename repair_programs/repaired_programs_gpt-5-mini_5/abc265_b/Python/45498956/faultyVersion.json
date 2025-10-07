@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line compared the remaining time t to the loop index i (if t>i:) instead of to the required move cost a[i]. That caused incorrect decisions about whether a move is possible. I fixed it by changing the comparison to if t> a[i]: so we check that the current time is strictly greater than the move cost before subtracting it (matching the rule that time must remain > 0 after the move).",
+  "fixed_code": "n,m,t=map(int,input().split())\na=list(map(int,input().split()))\nv=[0]*n\nfor i in range(m):\n  x,y=map(int,input().split())\n  v[x-1]=y\nfor i in range(n-1):\n  t+=v[i]\n  if t> a[i]:\n    t-=a[i]\n  else:\n    print('No')\n    break\nelse:\n  print('Yes')\n"
+}

@@ -1,0 +1,181 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+We have the following 3 \times 3 board with integers from 1 through 9 written on it.
+
+![](https://img.atcoder.jp/abc309/86862b285a60054303435965fe642c67.jpg)
+
+You are given two integers A and B between 1 and 9, where A < B.
+
+Determine if the two squares with A and B written on them are adjacent horizontally.
+
+### Constraints
+
+* 1 \le A < B \le 9
+* A and B are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+A B
+```
+
+### Output
+
+Print `Yes` if the two squares with A and B written on them are adjacent horizontally, and `No` otherwise.
+
+---
+
+### Sample Input 1
+
+```
+7 8
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The two squares with 7 and 8 written on them are adjacent horizontally, so print `Yes`.
+
+---
+
+### Sample Input 2
+
+```
+1 9
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+---
+
+### Sample Input 3
+
+```
+3 4
+```
+
+### Sample Output 3
+
+```
+No
+```
+
+## Your Analysis (1-sentence bug summary)
+When b - a != 1 the program prints "No" but doesn't stop execution, so it can continue and produce a second, possibly contradictory output (e.g. "Yes").
+
+## Buggy Program
+a, b = map(int, input().split())
+
+if b-a != 1:
+  print("No")
+  
+
+cnt = 0
+
+def judge(s):
+  if s in (1,3,4,6,7,9):
+    return 1
+  else:
+    return 2
+    
+if judge(a) + judge(b) == 2:
+  print("No")
+else:
+  print("Yes")
+
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -6,6 +6,8 @@
+   for j in range(M-1):
+     if ((b[j+1] - 1) % 7) - ((b[j] - 1) % 7) != 1:
+       ans = 'No'
++    if b[j+1] - b[j] != 1:
++      ans = 'No'
+   B.append(b)
+ 
+ for i in range(N-1):
+
+### Diff 2
+--- 
++++ 
+@@ -24,7 +24,7 @@
+   if len(A_[i])!=len(B_[i]):
+     print('No')
+     exit()
+-  max_ = max(0, len(A_[i]))
++  max_ = max(max_, len(A_[i]))
+ 
+ if max_>=2: 
+   print('Yes')
+
+### Diff 3
+--- 
++++ 
+@@ -44,7 +44,7 @@
+       ans[i][0]=cnt
+       cnt+=1
+       while cnt<n:
+-        if b[cnt]!=a[i]:
++        if b[cnt] not in nowb:
+           break
+         cnt+=1
+       if not notcheck:
+
+### Diff 4
+--- 
++++ 
+@@ -35,7 +35,7 @@
+                 return 0
+             if st(a[l:i])!=st(b[l:i]):
+                 return 0
+-            if i<3 and a[:i]!=b[:i]:
++            if i-l<3 and a[l:i]!=b[l:i]:
+                 return 0
+             l=i+1
+ 
+
+### Diff 5
+--- 
++++ 
+@@ -1,6 +1,6 @@
+ A,B = map(int,input().split())
+ 
+-if B-A == 1 or A-B == 9:
++if B-A == 1 or B-A == 9:
+   print("Yes")
+ else:
+   print("No")
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

@@ -1,0 +1,1 @@
+The code uses the equality operator (==) instead of assignment when trying to mark an item consumed, so items are never removed and can be reused.

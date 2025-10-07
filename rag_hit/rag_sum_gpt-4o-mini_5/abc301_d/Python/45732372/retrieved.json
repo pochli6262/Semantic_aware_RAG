@@ -1,0 +1,33 @@
+{
+  "task": "abc301_d/Python/45732372",
+  "query_summary": "The bug likely occurs because the program only considers the minimum binary representation of the string by replacing '?' with '0', without appropriately generating all possible combinations for '?' and evaluating their values against N.",
+  "oracle_summary": "The code prints the initial ans prematurely (before checking if it's > n and before maximizing '?' bits), causing incorrect output order and results.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to account for the case where the best answer might be composed of all nines with one digit less than the input string's length.",
+      "diff": "--- \n+++ \n@@ -3,6 +3,7 @@\n for _ in range(T):\n   s = list(input())\n   m = len(s)\n+ \n   ans = -1\n   for k in range(1,m//2+1):\n     if m%k!=0:\n@@ -13,4 +14,7 @@\n       mini = list(str(int(\"\".join(mini))-1))\n       temp = mini*(m//k)\n     ans = max(ans,int(\"\".join(temp)))\n+  temp = int(\"9\"*(m-1))\n+  ans = max(ans,temp)\n   print(ans)\n+      "
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the variable `ans` to 100 instead of a sufficiently large value (100000) to ensure that the correct minimum value can be found.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n s = [list(input()) for _ in range(n)]\n-ans = 100\n+ans = 100000\n for i in range(10):\n   num = str(i)\n \n@@ -9,10 +9,8 @@\n     for k in range(n):\n       if slot[k] == False and s[k][(j)%10] == num:\n         slot[k] = True\n-\n         break\n     if all(slot):\n       ans = min(ans,j)\n-\n       break\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs -1 only when the longest sequence of non-hyphen characters is equal to `n-2`, failing to account for the case where there are no non-hyphen characters at all (represented by `m` being 0).",
+      "diff": "--- \n+++ \n@@ -7,6 +7,6 @@\n     m=max(m,x)\n     x=0\n   else: x+=1\n-if m==n-2:\n+if m==n-2 or m==0:\n   print(-1)\n else: print(m)"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the value of `m` as `2147483647` instead of `2**61-1`, which can lead to hash collisions and incorrect results for larger input sizes.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = [input() for _ in range(n)]\n \n \n-m = 2147483647 # 2**31-1\n+m = 2**61-1 # 2**31-1\n \n from collections import defaultdict\n "
+    },
+    {
+      "summary": "The buggy code fails to correctly initialize the variable `res`, which should be set to `max(0, n - 1)` instead of just `n - 1`, potentially leading to negative results for certain input cases.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         d.append(p)\n ans = 0\n for _ in range(2):\n-    res = n - 1\n+    res = max(0, n - 1)\n     frm = 0\n     if _ == 1:\n         cnt = 0"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

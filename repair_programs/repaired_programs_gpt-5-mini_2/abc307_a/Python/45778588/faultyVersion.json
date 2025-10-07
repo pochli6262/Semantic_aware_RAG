@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop bounds used range(int(N/7)), which truncates and omits any final partial group when N is not a multiple of 7. Replacing that line with range((N+6)//7) ensures we iterate over all 7-element groups and include the last partial group (if any). Only that single line was changed.",
+  "fixed_code": "N = int(input())\nl = list(map(int,input().split()))\nlis = []\nd = []\nb = 0\nfor j in range((N+6)//7):\n  for k in l[7*b:7*(b+1)]:\n      lis.append(k)\n  d.append(sum(lis))\n  lis.clear()\n  b += 1\nprint(*d)"
+}

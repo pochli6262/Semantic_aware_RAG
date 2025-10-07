@@ -1,0 +1,4 @@
+{
+  "explanation": "The boundary check for the random-selection range was off by one: participants ranked between A+1 and B (inclusive) should be eligible, but the code used 'X < B' which excluded rank B. I fixed that single line to use '<=' so X==B is treated as eligible. This is an off-by-one correction similar in spirit to fixes that extend range bounds (see Diff 3 pattern).",
+  "fixed_code": "A,B,C,X = map(int,input().split())\nif X <= A:\n  print(1.000000000000)\nelif X <= B:\n  print(C/(B-A))\nelse:\n  print(0.000000000000)"
+}

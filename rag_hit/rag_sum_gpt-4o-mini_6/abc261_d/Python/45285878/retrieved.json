@@ -1,0 +1,33 @@
+{
+  "task": "abc261_d/Python/45285878",
+  "query_summary": "The likely bug is that the program incorrectly updates the dynamic programming table by mismanaging the streak bonus indexing and failing to properly account for counter resets triggered by tails.",
+  "oracle_summary": "When computing dp[i][0], the buggy code adds yl[j] (the last inner-loop index) instead of yl[0], incorrectly making dp[i][0] depend on j.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The buggy code initializes the dynamic programming table with zeros instead of a sufficiently negative value, which can lead to incorrect maximum calculations when all elements of the input list `A` are negative.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N,M = map(int,input().split())\n A = list(map(int,input().split()))\n \n-dp = [[0]*N for i in range(M)]\n+dp = [[-(10**18)]*N for i in range(M)]\n dp[0][0]=A[0]\n for i in range(1,N):\n     dp[0][i]=max(A[i],dp[0][i-1])"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the `dp` array with a value of `-(10**10)` instead of `-(10**13)`, which is insufficiently low to handle the required calculations accurately.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n,m=map(int,input().split())\n A=list(map(int,input().split()))\n-dp=[[-(10**10) for i in range(m+1)]for j in range(n+1)]\n+dp=[[-(10**13) for i in range(m+1)]for j in range(n+1)]\n nowmax=2\n for i in range(1,n+1):\n   a=A[i-1]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the `dp` array with a very large value (`10**10`) that is insufficient to represent the maximum possible value needed for comparisons, resulting in incorrect minimum calculations.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(n):\n     v[i] = max(0, y[i] - (x[i] + y[i]) // 2)\n m = sum(z)\n-dp = [[10**10] * (m + 1) for _ in range(n + 1)]\n+dp = [[10**30] * (m + 1) for _ in range(n + 1)]\n dp[0][0] = 0\n for i in range(1, n + 1):\n     for j in range(m + 1):"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the variable `delta` by using `-(i+1)//a[i] - 2` instead of the correct `-a[i]//(i+1) - 1`, leading to incorrect indexing and logic in the loop.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n d = [set() for _ in range(m)]\n \n for i in range(n):\n-  delta = -(i+1)//a[i] - 2\n+  delta = -a[i]//(i+1) - 1\n   for j in range(max(0, delta), m):\n     tmp = (i+1)*(j+1)+a[i]\n     if tmp > n+1:"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

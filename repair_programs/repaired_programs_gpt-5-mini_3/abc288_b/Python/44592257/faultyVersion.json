@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code used s = [input() for _ in range(n)], which reads n separate lines. In the intended input format the n strings are provided on a single line, so that line is incorrect. I changed it to s = input().split() to read all n strings from one line before sorting and printing the first k.",
+  "fixed_code": "n, k = map(int, input().split())\ns = input().split()\ns.sort()\nfor i in range(k):\n  print(s[i])"
+}

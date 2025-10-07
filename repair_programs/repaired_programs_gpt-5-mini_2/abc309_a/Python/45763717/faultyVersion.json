@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition used abs(a-b) in [1,3], which only checks whether the difference is exactly 1 or exactly 3. The likely intent was to allow any difference of 1 through 3 inclusive, but the list [1,3] does not represent that range. I fixed the single line by replacing [1,3] with [1,2,3] so the code correctly checks for differences 1, 2, or 3.",
+  "fixed_code": "a,b=map(int,input().split())\nif set([a,b]) not in [{3,4},{6,7}] and abs(a-b) in [1,2,3]:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

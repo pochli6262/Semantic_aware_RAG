@@ -1,0 +1,4 @@
+{
+  "explanation": "The code never used the c list (second value on each input line). The pairwise dominance check mistakenly compared p[i] and p[j] instead of c[i] and c[j]. I fixed that single line so the comparison uses c (the intended numeric value) rather than p.",
+  "fixed_code": "n, m = map(int, input().split())\n\np = []\nc = []\nf = []\n\nfor i in range(n):\n    l = list(map(int, input().split()))\n    p.append(l[0])\n    c.append(l[1])\n    f.append(set(l[2:]))\n\nfor i in range(n):\n    for j in range(n):\n        if c[i] >= c[j]:\n            if f[j].issuperset(f[i]):\n                print(\"Yes\")\n                exit(0)\n\n\nprint(\"No\")"
+}

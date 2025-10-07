@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line had a logical error in the condition for a Full house. Specifically, it incorrectly evaluated cases of three of a kind or two pairs as valid Full houses. The corrected logic ensures that exactly three of one number and exactly two of another are required, rather than allowing for invalid combinations. This aligns with the hypothesis drawn from the summarized bug analysis.",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif (a[0]==a[1] and a[1]==a[2] and a[3]==a[4]):\n  print(\"No\")\nelif (a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4]):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

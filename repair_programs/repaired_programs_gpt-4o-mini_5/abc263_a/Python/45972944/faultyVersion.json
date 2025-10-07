@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line improperly checks the length of unique card values instead of counting them correctly to determine if there are exactly two different counts: one for three of a kind and another for two of a kind. The corrected line ensures that the count value is checked against a proper condition that identifies the Full house pattern. The reasoning aligns with standard methods for validating Full house structures in card games, as seen in the provided diffs. Specifically, the fixes imply a more nuanced check of the presence of card counts instead of length checks of value sets.",
+  "fixed_code": "from collections import defaultdict\n\ncount = defaultdict(int)\n\nA=list(map(int, input().split()))\n\nfor i in range(len(A)):\n  count[A[i]] += 1\n\na = list(count.values())\n\nif len(a) != 2:\n  print(\"No\")\nelif 3 in a and 2 in a:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

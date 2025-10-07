@@ -1,0 +1,4 @@
+{
+  "explanation": "The program always printed \"No\" after the loop even when a valid permutation was found and the loop was broken out of. I fixed that by changing the final unconditional print to a for-else construct so that \"No\" is printed only when the loop completes normally (i.e., no break). This preserves the original logic and fixes the bug without restructuring code.",
+  "fixed_code": "import itertools\n\ndef diff(A, B):\n  res = 0\n  for a, b in zip(A, B):\n    if a != b:\n      res += 1\n  return res\n\nN, M = map(int, input().split())\nS = [input() for _ in range(N)]\n\nfor T in itertools.permutations(S):\n  ok = True\n  for i in range(N-1):\n    if diff(T[i], T[i+1]) != 1:\n      ok = False\n  if ok:\n    print(\"Yes\")\n    break\nelse: print(\"No\")\n"
+}

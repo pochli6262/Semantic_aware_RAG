@@ -1,0 +1,35 @@
+{
+  "task": "abc300_e/Python/45250612",
+  "query_summary": "The DP transition for k+1 mistakenly uses assignment (=) instead of accumulation (+=), overwriting previous contributions to dp[i][j][k+1].",
+  "oracle_summary": "The DP transition for k+1 mistakenly uses assignment (=) instead of accumulation (+=), overwriting previous contributions to dp[i][j][k+1].",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the values of `dp[i][j]` by using improper arithmetic operations, specifically in the coefficients `(j + (g > 1))` and `(i - j + (g == 1))`, which should be `(j - 1 + g)` and `(i - j + 2 - g)`, respectively.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n \tl = v[g]\n \tfor s in range(l):\n \t\tfor j in range(1, n+1):\n-\t\t\tdp[i][j] = ((j+(g>1)) * dp[i-1][j] + (i-j+(g==1)) * dp[i-1][j-1]) % mod\n+\t\t\tdp[i][j] = ((j-1+g) * dp[i-1][j] + (i-j+2-g) * dp[i-1][j-1]) % mod\n \t\ti += 1\n \n print(dp[n][k+1])"
+    },
+    {
+      "summary": "The bug in the code is that it does not check if `j` is greater than or equal to 1 before decrementing it in the nested loop, which can lead to an IndexError when accessing `dp[i-1][j-1][kk-l]`.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n         for kk in range(k+1):\n             dp[i][j][kk] += dp[i-1][j][kk]\n             for l in range(1,k+1):\n-                if kk >= l:\n+                if kk >= l and j >= 1:\n                     dp[i][j][kk] += dp[i-1][j-1][kk-l] * pow(wi, l, mod) * fi[l]\n                     dp[i][j][kk] %= mod\n                     "
+    },
+    {
+      "summary": "The buggy code fails to apply the modulo operation to the final sum of `dp[N-1]`, which can lead to incorrect results if the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -27,4 +27,4 @@\n     \n     old_a, old_b = A, B\n \n-print(sum(dp[N-1]))\n+print(sum(dp[N-1]) % MOD)"
+    },
+    {
+      "summary": "The bug in the code is that it fails to prevent exceeding the bounds of the array `dp` when filling values for cases where `s[i]` is 1, potentially leading to an IndexError or incorrect results, as it does not correctly manage the upper limit for `j`.",
+      "diff": "--- \n+++ \n@@ -37,6 +37,8 @@\n         dp[i+1][n] %= MOD\n     else:\n         for j in range(n):\n+            if j == (m+1):\n+                break\n             dp[i+1][j+1] += dp[i][j]\n     \n     # print(dp)"
+    },
+    {
+      "summary": "The bug in the buggy code is that the inner loop iterates from `mini = 1` to `n`, instead of from `mini = 0` to `n`, which may lead to incorrect index access when updating the `dp` table.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n   ai = a[i]\n   new = [[0]*(n+1) for i in range(k+1)] \n   for j in range(k+1):\n-    for mini in range(1, n+1):\n+    for mini in range(n+1):\n       if mini >= ai and j >= 1:\n         new[j][mini] += dp[j-1][mini]\n       if mini >= ai:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original code arises from the integer division operation. In Python, dividing two integers using the '/' operator performs floating-point division. This can lead to an unexpected result when 'x' is not perfectly divisible by 'y'. The appropriate operator for integer division is '//' which ensures that the result is always an integer. I replaced 'int(x/y)' with 'x // y' to correct the behavior.",
+  "fixed_code": "x, y = map(int, input().split())\nprint(x // y + 1)"
+}

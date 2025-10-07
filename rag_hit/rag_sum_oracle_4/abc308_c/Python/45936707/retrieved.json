@@ -1,0 +1,29 @@
+{
+  "task": "abc308_c/Python/45936707",
+  "query_summary": "The bug was caused by using floating-point division to compare ratios (a/sum), which introduced precision errors and incorrect ordering instead of using a large-scale integer computation to perform exact comparisons.",
+  "oracle_summary": "The bug was caused by using floating-point division to compare ratios (a/sum), which introduced precision errors and incorrect ordering instead of using a large-scale integer computation to perform exact comparisons.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the sum of absolute differences between adjacent elements in the list and does not correctly handle the maximum value to be printed along with the computed sum, resulting in an incorrect output.",
+      "diff": "--- \n+++ \n@@ -2,4 +2,4 @@\n input=lambda:sys.stdin.readline().rstrip()\n N=int(input())\n A=list(map(int,input().split()))\n-print(sum([abs(A[i-1]-A[i]) for i in range(N)])//2)\n+print(max(sum([abs(A[i-1]-A[i]) for i in range(N)])//2,*A))"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial upper limit `OK` for the binary search is set to `10**9`, which is too small, leading to potential incorrect results when larger adjustments are necessary; it should be set to `10**17` as in the correct code.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n \n C=A[:]\n \n-OK=10**9\n+OK=10**17\n NG=-1\n \n while OK>NG+1:"
+    },
+    {
+      "summary": "The buggy code incorrectly starts the outer loop from `0` to `N-1`, which causes it to miss combinations where both indices are the same when calculating the product, leading to an inaccurate count of valid pairs.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n A = sorted(int(input()) for _ in range(N))\n ans = 0\n \n-for i in range(N-1):\n+for i in range(N):\n   for j in range(i, N):\n     x = A[i] * A[j]\n     idx = bisect_left(A, x)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the final output by not wrapping the index `id` with modulo `n`, potentially resulting in an out-of-bounds index for the list.",
+      "diff": "--- \n+++ \n@@ -15,4 +15,4 @@\n \t\ts-=1\n \tif s<mins:\n \t\tid,mins=i,s\n-print(id+1,ans)\n+print((id+1)%n,ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `a[i][j]` by adding `i // 23` and `j // 23` instead of multiplying them, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n \n for i in range(n):\n     for j in range(m):\n-        a[i][j] = (i // 23 + j // 23 + i + j) % 23 + 1\n+        a[i][j] = ((i // 23) * (j // 23) + i + j) % 23 + 1\n \n for v in a:\n     print(*v)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

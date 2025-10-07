@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop iterated over S[:-1], which skipped the final move so the last character of S was never processed. I fixed that line to iterate over the entire string S (for s in S:), so all N moves are simulated. This change directly addresses the single-line bug described in the analysis.",
+  "fixed_code": "N, M, H, K = map(int, input().split())\nS = input()\nRLUD = {'R': (1, 0), 'L': (-1, 0), 'U': (0, 1), 'D': (0, -1)}\n\nhealing = set()\nfor _ in range(M):\n    x, y = map(int, input().split())\n    healing.add((x, y))\n\nx, y = 0, 0\nfor s in S:\n    H -= 1\n    if H < 0:\n        print('No')\n        exit()\n    x += RLUD[s][0]\n    y += RLUD[s][1]\n    if (x, y) not in healing:\n        continue\n    if H < K:\n        healing.remove((x, y))\n        H = K\nprint('Yes')"
+}

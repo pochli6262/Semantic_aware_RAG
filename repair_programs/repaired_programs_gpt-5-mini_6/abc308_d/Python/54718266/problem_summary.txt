@@ -1,0 +1,1 @@
+The final condition incorrectly checks grid[h][w] (a truthy character) instead of the visited flag for (h,w), so the program will always print "Yes" when it reaches that check.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original print statement always added 1 to the floor division (A // B), which is wrong when A is exactly divisible by B. The correct number of attacks is ceil(A / B). I replaced the incorrect line with an expression that computes the ceiling using integer arithmetic: (A + B - 1) // B. No other lines were changed.",
+  "fixed_code": "A, B = map(int, input().split())\n\nprint((A + B - 1) // B)"
+}

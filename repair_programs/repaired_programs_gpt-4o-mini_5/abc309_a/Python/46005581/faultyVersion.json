@@ -1,0 +1,4 @@
+{
+  "explanation": "The program incorrectly outputs 'YES' instead of 'Yes' for one condition when checking adjacency. This was fixed by updating the output in the second condition of the if statement to match the required format. This issue is similar to what was highlighted in Diff 1.",
+  "fixed_code": "list_A_B = list(map(int, input().split()));\nA = list_A_B[0]\nB = list_A_B[1]\n\nif A%3 == 1 and B == A+1:\n    print('Yes')\nelif A%3 == 2 and B == A+1:\n    print('Yes')\nelse:\n    print('No')"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the buggy program is that it checks if B exists in the list of connections of A. However, it's supposed to check the adjacency relationships instead. The condition should check if A is in the keys of the dictionary `p` and if B is in the tuple associated with key A. Therefore, I corrected the line to ensure we are verifying if B is in the adjacency list for A by checking p[A].",
+  "fixed_code": "p = {1:(2, 4), 2:(1, 5, 3), 3:(2, 6), 4:(1, 5, 7), 5:(2, 4, 6, 8), 6:(3, 5, 9), 7:(4, 8), 8:(5, 7, 9), 9:(6, 8)}\n\nA, B = map(int, input().split())\n\nif A in p and B in p[A]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

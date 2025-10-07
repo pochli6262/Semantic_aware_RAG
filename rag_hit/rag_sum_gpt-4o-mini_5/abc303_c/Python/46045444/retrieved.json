@@ -1,0 +1,29 @@
+{
+  "task": "abc303_c/Python/46045444",
+  "query_summary": "The bug likely lies in the way health recovery items are stored and identified, as the program incorrectly initializes item counts, causing an item at a location to never be consumed or mismanaged during recovery.",
+  "oracle_summary": "The bug is that each item's count is set to m instead of 1 when reading input, so potions are incorrectly treated as having m uses instead of a single use.",
+  "retrieved": [
+    {
+      "summary": "The buggy code prints the contents of the deque `Q` in every iteration of the loop, which may lead to excessive output and potentially hinder performance; this print statement was commented out in the correct code.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n \t\tQ.append((H[i],cc))\n \t\tS += H[i]*cc\n \t\tA.append(S+1)\n-\t\tprint(Q)\n+\t\t#print(Q)\n \n \tprint(*A)\n \t\t\t"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `que.append((x, c_))` instead of `que.appendleft((x, c_))`, causing it to improperly re-add elements to the deque after processing.",
+      "diff": "--- \n+++ \n@@ -54,6 +54,6 @@\n         C -= d\n         c_ -= d\n         if c_ > 0:\n-          que.append((x, c_))\n+          que.appendleft((x, c_))\n       print(ans)\n resolve()"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `mod <= B` by not ensuring the printed result is non-negative, leading to potential negative output.",
+      "diff": "--- \n+++ \n@@ -41,5 +41,5 @@\n     q-=1\n     b = q * B\n     if(mod > B):print(b + B)\n-    else:print(b+mod)\n+    else:print(max(0,b+mod))\n "
+    },
+    {
+      "summary": "The buggy code incorrectly prints the `tbl` array instead of the `index` array, which leads to incorrect output.",
+      "diff": "--- \n+++ \n@@ -34,7 +34,7 @@\n             tbl[x],tbl[y] = j,i\n             index[j],index[i] = x,y\n \n-    print(*map(lambda x:x+1,tbl),sep=\" \")\n+    print(*map(lambda x:x+1,index),sep=\" \")\n     \n if __name__==\"__main__\":\n     main()"
+    },
+    {
+      "summary": "The buggy code is missing a condition to check if the total count of elements in `Cnt` is divisible by 4 when `m` is even, which is necessary for determining the correct winner.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n     if m%2==1:\n         yn(all(Cnt[i]==0 for i in Cnt.keys()),'Bob','Alice')\n     else:\n-        yn(all((Cnt[i]==1 and Cnt[(i+(m//2))%m]==1) or (Cnt[i]==0 and Cnt[(i+(m//2))%m]==0) for i in Cnt.keys()),'Bob','Alice')\n+        yn(all((Cnt[i]==1 and Cnt[(i+(m//2))%m]==1) or (Cnt[i]==0 and Cnt[(i+(m//2))%m]==0) for i in Cnt.keys()) and sum(Cnt.values())%4==0,'Bob','Alice')\n     \n \n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

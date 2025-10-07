@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line that initializes the 'hunaka' list. The list is being created using 'n' for both dimensions, but it should actually be 'n' for rows and 'n' for columns, and this is correct. The issue is with how the '- n' adjustment is applied in the final result which miscounts the edges. The correct adjustment should be simply 'sum(sum(row) for row in hunaka)'. I fixed this by removing the '- n' from the total.",
+  "fixed_code": "n,m = map(int,input().split())\nhunaka = [[1] * n for _ in range(n)]\nfor _ in range(m):\n    a = list(map(int,input().split()))\n    for i in range (n-1):\n        x,y = a[i],a[i+1]\n        hunaka[x-1][y-1]=0\n        hunaka[y-1][x-1]=0\nans = sum(sum(row) for row in hunaka)\nprint(ans/2)"
+}

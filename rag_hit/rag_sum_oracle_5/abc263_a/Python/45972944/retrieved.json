@@ -1,0 +1,32 @@
+{
+  "task": "abc263_a/Python/45972944",
+  "query_summary": "The buggy version prints \"YES\" (all caps) instead of the required \"Yes,\" causing a case-sensitive output mismatch.",
+  "oracle_summary": "The buggy version prints \"YES\" (all caps) instead of the required \"Yes,\" causing a case-sensitive output mismatch.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints 'NO' with uppercase letters instead of the intended 'No' with mixed case in the output statement.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n   n += 1\n \n if d['R'] > d['M']:\n-  print('NO')\n+  print('No')\n else:\n   print('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints \"no\" (with a lowercase 'n') instead of \"No\" (with an uppercase 'N') in the else statement.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n if b == l_2[1]:\n   print(\"Yes\")\n else:\n-  print(\"no\")\n+  print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints \"YES\" instead of the correctly capitalized \"Yes\" in the output.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, x, y, z = map(int, input().split())\n \n if x<z<y or y<z<x:\n-  print(\"YES\")\n+  print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for printing \"No\", leading to incorrect output when both `s[i]` and `t[i]` are the same and their count exceeds 2.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,6 @@\n   d[s[i]] += 1\n   d[t[i]] += 1\n for i in range(n):\n-  if d[s[i]] >= 2 and d[t[i]] >= 2:\n+  if (s[i] == t[i] and d[s[i]] > 2) or (s[i] != t[i] and d[s[i]] >= 2 and d[t[i]] >= 2):\n     exit(print(\"No\"))\n print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

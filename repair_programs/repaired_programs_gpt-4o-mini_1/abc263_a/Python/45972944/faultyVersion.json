@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition 'if 2 < len(count.values()):' where it was incorrectly checking the length of values in the count dictionary. This should check if there are more than 2 unique keys (not just values), so I replaced 'len(count.values())' with 'len(count)' to reflect the count of unique elements.",
+  "fixed_code": "from collections import defaultdict\n\ncount = defaultdict(int)\n\nA=list(map(int, input().split()))\n\nfor i in range(len(A)):\n  count[A[i]] += 1\n\na = count.values()\na = list(a)\n\nif 2 < len(count):\n  print(\"No\")\nelif a[0] == 3 or a[1] == 3:\n  print(\"YES\")\nelse:\n  print(\"No\")"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc310_a/Python/45951629",
+  "query_summary": "The code computes the wrong expression — it uses `P - Q + D[i]` (mixing P and subtraction) instead of `Q + D[i]`, producing incorrect candidate values.",
+  "oracle_summary": "The code computes the wrong expression — it uses `P - Q + D[i]` (mixing P and subtraction) instead of `Q + D[i]`, producing incorrect candidate values.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly loops from `N-2` to `1` instead of from `N-1` to `1`, leading to potential index errors and incorrect calculations in the `ans` list.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n for i in map(int, input().split()):\n     ans[i-1] = 0\n-for i in range(N-2, 0, -1):\n+for i in range(N-1, 0, -1):\n     ans[i-1] = min(ans[i-1], ans[i]+1)\n \n print('\\n'.join(map(str, ans)))"
+    },
+    {
+      "summary": "The buggy code incorrectly uses '>' instead of '>=' in the condition, which causes it to miss counting when N is equal to M.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N, M, P = map(int, input().split())\n \n ans = 0\n-if N > M:\n+if N >= M:\n     ans += 1 + int((N - M) / P)\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly initializes the variable `ans` to a large value before calculating the initial difference between the max and min values of the first `K` elements, which is not accounted for in the final answer.",
+      "diff": "--- \n+++ \n@@ -7,11 +7,11 @@\n for i, p in enumerate(P):\n     C[p-1] = i+1\n \n-ans = 100000000000\n \n from sortedcontainers import SortedList\n \n s = SortedList(sorted(C[:K]))\n+ans = s[-1] - s[0]\n \n for i in range(N-K):\n     s.remove(C[i])"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the index of the node that has zero incoming edges without converting it back to a one-based index, leading to off-by-one errors in the output.",
+      "diff": "--- \n+++ \n@@ -13,6 +13,6 @@\n         ans.append(i)\n \n if len(ans) == 1:\n-    print(ans[0])\n+    print(ans[0] + 1)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `ans` in the condition where `l < r`, leading to an off-by-one error when determining the correct minimum value.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n \n ans = 0\n if l < r:\n-    ans = min(i + 1 + 1, 1 + N - i)\n+    ans = min(i + 1 + 1, 1 + N - i - 1)\n else:\n     ans = min(i + 1, 2 + N - i - 1)\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

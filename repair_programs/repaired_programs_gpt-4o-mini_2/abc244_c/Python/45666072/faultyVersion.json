@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue was with the line `print(num_set.pop, flush=True)`, which incorrectly references the `pop` method without calling it. This should be corrected to `print(num_set.pop(), flush=True)` to properly call the method and retrieve the value being popped from the set.",
+  "fixed_code": "N = int(input())\nnum_set = set(range(1, 2*N+2))\nwhile True:\n    print(num_set.pop(), flush=True)\n    \n    a = int(input()) #aは青木君が宣言した数\n    if a==0:\n        break\n    num_set.discard(a)"
+}

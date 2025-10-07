@@ -1,0 +1,31 @@
+{
+  "task": "abc309_c/Python/45895898",
+  "query_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "oracle_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the upper limit for the binary search (`right`) is set to `1000000000`, which may exclude the correct answer if it is `1000000000`; it should be corrected to `1000000001`.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n     return flag\n \n left = 0\n-right = 1000000000\n+right = 1000000001\n \n while (right - left) > 1:\n     mid = (right + left)//2"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes `min_x` to `max(l)` instead of `max(l) - 1`, leading to potential infinite loops or incorrect outputs in the binary search.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n             return False\n     return True\n \n-min_x = max(l)\n+min_x = max(l)-1\n max_x = sum(l) + n - 1\n while True:\n     mid = (min_x + max_x) // 2"
+    },
+    {
+      "summary": "The problem in the buggy code is that the range for the loop is set to 2*(10**5), which may not provide enough iterations to find a day when \"day\" exceeds \"n,\" whereas the correct code uses 3*(10**5) to ensure sufficient iterations.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n, m, p = map(int, input().split())\n ans = 0\n day = m\n-for i in range(2*(10**5)):\n+for i in range(3*(10**5)):\n     if day > n:\n         ans = i\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the `Day` range by using `int(D[Mon-1])` instead of `int(D[Mon-1])+1`, causing it to miss counting the last day of the month.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n ans=0\n for Mon in range(1,N+1):\n   Mlist=list(str(Mon))\n-  for Day in range(1,int(D[Mon-1])):\n+  for Day in range(1,int(D[Mon-1])+1):\n     Dlist=list(str(Day))\n     \n     if len(Mlist)==1 and len(Dlist)==1 and Mlist[0]==Dlist[0]:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial upper limit `OK` for the binary search is set to `10**9`, which is too small, leading to potential incorrect results when larger adjustments are necessary; it should be set to `10**17` as in the correct code.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n \n C=A[:]\n \n-OK=10**9\n+OK=10**17\n NG=-1\n \n while OK>NG+1:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

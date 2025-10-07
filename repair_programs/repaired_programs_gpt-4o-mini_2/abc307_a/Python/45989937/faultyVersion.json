@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is caused by the inner loop accessing s[l+i], which incorrectly adds elements from the 's' list based on both 'l' and 'i' without proper bounds checking. The correct index should be s[i+l] instead of s[l+i] to ensure the correct elements are summed over a valid range without going out of the list bounds.",
+  "fixed_code": "n = int(input())\ns = list(map(int,input().split()))\n\nfor i in range(n):\n  ans = 0\n  for l in range(7):\n    ans += s[i+l]\n\n  print(str(ans),\"\",end = \"\")"
+}

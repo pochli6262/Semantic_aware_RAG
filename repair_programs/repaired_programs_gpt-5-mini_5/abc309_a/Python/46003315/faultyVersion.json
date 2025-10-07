@@ -1,0 +1,4 @@
+{
+  "explanation": "The original final line compared row and column incorrectly (ax == ay) and only checked that B's column was one greater than A's (by - ay == 1). It should check that A and B are on the same row (ax == bx) and that their columns differ by 1 (abs(by - ay) == 1). I fixed that single line accordingly.",
+  "fixed_code": "import sys\nimport string\nimport numpy as np\nfrom collections import defaultdict, deque\nfrom math import dist\nimport itertools\nimport operator\n\nINF = -1000000000000000000\n\nA, B = map(int, input().split())\nax = (A - 1) // 3\nay = (A - 1) % 3\nbx = (B - 1) // 3\nby = (B - 1) % 3\n\nprint(\"Yes\" if ax == bx and abs(by - ay) == 1 else \"No\")"
+}

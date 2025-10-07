@@ -1,0 +1,32 @@
+{
+  "task": "abc263_a/Python/45002191",
+  "query_summary": "The likely bug is that the program incorrectly checks for the number of unique values instead of verifying the specific counts of three cards of one number and two cards of another.",
+  "oracle_summary": "It wrongly prints Yes for any input with exactly two distinct numbers, even when neither repeats, instead of requiring that at least one of those numbers appears at least twice.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate entries in the spawned list using `or not s in spawned`, instead of `or s in spawned`, leading to the acceptance of duplicate card inputs.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n for i in range(n):\n     s = input()\n \n-    if not s[0] in one or not s[1] in two or not s in spawned:\n+    if not s[0] in one or not s[1] in two or s in spawned:\n         print(\"No\")\n         exit(0)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly includes '1' in the set of valid ranks, which leads to accepting invalid card inputs that should be rejected.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[]\n b=['H', 'D', 'C', 'S']\n first = set(b)\n-second = set(['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n+second = set(['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n tmp = set()\n answer = \"Yes\"\n for i in range(n):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the set is non-empty instead of checking if it contains exactly one element.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n N=int(input())\n A = set(map(int, input().split()))\n-print('Yes' if len(A) else 'No')\n+print('Yes' if len(A)==1 else 'No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if a player has exactly two yellow cards to output \"Yes\" instead of checking if they have two or more yellow cards.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     elif c == 2:\n       cards[x] += 2\n     else:\n-      if cards[x] == 2:\n+      if cards[x] >= 2:\n         print('Yes')\n       else:\n         print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the length of each block set, resulting in a failure to properly validate that all blocks contain the required unique values.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n if (\n     all(len(r) == 9 for r in row)\n     and all(len(c) == 9 for c in col)\n-    and all(len(b) == 9 for b in block)\n+    and all(all(len(b) == 9 for b in br) for br in block)\n ):\n     print(\"Yes\")\n else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,1 @@
+The outer-element list is built with the top row appended twice, so the rotation uses duplicated elements and produces an incorrect result.

@@ -1,0 +1,31 @@
+{
+  "task": "abc309_c/Python/45738581",
+  "query_summary": "The likely bug is that the program incorrectly handles the case where it reaches the end of the medicines without ever reducing the total pills to K or less, leading to an index out of range error.",
+  "oracle_summary": "The bug is an incorrect comparison: the code uses total < K instead of total <= K, causing it to mishandle the case when total == K.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly limits the range in the second loop for odd K, causing it to access an out-of-bounds index in the array A when K is not properly handled.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     for i in range(1, K-1, 2):\n         now += A[i+1] - A[i]\n     ans = now\n-    for i in range(2, K-1, 2):\n+    for i in range(2, K, 2):\n         now += A[i-1] - A[i-2]\n         now -= A[i] - A[i-1]\n         ans = min(ans, now)"
+    },
+    {
+      "summary": "The buggy code incorrectly sums the elements that are strictly less than K instead of including those that are equal to K, leading to an incorrect calculation of the total sum.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n dis = 0\n for a in sa:\n-  if a < K:\n+  if a <= K:\n     dis += a\n \n print((K + 1) * K // 2 - dis)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the index of the first element that causes the cumulative sum to exceed M, instead of printing the index after the loop, which reflects how many elements were summed before exceeding M.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n while i < N:\n   sum += H[i]\n   if sum > M:\n-    print(i)\n     break\n   i += 1\n+print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `i + 1` when a person runs out of money, instead of the correct index `i`, which should represent the zero-based index of the person.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(N):\n     total -= H[i]\n     if total < 0:\n-        print(i + 1)\n+        print(i)\n         break\n else:\n     print(N)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not account for duplicate values in the `array`, leading to incorrect counts when checking if values are less than or equal to `N`.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     array.append(int(''.join(sk) + '0' * i))\n \n ans = 0\n-for a in array:\n+for a in set(array):\n     if a <= N:\n         ans += 1\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

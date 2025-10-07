@@ -1,0 +1,32 @@
+{
+  "task": "abc244_b/Python/45713633",
+  "query_summary": "The rotate() method incorrectly sets dx to the position y instead of the direction dy, using self.y instead of self.dy and thus rotating the heading wrongly.",
+  "oracle_summary": "The rotate() method incorrectly sets dx to the position y instead of the direction dy, using self.y instead of self.dy and thus rotating the heading wrongly.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the y-coordinate when the input is \"D\" by adding 1 instead of subtracting 1.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     elif s==\"U\":\n         y += 1\n     elif s==\"D\":\n-        y += 1\n+        y -= 1\n     \n     return x, y\n "
+    },
+    {
+      "summary": "The buggy code incorrectly computes the value of `X` when the move is \"R\" by using `X *= 2 + 1` instead of the correct formula `X = 2 * X + 1`.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n     if s == \"L\":\n         X*=2\n     elif s == \"R\":\n-        X*=2+1\n+        X=2*X+1\n     else:\n         X//=2\n print(X)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition for determining whether to print 'No' or 'Yes' by using the wrong comparison operator in the last conditional statement, which should use '>' instead of '<'.",
+      "diff": "--- \n+++ \n@@ -27,7 +27,7 @@\n     x, y = map(int, input().split())\n     for i in range(N):\n         dx, dy, d, inter = lines[i]\n-        if inter > d * intercept(dx, dy, x, y):\n+        if inter * d > intercept(dx, dy, x, y) * d:\n             print('No')\n             break\n     else: print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly adds the scaled sine value to the x-coordinate calculation instead of subtracting it, resulting in an incorrect calculation of the x-coordinate.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n a, b, c = map(int, input().split())\n \n \n-x = a * round(math.cos(math.radians(c)), 8) + b * round(math.sin(math.radians(c)), 8)\n+x = a * round(math.cos(math.radians(c)), 8) - b * round(math.sin(math.radians(c)), 8)\n y = a * round(math.sin(math.radians(c)), 8) + b * round(math.cos(math.radians(c)), 8)\n \n print(x, y)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the output in the last line, using the expression `x // 2` instead of the correct `(x - y) // 2`, which leads to an incorrect result when `y` is less than `x`.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n if y >= x:\n   print(y)\n else:\n-  print(y + x // 2)\n+  print(y + (x-y) // 2)\n \n \n "
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    4
+  ],
+  "useful_diffs_count": 2
+}

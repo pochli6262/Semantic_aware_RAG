@@ -1,0 +1,1 @@
+The bug likely occurs because the program prints the price of sushi for a plate not found in `ds` instead of adding it to the total sum before printing the final total amount.

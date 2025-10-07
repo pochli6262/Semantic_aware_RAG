@@ -1,0 +1,4 @@
+{
+  "explanation": "The line ans = N + a - 1 incorrectly computes the next multiple of 5 for remainder a == 4 (it produces N+3 instead of N+1). The correct amount to add to reach the next water station is (5 - a). I fixed the off-by-one arithmetic by replacing ans = N + a - 1 with ans = N + (5 - a). This is an off-by-one style correction similar to fixes shown in the diffs (e.g., adjusting +/-1 errors).",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a <3:\n        ans=N-a\n    else:\n        ans=N+(5-a)\n    print(ans)\n"
+}

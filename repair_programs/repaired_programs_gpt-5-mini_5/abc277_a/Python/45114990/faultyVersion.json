@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code used p.index(x) which returns a 0-based index, but the problem expects a 1-based position. I fixed the print line to add 1 to the index so the output is 1-based. This is analogous to fixes that adjust off-by-one errors (e.g., adding or taking max/min in the retrieved diffs).",
+  "fixed_code": "n, x = map(int, input().split())\np = list(map(int, input().split()))\nprint(p.index(x) + 1)"
+}

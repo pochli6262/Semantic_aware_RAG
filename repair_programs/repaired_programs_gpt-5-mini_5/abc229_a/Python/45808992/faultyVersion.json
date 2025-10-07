@@ -1,0 +1,4 @@
+{
+  "explanation": "The initial if condition only checked for a full row of blacks (\"##\") in either row, so it missed the cases where the two black squares form a vertical column (S1 == S2 == \"#.\" or S1 == S2 == \".#\"). I fixed the single condition line to also accept S1 == S2, which covers those vertical adjacency cases. This change is a simple addition of an OR clause (inspired by the logical-operator fixes seen in Diff 3) and does not alter any other logic.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1 == \"##\" or S2 == \"##\" or S1 == S2:\n    print(\"Yes\")\nelif S1 == \".#\" and S2 == \"#.\":\n    print(\"No\")\nelif S1 == \"#.\" and S2 == \".#\":\n    print(\"No\")\n"
+}

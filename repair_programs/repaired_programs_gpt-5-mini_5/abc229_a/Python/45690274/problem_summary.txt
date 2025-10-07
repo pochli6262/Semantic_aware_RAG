@@ -1,0 +1,1 @@
+The code returns without output when there are exactly two black squares that are adjacent (non-diagonal), because after checking the diagonal case it falls through and never prints "Yes".

@@ -1,0 +1,1 @@
+The program incorrectly evaluates the conditions for the sequence because it does not properly handle the logical checks for all three criteria, particularly the loop does not exit early when a condition is violated.

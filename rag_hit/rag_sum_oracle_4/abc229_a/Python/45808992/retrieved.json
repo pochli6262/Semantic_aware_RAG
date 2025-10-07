@@ -1,0 +1,32 @@
+{
+  "task": "abc229_a/Python/45808992",
+  "query_summary": "The buggy code omits the final else that should print \"Yes\" for all other inputs, so for non-matching cases it produces no output instead of \"Yes.\"",
+  "oracle_summary": "The buggy code omits the final else that should print \"Yes\" for all other inputs, so for non-matching cases it produces no output instead of \"Yes.\"",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly allows strings that contain \"<\" and \"=\" but do not end with \">\", leading to potentially incorrect output when the conditions for a valid string format are not met.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = input()\n-if \"<\" in S and \"=\" in S:\n+if \"<\" in S and \"=\" in S and \">\" == S[-1]:\n     if S.count(\"<\") == S.count(\">\") :\n         print(\"Yes\")\n     else :"
+    },
+    {
+      "summary": "The buggy code is missing an `else` statement for the second `if` block, which causes it to incorrectly print \"No\" when the second condition is not met, instead of maintaining the proper logic flow.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n if S[0].isupper():\n   if (len(S)>= 2 and S[1:].islower()) or len(S) == 1:\n     print(\"Yes\")\n+  else:\n+    print(\"No\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the conditional statement incorrectly uses logical operators, resulting in always evaluating `True` for any input due to improper checks.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n S = input()\n \n-if S == 'ACE' or 'BDF' or 'CEG' or 'DFA' or 'EGB' or 'FAC' or 'GBD':\n+if S == 'ACE' or S == 'BDF' or S == 'CEG' or S == 'DFA' or S == 'EGB' or S == 'FAC' or S == 'GBD':\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code fails to handle the case where the second and third characters are equal but different from the first character, which should be printed as \"3\" instead of falling through to \"6\".",
+      "diff": "--- \n+++ \n@@ -5,5 +5,7 @@\n     print(\"3\")\n elif S[0]==S[1] and S[0]!=S[2]:\n     print(\"3\")\n+elif S[0]!=S[1] and S[1]==S[2]:\n+    print(\"3\")\n elif S[0]!=S[1] and S[0]!=S[2]:\n     print(\"6\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list of valid strings (YES) by including \"CFG\" instead of the correct string \"CEG\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,7 @@\n+\n S = input()\n \n-YES = [\"ACE\", \"BDF\", \"CFG\", \"DFA\", \"EGB\", \"FAC\", \"GBD\"]\n+YES = [\"ACE\", \"BDF\", \"CEG\", \"DFA\", \"EGB\", \"FAC\", \"GBD\"]\n \n if S in YES:\n     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

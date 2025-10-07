@@ -1,0 +1,1 @@
+The program incorrectly uses the variables representing the number of rows and columns, leading to potential index errors and incorrect comparisons when checking for grid equality.

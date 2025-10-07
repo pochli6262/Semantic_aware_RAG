@@ -1,0 +1,4 @@
+{
+  "explanation": "The problem was that the outer if only checked b == a + 1, and the else belonged to that outer if. So when b == a + 1 but a % 3 == 0, control entered the outer if, skipped the inner if (so no print), and there was no inner else — resulting in no output. I fixed this by making the outer if require both conditions (b == a + 1 and a % 3 != 0) so that the existing else correctly handles the cases that should print 'No'. This changes exactly one line and preserves the original structure (inspired by combining conditions as in the retrieved diffs).",
+  "fixed_code": "a,b=map(int,input().split())\n\nif b==a+1 and a%3!=0:\n  if a%3!=0:\n    print('Yes')\nelse:\n  print('No')"
+}

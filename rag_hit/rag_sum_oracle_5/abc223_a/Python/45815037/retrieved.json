@@ -1,0 +1,32 @@
+{
+  "task": "abc223_a/Python/45815037",
+  "query_summary": "The buggy code lacks a branch for X ≥ 100 that aren’t multiples of 100, so it outputs nothing instead of “No” in those cases.",
+  "oracle_summary": "The buggy code lacks a branch for X ≥ 100 that aren’t multiples of 100, so it outputs nothing instead of “No” in those cases.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the result for negative values of X, while the correct code checks if X is divisible by 10 to determine the appropriate result.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n X = int(input())\n-if X < 0:\n+if X % 10 == 0:\n     result = int(X//10)\n else:\n     result = int(X//10 + 1)"
+    },
+    {
+      "summary": "The buggy code incorrectly only prints \"Yes\" for values greater than 4, failing to also account for the value of 1, which should also result in \"Yes\".",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-if N > 4:\n+if N > 4 or N == 1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it doesn't stop the execution of the `main()` function after printing \"No\" when it encounters an 'x', leading to the possibility of printing \"Yes\" or \"No\" afterwards inappropriately.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n             ok = True\n         elif s[i] == \"x\":\n             print(\"No\")\n-            break\n+            return\n \n     if ok == True:\n         print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of N after each loop, which is unnecessary and leads to additional output before determining if N is equal to 1.",
+      "diff": "--- \n+++ \n@@ -2,8 +2,8 @@\n \n while N % 2 == 0:\n     N //= 2\n-print(N)\n+\n while N % 3 == 0:\n     N //= 3\n-print(N)\n+\n print(\"Yes\" if N == 1 else \"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `range(2,2,16)` instead of `range(1,17,2)`, resulting in the loop not executing and always printing \"Yes\" regardless of the input.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n s = input()\n-for i in range(2,2,16):\n+for i in range(1,17,2):\n   if s[i] != \"0\":\n     print(\"No\")\n     break"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

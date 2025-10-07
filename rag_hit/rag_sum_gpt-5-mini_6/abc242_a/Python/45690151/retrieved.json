@@ -1,0 +1,31 @@
+{
+  "task": "abc242_a/Python/45690151",
+  "query_summary": "The code uses b-a+1 as the denominator when computing the random-selection probability instead of b-a, causing an off-by-one error in that probability.",
+  "oracle_summary": "The middle-case probability has an off-by-one error: it divides by (b − a + 1) instead of (b − a) for the interval (a, b].",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the total number of valid values when \\( a \\) is less than or equal to \\( b \\), instead of calculating the maximum between \\( n - a + 1 \\) and 0.",
+      "diff": "--- \n+++ \n@@ -1,8 +1,9 @@\n n, a, b = map(int, input().split())\n if a <= b:\n-    print(n)\n+    print(max(n - a + 1, 0))\n else:\n     if n < a:\n         print(0)\n     else:\n         print((n // a - 1) * b + min(b - 1, n % a) + 1)\n+"
+    },
+    {
+      "summary": "The buggy code fails to account for cases where all exponents in the list `c` are even and `b` is odd, leading to an incorrect result when calculating the final output.",
+      "diff": "--- \n+++ \n@@ -19,5 +19,7 @@\n     res = res * (i * b + 1) % M\n \n res = res * b % M\n+if all(i & 1 == 0 for i in c) and b & 1:\n+    res -= 1\n res = res * (M+1) // 2 % M\n print(res)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b` is the average of `a` and `c`, instead of verifying if `b` is between `a` and `c` inclusively.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b, c = map(int, input().split())\n \n-if (a + c) // 2 == b:\n+if a <= b <= c or c <= b <= a:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates and prints the cube of `a` instead of raising `a` to the power of `b`.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n a,b = map(int, input().split())\n-print(a**3)\n+print(a**b)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses integer division (`int(a / b)`) instead of floor division (`a // b`), which can lead to incorrect results when `a` and `b` are not perfectly divisible.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,6 @@\n import math\n a, b = list(map(int, input().split(' ')))\n+\n \n if a < b:\n   tmp = b\n@@ -8,7 +9,7 @@\n \n ans = 0\n while b > 0:\n-  ans += int(a / b)\n+  ans += a // b\n   a = a % b\n   tmp = a\n   a = b"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

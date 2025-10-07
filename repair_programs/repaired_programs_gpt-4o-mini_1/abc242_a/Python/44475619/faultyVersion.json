@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition for the second if-elif statement. The correct logic should check if both B and A are less than X, not just B. The original line was incorrectly allowing `B` to be less than X independently, ignoring the potential that `A` could also be less than X. The corrected line ensures this logic is considered, thereby properly evaluating the range of A and B against X.",
+  "fixed_code": "inp=input().split()\nA=inp[0]\nA=int(A)\nB=inp[1]\nB=int(B)\nC=inp[2]\nC=int(C)\nX=inp[3]\nX=int(X)\nD=B-A\nif A>=X:\n    print(1)\nelif B<X and A<X:\n    print(0)\nelse:    \n    print(D/C)"
+}

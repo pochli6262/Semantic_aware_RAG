@@ -1,0 +1,1 @@
+The code fails to remove an outer pair when inner deletions leave letters between the stored "(" token and a later ")", because it flushes those letters as a separate token before checking for a matching "(" and thus doesn't recognize the enclosure (e.g. "(a(b)c)" is left as "(ac)" instead of being deleted).

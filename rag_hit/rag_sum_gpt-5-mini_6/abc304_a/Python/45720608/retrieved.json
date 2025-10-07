@@ -1,0 +1,34 @@
+{
+  "task": "abc304_a/Python/45720608",
+  "query_summary": "The program prints both the name and age for each person (by unpacking the stored [name, age]) instead of printing only the names.",
+  "oracle_summary": "The code prints the entire [name, value] pair (using print(*ans[...] )) instead of printing only the name (ans[...] [0]).",
+  "retrieved": [
+    {
+      "summary": "The buggy code contains a print statement inside the loop, which causes it to output the intermediate state of the `ans` list after each iteration instead of only the final length after all operations are complete.",
+      "diff": "--- \n+++ \n@@ -14,5 +14,5 @@\n         bai = ans.pop() + 1\n         ans.pop()\n         ans.append(bai)\n-    print(ans)\n+    # print(ans)\n print(len(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the entire list `a` at the end instead of only the elements that are not equal to the maximum value.",
+      "diff": "--- \n+++ \n@@ -27,6 +27,6 @@\n ans=[]\n for i in range(n):\n     if a[i]!=mx:ans.append(a[i])\n-print(*a)\n+print(*ans)\n         \n         "
+    },
+    {
+      "summary": "The buggy code prints the list of indices as a list with brackets, while the correct code prints the indices as space-separated values.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n \tfor j in range(N):\n \t\tif A[j]:\n \t\t\tans.append(j+1)\n-\tprint(ans)\n+\tprint(*ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the value of `a[now]` instead of `a[i]` when appending to the `ans` list, which results in the wrong pair of indices being recorded.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n for i in range(n):\n   while a[i] != i:\n     now = a[i]\n-    ans.append([now+1,a[now]+1])\n+    ans.append([i+1,a[i]+1])\n     a[i], a[now] = a[now], a[i]\n     \n print(len(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of `n-1` repeatedly for each iteration, instead of printing a decreasing sequence from `n-1` down to `0`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,5 @@\n n=int(input())\n for i in range(n):\n-  print(n-1)\n+    print(n-i)\n+\n print(0)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

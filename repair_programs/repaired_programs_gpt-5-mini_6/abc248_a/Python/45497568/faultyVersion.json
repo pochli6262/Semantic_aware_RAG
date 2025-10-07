@@ -1,0 +1,4 @@
+{
+  "explanation": "The program initialized num = set([i for i in range(1, 10)]) which creates the set {1,2,...,9} and omits 0. Since the input is a length-9 string containing all but one digit from 0–9, 0 itself can be the missing digit. I fixed the line to initialize the set to all digits 0–9 using range(10) so discarding the present digits leaves the single missing digit. This fix directly addresses the bug described in the summary (no diff pattern from the provided diffs was necessary).",
+  "fixed_code": "S = input()\nnum = set(range(10))\n\nfor s in S:\n    num.discard(int(s))\n\nprint(*num)"
+}

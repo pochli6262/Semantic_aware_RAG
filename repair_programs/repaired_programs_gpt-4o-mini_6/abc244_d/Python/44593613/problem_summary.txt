@@ -1,0 +1,1 @@
+The bug likely lies in the recursive function which only allows a maximum of 10 swaps, failing to account for the fact that any number of exchanges can actually reorder the hats in reality.

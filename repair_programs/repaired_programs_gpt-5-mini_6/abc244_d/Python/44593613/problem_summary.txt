@@ -1,0 +1,1 @@
+The base case incorrectly compares the current arrangement to the initial configuration s instead of to the target configuration t.

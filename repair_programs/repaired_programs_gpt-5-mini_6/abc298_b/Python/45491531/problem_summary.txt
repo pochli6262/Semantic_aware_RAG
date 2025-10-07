@@ -1,0 +1,1 @@
+The program never tests the original (zero-rotation) matrix — it only checks after rotating up to three times, so it can miss a valid match without rotation.

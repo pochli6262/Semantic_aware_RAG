@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition `if S in A == T in A:` is parsed by Python as a chained comparison, not as a comparison of the two membership tests. That makes the test always evaluate incorrectly. I fixed it by explicitly comparing the boolean results of the membership tests using parentheses: `(S in A) == (T in A)`, which is True when both S and T are either in A or both not in A.",
+  "fixed_code": "S=input()\nT=input()\nA=[\"R G B\",\"B R G\",\"G B R\"]\nif (S in A) == (T in A):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

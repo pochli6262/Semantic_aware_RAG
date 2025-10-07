@@ -1,0 +1,29 @@
+{
+  "task": "abc244_c/Python/45666072",
+  "query_summary": "The program prints the pop method object instead of calling it (it uses print(num_set.pop, ...) rather than print(num_set.pop(), ...)).",
+  "oracle_summary": "The buggy code prints the set’s pop method object (num_set.pop) instead of calling it (num_set.pop()), so it outputs a function reference and doesn’t remove/print an element from the set.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the minimum moves needed to bring the number 1 to the end of the list, specifically in the calculation of the last print statement.",
+      "diff": "--- \n+++ \n@@ -17,4 +17,4 @@\n     if P[idx+1] == 2:\n         print(min(idx, N-idx+2))  # 1を先頭に持ってくる\n     else:\n-        print(min(idx+1, N-idx-1+2)+1)  # 1を末尾に持ってくる\n+        print(min(idx+1+1, 1+(N-idx-1)))  # 1を末尾に持ってくる"
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to print the string 'N' repeated N times instead of calculating the correct numerical result represented by N.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n N = int(input())\n-print('N'*N)\n+print((10**N-1)//9*N)"
+    },
+    {
+      "summary": "The code incorrectly prints the elements of each sublist in `Q`, instead of printing the number of elements followed by the elements, leading to a mismatch with the expected output format.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n \n print(M)\n for i in range(M):\n-    print(i + 1, *Q[i])\n+    print(len(Q[i]), *Q[i])\n \n S = input()\n ans = 0"
+    },
+    {
+      "summary": "The buggy code has an incorrect range in the for loop, which causes an \"index out of range\" error when accessing elements of the list P.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n P = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(1, N + 1):\n   if P[-i] > P[-i - 1]:\n     continue\n   else:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `idx[1:]` instead of `num[1:]`, resulting in an incorrect output of indices instead of the modified list of numbers.",
+      "diff": "--- \n+++ \n@@ -13,4 +13,4 @@\n     num[y], num[y+1] = num[y+1], num[y]\n     idx[num[y]] = y\n     idx[num[y+1]] = y+1\n-print(*idx[1:])\n+print(*num[1:])"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

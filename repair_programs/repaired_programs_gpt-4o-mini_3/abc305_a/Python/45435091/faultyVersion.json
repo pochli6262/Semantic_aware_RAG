@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'ans=n+5-(n%5)' was meant to round 'n' up to the nearest multiple of 5 but was incorrectly designed. The original logic did not account for the case when 'n' is already a multiple of 5. The corrected line simply adds 5 to 'n' before subtracting the remainder, ensuring it rounds properly to the next multiple of 5 if needed.",
+  "fixed_code": "n=100\n\nif n%5<3:\n    ans=n-(n%5)\nelse:\n    ans=n+5-(n%5)\nprint(ans)"
+}

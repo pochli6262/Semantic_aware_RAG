@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program contained a typo where 'Friay' should have been corrected to 'Friday'. This is aligned with the analysis of the buggy program and the expected output for 'Friday'. No other changes were necessary. The inspiration comes from ensuring that the input day matches the predefined weekdays correctly.",
+  "fixed_code": "s=input()\nif s==\"Monday\":\n    print(5)\nif s==\"Tuesday\":\n    print(4)\nif s==\"Wednesday\":\n    print(3)\nif s==\"Thursday\":\n    print(2)\nif s==\"Friday\":\n    print(1)"
+}

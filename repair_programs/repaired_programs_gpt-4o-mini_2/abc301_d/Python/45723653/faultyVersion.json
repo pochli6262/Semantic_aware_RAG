@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the second loop where we add value to `res` for each '?' character. The condition incorrectly allows addition of the bit value to `res` even when doing so would exceed `n`. The fixed condition ensures that it checks and only adds the value when it won't exceed `n`.",
+  "fixed_code": "if __name__ == '__main__':\n    s = str(input())\n    n = int(input())\n    m = len(s)\n    res = 0\n    for i in range(m):\n        if s[i] == \"1\":\n            res += (1 << (m - 1 - i))\n    if res > n:\n        res = -1\n    else:\n        for i in range(m - 1, -1, -1):\n            if s[i] == \"?\" and res + (1 << (m - 1 - i)) <= n:\n                res += (1 << (m - 1 - i)) if res + (1 << (m - 1 - i)) <= n else 0\n    print(res)"
+}

@@ -1,0 +1,1 @@
+For N < 10^3 the helper function returns 0 so print(round(N, -range(N))) becomes round(N, 0) and prints a float (e.g. "304.0") instead of the expected integer.

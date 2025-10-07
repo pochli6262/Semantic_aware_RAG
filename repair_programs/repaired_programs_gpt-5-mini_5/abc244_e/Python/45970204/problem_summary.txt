@@ -1,0 +1,1 @@
+The code never applies modulo to the accumulated DP values (it only mods the added term), and it prints the raw dp[k][t-1][0] instead of taking it modulo 998244353.

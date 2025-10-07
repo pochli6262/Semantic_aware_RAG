@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug arises from the way indices are accessed when retrieving the k-th occurrence of x from the list stored in the defaultdict. The original program uses D[x][k - 1], which assumes that k is always valid. However, the length of D[x] might be smaller than k, leading to an index out of range error. I corrected this logic to ensure that we are always checking if the list has enough elements before attempting to access it, using if k <= len(D[x]).",
+  "fixed_code": "import sys\nfrom collections import defaultdict\nMOD = 998_244_353\nINF = 10**18\n\nN, Q = map(int, sys.stdin.readline().rstrip().split())\nA = list(map(int, sys.stdin.readline().rstrip().split()))\nD = defaultdict(list)\nfor i in range(N):\n    D[A[i]].append(i + 1)\n\nprint(D)\n\nfor q in range(Q):\n    x, k = list(map(int, sys.stdin.readline().rstrip().split()))\n    if k <= len(D[x]):\n        print(D[x][k - 1])\n    else:\n        print(-1)"
+}

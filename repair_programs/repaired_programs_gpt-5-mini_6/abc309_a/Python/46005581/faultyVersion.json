@@ -1,0 +1,4 @@
+{
+  "explanation": "The elif branch was printing 'YES' (all uppercase) but the problem requires 'Yes' (capital Y, lowercase es). I changed print('YES') to print('Yes') to fix the output casing, per the bug summary.",
+  "fixed_code": "#a = int(input());\nlist_A_B = list(map(int, input().split()));\nA = list_A_B[0]\nB = list_A_B[1]\n#x = int(input());\n\nif A%3 == 1 and B == A+1:\n    print('Yes')\nelif A%3 == 2 and B == A+1:\n    print('Yes')\nelse:\n    print('No')\n"
+}

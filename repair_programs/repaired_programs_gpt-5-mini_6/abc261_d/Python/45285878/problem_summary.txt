@@ -1,0 +1,1 @@
+The update for dp[i][0] is incorrect: it uses max(dp[i-2]) and adds xl[i] + yl[j] (also referencing a stale j), whereas it should derive from max(dp[i-1]) and not add the head reward/bonus.

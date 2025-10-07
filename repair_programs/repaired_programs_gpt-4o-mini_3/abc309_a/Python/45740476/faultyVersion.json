@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the original program only checks if 'b' is exactly equal to 'a + 1', without considering the case where 'b' could be 10 and 'a' could be 1 (which would also mean they are consecutive in a circular sense as in a clock). The correct line checks if 'b' is either 'a + 1' or if 'a' is 1 and 'b' is 10 to account for that circular case.",
+  "fixed_code": "a,b=map(int,input().split())\n\nif b==a+1 or (a==1 and b==10):\n  if a%3!=0:\n    print('Yes')\nelse:\n  print('No')"
+}

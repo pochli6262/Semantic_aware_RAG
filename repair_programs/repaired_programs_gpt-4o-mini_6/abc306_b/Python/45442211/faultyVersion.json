@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'for i in range(63):' only iterates from 0 to 62, which means it skips the calculation for A_63. By changing it to 'for i in range(64):', we include all indices from 0 to 63 in the computation. This addresses the bug identified in the problem summary.",
+  "fixed_code": "A = list(map(int,input().split()))\nS = 0\n\nimport math\n\nfor i in range(64):\n    S = S + A[i]*(pow(2,i))\n    \nprint(S)"
+}

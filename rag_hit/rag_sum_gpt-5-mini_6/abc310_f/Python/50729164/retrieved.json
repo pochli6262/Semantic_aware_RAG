@@ -1,0 +1,33 @@
+{
+  "task": "abc310_f/Python/50729164",
+  "query_summary": "The code fails to account for die faces greater than 10 — it only processes faces 1..10 and never handles the remaining outcomes (so probability mass for values >10 is omitted).",
+  "oracle_summary": "The bug was that the transition for choosing values >10 was omitted — the dp[i+1][bit] += dp[i][bit] * max(0, a[i]-10) * inv term was missing, so contributions from those choices were never added.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly limits the range in the second loop to `-10` to `9`, which should be `-10` to `10` to properly include all possible sums.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     if -1000 <= ns <= 1000:\n       ndp[ns] += dp[s]\n       ndp[ns] %= MOD\n-  for s in range(-10, 10):\n+  for s in range(-10, 11):\n     if s == 0: continue\n     ns = s + a\n     if -1000 <= ns <= 1000:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses a modulo constant of \\(10^9 + 7\\) instead of the correct constant \\(998244353\\), leading to incorrect results when calculating large values.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-MOD = 10**9+7\n+MOD = 998244353\n n = int(input())\n arr = list(map(lambda x:n-int(x), input().split()))\n dp = [[0]*n for i in range(n)]"
+    },
+    {
+      "summary": "The bug in the code is that it fails to prevent exceeding the bounds of the array `dp` when filling values for cases where `s[i]` is 1, potentially leading to an IndexError or incorrect results, as it does not correctly manage the upper limit for `j`.",
+      "diff": "--- \n+++ \n@@ -37,6 +37,8 @@\n         dp[i+1][n] %= MOD\n     else:\n         for j in range(n):\n+            if j == (m+1):\n+                break\n             dp[i+1][j+1] += dp[i][j]\n     \n     # print(dp)"
+    },
+    {
+      "summary": "The buggy code uses an insufficiently sized list `B` by initializing it to `M = 2*10**5+2`, which may lead to index errors when accessing `B[a]` for larger values of `a`, whereas the correct code uses `M = 2*10**5+30` to accommodate all potential values from the input list `A`.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n MOD = 998244353 \n-M = 2*10**5+2\n+M = 2*10**5+30\n N = int(input())\n A = list(map(int,input().split()))\n B = [0]*M"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the variable `M` instead of `N`, which leads to incorrect calculations in the loop.",
+      "diff": "--- \n+++ \n@@ -3,6 +3,6 @@\n ans = 0\n for i in range(60):\n     if (M >> i) & 1:\n-        ans += M // (1 << (i + 1)) * (1 << i) + max(0, (M % (1 << (i + 1))) - (1 << i) + 1)\n+        ans += N // (1 << (i + 1)) * (1 << i) + max(0, (N % (1 << (i + 1))) - (1 << i) + 1)\n         ans %= MOD\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    9
+  ],
+  "useful_diffs_count": 3
+}

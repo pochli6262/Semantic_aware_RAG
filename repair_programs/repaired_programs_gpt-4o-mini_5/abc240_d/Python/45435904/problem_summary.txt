@@ -1,0 +1,1 @@
+The program likely fails to correctly handle the condition where multiple consecutive balls of the same value should disappear, resulting in an inaccurate count of remaining balls after each insertion.

@@ -1,0 +1,31 @@
+{
+  "task": "abc309_a/Python/45775765",
+  "query_summary": "The code is missing a final else branch to handle cases where (A,B) doesn't match any listed pair, so it fails to print \"No\" for unmatched inputs.",
+  "oracle_summary": "The code is missing a final else branch to handle cases where (A,B) doesn't match any listed pair, so it fails to print \"No\" for unmatched inputs.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code does not account for the case where both A and B are equal to 2, which should return 2 instead of -1 when their sum is 4.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n A,B = map(int,input().split())\n if A + B == 3:\n   print(\"3\")\n-elif A + B == 4:\n+elif A + B == 4 and A != B:\n   print(\"2\")\n elif A + B == 5:\n   print(\"1\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `ok` with pairs starting from (0,1) instead of (1,2), which causes valid input pairs like (1,2) to be excluded.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b = map(int,input().split())\n-ok = [(i,i+1) for i in range(9)]\n+ok = [(i,i+1) for i in range(1,10)]\n ok.append((1,10))\n if (a,b) in ok:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code contains duplicate conditional checks (`elif A==1 and B==2:` appears twice), which can lead to incorrect logic and undesired behavior.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n A,B = (map(int,input().split()))\n if A==1 and B==2:\n     print(3)\n+elif A==3 and B==1:\n+    print(2)\n elif A==1 and B==3:\n     print(2)\n elif A==2 and B==1:"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc235_c/Python/46176667",
+  "query_summary": "The buggy code includes an unintended debug print (print(D)) that outputs the dictionary before answering queries, corrupting the expected output format.",
+  "oracle_summary": "The buggy code includes an unintended debug print (print(D)) that outputs the dictionary before answering queries, corrupting the expected output format.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints `0` when the `key` is `INF`, which is unnecessary and misleading since it may disrupt the expected output of the program.",
+      "diff": "--- \n+++ \n@@ -10,8 +10,6 @@\n \n for i, value in enumerate(P):\n     key = S[S.bisect_left(value)]\n-    if key == INF:\n-        print(0)\n     if key is not INF and key is not - INF:\n         dic[value] = dic.pop(key)\n         S.discard(value)"
+    },
+    {
+      "summary": "The buggy code uses an incorrect modulus value (`9982444353` instead of `998244353`), which could lead to discrepancies during calculations and potential overflow errors.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n import sys\n input = lambda: sys.stdin.readline().rstrip()\n-mod = 9982444353\n+mod = 998244353\n \n #  -----------------------  #\n "
+    },
+    {
+      "summary": "The buggy code fails to apply the modulo operation on the results of the `dp[k]` value when printing, which can lead to incorrect outputs for large values due to integer overflow or exceeding limits.",
+      "diff": "--- \n+++ \n@@ -29,4 +29,4 @@\n             if i-x < 0: continue\n             dp[i] -= dp[i-x]\n     # print(t,x,dp)\n-    print(dp[k])\n+    print(dp[k]%MOD)"
+    },
+    {
+      "summary": "The problem in the buggy code is that in the second case of the query handling (when `q[0] == \"2\"`), the calculation should use `a * pow10[len(dq) + 1]` instead of `a * a * pow10[len(dq)]`, as the former correctly adjusts the effect of removing the front element from the deque.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n \n \telif q[0]==\"2\":\n \t\ta = dq.popleft()\n-\t\tnum -= (a * a*pow10[len(dq)])\n+\t\tnum -= (a*pow10[len(dq)])\n \t\tnum = (num+MOD) % MOD\n \n \telif q[0]==\"3\":"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the second value as `1` instead of `q` when no operations are needed, leading to an incorrect output in that specific case.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n     o += 1\n \n if o == 0:\n-    print(0, 1)\n+    print(0, q)\n     sys.exit()\n \n take = sz - pow(2, o - 1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

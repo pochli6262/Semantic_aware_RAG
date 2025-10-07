@@ -1,0 +1,1 @@
+The bug likely arises from the incorrect condition that checks for adjacency, as it improperly uses a set comparison instead of directly assessing their positions on the board.

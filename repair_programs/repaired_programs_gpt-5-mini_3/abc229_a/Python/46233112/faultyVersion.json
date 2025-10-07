@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code used S1 = input() and S2 = input(), which assumes the two strings come on separate lines. In many problem statements the two strings are given on a single line separated by a space. I changed the second line so that after reading the whole line into S1, we split it into S1 and S2. This fixes incorrect input parsing while changing only one line.",
+  "fixed_code": "S1 = input()\nS1, S2 = S1.split()\nif S1[0] == S2[0] or S1[1] == S2[1]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

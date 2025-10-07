@@ -1,0 +1,32 @@
+{
+  "task": "abc265_b/Python/45288123",
+  "query_summary": "The bug is using T < 0 instead of T <= 0 to detect failure after each move, incorrectly allowing the case T == 0 to continue and possibly print \"Yes\" when it should be \"No.\"",
+  "oracle_summary": "The bug is using T < 0 instead of T <= 0 to detect failure after each move, incorrectly allowing the case T == 0 to continue and possibly print \"Yes\" when it should be \"No.\"",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for printing \"No\", leading to incorrect output when both `s[i]` and `t[i]` are the same and their count exceeds 2.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,6 @@\n   d[s[i]] += 1\n   d[t[i]] += 1\n for i in range(n):\n-  if d[s[i]] >= 2 and d[t[i]] >= 2:\n+  if (s[i] == t[i] and d[s[i]] > 2) or (s[i] != t[i] and d[s[i]] >= 2 and d[t[i]] >= 2):\n     exit(print(\"No\"))\n print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `0` when the string `T` matches `S` either at the start or the end, instead of only when it matches both, leading to incorrect output when `S` is found at both positions.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n T = input()\n \n \n-if T == S:\n+if T[:N] == S and T[-N:] == S:\n   print(0)\n elif T[:N] == S:\n   print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output as \"Yes\" if K is non-negative, without checking if K is also even, which is necessary for the correct condition.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     while N > 0:\n         K -= N % 3\n         N //= 3\n-    if K >=0:\n+    if K >= 0 and K % 2 == 0:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

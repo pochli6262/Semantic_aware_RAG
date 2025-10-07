@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was an off-by-one in the eligibility check: the code used 'if X < A:' so a participant with rank exactly A was not treated as guaranteed to receive a T-shirt. I changed the comparison to '<=' so that X == A returns 1. This is a one-line fix addressing the off-by-one error.",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X <= A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A)\n  print(answer)"
+}

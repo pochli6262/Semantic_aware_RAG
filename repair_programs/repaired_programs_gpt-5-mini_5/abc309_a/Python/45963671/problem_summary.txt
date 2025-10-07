@@ -1,0 +1,1 @@
+When b - a != 1 the program prints "No" but doesn't stop execution, so it can continue and produce a second, possibly contradictory output (e.g. "Yes").

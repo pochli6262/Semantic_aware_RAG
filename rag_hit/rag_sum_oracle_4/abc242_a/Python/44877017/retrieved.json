@@ -1,0 +1,31 @@
+{
+  "task": "abc242_a/Python/44877017",
+  "query_summary": "When x <= a, the buggy code sets res to 100.0 instead of 1.0, erroneously outputting a percentage rather than a probability.",
+  "oracle_summary": "When x <= a, the buggy code sets res to 100.0 instead of 1.0, erroneously outputting a percentage rather than a probability.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to `n-1` instead of 1 to `n`, thus omitting the last digit comparison between the two numbers.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n \n n = min(len(a), len(b))\n \n-for i in range(1, n):\n+for i in range(1, n+1):\n     if int(a[-i])+int(b[-i]) > 9:\n         print(\"Hard\")\n         sys.exit()"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the value of `ans` by using the wrong formula, specifically by not properly accounting for `a` in the numerator, leading to an incorrect result.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n a,b=map(int,input().split())\n-ans=(1000*b+5)//a/1000\n+ans=(1000*b+a/2)//a/1000\n print(\"{:.3f}\".format(ans))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition `c[i] * a[i] > 0` instead of `c[i] - a[i]*X > 0`, which affects the logic determining whether to set `s` to 0 in the case where `a[i] == b[i]`.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     r = X\n     for i in range(n):\n         if a[i] == b[i]:\n-            if c[i] * a[i] > 0:\n+            if c[i] - a[i]*X > 0:\n                 s = 0\n                 break\n         elif b[i] - a[i] > 0:"
+    },
+    {
+      "summary": "The buggy code has a logical error in its condition to check the validity of the difference between `y` and `z`, which can lead to incorrect output for certain negative values of `y` and `z`.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n x, y, z = [int(x) for x in input().split()]\n if (0 < x - y < x and x > 0) or (x < x - y < 0 and x < 0):\n-    if 0 < y - z < y:\n+    if (0 < y - z < y and y > 0) or (y < y - z < 0 and y < 0):\n         print(abs(x))\n     elif (y - z < 0 and y > 0) or (y - z > 0 and y < 0):\n         print(-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `round()` for formatting the output, which does not ensure three decimal places in the printed result.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n a, b = map(int, input().split())\n \n-print(round(b / a, 3))\n+print(\"{:.3f}\".format(round(b / a, 3)))"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

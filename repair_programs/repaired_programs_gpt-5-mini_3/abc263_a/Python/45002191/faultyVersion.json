@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition only checked that there are exactly two distinct values in the input list, but it didn't enforce that the input contained exactly three numbers (the usual problem requirement: given three integers, check whether exactly two are equal). I fixed the if-condition to require both that the list has length 3 and that there are exactly two distinct values.",
+  "fixed_code": "x=list(map(int,input().split()))\nif len(x) == 3 and len(set(x))==2:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

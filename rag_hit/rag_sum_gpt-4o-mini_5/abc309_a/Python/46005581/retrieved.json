@@ -1,0 +1,33 @@
+{
+  "task": "abc309_a/Python/46005581",
+  "query_summary": "The program incorrectly uses the output 'YES' instead of 'Yes' for one of the conditions.",
+  "oracle_summary": "The bug is a simple typo: the second branch prints \"YES\" (wrong case) instead of the required \"Yes\", producing incorrect output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code does not account for the additional condition that both B and C must be non-zero while A and D are greater than zero, leading to incorrect output in certain cases.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,7 @@\n N, A, B, C, D = map(int, input().split())\n if abs(B - C) > 1:\n     print(\"No\")\n+elif B == 0 and C == 0 and A > 0 and D > 0:\n+    print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code fails to check for the word \"the,\" which is present in the correct code's conditions for printing \"Yes.\"",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n ans = \"No\"\n for i in a:\n-    if i == \"and\" or i == \"not\" or i == \"that\" or i == \"you\":\n+    if i == \"and\" or i == \"not\" or i == \"that\" or i == \"you\" or i == \"the\":\n         print(\"Yes\")\n         exit()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly determines the condition for printing \"Yes\" by failing to account for the case where there are no occurrences of the middle element in the second half of the sorted list.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n         c2+=1\n     else:\n         break\n-if (n+1)//2-c1>c2:\n+if (n+1)//2-c1>c2 or c2==0:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly outputs 'Yes' for the input 'BA', which should result in 'No'.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n n=int(input())\n s=input()\n-print('No' if s[0]=='A' and s[-1]=='B' else 'Yes')\n+\n+print('No' if (s[0]=='A' and s[-1]=='B') or s=='BA' else 'Yes')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

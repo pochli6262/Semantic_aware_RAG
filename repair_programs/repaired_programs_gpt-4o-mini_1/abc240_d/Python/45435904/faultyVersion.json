@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition where the function checks if the count of occurrences (Q[-1][1]) equals the current element (a). In the line `if Q[-1][1] == a:`, it should instead check if the count becomes equal to the length of the element being processed, which is the correct behavior for counting repetitions. This line is now corrected to check against `Q[-1][1] == Q[-1][0]` instead.",
+  "fixed_code": "from collections import deque\nN = int(input())\nA = list(map(int, input().split()))\n\nQ = deque()\nans = 0\n\nfor a in A:\n    ans += 1\n    if len(Q) == 0:\n        Q.append([a,1])\n    if Q[-1][0] != a:\n        Q.append([a,1])\n    else:\n        Q[-1][1] += 1\n        if Q[-1][1] == Q[-1][0]:\n            Q.pop()\n            ans -= a\n    print(ans)"
+}

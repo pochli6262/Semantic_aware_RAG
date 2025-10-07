@@ -1,0 +1,1 @@
+The code converts the success rates to floating-point via multiplying by 10**100 and dividing, which can overflow or lose precision and thus produce incorrect ordering for large A_i/B_i values.

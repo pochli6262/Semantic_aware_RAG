@@ -1,0 +1,4 @@
+{
+  "explanation": "The elif condition was checking t[i] == \"o\" instead of s[i] == \"o\", making the 0/o similarity check asymmetric (it should inspect the character from s like the other checks). I fixed that single operand so the elif now reads 'elif s[i] == \"0\" or s[i] == \"o\":', matching the intended logic and the pattern used in the first conditional.",
+  "fixed_code": "n = int(input())\ns = input()\nt = input()\n\np = 0\n\nfor i in range(n):\n    if s[i] == \"1\" or s[i] == \"l\":\n        if t[i] == \"1\" or t[i] == \"l\":\n            p += 1\n        \n    elif s[i] == \"0\" or s[i] == \"o\":\n        if t[i] == \"0\" or t[i] == \"o\":\n            p += 1\n            \n    elif s[i] == t[i]:\n        p += 1\n    \nif p == n:\n    print(\"Yes\")\n    \nelse:\n    print(\"No\")\n"
+}

@@ -1,0 +1,29 @@
+{
+  "task": "abc303_d/Python/45489398",
+  "query_summary": "The bug was using an INF value that was too small (1e10) so legitimate DP costs could exceed it and be treated as \"infinite,\" corrupting the DP transitions and final result.",
+  "oracle_summary": "The bug was using an INF value that was too small (1e10) so legitimate DP costs could exceed it and be treated as \"infinite,\" corrupting the DP transitions and final result.",
+  "retrieved": [
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    },
+    {
+      "summary": "The problem in the buggy code is that it attempts to update the `dp` array based on previous cells without checking if the current cell (`dp[i][j]`) has been reached, potentially leading to incorrect updates for inaccessible paths.",
+      "diff": "--- \n+++ \n@@ -31,6 +31,8 @@\n dp[0][0] = 1\n for i in range(H):\n     for j in range(W):\n+        if dp[i][j] == 0:\n+            continue\n         if j < W - 1 and C[i][j + 1] == \".\":\n             dp[i][j + 1] = max(dp[i][j + 1], dp[i][j] + 1)\n         if i < H - 1 and C[i + 1][j] == \".\":"
+    },
+    {
+      "summary": "The buggy code produces incorrect results due to using a strict greater-than comparison (`dp[k][0] > 0`) instead of a greater-than-or-equal-to comparison (`dp[k][0] >= 0`) when checking the value of `dp[k][0]` before printing the result.",
+      "diff": "--- \n+++ \n@@ -38,4 +38,4 @@\n     for j in range(d):\n       nj = (j+ai)%d\n       dp[i+1][nj] = max(dp[i][j]+ai,dp[i+1][nj])\n-print(dp[k][0] if dp[k][0] > 0 else -1)\n+print(dp[k][0] if dp[k][0] >= 0 else -1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly returns the string \"infinity\" when a negative cycle is detected instead of the correct case-sensitive string \"Infinity\".",
+      "diff": "--- \n+++ \n@@ -70,6 +70,6 @@\n     dist.append(r)\n \n D, tf = SPFA(dist,0)\n-print(-min(D[1:offset]) if tf else \"infinity\")\n+print(-min(D[1:offset]) if tf else \"Infinity\")\n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `mod <= B` by not ensuring the printed result is non-negative, leading to potential negative output.",
+      "diff": "--- \n+++ \n@@ -41,5 +41,5 @@\n     q-=1\n     b = q * B\n     if(mod > B):print(b + B)\n-    else:print(b+mod)\n+    else:print(max(0,b+mod))\n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

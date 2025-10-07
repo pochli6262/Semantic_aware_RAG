@@ -1,0 +1,1 @@
+The conditional "if S in A == T in A:" incorrectly relies on chained comparison/membership operators, so it doesn't compare (S in A) with (T in A) as intended.

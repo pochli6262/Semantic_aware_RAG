@@ -1,0 +1,31 @@
+{
+  "task": "abc300_b/Python/45723196",
+  "query_summary": "It reads the two dimensions by taking the first and last characters of the input string instead of splitting tokens, causing incorrect parsing for multi-digit numbers or spaces.",
+  "oracle_summary": "It reads the two dimensions by taking the first and last characters of the input string instead of splitting tokens, causing incorrect parsing for multi-digit numbers or spaces.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for zero values using `if x==0 or y==0`, while the correct code checks for negative values with `if x<=0 or y<=0`, allowing for proper handling of inputs that are zero or negative.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x, y, a, b, c = map(int, input().split())\n def solve_two(x, y, a, b):\n-    if x==0 or y==0:\n+    if x<=0 or y<=0:\n         return False\n     res = ((a+x-1)//x+(b+x-1)//x <= y) or ((a+y-1)//y+(b+y-1)//y <= x)\n     return res\n@@ -16,4 +16,3 @@\n \n ans = solve_three(x, y, a, b, c)\n print('Yes' if ans else 'No')\n-"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from `0` to `n-m` instead of `0` to `n-m+1`, potentially missing the last valid substring comparison.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n elif n == m:\n     print('Yes' if a == b else 'No')\n else:\n-    for i in range(n-m):\n+    for i in range(n-m+1):\n         t = a[i:i+m]\n         if t == b:\n             print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the first three characters of both strings are equal, potentially leading to errors when the strings are shorter than three characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n t = input()\n-if s[0:3] == t[0:3]:\n+if s[0:len(s)] == t[0:len(s)]:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b` is odd or even instead of validating whether `b` is equal to `2a` or `2a + 1`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n # l = [input() for _ in range(a)]\n # l = [list(map(int, input().split())) for _ in range(a)]\n \n-if b % 2 <= 1:\n+if b==a*2 or b==a*2+1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the last digits of `a` and `b` differ by exactly 1, instead of allowing for the special case where they wrap around and differ by 9.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b = map(int,input().split())\n-if abs(a % 10 - b % 10) == 1:\n+if abs(a % 10 - b % 10) in [1,9]:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

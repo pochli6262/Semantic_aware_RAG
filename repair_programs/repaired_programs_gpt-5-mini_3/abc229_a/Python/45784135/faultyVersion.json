@@ -1,0 +1,4 @@
+{
+  "explanation": "The if line accessed s1[1] and s2[1] without ensuring the strings have at least two characters, which can raise an IndexError for short inputs. I fixed that line by adding length checks (len(s1)>1 and len(s2)>1) before accessing index 1.",
+  "fixed_code": "s1=input()\ns2=input()\n\nif (s1[0]==\"#\" and s2[0]==\"#\") or (len(s1)>1 and len(s2)>1 and s1[1]==\"#\" and s2[1]==\"#\"):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

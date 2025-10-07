@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug lies in the way the 'ans' is calculated in the else block. The correction involves changing 'ans=N+a-1' to 'ans=N+(5-a)', which ensures that the computed 'ans' rounds up to the nearest multiple of 5 when 'a' is not zero.",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a <3:\n        ans=N-a\n    else:\n        ans=N+(5-a)\n    print(ans)"
+}

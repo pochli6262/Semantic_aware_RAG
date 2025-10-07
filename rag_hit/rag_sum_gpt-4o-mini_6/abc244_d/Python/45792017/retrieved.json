@@ -1,0 +1,34 @@
+{
+  "task": "abc244_d/Python/45792017",
+  "query_summary": "The likely bug is that the program incorrectly checks for the possibility of achieving the target hat configuration by only verifying if the target string is a substring of the concatenated source string, instead of checking if the specific hat exchange operations can lead to the desired arrangement.",
+  "oracle_summary": "The buggy program fails to remove spaces from the input strings before comparing/rotation checking, causing incorrect results when the inputs contain spaces.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the first three characters of both strings are equal, potentially leading to errors when the strings are shorter than three characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n t = input()\n-if s[0:3] == t[0:3]:\n+if s[0:len(s)] == t[0:len(s)]:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code fails to account for the case where consecutive character counts in the first string can exceed those in the second string, which leads to incorrect conclusions when the first string has more than one occurrence of a character compared to the second.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n     print(\"No\")\n else:\n     for i in range(len(ls)):\n-        if ls[i][0] != lt[i][0] or (ls[i][1] == 1 and lt[i][1] > 1):\n+        if ls[i][0] != lt[i][0] or (ls[i][1] == 1 and lt[i][1] > 1) or (ls[i][1] > lt[i][1]):\n             print(\"No\")\n             break\n     else:"
+    },
+    {
+      "summary": "The buggy code fails to check if the character sequences from strings S and T are the same at corresponding positions, which can lead to incorrect results when determining if S can be transformed into T based on their character counts.",
+      "diff": "--- \n+++ \n@@ -30,6 +30,8 @@\n             tf = False\n         if S_count[i][1] == 1 and T_count[i][1] >= 2:\n             tf = False\n+        if S_count[i][0] != T_count[i][0]:\n+            tf = False\n \n if tf:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the length of string `s` is greater than that of string `t`, leading to incorrect results for cases where `t` is longer than `s`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s = input()\n t = input()\n \n-if len(s) > len(t) or (len(s) == len(t) and s != t):\n+if len(t) > len(s) or (len(s) == len(t) and s != t):\n     print(\"No\")\n     exit()\n else:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `s[j]!=\"?\"!=t[j]` instead of `s[j]!=\"?\" and s[j]!=t[j]` when comparing characters, which leads to incorrect results when checking for mismatches.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         ng.add(i)\n print(\"Yes\" if len(ng)==0 else \"No\")\n for j in range(n):\n-    if t[j]!=\"?\" and s[j]!=t[j]:\n+    if s[j]!=t[j] and s[j]!=\"?\"!=t[j]:\n         ng.add(j)\n     else:\n         ng.discard(j)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "useful_diffs_count": 4
+}

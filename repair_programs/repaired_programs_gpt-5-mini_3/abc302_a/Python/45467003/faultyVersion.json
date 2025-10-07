@@ -1,0 +1,4 @@
+{
+  "explanation": "The program attempted to compute the ceiling of A/B but used 1 + A // B, which is incorrect when A is an exact multiple of B (it overcounts by 1). I replaced that expression with (A + B - 1) // B, the standard integer formula for ceil division for positive integers.",
+  "fixed_code": "A, B = map(int, input().split())\n\nprint((A + B - 1) // B)"
+}

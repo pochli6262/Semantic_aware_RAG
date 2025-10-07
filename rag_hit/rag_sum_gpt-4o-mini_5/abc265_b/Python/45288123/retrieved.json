@@ -1,0 +1,33 @@
+{
+  "task": "abc265_b/Python/45288123",
+  "query_summary": "The likely bug is that the program incorrectly updates the time limit after moving to a room by adding the bonus time before checking if the time limit has fallen below zero.",
+  "oracle_summary": "The bug is using T < 0 instead of T <= 0 to detect failure after each move, incorrectly allowing the case T == 0 to continue and possibly print \"Yes\" when it should be \"No.\"",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the value of `inf` is incorrectly set to `10**18` instead of `2 * 10**18`, which can lead to integer overflow when calculating the minimum time in certain scenarios.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N, X = [int(x) for x in input().split()]\n AB = [[int(i) for i in input().split()] for _ in range(N)]\n \n-inf = 10**18\n+inf = 2 * 10**18\n dp = [[0, inf] for _ in range(N + 1)]\n \n min_b = inf"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly adds the penalty instead of subtracting it when M is less than X.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n if M >= X:\n     print(T)\n else:\n-    print(T + (X - M) * D)\n+    print(T - (X - M) * D)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it includes the end time of 18:00 in the range of acceptable hours, which should only go up to but not include 18:00, leading to potentially incorrect results for the count.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n     count = 0\n     for i in range(N):\n         now_time = (X[i]+j)%24\n-        if ((now_time >= 9)and(now_time <= 18)):\n+        if ((now_time >= 9)and(now_time < 18)):\n             count += W[i]\n     max_count = max(max_count,count)\n print(max_count)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

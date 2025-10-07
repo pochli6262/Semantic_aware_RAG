@@ -1,0 +1,74 @@
+Score : 100 points
+
+### Problem Statement
+
+We have the following 3 \times 3 board with integers from 1 through 9 written on it.
+
+![](https://img.atcoder.jp/abc309/86862b285a60054303435965fe642c67.jpg)
+
+You are given two integers A and B between 1 and 9, where A < B.
+
+Determine if the two squares with A and B written on them are adjacent horizontally.
+
+### Constraints
+
+* 1 \le A < B \le 9
+* A and B are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+A B
+```
+
+### Output
+
+Print `Yes` if the two squares with A and B written on them are adjacent horizontally, and `No` otherwise.
+
+---
+
+### Sample Input 1
+
+```
+7 8
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The two squares with 7 and 8 written on them are adjacent horizontally, so print `Yes`.
+
+---
+
+### Sample Input 2
+
+```
+1 9
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+---
+
+### Sample Input 3
+
+```
+3 4
+```
+
+### Sample Output 3
+
+```
+No
+```

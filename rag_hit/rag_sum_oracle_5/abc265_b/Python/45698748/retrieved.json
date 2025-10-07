@@ -1,0 +1,31 @@
+{
+  "task": "abc265_b/Python/45698748",
+  "query_summary": "The final check uses t < 0 instead of t <= 0, wrongly accepting cases where the remaining time is exactly zero as success.",
+  "oracle_summary": "The final check uses t < 0 instead of t <= 0, wrongly accepting cases where the remaining time is exactly zero as success.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from `0` to `n-m` instead of `0` to `n-m+1`, potentially missing the last valid substring comparison.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n elif n == m:\n     print('Yes' if a == b else 'No')\n else:\n-    for i in range(n-m):\n+    for i in range(n-m+1):\n         t = a[i:i+m]\n         if t == b:\n             print('Yes')"
+    },
+    {
+      "summary": "The bug in the code is that it initializes the `t` array at index 0 with the value `1` instead of `0`, which leads to incorrect calculations for the minimum numbers of operations needed.",
+      "diff": "--- \n+++ \n@@ -14,9 +14,9 @@\n             break\n     else:\n         ok.append(True)\n-\n+        \n t = [1 << 30] * (1 << n)\n-t[0] = 1\n+t[0] = 0\n msk = (1 << n) - 1\n for i in range((1 << n) - 1):\n     j = msk ^ i"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the `tail` by iterating over the range of `len(t)` in a forward direction instead of iterating in reverse, causing index errors and incorrect results.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     if s[i] != \"?\" and t[i] != \"?\" and s[i] != t[i]:\n         break\n     head += 1\n-for i in range(len(t)):\n+for i in range(len(t))[::-1]:\n     if s[i + len(s) - len(t)] != \"?\" and t[i] != \"?\" and s[i + len(s) - len(t)] != t[i]:\n         break\n     tail += 1"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

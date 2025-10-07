@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition if n<100: only checked that n was at least 100, but didn't require n to be a multiple of 100 (so values like 250 would incorrectly be accepted). I replaced that single line with a condition that prints \"No\" when n is zero or not a multiple of 100; otherwise the existing else prints \"Yes\". This fixes the logic to require a positive multiple of 100.",
+  "fixed_code": "n=int(input())\n\nif n % 100 != 0 or n == 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

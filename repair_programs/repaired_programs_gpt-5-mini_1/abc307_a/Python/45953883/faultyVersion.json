@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the result list was initialized with length N (res = [0]*N). That produces a list far larger than the number of 7-element groups and yields incorrect output (extra zeros). The correct size is the number of complete 7-element groups, which is N // 7. I fixed the single incorrect line by changing res = [0]*N to res = [0]*(N//7).",
+  "fixed_code": "N = int(input())\nA = list(map(int,input().split()))\n\nres = [0]*(N//7)\nSUM = 0\nfor i in range(len(A)):\n    SUM += A[i]\n    if (i + 1)%7==0:\n        res[i//7] = SUM\n        SUM = 0\n\nprint(res)\n"
+}

@@ -1,0 +1,34 @@
+{
+  "task": "abc300_c/Python/45749744",
+  "query_summary": "The likely bug is that the program incorrectly counts connected components of `#` symbols instead of identifying distinct crosses of size `n` according to the specified conditions.",
+  "oracle_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to account for sequences of characters after the last hyphen, resulting in potentially incorrect output when the last character is not a hyphen, as it does not check if `cur` is non-zero before updating `ans` after the loop.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     else:\n         cur += 1\n \n-if '-' in s:\n+if '-' in s and cur != 0:\n     ans = max(cur, ans)\n \n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that the condition in the `solve` function incorrectly checks if the number of unique elements represented by `cur` equals `m` instead of `n`.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n             if mask & 1 << i:\n                 for val in tmp[i]:\n                     cur |= 1 << val\n-        if bin(cur).count('1') == m:\n+        if bin(cur).count('1') == n:\n             ans += 1\n     return ans\n         "
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `s` is a list of characters, but it needs to be a string for the string comparison and count operations to work correctly.",
+      "diff": "--- \n+++ \n@@ -23,6 +23,8 @@\n for _ in range(inp()):\n     n=inp()\n     s=insr()\n+    s=\"\".join(s)\n+    # print(s)\n     if s.count(\"1\")%2 or s==\"011\" or s=='110':\n         print(-1)\n         continue"
+    },
+    {
+      "summary": "The buggy code has a logic error related to how it handles counting and reducing pairs in the `d` dictionary, which can lead to incorrect results in the final computation of `ans`.",
+      "diff": "--- \n+++ \n@@ -133,8 +133,6 @@\n n=I()\n a=LI_()\n \n-n=8\n-a=RLI(n,0,3)\n \n b=sorted(a)\n d=defaultdict(int)\n@@ -164,6 +162,7 @@\n                 if (i,j)==(l,k):\n                     continue\n                 q+=(i,j,k,l),\n+\n for _ in range(n):\n     f=False\n     for i,j,k,l in p:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `a[i][j]` by adding `i // 23` and `j // 23` instead of multiplying them, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n \n for i in range(n):\n     for j in range(m):\n-        a[i][j] = (i // 23 + j // 23 + i + j) % 23 + 1\n+        a[i][j] = ((i // 23) * (j // 23) + i + j) % 23 + 1\n \n for v in a:\n     print(*v)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "useful_diffs_count": 4
+}

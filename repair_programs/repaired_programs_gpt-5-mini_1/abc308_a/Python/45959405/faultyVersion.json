@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used a fixed range(1, 8), which incorrectly assumes the input list has 9 elements; that can cause IndexError or wrong behavior for other lengths. I changed that single line to iterate up to len(arr) so the code compares all adjacent pairs correctly.",
+  "fixed_code": "arr = list(map(int, input().split()))\nfl = True\nfor i in range(1, len(arr)):\n    if arr[i - 1] > arr[i]:\n        fl = False\n    if arr[i - 1] % 25 != 0 or arr[i] % 25 != 0:\n        fl = False\nprint(\"Yes\" if fl else \"No\")"
+}

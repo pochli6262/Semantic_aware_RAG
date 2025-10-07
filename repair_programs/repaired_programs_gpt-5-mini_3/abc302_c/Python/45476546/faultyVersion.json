@@ -1,0 +1,4 @@
+{
+  "explanation": "The code used itertools.product(S, repeat = N), which generates all length-N sequences allowing repeated use of the same string. The problem requires checking orderings of the N given strings (no repetition), so itertools.permutations should be used. I fixed that single line to use itertools.permutations(S, N).",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.permutations(S, N)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc308_b/Python/45960039",
+  "query_summary": "The bug is that the code calls print(p[0]) for unknown items instead of adding p[0] to the running total (s), so the default price is never accumulated and is wrongly printed.",
+  "oracle_summary": "The bug is that the code calls print(p[0]) for unknown items instead of adding p[0] to the running total (s), so the default price is never accumulated and is wrongly printed.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the second loop where the list `p` is populated incorrectly starts from index 0 instead of 1, leading to incorrect indexing and potential incorrect output.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in a:\n \tb[i], b[i + 1] = b[i + 1], b[i]\n p = [0] * (n + 1)\n-for i in range(n):\n+for i in range(1, n + 1):\n \tp[b[i]] = i\n b = list(range(n + 1))\n for i in a:"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the list `d` in the loop by not properly adding `1` to the sum of `d`, which affects the final output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n, m = map(int, input().split())\n d = [1]\n while len(d) < n:\n-  d = d + [sum(d)] + d\n+  d = d + [sum(d) + 1] + d\n d = d[:n - 1]\n d += [sum(d) + 1]\n for i in range(1, n):"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `i + 1` when a person runs out of money, instead of the correct index `i`, which should represent the zero-based index of the person.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(N):\n     total -= H[i]\n     if total < 0:\n-        print(i + 1)\n+        print(i)\n         break\n else:\n     print(N)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses the condition `if s < sum`, instead of the correct condition `if s <= sum`, which causes it to not produce the intended output when `s` is equal to `sum`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n   p,q=map(int, input().split())\n   sum+=p*q\n \n-if s<sum:\n+if s<=sum:\n   print(sum)\n else:\n   print(sum+k)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `1` when the sum `c` of the elements does not reach the target `n[1]`, instead of printing the total number of elements `n[0]`.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n if c == n[1]:\n     print(b)\n elif c < n[1]:\n-    print(1)\n+    print(n[0])\n else:\n     print(b - 1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

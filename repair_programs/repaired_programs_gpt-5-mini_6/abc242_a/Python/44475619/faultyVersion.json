@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program printed D/C (B−A divided by C), which is the inverse of the required probability. The correct probability when X is between A+1 and B is C/(B−A). I fixed the single incorrect line by swapping the numerator and denominator to print C/D.",
+  "fixed_code": "inp=input().split()\nA=inp[0]\nA=int(A)\nB=inp[1]\nB=int(B)\nC=inp[2]\nC=int(C)\nX=inp[3]\nX=int(X)\nD=B-A\nif A>=X:\n    print(1)\nelif B<X:\n    print(0)\nelse:    \n    print(C/D)\n"
+}

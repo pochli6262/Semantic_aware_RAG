@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition checks if the list [s1, s2] is equal to the list ['#.', '.#'] or if the second list ['.#', '#.'] is treated as a standalone expression, which is always true. It needs to check if [s1, s2] is either one of the patterns. I corrected it by changing the condition to include both comparisons properly using 'or'.",
+  "fixed_code": "s1 = input()\ns2 = input()\n\nif [s1, s2] == ['#.', '.#'] or [s1, s2] == ['.#', '#.']:\n    print('No')\n    exit()\nelse:\n    print('Yes')"
+}

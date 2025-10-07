@@ -1,0 +1,4 @@
+{
+  "explanation": "The inner loop used 'for j in range(i):', so for each pair (i,j) it only checked whether the earlier item j dominates the later item i. That misses cases where the later item dominates the earlier one. I changed the inner loop to iterate over all j (for j in range(n):) so both orders of each pair are considered. Self-comparisons cannot trigger a match because the strict part of the condition prevents equality from passing.",
+  "fixed_code": "n , m = map(int,input().split())\np = [None] * n\n#c = [None] * n\nf = [None] * n\n#e1 = {}\nfor i in range(n):\n    e = list(map(int,input().split()))\n    p[i] = e[0]\n#    c[i] = e[1]\n    f[i] = set(e[2:])\nfor i in range(n):\n    for j in range(n):\n        if p[i] >= p[j] and f[j].issuperset(f[i]) and (p[i] > p[j] or len(f[j]) > len(f[i])):\n#            print(\"i=\",i+1,\"j=\",j+1,f[j],\"<=\",f[i])\n            print(\"Yes\")\n            exit()  \n#    e1[p[i]] = f[i]\nprint(\"No\")"
+}

@@ -1,0 +1,1 @@
+The program incorrectly checks the number of unique values instead of verifying that there is exactly one number that appears three times and one number that appears twice.

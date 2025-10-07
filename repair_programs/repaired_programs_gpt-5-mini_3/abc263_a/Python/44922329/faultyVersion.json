@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop was iterating over range(12) and then incrementing i, which checks numbers 1..12. The problem is about five dice faces (1..6), so we only need to check 1..6. I changed the range from 12 to 6 so the loop correctly counts occurrences for faces 1 through 6.",
+  "fixed_code": "a=list(map(int,input().split()))\nans=[]\nfor i in range(6):\n    i+=1\n    s=a.count(i)\n    if s==0:\n        continue\n    ans.append(s)\nif (len(ans)==2)and((ans[0]==3 and ans[1]==2)or(ans[0]==2 and ans[1]==3)):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

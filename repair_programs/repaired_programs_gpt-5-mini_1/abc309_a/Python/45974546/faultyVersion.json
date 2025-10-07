@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition only checked for an exact ordered match (R[0] == g[0] and R[1] == g[1]). That fails when the input pair is the same edge but reversed (for an undirected edge). I fixed that single line to also check the reversed order using an OR: (R[0] == g[1] and R[1] == g[0]). No other lines were changed.",
+  "fixed_code": "G = [[1, 2], [2, 3], [4, 5], [5, 6], [7, 8], [8, 9], [1, 4], [4, 7], [2, 5], [5, 8], [3, 6], [6, 9]]\n\nR = list(map(int, input().split()))\n\nflag = False\nfor g in G:\n    if (R[0] == g[0] and R[1] == g[1]) or (R[0] == g[1] and R[1] == g[0]):\n        flag = True\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

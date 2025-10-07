@@ -1,0 +1,32 @@
+{
+  "task": "abc303_c/Python/45491344",
+  "query_summary": "The bug is a typo: the code uses the equality operator \"==\" instead of the assignment \"=\" when trying to set item[(now[0],now[1])] = 0, so picked-up items are never cleared.",
+  "oracle_summary": "The bug is a typo: the code uses the equality operator \"==\" instead of the assignment \"=\" when trying to set item[(now[0],now[1])] = 0, so picked-up items are never cleared.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it stores indices of elements in the list `A` starting from 0 instead of 1, which causes incorrect comparisons when checking membership in the set `B`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n D = defaultdict(set)\n \n for i in range(N):\n-    D[A[i]].add(i)\n+    D[A[i]].add(i+1)\n \n m = max(A)\n "
+    },
+    {
+      "summary": "The bug in the code is that it does not account for the case when the same name appears for both `s` and `t`, which leads to incorrect counting in the `defaultdict` for names that are identical.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,8 @@\n     s, t = input().split()\n     name.append((s, t))\n     d[s] += 1\n+    if s == t:\n+        continue\n     d[t] += 1\n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the count of characters reaches or exceeds `K` instead of checking if the count is exactly equal to `K`.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n                 d[S[i][j]]+=1\n     check=0\n     for key,value in d.items():\n-        if value>=K:\n+        if value==K:\n             check+=1\n \n     ans=max(ans,check)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for printing \"No\", leading to incorrect output when both `s[i]` and `t[i]` are the same and their count exceeds 2.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,6 @@\n   d[s[i]] += 1\n   d[t[i]] += 1\n for i in range(n):\n-  if d[s[i]] >= 2 and d[t[i]] >= 2:\n+  if (s[i] == t[i] and d[s[i]] > 2) or (s[i] != t[i] and d[s[i]] >= 2 and d[t[i]] >= 2):\n     exit(print(\"No\"))\n print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly sets `follow[(b, a)]` to `False` in the second condition instead of `follow[(a, b)]`, leading to an incorrect representation of the following relationship.",
+      "diff": "--- \n+++ \n@@ -2,13 +2,14 @@\n \n N, Q = map(int, input().split())\n follow = defaultdict(bool)\n+\n for i in range(Q):\n     t, a, b = map(int, input().split())\n     if t==1:\n         follow[(a, b)] = True\n     \n     elif t==2:\n-        follow[(b, a)] = False\n+        follow[(a, b)] = False\n     \n     elif t==3:\n         if follow[(a, b)] and follow[(b, a)]:"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

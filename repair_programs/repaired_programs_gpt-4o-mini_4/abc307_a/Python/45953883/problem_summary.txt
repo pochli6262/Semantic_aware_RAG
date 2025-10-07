@@ -1,0 +1,1 @@
+The bug likely lies in the incorrect indexing of the result array, which may cause it to overwrite previous weekly totals instead of storing them separately.

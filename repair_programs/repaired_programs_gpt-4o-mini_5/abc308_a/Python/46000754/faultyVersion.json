@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checked if the sorted version of the list was equal to the list itself within a loop, which would always allow for an early 'No' output. It needs to check if the list is sorted once, instead of iteratively. The correct approach is to check if the original list is sorted after confirming all elements are within the specified constraints, which aligns with the condition dependencies detailed in the problem. This modification is inspired by suggestions in the diff patterns where proper validation of conditions and not prematurely exiting could lead to correct outputs.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nif sorted(S) != S:\n    print('No')\n    exit()\nfor i in range(N):\n    if not(100 <= S[i] <= 675) or S[i]%25 != 0:\n        print('No')\n        exit()\nelse:\n    print('Yes')"
+}

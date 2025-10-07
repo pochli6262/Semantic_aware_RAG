@@ -1,0 +1,31 @@
+{
+  "task": "abc300_c/Python/45749744",
+  "query_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "oracle_summary": "The results array is sized by n instead of min(n, m), causing the program to output n values (with extra trailing zeros) rather than exactly min(n, m) counts on rectangular grids.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the calculation of the initial value of `ans` should use `min(n * m, n * d + pos[k])` instead of `n * d + pos[k]`, ensuring that `ans` does not exceed the maximum possible value of `n * m`.",
+      "diff": "--- \n+++ \n@@ -59,8 +59,8 @@\n     c = s.count('x')\n     d, k = divmod(k, c)\n     pos = [i for i, x in enumerate(s) if x == 'x']\n-    ans = n * d + pos[k]\n \n+    ans = min(n * m, n * d + pos[k])\n     for i in range(len(pos)):\n         j = i - k - 1\n         if j < 0:"
+    },
+    {
+      "summary": "The buggy code has a misplaced parenthesis in the list comprehension inside the `solve` function, which leads to incorrect calculation of the values being printed.",
+      "diff": "--- \n+++ \n@@ -49,7 +49,7 @@\n \n def solve(n, m):\n     for i in range(n):\n-        print(*[(i // P * j // P + i + j) % P + 1 for j in range(m)])\n+        print(*[((i // P) * (j // P) + i + j) % P + 1 for j in range(m)])\n \n def main():\n     n, m = read_int_tuple()"
+    },
+    {
+      "summary": "The problem in the buggy code appears to be in the logic of calculating the required values when the input coordinates cross the boundaries of the transformed grid, leading to possible out-of-bounds access in the `calc` function.",
+      "diff": "--- \n+++ \n@@ -64,7 +64,7 @@\n         if ma == mc and mb == md:\n             ans += calc(ra,rb,rc,rd)\n         elif ma == mc:\n-            ans += calc(ra,rb,rc,n-1)+calc(ra,0,ra,rd)\n+            ans += calc(ra,rb,rc,n-1)+calc(ra,0,rc,rd)\n             ans += (md-mb-1)*calc(ra,0,rc,n-1)\n         elif mb == md:\n             ans += calc(ra,rb,n-1,rd)+calc(0,rb,rc,rd)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not check if `mj[root]` is less than zero when determining if the output should be `-1`, potentially leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -77,7 +77,7 @@\n   root = 1\n   dfs(root, 0)\n \n-  if INF in ret[1:]:\n+  if INF in ret[1:] or mj[root] < 0:\n     print(-1)\n   else:\n     print(''.join(ret[1:]))"
+    },
+    {
+      "summary": "The buggy code fails to correctly initialize the variable `res`, which should be set to `max(0, n - 1)` instead of just `n - 1`, potentially leading to negative results for certain input cases.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         d.append(p)\n ans = 0\n for _ in range(2):\n-    res = n - 1\n+    res = max(0, n - 1)\n     frm = 0\n     if _ == 1:\n         cnt = 0"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

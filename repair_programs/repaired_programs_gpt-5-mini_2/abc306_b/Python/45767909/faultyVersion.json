@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used a fixed range(64), which will raise an IndexError if the input list A has fewer than 64 elements (or incorrectly ignore/overrun elements). I changed that single line to iterate over the actual length of A (range(len(A))) so the loop visits exactly the elements present in the input.",
+  "fixed_code": "A = list(map(int, input().split()))\n\nans = 0\nfor i in range(len(A)):\n  ans += A[i] * 2 ** A[i]\nprint(ans)"
+}

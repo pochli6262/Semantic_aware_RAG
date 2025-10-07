@@ -1,0 +1,4 @@
+{
+  "explanation": "The program should report that a path is impossible when a whole row is blocked (\"##\"); the original code printed \"Yes\" in that case. I changed the output for that condition to \"No\" so a fully blocked row is correctly treated as impossible.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1 == \"##\" or S2 == \"##\":\n    print(\"No\")\nelif S1 == \".#\" and S2 == \"#.\":\n    print(\"No\")\nelif S1 == \"#.\" and S2 == \".#\":\n    print(\"No\")"
+}

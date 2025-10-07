@@ -1,0 +1,4 @@
+{
+  "explanation": "The program allowed a move that would reduce the time limit to exactly zero because the check used 'A[i] > T' instead of disallowing moves when 'A[i] >= T'. I changed that single comparison to 'A[i] >= T' so a move that would make the time limit 0 (or negative) is correctly prevented. This fix is the same kind of off-by-equality correction seen in the retrieved diffs (changes like '<=' to '<' or '>' to '<=' patterns).",
+  "fixed_code": "N,M,T=list(map(int, input().split()))\nA=list(map(int, input().split()))\nd={}\nfor _ in range(M):\n    x,y=list(map(int, input().split()))\n    d[x]=y\n\nfor i in range(N-1):\n    if i+1 in d:\n        T+=d[i+1]\n    if A[i]>=T:\n        print(\"No\")\n        exit()\n    T-=A[i]\nprint(\"Yes\")\n"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc310_b/Python/45742461",
+  "query_summary": "The bug likely lies in the condition where it incorrectly compares the product price `s[j][1]` instead of `s[j][0]` in the first part of the if statement.",
+  "oracle_summary": "The bug is a wrong index in the first comparison: the code mistakenly uses s[j][1] (the other item's cost) instead of s[j][0] (the other item's price), so it compares the wrong field.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `s[j]!=\"?\"!=t[j]` instead of `s[j]!=\"?\" and s[j]!=t[j]` when comparing characters, which leads to incorrect results when checking for mismatches.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         ng.add(i)\n print(\"Yes\" if len(ng)==0 else \"No\")\n for j in range(n):\n-    if t[j]!=\"?\" and s[j]!=t[j]:\n+    if s[j]!=t[j] and s[j]!=\"?\"!=t[j]:\n         ng.add(j)\n     else:\n         ng.discard(j)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the variable `r`, leading to an incorrect output when `r` equals 0, which should instead be set to 7.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,8 @@\n A = [list(map(int,input().split())) for _ in range(n)]\n start = A[0][0]\n r = start- (start//7)*7\n+if r == 0:\n+  r = 7\n if r+m-1>7:\n   print(\"No\")\n   exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that the calculation of the variable `mink` after checking the condition is incorrect; it mistakenly adds back `mink` instead of just assigning the value derived from `S[0] - mini - minj`.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n   print(\"Yes\")\n   mini=-mini\n   minj=-minj\n-  mink=-mink+(S[0]-mini-minj-mink)\n+  mink=S[0]-mini-minj\n   for i in range(N+2):\n     if i%3==0:\n       print(mini+a[i],end=\" \")"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

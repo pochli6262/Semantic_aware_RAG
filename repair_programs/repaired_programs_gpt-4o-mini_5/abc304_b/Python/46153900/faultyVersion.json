@@ -1,0 +1,4 @@
+{
+  "explanation": "The program incorrectly defines the `range` function, which shadows the built-in `range` function used in Python. This causes confusion because the function should return a power of ten for truncation based on the range of N, but instead, it results in a naming conflict. Removing the local definition of `range` restores the default behavior of the built-in `range` function that is necessary for the truncation of N. This fix is inspired by the diff patterns that show the importance of not overriding built-in functions.",
+  "fixed_code": "N = int(input())\n\nprint(round(N, -1 if N < 10**3 else\n      1 if 10**3 <= N < 10**4 else\n      2 if 10**4 <= N < 10**5 else\n      3 if 10**5 <= N < 10**6 else\n      4 if 10**6 <= N < 10**7 else\n      5 if 10**7 <= N < 10**8 else\n      6))"
+}

@@ -1,0 +1,164 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+Takahashi has recorded the number of steps he walked for N weeks. He walked A\_i steps on the i-th day.
+
+Find the total number of steps Takahashi walked each week.  
+More precisely, find the sum of the steps for the first week (the 1-st through 7-th day), the sum of the steps for the second week (the 8-th through 14-th day), and so on.
+
+### Constraints
+
+* 1 \leq N \leq 10
+* 0 \leq A\_i \leq 10^5
+* All input values are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N
+A_1 A_2 \ldots A_{7N}
+```
+
+### Output
+
+Let B\_i be the number of steps walked for the i-th week. Print B\_1,B\_2,\ldots,B\_N in this order, separated by spaces.
+
+---
+
+### Sample Input 1
+
+```
+2
+1000 2000 3000 4000 5000 6000 7000 2000 3000 4000 5000 6000 7000 8000
+```
+
+### Sample Output 1
+
+```
+28000 35000
+```
+
+For the first week, he walked 1000+2000+3000+4000+5000+6000+7000=28000 steps, and for the second week, he walked 2000+3000+4000+5000+6000+7000+8000=35000 steps.
+
+---
+
+### Sample Input 2
+
+```
+3
+14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230 78164 6286 20899 86280 34825 34211 70679 82148
+```
+
+### Sample Output 2
+
+```
+314333 419427 335328
+```
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the inner loop incorrectly indexes the list by using `s[l+i]` instead of `s[i*7 + l]`, leading to incorrect summation of the steps for each week.
+
+## Buggy Program
+n = int(input())
+s = list(map(int,input().split()))
+
+for i in range(n):
+  ans = 0
+  for l in range(7):
+    ans += s[l+i]
+
+  print(str(ans),"",end = "")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ s = [int(x) for x in input()]
+ s.sort()
+ ans = 0
+-for x in range(1, 10**7):
++for x in range(10**7):
+     t = [int(c) for c in str(x * x)]
+     if len(t) > n:
+         break
+
+### Diff 2
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ s = ["-"] * (n+1)
+ 
+ for i in range(n+1):
+-  for j in range(1, 9):
++  for j in range(1, 10):
+     if n % j == 0 and i % (n/j) == 0:
+       s[i] = str(j)
+       break
+
+### Diff 3
+--- 
++++ 
+@@ -7,7 +7,7 @@
+             s[i] = 'B'
+         else:
+             s[i] = 'A'
+-print(s)
++
+ L = []
+ cur = s[0]
+ cnt = 0
+@@ -19,7 +19,6 @@
+         L.append(cnt)
+         cnt = 1
+ L.append(cnt)
+-print(L)
+ 
+ ans = 1
+ for l in L:
+
+### Diff 4
+--- 
++++ 
+@@ -5,6 +5,8 @@
+ for i in range(n):
+   if s[i]!=0:
+     ans+=1
++    ans+=(ze+1)//2
++    ze=0
+   else:
+     ze+=1
+ print(ans+(ze+1)//2)
+
+### Diff 5
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ n, s, m, l = map(int,input().split())
+-sum = 10000
++sum = 10**10
+ 
+ for j in range(20):
+   for k in range(15):
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

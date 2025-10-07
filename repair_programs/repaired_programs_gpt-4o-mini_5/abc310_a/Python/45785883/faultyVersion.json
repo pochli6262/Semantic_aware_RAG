@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line correctly calculates the minimum total cost, but it uses an incorrect expression 'p - q + a[i]'. The correct way is to add 'q' directly to each dish price, so we need to change it to 'q + a[i]'. This is inspired by the need for direct calculation of total price using the coupon. Hence, 'b = min([p - q + a[i] for i in range(n)])' should be corrected to 'b = min([q + a[i] for i in range(n)])'.",
+  "fixed_code": "def getIntMap():\n    return map(int, input().split())\n\n\ndef getIntList():\n    return list(map(int, input().split()))\n\n\ndef main():\n    n, p, q = getIntMap()\n    a = getIntList()\n    b = min([q + a[i] for i in range(n)])\n\n    print(b if b < p else p)\n\n\nif __name__ == \"__main__\":\n    main()"
+}

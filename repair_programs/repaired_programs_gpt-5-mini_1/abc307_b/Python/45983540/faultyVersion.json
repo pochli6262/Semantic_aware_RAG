@@ -1,0 +1,4 @@
+{
+  "explanation": "The inner loop used 'break' when i == j, which stops checking any further j values for that i as soon as j reaches i. That prevents many valid pairs (where j > i) from being tested. The intended behavior is to skip comparing a string with itself, so the correct statement is 'continue' to skip only the current iteration instead of breaking out of the loop. I replaced 'break' with 'continue'.",
+  "fixed_code": "N = int(input())\nS = []\nfor i in range(N):\n  s = input()\n  S.append(s)\n  \nflag = False\n\nfor i in range(N):\n  for j in range(N):\n    if i == j:\n      continue\n    \n    a = S[i] + S[j]\n    \n    if a == a[::-1]:\n      flag = True\n        \nprint('Yes' if flag else 'No')"
+}

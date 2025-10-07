@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code miscalculates the result when X is greater than A and less than or equal to C. The error lies in calculating the value of 'N' as 'B - A', which does not correctly represent the number of available options to choose from after A. It should be 'C - A' instead. This represents the total options after A, leading to the corrected division 'C / (C - A)'.",
+  "fixed_code": "from collections import Counter, defaultdict, deque\nfrom bisect import bisect_left, bisect_right\nfrom heapq import heapify, heappush, heappop\n\ndef solve():\n    A, B, C, X = map(int, input().split())\n\n    if X >= 1 and X <= A:\n        res = 1/1\n    elif X > A and X <= C:\n        N = C - A\n        res = C / N\n    else:\n        res = 0/1\n\n    print(f\"{res:.7f}\")\n\nsolve()"
+}

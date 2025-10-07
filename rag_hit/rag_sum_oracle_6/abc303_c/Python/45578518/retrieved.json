@@ -1,0 +1,33 @@
+{
+  "task": "abc303_c/Python/45578518",
+  "query_summary": "A leftover debug statement (`print(items)`) produces extra output and thus corrupts the program's expected output.",
+  "oracle_summary": "A leftover debug statement (`print(items)`) produces extra output and thus corrupts the program's expected output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code contains a mistake in the `subsolve2` function where it incorrectly prints the output for the final array `a`, missing the required space before the '!', leading to output formatting issues.",
+      "diff": "--- \n+++ \n@@ -109,7 +109,7 @@\n         print(f' {i+1}')\n         t = iinput()\n         a[i] = (t - c) % 2\n-    print('!')\n+    print('!', end='')\n     for i in range(n):\n         print(f' {a[i]}', end='')\n     print()"
+    },
+    {
+      "summary": "The buggy code prints the contents of the deque `Q` in every iteration of the loop, which may lead to excessive output and potentially hinder performance; this print statement was commented out in the correct code.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n \t\tQ.append((H[i],cc))\n \t\tS += H[i]*cc\n \t\tA.append(S+1)\n-\t\tprint(Q)\n+\t\t#print(Q)\n \n \tprint(*A)\n \t\t\t"
+    },
+    {
+      "summary": "The problematic code incorrectly prints the list `B` without unpacking it, causing the output format to include brackets and commas instead of being space-separated.",
+      "diff": "--- \n+++ \n@@ -17,4 +17,4 @@\n B=A1+A4+A3+A2+A5\n \n # 出力(「*」をつけるとかっこなしで出力できる)\n-print(B)\n+print(*B)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of `n`, potentially leading to unintended output, while the correct code comments out that print statement to avoid displaying it.",
+      "diff": "--- \n+++ \n@@ -38,7 +38,7 @@\n else:\n     l, r = S[0], S[-1]\n     n = S[1:-1]\n-    print(n)\n+    # print(n)\n     if l in ascii_uppercase and r in ascii_uppercase and n.isdecimal():\n         if 100000 <= int(n) <= 999999:\n             print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the last M elements of the answer list instead of the last M + 1 elements, leading to an off-by-one error in the output.",
+      "diff": "--- \n+++ \n@@ -22,4 +22,4 @@\n # 割り切れること\n assert sum(C) == 0\n \n-print(' '.join(map(str, answer[-M:])))\n+print(' '.join(map(str, answer[-(M + 1):])))"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

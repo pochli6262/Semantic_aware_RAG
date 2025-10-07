@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly checks for specific cases of the input strings rather than encompassing all possible configurations of black squares connectivity. The check only considers specific patterns, which is insufficient for determining connectivity. The fix involves implementing a full connectivity check for black squares by checking neighboring squares, similar to the logic present in the related known fixes.",
+  "fixed_code": "S = input() + input()\n\nif (S[0] == '#' and S[1] == '#') or (S[2] == '#' and S[3] == '#') or (S[0] == '#' and S[2] == '#') or (S[1] == '#' and S[3] == '#'):\n    print('Yes')\nelse:\n    print('No')"
+}

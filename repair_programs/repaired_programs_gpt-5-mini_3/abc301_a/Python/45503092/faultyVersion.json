@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that S = input().split() makes S a list of tokens, so S.count('T') and S.count('A') (and S[-1] being the last character) don't work as intended for a single string of characters. Replacing .split() with .strip() makes S a string so count and indexing operate on characters.",
+  "fixed_code": "N = int(input())\nS = input().strip()\n\nT_W = S.count('T')\nA_W = S.count('A')\nprint(\"T\" if T_W > A_W or T_W == A_W and S[-1] == \"A\" else \"A\")"
+}

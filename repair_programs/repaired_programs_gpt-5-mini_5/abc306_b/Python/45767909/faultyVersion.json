@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used 2 ** A[i] (raising 2 to the bit value) instead of 2 ** i (raising 2 to the index). This caused adding A[i]*2^{A[i]} rather than A[i]*2^{i}. I fixed the exponent to use the loop index i.",
+  "fixed_code": "A = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n  ans += A[i] * 2 ** i\nprint(ans)"
+}

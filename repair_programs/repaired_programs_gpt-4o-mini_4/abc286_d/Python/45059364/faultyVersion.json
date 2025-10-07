@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the inner loop where the DP array is updated. The condition checks if '0 <= n - c * a' and 'DP[n - c * a]', which is not correctly updating the DP table for all possible coin usages. The correct condition should involve using 'n >= c * a' instead. This modification ensures we correctly identify if we can form the amount 'n' using 'c' coins of value 'a'. It aligns with the logic seen in the various diffs where conditions are checked on variable values before updating arrays (like in Diff 4 where it checks value comparisons).",
+  "fixed_code": "N,X=map(int,input().split())\n\nDP=[0]*(X+1) #DP[n]=現在n円払えるか\nDP[0]=1\nfor i in range(N):\n  a,b=map(int,input().split())\n  for n in range(X+1):\n    for c in range(1,b+1):\n      if n >= c*a and DP[n-c*a]:\n        DP[n]=1\nprint(\"Yes\" if DP[X] else \"No\")"
+}

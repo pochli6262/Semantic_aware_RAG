@@ -1,0 +1,4 @@
+{
+  "explanation": "The program never prints anything when X >= 100 but not a multiple of 100 because there was no branch that handles that case. I fixed the single incorrect condition line by extending the second elif to also catch values that are not multiples of 100 (so they print \"No\"). This is a minimal one-line fix that ensures all inputs produce output.",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100 or X%100 != 0:\n    print(\"No\")\nelif X%100 == 0:\n    print(\"Yes\")"
+}

@@ -1,0 +1,130 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+if __name__ == '__main__':
+    s = str(input())
+    n = int(input())
+    m = len(s)
+    res = 0
+    for i in range(m):
+        if s[i] == "1":
+            res += (1 << (m - 1 - i))
+    if res > n:
+        res = -1
+    else:
+        for i in range(m - 1, -1, -1):
+            if s[i] == "?" and res + (1 << (m - 1 - i)) <= n:
+                res += (1 << (m - 1 - i))
+    print(res)
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+n=int(input())+2
+s='-'+input()+'-'
+m=0
+x=0
+for i in range(n):
+  if s[i]=='-':
+    m=max(m,x)
+    x=0
+  else: x+=1
+if m==n-2:
+  print(-1)
+else: print(m)
+
+--- Correct Code ---
+n=int(input())+2
+s='-'+input()+'-'
+m=0
+x=0
+for i in range(n):
+  if s[i]=='-':
+    m=max(m,x)
+    x=0
+  else: x+=1
+if m==n-2 or m==0:
+  print(-1)
+else: print(m)
+
+
+### Example 2
+--- Buggy Code ---
+n, m = map(int, input().split())
+
+for i in range(2**m, 0, -1):
+  co = bin(i)[2:].zfill(m)
+  if co.count("1") == n:
+    print(*[t+1 for t in range(m) if co[t]=="1"])
+
+--- Correct Code ---
+n, m = map(int, input().split())
+
+for i in range(2**m-1, 0, -1):
+  co = bin(i)[2:].zfill(m)
+  if co.count("1") == n:
+    print(*[t+1 for t in range(m) if co[t]=="1"])
+
+
+### Example 3
+--- Buggy Code ---
+n = int(input())
+m = 2*n
+
+x = []
+while n > 4:
+  x.append('4')
+  n -= 4
+if n == 3:
+  x.append('3')
+if n == 2:
+  x.append('2')
+if n == 1:
+  x.append('1')
+x.sort()  
+x = ''.join(x)
+
+print(m)
+print(x)
+  
+  
+
+--- Correct Code ---
+n = int(input())
+m = 2*n
+
+x = []
+while n > 4:
+  x.append('4')
+  n -= 4
+if n == 4:
+  x.append('4')
+if n == 3:
+  x.append('3')
+if n == 2:
+  x.append('2')
+if n == 1:
+  x.append('1')
+x.sort()  
+x = ''.join(x)
+
+print(m)
+print(x)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

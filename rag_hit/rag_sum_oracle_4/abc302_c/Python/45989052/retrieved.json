@@ -1,0 +1,29 @@
+{
+  "task": "abc302_c/Python/45989052",
+  "query_summary": "The code uses break instead of terminating the program (exit/return) after printing \"Yes\", so execution continues and the final \"No\" is printed anyway.",
+  "oracle_summary": "The code uses break instead of terminating the program (exit/return) after printing \"Yes\", so execution continues and the final \"No\" is printed anyway.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the condition to check if the first segment of the arrays `a` and `b` are equal is incorrectly using `if i<3` instead of the correct `if i-l<3`, which leads to incorrect comparisons when the pointers `l` have been modified.",
+      "diff": "--- \n+++ \n@@ -35,7 +35,7 @@\n                 return 0\n             if st(a[l:i])!=st(b[l:i]):\n                 return 0\n-            if i<3 and a[:i]!=b[:i]:\n+            if i-l<3 and a[l:i]!=b[l:i]:\n                 return 0\n             l=i+1\n "
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if sum(Ta) == 2:` is incorrectly checking the count of odd numbers instead of ensuring that there are exactly two even numbers present in the list. This condition should be `if N - sum(Ta) == 2:`.",
+      "diff": "--- \n+++ \n@@ -120,7 +120,7 @@\n     if not ok:\n         return check(A, B)\n \n-    if sum(Ta) == 2:\n+    if N - sum(Ta) == 2:\n         X = [a for a in A if a % 2 == 0]\n         Y = [a for a in B if a % 2 == 0]\n         return X == Y"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate elements in list A using `len(set(A)) == len(A)` instead of checking for the presence of duplicates with `len(set(A)) != len(A)`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if X != Y:\n         print(\"No\")\n         return\n-    if len(set(A)) == len(A):\n+    if len(set(A)) != len(A):\n         print(\"Yes\")\n         return\n     ct = 0"
+    },
+    {
+      "summary": "The problem in the buggy code is that it mistakenly compares the length of the list `s` to itself instead of comparing it to the length of list `t`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n s = [[key , len(list(group))] for key , group in itertools.groupby(S)] \n t = [[key , len(list(group))] for key , group in itertools.groupby(T)]\n \n-if len(s) != len(s) :\n+if len(s) != len(t) :\n   print('No')\n   exit()\n   "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

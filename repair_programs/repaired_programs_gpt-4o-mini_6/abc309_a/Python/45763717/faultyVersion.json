@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition incorrectly checks for adjacency by using the absolute difference, which does not accurately determine if the two squares are horizontally adjacent on the board. The fix is inspired by Diff 1 and Diff 2, which correctly check for adjacency by ensuring that the difference is 1 (for horizontal adjacency) or account for edge cases.",
+  "fixed_code": "a,b=map(int,input().split())\nif b-a==1 or (a==2 and b==3) or (a==5 and b==6) or (a==8 and b==9):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

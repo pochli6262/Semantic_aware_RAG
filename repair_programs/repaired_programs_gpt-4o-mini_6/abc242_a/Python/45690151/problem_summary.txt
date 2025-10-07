@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly calculates the number of participants eligible for a T-shirt between ranks A+1 and B by using the wrong formula for the denominator in the probability calculation.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The final loop used range(n) to build the answer, but the actual string length should be used (len(s)). If n doesn't match the actual length of the input string this can miss characters or cause indexing issues. I changed only the second for-line to iterate over range(len(s)) so the code processes the actual characters in s.",
+  "fixed_code": "n=int(input())\ns=input()\ns=list(s)\ncnt=0\nfor i in range(n):\n    if s[i]=='\"':\n        cnt+=1\n    if s[i]==\",\":\n        if cnt%2==1:\n            s[i]=\".\"\nans=\"\"\nfor i in range(len(s)):\n    ans+=s[i]\nprint(ans)"
+}

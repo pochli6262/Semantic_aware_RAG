@@ -1,0 +1,1 @@
+In the "L" branch the code incorrectly flags a contradiction only when the opposite entry is "W" instead of flagging when the opposite entry is not "W" (the comparison uses == instead of !=).

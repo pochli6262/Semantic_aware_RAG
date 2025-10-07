@@ -1,0 +1,1 @@
+The code collects the cars before x using 0-based indices but never adds 1, so the printed car numbers for the "front" part are off by one.

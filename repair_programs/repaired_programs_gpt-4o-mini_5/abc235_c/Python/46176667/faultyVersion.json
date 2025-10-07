@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program returns a 1-based index (i + 1) when storing occurrences of numbers, but it needs to return a 0-based index for queries. This issue is addressed by changing 'D[A[i]].append(i + 1)' to 'D[A[i]].append(i)' to align with 0-based indexing expected during query responses. This correction is inspired by the general principle of indexing in Python and the mentions in the provided diffs regarding indexing consistency.",
+  "fixed_code": "import sys\nfrom collections import defaultdict\nMOD = 998_244_353\nINF = 10**18\n\nN, Q = map(int, sys.stdin.readline().rstrip().split())\nA = list(map(int, sys.stdin.readline().rstrip().split()))\nD = defaultdict(list)\nfor i in range(N):\n    D[A[i]].append(i)  # Corrected line\n\nprint(D)\n\nfor q in range(Q):\n    x, k = list(map(int, sys.stdin.readline().rstrip().split()))\n    if len(D[x]) >= k:\n        print(D[x][k - 1])\n    else:\n        print(-1)"
+}

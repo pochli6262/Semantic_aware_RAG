@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the code always computed p using the original P (P - Q + d) instead of using the current best result res. That prevents iterative updates that depend on previously reduced values. I fixed the single incorrect line by replacing P with res so p is computed as (res - Q + d). Only that one line was changed.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nres = P\n\nfor d in D:\n    if (p := res - Q + d) < res:\n        res = p\n\nprint(res)\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculated the number of attacks needed to reduce the enemy's stamina to zero or less by dividing A by B and adding one. This does not account for the possibility that there may be a partial attack needed, which requires proper ceiling division. The correct approach is to use the formula (A + B - 1) // B, which effectively achieves a ceiling division. This correction is inspired by interpreting the need for exact attack counts as shown in Diff 1 and general understanding of integer division.",
+  "fixed_code": "A, B = map(int, input().split())\nprint((A + B - 1) // B)"
+}

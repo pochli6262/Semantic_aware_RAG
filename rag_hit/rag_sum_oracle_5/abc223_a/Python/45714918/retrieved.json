@@ -1,0 +1,29 @@
+{
+  "task": "abc223_a/Python/45714918",
+  "query_summary": "The code incorrectly prints \"Yes\" for x=0 by only checking x%100==0 instead of also excluding zero.",
+  "oracle_summary": "The code incorrectly prints \"Yes\" for x=0 by only checking x%100==0 instead of also excluding zero.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it doesn't stop the execution of the `main()` function after printing \"No\" when it encounters an 'x', leading to the possibility of printing \"Yes\" or \"No\" afterwards inappropriately.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n             ok = True\n         elif s[i] == \"x\":\n             print(\"No\")\n-            break\n+            return\n \n     if ok == True:\n         print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the original value of `x` when it is a multiple of 10, instead of printing the quotient of `x` divided by 10.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x = int(input())\n if x % 10 == 0:\n-  print(x)\n+  print(x // 10)\n else:\n   print(x // 10 + 1)"
+    },
+    {
+      "summary": "The buggy code incorrectly only prints \"Yes\" for values greater than 4, failing to also account for the value of 1, which should also result in \"Yes\".",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-if N > 4:\n+if N > 4 or N == 1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `range(2,2,16)` instead of `range(1,17,2)`, resulting in the loop not executing and always printing \"Yes\" regardless of the input.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n s = input()\n-for i in range(2,2,16):\n+for i in range(1,17,2):\n   if s[i] != \"0\":\n     print(\"No\")\n     break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for differences between `x` and `y` without ensuring that `y` is greater than `x`, which could lead to incorrect output for cases where `y < x`.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n x, y = map(int, input().split())\n-print(\"Yes\" if y - x == 2 or x - y == 3 else \"No\")\n+print(\"Yes\" if 0 < y - x <= 2 or 0 < x - y <= 3 else \"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

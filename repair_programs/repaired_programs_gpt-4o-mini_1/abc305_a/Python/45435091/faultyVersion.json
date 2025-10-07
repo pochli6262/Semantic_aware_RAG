@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition used to determine whether to subtract or add to 'n'. The comparison 'n%5<3' evaluates incorrectly for certain values of 'n'. It should be 'n%5>2' for it to work correctly, which means that if the remainder of 'n' divided by 5 is more than 2, it indicates 'n' is closer to the next multiple of 5, and thus we should add to make it the next multiple. This correction ensures the logic properly identifies when to round up or down to the nearest multiple of 5.",
+  "fixed_code": "n=100\n\nif n%5>2:\n    ans=n-(n%5)\nelse:\n    ans=n+5-(n%5)\nprint(ans)"
+}

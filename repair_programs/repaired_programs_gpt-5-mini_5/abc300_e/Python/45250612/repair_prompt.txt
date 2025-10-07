@@ -1,0 +1,224 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 500 points
+
+### Problem Statement
+
+You have an integer 1 and a die that shows integers between 1 and 6 (inclusive) with equal probability.  
+You repeat the following operation while your integer is strictly less than N:
+
+* Cast a die. If it shows x, multiply your integer by x.
+
+Find the probability, modulo 998244353, that your integer ends up being N.
+
+ How to find a probability modulo 998244353? 
+We can prove that the sought probability is always rational.
+Additionally, under the constraints of this problem, when that value is represented as \frac{P}{Q} with two coprime integers P and Q, we can prove that there is a unique integer R such that R \times Q \equiv P\pmod{998244353} and 0 \leq R \lt 998244353. Find this R.
+
+### Constraints
+
+* 2 \leq N \leq 10^{18}
+* N is an integer.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N
+```
+
+### Output
+
+Print the probability, modulo 998244353, that your integer ends up being N.
+
+---
+
+### Sample Input 1
+
+```
+6
+```
+
+### Sample Output 1
+
+```
+239578645
+```
+
+One of the possible procedures is as follows.
+
+* Initially, your integer is 1.
+* You cast a die, and it shows 2. Your integer becomes 1 \times 2 = 2.
+* You cast a die, and it shows 4. Your integer becomes 2 \times 4 = 8.
+* Now your integer is not less than 6, so you terminate the procedure.
+
+Your integer ends up being 8, which is not equal to N = 6.
+
+The probability that your integer ends up being 6 is \frac{7}{25}. Since 239578645 \times 25 \equiv 7 \pmod{998244353}, print 239578645.
+
+---
+
+### Sample Input 2
+
+```
+7
+```
+
+### Sample Output 2
+
+```
+0
+```
+
+No matter what the die shows, your integer never ends up being 7.
+
+---
+
+### Sample Input 3
+
+```
+300
+```
+
+### Sample Output 3
+
+```
+183676961
+```
+
+---
+
+### Sample Input 4
+
+```
+979552051200000000
+```
+
+### Sample Output 4
+
+```
+812376310
+```
+
+## Your Analysis (1-sentence bug summary)
+The code mistakenly uses the modular inverse of 5 (pow(5,mod-2)) instead of the modular inverse of 6 for the die face probability.
+
+## Buggy Program
+N=int(input())
+cnt=[0]*3
+div=[2,3,5]
+for i in range(3):
+    x=div[i]
+    while True:
+        if N%x:
+            break
+        cnt[i]+=1
+        N//=x
+if N>1:
+    print(0)
+    
+else:
+    a,b,c=cnt
+    dp=[[[0]*(c+1) for j in range(b+1)] for i in range(a+1)]
+    mod=998244353
+    dp[0][0][0]=1
+    inv=pow(5,mod-2,mod)
+    for i in range(a+1):
+        for j in range(b+1):
+            for k in range(c+1):
+                dp[i][j][k]%=mod
+                if i+1<=a:
+                    dp[i+1][j][k]+=dp[i][j][k]*inv%mod
+                if j+1<=b:
+                    dp[i][j+1][k]+=dp[i][j][k]*inv%mod
+                if i+2<=a:
+                    dp[i+2][j][k]+=dp[i][j][k]*inv%mod
+                if k+1<=c:
+                    dp[i][j][k+1]=dp[i][j][k]*inv%mod
+                if i+1<=a and j+1<=b:
+                    dp[i+1][j+1][k]+=dp[i][j][k]*inv%mod
+    print(dp[a][b][c])
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -13,7 +13,7 @@
+         return 0
+     return (g1[n] * g2[r] % mod) * g2[n-r] % mod
+ 
+-mod = 10**9 + 7
++mod = 998244353
+ N = 2*10**5
+ g1 = [1]*(N+1)
+ g2 = [1]*(N+1)
+
+### Diff 2
+--- 
++++ 
+@@ -64,7 +64,7 @@
+         if d == k: continue
+         tmp[k] -= tmp[d]
+ 
+-ans = sum(tmp.values())
++ans = sum(tmp.values()) % mod
+ print(ans)
+ 
+ 
+
+### Diff 3
+--- 
++++ 
+@@ -152,6 +152,8 @@
+   for n in range(1,N):
+     res=binom(n+M-2,2*M-3)
+     ans+=res*(N-n)
++  ans%=mod
++  ans*=fac[M]
+   print(ans%mod)
+   exit()
+   
+
+### Diff 4
+--- 
++++ 
+@@ -64,7 +64,7 @@
+             for j in range(i, 0, -1):   # 前面选择了j个数
+                 for k in range(i):  # 模i余为k
+                     dp[j][(k + x) % i] = (dp[j][(k + x) % i] + dp[j - 1][k]) % MOD
+-        ans += dp[i][0]
++        ans = (ans + dp[i][0]) % MOD
+     print(ans)
+ 
+ solve()
+
+### Diff 5
+--- 
++++ 
+@@ -60,7 +60,7 @@
+                                     dp2[nst1][nst2][nst3][nr1][nr2][nr3] %= MOD
+     dp = dp2
+     coef <<= 1
+-    coef %= MOD
++#    coef %= MOD
+ 
+ ans = 0
+ for st1 in [-1, 0]:
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

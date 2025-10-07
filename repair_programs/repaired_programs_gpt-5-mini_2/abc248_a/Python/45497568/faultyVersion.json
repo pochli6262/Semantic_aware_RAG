@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used for s in S: iterated over every character of the raw input string, so any spaces (or other separators) became characters passed to int(), causing a ValueError on ' ' or other non-digit characters. I fixed it by iterating over the whitespace-separated tokens using S.split(), so each token is a valid numeric string to convert with int().",
+  "fixed_code": "S = input()\nnum = set([i for i in range(1, 10)])\n\nfor s in S.split():\n    num.discard(int(s))\n\nprint(*num)\n"
+}

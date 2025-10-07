@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program continues iterating through all permutations even after finding a valid sequence, which can cause it to reach the end of the loop without printing 'Yes' in certain cases. The bug stems from the placement of the 'break' statement; it needs to be included in the correct block to prevent the premature 'No' output in cases where a valid sequence is found. The approach taken in Diff 1 helped clarify how to correctly exit from the loop upon finding a valid condition.",
+  "fixed_code": "import itertools\n\ndef diff(A, B):\n  res = 0\n  for a, b in zip(A, B):\n    if a != b:\n      res += 1\n  return res\n\nN, M = map(int, input().split())\nS = [input() for _ in range(N)]\n\nfor T in itertools.permutations(S):\n  ok = True\n  for i in range(N-1):\n    if diff(T[i], T[i+1]) != 1:\n      ok = False\n  if ok:\n    print(\"Yes\")\n    break\nelse:\n  print(\"No\")"
+}

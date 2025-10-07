@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly calculates the first line's result by using `(a - d)` instead of the correct expression `(c - d)`.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The code always used the hard-coded value n = 100, so it could not process arbitrary inputs. I replaced that single line with reading an integer from standard input (n = int(input())). All other lines remain identical and the rounding logic is unchanged.",
+  "fixed_code": "n=int(input())\n\nif n%5<3:\n    ans=n-(n%5)\nelse:\n    ans=n+5-(n%5)\nprint(ans)"
+}

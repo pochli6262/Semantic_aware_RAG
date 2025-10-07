@@ -1,0 +1,32 @@
+{
+  "task": "abc303_a/Python/46127283",
+  "query_summary": "The likely bug is that the condition checking for similar characters involving '0' and 'o' incorrectly references both strings instead of the intended string 's'.",
+  "oracle_summary": "The bug is a typo in the second conditional: it checks t[i] == \"o\" instead of s[i] == \"o\", so the code tests the wrong variable when handling the '0'/'o' equivalence.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to check if the last occurrence of 'o' is at least three positions before the end of the string, which can lead to incorrect outputs.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,6 @@\n     if (now == -1 and i >= 3) or (now != -1 and i != now+3):\n       ans = \"No\"\n     now = i\n+if now < len(s) - 3:\n+  ans = \"No\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the first three characters of both strings are equal, potentially leading to errors when the strings are shorter than three characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n t = input()\n-if s[0:3] == t[0:3]:\n+if s[0:len(s)] == t[0:len(s)]:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for the character \"○\" instead of the lowercase \"o\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n S = list(input())\n-if \"○\" in S and \"x\" not in S:\n+if \"o\" in S and \"x\" not in S:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for printing \"No\", leading to incorrect output when both `s[i]` and `t[i]` are the same and their count exceeds 2.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,6 @@\n   d[s[i]] += 1\n   d[t[i]] += 1\n for i in range(n):\n-  if d[s[i]] >= 2 and d[t[i]] >= 2:\n+  if (s[i] == t[i] and d[s[i]] > 2) or (s[i] != t[i] and d[s[i]] >= 2 and d[t[i]] >= 2):\n     exit(print(\"No\"))\n print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if character `s[i]` is equal to `0` instead of comparing it to the string character `'0'`, leading to unexpected behavior.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n   for i in range(n):\n     if(s[i]==t[i]):\n       ans+='0'\n-    elif(s[i]==0):\n+    elif(s[i]=='0'):\n       if(hum_t<cnt//2):\n         ans+='0'\n         hum_t+=1"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    5
+  ],
+  "useful_diffs_count": 2
+}

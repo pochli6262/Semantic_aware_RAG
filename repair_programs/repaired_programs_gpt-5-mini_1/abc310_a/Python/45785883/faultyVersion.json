@@ -1,0 +1,4 @@
+{
+  "explanation": "The helper getIntMap() returned a map object (an iterator) instead of a concrete sequence. While map can be iterated, returning the iterator can lead to subtle problems when its values are expected to be reused or when certain environments handle iterators differently. Converting the mapped values to a list ensures the integers are materialized and safely unpackable into n, p, q. I fixed this by returning list(map(int, input().split())).",
+  "fixed_code": "def getIntMap():\n    return list(map(int, input().split()))\n\n\ndef getIntList():\n    return list(map(int, input().split()))\n\n\ndef main():\n    n, p, q = getIntMap()\n    a = getIntList()\n    b = min([p - q + a[i] for i in range(n)])\n\n    print(b if b < p else p)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}

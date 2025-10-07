@@ -1,0 +1,4 @@
+{
+  "explanation": "The line 'if S in A == T in A:' is incorrect because it uses '==' in a way that doesn't evaluate the membership of both S and T in the list A simultaneously. This should be two separate membership checks, with an 'and' operator between them. The corrected line is 'if S in A and T in A:'.",
+  "fixed_code": "S=input()\nT=input()\nA=[\"R G B\",\"B R G\",\"G B R\"]\nif S in A and T in A:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

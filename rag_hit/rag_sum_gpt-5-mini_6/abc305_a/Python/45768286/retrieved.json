@@ -1,0 +1,31 @@
+{
+  "task": "abc305_a/Python/45768286",
+  "query_summary": "The program computes and prints the distance to the next 5-km mark (5 - N%5) instead of the nearest water station's position, producing wrong outputs such as printing 5 when N is already at a station.",
+  "oracle_summary": "The code uses the wrong formula—printing abs(5 - (n%5)) (an offset) instead of adding the correct offset to the input to produce the nearest multiple of 5, so it yields incorrect results (e.g., returns 5 for numbers already divisible by 5).",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not format the output as a two-digit number, potentially leading to outputs like \"5\" instead of \"05\".",
+      "diff": "--- \n+++ \n@@ -1 +1 @@\n-print(int(input()) % 100)\n+print('%02d' % (int(input()) % 100))"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the original value of `x` when it is a multiple of 10, instead of printing the quotient of `x` divided by 10.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x = int(input())\n if x % 10 == 0:\n-  print(x)\n+  print(x // 10)\n else:\n   print(x // 10 + 1)"
+    },
+    {
+      "summary": "The buggy code attempts to read an integer input and computes its modulo 100, which may not yield the intended result for extracting a substring, while the correct code directly slices the string input starting from the second character.",
+      "diff": "--- \n+++ \n@@ -1 +1 @@\n-print(int(input())%100)\n+print(input()[1:])"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of N after each loop, which is unnecessary and leads to additional output before determining if N is equal to 1.",
+      "diff": "--- \n+++ \n@@ -2,8 +2,8 @@\n \n while N % 2 == 0:\n     N //= 2\n-print(N)\n+\n while N % 3 == 0:\n     N //= 3\n-print(N)\n+\n print(\"Yes\" if N == 1 else \"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if the remainder `q` (the last digit) is greater than or equal to 5 instead of comparing the correct digit by dividing `q` by `10**i`.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n for i in range(k):\n   p, q = divmod(x, 10**(i+1))\n-  if q >= 5:\n+  if q//10**i >= 5:\n     p += 1\n   x = p*10**(i+1)\n print(x)"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

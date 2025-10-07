@@ -1,0 +1,4 @@
+{
+  "explanation": "The probability for ranks between A+1 and B should divide by the number of candidates in that range, which is B - A, not B - A + 1. I fixed the denominator in the middle branch from (b-a+1) to (b-a). This is a one-line arithmetic correction to compute the correct probability.",
+  "fixed_code": "a,b,c,x=map(int,input().split())\nif a>=x:\n    print(1)\nelif b>=x>a:\n    print(c/(b-a))\nelse:\n    print(0)\n"
+}

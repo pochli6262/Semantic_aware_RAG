@@ -1,0 +1,1 @@
+The code mistakenly uses the modular inverse of 5 (pow(5,mod-2)) instead of the modular inverse of 6 for the die face probability.

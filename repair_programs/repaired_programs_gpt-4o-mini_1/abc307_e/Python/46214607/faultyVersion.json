@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original line 'answer=(-1)**(N%2)*(M-1)+pow(M-1,N,mod)' is that it incorrectly calculates the contribution of the parity of N. It should add or subtract depending on whether N is odd or even, and it should also correctly consider case when N is even (in which case it should not subtract). The corrected line uses '(N % 2) * (M - 1)' to avoid the sign flip that occurs with (-1)**(N%2).",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nanswer=(N%2)*(M-1)+pow(M-1,N,mod)\nprint(answer)"
+}

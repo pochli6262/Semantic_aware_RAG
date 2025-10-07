@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly checks for a Full house by determining if there are two unique values in the sorted list and verifying that the third and fourth cards are different. Instead, it needs to check the frequency of the values to confirm there are three of one value and two of another. This fix aligns with the clarification in the problem statement about how a Full house is defined. None of the diffs explicitly involve this logic, but the need for a precise condition check is key, similar to variable value checks in other contexts.",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif K.count(K[0]) == 3 and K.count(K[2]) == 2:\n    print('Yes')\nelse:\n    print('No')"
+}

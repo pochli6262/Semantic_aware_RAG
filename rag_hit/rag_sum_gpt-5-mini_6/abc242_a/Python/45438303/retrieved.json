@@ -1,0 +1,33 @@
+{
+  "task": "abc242_a/Python/45438303",
+  "query_summary": "The code incorrectly excludes the case X == B from the random-selection branch (using X < B), so it prints 0 for rank B instead of the probability C/(B−A).",
+  "oracle_summary": "The middle condition is off by one: it uses X < B instead of X <= B, causing X == B to incorrectly print 0 instead of C/(B−A).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code does not account for the case where both A and B are equal to 2, which should return 2 instead of -1 when their sum is 4.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n A,B = map(int,input().split())\n if A + B == 3:\n   print(\"3\")\n-elif A + B == 4:\n+elif A + B == 4 and A != B:\n   print(\"2\")\n elif A + B == 5:\n   print(\"1\")"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the modulo operation by prematurely dividing the result of `pow(A,X,M*(A-1))` by `(A-1)` before subtracting 1, leading to incorrect results for cases where `A` is not equal to 1.",
+      "diff": "--- \n+++ \n@@ -2,4 +2,4 @@\n if A == 1:\n     print(X%M)\n else:\n-    print(pow(A,X,M*(A-1))//(A-1)%M)\n+    print((pow(A,X,M*(A-1))-1)//(A-1)%M)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

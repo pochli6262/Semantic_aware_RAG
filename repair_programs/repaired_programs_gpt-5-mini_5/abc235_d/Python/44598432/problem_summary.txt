@@ -1,0 +1,1 @@
+The reverse rotation is applied unconditionally: the code uses rot(M) without checking that the predecessor would satisfy the forward rotation conditions (>=10 and last digit != 0), allowing invalid transitions (e.g., rotating "100" to 1).

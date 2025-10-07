@@ -1,0 +1,1 @@
+print((int(input()) // 5) * 5 + 5 if int(input()) % 5 >= 3 else (int(input()) // 5) * 5)

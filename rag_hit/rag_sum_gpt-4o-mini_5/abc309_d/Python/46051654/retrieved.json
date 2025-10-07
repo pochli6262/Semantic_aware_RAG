@@ -1,0 +1,33 @@
+{
+  "task": "abc309_d/Python/46051654",
+  "query_summary": "The likely bug is that the graph traversal is not correctly handling the indices for the second set of vertices, leading to incorrect path length calculations between the two disconnected components.",
+  "oracle_summary": "The traversal function enqueues the constant node 0 instead of the provided start node s, so distances are computed from the wrong source.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly skips counting connected components with only one vertex (by checking if `len(link) < 2`), while the correct code checks for connected components with at least one vertex (using `len(link) < 1`), leading to incorrect calculations of the answer.",
+      "diff": "--- \n+++ \n@@ -27,7 +27,7 @@\n for i in range(n):\n     link=dfs(i)\n     num_edge=0\n-    if len(link)<2:\n+    if len(link)<1:\n         continue\n     for l in link:\n         num_edge+=len(graph[l])"
+    },
+    {
+      "summary": "The buggy code fails to correctly reinsert the remaining nodes with counts greater than one back into the deque `b` during the construction of the graph `G`, which can lead to incomplete or incorrect graph connections.",
+      "diff": "--- \n+++ \n@@ -51,6 +51,8 @@\n                     v-=1\n                 if v==1:\n                     a.append(k)\n+                elif v>1:\n+                    b.append([k, v])\n \n             if len(b)>0:\n                 k, v = b.popleft()"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the indexing of nodes, particularly when adding edges between nodes, leading to potential out-of-bounds errors or incorrect graph construction.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n         ans = INF\n         ans = min(ans, D1[N - 1])\n         ans = min(ans, D1[N] + D2[i])\n-        ans = min(ans, D1[i] + 2 + minT)\n+        ans = min(ans, D1[i] + 1 + minT)\n         ans = min(ans, D1[N] + 1 + minT)\n         A.append(ans if ans < INF else -1)\n     print(*A)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for reaching the target node at `N + M` instead of the correct target node at `M` in the breadth-first search implementation.",
+      "diff": "--- \n+++ \n@@ -13,15 +13,17 @@\n q.append(1)\n D = [1<<61] * (N+M+1)\n D[1] = 0\n+\n while q:\n     u = q.popleft()\n     d = D[u]\n     for v in graph[u]:\n         if D[v] <= d + 1:\n             continue\n-        if v == N + M:\n+        if v == M:\n             print(d//2)\n             exit()\n         D[v] = d + 1\n         q.append(v)\n+        \n print(-1)"
+    },
+    {
+      "summary": "The buggy code does not correctly account for undirected edges in the graph by only setting g1 and g2 for directed connections, rather than both directions.",
+      "diff": "--- \n+++ \n@@ -7,11 +7,13 @@\n for _ in range(m):\n     u, v = map(int, input().split())\n     g1[u - 1][v - 1] = 1\n+    g1[v - 1][u - 1] = 1\n \n g2 = [[0 for _ in range(n)] for _ in range(n)]\n for _ in range(m):\n     u, v = map(int, input().split())\n     g2[u - 1][v - 1] = 1\n+    g2[v - 1][u - 1] = 1\n \n isok = False\n for p in itertools.permutations(range(n), n):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

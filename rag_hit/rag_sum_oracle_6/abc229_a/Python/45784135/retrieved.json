@@ -1,0 +1,29 @@
+{
+  "task": "abc229_a/Python/45784135",
+  "query_summary": "The buggy code only checks vertical matches of '#' between s1 and s2 at each column, failing to detect horizontal adjacency within a single row (s1[0..1] or s2[0..1]).",
+  "oracle_summary": "The buggy code only checks vertical matches of '#' between s1 and s2 at each column, failing to detect horizontal adjacency within a single row (s1[0..1] or s2[0..1]).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the input 's' is less than or equal to \"ABC349\" instead of ensuring it falls within the correct range starting from \"ABC001\".",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n s = input()\n-if s <= \"ABC349\" and s != \"ABC316\":\n+if \"ABC001\"<= s <= \"ABC349\" and s != \"ABC316\":\n     print(\"Yes\")\n else :\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the first three characters of both strings are equal, potentially leading to errors when the strings are shorter than three characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n t = input()\n-if s[0:3] == t[0:3]:\n+if s[0:len(s)] == t[0:len(s)]:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `S[8]` instead of `S[7]` for the bitwise OR operation on `S[1]` when constructing the `column` list, which can lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n if S[0]:\n     exit(print(\"No\"))\n-column = [S[6], S[3], S[1] | S[8], S[0] | S[4], S[2] | S[8], S[5], S[9]]\n+column = [S[6], S[3], S[1] | S[7], S[0] | S[4], S[2] | S[8], S[5], S[9]]\n for i in range(7):\n     for j in range(i + 1, 7):\n         for k in range(j + 1, 7):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly compares characters in the string `S` to the integer `0` instead of the string `\"0\"`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input().strip()\n \n for i in range(1, 9):\n-  if S[2 * i - 1] != 0:\n+  if S[2 * i - 1] != \"0\":\n     print(\"No\")\n     exit()\n print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code is missing an `else` statement for the second `if` block, which causes it to incorrectly print \"No\" when the second condition is not met, instead of maintaining the proper logic flow.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n if S[0].isupper():\n   if (len(S)>= 2 and S[1:].islower()) or len(S) == 1:\n     print(\"Yes\")\n+  else:\n+    print(\"No\")\n else:\n   print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

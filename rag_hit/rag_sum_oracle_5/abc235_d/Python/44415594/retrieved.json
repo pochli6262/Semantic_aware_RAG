@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/44415594",
+  "query_summary": "The buggy code performs the rotation move without verifying that the rotated number keeps the same digit length, so rotations that introduce leading zeros (shortening the number) are incorrectly allowed.",
+  "oracle_summary": "The buggy code performs the rotation move without verifying that the rotated number keeps the same digit length, so rotations that introduce leading zeros (shortening the number) are incorrectly allowed.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the initial upper limit `OK` for the binary search is set to `10**9`, which is too small, leading to potential incorrect results when larger adjustments are necessary; it should be set to `10**17` as in the correct code.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n \n C=A[:]\n \n-OK=10**9\n+OK=10**17\n NG=-1\n \n while OK>NG+1:"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the upper limit of the binary search range to \\(10^{12}\\) instead of the required \\(10^{16}\\}.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n for _ in range(n):\n     num = int(input())\n     l = 0\n-    r = 10 ** 12\n+    r = 10 ** 16\n     md = (l + r) // 2\n     while l + 1 < r:\n         ret = calc(md)"
+    },
+    {
+      "summary": "The buggy code does not stop appending digits to the answer once the expected number of digits has been reached, potentially resulting in a longer string than intended.",
+      "diff": "--- \n+++ \n@@ -45,6 +45,8 @@\n                 ans.append(str(9-i))\n         else:\n             continue\n+        if len(ans) == digits:\n+            break\n \n     return ''.join(ans)\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `num1` is incorrectly initialized to 1 instead of 0, which causes the algorithm to miss potential square numbers that could match the sorted input string.",
+      "diff": "--- \n+++ \n@@ -4,11 +4,12 @@\n S=list(input())\n S.sort()\n ans=0\n-num1=1\n+num1=0\n num2=N\n for i in S:\n     if i==\"0\":\n         num2-=1\n+\n while len(str(num1**2))<=len(S):\n     s=list(str(num1**2))\n     s.sort()"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the range in the loop checking for squared numbers, causing it to miss the square of the largest possible number defined by `math.ceil(math.sqrt(10**N))`.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n ans = 0\n \n # for all possible squared numbers, check if it is possible to create by rearraning S\n-for i in range(1, math.ceil(math.sqrt(10**N))):\n+for i in range(math.ceil(math.sqrt(10**N))):\n     squared = i * i\n     count_squared = [0] * 10\n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

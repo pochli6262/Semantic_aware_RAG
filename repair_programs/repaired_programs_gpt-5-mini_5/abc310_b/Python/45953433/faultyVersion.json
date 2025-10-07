@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used len((fj | fi)) - len(fj) to test whether the j-th product has extra functions beyond i, but when fi is a subset of fj that expression is always zero (because fj|fi == fj). I replaced that wrong difference with a direct size comparison len(fj) > len(fi), which correctly detects when j has strictly more functions. This fix is in line with patterns from the diffs suggesting using a direct comparison of set sizes or set(F_j) > set(F_i).",
+  "fixed_code": "N, M = map(int, input().split())\nI = [list(map(int, input().split())) for _ in range(N)]\n\nfor i in range(N):\n    for j in range(N):\n        if i == j:\n            continue\n        if I[i][0] >= I[j][0]:\n            fj = set(I[j][2:])\n            fi = set(I[i][2:])\n            if len((fj | fi)) == len(fj):\n                if I[i][0] > I[j][0] or len(fj) > len(fi):\n                    print('Yes')\n                    exit()\nprint('No')"
+}

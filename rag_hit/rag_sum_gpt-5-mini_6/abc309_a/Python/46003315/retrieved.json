@@ -1,0 +1,29 @@
+{
+  "task": "abc309_a/Python/46003315",
+  "query_summary": "The row-equality check uses ax == ay instead of comparing A's row to B's row (ax == bx), so the horizontal-adjacency condition is wrong.",
+  "oracle_summary": "The code used the wrong variables and condition—it compared ax to ay and required by-ay==1 instead of comparing rows (ax==bx) and checking the columns differ by 1 (abs(ay-by)==1).",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to check that consecutive elements in the same row differ by 1, which is necessary for the correct validation of the matrix structure.",
+      "diff": "--- \n+++ \n@@ -27,6 +27,8 @@\n         if j != 0:\n             if ((B[i][j] - 1) % 7) - ((B[i][j-1] - 1) % 7) != 1:\n                 ans = \"No\"\n+            if B[i][j] - B[i][j-1] != 1:\n+                ans = \"No\"\n \n print(ans)\n                 "
+    },
+    {
+      "summary": "The buggy code incorrectly checks for even indices instead of odd indices in the second loop, causing it to misidentify whether the rearranged list `B` satisfies the required conditions.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     else:\n         B[2*i-N]=A[i]\n for i in range(N):\n-    if i%2!=0:\n+    if i%2==0:\n         continue\n     if B[i-1]<B[i] and B[i]>B[i+1]:\n         continue"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition in the second 'elif' statement incorrectly uses 'A < N' instead of 'A <= N', which could lead to incorrect results when A is equal to N.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \tN, A, B = map(int, input().split())\n \tif A <= N // 2:\n \t\tprint(\"Yes\" if B <= ((N + 1) // 2) * (N - A) else \"No\")\n-\telif A < N:\n+\telif A <= N:\n \t\tprint(\"Yes\" if B <= (N - A) ** 2 else \"No\")\n \telse:\n \t\tprint(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the sum of B and C is greater than zero instead of ensuring it's not equal to zero, which fails to account for valid scenarios where A or D equals N-1.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n import math\n N,A,B,C,D=(int(x) for x in input().split())\n n=math.floor(N/2)\n-if abs(B-C)<=1 and B<=n and C<=n and B+C>0:\n+if (abs(B-C)<=1 and B<=n and C<=n and B+C!=0) or A==N-1 or D==N-1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition `c[i] * a[i] > 0` instead of `c[i] - a[i]*X > 0`, which affects the logic determining whether to set `s` to 0 in the case where `a[i] == b[i]`.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     r = X\n     for i in range(n):\n         if a[i] == b[i]:\n-            if c[i] * a[i] > 0:\n+            if c[i] - a[i]*X > 0:\n                 s = 0\n                 break\n         elif b[i] - a[i] > 0:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

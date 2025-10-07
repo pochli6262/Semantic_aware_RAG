@@ -1,0 +1,4 @@
+{
+  "explanation": "The order check used '>=' which incorrectly rejects non-decreasing sequences that allow equal adjacent values. It should allow equality, so I changed '>=' to '>' so sequences with S[i] == S[i+1] pass the monotonic non-decreasing test. This fix is a single-line change.",
+  "fixed_code": "S = list(map(int,input().split()))\nfor i in range(len(S)-1):\n    if S[i] > S[i+1] or S[i] % 25 or S[i] < 100 or S[i] > 675:\n        print(\"No\")\n        exit()\n\nif S[-1] % 25 or S[-1] < 100 or S[-1] > 675:\n    print(\"No\")\nelse: print(\"Yes\")"
+}

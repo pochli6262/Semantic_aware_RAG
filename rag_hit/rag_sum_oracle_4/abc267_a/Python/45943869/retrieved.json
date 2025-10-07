@@ -1,0 +1,29 @@
+{
+  "task": "abc267_a/Python/45943869",
+  "query_summary": "The final condition misspells \"Friday\" as \"Friay,\" so the program never prints 1 when the input is \"Friday.\"",
+  "oracle_summary": "The final condition misspells \"Friday\" as \"Friay,\" so the program never prints 1 when the input is \"Friday.\"",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses \"marinara\" instead of the correct username \"mnbvmar\" to check user input.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     print(3630)\n if s==\"ecnerwala\":\n     print(3613)\n-if s==\"marinara\":\n+if s==\"mnbvmar\":\n     print(3555)\n if s==\"newbiedmy\":\n     print(3516)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for \"Beng\" instead of the correct value \"Benq\".",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n     print(3858)\n if s==\"ksun48\":\n     print(3679)\n-if s==\"Beng\":\n+if s==\"Benq\":\n     print(3658)\n if s==\"Um_nik\":\n     print(3648)"
+    },
+    {
+      "summary": "The buggy code has an incorrect score assignment for the input \"ksun48\", where it incorrectly prints 679 instead of the correct value 3679.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n if S ==\"tourist\":\n     print(3858)\n if S == \"ksun48\":\n-    print(679)\n+    print(3679)\n if S == \"Benq\":\n     print(3658)\n if S == \"Um_nik\":"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints \"6\" when at least two characters are the same due to the absence of an \"elif\" which causes the last \"else\" to execute incorrectly.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n if S[0] == S[1] and S[1] == S[2]:\n   print(1)\n-if S[0] == S[1] or S[0] == S[2] or S[1] == S[2]:\n+elif S[0] == S[1] or S[0] == S[2] or S[1] == S[2]:\n   print(3)\n else:\n   print(6)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `0` instead of `1` when the first character in the string appears only once.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s= input()\n \n if s.count(s[0])==1:\n-        print(0)\n+        print(1)\n else:\n     for i in range(1,len(s)):\n         if s[0] != s[i]:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

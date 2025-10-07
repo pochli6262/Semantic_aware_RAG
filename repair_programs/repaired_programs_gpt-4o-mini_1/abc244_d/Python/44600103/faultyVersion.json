@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original code arises from the implementation of the input reading logic. The input for S and T should be gathered in a way that matches the expected number of elements (3). However, if the user provides less than 3 inputs, it would lead to an IndexError. To correct this, the map function should still convert input strings to a list, but we will add a safeguard to ensure we always check only the first 3 elements and not exceed the size of the lists S or T. This was achieved by changing both input lines to read exactly 3 items.",
+  "fixed_code": "S = list(map(str, input().split()[:3]))\nT = list(map(str, input().split()[:3]))\ndiff = 0\nfor i in range(3):\n    if S[i] != T[i]:\n        diff += 1\n\nif diff % 2 == 0:\n    print('Yes')\nelse:\n    print('No')"
+}

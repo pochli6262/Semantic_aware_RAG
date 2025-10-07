@@ -1,0 +1,29 @@
+{
+  "task": "abc242_a/Python/45767519",
+  "query_summary": "The likely bug is that the program incorrectly calculates the probability for ranks between A+1 and B, as it mistakenly uses C instead of the total number of participants in that range when determining the probability of selection.",
+  "oracle_summary": "The second branch uses X <= C instead of X <= B, erroneously applying the middle-case formula for X values up to C rather than only up to B.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it attempts to access the second-to-last element of a list derived from a set without sorting, which may lead to unpredictable results if the input numbers are not in order.",
+      "diff": "--- \n+++ \n@@ -11,6 +11,5 @@\n mod = 998244353\n N = int(input())\n A = set(map(int, input().split()))\n-\n-A = list(A)\n+A = sorted(A)\n print(A[-2])"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the final answer by using `A[0] % g` instead of `min(A[0] % (2 * g), A[-1] % (2 * g))`, leading to an inaccurate result based on the GCD of the differences.",
+      "diff": "--- \n+++ \n@@ -30,5 +30,5 @@\n g=0\n for i in range(N-1):\n     g=GCD(g,A[i+1]-A[i])\n-ans=A[0]%g+A[-1]-A[0]\n+ans=min(A[0]%(2*g),A[-1]%(2*g))+A[-1]-A[0]\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the lists `a` and `b` before using them in the `upper_bound` and `lower_bound` functions, which can lead to incorrect results when counting elements.",
+      "diff": "--- \n+++ \n@@ -26,6 +26,9 @@\n         else:\n             b.append(x)\n \n+    a.sort()\n+    b.sort()\n+\n     ans = 0\n     for i in a:\n         ans += upper_bound(b, i + 2 * T) - lower_bound(b, i)"
+    },
+    {
+      "summary": "The buggy code incorrectly generates combinations of three distinct elements from the list `C`, which may result in duplicate combinations or invalid indices, while the correct code properly uses the second loop index for the third element to ensure unique combinations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n D=[]\n for i in range(len(C)-2):\n     for j in range(i+1,len(C)-1):\n-        for k in range(i+2,len(C)):\n+        for k in range(j+1,len(C)):\n             D.append((C[i]+C[j]+C[k])/(C[i]*C[j]*C[k]))\n D.sort()\n print(D[0])"
+    },
+    {
+      "summary": "The problem in the buggy code is that it erroneously prints the variable `Acnt` during the execution, which could lead to incorrect or undesirable output, while the correct code omits this print statement.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n Q = [x + y for x, y in zip(Q, A)]\n Acnt -=1\n ans = max(ans,Acnt)\n-print(\"A :\",Acnt)\n+#print(\"A :\",Acnt)\n \n while Acnt>=0:\n   while all(x >= 0 for x in Q):"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

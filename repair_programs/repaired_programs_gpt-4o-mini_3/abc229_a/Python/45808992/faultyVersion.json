@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program is that the conditions in the 'elif' statements do not have a duplicate check for both 'S1' and 'S2'. Thus, the direct comparison for the second condition blocks doesn't properly check if both conditions are true correctly. The fixed line adds the necessary checks for both conditions in a coherent way.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1 == '##' or S2 == '##':\n    print('Yes')\nelif (S1 == '.#' and S2 == '#.') or (S1 == '#.' and S2 == '.#'):\n    print('No')"
+}

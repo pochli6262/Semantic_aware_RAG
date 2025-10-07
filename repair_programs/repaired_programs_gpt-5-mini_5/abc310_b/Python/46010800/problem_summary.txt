@@ -1,0 +1,1 @@
+The inner loop only iterates j in range(i), so the code only checks pairs with j < i and thus misses valid comparisons where the superior product has a smaller index (j > i).

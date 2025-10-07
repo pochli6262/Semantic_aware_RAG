@@ -1,0 +1,4 @@
+{
+  "explanation": "The line 'ans=N+a-1' was wrong: when the remainder a is 4 this adds 3 (N+3) instead of rounding up to the next multiple of 5 (which requires adding 1). The correct amount to add is (5 - a). I replaced that single line with 'ans=N+5-a' so numbers with remainder 3 or 4 round up correctly.",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a <3:\n        ans=N-a\n    else:\n        ans=N+5-a\n    print(ans)\n"
+}

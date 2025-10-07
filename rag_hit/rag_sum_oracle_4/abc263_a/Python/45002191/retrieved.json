@@ -1,0 +1,29 @@
+{
+  "task": "abc263_a/Python/45002191",
+  "query_summary": "It wrongly prints Yes for any input with exactly two distinct numbers, even when neither repeats, instead of requiring that at least one of those numbers appears at least twice.",
+  "oracle_summary": "It wrongly prints Yes for any input with exactly two distinct numbers, even when neither repeats, instead of requiring that at least one of those numbers appears at least twice.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the conditions for the differences between `x` and `y` without allowing for non-negative results, leading to incorrect outputs for certain input values.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x,y = map(int,input().split())\n \n-if y-x == 2 or x-y == 3:\n+if 0 <= y-x <= 2 or 0 <= x-y <= 3:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for differences between `x` and `y` without ensuring that `y` is greater than `x`, which could lead to incorrect output for cases where `y < x`.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n x, y = map(int, input().split())\n-print(\"Yes\" if y - x == 2 or x - y == 3 else \"No\")\n+print(\"Yes\" if 0 < y - x <= 2 or 0 < x - y <= 3 else \"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the condition `X - a in Aset` instead of the correct condition `a + X in Aset`, leading to an incorrect result for determining whether there exists a pair of elements in the list whose sum equals X.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n Aset = set(A)\n ok = False\n for a in A:\n-    if X-a in Aset:\n+    if a + X in Aset:\n         ok = True\n         break\n if ok:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints \"YES\" instead of the correctly capitalized \"Yes\" in the output.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, x, y, z = map(int, input().split())\n \n if x<z<y or y<z<x:\n-  print(\"YES\")\n+  print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the logical conditions for determining the range of y-x, leading to an inverted output when comparing the difference against the values -3 and 3.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x,y = map(int, input().split())\n \n-if y-x <= -3 or y-x > 3:\n+if y-x >= -3 and y-x < 3:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

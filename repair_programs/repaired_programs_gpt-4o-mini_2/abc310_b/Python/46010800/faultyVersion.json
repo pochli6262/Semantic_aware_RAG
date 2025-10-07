@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition of the if statement. The condition should check if `f[j].issuperset(f[i])` and `f[i].issubset(f[j])` because we want to find if 'j' is in 'i' or 'i' is in 'j' considering the 'j' subset is contained within the 'i'. I fixed it by changing 'f[j].issuperset(f[i])' to 'f[j].issubset(f[i])'.",
+  "fixed_code": "n , m = map(int,input().split())\np = [None] * n\n#c = [None] * n\nf = [None] * n\n#e1 = {}\nfor i in range(n):\n    e = list(map(int,input().split()))\n    p[i] = e[0]\n#    c[i] = e[1]\n    f[i] = set(e[2:])\nfor i in range(n):\n    for j in range(i):\n        if p[i] >= p[j] and f[j].issubset(f[i]) and (p[i] > p[j] or len(f[j]) > len(f[i])):\n#            print(\"i=\",i+1,\"j=\",j+1,f[j],\"<=\",f[i])\n            print(\"Yes\")\n            exit()  \n#    e1[p[i]] = f[i]\nprint(\"No\")"
+}

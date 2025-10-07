@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop was using A[i] as the exponent (2 ** A[i]) which computes 2 raised to the element's value. The intent is to weight each element by 2 to the index power (2 ** i). I corrected the exponent to use i so the sum is sum(A[i] * 2**i).",
+  "fixed_code": "A = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n  ans += A[i] * 2 ** i\nprint(ans)"
+}

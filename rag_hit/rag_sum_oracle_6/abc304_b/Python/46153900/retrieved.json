@@ -1,0 +1,29 @@
+{
+  "task": "abc304_b/Python/46153900",
+  "query_summary": "The bug is using round(N, -range(N)) — which rounds to the nearest multiple — instead of truncating with integer division and multiplication, so values get incorrectly rounded rather than floored.",
+  "oracle_summary": "The bug is using round(N, -range(N)) — which rounds to the nearest multiple — instead of truncating with integer division and multiplication, so values get incorrectly rounded rather than floored.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that when `N` is less than 42, it incorrectly concatenates '0' in front of `N` instead of formatting it to ensure it has three digits.",
+      "diff": "--- \n+++ \n@@ -3,4 +3,4 @@\n if N >= 42:\n     print(f\"AGC{N + 1:03}\")\n else:\n-    print('AGC' + '0' + str(N))\n+    print(f\"AGC{N:03}\")"
+    },
+    {
+      "summary": "The buggy code does not correctly limit the range of cubes calculated to only those that are less than or equal to `N`, potentially resulting in printing a cube that exceeds `N`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n import math\n-n = [i**3 for i in range(math.floor(N**(1/3))+1)]\n+n = [i**3 for i in range(math.floor(N**(1/3))+2) if i**3 <= N]\n for i in range(len(n)-1, -1, -1):\n   x = True\n   for j in range(len(str(n[i]))//2 + 1):"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if `N` is greater than 42 instead of greater than or equal to 42, which can result in missing the intended increment when `N` is exactly 42.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-if N > 42:\n+if N >= 42:\n     N += 1\n if N < 10:\n     z = 2"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a fixed range of 10 instead of the variable `n` to determine the countdown limit.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n n = input()\n n = int(n)\n-for i in range(10,-1,-1):\n+for i in range(n,-1,-1):\n     print(i)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

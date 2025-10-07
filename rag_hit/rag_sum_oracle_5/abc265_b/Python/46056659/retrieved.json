@@ -1,0 +1,32 @@
+{
+  "task": "abc265_b/Python/46056659",
+  "query_summary": "The code uses a strict “>” comparison (A[i] > T) instead of “>=”, wrongly allowing progress when the cost equals the remaining time, which should result in “No.”",
+  "oracle_summary": "The code uses a strict “>” comparison (A[i] > T) instead of “>=”, wrongly allowing progress when the cost equals the remaining time, which should result in “No.”",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that the list `Takahashi` is not sorted before it is compared to `test`, which can result in incorrect comparison outcomes.",
+      "diff": "--- \n+++ \n@@ -20,6 +20,8 @@\n \n l = itertools.permutations(list(range(n)))\n \n+Takahashi.sort()\n+\n for i in l:\n     # print(i)\n     test = [[0]*2 for _ in range(m)]\n@@ -30,6 +32,7 @@\n         test[j].sort()\n \n     test.sort()\n+    # print(Takahashi, test)\n \n     if Takahashi == test:\n         print('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition for 'Takahashi' by using `T > A` instead of the correct condition `T < A`.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   \n if T == A:\n   print('Draw')\n-elif T > A:\n+elif T < A:\n   print('Takahashi')\n else:\n   print('Aoki')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc305_a/Python/46193789",
+  "query_summary": "An off-by-one error: the loop uses range(20) so it omits i=20 (the 100 candidate), causing the nearest-multiple-of-5 search to miss that value.",
+  "oracle_summary": "An off-by-one error: the loop uses range(20) so it omits i=20 (the 100 candidate), causing the nearest-multiple-of-5 search to miss that value.",
+  "retrieved": [
+    {
+      "summary": "The issue in the buggy code is that it initializes `min_diff` to infinity (`float('inf')`), which incorrectly affects the calculation of the final result, as the code attempts to add the absolute value of `min_diff` to the total when it should be initialized to `0`.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = list(map(int, input().split()))\n \n total = 0\n-min_diff = float('inf')\n+min_diff = 0\n \n for i in range(N):\n     total += A[i]"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the contribution of gaps between indices by using `(len(tmp)-j)` instead of the correct factor of `((j+1)*(len(tmp)-j))`.",
+      "diff": "--- \n+++ \n@@ -9,5 +9,5 @@\n     for j in range(len(i)-1):\n         tmp.append(i[j+1]-i[j]-1)\n     for j in range(len(tmp)):\n-        ans += tmp[j]*(len(tmp)-j)    \n+        ans += tmp[j]*((j+1)*(len(tmp)-j))    \n print(ans)"
+    },
+    {
+      "summary": "The buggy code prints the list of indices as a list with brackets, while the correct code prints the indices as space-separated values.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n \tfor j in range(N):\n \t\tif A[j]:\n \t\t\tans.append(j+1)\n-\tprint(ans)\n+\tprint(*ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the inner loop incorrectly uses `for k in range(k):` instead of `for k in range(30):`, which causes it to fail to iterate over all bit positions.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n for i in range(N):\n   w=0\n   x=A[i]\n-  for k in range(k):\n+  for k in range(30):\n     if (x>>k)&1:\n       w-=v[k]*2**k\n       w+=(N-v[k])*2**k"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

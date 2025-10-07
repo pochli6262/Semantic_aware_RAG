@@ -1,0 +1,4 @@
+{
+  "explanation": "The DP transition was missing the option to skip the current item. The original line unconditionally set dp[i+1][j] = dp[i][j-1] + x[i] + d[j], which ignores the possibility of carrying over dp[i][j] (not choosing the i-th item). I fixed that single line by taking the maximum between not choosing the item (dp[i][j]) and choosing it (dp[i][j-1] + x[i] + d[j]).",
+  "fixed_code": "n,m=map(int,input().split())\nx=list(map(int,input().split()))\ns=[list(map(int,input().split())) for i in range(m)]\nans=0\nd=[0]*(n+1)\nfor i in range(m):\n  d[s[i][0]]=s[i][1]\ndp=[[0]*(n+1) for i in range(n+1)]\nfor i in range(n):\n  for j in range(1,n+1):\n    dp[i+1][j]=max(dp[i][j], dp[i][j-1]+x[i]+d[j])\n  dp[i+1][0]=max(dp[i])\nprint(max(dp[-1]))"
+}

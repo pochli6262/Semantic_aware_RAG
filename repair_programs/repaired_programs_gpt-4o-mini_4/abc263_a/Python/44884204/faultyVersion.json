@@ -1,0 +1,4 @@
+{
+  "explanation": "The program only checks a specific arrangement of the sorted cards for a Full house, incorrectly assuming that the only valid configuration is when the first three cards are the same and the last two are also the same. This fails for valid Full house configurations like '2 3 3 2 3'. The line I corrected checks for the more general condition that one card appears 3 times and another card appears 2 times, aligning with common principles found in Diff 1 and Diff 2. The single line change is in how card counts are checked for Full house validation.",
+  "fixed_code": "def main():\n    cards = list(map(int, input().split()))\n    assert len(cards) == 5\n\n    cards.sort()\n    if (cards[0] == cards[1] == cards[2] and cards[3] == cards[4]) or (cards[0] == cards[1] and cards[2] == cards[3] == cards[4]):\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\n\nif __name__ == \"__main__\":\n    main()"
+}

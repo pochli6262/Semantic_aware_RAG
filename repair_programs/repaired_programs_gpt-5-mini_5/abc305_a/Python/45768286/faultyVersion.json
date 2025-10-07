@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line computed an offset (abs(5 - N%5)) instead of the coordinate of the nearest water station, so for values already at a station it returned 5 instead of N. I replaced that line with a nearest-multiple-of-5 rounding using integer division: ((N+2)//5)*5. This yields the nearest water station coordinate for all integer N (the // pattern for integer division is similar to fixes shown in the diffs).",
+  "fixed_code": "print(((int(input())+2)//5)*5)"
+}

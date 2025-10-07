@@ -1,0 +1,1 @@
+The loop checks only digits 1–9 (range(1, 10)), so it will fail to detect when the missing digit is 0.

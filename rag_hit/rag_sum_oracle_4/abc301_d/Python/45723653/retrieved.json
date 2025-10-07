@@ -1,0 +1,32 @@
+{
+  "task": "abc301_d/Python/45723653",
+  "query_summary": "The bug was caused by iterating over the bit positions in reverse (least significant first) when filling '?'s, breaking the required greedy choice order — it should scan from most significant to least significant.",
+  "oracle_summary": "The bug was caused by iterating over the bit positions in reverse (least significant first) when filling '?'s, breaking the required greedy choice order — it should scan from most significant to least significant.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs -1 only when the longest sequence of non-hyphen characters is equal to `n-2`, failing to account for the case where there are no non-hyphen characters at all (represented by `m` being 0).",
+      "diff": "--- \n+++ \n@@ -7,6 +7,6 @@\n     m=max(m,x)\n     x=0\n   else: x+=1\n-if m==n-2:\n+if m==n-2 or m==0:\n   print(-1)\n else: print(m)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it starts the loop from `2**m` instead of `2**m - 1`, leading it to miss generating combinations corresponding to `m` bits where exactly `n` bits are set to 1.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, m = map(int, input().split())\n \n-for i in range(2**m, 0, -1):\n+for i in range(2**m-1, 0, -1):\n   co = bin(i)[2:].zfill(m)\n   if co.count(\"1\") == n:\n     print(*[t+1 for t in range(m) if co[t]==\"1\"])"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `n` is equal to 4, failing to append '4' to the list `x` when `n` reaches that value.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,8 @@\n while n > 4:\n   x.append('4')\n   n -= 4\n+if n == 4:\n+  x.append('4')\n if n == 3:\n   x.append('3')\n if n == 2:"
+    },
+    {
+      "summary": "The buggy code fails to correctly initialize the variable `res`, which should be set to `max(0, n - 1)` instead of just `n - 1`, potentially leading to negative results for certain input cases.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         d.append(p)\n ans = 0\n for _ in range(2):\n-    res = n - 1\n+    res = max(0, n - 1)\n     frm = 0\n     if _ == 1:\n         cnt = 0"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the index for populating the bits array by using `(j*le+x)` instead of the correct `(j*62+x)`, leading to potential out-of-bounds access when processing edges in the adjacency matrix.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n     for j in range(le):\n         num = 0\n         for x in range(62):\n-            if j*le+x < n and e[i][j*le+x]:\n+            if j*62+x < n and e[i][j*62+x]:\n                 num |= 1<<x\n         bi.append(num)\n     bits.append(bi)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

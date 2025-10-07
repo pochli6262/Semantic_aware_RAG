@@ -1,0 +1,33 @@
+{
+  "task": "abc310_b/Python/46010800",
+  "query_summary": "The bug is an incorrect inner-loop bound: it iterates over j in range(i) instead of range(n), so some required pairwise comparisons (j >= i) are never checked.",
+  "oracle_summary": "The bug is an incorrect inner-loop bound: it iterates over j in range(i) instead of range(n), so some required pairwise comparisons (j >= i) are never checked.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if any two consecutive elements in the sorted list `c` belong to the same array (either `a` or `b`), instead of specifically checking if they both belong to array `a`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n \n ans = \"No\"\n for i in range(n + m - 1):\n-    if c[i][1] == c[i + 1][1]:\n+    if c[i][1] == c[i + 1][1] == 0:\n         ans = \"Yes\"\n \n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The buggy code attempts to handle cases where the last element's position is incorrectly modified when it should not be touched, which may lead to incorrect outputs or index errors.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n         p = p[:i]+p[j:j+2]+p[i:j]+p[j+2:]\n     else:\n         ans.append([n-1,n-3])\n-        ans.append([n-1,i+1])\n+        ans.append([n-1,i])\n         p = p[:i]+[p[-1],p[-3]]+p[i:-3]+[p[-2]]\n if p[-1] == n-1:\n     print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

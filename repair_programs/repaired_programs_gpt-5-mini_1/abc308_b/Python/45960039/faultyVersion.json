@@ -1,0 +1,4 @@
+{
+  "explanation": "The line inside the loop printed p[0] for items not found in ds, which produced output instead of accumulating the price. The program should add the default price p[0] to the running total s. I fixed that single line by replacing print(p[0]) with s += p[0].",
+  "fixed_code": "n, m = map(int, input().split())\nc = input().split()\nd = input().split()\np = list(map(int, input().split()))\nds = {d[i]: p[1 + i] for i in range(m)}\ns = 0\nfor i in c:\n    if i not in ds:\n        s += p[0]\n    else:\n        s += ds[i]\nprint(s)\n"
+}

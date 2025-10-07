@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line used count!=2, but for permutations of three distinct hats the number of positions that match between S and T can only be 3 (identity), 1 (a single swap / transposition), or 0 (a 3-cycle). Since 10^18 is even, we can reach T from S iff the permutation parity is even, i.e. when the number of matched positions is 0 or 3 — equivalently count != 1. I fixed the condition by changing 2 to 1 (single-line change).",
+  "fixed_code": "S=list(input().split())\nT=list(input().split())\ncount=0\nfor i in range(3):\n  if S[i]==T[i]:\n    count+=1\nprint(\"Yes\") if count!=1 else print(\"No\")"
+}

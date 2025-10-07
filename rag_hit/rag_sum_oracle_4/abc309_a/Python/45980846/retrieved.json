@@ -1,0 +1,29 @@
+{
+  "task": "abc309_a/Python/45980846",
+  "query_summary": "The bug is an extra OR clause that incorrectly checks grid[j][i] and grid[j+1][i] (swapping i and j), causing unintended vertical/transposed pair matches and false positives instead of only checking horizontal adjacent elements.",
+  "oracle_summary": "The bug is an extra OR clause that incorrectly checks grid[j][i] and grid[j+1][i] (swapping i and j), causing unintended vertical/transposed pair matches and false positives instead of only checking horizontal adjacent elements.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly updates the `blocks` array using `i % n` and `j % n` instead of using `i // n` and `j // n` to determine the correct block index.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n         if not rows[i][num - 1] and not cols[j][num - 1] and not blocks[i // n][j // n][num - 1]:\n               rows[i][num - 1] = True\n               cols[j][num - 1] = True\n-              blocks[i % n][j % n][num - 1] = True\n+              blocks[i // n][j // n][num - 1] = True\n         else:\n             valid = False\n             break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the length of each block set, resulting in a failure to properly validate that all blocks contain the required unique values.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n if (\n     all(len(r) == 9 for r in row)\n     and all(len(c) == 9 for c in col)\n-    and all(len(b) == 9 for b in block)\n+    and all(all(len(b) == 9 for b in br) for br in block)\n ):\n     print(\"Yes\")\n else:"
+    },
+    {
+      "summary": "The problem in the buggy code is the use of the equality operator `==` instead of the assignment operator `=` when setting `exist[j]` to `True`, which prevents the correct tracking of columns that have \"o\" characters.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n       cnt += 1\n       for j in range(m):\n         if grid[i][j] == \"o\":\n-          exist[j] == True\n+          exist[j] = True\n   \n   if all(exist):\n     ans = min(ans, cnt)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not adjust the matrix input values by subtracting 1, which is necessary for the logic that determines the correct sequence and modular conditions.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, M = map(int, input().split())\n-B = [[int(i) for i in input().split()] for _ in range(N)]\n+B = [[int(i) - 1 for i in input().split()] for _ in range(N)]\n \n flg = True\n for i in range(N):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

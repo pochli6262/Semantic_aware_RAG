@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the conditional check inside the set which was intended to normalize the index for the prefix sums. The original line used an incorrect indexing for `l - k - 1`. It should use `l - k` instead. This adjustment ensures that we correctly fetch the prefix sum up to just before index `l`, leading to accurate comparison when determining if all sums are equal.",
+  "fixed_code": "N, K = map(int,input().split())\nA=list(map(int,input().split()))\nQ=int(input())\nS = [[0] for i in range(K)]\nfor i in range(N):\n    S[i%K].append(S[i%K][-1]+A[i])\n    \nfor i in range(Q):\n    l, r = map(lambda x:int(x)-1,input().split())\n    s=set()\n    for k in range(K):\n        s.add(S[k][(r-k)//K+1] - S[k][max(0, l-k)//K+1])\n    if len(s)==1:\n        print('Yes')\n    else:\n        print('No')"
+}

@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly initializes the adjacency matrix, thereby misrepresenting pairs of individuals who are adjacent in photos.

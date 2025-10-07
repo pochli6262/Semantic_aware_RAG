@@ -1,0 +1,4 @@
+{
+  "explanation": "The print line was checking x % 100 == 0, which tests divisibility by 100. The likely intent is to check whether x is even. I changed the condition to x % 2 == 0 so the program prints 'Yes' for even numbers and 'No' for odd ones.",
+  "fixed_code": "x = int(input())\nprint('Yes' if x % 2 == 0 else 'No')"
+}

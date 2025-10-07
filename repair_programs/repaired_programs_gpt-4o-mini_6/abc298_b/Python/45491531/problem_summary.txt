@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly rotates the matrix `A` multiple times without checking the condition for each rotation, leading to incorrect evaluations in later rotations.

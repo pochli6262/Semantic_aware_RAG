@@ -1,0 +1,4 @@
+{
+  "explanation": "The code assumes that `a` will always have at least 63 elements. However, if less than 63 elements are provided, it will raise an 'IndexError'. To fix this, I changed the range of the for loop from 63 to the length of the list `a`. This ensures that we iterate only through the valid indices of the list.",
+  "fixed_code": "import sys\ninput = lambda: sys.stdin.readline().strip()\n\na = list(map(int, input().split()))\n\nans = 0\nfor i in range(len(a)):\n    if a[i] == 0:\n        continue\n    else:\n        ans += (2 ** i)\nprint(ans)"
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc261_b/Python/45997045",
+  "query_summary": "The buggy code fails to mark as incorrect the case where exactly one of a[i][j] or b[i][j] is 'D' (an asymmetric draw), only checking equality and skipping the 'DD' case.",
+  "oracle_summary": "The buggy code fails to mark as incorrect the case where exactly one of a[i][j] or b[i][j] is 'D' (an asymmetric draw), only checking equality and skipping the 'DD' case.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it counts the same element from list `b` for all positions of `a` even when the indices are the same, while the correct code restricts the comparison to ensure that the indices `i` and `j` are different.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n \n for i in range(n):\n     for j in range(n):\n-        if a[i] == b[j]:\n+        if i!=j and a[i] == b[j]:\n             ans2 += 1\n \n print(ans1)"
+    },
+    {
+      "summary": "The problem in the buggy code is a typo where the variable 'b' is incorrectly referenced as 'B' (uppercase) in the condition checking for 'b < i'.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     for j in range(n):\n       if s[i][j]=='#':\n         if a>i : a=i\n-        if b<i : B=i\n+        if b<i : b=i\n         if c>j : c=j\n         if d<j : d=j\n print(a+1,b+1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition to check if the first segment of the arrays `a` and `b` are equal is incorrectly using `if i<3` instead of the correct `if i-l<3`, which leads to incorrect comparisons when the pointers `l` have been modified.",
+      "diff": "--- \n+++ \n@@ -35,7 +35,7 @@\n                 return 0\n             if st(a[l:i])!=st(b[l:i]):\n                 return 0\n-            if i<3 and a[:i]!=b[:i]:\n+            if i-l<3 and a[l:i]!=b[l:i]:\n                 return 0\n             l=i+1\n "
+    },
+    {
+      "summary": "The issue in the buggy code is that it incorrectly checks `b != 0` instead of `d != 0` in the conditional statement when both `b` and `c` are zero.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n,a,b,c,d = map(int, input().split())\n-print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and b != 0)) else \"Yes\")\n+print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and d != 0)) else \"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if any two consecutive elements in the sorted list `c` belong to the same array (either `a` or `b`), instead of specifically checking if they both belong to array `a`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n \n ans = \"No\"\n for i in range(n + m - 1):\n-    if c[i][1] == c[i + 1][1]:\n+    if c[i][1] == c[i + 1][1] == 0:\n         ans = \"Yes\"\n \n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

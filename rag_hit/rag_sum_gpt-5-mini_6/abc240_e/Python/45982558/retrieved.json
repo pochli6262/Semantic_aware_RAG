@@ -1,0 +1,32 @@
+{
+  "task": "abc240_e/Python/45982558",
+  "query_summary": "The code's leaf check uses \"len(graph[v]) == 1 and visited[v]\" which misclassifies leaves (notably failing for a single-node tree and wrongly treating a degree-1 root), so leaf nodes aren't detected correctly.",
+  "oracle_summary": "The DFS incorrectly tests visited[v] to detect a leaf instead of checking whether v’s only neighbor (its parent) is visited, causing degree-1 nodes (e.g., the root) to be wrongly labeled as leaves.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks whether all nodes have been visited instead of checking if the last node has been visited, leading to incorrect output for connected component checks.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         if not visited[j]:\n             visited[j] = True\n             q.append(j)\n-if all(visited):\n+if visited[-1]:\n     print('Yes')\n else:\n     print('No')    "
+    },
+    {
+      "summary": "The issue in the buggy code is that it does not handle the case where the depth of recursion exceeds a predefined limit by prematurely terminating execution or limiting the count of nodes visited.",
+      "diff": "--- \n+++ \n@@ -11,6 +11,8 @@\n def dfs(i,a):\n     global ans\n     ans+=1\n+    if ans==10**6:\n+        exit(print(10**6))\n     a.add(i)\n     for j in L[i]:\n         if j not in a:"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly skips counting connected components with only one vertex (by checking if `len(link) < 2`), while the correct code checks for connected components with at least one vertex (using `len(link) < 1`), leading to incorrect calculations of the answer.",
+      "diff": "--- \n+++ \n@@ -27,7 +27,7 @@\n for i in range(n):\n     link=dfs(i)\n     num_edge=0\n-    if len(link)<2:\n+    if len(link)<1:\n         continue\n     for l in link:\n         num_edge+=len(graph[l])"
+    },
+    {
+      "summary": "The buggy code incorrectly passes the parent node `u` into the recursive `dfs` call instead of the current node `v`, which disrupts the logic for tracking and updating the `ans` array based on the depth-first search traversal.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         if seen[next_v]:\n             continue\n         temp+=1\n-        dfs(u,next_v)\n+        dfs(v,next_v)\n         if ans[next_v] in set(['',S[v]]) :\n             count[v]+=1\n     if temp>0:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `dc[(x,y)] <= 1` to limit the number of times an edge can be traversed, while the correct code uses `dc[(x,y)] <= 10`, which prevents premature termination of the depth-first search.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n       if ans[o] >= 0:\n         continue\n       if seen[y] < len(graph[y])-1:\n-        if dc[(x,y)] <= 1:\n+        if dc[(x,y)] <= 10:\n           stack.append((y,o,d))\n           dc[(x,y)] += 1\n           dcc[(x,y)] = d"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

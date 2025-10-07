@@ -1,0 +1,1 @@
+The likely bug in the program is that the array `dp` is not being correctly updated to account for the specific conditions of resetting the counter when a tail is encountered, leading to incorrect calculations of the maximum amount of money.

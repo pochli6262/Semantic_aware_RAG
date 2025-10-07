@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly computes the sum by calculating ans += A[i] * 2 ** A[i], which uses A[i] instead of the index i to compute the exponent. The correct computation should use 2 raised to the power of the index i, not the value A[i]. This aligns with the sample outputs that suggest A[i] contributes to the sum based on its position in the array. The fix was inspired by understanding that the exponent should represent the index in the original formula.",
+  "fixed_code": "A = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n  ans += A[i] * 2 ** i\nprint(ans)"
+}

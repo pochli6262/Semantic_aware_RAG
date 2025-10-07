@@ -1,0 +1,4 @@
+{
+  "explanation": "The second conditional used comparisons with the operands reversed (A==B-1 or A==B-3). While mathematically equivalent to B==A+1 or B==A+3, reversing the operands is inconsistent with the first if condition and is error-prone. I replaced that line with the more direct and consistent form B==A+1 or B==A+3 so the intent is clear and matches the earlier comparison.",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A+1:\n    print('No')\nelif B==A+1 or B==A+3:\n    print('Yes')\nelse:\n    print('No')"
+}

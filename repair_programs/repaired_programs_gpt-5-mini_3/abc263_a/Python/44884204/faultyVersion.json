@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition only checked for the case where the three-of-a-kind appears first (e.g. a,a,a,b,b) but missed the symmetric case where the pair comes first and the three-of-a-kind comes last (e.g. a,a,b,b,b). I fixed the single incorrect line by expanding the condition to accept either ordering (triple+pair or pair+triple).",
+  "fixed_code": "def main():\n    cards = list(map(int, input().split()))\n    assert len(cards) == 5\n\n    cards.sort()\n    if (cards[0] == cards[1] and cards[0] == cards[2] and cards[0] != cards[3] and cards[3] == cards[4]) or (cards[0] == cards[1] and cards[2] == cards[3] and cards[2] == cards[4] and cards[1] != cards[2]):\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}

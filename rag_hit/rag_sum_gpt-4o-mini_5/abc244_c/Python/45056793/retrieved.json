@@ -1,0 +1,32 @@
+{
+  "task": "abc244_c/Python/45056793",
+  "query_summary": "The likely bug is that the program does not handle the case where Aoki declares a number that has already been declared by Takahashi, which could lead to an unhandled error when trying to remove it from the list.",
+  "oracle_summary": "The list ans is initialized with numbers 1..n+1 instead of 1..2n+1, making it too small and missing half the required values.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly iterates through the list of pairs one element short in the for loop, preventing the last element from being considered in the logic that determines the value of `ans`.",
+      "diff": "--- \n+++ \n@@ -9,11 +9,10 @@\n   ans = n % 2\n else:\n   ans = l[0][0] ^ (n - l[-1][0] - 1)\n-  for i in range(1,len(l) - 1):\n+  for i in range(1,len(l)):\n     if l[i][1] == l[i-1][1]:\n       ans ^= 1\n if ans != 0:\n   print(\"Takahashi\")\n else:\n   print(\"Aoki\")\n-    "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition for 'Takahashi' by using `T > A` instead of the correct condition `T < A`.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   \n if T == A:\n   print('Draw')\n-elif T > A:\n+elif T < A:\n   print('Takahashi')\n else:\n   print('Aoki')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the value of `t` instead of `ans` at the final conditional statement, which leads to incorrect output.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     if i+j in s:\n       t=0\n   ans|=t\n-if t:\n+if ans:\n   print('Takahashi')\n else:\n   print('Aoki')"
+    },
+    {
+      "summary": "The buggy code incorrectly generates a list of prime numbers only up to 100 instead of 200, causing it to potentially miss some valid sums that could be prime.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n                 primes.remove(i)\n                 break\n     return primes\n-setx=set(prime(100))\n+setx=set(prime(200))\n \n A,B,C,D=map(int,input().split())\n for i in range(A,B+1):"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the variable `tmp` instead of `a` when discarding from the `naname[1]` set, which causes an error when trying to remove items during the counting process.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,6 @@\n cnt = 0\n for a in A:\n     a -= 1\n-\n     i = a // n\n     j = a % n\n     tate[i].discard(a)\n@@ -28,7 +27,7 @@\n     if i == j:\n         naname[0].discard(a)\n     if i + j == n - 1:\n-        naname[1].discard(tmp)\n+        naname[1].discard(a)\n     cnt += 1\n     if (\n         len(tate[i]) == 0"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    8
+  ],
+  "useful_diffs_count": 2
+}

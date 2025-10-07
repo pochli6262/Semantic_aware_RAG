@@ -1,0 +1,31 @@
+{
+  "task": "abc261_b/Python/46179770",
+  "query_summary": "In the 'L' case, the condition is inverted: it checks kama[ipp][i] == 'W' (flagging a correct mirror as incorrect) instead of enforcing kama[ipp][i] != 'W'.",
+  "oracle_summary": "In the 'L' case, the condition is inverted: it checks kama[ipp][i] == 'W' (flagging a correct mirror as incorrect) instead of enforcing kama[ipp][i] != 'W'.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the variable \"Flag\" is incorrectly capitalized, which causes a NameError when the flag is set to False, as it should be \"flag\" (with a lowercase 'f') for consistency.",
+      "diff": "--- \n+++ \n@@ -1,12 +1,10 @@\n N,K = map(int,input().split())\n A = list(map(int,input().split()))\n-\n \n A.sort()\n A_lim = list(set(A))\n for i in range(len(A)-len(A_lim)):\n   A_lim.append(A_lim[-1])\n-\n check = 0\n ans = 0\n flag = True\n@@ -16,7 +14,7 @@\n     check += 1\n   else:\n     ans = i\n-    Flag = False\n+    flag = False\n     break\n \n if flag == True:"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the count of patterns found instead of determining if the count does not exceed the allowed maximum 'k'.",
+      "diff": "--- \n+++ \n@@ -14,5 +14,5 @@\n       i+=1\n     else:\n       i+=1\n-  print(ans)\n+  print('Yes' if ans<=k else 'No')\n     "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `s.find('R')` instead of `r.find('R')` when checking the position of 'R' in the reversed string.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s = input()\n r = s[::-1]\n if s.find('B') % 2 == r.find('B') % 2:\n-    if s.find('R') < s.find('K') < 8 - s.find('R') + 1:\n+    if s.find('R') < s.find('K') < 8 - r.find('R') + 1:\n         print('Yes')\n         exit()\n print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that the comparison in the if statement incorrectly uses the less-than operator instead of the greater-than operator, leading to an erroneous condition for setting the flag to False.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     for w in range(W):\n         for i in range(h+1, H):\n             for j in range(w+1, W):\n-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False\n+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False\n \n if flag : print(\"Yes\")\n else : print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly references a variable `k` instead of `K` in the condition `(N+k) % l == 0`, which causes unintended behavior and may lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n         if (N+K) % (2*l) == 0:\n             print(\"Yes\")\n             continue\n-        elif (N+k) % l == 0:\n+        elif (N+K) % l == 0:\n             for i in range(l):\n                 if S[i] != S[l-i-1]:\n                     break"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,1 @@
+The likely bug is that the cost array is incorrectly initialized and updated, leading to incorrect calculations of the total cost for acquiring the desired items.

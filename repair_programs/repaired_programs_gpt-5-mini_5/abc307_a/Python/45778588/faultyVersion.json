@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop header used range(int(N/7)) which incorrectly divides the number of weeks by 7, causing the outer loop to run far too few times. It should iterate once per week, i.e. range(N). I fixed that single line by replacing range(int(N/7)) with range(N). (This fix follows the bug summary that identified the incorrect loop bound.)",
+  "fixed_code": "N = int(input())\nl = list(map(int,input().split()))\nlis = []\nd = []\nb = 0\nfor j in range(N):\n  for k in l[7*b:7*(b+1)]:\n      lis.append(k)\n  d.append(sum(lis))\n  lis.clear()\n  b += 1\nprint(*d)\n"
+}

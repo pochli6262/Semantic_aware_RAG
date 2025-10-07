@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the original code where it checks if [s1, s2] is equal to ['#.', '.#'] or ['.#', '#.'] is incorrect. It uses the 'or' keyword incorrectly. The correct way to check for multiple conditions is to use separate comparisons. I fixed it by combining the two conditions properly using the 'or' operator.",
+  "fixed_code": "s1 = input()\ns2 = input()\n\nif [s1, s2] == ['#.', '.#'] or [s1, s2] == ['.#', '#.']:\n    print('No')\n    exit()\nelse:\n    print('Yes')"
+}

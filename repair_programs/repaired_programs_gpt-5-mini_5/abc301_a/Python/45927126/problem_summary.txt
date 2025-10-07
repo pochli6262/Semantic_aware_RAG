@@ -1,0 +1,1 @@
+The program ignores the tie-break rule and always prints "A" when T and A have equal wins instead of checking which player reached that number first.

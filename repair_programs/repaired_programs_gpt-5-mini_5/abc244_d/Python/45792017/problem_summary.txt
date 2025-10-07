@@ -1,0 +1,1 @@
+The program treats the input lines as contiguous strings (using s[i] and checking t in s+s) even though the input contains spaces between characters, so it compares the wrong characters (including spaces) instead of the hat letters.

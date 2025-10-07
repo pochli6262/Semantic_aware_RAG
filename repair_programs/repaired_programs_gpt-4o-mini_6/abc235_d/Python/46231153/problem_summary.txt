@@ -1,0 +1,1 @@
+The likely bug is that the program initializes the queue with the value of `a` instead of starting with the initial value of `1` on the blackboard, leading to incorrect calculations and potentially skipping valid operations.

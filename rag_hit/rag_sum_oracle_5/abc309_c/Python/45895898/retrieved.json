@@ -1,0 +1,34 @@
+{
+  "task": "abc309_c/Python/45895898",
+  "query_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "oracle_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the final output is printed as a single list instead of printing each answer on a new line.",
+      "diff": "--- \n+++ \n@@ -30,4 +30,4 @@\n     else:\n         ans.append(0)\n \n-print(ans)\n+print(*ans,sep=\"\\n\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the range for the loop is set to 2*(10**5), which may not provide enough iterations to find a day when \"day\" exceeds \"n,\" whereas the correct code uses 3*(10**5) to ensure sufficient iterations.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n, m, p = map(int, input().split())\n ans = 0\n day = m\n-for i in range(2*(10**5)):\n+for i in range(3*(10**5)):\n     if day > n:\n         ans = i\n         break"
+    },
+    {
+      "summary": "The issue in the buggy code is that the upper bound for the binary search (`ng`) was incorrectly set to `n*m - l` instead of `n*m - l + 1`, potentially causing out-of-bounds access or infinite loops.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n for l in range(n):\n     \n     ok = 1\n-    ng = n*m - l\n+    ng = n*m - l + 1\n     \n     while abs(ok-ng) > 1:\n         mid = (ok+ng)//2"
+    },
+    {
+      "summary": "The problem in the buggy code is that the upper limit for the binary search (`right`) is set to `1000000000`, which may exclude the correct answer if it is `1000000000`; it should be corrected to `1000000001`.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n     return flag\n \n left = 0\n-right = 1000000000\n+right = 1000000001\n \n while (right - left) > 1:\n     mid = (right + left)//2"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to N in the final loop instead of from 0 to N, leading to an off-by-one error when calculating the minimum answer.",
+      "diff": "--- \n+++ \n@@ -33,5 +33,5 @@\n for i in range(N):rdp[i+1]=min(rdp[i]+A[i],R*(i+1))\n rdp.reverse()\n ans=float('inf')\n-for i in range(1,N+1):ans=min(ans,ldp[i]+rdp[i])\n+for i in range(N+1):ans=min(ans,ldp[i]+rdp[i])\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 4
+}

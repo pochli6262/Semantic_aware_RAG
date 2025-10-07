@@ -1,0 +1,4 @@
+{
+  "explanation": "The line 'if not(S[i] % 25 == 0 and 100 <= S[i] <= 675):' incorrectly uses 'i', which references the last index checked from the first loop instead of iterating through all elements. It should use 'j' instead to evaluate each element in the range correctly. This fix is inspired by the need to correctly index and iterate through values as shown in the structure of the retrieved diffs that emphasize correct iterative access.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)"
+}

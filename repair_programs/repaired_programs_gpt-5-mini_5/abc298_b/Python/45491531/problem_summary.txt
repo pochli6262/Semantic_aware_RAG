@@ -1,0 +1,1 @@
+The program never tests the original (zero-rotation) orientation of A — it only checks after performing 1, 2, and 3 rotations.

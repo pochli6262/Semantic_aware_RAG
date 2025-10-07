@@ -1,0 +1,33 @@
+{
+  "task": "abc305_a/Python/45785540",
+  "query_summary": "The branch handling numbers divisible by 5 prints the literal 0 instead of the input n, causing incorrect output whenever n%5 == 0.",
+  "oracle_summary": "The branch handling numbers divisible by 5 prints the literal 0 instead of the input n, causing incorrect output whenever n%5 == 0.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not handle the case when the input `n` is 0, which results in an infinite loop since the while condition `n != 0` will never be false.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,8 @@\n n = int(input()) - 1\n \n goodint = []\n-\n+if n == 0:\n+    print(0)\n while n != 0:\n     goodint.append(n % 5)\n     n //= 5"
+    },
+    {
+      "summary": "The problem in the buggy code is that there is no `exit()` statement after the case for `n == 5`, which leads to the continuation of execution and potential errors when `n` is greater than 5.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+# できる気がせん\n n = int(input())\n \n if n == 3:\n@@ -19,6 +20,7 @@\n     print(9, 15, 21, 6, 12)\n     print(18, 24, 14, 4, 8)\n     print(10, 2, 16, 20, 22)\n+    exit()\n \n \n "
+    },
+    {
+      "summary": "The buggy code does not handle the case where the input value is 0, which leads to incorrect behavior since it directly tries to convert and print without checking for this special case.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n # 5進数で考える\n \n N = int(input()) - 1\n+if N == 0:\n+  print(0)\n rems = []\n while N > 0:\n   quotient = N // 5"
+    },
+    {
+      "summary": "The buggy code does not format the output as a two-digit number, potentially leading to outputs like \"5\" instead of \"05\".",
+      "diff": "--- \n+++ \n@@ -1 +1 @@\n-print(int(input()) % 100)\n+print('%02d' % (int(input()) % 100))"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `n` equals 0 instead of 1 to determine if the input can be fully reduced by dividing by 2 and 3, leading to incorrect output for valid inputs.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n while n % 2 == 0:\n     n //= 2\n \n-print(\"Yes\" if n == 0 else \"No\")\n+print(\"Yes\" if n == 1 else \"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    10
+  ],
+  "useful_diffs_count": 3
+}

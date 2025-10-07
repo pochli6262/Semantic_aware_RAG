@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program printed \"No\" for the b-a != 1 case but did not stop, so execution continued and could print another (incorrect) result. I fixed the single incorrect line by adding an immediate exit() after printing \"No\" so the program short-circuits and doesn't continue to the later checks. This implements the intended early return behavior (inspired by the bug summary that the code should stop after the first No).",
+  "fixed_code": "a, b = map(int, input().split())\n\nif b-a != 1:\n  print(\"No\"); exit()\n  \n\ncnt = 0\n\ndef judge(s):\n  if s in (1,3,4,6,7,9):\n    return 1\n  else:\n    return 2\n    \nif judge(a) + judge(b) == 2:\n  print(\"No\")\nelse:\n  print(\"Yes\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The elif line only checked A==B-1 or A==B-3, which detects adjacency only when A < B (it effectively tests B == A+1 or B == A+3). That misses the symmetric cases where B < A (e.g. A=4, B=3). I replaced that line with a check using absolute difference (abs(A-B)==1 or abs(A-B)==3) so adjacency is detected in both directions while keeping the existing wrap-around exclusion (the first if) unchanged.",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A+1:\n    print('No')\nelif abs(A-B)==1 or abs(A-B)==3:\n    print('Yes')\nelse:\n    print('No')"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The line that calculates the time remaining after processing the bonus rooms was incorrect. The original line incorrectly summed the time needed to reach the bonus room, which could skip necessary movements and lead to erroneous time calculations. The line 't -= sum(a[pos : x - 1])' was changed to 't -= sum(a[pos:x])' to correctly handle the time consumption from the current position to the bonus room. This change was inspired by Diff 5, which emphasized correct comparisons and conditions.",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= sum(a[pos : x])\n    if t <= 0:\n        print(\"No\")\n        exit()\n    else:\n        t += y\n        pos = x - 1\nt -= sum(a[pos:])\nif t < 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

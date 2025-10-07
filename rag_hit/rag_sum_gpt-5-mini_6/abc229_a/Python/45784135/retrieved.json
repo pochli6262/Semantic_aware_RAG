@@ -1,0 +1,29 @@
+{
+  "task": "abc229_a/Python/45784135",
+  "query_summary": "The code only checks for vertical column pairs and thus fails to recognize connectivity when two black squares are adjacent horizontally in the same row.",
+  "oracle_summary": "The buggy code only checks vertical matches of '#' between s1 and s2 at each column, failing to detect horizontal adjacency within a single row (s1[0..1] or s2[0..1]).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the first three characters of both strings are equal, potentially leading to errors when the strings are shorter than three characters.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n s = input()\n t = input()\n-if s[0:3] == t[0:3]:\n+if s[0:len(s)] == t[0:len(s)]:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code is missing an `else` statement for the second `if` block, which causes it to incorrectly print \"No\" when the second condition is not met, instead of maintaining the proper logic flow.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n if S[0].isupper():\n   if (len(S)>= 2 and S[1:].islower()) or len(S) == 1:\n     print(\"Yes\")\n+  else:\n+    print(\"No\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if only the first character is uppercase and the rest are lowercase, rather than verifying if the string follows the title case format.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n s = input()\n-print(\"Yes\" if s[0].isupper() and s[1:].islower() else \"No\")\n+print(\"Yes\" if s.istitle() else \"No\")"
+    },
+    {
+      "summary": "The buggy code fails to account for the specific case where the input string has exactly two characters that are different, which should also result in \"No\".",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n \n if (s[0]=='A') and (s[-1]=='B'):\n     print('No')\n+elif (len(s)==2) and (s[0]!=s[-1]):\n+    print('No')\n else:\n     print('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list `g1`, missing some valid combinations (like \"BA\", \"CB\", \"DC\", \"ED\", and \"AE\") which are necessary for the correct logic to determine membership.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n T = input()\n \n-g1 = [\"AB\", \"BC\", \"CD\", \"DE\", \"EA\"]\n+g1 = [\"AB\",\"BA\", \"BC\", \"CB\", \"CD\", \"DC\", \"DE\", \"ED\", \"EA\", \"AE\"]\n \n if S in g1 and T in g1:\n     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

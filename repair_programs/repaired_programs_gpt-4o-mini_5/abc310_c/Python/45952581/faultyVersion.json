@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly counts duplicates because it increments the count for each occurrence of the stick without ensuring that both the original and its reversed form are not counted multiple times. The fixed line ensures that we only add the stick if it hasn't been counted yet by checking if neither the stick nor its reversal has been added to the set. This is inspired by the logic of ensuring uniqueness in similar problems, though there were no direct patterns in the diffs related to this particular issue.",
+  "fixed_code": "N = int(input())\n\nZ = set()\n\ncount = 0\nfor i in range(N):\n    S = input()\n    if S not in Z and S[::-1] not in Z:\n        count += 1\n    Z.add(S)\n    Z.add(S[::-1])\n\nprint(count)"
+}

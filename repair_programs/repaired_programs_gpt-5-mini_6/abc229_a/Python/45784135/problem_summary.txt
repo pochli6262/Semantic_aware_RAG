@@ -1,0 +1,1 @@
+The code only checks for vertical column pairs and thus fails to recognize connectivity when two black squares are adjacent horizontally in the same row.

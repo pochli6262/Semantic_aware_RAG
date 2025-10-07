@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/44415594",
+  "query_summary": "The buggy code performs the rotation move without verifying that the rotated number keeps the same digit length, so rotations that introduce leading zeros (shortening the number) are incorrectly allowed.",
+  "oracle_summary": "The buggy code performs the rotation move without verifying that the rotated number keeps the same digit length, so rotations that introduce leading zeros (shortening the number) are incorrectly allowed.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not stop appending digits to the answer once the expected number of digits has been reached, potentially resulting in a longer string than intended.",
+      "diff": "--- \n+++ \n@@ -45,6 +45,8 @@\n                 ans.append(str(9-i))\n         else:\n             continue\n+        if len(ans) == digits:\n+            break\n \n     return ''.join(ans)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly interprets the binary string as is, instead of reversing it before conversion to an integer and failing to account for the increment, leading to an incorrect final result.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n         print(len(a),*a,flush=True)\n \n     S = input()\n-    ans = int(S,2)\n+    ans = int(S[::-1],2) + 1\n     print(ans,flush=True)\n if __name__ == '__main__':\n     main()  "
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the logarithm in the case when `q` equals 2, failing to account for the additional 1 that should be added to the result.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n # n = int(input())\n n,q = map(int, input().split())\n if q==2:\n-    print(int(math.log(n,2)))\n+    print(int(math.log(n,2))+1)\n     exit()\n P = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]\n r = 0"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from 0 to 10^6 instead of 0 to 10^6 inclusive, resulting in the possibility of missing valid values for `number_of_a` that could lead to a higher `max_num`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n max_num = 0\n flag = False\n-for i in range(10**6):\n+for i in range(10**6 + 1):\n     number_of_a = i\n     for j in range(n):\n         if b_s[j] == 0:"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the new value of `m` after a sequence of digits is found to be equal, leading to potential off-by-one errors and incorrect outputs.",
+      "diff": "--- \n+++ \n@@ -38,7 +38,7 @@\n         for j in range(0,len(m)-1):\n           if m[j]==m[j+1]:\n             if j+2<len(m)-1:\n-              m = str(int(m[:j+2])-1)+'9'*(len(m)-1-j-2)\n+              m = str(int(m[:j+2])-1)+'9'*(len(m)-j-2)\n             else:\n               m = str(int(m)-1)\n             break"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

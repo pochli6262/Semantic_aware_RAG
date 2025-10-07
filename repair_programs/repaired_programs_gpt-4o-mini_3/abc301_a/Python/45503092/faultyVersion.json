@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original code is with the condition in the print statement. The comparison should check if T_W is less than A_W along with the specific case when T_W equals A_W and the last element is 'T', which means the output should be 'T' in that case. I corrected the condition to reflect this logic.",
+  "fixed_code": "N = int(input())\nS = input().split()\n\nT_W = S.count('T')\nA_W = S.count('A')\nprint(\"T\" if T_W > A_W or (T_W == A_W and S[-1] == \"T\") else \"A\")"
+}

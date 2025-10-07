@@ -1,0 +1,1 @@
+The likely bug is that the calculation of the probability for participants ranked between (A+1)-th and B-th does not correctly account for the number of participants in that range.

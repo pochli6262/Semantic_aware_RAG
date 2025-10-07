@@ -1,0 +1,32 @@
+{
+  "task": "abc305_a/Python/45785540",
+  "query_summary": "The program incorrectly handles the case when Takahashi is at a water station by outputting 0 instead of printing the exact position of the station.",
+  "oracle_summary": "The branch handling numbers divisible by 5 prints the literal 0 instead of the input n, causing incorrect output whenever n%5 == 0.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly increments `N` by 1 when `n` is even, which leads to an incorrect calculation of the condition for outputting \"Yes\" or \"No\".",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if n%2==1:\n       N=n\n     else:\n-      N=n+1\n+      N=n\n     if min(n-a,(N+1)//2)*(n-a)>=b:\n         print(\"Yes\")\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly spells \"Takahashi\" as \"Takahasi\" in the output statement.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     Y += y\n \n if X > Y:\n-    print(\"Takahasi\")\n+    print(\"Takahashi\")\n elif X == Y:\n     print(\"Draw\")\n else:"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `n` equals 0, failing to print \"No\" for that condition.",
+      "diff": "--- \n+++ \n@@ -3,6 +3,8 @@\n n = int(s)\n if n > 349:\n   print(\"No\")\n+elif n == 0:\n+  print(\"No\")\n elif n == 316:\n   print(\"No\")\n else:"
+    },
+    {
+      "summary": "The bug in the code is that the condition `N==4` in the first `if` statement should be replaced with `N<=4` to correctly handle the case when `N` is equal to or less than 4.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N=int(input())\n-if N%3==2 or N==4:\n+if N%3==2 or N<=4 :\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly only checks if `n` is greater than or equal to 5, failing to include a condition to also print \"Yes\" when `n` equals 1.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-if n >= 5:\n+if n >= 5 or n == 1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    5
+  ],
+  "useful_diffs_count": 2
+}

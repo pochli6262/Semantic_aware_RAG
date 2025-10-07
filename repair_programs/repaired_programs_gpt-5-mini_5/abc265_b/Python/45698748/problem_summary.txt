@@ -1,0 +1,1 @@
+The final check uses `t < 0` instead of `t <= 0`, incorrectly allowing the case where time becomes exactly zero after the last moves.

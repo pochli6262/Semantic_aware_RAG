@@ -1,0 +1,33 @@
+{
+  "task": "abc307_b/Python/45786032",
+  "query_summary": "The bug is accidental list-bracketing: using [s[i]+s[j]][::-1] reverses a one-element list (producing a list) instead of reversing the concatenated string, causing a type mismatch and the palindrome check to fail.",
+  "oracle_summary": "The bug is accidental list-bracketing: using [s[i]+s[j]][::-1] reverses a one-element list (producing a list) instead of reversing the concatenated string, causing a type mismatch and the palindrome check to fail.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the calculation of `ed` as `n-j` should be corrected to `n-j-1` to accurately reflect the number of 'a' characters beyond index `j`.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n if i == j:\n   print('Yes')\n   exit(0)\n-st, ed = i, n-j\n+st, ed = i, n-j-1\n t = s[i : j+1]\n if t != t[::-1]:\n \tprint('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to account for cases where the count of a character in string `s` is greater than that of the corresponding character in string `t` when the count in `t` is greater than 1, which leads to incorrect outputs in certain scenarios.",
+      "diff": "--- \n+++ \n@@ -25,5 +25,7 @@\n         flg = 0\n     if s_l[i][1] == 1 and t_l[i][1] > 1:\n         flg = 0\n+    if s_l[i][1] > t_l[i][1] > 1:\n+        flg = 0\n \n print('Yes' if flg else 'No')"
+    },
+    {
+      "summary": "The buggy code only checks for the substring \"ab\" instead of checking for both \"ab\" and \"ba\" as required.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n = int(input())\n s = input()\n for i in range(n-1):\n-  if s[i]+s[i+1] == \"ab\":\n+  if s[i]+s[i+1] == \"ab\" or s[i]+s[i+1] == \"ba\":\n     print(\"Yes\")\n     break\n else:"
+    },
+    {
+      "summary": "The buggy code incorrectly references `S[i-k]` instead of `S[~(i-k)]` when constructing the string `T`, leading to incorrect character indexing and potentially wrong results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n   n,k = map(int,input().split())\n   S = input()\n   k %= 2*n\n-  T = \"\".join(S[~i] if i < n else S[i-k] for i in range(k))\n+  T = \"\".join(S[~i] if i < n else S[~(i-k)] for i in range(k))\n   if S+T == (S+T)[::-1] and T+S == (T+S)[::-1]:\n     print(\"Yes\")\n   else:"
+    },
+    {
+      "summary": "The buggy code fails to handle the special case where the input string is \"BA\", causing it to incorrectly evaluate as \"Yes\" instead of \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n S=input()\n ck=0\n+if S==\"BA\":\n+    exit(print(\"No\"))\n for i in range(N):\n     if S[i]!=S[-1-i]:\n         ck=1"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

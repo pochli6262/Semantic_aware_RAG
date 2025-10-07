@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line that calculates the prefix sums for the subsequence being queried incorrectly indexed the list at (r-k)//K+1 and (l-k-1)//K+1. The correct indexing should ensure it doesn't go out of bounds for the prefix sum array, particularly in the case when l-k-1 is negative. I fixed it by replacing (l-k-1)//K+1 with (l-k)//K for consistent prefix sums retrieval. The approach aligns with the reasonable adjustments made in corrections similar to diff patterns.",
+  "fixed_code": "N, K = map(int,input().split())\nA=list(map(int,input().split()))\nQ=int(input())\nS = [[0] for i in range(K)]\nfor i in range(N):\n    S[i%K].append(S[i%K][-1]+A[i])\n    \nfor i in range(Q):\n    l, r = map(lambda x:int(x)-1,input().split())\n    s=set()\n    for k in range(K):\n        s.add(S[k][(r-k)//K+1] - S[k][(l-k)//K+1])  # Corrected line\n    if len(s)==1:\n        print('Yes')\n    else:\n        print('No')"
+}

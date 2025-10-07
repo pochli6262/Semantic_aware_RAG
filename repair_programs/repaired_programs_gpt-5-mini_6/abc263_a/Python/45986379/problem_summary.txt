@@ -1,0 +1,1 @@
+The condition uses K[2] != K[3], which only detects the case where the three-of-a-kind comes before the pair and fails when the three-of-a-kind is the last three cards.

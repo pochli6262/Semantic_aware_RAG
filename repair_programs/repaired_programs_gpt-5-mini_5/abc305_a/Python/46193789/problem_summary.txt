@@ -1,0 +1,1 @@
+The loop uses range(20) so it omits i=20 (the 100 km water station), meaning the final station is not considered.

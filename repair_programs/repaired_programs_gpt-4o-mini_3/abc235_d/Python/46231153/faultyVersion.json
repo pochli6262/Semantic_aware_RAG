@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug lies in the incorrect handling of the rotation logic in the line where the new value of 'z' is formed from 'x'. The original implementation incorrectly rearranges the digits. The fix should ensure the last digit moves to the front, rather than incorrectly concatenating the string parts. The fixed line correctly reassigns 'z' by converting the string representation of 'x' appropriately.",
+  "fixed_code": "a,n = map(int,input().split())\nnums =[-1]*(10**6)\nfrom collections import deque\nq = deque()\nq.append(a)\nnums[a] = 1\nwhile q:\n    x = q.popleft()\n    y = x*a\n    if y<10**6 and nums[y] ==-1:\n        nums[y] = nums[x]+1\n        q.append(y)\n    if x>9:\n        X = str(x)\n        Z = X[-1] + X[:-1]\n        z = int(Z)\n        if z<10**6 and nums[z] ==-1:\n            nums[z] = nums[x]+1\n            q.append(z)\nprint(nums[n])"
+}

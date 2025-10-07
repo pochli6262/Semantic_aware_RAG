@@ -1,0 +1,4 @@
+{
+  "explanation": "The code printed the zero-based index (print(i)), but the problem expects a 1-based position. I changed that single line to print(i+1) so the output is the 1-based index of X in P.",
+  "fixed_code": "N, X = map(int, input().split())\nP = list(map(int, input().split()))\n\nfor i in range(N):\n  if P[i] == X:\n    print(i+1)\n    break\n"
+}

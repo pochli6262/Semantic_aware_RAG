@@ -1,0 +1,4 @@
+{
+  "explanation": "The second for-loop uses j as the loop variable but the condition mistakenly references i. That uses the previous loop's index (or a stale value) instead of checking each element. I fixed it by replacing S[i] with S[j] so every element is validated for divisibility by 25 and being between 100 and 675.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)\n"
+}

@@ -1,0 +1,139 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+You are given a sequence A=(A\_0,A\_1,\dots,A\_{63}) of length 64 consisting of 0 and 1.
+
+Find A\_0 2^0 + A\_1 2^1 + \dots + A\_{63} 2^{63}.
+
+### Constraints
+
+* A\_i is 0 or 1.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+A_0 A_1 \dots A_{63}
+```
+
+### Output
+
+Print the answer as an integer.
+
+---
+
+### Sample Input 1
+
+```
+1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+```
+
+### Sample Output 1
+
+```
+13
+```
+
+A\_0 2^0 + A\_1 2^1 + \dots + A\_{63} 2^{63} = 2^0 + 2^2 + 2^3 = 13.
+
+---
+
+### Sample Input 2
+
+```
+1 0 1 0 1 0 0 0 0 1 0 0 1 1 0 1 1 1 1 0 0 0 1 0 0 1 1 1 1 1 1 0 0 0 0 1 0 1 0 1 0 1 1 1 1 0 0 1 1 0 0 0 0 1 0 1 0 1 0 1 0 0 0 0
+```
+
+### Sample Output 2
+
+```
+766067858140017173
+```
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the program incorrectly calculates the sum by raising 2 to the value of A[i] instead of using the index i to calculate the powers of 2.
+
+## Buggy Program
+A = list(map(int, input().split()))
+
+ans = 0
+for i in range(64):
+  ans += A[i] * 2 ** A[i]
+print(ans)
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -8,7 +8,7 @@
+ ans = 1 << 61
+ while i < len(A) - 1:
+     now = A[i]
+-    while A[i+1] == A[i] or A[i+1] == A[i] + 1:
++    while A[i+1] == A[i] or A[i+1] == (A[i] + 1)%m:
+         i += 1
+         if i >= len(A) - 1:
+             break
+
+### Diff 2
+--- 
++++ 
+@@ -1,2 +1,2 @@
+ A, B = map(int, input().split())
+-print(A^B)
++print(A**B)
+
+### Diff 3
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ a=list(map(int,input().split()))
+ ans=0
+ for i in range(n):
+-  ans2=ans>>a[i]+1
++  ans2=(ans>>a[i])+1
+   ans2=(ans2|1)<<a[i]
+   ans=ans2
+ print (ans)
+
+### Diff 4
+--- 
++++ 
+@@ -1,2 +1,2 @@
+ a,b = map(int, input().split())
+-print(a**3)
++print(a**b)
+
+### Diff 5
+--- 
++++ 
+@@ -21,7 +21,7 @@
+ all_pr = 1
+ for el in new_degrees:
+     all_pr *= (el + 1)
+-ANS = 10000000000000000000000000000000000000000000000000000000000000000000000 + 228
++ANS = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 + 228
+ for i in range(len(new_degrees)):
+     el = new_degrees[i]
+     ANS = min(ANS,  (all_pr // (el + 1)) * (el * (1 + el) // 2) // degrees[i])
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

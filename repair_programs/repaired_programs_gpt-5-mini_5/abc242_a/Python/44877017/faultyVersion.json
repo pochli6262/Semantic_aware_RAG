@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code set res = 100.0 when x <= a, producing a probability of 100 instead of 1.0 for guaranteed winners. I changed that single line to res = 1.0 so the program outputs a probability in the correct range [0,1].",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 1.0\nelif x <= b:\n   res = c / (b - a)\n\nprint('%.9f' % (res))\n"
+}

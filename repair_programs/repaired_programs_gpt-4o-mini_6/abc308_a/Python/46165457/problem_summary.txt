@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly checks the range condition for the integers by using unnatural comparisons (i.e., `>= 675` and `<= 100`) instead of ensuring they are between 100 and 675 inclusive.

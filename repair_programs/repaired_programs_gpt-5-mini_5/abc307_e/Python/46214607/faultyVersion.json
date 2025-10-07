@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line computed a non-modular term (-1)**(N%2)*(M-1) and added it to pow(..., mod) but never reduced the final sum modulo 998244353, which can produce wrong or negative outputs. I fixed this by taking the entire sum modulo mod so both parts are combined correctly under the modulus. (This change is analogous to fixes that ensure results are reduced modulo the given modulus.)",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nanswer = ((-1)**(N%2)*(M-1) + pow(M-1,N,mod)) % mod\nprint(answer)"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc265_b/Python/45498956",
+  "query_summary": "The loop wrongly compares t to the loop index i (t > i) instead of to the required cost a[i] (t > a[i]), causing an incorrect feasibility check.",
+  "oracle_summary": "The loop wrongly compares t to the loop index i (t > i) instead of to the required cost a[i] (t > a[i]), causing an incorrect feasibility check.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the variable `r`, leading to an incorrect output when `r` equals 0, which should instead be set to 7.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,8 @@\n A = [list(map(int,input().split())) for _ in range(n)]\n start = A[0][0]\n r = start- (start//7)*7\n+if r == 0:\n+  r = 7\n if r+m-1>7:\n   print(\"No\")\n   exit()"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `t[i]` instead of `t[i+1]` when the condition is met, resulting in the wrong output.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n t=list(map(int,input().split()))\n for i in range(n-1):\n   if t[i+1]-t[i]<=d:\n-    print(t[i])\n+    print(t[i+1])\n     break\n else:\n   print(-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop should iterate `t` times instead of `n` times, causing incorrect handling of input and potentially leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s=[0 for _ in range(n)]\n p={}\n p[0]=n\n-for i in range(n):\n+for i in range(t):\n     a,b=map(int,input().split())\n     a-=1\n     p[s[a]]-=1"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the variable `delta` by using `-(i+1)//a[i] - 2` instead of the correct `-a[i]//(i+1) - 1`, leading to incorrect indexing and logic in the loop.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n d = [set() for _ in range(m)]\n \n for i in range(n):\n-  delta = -(i+1)//a[i] - 2\n+  delta = -a[i]//(i+1) - 1\n   for j in range(max(0, delta), m):\n     tmp = (i+1)*(j+1)+a[i]\n     if tmp > n+1:"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

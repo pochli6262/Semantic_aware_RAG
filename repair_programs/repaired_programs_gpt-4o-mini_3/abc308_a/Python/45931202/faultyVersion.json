@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the program lies in the line where conditions are checked. The expression 'S[i] % 25' should be compared with 0 to correctly check if 'S[i]' is divisible by 25. If we leave it as 'S[i] % 25', it evaluates to True for any non-zero value, which is incorrect. I changed it to 'S[i] % 25 != 0' to ensure it checks for divisibility properly.",
+  "fixed_code": "S = list(map(int,input().split()))\nfor i in range(len(S)-1):\n    if S[i] >= S[i+1] or S[i] % 25 != 0 or S[i] < 100 or S[i] > 675:\n        print(\"No\")\n        exit()\n\nif S[-1] % 25 != 0 or S[-1] < 100 or S[-1] > 675:\n    print(\"No\")\nelse: print(\"Yes\")"
+}

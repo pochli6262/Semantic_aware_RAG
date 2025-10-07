@@ -1,0 +1,4 @@
+{
+  "explanation": "The buggy code did not account for the case where 'i' could exceed the length of 'arr', leading to an IndexError. The line 'print(arr[i][0]+1)' was incorrect as it did not check if 'i' was within bounds before accessing 'arr[i]'. I corrected it to 'print(arr[i][0] + 1)' outside the while loop once the condition is satisfied, ensuring the code doesn't break.",
+  "fixed_code": "N, K = map(int, input().split())\narr = []\ntotal = 0\nfor i in range(N):\n  tmp1, tmp2 = map(int, input().split())\n  arr.append([tmp1,tmp2])\n  total += tmp2\narr.sort()\n\nif total < K:\n  print(1)\n  exit()\n\ni = 0\nwhile i < len(arr):\n  total -= arr[i][1]\n  if total <= K:\n    print(arr[i][0]+1)\n    exit()\n  i += 1"
+}

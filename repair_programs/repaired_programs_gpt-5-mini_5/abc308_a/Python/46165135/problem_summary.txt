@@ -1,0 +1,1 @@
+The monotonicity check is wrong: it uses S[i] >= S[i+1], which rejects equal adjacent values, instead of using S[i] > S[i+1].

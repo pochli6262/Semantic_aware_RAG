@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line added pow(M-1, N, mod) (which is already reduced mod) to (-1)**(N%2)*(M-1) but never reduced the first term or the whole sum modulo 998244353. That can produce negative or out-of-range results. I fixed it by taking the entire expression modulo mod so the final printed answer is in the correct 0..mod-1 range.",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nanswer=((-1)**(N%2)*(M-1)+pow(M-1,N,mod))%mod\nprint(answer)\n"
+}

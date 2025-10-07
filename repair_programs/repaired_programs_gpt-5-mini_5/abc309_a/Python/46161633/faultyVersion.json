@@ -1,0 +1,4 @@
+{
+  "explanation": "The line 'elif A==B-1 or A==B-3:' incorrectly treated numbers that differ by 3 (vertical neighbors) as horizontally adjacent. I removed the 'A==B-3' check so we only accept the immediate right neighbor (difference of 1). This fixes the bug where vertical adjacency was reported as horizontal. (This aligns with the correct adjacency check of difference 1.)",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A+1:\n    print('No')\nelif A==B-1:\n    print('Yes')\nelse:\n    print('No')"
+}

@@ -1,0 +1,1 @@
+The program incorrectly permits moves that reduce the time to exactly zero because it checks `T < 0` instead of disallowing `T <= 0`.

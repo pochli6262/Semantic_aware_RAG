@@ -1,0 +1,1 @@
+The bug likely lies in the checks for diagonal directions, where the indices for the upward diagonal may be incorrectly calculated, potentially leading to out-of-bounds errors or incorrect output coordinates.

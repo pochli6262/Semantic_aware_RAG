@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that max(0, l-k-1)//K+1 clamps the value before division, which changes the quotient for negative numbers. We must clamp after computing the divided index. I fixed it by moving the parentheses so we compute (l-k-1)//K+1 first and then apply max(0, ...). This addresses the incorrect prefix-sum index computation.",
+  "fixed_code": "N, K = map(int,input().split())\nA=list(map(int,input().split()))\nQ=int(input())\nS = [[0] for i in range(K)]\nfor i in range(N):\n    S[i%K].append(S[i%K][-1]+A[i])\n    \nfor i in range(Q):\n    l, r = map(lambda x:int(x)-1,input().split())\n    s=set()\n    for k in range(K):\n        # s.add(S[k][(r-k)//K+1] - S[k][(l-k-1)//K+1])\n        # print(S[k][(r-k)//K+1],S[k][(l-k-1)//K+1])\n        s.add(S[k][(r-k)//K+1] - S[k][max(0, (l-k-1)//K+1)])\n        # print(S[k][(r-k)//K+1],S[k][(l-k-1)//K+1])\n    if len(s)==1:\n        print('Yes')\n    else:\n        print('No')"
+}

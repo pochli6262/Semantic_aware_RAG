@@ -1,0 +1,29 @@
+{
+  "task": "abc301_d/Python/45718315",
+  "query_summary": "The bug is that when encountering a fixed '1' the code only adjusts min_val but forgets to add mask to ans and subtract mask from n, so forced '1' bits are not counted or applied.",
+  "oracle_summary": "The bug is that when encountering a fixed '1' the code only adjusts min_val but forgets to add mask to ans and subtract mask from n, so forced '1' bits are not counted or applied.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not stop appending digits to the answer once the expected number of digits has been reached, potentially resulting in a longer string than intended.",
+      "diff": "--- \n+++ \n@@ -45,6 +45,8 @@\n                 ans.append(str(9-i))\n         else:\n             continue\n+        if len(ans) == digits:\n+            break\n \n     return ''.join(ans)\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly limits the value of `k` to a maximum of 100 instead of the intended 200, which can lead to insufficient depth in the calculation.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n     n,x,k = list(map(int, input().split(' ')))\n     # print(n,x,k)\n     n += 1\n-    k = min(100,k)\n+    k = min(200,k)\n     ans = 0\n     depth = k\n     prev = -1"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the maximum value of `k` to 100 instead of the correct value of 1000.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n     n,x,k = list(map(int, input().split(' ')))\n     # print(n,x,k)\n     n += 1\n-    k = min(100,k)\n+    k = min(1000,k)\n     ans = 0\n     depth = k\n     prev = -1"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if flag and k <= n-k:` should be `if flag and k < n-k:` to avoid printing \"Yes\" even when the two substrings are equal when `k` is exactly half of `n`.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n             else:\n                 flag = False\n                 break\n-        if flag and k<=n-k:\n+        if flag and k<n-k:\n             print(\"Yes\")\n             return\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to update the maximum count (`ans`) after exiting the loop when a sequence of non-negative characters ends, which leads to an incorrect result if the string does not end with a '-' character.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,7 @@\n     else:\n         if flag == 1:\n             cnt+=1\n+ans=max(ans,cnt)\n flag=0\n cnt=0\n for i in range(n):\n@@ -26,8 +27,8 @@\n     else:\n         if flag == 1:\n             cnt+=1\n+ans=max(ans,cnt)\n if ans == 0:\n     print(-1)\n else:\n     print(ans)\n-    "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks for a specific order of cards by assuming that the three of a kind are at the start and the pair at the end. This does not account for other arrangements that could still represent a full house (like [1, 1, 1, 2, 2] vs. [2, 2, 1, 1, 1]). The correct logic should count the occurrences of each unique number and check for three of one and two of another, which was inspired by the known fixes that address consistency in counting and matching. Therefore, I replaced the specific comparison with a more general count approach using a dictionary to check the occurrences of numbers in the cards list.",
+  "fixed_code": "def main():\n    from collections import Counter\n    cards = list(map(int, input().split()))\n    assert len(cards) == 5\n\n    counts = Counter(cards)\n    if sorted(counts.values()) == [2, 3]:\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\n\nif __name__ == \"__main__\":\n    main()"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculated the total cost by using 'P - Q + D[i]', which subtracts the discounted price from the regular price instead of summing the discounted price and the cost of the dish. The corrected line simply adds 'Q' and 'D[i]'. This fix is inspired by a clear understanding of the problem statement regarding how to apply the discount and the requirement to add the dish cost, although it resembles no specific diff pattern since it's more about understanding than line modification.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nans = P\nfor i in range(N):\n    ret = Q + D[i]\n    ans = min(ans, ret)\n\nprint(ans)"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program should count a string as already seen if either the string itself or its reverse was previously encountered. The original code only checked whether S was in the set Z, so it would miss cases where the reverse had been seen but the exact string hadn't. I fixed that by changing the membership test to check both S and S[::-1].",
+  "fixed_code": "N = int(input())\n\nZ = set()\n\ncount = 0\nfor i in range(N):\n    S = input()\n    if S in Z or S[::-1] in Z:\n        count += 1\n    Z.add(S)\n    Z.add(S[::-1])\n\nprint(count)\n"
+}

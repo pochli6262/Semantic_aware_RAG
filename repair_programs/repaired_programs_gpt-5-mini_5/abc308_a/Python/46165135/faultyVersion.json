@@ -1,0 +1,4 @@
+{
+  "explanation": "The monotonicity check was wrong: the code used `if S[i] >= S[i + 1]:` which treats equal adjacent values as a violation. The condition should only fail when a later element is strictly smaller than a previous one, so it must be `if S[i] > S[i + 1]:`. I changed that single comparison to allow non-decreasing sequences with equal elements.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nres = 'Yes'\n\nfor i in range(len(S) - 1):\n    if S[i] > S[i + 1]:\n        res = 'No'\n        break\n      \nfor i in range(len(S)):\n    if S[i] % 25 or not 100 <= S[i] <= 675:\n        res = 'No'\n        break\n      \nprint(res)\n"
+}

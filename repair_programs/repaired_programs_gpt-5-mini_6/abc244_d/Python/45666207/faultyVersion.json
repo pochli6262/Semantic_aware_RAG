@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code tested cnt%2 == 1, which incorrectly treated cnt==1 and cnt==3 the same. For 3 items the reachable states after an even number of swaps are exactly those with 0 or 3 matching positions (the even permutations), while the three transpositions produce cnt==1 (odd permutations). So the correct condition is to accept when cnt != 1 (i.e. cnt is 0 or 3). I fixed the single conditional line accordingly.",
+  "fixed_code": "S = [a for a in input().split()]\nT = [a for a in input().split()]\n\ncnt = 0\nfor i in range(3):\n    if S[i] == T[i]:\n        cnt += 1\n\nif cnt != 1:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

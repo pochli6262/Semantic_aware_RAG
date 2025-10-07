@@ -1,0 +1,79 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+X = int(input())
+if X == 0:
+    print("No")
+elif X < 100:
+    print("No")
+elif X%100 == 0:
+    print("Yes")
+
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+X = int(input())
+if X < 0:
+    result = int(X//10)
+else:
+    result = int(X//10 + 1)
+print(result)
+
+--- Correct Code ---
+X = int(input())
+if X % 10 == 0:
+    result = int(X//10)
+else:
+    result = int(X//10 + 1)
+print(result)
+
+
+### Example 2
+--- Buggy Code ---
+x = int(input())
+if x % 10 == 0:
+  print(x)
+else:
+  print(x // 10 + 1)
+
+--- Correct Code ---
+x = int(input())
+if x % 10 == 0:
+  print(x // 10)
+else:
+  print(x // 10 + 1)
+
+
+### Example 3
+--- Buggy Code ---
+N, X, Y, Z = map(int, input().split())
+if (X<Y and Y<Z) or (X>Y and Y>Z):
+  print("Yes")
+else:
+  print("No")
+
+--- Correct Code ---
+N, X, Y, Z = map(int, input().split())
+if (X<Z and Z<Y) or (X>Z and Z>Y):
+  print("Yes")
+else:
+  print("No")
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

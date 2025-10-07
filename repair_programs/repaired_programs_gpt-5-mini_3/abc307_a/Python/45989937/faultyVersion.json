@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop 'for i in range(n):' allows i to reach values where s[l+i] (with l up to 6) goes past the end of the list and causes an IndexError. The program is summing 7-element windows, so the starting index i should only go up to n-7 inclusive. I fixed the range to 'range(n-6)', which iterates i = 0..n-7 and prevents out-of-range access.",
+  "fixed_code": "n = int(input())\ns = list(map(int,input().split()))\n\nfor i in range(n-6):\n  ans = 0\n  for l in range(7):\n    ans += s[l+i]\n\n  print(str(ans),\"\",end = \"\")"
+}

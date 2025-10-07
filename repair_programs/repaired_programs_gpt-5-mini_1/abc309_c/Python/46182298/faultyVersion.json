@@ -1,0 +1,4 @@
+{
+  "explanation": "The final printed value had an off-by-one error: the binary search loop leaves r as the minimal number m such that calc(m) < k, so printing r+1 is incorrect. I fixed that single-line mistake by printing r instead of r+1.",
+  "fixed_code": "n, k = map(int, input().split())\nab = [list(map(int, input().split())) for _ in range(n)]\n\n\ndef calc(num):\n    global ab\n    res = 0\n    for j in range(n):\n        if ab[j][0] <= num:\n            continue\n        res += ab[j][1]\n    return res\n\n\nl = -1\nr = 9999999999999999\nm = 0\nwhile r > l + 1:\n    m = (r + l) // 2\n    if calc(m) < k:\n        r = m\n    else:\n        l = m\nprint(r)\n"
+}

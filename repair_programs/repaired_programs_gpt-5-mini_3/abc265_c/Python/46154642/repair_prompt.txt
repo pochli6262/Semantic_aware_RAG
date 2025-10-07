@@ -1,0 +1,301 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+h,w=map(int,input().split())
+g=[]
+for i in range(h):
+    tmp=input()
+    g.append(list(tmp))
+visited=[[False]*w for _ in range(h)]
+i,j=0,0
+for k in range(10**6):
+    if visited[i][j]==True:
+        print(-1)
+        exit()
+    if g[i][j]=="U":
+        if i==0:
+            print(i+1,j+1)
+            exit()
+        else:
+            visited[i][j]=True
+            i-=1
+    if g[i][j]=="D":
+        if i==h-1:
+            print(i+1,j+1)
+            exit()
+        else:
+            visited[i][j]=True
+            i+=1
+    if g[i][j]=="L":
+        if j==0:
+            print(i+1,j+1)
+            exit()
+        else:
+            visited[i][j]=True
+            j-=1
+    if g[i][j]=="W":
+        if j==w-1:
+            print(i+1,j+1)
+            exit()
+        else:
+            visited[i][j]=True
+            j+=1
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+h,w,n = map(int,input().split())
+a = list(map(int,input().split()))
+l = [0 for i in range(26)]
+for i in a:
+  l[i] += 1
+now = 0
+for i in range(24,-1,-1):
+  ii = 2**i
+  now += l[i]*(ii**2)
+  if now > (h//ii)*(w//ii)*(ii**2):
+    print("No")
+    exit()
+print("Yes")
+  
+  
+  
+
+--- Correct Code ---
+h,w,n = map(int,input().split())
+a = list(map(int,input().split()))
+l = [0 for i in range(26)]
+for i in a:
+  l[i] += 1
+now = 0
+for i in range(25,-1,-1):
+  ii = 2**i
+  now += l[i]*(ii**2)
+  if now > (h//ii)*(w//ii)*(ii**2):
+    print("No")
+    exit()
+print("Yes")
+
+
+### Example 2
+--- Buggy Code ---
+H, W = map(int, input().split())
+S = [list(input()) for _ in range(H)]
+for h in range(H):
+  for w in range(W):
+    if S[h][w] == "S":
+      sh, sw = h, w
+    elif S[h][w] == "G":
+      gh, gw = h, w
+
+for h in range(H):
+  w = 0
+  flg = False
+  while w < W:
+    if S[h][w] not in ("*", "."):
+      flg = False
+    
+    if S[h][w] == ">":
+      flg = True
+    elif flg:
+      S[h][w] = "*"
+    w += 1
+  w = W - 1
+  flg = False
+  while w >= 0:
+    if S[h][w] not in ("*", "."):
+      flg = False
+    
+    if S[h][w] == "<":
+      flg = True
+    elif flg:
+      S[h][w] = "*"
+    w -= 1
+
+
+for w in range(W):
+  h = 0
+  flg = False
+  while h < H:
+    if S[h][w] not in ("*", "."):
+      flg = False
+    
+    if S[h][w] == "v":
+      flg = True
+    elif flg:
+      S[h][w] = "*"
+    h += 1
+  h = 0
+  flg = False
+  while h >= 0:
+    if S[h][w] not in ("*", "."):
+      flg = False
+    
+    if S[h][w] == "^":
+      flg = True
+    elif flg:
+      S[h][w] = "*"
+    h -= 1
+
+def can_move(h, w):
+  return 0 <= h < H and 0 <= w < W and S[h][w] in ("S", "G", ".")
+
+dh = (0, 1, 0, -1)
+dw = (1, 0, -1, 0)
+
+from collections import deque
+que = deque()
+que.append((sh, sw))
+dist = [[-1] * W for _ in range(H)]
+dist[sh][sw] = 0
+while que:
+  fh, fw = que.popleft()
+  for i in range(4):
+    th = fh + dh[i]
+    tw = fw + dw[i]
+    if can_move(th, tw) and dist[th][tw] == -1:
+      dist[th][tw] = dist[fh][fw] + 1
+      que.append((th, tw))
+print(dist[gh][gw])
+
+--- Correct Code ---
+H, W = map(int, input().split())
+S = [list(input()) for _ in range(H)]
+for h in range(H):
+  for w in range(W):
+    if S[h][w] == "S":
+      sh, sw = h, w
+    elif S[h][w] == "G":
+      gh, gw = h, w
+
+for h in range(H):
+  w = 0
+  flg = False
+  while w < W:
+    if S[h][w] not in ("*", "."):
+      flg = False
+    
+    if S[h][w] == ">":
+      flg = True
+    elif flg:
+      S[h][w] = "*"
+    w += 1
+  w = W - 1
+  flg = False
+  while w >= 0:
+    if S[h][w] not in ("*", "."):
+      flg = False
+    
+    if S[h][w] == "<":
+      flg = True
+    elif flg:
+      S[h][w] = "*"
+    w -= 1
+
+
+for w in range(W):
+  h = 0
+  flg = False
+  while h < H:
+    if S[h][w] not in ("*", "."):
+      flg = False
+    
+    if S[h][w] == "v":
+      flg = True
+    elif flg:
+      S[h][w] = "*"
+    h += 1
+  h = H-1
+  flg = False
+  while h >= 0:
+    if S[h][w] not in ("*", "."):
+      flg = False
+    
+    if S[h][w] == "^":
+      flg = True
+    elif flg:
+      S[h][w] = "*"
+    h -= 1
+
+def can_move(h, w):
+  return 0 <= h < H and 0 <= w < W and S[h][w] in ("S", "G", ".")
+
+dh = (0, 1, 0, -1)
+dw = (1, 0, -1, 0)
+
+from collections import deque
+que = deque()
+que.append((sh, sw))
+dist = [[-1] * W for _ in range(H)]
+dist[sh][sw] = 0
+while que:
+  fh, fw = que.popleft()
+  for i in range(4):
+    th = fh + dh[i]
+    tw = fw + dw[i]
+    if can_move(th, tw) and dist[th][tw] == -1:
+      dist[th][tw] = dist[fh][fw] + 1
+      que.append((th, tw))
+print(dist[gh][gw])
+
+
+### Example 3
+--- Buggy Code ---
+def main():
+  H, W = map(int, input().split())
+  C = []
+  for i in range(H):
+    C.append(list(input()))
+  for i in range(H):
+    for j in range(W):
+      if C[i][j] != ".": continue
+      d = set(["1","2","3","4","5"])
+      if i > 0: d.discard(C[i-1][j])
+      if j > 0: d.discard(C[i][j-1])
+      if i < H-1: d.discard(C[i+1][j])
+      if j > W-1: d.discard(C[i][j+1])
+      C[i][j] = d.pop()
+  for i in range(H):
+    print("".join(C[i]))
+  
+if __name__ == '__main__':
+  main()
+
+--- Correct Code ---
+def main():
+  H, W = map(int, input().split())
+  C = []
+  for i in range(H):
+    C.append(list(input()))
+  for i in range(H):
+    for j in range(W):
+      if C[i][j] != ".": continue
+      d = set(["1","2","3","4","5"])
+      if i > 0: d.discard(C[i-1][j])
+      if j > 0: d.discard(C[i][j-1])
+      if i < H-1: d.discard(C[i+1][j])
+      if j < W-1: d.discard(C[i][j+1])
+      C[i][j] = d.pop()
+  for i in range(H):
+    print("".join(C[i]))
+  
+if __name__ == '__main__':
+  main()
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checks if n is less than 100 to return 'No', which doesn't account for the requirement of at least one 100-yen coin, thus allowing values like 100. The condition needs to ensure that n is not only greater than or equal to 100 but also to check if it's a multiple of 100. The likely related fix from Diff 1 discusses scenarios considering values above a certain threshold, facilitating the understanding that values must adhere to coin counts. So, the fixed line should check if n is a positive multiple of 100.",
+  "fixed_code": "n=int(input())\n\nif n < 100 or n % 100 != 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

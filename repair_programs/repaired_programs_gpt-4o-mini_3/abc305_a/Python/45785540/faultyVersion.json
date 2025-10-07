@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the buggy code lies in the line 'elif n % 5 >=3:'. This logic incorrectly evaluates cases where the remainder is 3 or 4. It should calculate the next multiple of 5 rather than just using 'n + 5 - n % 5' for those values. The fix is to change it to 'elif n % 5 > 2:' which ensures that we handle cases better when n has a remainder of 3 or 4 when divided by 5.",
+  "fixed_code": "n = int(input())\nif n%5 ==0:\n  print(0)\nelif n % 5 > 2:\n  print(n+5-n%5)\nelse:\n  print(n-n%5)"
+}

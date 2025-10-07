@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed 'takahashi' in lowercase, but the problem requires the exact string 'Takahashi' with an uppercase T. I fixed the single incorrect line by capitalizing the first letter. This change follows the same correction pattern seen in the retrieved diffs (e.g., Diff 2 and Diff 4) which replace 'takahashi' with 'Takahashi'.",
+  "fixed_code": "a,b,c,d=map(int,input().split())\nprint((a+b)*(c-d))\nprint('Takahashi')# coding: utf-8\n# Your code here!"
+}

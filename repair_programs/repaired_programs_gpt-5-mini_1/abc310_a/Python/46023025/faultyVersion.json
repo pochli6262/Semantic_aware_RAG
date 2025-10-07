@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the calculation line: it used min(d) (the smallest element of the list) where the largest value was intended. Using min(d) produces an unnecessarily small adjustment and can undercount the intended result. I replaced min(d) with max(d) so the expression uses the largest element of d as intended.",
+  "fixed_code": "n, p, q = map(int, input().split(' '))\nd = list(map(int, input().split(' ')))\nprint(min(p, p - q + max(d)))"
+}

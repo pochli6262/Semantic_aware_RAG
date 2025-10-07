@@ -1,0 +1,1 @@
+The code incorrectly uses the parity of the number of positions where S[i] == T[i] to decide reachability, instead of checking the parity of the permutation mapping S to T (i.e., whether the permutation is even), so the decision logic is wrong.

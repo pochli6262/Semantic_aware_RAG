@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the program is in the line where we check if 't > i'. The intended logic is to check if 't' (the total time available) is less than or equal to 'i', which signifies that we can continue to the next step without failure. Therefore, it should be 'if t <= i:' instead of 'if t > i:'. This was corrected to ensure the program correctly identifies when we can proceed without running out of time.",
+  "fixed_code": "n,m,t=map(int,input().split())\na=list(map(int,input().split()))\nv=[0]*n\nfor i in range(m):\n  x,y=map(int,input().split())\n  v[x-1]=y\nfor i in range(n-1):\n  t+=v[i]\n  if t <= i:\n    t-=a[i]\n  else:\n    print('No')\n    break\nelse:\n  print('Yes')"
+}

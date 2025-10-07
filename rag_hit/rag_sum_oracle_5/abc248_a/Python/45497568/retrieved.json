@@ -1,0 +1,32 @@
+{
+  "task": "abc248_a/Python/45497568",
+  "query_summary": "The initial digit set uses range(1,10) instead of range(0,10), omitting 0 so it’s never considered or reported as a missing digit.",
+  "oracle_summary": "The initial digit set uses range(1,10) instead of range(0,10), omitting 0 so it’s never considered or reported as a missing digit.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for valid input characters by only allowing digits \"1\" to \"9\", instead of including \"0\" in its validation criteria.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = list(input())\n-x = [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n+x = [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n if len(S) != 8:\n     print(\"No\")\n     exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop iterates from 1 to \\(10^{6.5}\\), but it should start from 0 to include all potential perfect squares, preventing the successful matching of digit counts for squares that start with zero.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     S_cnt[int(i)] += 1\n \n ans = 0\n-for i in range(1,int(10**6.5) + 1):\n+for i in range(int(10**6.5) + 1):\n     tmp = list(str(i**2))\n     \n     cnt = [0]*10"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not format the numbers with leading zeros, resulting in mismatches when comparing strings like \"ABC001\" to \"ABC1\".",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     print(\"No\")\n     exit()\n for x in range(1,350):\n-    x=str(x)\n+    x=str(x).zfill(3)\n     num=('ABC'+x)\n     if num==S:\n         print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not check if the extracted number is less than 1, which could lead to incorrect results for valid inputs that fall within the expected range.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   print(\"No\")\n elif num == 316:\n   print(\"No\")\n-elif s[0:3] != \"ABC\":\n+elif num < 1:\n   print(\"No\")\n else:\n   print(\"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that the initial value of `s` is set to -10000 instead of a much smaller value (like -1e10), which may cause incorrect comparisons for certain input cases.",
+      "diff": "--- \n+++ \n@@ -1,8 +1,7 @@\n-\n N, D = map(int, input().split())\n T = list(map(int, input().split()))\n \n-s = -10000\n+s = -1e10\n for t in T:\n \tif t-s<=D:\n \t\tprint(t)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    8
+  ],
+  "useful_diffs_count": 2
+}

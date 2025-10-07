@@ -1,0 +1,4 @@
+{
+  "explanation": "The original final line computed p - q + a (written as p-q+a), which is incorrect for the coupon case. The correct total when using the coupon is q + min(D), so we should take min(p, q + a). I fixed that single arithmetic mistake by replacing p-q+a with q + a.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = min(d_list)\n\nprint(min(p, q + a))"
+}

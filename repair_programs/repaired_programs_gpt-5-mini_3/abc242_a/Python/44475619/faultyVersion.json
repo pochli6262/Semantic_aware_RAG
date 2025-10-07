@@ -1,0 +1,4 @@
+{
+  "explanation": "The program used the floating-point division operator '/' when an integer division was intended. Competitive programming tasks and counting calculations generally require integer division (//) to produce an integer result. I fixed the last print to use '//' so the output is an integer.",
+  "fixed_code": "inp=input().split()\nA=inp[0]\nA=int(A)\nB=inp[1]\nB=int(B)\nC=inp[2]\nC=int(C)\nX=inp[3]\nX=int(X)\nD=B-A\nif A>=X:\n    print(1)\nelif B<X:\n    print(0)\nelse:    \n    print(D//C)"
+}

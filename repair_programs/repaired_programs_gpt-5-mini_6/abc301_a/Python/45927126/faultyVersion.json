@@ -1,0 +1,4 @@
+{
+  "explanation": "The original else branch always printed \"A\", so when the total wins were tied it never checked who reached that number first. I replaced that single print line with an expression that: if Takahashi has fewer wins prints \"A\"; otherwise (tie) finds the index of the cnt-th 'T' and the cnt-th 'A' and prints whichever player reached the cnt-th win earlier. This fixes the tie-handling without changing any other lines.",
+  "fixed_code": "N = int(input())\nS = input()\n\ncnt = 0\nfor i in S:\n    if i == \"T\":\n        cnt += 1\n\nif cnt > N - cnt:\n    print(\"T\")\nelse:\n    print(\"A\" if cnt < N - cnt else (\"T\" if [i for i,c in enumerate(S) if c=='T'][cnt-1] < [i for i,c in enumerate(S) if c=='A'][cnt-1] else \"A\"))"
+}

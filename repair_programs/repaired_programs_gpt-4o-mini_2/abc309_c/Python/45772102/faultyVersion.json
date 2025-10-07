@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the condition in the first for loop, where the program checks if 'medicines <= K'. This condition should be checked after decreasing 'medicines' based on the current medicine's value (AB[i][1]), not before decrementing it. The correction involved changing the position of the condition check to after the decrement where it's supposed to determine if we've exceeded the limit or not.",
+  "fixed_code": "N, K = map(int, input().split())\nAB = [tuple(map(int, input().split())) for _ in range(N)]\n\nAB.sort()\nmedicines = 0\nfor i in range(N):\n    medicines += AB[i][1]\n\nfor i in range(N):\n    medicines -= AB[i][1]\n    if medicines <= K:\n        if i == 0:\n            print(1)\n            exit(0)\n        else:\n            print(AB[i - 1][0] + 1)\n            exit(0)"
+}

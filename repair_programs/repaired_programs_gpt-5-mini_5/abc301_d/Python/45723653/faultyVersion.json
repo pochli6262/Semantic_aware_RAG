@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop that assigns '?' bits was iterating from least-significant to most-significant bit (for i in range(m - 1, -1, -1)), which greedily filled low bits and could prevent setting higher bits that yield a larger valid number ≤ N. I changed that single line to iterate from most-significant to least-significant (for i in range(m)) so we try to set higher bits first and maximize the result while staying ≤ N. (No retrieved diffs were directly applicable; the fix is a straightforward correction of the iteration order.)",
+  "fixed_code": "if __name__ == '__main__':\n    s = str(input())\n    n = int(input())\n    m = len(s)\n    res = 0\n    for i in range(m):\n        if s[i] == \"1\":\n            res += (1 << (m - 1 - i))\n    if res > n:\n        res = -1\n    else:\n        for i in range(m):\n            if s[i] == \"?\" and res + (1 << (m - 1 - i)) <= n:\n                res += (1 << (m - 1 - i))\n    print(res)"
+}

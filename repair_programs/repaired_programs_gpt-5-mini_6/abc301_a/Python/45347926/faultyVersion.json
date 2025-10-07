@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop should stop as soon as a player first reaches the half (N/2) in even-N tie cases; the original code set t_win = True but kept scanning, allowing the other player to later also set a_win. I fixed this by replacing the line that set t_win inside the loop with a break so we stop processing further games once someone reaches the threshold. This single-line change implements the intended early stop (inspired by the bug summary that pointed out the missing stop on first reach).",
+  "fixed_code": "N = int(input())\nS = input()\nt, a, t_win, a_win = 0, 0, False, False\nfor i in range(N):\n  if S[i] == \"T\":\n    t += 1\n  else:\n    a += 1\n  if N % 2 == 0 and N / 2 == t:\n    break\n  elif N % 2 == 0 and N / 2 == a:\n    a_win = True\nif t > a:\n  t_win = True\nelif a > t:\n  a_win = True\nif t_win == True:\n  print(\"T\")\nif a_win == True:\n  print(\"A\")"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc300_d/Python/45256387",
+  "query_summary": "The program incorrectly hardcodes n = 10**12 instead of reading the input value N from standard input.",
+  "oracle_summary": "The buggy version hardcodes n = 10**12 instead of reading n from input, so it ignores the intended input value.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the initial value of `ans` is incorrectly set to `10**15` instead of the correct value `10**20`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n total[0]=L[0][0]+L[0][1]\n for i in range(1,n):\n   total[i]=total[i-1]+L[i][0]+L[i][1]\n-ans=10**15\n+ans=10**20\n m=10**10\n for i in range(min(n,x)):\n   num=0"
+    },
+    {
+      "summary": "The problem in the buggy code is that the range for the loop is set to 2*(10**5), which may not provide enough iterations to find a day when \"day\" exceeds \"n,\" whereas the correct code uses 3*(10**5) to ensure sufficient iterations.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n, m, p = map(int, input().split())\n ans = 0\n day = m\n-for i in range(2*(10**5)):\n+for i in range(3*(10**5)):\n     if day > n:\n         ans = i\n         break"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value of `ans` is incorrectly set to 11 instead of the largest possible number with the same length as N minus one digit, which should be \"9\" repeated (length of N - 1).",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n for _ in range(T):\n     N = int(input())\n     res = make_div(len(str(N)))\n-    ans = 11\n+    ans = int(\"9\" * (len(str(N)) - 1))\n     for i in res:\n         if i == len(str(N)):\n             continue"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ng` to `len(li) - 1` instead of `len(li)`, which causes the binary search to skip the last potential index and may lead to an out-of-bounds error.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+\n def enum_primes(n):\n     prime_flag = [1] * (n + 1)\n     prime_flag[0] = 0\n@@ -18,7 +19,7 @@\n for i in range(len(li)):\n     p=li[i]\n     ok=i\n-    ng=len(li)-1\n+    ng=len(li)\n     while ng-ok>1:\n         j=(ok+ng)//2\n         q=li[j]\n@@ -30,3 +31,4 @@\n         ans+=ok-i\n \n print(ans)\n+"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    10
+  ],
+  "useful_diffs_count": 2
+}

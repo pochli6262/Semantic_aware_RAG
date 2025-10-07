@@ -1,0 +1,4 @@
+{
+  "explanation": "The program incorrectly hardcoded n=100, so it always computed the answer for 100 instead of reading the input N. I replaced that line with n = int(input()) to read the integer N from standard input. This fixes the bug by using the provided input rather than a constant value (similar in spirit to other fixes that replace hardcoded constants with input-dependent values).",
+  "fixed_code": "n = int(input())\n\nif n%5<3:\n    ans=n-(n%5)\nelse:\n    ans=n+5-(n%5)\nprint(ans)\n"
+}

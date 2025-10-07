@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition only checked for two specific patterns ('.#.#' and '#.#.'), but the intended logic is to print 'No' whenever the two input rows are identical — not just those two patterns. I fixed the single incorrect line by comparing the first row (first two characters) with the second row (last two characters) using S[:2] == S[2:], which covers all possible identical-row cases.",
+  "fixed_code": "S = input() + input()\n\nif S[:2] == S[2:]:\n    print('No')\nelse:\n    print('Yes')"
+}

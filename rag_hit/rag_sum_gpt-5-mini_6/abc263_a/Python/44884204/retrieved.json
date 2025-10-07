@@ -1,0 +1,29 @@
+{
+  "task": "abc263_a/Python/44884204",
+  "query_summary": "The code only checks the case where the three-of-a-kind appears in the first three sorted cards and therefore fails to detect the valid full house when the last three cards (positions 2–4) form the three-of-a-kind.",
+  "oracle_summary": "The program only checks for a full house with the triple first and pair last (indices 0–2 and 3–4), missing the symmetric case where the pair comes first and the triple last (indices 0–1 and 2–4).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if a player has exactly two yellow cards to output \"Yes\" instead of checking if they have two or more yellow cards.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     elif c == 2:\n       cards[x] += 2\n     else:\n-      if cards[x] == 2:\n+      if cards[x] >= 2:\n         print('Yes')\n       else:\n         print('No')"
+    },
+    {
+      "summary": "The buggy code fails to handle the case where the total sum of hand values is less than the limit \\( m \\), resulting in no output when this condition occurs.",
+      "diff": "--- \n+++ \n@@ -14,5 +14,9 @@\n             print(i+1)\n             break\n \n+    if hand < m:\n+        print(len(h))\n+\n+\n if __name__ == \"__main__\":\n     main()"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly includes '1' in the set of valid ranks, which leads to accepting invalid card inputs that should be rejected.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[]\n b=['H', 'D', 'C', 'S']\n first = set(b)\n-second = set(['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n+second = set(['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n tmp = set()\n answer = \"Yes\"\n for i in range(n):"
+    },
+    {
+      "summary": "The buggy code incorrectly breaks out of the loop as soon as both uppercase and lowercase letters are found, potentially missing subsequent duplicates that may invalidate the 'isDifferent' condition.",
+      "diff": "--- \n+++ \n@@ -9,8 +9,6 @@\n         isBig = True\n     if(s[i] in small):\n         isSmall = True\n-    if(isBig and isSmall):\n-        break\n     if(s.count(s[i]) > 1):\n         isDifferent = False\n         break"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

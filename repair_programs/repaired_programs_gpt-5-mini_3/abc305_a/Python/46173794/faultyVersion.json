@@ -1,0 +1,4 @@
+{
+  "explanation": "The program attempts to round n to the nearest multiple of 5 by rounding up when the remainder is large enough. The condition used was n%5 >= 2, which incorrectly rounds numbers with remainder 2 up (e.g., 7 -> 10). The usual threshold for rounding to the next multiple of 5 is remainder >= 3, so I changed the condition to n%5 >= 3.",
+  "fixed_code": "n=int(input())\nprint((n//5)*5+5 if n%5>=3 else (n//5)*5)"
+}

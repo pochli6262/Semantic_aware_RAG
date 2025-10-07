@@ -1,0 +1,33 @@
+{
+  "task": "abc244_d/Python/45508442",
+  "query_summary": "The bug is that A contains concatenated strings like \"RGB\" instead of the space-separated strings (\"R G B\", etc.) that the inputs use, causing the membership checks to fail.",
+  "oracle_summary": "The bug is that A contains concatenated strings like \"RGB\" instead of the space-separated strings (\"R G B\", etc.) that the inputs use, causing the membership checks to fail.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list `g1`, missing some valid combinations (like \"BA\", \"CB\", \"DC\", \"ED\", and \"AE\") which are necessary for the correct logic to determine membership.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n T = input()\n \n-g1 = [\"AB\", \"BC\", \"CD\", \"DE\", \"EA\"]\n+g1 = [\"AB\",\"BA\", \"BC\", \"CB\", \"CD\", \"DC\", \"DE\", \"ED\", \"EA\", \"AE\"]\n \n if S in g1 and T in g1:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the string `K` as \"ABCDEABCDE\" instead of \"ABCDEAEDCBA\", which affects the logic determining if both `S` and `T` are present in `K`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-K = \"ABCDEABCDE\"\n+K = \"ABCDEAEDCBA\"\n S = input()\n T = input()\n "
+    },
+    {
+      "summary": "The problem in the buggy code is an extra space at the end of the string 'GBD ' which causes the condition to fail when that specific input is provided.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S=input()\n-if S=='ACE' or S=='BDF' or S=='CEG' or S=='DFA' or S=='EGB' or S=='FAC' or S=='GBD ':\n+if S=='ACE' or S=='BDF' or S=='CEG' or S=='DFA' or S=='EGB' or S=='FAC' or S=='GBD':\n   print('Yes')\n else:\n   print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if the first character of the string is \"B\" and the last character is \"A\" instead of checking if the first character is \"A\" and the last character is \"B\".",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n S = input()\n \n-if S[0] == \"B\" and S[-1] == \"A\":\n+if S[0] == \"A\" and S[-1] == \"B\":\n     print(\"No\")\n elif S == \"BA\":\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the presence of both characters 'a' and 'b' individually in the string, instead of checking for the presence of the specific substrings \"ab\" or \"ba\".",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n S = input()\n \n-if \"a\" in S and \"b\" in S:\n+if \"ab\" in S or \"ba\" in S:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

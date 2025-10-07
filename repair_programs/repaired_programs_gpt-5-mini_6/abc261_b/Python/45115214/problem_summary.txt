@@ -1,0 +1,1 @@
+The code never checks that 'D' entries are symmetric, so mismatched draw results (A[i][j]=='D' but A[j][i] != 'D') are ignored.

@@ -1,0 +1,31 @@
+{
+  "task": "abc261_b/Python/46179770",
+  "query_summary": "In the 'L' case, the condition is inverted: it checks kama[ipp][i] == 'W' (flagging a correct mirror as incorrect) instead of enforcing kama[ipp][i] != 'W'.",
+  "oracle_summary": "In the 'L' case, the condition is inverted: it checks kama[ipp][i] == 'W' (flagging a correct mirror as incorrect) instead of enforcing kama[ipp][i] != 'W'.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly references a variable `k` instead of `K` in the condition `(N+k) % l == 0`, which causes unintended behavior and may lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n         if (N+K) % (2*l) == 0:\n             print(\"Yes\")\n             continue\n-        elif (N+k) % l == 0:\n+        elif (N+K) % l == 0:\n             for i in range(l):\n                 if S[i] != S[l-i-1]:\n                     break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output as \"Yes\" if K is non-negative, without checking if K is also even, which is necessary for the correct condition.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     while N > 0:\n         K -= N % 3\n         N //= 3\n-    if K >=0:\n+    if K >= 0 and K % 2 == 0:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop iterating over `i` should run until `L` (inclusive), but it incorrectly goes up to `L-1`, which prevents it from considering the case when `i` equals `L`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n dp = [inf] * (200005)\n dp[0] = 0\n \n-for i in range(1, L-1):\n+for i in range(1, L):\n   w = i * (L-i)\n   for j in range(w, 200005):\n     dp[j] = min(dp[j], dp[j-w]+1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

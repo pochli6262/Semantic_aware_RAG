@@ -1,0 +1,33 @@
+{
+  "task": "abc310_f/Python/50729164",
+  "query_summary": "The likely bug is that the program incorrectly computes the combinations of selected dice results by not properly managing the bit manipulation to track sums correctly.",
+  "oracle_summary": "The bug was that the transition for choosing values >10 was omitted — the dp[i+1][bit] += dp[i][bit] * max(0, a[i]-10) * inv term was missing, so contributions from those choices were never added.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses a modulo constant of \\(10^9 + 7\\) instead of the correct constant \\(998244353\\), leading to incorrect results when calculating large values.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-MOD = 10**9+7\n+MOD = 998244353\n n = int(input())\n arr = list(map(lambda x:n-int(x), input().split()))\n dp = [[0]*n for i in range(n)]"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the range in the second loop to `-10` to `9`, which should be `-10` to `10` to properly include all possible sums.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     if -1000 <= ns <= 1000:\n       ndp[ns] += dp[s]\n       ndp[ns] %= MOD\n-  for s in range(-10, 10):\n+  for s in range(-10, 11):\n     if s == 0: continue\n     ns = s + a\n     if -1000 <= ns <= 1000:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not take the modulo of the final sum before printing it, which can lead to incorrect results if the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -14,4 +14,4 @@\n         if j+1 <= 9:\n             dp[i][j] += dp[i-1][j+1]\n             dp[i][j] %= mod\n-print(sum(dp[n-1]))\n+print(sum(dp[n-1])%mod)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the final sum calculation does not take the modulo operation into account, which can lead to an incorrect result when the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -16,4 +16,4 @@\n             # i項目を決めない\n             dp[i][j][bit >> 1] += dp[i - 1][j][bit]\n \n-print(sum(sum(dp[N][j]) * P[N - j] * pow(-1, j % 2) for j in range(N + 1)))\n+print(sum(sum(dp[N][j]) * P[N - j] * pow(-1, j % 2) for j in range(N + 1)) % MOD)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the final output does not apply the modulo operation to the sum of `ans1` and `ans2`, which can lead to incorrect results if this sum exceeds the modulo value.",
+      "diff": "--- \n+++ \n@@ -26,4 +26,4 @@\n     if s[i] == \"?\":\n       ans2 *= 2\n       ans2 %= MOD\n-print(ans1 + ans2)\n+print((ans1 + ans2) % MOD)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line only checks for one specific ordering (S1 == \".#\" and S2 == \"#.\"). The intended logic is to print \"No\" when the two strings are opposite patterns, regardless of their order. I fixed the single line by adding the symmetric check with OR so both (S1 == \".#\" and S2 == \"#.\") and (S1 == \"#.\" and S2 == \".#\") are handled.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1==\".#\" and S2==\"#.\") or (S1==\"#.\" and S2==\".#\"):\n  print(\"No\")\nelse:\n  print(\"Yes\")"
+}

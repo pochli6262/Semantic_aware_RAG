@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only flagged a mismatch when a[i][j] == b[i][j] (except allowing both 'D'), so invalid pairs such as 'W' vs 'D' or 'L' vs 'D' were not detected. The single corrected line replaces that simplistic equality check with a test that enforces the required relationships: (W vs L), (L vs W), or (D vs D). If a pair does not match one of these valid cases it is marked incorrect.",
+  "fixed_code": "n = int(input())\na = [list(input()) for _ in range(n)]\nb = []\nfor i in range(n):\n  tmp = []\n  for j in range(n):\n    tmp.append(a[j][i])\n  b.append(tmp)\nans = \"correct\"\nfor i in range(n):\n  for j in range(n):\n    if i == j:\n      continue\n    if a[i][j] == b[i][j] == 'D':\n      continue\n    if not ((a[i][j] == 'W' and b[i][j] == 'L') or (a[i][j] == 'L' and b[i][j] == 'W') or (a[i][j] == 'D' and b[i][j] == 'D')):\n      ans = \"incorrect\"\n      break\nprint(ans)"
+}

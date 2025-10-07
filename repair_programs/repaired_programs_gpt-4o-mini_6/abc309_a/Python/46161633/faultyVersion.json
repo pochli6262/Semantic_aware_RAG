@@ -1,0 +1,4 @@
+{
+  "explanation": "The original check for adjacency only considered the case when A is a multiple of 3, leading to incorrect outputs for certain pairs. The check should directly identify if B is A + 1 or A is B - 1, with no additional conditions needed. This fix is inspired by Diff 1, which corrected the condition to simply check if B is A + 1 without additional context.",
+  "fixed_code": "A,B=map(int, input().split())\nif B-A == 1:\n    print('Yes')\nelse:\n    print('No')"
+}

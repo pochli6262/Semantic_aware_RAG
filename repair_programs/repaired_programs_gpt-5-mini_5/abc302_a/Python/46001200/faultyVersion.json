@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code always added 1 to A//B, which is wrong when A is exactly divisible by B (off-by-one error). Replace the printing expression with an integer ceiling division: (A + B - 1) // B, which yields the correct minimum number of attacks for all positive integers A and B. This fixes the off-by-one without changing program structure.",
+  "fixed_code": "A,B = map(int,input().split())\nprint((A+B-1)//B)"
+}

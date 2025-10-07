@@ -1,0 +1,4 @@
+{
+  "explanation": "The line S = input().split() makes S a list (e.g. ['TTAAT']) instead of the intended string of characters, so S.count('T') and S[-1] behave incorrectly. I changed that line to S = input().strip() so S is the input string (with trailing newline removed) and the subsequent counts and tie-break logic work as intended.",
+  "fixed_code": "N = int(input())\nS = input().strip()\n\nT_W = S.count('T')\nA_W = S.count('A')\nprint(\"T\" if T_W > A_W or T_W == A_W and S[-1] == \"A\" else \"A\")"
+}

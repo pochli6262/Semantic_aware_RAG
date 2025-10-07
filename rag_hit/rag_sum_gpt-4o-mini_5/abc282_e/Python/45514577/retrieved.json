@@ -1,0 +1,29 @@
+{
+  "task": "abc282_e/Python/45514577",
+  "query_summary": "The likely bug is that the program sums the scores of edges in a union-find structure, rather than calculating the maximum score by properly simulating the game rules for choosing and removing balls.",
+  "oracle_summary": "The buggy code sorts edges in ascending order and thus builds a minimum spanning tree, whereas it should sort in descending order (reverse=True) to build the maximum spanning tree and maximize the sum.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the score of vertex `v` is incorrectly updated by subtracting the vertex index `u` instead of the value `A[u]`.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n     for v in G[u]:\n         cnt += A[v]\n         G[v].remove(u)\n-        score[v] -= u\n+        score[v] -= A[u]\n         heappush(Q, (score[v], v))\n     ans = max(ans, cnt)\n print(ans)"
+    },
+    {
+      "summary": "The buggy code has an indexing error in the final sum calculation within the `solve` function, where it incorrectly sums `dp[N][j][K]` for `j` in the range `N` instead of `N+1`, which leads to missing the contribution of the last player's combinations.",
+      "diff": "--- \n+++ \n@@ -51,7 +51,7 @@\n                 # exclude i\n                 dp[i][min(r, j)][k] = (dp[i][min(r, j)][k] + dp[i-1][j][k]) % MOD\n \n-    return sum(dp[N][j][K] for j in range(N)) % MOD\n+    return sum(dp[N][j][K] for j in range(N+1)) % MOD\n \n \n def main():"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to apply the modulo operation to the final result when summing the dp values, potentially causing incorrect output for large sums.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n                 dp[i][j] += dp[i-1][1]\n                 dp[i][j] %= MOD\n \n-    print(sum(dp[-1]))\n+    print(sum(dp[-1]) % MOD)\n \n if __name__ == \"__main__\":\n     main()"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `(x==0)` was incorrectly stated in the final if-check, which should also consider the case when `x` equals 1, leading to potential incorrect game outcomes.",
+      "diff": "--- \n+++ \n@@ -36,8 +36,8 @@\n                 y += 1\n                 if mex == k:\n                     mex = j\n-            \n-        if (x==1 and y==1) or (mex==k and x==0):\n+\n+        if (x==1 and y==1) or (mex==k and (x==0 or x==1)):\n             print(\"Alice\")\n             break\n     else:"
+    },
+    {
+      "summary": "The buggy code fails to correctly handle multiple components in the Union-Find structure, causing erroneous calculations for `edge_nums` and `node_nums` because connections are incorrectly tracked after the union operations.",
+      "diff": "--- \n+++ \n@@ -20,8 +20,6 @@\n     def unite(self, x, y):\n         rx = self.root(x)\n         ry = self.root(y)\n-        if rx == ry:\n-            return\n         self.par[rx] = ry\n         self.g[x].append(y)\n "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

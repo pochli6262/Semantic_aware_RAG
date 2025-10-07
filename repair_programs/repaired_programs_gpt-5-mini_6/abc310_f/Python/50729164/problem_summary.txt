@@ -1,0 +1,1 @@
+The code fails to account for die faces greater than 10 — it only processes faces 1..10 and never handles the remaining outcomes (so probability mass for values >10 is omitted).

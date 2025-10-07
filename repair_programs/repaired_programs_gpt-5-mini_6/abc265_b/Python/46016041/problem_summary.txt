@@ -1,0 +1,1 @@
+The program applies bonus time for a room before taking the step into that room instead of after arriving, so bonuses are applied at the wrong time and can become misaligned with the bonus list.

@@ -1,0 +1,32 @@
+{
+  "task": "abc309_a/Python/45963671",
+  "query_summary": "The program fails to terminate after detecting b-a != 1 (missing an exit/return), so execution continues and can produce incorrect output.",
+  "oracle_summary": "The program fails to terminate after detecting b-a != 1 (missing an exit/return), so execution continues and can produce incorrect output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the difference between `b` and `a` is non-zero rather than specifically checking if it equals 1 or 9.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b = map(int, input().split())\n \n-if b - a or b - a == 9:\n+if b - a == 1 or b - a == 9:\n   print('Yes')\n else:\n   print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b` is the average of `a` and `c`, instead of verifying if `b` is between `a` and `c` inclusively.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b, c = map(int, input().split())\n \n-if (a + c) // 2 == b:\n+if a <= b <= c or c <= b <= a:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition involving variable 'a' multiplied by 'b' instead of 'a' multiplied by 'd' in the second conditional statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n if abs(b-c) >= 2:\n     print(\"No\")\n-elif b + c == 0 and a*b != 0:\n+elif b + c == 0 and a*d != 0:\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The issue in the buggy code is that it incorrectly checks `b != 0` instead of `d != 0` in the conditional statement when both `b` and `c` are zero.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n,a,b,c,d = map(int, input().split())\n-print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and b != 0)) else \"Yes\")\n+print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and d != 0)) else \"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if any two consecutive elements in the sorted list `c` belong to the same array (either `a` or `b`), instead of specifically checking if they both belong to array `a`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n \n ans = \"No\"\n for i in range(n + m - 1):\n-    if c[i][1] == c[i + 1][1]:\n+    if c[i][1] == c[i + 1][1] == 0:\n         ans = \"Yes\"\n \n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

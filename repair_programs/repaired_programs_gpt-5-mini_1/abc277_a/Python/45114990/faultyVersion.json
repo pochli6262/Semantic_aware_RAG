@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code used p.index(x), which returns a 0-based index. Many problems expect a 1-based position, so the printed value was off by one. I fixed the single incorrect line by adding 1 to the result: print(p.index(x) + 1). No other lines were changed.",
+  "fixed_code": "n, x = map(int, input().split())\np = list(map(int, input().split()))\nprint(p.index(x) + 1)\n"
+}

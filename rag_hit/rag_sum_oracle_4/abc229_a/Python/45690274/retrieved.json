@@ -1,0 +1,31 @@
+{
+  "task": "abc229_a/Python/45690274",
+  "query_summary": "The buggy code lacks the else branch after the diagonal-check, so when black < 3 and that condition is false it produces no output instead of printing \"Yes.\"",
+  "oracle_summary": "The buggy code lacks the else branch after the diagonal-check, so when black < 3 and that condition is false it produces no output instead of printing \"Yes.\"",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly compares the first character of the string with each subsequent character instead of comparing the substrings from the start to the current index with the substring from the current index to the end.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n     N = int(input())\n     S = input()\n     for i in range(1, N):\n-        if S[0] < S[i]:\n+        if S[0:i] < S[i:]:\n             print('Yes')\n             return\n     print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if flag and k <= n-k:` should be `if flag and k < n-k:` to avoid printing \"Yes\" even when the two substrings are equal when `k` is exactly half of `n`.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n             else:\n                 flag = False\n                 break\n-        if flag and k<=n-k:\n+        if flag and k<n-k:\n             print(\"Yes\")\n             return\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly returns 'B' when there is exactly one occurrence of 'AB', rather than checking the total count of 'A' and 'BA' to determine the correct return value.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n     if S[-1] == 'A':\n         return 'A'\n     else:\n-        if S.count('AB') == 1:\n+        if S.count('A') == 0 or S.count('BA') == 0:\n             return 'B'\n         else:\n             return 'A'"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `s.find('R')` instead of `r.find('R')` when checking the position of 'R' in the reversed string.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s = input()\n r = s[::-1]\n if s.find('B') % 2 == r.find('B') % 2:\n-    if s.find('R') < s.find('K') < 8 - s.find('R') + 1:\n+    if s.find('R') < s.find('K') < 8 - r.find('R') + 1:\n         print('Yes')\n         exit()\n print('No')"
+    },
+    {
+      "summary": "The buggy code fails to handle the case where the second and third characters are equal but different from the first character, which should be printed as \"3\" instead of falling through to \"6\".",
+      "diff": "--- \n+++ \n@@ -5,5 +5,7 @@\n     print(\"3\")\n elif S[0]==S[1] and S[0]!=S[2]:\n     print(\"3\")\n+elif S[0]!=S[1] and S[1]==S[2]:\n+    print(\"3\")\n elif S[0]!=S[1] and S[0]!=S[2]:\n     print(\"6\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

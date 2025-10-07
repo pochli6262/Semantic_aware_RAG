@@ -1,0 +1,1 @@
+The palindrome check mistakenly uses [s[i]+s[j]][::-1], which produces a single-element list instead of reversing the string, so it compares a string to a list and always fails.

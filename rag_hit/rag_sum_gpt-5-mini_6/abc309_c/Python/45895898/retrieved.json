@@ -1,0 +1,33 @@
+{
+  "task": "abc309_c/Python/45895898",
+  "query_summary": "The binary search upper bound is set to maxday instead of maxday+1, causing an off-by-one error when the first day with total pills ≤ K is maxday+1.",
+  "oracle_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the condition `if num + b < K` instead of `if num + b <= K`, which leads to an off-by-one error when determining whether to update the day variable.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n     num = 0\n \n     for a, b in reversed(Q):\n-        if num + b < K:\n+        if num + b <= K:\n             num += b\n         else:\n             day = a + 1"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the right boundary of the binary search to \\(10^6\\) instead of \\(10^7\\), which might limit the maximum number of servings that can be checked.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n       judge = True\n   return judge\n   \n-L, R = 0, 10**6\n+L, R = 0, 10**7\n while R-L > 1:\n   C = (R+L)//2\n   if canmake(C):\n@@ -23,4 +23,3 @@\n     R = C\n     \n print(L)\n-    "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes `min_x` to `max(l)` instead of `max(l) - 1`, leading to potential infinite loops or incorrect outputs in the binary search.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n             return False\n     return True\n \n-min_x = max(l)\n+min_x = max(l)-1\n max_x = sum(l) + n - 1\n while True:\n     mid = (min_x + max_x) // 2"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial upper limit `OK` for the binary search is set to `10**9`, which is too small, leading to potential incorrect results when larger adjustments are necessary; it should be set to `10**17` as in the correct code.",
+      "diff": "--- \n+++ \n@@ -33,7 +33,7 @@\n \n C=A[:]\n \n-OK=10**9\n+OK=10**17\n NG=-1\n \n while OK>NG+1:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the upper limit for the binary search (`right`) is set to `1000000000`, which may exclude the correct answer if it is `1000000000`; it should be corrected to `1000000001`.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n     return flag\n \n left = 0\n-right = 1000000000\n+right = 1000000001\n \n while (right - left) > 1:\n     mid = (right + left)//2"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

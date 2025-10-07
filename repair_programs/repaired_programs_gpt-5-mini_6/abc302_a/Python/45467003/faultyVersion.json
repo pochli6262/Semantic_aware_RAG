@@ -1,0 +1,4 @@
+{
+  "explanation": "The original print line unconditionally added 1 to A // B, causing an off-by-one when A is divisible by B. The correct answer is the ceiling of A/B. I replaced the line with the standard integer-ceiling formula (A + B - 1) // B which yields the minimal number of attacks. (No retrieved diff directly applied to this bug; the fix uses the usual ceiling trick.)",
+  "fixed_code": "A, B = map(int, input().split())\n\nprint((A + B - 1) // B)"
+}

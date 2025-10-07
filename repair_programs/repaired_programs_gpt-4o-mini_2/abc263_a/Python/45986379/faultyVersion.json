@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the code is in the conditional statement where the indices 2 and 3 are used to check the equality of elements in the list K. Since K is sorted, if it contains only 2 unique elements, its maximum can only appear at positions 0 and 1 or 1 and 2. Therefore, the check should be adjusted to reference the correct indices, specifically using K[0] and K[1] instead of K[2] and K[3].",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and K[0] != K[1]:\n    print('Yes')\nelse:\n    print('No')"
+}

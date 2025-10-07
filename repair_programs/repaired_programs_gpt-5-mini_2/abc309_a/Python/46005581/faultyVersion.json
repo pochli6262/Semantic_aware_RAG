@@ -1,0 +1,4 @@
+{
+  "explanation": "The first condition was comparing B to A+1 when A%3 == 1, but to reach the next multiple of 3 from a number with remainder 1 you must add 2. I changed that single line so when A%3 == 1 it checks B == A+2 instead of B == A+1.",
+  "fixed_code": "#a = int(input());\nlist_A_B = list(map(int, input().split()));\nA = list_A_B[0]\nB = list_A_B[1]\n#x = int(input());\n\nif A%3 == 1 and B == A+2:\n    print('Yes')\nelif A%3 == 2 and B == A+1:\n    print('YES')\nelse:\n    print('No')"
+}

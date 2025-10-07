@@ -1,0 +1,33 @@
+{
+  "task": "abc304_b/Python/45336297",
+  "query_summary": "The program incorrectly uses subtraction to truncate digits, which could lead to inaccurate results for inputs at the upper limits of each specified range.",
+  "oracle_summary": "The bug is due to a missing final conditional branch handling numbers up to 10**9-1, so inputs in that range produce no corresponding output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses integer division which can lead to incorrect results for negative inputs, while the correct code uses a modified approach to handle both positive and negative integers appropriately.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n def main():\n     n = int(input())\n-    print(n // 10)\n+    print(-(-n // 10))\n \n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the product of the first two digits equals the product of the last two digits instead of checking if the product of the first digit and the second digit equals the last digit.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n   a = int(s[0])\n   b = int(s[1])\n   c = int(s[2])\n-  if a * b == b * c :\n+  if a * b == c :\n     print(n)\n     break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `k` is less than `N` instead of less than or equal to `N`, which may cause it to miss valid outputs.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for i in range(n, 1, -1):\n   k = i **3\n   k_str = str(k)\n-  if (k < N) and (k_str == k_str[::-1]):\n+  if (k <= N) and (k_str == k_str[::-1]):\n     print(k)\n     exit()\n print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses strict inequality for the lower bound check, which results in incorrectly excluding the value -2^31 from the valid range.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N=int(input())\n-if -2**31<N<2**31:\n+if -2**31<=N<2**31:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop iterates from 100000 to 999999, missing the last valid 6-digit number (1000000), which should be included in the range.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n cnt=0\n #AABCDDEFE\n-for i in range(100000,999999):\n+for i in range(100000,1000000):\n     cnt+=1\n     if cnt==N:\n         print(int(str(i)[0]+str(i)[0]+str(i)[1]+str(i)[2]+str(i)[3]+str(i)[3]+str(i)[4]+str(i)[5]+str(i)[4]))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

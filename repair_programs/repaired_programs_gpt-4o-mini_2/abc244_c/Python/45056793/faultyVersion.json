@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where we attempt to remove an element from the list 'ans' using 'ans.remove(tmp)'. If 'tmp' is not in 'ans', it raises a ValueError. To fix this, we must ensure we only attempt to remove 'tmp' from 'ans' if it exists in the list. I corrected it by adding a condition to check for membership before removing the element.",
+  "fixed_code": "n=int(input())\nans=[i for i in range(1,n+2)]\nwhile True:\n  print(ans.pop(0), flush=True)\n  tmp=int(input())\n  if tmp==0:\n    exit()\n  else:\n    if tmp in ans:\n      ans.remove(tmp)"
+}

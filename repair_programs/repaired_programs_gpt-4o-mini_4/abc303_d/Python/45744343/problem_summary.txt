@@ -1,0 +1,1 @@
+The likely bug is that the initial values for `dp[0][0]` and `dp[1][0]` do not correctly account for the time it takes to press the Caps Lock key when starting from the initial state.

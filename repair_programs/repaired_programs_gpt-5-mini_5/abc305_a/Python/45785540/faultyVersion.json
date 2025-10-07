@@ -1,0 +1,4 @@
+{
+  "explanation": "The branch for n%5 == 0 incorrectly printed 0 instead of the actual position n of the water station. When N is exactly at a station, the nearest station is N itself. I fixed the single-line mistake by printing n instead of 0. This follows the same simple literal-to-variable correction pattern seen in other small diffs that replace an incorrect constant with the correct value.",
+  "fixed_code": "n = int(input())\nif n%5 ==0:\n  print(n)\nelif n % 5 >=3:\n  print(n+5-n%5)\nelse:\n  print(n-n%5)\n"
+}

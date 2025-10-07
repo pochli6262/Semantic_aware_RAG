@@ -1,0 +1,31 @@
+{
+  "task": "abc303_c/Python/46147196",
+  "query_summary": "The likely bug is that the program incorrectly iterates over the moves using `S[:-1]`, which causes it to miss the last move and potentially leads to an incorrect health check and output.",
+  "oracle_summary": "The bug is an off-by-one error: the loop iterates over S[:-1] (omitting the last move), so the final move and its health/healing checks are never processed.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the y-coordinate when the input is \"D\" by adding 1 instead of subtracting 1.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     elif s==\"U\":\n         y += 1\n     elif s==\"D\":\n-        y += 1\n+        y -= 1\n     \n     return x, y\n "
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `h` to zero in the second while loop that checks for the \"^\" character, which results in an infinite loop instead of starting at the last row (H-1).",
+      "diff": "--- \n+++ \n@@ -44,7 +44,7 @@\n     elif flg:\n       S[h][w] = \"*\"\n     h += 1\n-  h = 0\n+  h = H-1\n   flg = False\n   while h >= 0:\n     if S[h][w] not in (\"*\", \".\"):"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the value of `X` when the move is \"R\" by using `X *= 2 + 1` instead of the correct formula `X = 2 * X + 1`.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n     if s == \"L\":\n         X*=2\n     elif s == \"R\":\n-        X*=2+1\n+        X=2*X+1\n     else:\n         X//=2\n print(X)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the variable `s` during the iteration, failing to account for the previously calculated values of `s`, which should include the already counted units.",
+      "diff": "--- \n+++ \n@@ -12,5 +12,5 @@\n     if d - 4 * s < D[i]:\n         print('No')\n         exit()\n-    s = D[i]\n+    s = D[i] + 4 * s\n print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly constructs the movement string by using the wrong order of characters in the mapping (\"DLRU\" instead of the correct \"LDUR\").",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n L = []\n for i in range(n)[::-1]:\n   s,t = (dp[i]>>x&1)^1,(dp[i]>>y&1)^1\n-  L.append(\"DLRU\"[s*2+t])\n+  L.append(\"LDUR\"[s*2+t])\n   if s:\n     x -= D[i]\n   if t:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the if condition line. The original second part of the condition mistakenly used an OR that repeated the first triple-check or a pair-check: '... or ((a[0]==a[1] and a[1]==a[2]) or (a[3]==a[4]))'. That makes the condition true in wrong cases (e.g., when only a pair exists). The correct check for a full house on a sorted list of 5 numbers is: either the first three are equal and the last two are equal, or the first two are equal and the last three are equal. I fixed the if line to test the second pattern correctly (first two equal AND last three equal) while leaving all other lines unchanged.",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif ((a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4])) or ((a[0]==a[1]) and (a[2]==a[3] and a[3]==a[4])):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

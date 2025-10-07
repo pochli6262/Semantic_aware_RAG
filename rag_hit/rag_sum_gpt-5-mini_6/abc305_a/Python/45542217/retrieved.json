@@ -1,0 +1,32 @@
+{
+  "task": "abc305_a/Python/45542217",
+  "query_summary": "The code uses ans = N + a - 1 to round up instead of adding 5 - a, so inputs with N%5 == 4 produce incorrect results (e.g., N=54 yields 57 instead of 55).",
+  "oracle_summary": "The code uses the wrong formula for rounding up to the next multiple of 5—it computes N+a-1 instead of N+(5-a), producing an incorrect (off-by-2) result when N%5 == 4.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly loops from `N-2` to `1` instead of from `N-1` to `1`, leading to potential index errors and incorrect calculations in the `ans` list.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n for i in map(int, input().split()):\n     ans[i-1] = 0\n-for i in range(N-2, 0, -1):\n+for i in range(N-1, 0, -1):\n     ans[i-1] = min(ans[i-1], ans[i]+1)\n \n print('\\n'.join(map(str, ans)))"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The problem in the buggy code is that the expression `ans>>a[i]+1` does not correctly group the operations due to the precedence of the operators, resulting in an incorrect value for `ans2`.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=list(map(int,input().split()))\n ans=0\n for i in range(n):\n-  ans2=ans>>a[i]+1\n+  ans2=(ans>>a[i])+1\n   ans2=(ans2|1)<<a[i]\n   ans=ans2\n print (ans)"
+    },
+    {
+      "summary": "The bug in the code is that the condition for counting elements in the final sum incorrectly uses `a[i] >= 5` instead of the correct condition `a[i] >= 4`.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,5 @@\n     a[j]+=a[i]\n ans=0\n for i in range(n):\n-  ans+= a[i]>=5\n+  ans+= a[i]>=4\n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that the condition `N==4` in the first `if` statement should be replaced with `N<=4` to correctly handle the case when `N` is equal to or less than 4.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N=int(input())\n-if N%3==2 or N==4:\n+if N%3==2 or N<=4 :\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    6
+  ],
+  "useful_diffs_count": 2
+}

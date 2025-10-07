@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculates indices for accessing the prefix sums in list S. The expression for accessing the prefix sum for range (l, r) needs to ensure that it correctly handles the starting point of the prefix sums when l is exactly a multiple of K. The corrected version modifies the max function to ensure that we avoid an out-of-bounds error when l-k-1 is negative.",
+  "fixed_code": "N, K = map(int,input().split())\nA=list(map(int,input().split()))\nQ=int(input())\nS = [[0] for i in range(K)]\nfor i in range(N):\n    S[i%K].append(S[i%K][-1]+A[i])\n    \nfor i in range(Q):\n    l, r = map(lambda x:int(x)-1,input().split())\n    s=set()\n    for k in range(K):\n        s.add(S[k][(r-k)//K+1] - S[k][max(0, (l-k)//K)])\n    if len(s)==1:\n        print('Yes')\n    else:\n        print('No')"
+}

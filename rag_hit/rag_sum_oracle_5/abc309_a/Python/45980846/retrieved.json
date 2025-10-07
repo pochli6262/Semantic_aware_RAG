@@ -1,0 +1,29 @@
+{
+  "task": "abc309_a/Python/45980846",
+  "query_summary": "The bug is an extra OR clause that incorrectly checks grid[j][i] and grid[j+1][i] (swapping i and j), causing unintended vertical/transposed pair matches and false positives instead of only checking horizontal adjacent elements.",
+  "oracle_summary": "The bug is an extra OR clause that incorrectly checks grid[j][i] and grid[j+1][i] (swapping i and j), causing unintended vertical/transposed pair matches and false positives instead of only checking horizontal adjacent elements.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly updates the `blocks` array using `i % n` and `j % n` instead of using `i // n` and `j // n` to determine the correct block index.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n         if not rows[i][num - 1] and not cols[j][num - 1] and not blocks[i // n][j // n][num - 1]:\n               rows[i][num - 1] = True\n               cols[j][num - 1] = True\n-              blocks[i % n][j % n][num - 1] = True\n+              blocks[i // n][j // n][num - 1] = True\n         else:\n             valid = False\n             break"
+    },
+    {
+      "summary": "The problem in the buggy code is the use of the equality operator `==` instead of the assignment operator `=` when setting `exist[j]` to `True`, which prevents the correct tracking of columns that have \"o\" characters.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n       cnt += 1\n       for j in range(m):\n         if grid[i][j] == \"o\":\n-          exist[j] == True\n+          exist[j] = True\n   \n   if all(exist):\n     ans = min(ans, cnt)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly allows elements that are multiples of 7 in the last column of the matrix, failing to check if such elements are in the last column before setting `ok` to False.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n             ok = False\n         if i+1 < n and B[i][j]+7 != B[i+1][j]:\n             ok = False\n-        if B[i][j]%7 == 0:\n+        if B[i][j]%7 == 0 and j+1 != m:\n             ok = False\n \n print('Yes' if ok else 'No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that a necessary condition in the second for loop inside the `check` function is missing, which checks if consecutive elements in the first row of `b` differ by 1.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,10 @@\n   for i in range(m - 1):\n     if ((temp[i + 1] + 6) % 7) != ((temp[i] + 6) % 7) + 1:\n       return False\n+    if temp[i + 1] != temp[i] + 1:\n+      return False\n+\n+    \n \n \n   return True"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,1 @@
+The likely bug is that the second loop checks conditions incorrectly by allowing any number outside the range of 100 to 675 without properly enforcing the constraints for multiples of 25.

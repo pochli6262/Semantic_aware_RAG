@@ -1,0 +1,33 @@
+{
+  "task": "abc310_f/Python/50729164",
+  "query_summary": "The bug was that the transition for choosing values >10 was omitted — the dp[i+1][bit] += dp[i][bit] * max(0, a[i]-10) * inv term was missing, so contributions from those choices were never added.",
+  "oracle_summary": "The bug was that the transition for choosing values >10 was omitted — the dp[i+1][bit] += dp[i][bit] * max(0, a[i]-10) * inv term was missing, so contributions from those choices were never added.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it fails to prevent exceeding the bounds of the array `dp` when filling values for cases where `s[i]` is 1, potentially leading to an IndexError or incorrect results, as it does not correctly manage the upper limit for `j`.",
+      "diff": "--- \n+++ \n@@ -37,6 +37,8 @@\n         dp[i+1][n] %= MOD\n     else:\n         for j in range(n):\n+            if j == (m+1):\n+                break\n             dp[i+1][j+1] += dp[i][j]\n     \n     # print(dp)"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the last element of the `dp_` array by multiplying `dp[m+1]` with `m` instead of `m+1`, leading to an incorrect final calculation.",
+      "diff": "--- \n+++ \n@@ -37,7 +37,7 @@\n         dp_[i+1] += dp[i]*(m-i)\n         dp_[i+1] %= mod\n         # print(m-i)\n-      dp_[m+1] += dp[m+1]*m\n+      dp_[m+1] += dp[m+1]*(m+1)\n       dp_[m+1] %= mod\n     dp = dp_\n     # print(dp)"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the range in the second loop to `-10` to `9`, which should be `-10` to `10` to properly include all possible sums.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     if -1000 <= ns <= 1000:\n       ndp[ns] += dp[s]\n       ndp[ns] %= MOD\n-  for s in range(-10, 10):\n+  for s in range(-10, 11):\n     if s == 0: continue\n     ns = s + a\n     if -1000 <= ns <= 1000:"
+    },
+    {
+      "summary": "The bug in the code is that the inner loop incorrectly uses the range `for j in range(i + a[i], a[i], n)` instead of the correct `for j in range(i + a[i], n, a[i])`, resulting in incorrect indices being accessed for updates to `dp_black`.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     lump[a[i]][i] = (lump[a[i]][i] + dp_black[i]) % MOD\n   \n   else:\n-    for j in range(i + a[i], a[i], n):\n+    for j in range(i + a[i], n, a[i]):\n       dp_black[j] = (dp_black[j] + dp_black[i]) % MOD\n   \n   dp_white[i+1] = (dp_black[i] + dp_white[i]) % MOD"
+    },
+    {
+      "summary": "The buggy code uses an insufficiently sized list `B` by initializing it to `M = 2*10**5+2`, which may lead to index errors when accessing `B[a]` for larger values of `a`, whereas the correct code uses `M = 2*10**5+30` to accommodate all potential values from the input list `A`.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n MOD = 998244353 \n-M = 2*10**5+2\n+M = 2*10**5+30\n N = int(input())\n A = list(map(int,input().split()))\n B = [0]*M"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

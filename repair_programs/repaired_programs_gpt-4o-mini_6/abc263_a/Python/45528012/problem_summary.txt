@@ -1,0 +1,1 @@
+The bug lies in the logical condition that checks for a Full house, which incorrectly allows for a case where only three cards match without requiring the two remaining cards to form a pair.

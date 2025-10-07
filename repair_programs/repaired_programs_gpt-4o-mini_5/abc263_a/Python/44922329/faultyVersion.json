@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line iterates from 0 to 11 (range(12)), which doesn't properly account for the actual values on the cards (from 1 to 13) to check for counts. Instead of iterating over a fixed range, I replaced the iteration to check against the unique values present in the input list. This change is inspired by Diff 1, which addresses similar issues of counting based on the actual content of data rather than a static range.",
+  "fixed_code": "a=list(map(int,input().split()))\nans=[]\nunique_values = set(a)\nfor i in unique_values:\n    s=a.count(i)\n    if s==0:\n        continue\n    ans.append(s)\nif (len(ans)==2)and((ans[0]==3 and ans[1]==2)or(ans[0]==2 and ans[1]==3)):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

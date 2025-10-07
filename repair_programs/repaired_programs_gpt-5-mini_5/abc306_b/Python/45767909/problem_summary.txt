@@ -1,0 +1,1 @@
+The loop uses 2**A[i] instead of 2**i, so it raises 2 to the bit value rather than to the index when summing.

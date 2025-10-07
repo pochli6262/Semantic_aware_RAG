@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used floating-point division (res = a / (sum)), which can produce precision errors and incorrect ordering for large integers. I replaced it with an integer-scaled value (res = a * (10**18) // (sum)) so success rates are compared exactly as integers. Choosing 10**18 is safe because A_i and (A_i+B_i) are at most 10^9, so the smallest possible difference between two distinct rates is at least 1/(10^9*10^9)=1e-18; scaling by 10^18 preserves all distinctions. This fix is inspired by the diffs that increase numeric scaling/powers (e.g., Diff 3 increasing OK's magnitude).",
+  "fixed_code": "import sys\n\nn = int(input())\nans = []\nfor i in range(1, n + 1):\n\ta, b = map(int, sys.stdin.readline().strip().split())\n\tsum = a + b\n\tres = a * (10**18) // (sum)\n\tans.append([res, -i])\n\nans.sort(reverse = True)\nfor i in range (0, len(ans)):\n\tprint(-ans[i][1], end = \" \")"
+}

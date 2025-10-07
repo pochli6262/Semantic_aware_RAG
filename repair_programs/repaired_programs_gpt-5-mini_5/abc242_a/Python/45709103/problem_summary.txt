@@ -1,0 +1,1 @@
+The program mistakenly treats rank A+1 as guaranteed by checking if X is greater than A+1 instead of greater than A, so the A+1 position gets probability 1 instead of C/(B−A).

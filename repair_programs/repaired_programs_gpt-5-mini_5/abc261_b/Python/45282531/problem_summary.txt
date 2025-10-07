@@ -1,0 +1,1 @@
+The code only checks for both-'W' or both-'L' pairs and thus fails to detect contradictions where, for example, 'W' is paired with 'D' or any case where 'W' is not matched by 'L' or 'D' is not matched by 'D'.

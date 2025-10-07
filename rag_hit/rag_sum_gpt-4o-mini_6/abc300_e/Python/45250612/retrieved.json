@@ -1,0 +1,32 @@
+{
+  "task": "abc300_e/Python/45250612",
+  "query_summary": "The program likely contains a bug in how it calculates the probability using dynamic programming, specifically in the handling of the transitions and the modulo operation, which may result in incorrect probability values.",
+  "oracle_summary": "The DP transition for k+1 mistakenly uses assignment (=) instead of accumulation (+=), overwriting previous contributions to dp[i][j][k+1].",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly applies the modulo operation to the `coef` variable after left-shifting it, which can lead to incorrect results in the calculations of the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -60,7 +60,7 @@\n                                     dp2[nst1][nst2][nst3][nr1][nr2][nr3] %= MOD\n     dp = dp2\n     coef <<= 1\n-    coef %= MOD\n+#    coef %= MOD\n \n ans = 0\n for st1 in [-1, 0]:"
+    },
+    {
+      "summary": "The buggy code fails to apply the modulo operation when calculating the final answer, potentially leading to incorrect results due to overflow with large sums.",
+      "diff": "--- \n+++ \n@@ -16,5 +16,5 @@\n     dp[i][0] %= mod\n     dp[i][1] %= mod\n # print(dp)\n-ans = sum(dp[-1])\n+ans = sum(dp[-1])%mod\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses a modulo constant of \\(10^9 + 7\\) instead of the correct constant \\(998244353\\), leading to incorrect results when calculating large values.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-MOD = 10**9+7\n+MOD = 998244353\n n = int(input())\n arr = list(map(lambda x:n-int(x), input().split()))\n dp = [[0]*n for i in range(n)]"
+    },
+    {
+      "summary": "The buggy code does not handle the case when K equals 0 properly, which can lead to incorrect results in the dynamic programming calculation.",
+      "diff": "--- \n+++ \n@@ -12,6 +12,8 @@\n     for j in range(M):\n         dp[i+1][j] += s[max(j-K+1, 0)] - s[0]\n         dp[i+1][j] += s[M] - s[min(j+K, M)]\n+        if K == 0:\n+            dp[i+1][j] -= dp[i][j]\n         dp[i+1][j] %= mod\n \n print(sum(dp[N-1])%mod)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not take the modulo of the final sum before printing it, which can lead to incorrect results if the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -14,4 +14,4 @@\n         if j+1 <= 9:\n             dp[i][j] += dp[i-1][j+1]\n             dp[i][j] %= mod\n-print(sum(dp[n-1]))\n+print(sum(dp[n-1])%mod)"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    5
+  ],
+  "useful_diffs_count": 2
+}

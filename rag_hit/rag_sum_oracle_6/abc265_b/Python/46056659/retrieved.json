@@ -1,0 +1,31 @@
+{
+  "task": "abc265_b/Python/46056659",
+  "query_summary": "The code uses a strict “>” comparison (A[i] > T) instead of “>=”, wrongly allowing progress when the cost equals the remaining time, which should result in “No.”",
+  "oracle_summary": "The code uses a strict “>” comparison (A[i] > T) instead of “>=”, wrongly allowing progress when the cost equals the remaining time, which should result in “No.”",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition in the second 'elif' statement incorrectly uses 'A < N' instead of 'A <= N', which could lead to incorrect results when A is equal to N.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \tN, A, B = map(int, input().split())\n \tif A <= N // 2:\n \t\tprint(\"Yes\" if B <= ((N + 1) // 2) * (N - A) else \"No\")\n-\telif A < N:\n+\telif A <= N:\n \t\tprint(\"Yes\" if B <= (N - A) ** 2 else \"No\")\n \telse:\n \t\tprint(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses \"j + nex >= N\" instead of \"j + nex > N\" which can lead to an out-of-bounds error when checking the substring.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n             nex = 1\n             while not b:\n                 nex += 1\n-                if j + nex >= N:\n+                if j + nex > N:\n                     break\n                 if S[0:j] < S[j:j + nex]:\n                     print(\"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

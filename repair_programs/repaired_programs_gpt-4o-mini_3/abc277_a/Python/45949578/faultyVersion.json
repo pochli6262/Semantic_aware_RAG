@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program is that it directly checks for equality between P[i] and X (i.e., P[i] == X). This will only print the index if the value is exactly equal to X. However, the indices for the program were likely intended to indicate the first occurrence where the value is greater than or equal to X. Therefore, I changed the condition to P[i] >= X.",
+  "fixed_code": "N, X = map(int, input().split())\nP = list(map(int, input().split()))\n\nfor i in range(N):\n  if P[i] >= X:\n    print(i)\n    break"
+}

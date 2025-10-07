@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks if the sorted version of the list S is equal to S, which determines if S is sorted in non-decreasing order. However, this check should not be the first condition in the if statement, as it will incorrectly return 'No' for any unsorted input regardless of the validity of the other conditions. Instead, I moved the sorted check below the other validations to ensure that it only evaluates the sorting condition after confirming that all numbers are within the acceptable range and are multiples of 25. Additionally, I changed the sorted check to be the last validation.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nfor i in range(N):\n    if not(100 <= S[i] <= 675) or S[i]%25 != 0 or sorted(S) != S:\n        print('No')\n        exit()\nelse:\n    print('Yes')"
+}

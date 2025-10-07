@@ -1,0 +1,1 @@
+The code collects front-side node indices in zero-based form without adding 1 (while it adds +1 for back-side nodes), so printed car numbers on the front are off by one.

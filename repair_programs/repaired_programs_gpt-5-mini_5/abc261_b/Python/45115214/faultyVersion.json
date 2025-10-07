@@ -1,0 +1,4 @@
+{
+  "explanation": "The program never counted mutual draws ('D' vs 'D') as valid entries, so those positions were treated as contradictions. I fixed the single conditional that checked for a valid 'W'/'L' pair and extended it to also accept the mutual 'D' case. This adds the missing (A[i][k]=='D' and A[k][i]=='D') check while leaving the existing symmetric W/L checks intact, and avoids double-counting by only adding the draw case once for the (i,k) entry.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\ncount = 0\nfor i in range(N):\n  for k in range(N):\n    if (i == k) and (A[i][k] == '-') :\n      count += 1\n    if (i != k) and ((A[i][k] == 'W' and A[k][i] == 'L') or (A[i][k] == 'D' and A[k][i] == 'D')):\n      count += 1\n    if (i != k) and (A[k][i] == 'W') and (A[i][k] == 'L'):\n      count += 1\nif count == N**2:\n  print(\"correct\")\nelse:\n  print(\"incorrect\")\n"
+}

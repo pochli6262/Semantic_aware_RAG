@@ -1,0 +1,1 @@
+The code pushes the original string index i for '(' onto sakuzyo but then uses that original index to slice and delete from ans, whereas it should use the position in ans (not the original i), so deletions use wrong indices.

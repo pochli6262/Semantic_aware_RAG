@@ -1,0 +1,31 @@
+{
+  "task": "abc310_b/Python/46023032",
+  "query_summary": "The bug was that the code failed to mark a pair as problematic when the two products had equal prices but strictly different feature sets (it omitted the Pi == Pj and Fi != Fj check).",
+  "oracle_summary": "The bug was that the code failed to mark a pair as problematic when the two products had equal prices but strictly different feature sets (it omitted the Pi == Pj and Fi != Fj check).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the comparison operator `>` instead of `>=` for price comparison, which may lead to incorrect logic in determining if one item is \"better\" than another.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n             # F\n             F_j = PCF[j][2:PCF[j][1]+2]\n             # すべて満たす条件\n-            if (P_i > P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n+            if (P_i >= P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n                 ans = True # True == 1\n                 # print(i,j,F_i,F_j)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the sum of the `prices` list is less than or equal to `A[-1]`, instead of checking if the sum of the list `X` is less than or equal to `A[-1]` in the final condition.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     X = [x // prices[i] for x in X]\n     prices = [p // prices[i] for p in prices]\n \n-if valid and sum(prices) <= A[-1]:\n+if valid and sum(X) <= A[-1]:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

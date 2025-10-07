@@ -1,0 +1,32 @@
+{
+  "task": "abc269_a/Python/45960382",
+  "query_summary": "The program incorrectly prints 'takahashi' instead of 'Takahashi' on the second line.",
+  "oracle_summary": "It prints \"takahashi\" in lowercase instead of the correctly capitalized \"Takahashi\".",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints \"takahashi\" instead of \"Takahashi,\" which violates the expected capitalization of the output.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n ta=(x//(a+c))*a*b+min(x%(a+c),a)*b\n ao=(x//(d+f))*d*e+min(x%(d+f),d)*e\n if ta>ao:\n-  print(\"takahashi\")\n+  print(\"Takahashi\")\n elif ao>ta:\n   print(\"Aoki\")\n else:"
+    },
+    {
+      "summary": "The issue with the buggy code is that it incorrectly uses multiple \"if\" statements instead of \"elif\" for the condition `a==c`, which may lead to unintended prints of \"Aoki\" when \"Takahashi\" should only be printed once.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n a,b,c,d=map(int,input().split())\n if a<c:\n     print(\"Takahashi\")\n-if a==c:\n+elif a==c:\n     if b<=d:\n         print(\"Takahashi\")\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of `a` during each iteration of the loop, while the correct code only prints the final value of `a` after the loop has completed.",
+      "diff": "--- \n+++ \n@@ -2,5 +2,4 @@\n for c in input():\n     a = (a * 10 + b * (ord(c) - ord('0'))) % m\n     b += a\n-    print(a)\n-  \n+print(a)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly concatenates '1' before the variable 'a' instead of '0', resulting in an unintended output format.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n a=input()\n b=str(int(input())*5)\n-print('1'+a+b)\n+print(a+'0'+b)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates and prints the cube of `a` instead of raising `a` to the power of `b`.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n a,b = map(int, input().split())\n-print(a**3)\n+print(a**b)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    7
+  ],
+  "useful_diffs_count": 2
+}

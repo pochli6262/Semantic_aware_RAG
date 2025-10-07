@@ -1,0 +1,1 @@
+The bug likely arises from incorrectly calculating the total cost by subtracting the discount price from the regular price instead of adding the minimum dish price when using the coupon.

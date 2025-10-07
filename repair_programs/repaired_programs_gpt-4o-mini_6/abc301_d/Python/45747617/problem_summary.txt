@@ -1,0 +1,1 @@
+The program likely contains a bug in how it handles the generation of binary values from the string containing `?`, potentially leading to incorrect calculations when comparing these values with `N`.

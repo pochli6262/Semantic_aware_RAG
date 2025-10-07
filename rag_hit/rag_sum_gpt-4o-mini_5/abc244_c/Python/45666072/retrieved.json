@@ -1,0 +1,29 @@
+{
+  "task": "abc244_c/Python/45666072",
+  "query_summary": "The likely bug is that the program improperly uses `num_set.pop` without calling it as a function, which will lead to an error instead of returning and removing an integer from the set.",
+  "oracle_summary": "The buggy code prints the set’s pop method object (num_set.pop) instead of calling it (num_set.pop()), so it outputs a function reference and doesn’t remove/print an element from the set.",
+  "retrieved": [
+    {
+      "summary": "The buggy code has an incorrect range in the for loop, which causes an \"index out of range\" error when accessing elements of the list P.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n P = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(1, N + 1):\n   if P[-i] > P[-i - 1]:\n     continue\n   else:"
+    },
+    {
+      "summary": "The bug in the code is that the condition checks if the sum of the remaining elements is greater than 4, instead of greater than or equal to 4, which leads to an incorrect count.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     P = 0\n     \n     for n in range(N):\n-      if sum(A[n:]) > 4:\n+      if sum(A[n:]) >= 4:\n         P += 1\n     \n     print(P)"
+    },
+    {
+      "summary": "The bug in the code is that the loop incorrectly checks for numbers up to 919 instead of 920, leading to the potential omission of valid numbers that meet the criteria.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     else:\n         return False\n         \n-for i in range(N,919):\n+for i in range(N,920):\n     if like326_Number(i):\n         print(i)\n         exit()"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `elif` instead of `if` for checking the condition of the odd numbers, causing it to only calculate the sum of odd numbers if the even number condition is false, potentially missing valid combinations.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n ans = -1\n if len(even)>=2:\n     ans = max(ans, even[0]+even[1])\n-elif len(odd)>=2:\n+if len(odd)>=2:\n     ans = max(ans, odd[0]+odd[1])\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code is missing the input line that reads the integer value 'N', which indicates the number of integers to be processed from the input.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-#list型で取得\n+N = int(input())\n l = list(map(int, input().split()))\n \n m=0"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

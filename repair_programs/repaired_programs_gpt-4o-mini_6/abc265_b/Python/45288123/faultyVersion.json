@@ -1,0 +1,4 @@
+{
+  "explanation": "The error in the program occurs when adding bonus time after incrementing 'now'. The access to the bonus room's time was using the incremented value of 'now', which could lead to a KeyError if the bonus room does not exist for that new index. The correction ensures that we check the current room before incrementing 'now' thus avoiding accessing the wrong key. This adjustment is inspired by the understanding from the provided diffs that indicate logical access concerns.",
+  "fixed_code": "from collections import defaultdict\n\nN, M, T = map(int, input().split())\nA = list(map(int, input().split()))\nXY = [list(map(int, input().split())) for _ in range(M)]\n\nd = defaultdict(int)\nfor x, y in XY:\n    d[x] = y\n\nnow = 1\nwhile now != N:\n    T -= A[now-1]\n    if T < 0:\n        print('No')\n        exit()\n    now += 1\n    T += d[now-1]\n\nprint('Yes')"
+}

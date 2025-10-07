@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly checks for a Full house by only verifying that there are exactly two unique numbers and whether the third and fourth cards are different, without properly counting the occurrences of each number.

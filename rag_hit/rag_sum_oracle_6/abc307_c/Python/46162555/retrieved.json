@@ -1,0 +1,31 @@
+{
+  "task": "abc307_c/Python/46162555",
+  "query_summary": "A typographical error in the bounds check — the condition compares PB[1] to PX[0] instead of PX[1], causing an incorrect early skip/rejection of valid cases.",
+  "oracle_summary": "A typographical error in the bounds check — the condition compares PB[1] to PX[0] instead of PX[1], causing an incorrect early skip/rejection of valid cases.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the initial value for the `dp` array is incorrectly set to `-1`, which does not accommodate the maximum potential value, whereas it should be initialized to a sufficiently low negative value (e.g., `-1<<60`) to ensure correct maximization comparisons.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n A=[list(map(int,input().split())) for _ in range(h)]\n dp=[[0]*w for _ in range(h)]\n ans=0\n-dp=[[[-1]*w for _ in range(h)]for _ in range(h*w+10)]\n+dp=[[[-1<<60]*w for _ in range(h)]for _ in range(h*w+10)]\n dp[0][sy][sx]=0\n \n for t in range(min(h*w,k)+1):"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a strict inequality (<) instead of a non-strict inequality (<=) when comparing the value of (X - H) to each PP, leading to potentially missing valid cases where PP equals (X - H).",
+      "diff": "--- \n+++ \n@@ -4,6 +4,6 @@\n \n for i in range(N) :\n   PP = int(P[i])\n-  if (X - H) < PP :\n+  if (X - H) <= PP :\n     print(i+1)\n     break"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the value of `B[0]` after processing `A[2]`, leading to potential miscalculations in subsequent checks regarding the resource allocation logic.",
+      "diff": "--- \n+++ \n@@ -36,7 +36,7 @@\n     B[1]+=B[4]\n     B[4]=0\n   B[3]-=A[2]\n-  A[0]+=A[2]\n+  B[0]+=A[2]\n   if A[1]>B[1]+B[2]+2*B[3]+2*B[4]:\n     print('No')\n     continue"
+    },
+    {
+      "summary": "The buggy code incorrectly accesses the elements of the first row in the list `b` using `b[0][M:M+2]`, leading to an off-by-one error when checking conditions; it should be using `b[0][M]-1` and `b[0][M+1]-1` to adjust for zero-based indexing.",
+      "diff": "--- \n+++ \n@@ -120,7 +120,7 @@\n ans = True\n \n for M in range(m-1):\n-    b1,b2 = b[0][M:M+2]\n+    b1,b2 = b[0][M]-1,b[0][M+1]-1\n     if b1+1 != b2 or b1%7+1 != b2%7:ans = False\n \n for N in range(n-1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition uses `<=` instead of `<`, incorrectly counting cases where `H + P[i]` is equal to `X` as valid.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n P=list(map(int,input().split()))\n ans=1\n for i in range(N):\n-  if H+P[i]<=X:\n+  if H+P[i]<X:\n     ans+=1\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

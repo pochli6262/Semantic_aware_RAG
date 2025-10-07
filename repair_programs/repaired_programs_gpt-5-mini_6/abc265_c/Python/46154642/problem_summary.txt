@@ -1,0 +1,1 @@
+The code checks for "W" instead of "R" for rightward moves, so cells containing 'R' are never handled and rightward movement is broken.

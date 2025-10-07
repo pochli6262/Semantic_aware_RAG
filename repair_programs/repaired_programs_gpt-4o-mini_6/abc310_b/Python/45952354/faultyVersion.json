@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line was comparing the price of the same product (i) with itself instead of comparing product i with product j. The correct condition should compare P[i] with P[j]. This aligns with patterns in the retrieved diffs where comparisons between different entities or conditions are necessary. Therefore, the corrected line is 'if P[i] >= P[j] and F[j] >= F[i] and (P[i] > P[j] or (F[i] - F[j])):'.",
+  "fixed_code": "N, M = map(int, input().split())\nP = [None] * N\nC = [None] * N\nF = [None] * N\nfor i in range(N):\n    tmp = list(map(int, input().split()))\n    P[i], C[i], F[i] = tmp[0], tmp[1], set(tmp[2:])\n\nflag = False\nfor i in range(N):\n    for j in range(N):\n        if P[i] >= P[j] and F[j] >= F[i] and (P[i] > P[j] or (F[i] - F[j])):\n            flag = True\n            break\n    if flag:\n        break\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

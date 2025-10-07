@@ -1,0 +1,33 @@
+{
+  "task": "abc261_d/Python/45285878",
+  "query_summary": "When computing dp[i][0], the buggy code adds yl[j] (the last inner-loop index) instead of yl[0], incorrectly making dp[i][0] depend on j.",
+  "oracle_summary": "When computing dp[i][0], the buggy code adds yl[j] (the last inner-loop index) instead of yl[0], incorrectly making dp[i][0] depend on j.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the nested loop for `j` should iterate from `0` to `k+1` instead of `0` to `k`, which results in incorrect bounds when updating the `dp` array.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n dp[0][0][0] = 0\n \n for i in range(n):\n-    for j in range(k):\n+    for j in range(k+1):\n         for l in range(d):\n             if dp[i][j][l] == -1:\n                 continue"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the `dp` array with a value of `-(10**10)` instead of `-(10**13)`, which is insufficiently low to handle the required calculations accurately.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n,m=map(int,input().split())\n A=list(map(int,input().split()))\n-dp=[[-(10**10) for i in range(m+1)]for j in range(n+1)]\n+dp=[[-(10**13) for i in range(m+1)]for j in range(n+1)]\n nowmax=2\n for i in range(1,n+1):\n   a=A[i-1]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the `dp` array with a very large value (`10**10`) that is insufficient to represent the maximum possible value needed for comparisons, resulting in incorrect minimum calculations.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(n):\n     v[i] = max(0, y[i] - (x[i] + y[i]) // 2)\n m = sum(z)\n-dp = [[10**10] * (m + 1) for _ in range(n + 1)]\n+dp = [[10**30] * (m + 1) for _ in range(n + 1)]\n dp[0][0] = 0\n for i in range(1, n + 1):\n     for j in range(m + 1):"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` array for the first row, inadvertently setting `dp[0][j] = 0` for all `j`, which leads to erroneous calculations in subsequent iterations.",
+      "diff": "--- \n+++ \n@@ -5,8 +5,6 @@\n dp = [ [-inf] * (M + 1) for _ in range(N + 1) ]\n for i in range(N + 1):\n     dp[i][0] = 0\n-for j in range(M + 1):\n-    dp[0][j] = 0\n \n for i in range(1, N + 1):\n     a = A[i - 1]"
+    },
+    {
+      "summary": "The bug in the code is that it fails to prevent exceeding the bounds of the array `dp` when filling values for cases where `s[i]` is 1, potentially leading to an IndexError or incorrect results, as it does not correctly manage the upper limit for `j`.",
+      "diff": "--- \n+++ \n@@ -37,6 +37,8 @@\n         dp[i+1][n] %= MOD\n     else:\n         for j in range(n):\n+            if j == (m+1):\n+                break\n             dp[i+1][j+1] += dp[i][j]\n     \n     # print(dp)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

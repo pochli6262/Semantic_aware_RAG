@@ -1,0 +1,33 @@
+{
+  "task": "abc282_e/Python/45514577",
+  "query_summary": "The program likely contains a bug in the algorithm for calculating the maximum score, as it incorrectly uses a union-find approach instead of prioritizing the scoring from the highest possible pairs of balls before any are eaten.",
+  "oracle_summary": "The buggy code sorts edges in ascending order and thus builds a minimum spanning tree, whereas it should sort in descending order (reverse=True) to build the maximum spanning tree and maximize the sum.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the score of vertex `v` is incorrectly updated by subtracting the vertex index `u` instead of the value `A[u]`.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n     for v in G[u]:\n         cnt += A[v]\n         G[v].remove(u)\n-        score[v] -= u\n+        score[v] -= A[u]\n         heappush(Q, (score[v], v))\n     ans = max(ans, cnt)\n print(ans)"
+    },
+    {
+      "summary": "The buggy code does not properly handle the condition for extracting elements from the priority queue (`box`) because it uses an `if` statement instead of a `while` loop, leading to incorrect accumulation of the `bsum` and `jsum` values.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     jsum+=i+1\n ans=INF\n for i in range(len(dp)):\n-    if box[0][0]<=i:\n+    while box[0][0]<=i:\n         _,j=heappop(box)\n         bsum+=B[j]\n         jsum-=j+1"
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `ans` is initialized to 0 instead of a very small value (negative infinity), which prevents the correct calculation of the maximum result when there are potential valid configurations.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(N):\n     cum_sum[i + 1] = cum_sum[i] + A[i]\n \n-ans = 0\n+ans = -(1 << 60)\n res = 0\n que = deque()\n A = A[::-1]"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the result as long as there is at least one vertex in the topological sort, without checking if all vertices have been included; the correct code verifies that all vertices have been processed to ensure a valid topological ordering.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n         if in_edges[u] == 0:\n             heapq.heappush(H, u)\n \n-if ans:\n+if ans and len(ans) == N:\n     print(*ans)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to push updated costs to the priority queue for certain cases, potentially leading to incorrect results in the algorithm.",
+      "diff": "--- \n+++ \n@@ -24,11 +24,13 @@\n         heapq.heappush(U, (Vs[now[0]][1], Vs[now[0]]))\n     elif Vs[now[0]][1] > now[1] + A:\n         Vs[now[0]][1] = now[1] + A\n+        heapq.heappush(U, (Vs[now[0]][1], Vs[now[0]]))\n     if Vs[X-1][1] == inf:\n         Vs[X-1][1] = now[1] + B\n         heapq.heappush(U, (Vs[X-1][1], Vs[X-1]))\n     elif Vs[X-1][1] > now[1] + B:\n         Vs[X-1][1] = now[1] + B\n+        heapq.heappush(U, (Vs[X-1][1], Vs[X-1]))\n     now = heapq.heappop(U)[1]\n \n print(Vs[N-1][1])"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The range check was wrong: the original line used >=675 or <=100 which incorrectly rejected the allowed endpoints 100 and 675. I changed it to >675 or <100 so values equal to 100 or 675 are accepted (this directly fixes the off-by-one inclusive bounds issue described).",
+  "fixed_code": "S = list(map(int, input().split()))\nS_sort = S.copy()\nS_sort.sort()\nbad=0\nfor i in range(8):\n    if S==S_sort:\n            if S[i]>675 or S[i]<100:\n                bad+=1\n            else:\n                for j in range(8):\n                    if not S[j]%25==0:\n                        bad+=1\n    else:\n        bad+=1\n    \nif bad==0:\n    print('Yes')\nelse:\n    print('No')"
+}

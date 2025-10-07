@@ -1,0 +1,1 @@
+The code uses ans = N + a - 1 to round up instead of adding 5 - a, so inputs with N%5 == 4 produce incorrect results (e.g., N=54 yields 57 instead of 55).

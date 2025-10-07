@@ -1,0 +1,32 @@
+{
+  "task": "abc265_b/Python/46016041",
+  "query_summary": "The code uses a non-strict check (nowT >= p) allowing moves that leave time zero, but it should require strictly more time (nowT > p) to prevent T from reaching zero.",
+  "oracle_summary": "The code uses a non-strict check (nowT >= p) allowing moves that leave time zero, but it should require strictly more time (nowT > p) to prevent T from reaching zero.",
+  "retrieved": [
+    {
+      "summary": "The buggy code mistakenly initializes the variable `que` with `T0[:min(len(T1),M)]` instead of `T0[:min(len(T0),M)]`, which leads to incorrect handling of the elements from T0.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n T2.sort(reverse=True)\n import heapq\n ans = 0\n-que = T0[:min(len(T1),M)]\n+que = T0[:min(len(T0),M)]\n ans = sum(que)\n #print(ans)\n now = ans"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly references and modifies indices when appending tuples to `ans`, leading to potential out-of-range errors or incorrect results.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for j in range(1, N):\n     i = P_list.index(j) + 1\n     if i == N:\n-        ans.append((N-1, N-2))\n+        ans.append((N-1, N-3))\n         P_list = P_list[:N-3] + [P_list[N-2], P_list[N-1], P_list[N-3]]\n         i = N-1\n         if P_list == list(range(1, N+1)):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `T[x-1]` is exactly equal to 0, instead of checking if it is less than or equal to 0.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n   elif c == 2:\n     T[x-1] -= 2\n   else:\n-    if (T[x-1] == 0):\n+    if (T[x-1] <= 0):\n       print('Yes')\n     else:\n       print('No')"
+    },
+    {
+      "summary": "The bug in the code is that it initializes the `t` array at index 0 with the value `1` instead of `0`, which leads to incorrect calculations for the minimum numbers of operations needed.",
+      "diff": "--- \n+++ \n@@ -14,9 +14,9 @@\n             break\n     else:\n         ok.append(True)\n-\n+        \n t = [1 << 30] * (1 << n)\n-t[0] = 1\n+t[0] = 0\n msk = (1 << n) - 1\n for i in range((1 << n) - 1):\n     j = msk ^ i"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

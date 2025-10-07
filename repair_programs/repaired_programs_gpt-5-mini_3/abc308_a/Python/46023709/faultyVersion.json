@@ -1,0 +1,4 @@
+{
+  "explanation": "The code computed check_S = sorted(S) but never used it; as a result the program only checked that each element is larger than the previous and valid, but didn't explicitly verify that the original list is sorted. I fixed the single incorrect line by requiring S to equal its sorted version (S == check_S) in the condition so the program ensures the input sequence is sorted (ascending) and each value meets the numeric constraints.",
+  "fixed_code": "S=list(map(int,input().split()))\ncheck_S=sorted(S)\ncheck=\"True\"\ncheck_num=0\nfor i in range (len(S)):\n    if check_num<S[i] and 100<=S[i]<=675 and S[i]%25==0 and S==check_S:\n        check_num=S[i]\n    else:\n        check=\"False\"\nif check==\"True\":\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

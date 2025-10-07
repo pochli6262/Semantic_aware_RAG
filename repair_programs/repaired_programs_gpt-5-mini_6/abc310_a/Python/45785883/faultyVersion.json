@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line computed the coupon total as p - q + a[i], which is wrong; the coupon makes the drink cost Q (not P - Q), so the total with a dish should be q + D_i. I fixed that single line to use q + a[i] instead of p - q + a[i].",
+  "fixed_code": "def getIntMap():\n    return map(int, input().split())\n\n\ndef getIntList():\n    return list(map(int, input().split()))\n\n\ndef main():\n    n, p, q = getIntMap()\n    a = getIntList()\n    b = min([q + a[i] for i in range(n)])\n\n    print(b if b < p else p)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}

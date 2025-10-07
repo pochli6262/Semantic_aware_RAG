@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line only checks specific pairs of adjacent squares and fails to account for all possible horizontal adjacencies on the board. The correct condition to check whether the two integers are horizontally adjacent is to validate that the absolute difference between B and A is 1. I fixed the line to `if abs(B - A) == 1:` based on the patterns from Diff 1, which correctly identifies adjacent pairs.",
+  "fixed_code": "A,B = map(int,input().split())\nif abs(B - A) == 1:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

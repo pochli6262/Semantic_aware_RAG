@@ -1,0 +1,29 @@
+{
+  "task": "abc303_c/Python/45578518",
+  "query_summary": "A leftover debug statement (`print(items)`) produces extra output and thus corrupts the program's expected output.",
+  "oracle_summary": "A leftover debug statement (`print(items)`) produces extra output and thus corrupts the program's expected output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses an incorrect logical operator in the while loop condition, resulting in an infinite loop instead of terminating when the number of iterations reaches 'n'.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n     ti.add(b)\n     ki=set()\n     x=0\n-    while (not(len(ti)==0))or(x!=n):\n+    while (not(len(ti)==0))and(x!=n):\n         x+=1\n         for i in ti:\n             for j in do:"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case where the `diff` list is generated, as it does not account for the scenario where there are no \"Y\" characters in the input string, which could lead to an index error when accessing `y_pos`.",
+      "diff": "--- \n+++ \n@@ -32,8 +32,6 @@\n     res = K\n     s = 0\n     for d in diff:\n-        if d == 0:  # 元々Yが隣り合っている\n-            res += 1\n         s += d\n         if s <= K:\n             res += 1"
+    },
+    {
+      "summary": "The buggy code fails to update the `done` dictionary to mark positions as visited after pushing new items onto the priority queue, which can lead to incorrect results when checking for duplicates.",
+      "diff": "--- \n+++ \n@@ -53,12 +53,12 @@\n     if apos + 1 <= N - 1:\n         if done[apos + 1][bpos] != 1:\n             heappush(que, (A2[apos + 1][0] + B2[bpos][0], apos + 1, bpos, A2[apos + 1][1], B2[bpos][1]))\n+            done[apos + 1][bpos] = 1\n \n     if bpos + 1 <= M - 1:\n         if done[apos][bpos + 1] != 1:\n             heappush(que, (A2[apos][0] + B2[bpos + 1][0], apos, bpos + 1, A2[apos][1], B2[bpos + 1][1]))\n-\n-\n+            done[apos][bpos + 1] = 1\n else:\n     value, _, _, _, _ = heappop(que)\n     print(-value)"
+    },
+    {
+      "summary": "The buggy code does not apply the modulo operation to the final output, potentially resulting in a value larger than the modulus of 998244353, while the correct code includes `print(ans % M)` to ensure the result is within the expected bounds.",
+      "diff": "--- \n+++ \n@@ -51,4 +51,4 @@\n     ans = sub(\"L\") + sub(\"R\")\n else:\n     ans = sub(s[p[0]])\n-print(ans)\n+print(ans%M)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition in the while loop for adjusting `total`, leading to an incorrect calculation of the adjustment needed to ensure that `(total - M) % N == 0`.",
+      "diff": "--- \n+++ \n@@ -45,7 +45,7 @@\n     # print(ans)\n \n     idx = 0\n-    while total%N != 0:\n+    while (total-M)%N != 0:\n         ans[idx] += 1\n         idx += 1\n         total += 1"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

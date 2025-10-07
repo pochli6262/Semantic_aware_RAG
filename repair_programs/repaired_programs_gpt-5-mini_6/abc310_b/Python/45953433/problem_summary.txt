@@ -1,0 +1,1 @@
+The code accidentally tests whether product i has extra functions (using len((fj | fi)) - len(fj) > 0, which equals |fi \ fj|) instead of checking whether product j has functions i lacks (i.e., |fj \ fi| > 0).

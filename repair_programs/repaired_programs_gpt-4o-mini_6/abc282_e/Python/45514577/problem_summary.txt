@@ -1,0 +1,1 @@
+The program likely contains a bug in the algorithm for calculating the maximum score, as it incorrectly uses a union-find approach instead of prioritizing the scoring from the highest possible pairs of balls before any are eaten.

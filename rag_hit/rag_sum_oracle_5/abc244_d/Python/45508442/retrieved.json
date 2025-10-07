@@ -1,0 +1,29 @@
+{
+  "task": "abc244_d/Python/45508442",
+  "query_summary": "The bug is that A contains concatenated strings like \"RGB\" instead of the space-separated strings (\"R G B\", etc.) that the inputs use, causing the membership checks to fail.",
+  "oracle_summary": "The bug is that A contains concatenated strings like \"RGB\" instead of the space-separated strings (\"R G B\", etc.) that the inputs use, causing the membership checks to fail.",
+  "retrieved": [
+    {
+      "summary": "The issue in the buggy code is that the condition `if S == \"ABC316\" or \"ABC000\":` is incorrectly structured, causing it to always evaluate to True due to the truthiness of the string \"ABC000\", instead of checking if S is equal to \"ABC000\".",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n K = 0\n A = [\"0\", \"1\", \"2\", \"3\", \"4\"]\n \n-if S == \"ABC316\" or \"ABC000\":\n+if S == \"ABC316\" or S == \"ABC000\":\n   K = 0\n else:\n   if S[3] == \"3\":"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list `g1`, missing some valid combinations (like \"BA\", \"CB\", \"DC\", \"ED\", and \"AE\") which are necessary for the correct logic to determine membership.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n T = input()\n \n-g1 = [\"AB\", \"BC\", \"CD\", \"DE\", \"EA\"]\n+g1 = [\"AB\",\"BA\", \"BC\", \"CB\", \"CD\", \"DC\", \"DE\", \"ED\", \"EA\", \"AE\"]\n \n if S in g1 and T in g1:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the string `K` as \"ABCDEABCDE\" instead of \"ABCDEAEDCBA\", which affects the logic determining if both `S` and `T` are present in `K`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-K = \"ABCDEABCDE\"\n+K = \"ABCDEAEDCBA\"\n S = input()\n T = input()\n "
+    },
+    {
+      "summary": "The problem in the buggy code is an extra space at the end of the string 'GBD ' which causes the condition to fail when that specific input is provided.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S=input()\n-if S=='ACE' or S=='BDF' or S=='CEG' or S=='DFA' or S=='EGB' or S=='FAC' or S=='GBD ':\n+if S=='ACE' or S=='BDF' or S=='CEG' or S=='DFA' or S=='EGB' or S=='FAC' or S=='GBD':\n   print('Yes')\n else:\n   print('No')"
+    },
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

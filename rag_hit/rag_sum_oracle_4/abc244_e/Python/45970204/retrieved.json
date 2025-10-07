@@ -1,0 +1,31 @@
+{
+  "task": "abc244_e/Python/45970204",
+  "query_summary": "It fails to apply the final modulus, printing dp[k][t-1][0] without taking % 998244353, so the output may be unmodded and incorrect.",
+  "oracle_summary": "It fails to apply the final modulus, printing dp[k][t-1][0] without taking % 998244353, so the output may be unmodded and incorrect.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not handle the case when K equals 0 properly, which can lead to incorrect results in the dynamic programming calculation.",
+      "diff": "--- \n+++ \n@@ -12,6 +12,8 @@\n     for j in range(M):\n         dp[i+1][j] += s[max(j-K+1, 0)] - s[0]\n         dp[i+1][j] += s[M] - s[min(j+K, M)]\n+        if K == 0:\n+            dp[i+1][j] -= dp[i][j]\n         dp[i+1][j] %= mod\n \n print(sum(dp[N-1])%mod)"
+    },
+    {
+      "summary": "The bug in the code is that it fails to prevent exceeding the bounds of the array `dp` when filling values for cases where `s[i]` is 1, potentially leading to an IndexError or incorrect results, as it does not correctly manage the upper limit for `j`.",
+      "diff": "--- \n+++ \n@@ -37,6 +37,8 @@\n         dp[i+1][n] %= MOD\n     else:\n         for j in range(n):\n+            if j == (m+1):\n+                break\n             dp[i+1][j+1] += dp[i][j]\n     \n     # print(dp)"
+    },
+    {
+      "summary": "The bug in the code is in the loop iterating over `diff` for cases where `a` is -1; it should iterate from 0 to `2*D+1` instead of `2*D+2`, which causes it to access out-of-bounds indices in the bitmask representation.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,6 @@\n N,D = map(int, input().split())\n A =[int(i) for i in input().split()]\n+\n \n mod = 998244353\n S = 1<<(2*D+2)\n@@ -21,7 +22,7 @@\n             if s&1==0:\n                 continue\n             t = s>>1\n-            for diff in range(0,2*D+2):\n+            for diff in range(0,2*D+1):\n                 if t>>diff&1:\n                     continue\n                 dp[i+1][t|(1<<diff)] += dp[i][s]"
+    },
+    {
+      "summary": "The bug in the buggy code is that the inner loop iterates from `mini = 1` to `n`, instead of from `mini = 0` to `n`, which may lead to incorrect index access when updating the `dp` table.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n   ai = a[i]\n   new = [[0]*(n+1) for i in range(k+1)] \n   for j in range(k+1):\n-    for mini in range(1, n+1):\n+    for mini in range(n+1):\n       if mini >= ai and j >= 1:\n         new[j][mini] += dp[j-1][mini]\n       if mini >= ai:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly allows the inner loop condition to check `j >= i` instead of `j > i`, which causes it to potentially count invalid pairs when `i` equals `j`.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n t=0\n j=N-1\n for i in range(N):\n-  while j>=i:\n+  while j>i:\n     if A[j]+A[i]>=K:\n       t+=1\n     else:\n@@ -26,7 +26,6 @@\n   dp2[0]=dp[0]*t*(t-1)%mod\n   dp2[1]=(dp[0]*t*2 +dp[1]*(t*(t-1)+t*2)) %mod\n   dp=dp2.copy()\n-\n   t-=1\n   \n ans1=dp[0]"
+    }
+  ],
+  "useful_diffs_indices": [
+    6
+  ],
+  "useful_diffs_count": 1
+}

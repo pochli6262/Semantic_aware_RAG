@@ -1,0 +1,31 @@
+{
+  "task": "abc307_c/Python/46162555",
+  "query_summary": "A typographical error in the bounds check — the condition compares PB[1] to PX[0] instead of PX[1], causing an incorrect early skip/rejection of valid cases.",
+  "oracle_summary": "A typographical error in the bounds check — the condition compares PB[1] to PX[0] instead of PX[1], causing an incorrect early skip/rejection of valid cases.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the initial value for the `dp` array is incorrectly set to `-1`, which does not accommodate the maximum potential value, whereas it should be initialized to a sufficiently low negative value (e.g., `-1<<60`) to ensure correct maximization comparisons.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n A=[list(map(int,input().split())) for _ in range(h)]\n dp=[[0]*w for _ in range(h)]\n ans=0\n-dp=[[[-1]*w for _ in range(h)]for _ in range(h*w+10)]\n+dp=[[[-1<<60]*w for _ in range(h)]for _ in range(h*w+10)]\n dp[0][sy][sx]=0\n \n for t in range(min(h*w,k)+1):"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the count of elements in the dictionary `dic` during the window sliding process, specifically in the inner loop where `w` should be iterated but is incorrectly iterated from 1 to `w` instead of from 0 to `w`.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n                 dic2[a] = 1\n         ans[i][j + 1] = len(dic2)\n     if i < H - h:\n-        for k in range(1, w):\n+        for k in range(w):\n             a = A[i + h][k]\n             dic[a] -= 1\n             if dic[a] == 0:"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the value of `sh` when adjusting for row-based transformations, leading to improper handling of the row indexing.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n   if sh<=a:\n     sh=a-sh\n   else:\n-    sh=w-(sh-a)\n+    sh=h-(sh-a)\n   if rw<=b:\n     rw=b-rw\n   else:\n@@ -35,6 +35,7 @@\n x=sh-rh\n y=sw-rw\n \n+\n for i in range(h):\n   ansh[rh]=i\n   rh+=x\n@@ -44,14 +45,13 @@\n   answ[rw]=i\n   rw+=y\n   rw%=w\n-\n+  \n   \n ans=[[0]*w for _ in range(h)]\n \n for i in range(h):\n   for j in range(w):\n     ans[i][j]=c[ansh[i]][answ[j]]\n-\n-  \n+    \n for i in ans:\n   print(''.join(i))"
+    },
+    {
+      "summary": "The buggy code incorrectly prints colors in the output—specifically, it should use \"R\", \"G\", and \"B\" but mistakenly uses \"R\", \"W\", and \"B\".",
+      "diff": "--- \n+++ \n@@ -234,6 +234,6 @@\n     print(\"No\")\n else:\n     print(\"Yes\")\n-    d=[\"R\",\"G\",\"B\"]\n+    d=[\"R\",\"W\",\"B\"]\n     for i in range(1,N)[::-1]:\n         print(d[res[i]]*i)"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the values of `a` and `b` using only a simple comparison, which can lead to incorrect results; it should compare the pairs `(a,h)` and `(b,w)` to handle the dimensions correctly.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n h,w,a,b = map(int,input().split())\n def f(h,w,a,b):\n-  if a > b:\n+  if (a,h) > (b,w):\n     return [(y,x) for x,y in f(w,h,b,a)]\n   if h == 1:\n     return [(0,y) for y in range(w)]"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc302_a/Python/45467003",
+  "query_summary": "The program incorrectly calculates the number of attacks needed by adding 1 to the integer division of A by B instead of properly handling the case where A is not divisible by B.",
+  "oracle_summary": "The code incorrectly computes the ceiling of A/B by using 1 + A//B, which overcounts when A is divisible by B instead of using (A + B - 1)//B.",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses the bitwise XOR operator (^) instead of the exponentiation operator (**), resulting in incorrect output for calculating A raised to the power of B.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n A, B = map(int, input().split())\n-print(A^B)\n+print(A**B)"
+    },
+    {
+      "summary": "The buggy code does not account for the case where both A and B are equal to 2, which should return 2 instead of -1 when their sum is 4.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n A,B = map(int,input().split())\n if A + B == 3:\n   print(\"3\")\n-elif A + B == 4:\n+elif A + B == 4 and A != B:\n   print(\"2\")\n elif A + B == 5:\n   print(\"1\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the modulo in the second print statement by applying it to the result of the `pow` function multiplied by `(A-1)-1` instead of just `(A-1)`.",
+      "diff": "--- \n+++ \n@@ -4,5 +4,5 @@\n     print(X % M)\n else:\n     print(\n-        (pow(A, X, M * (A-1)-1) // (A-1)) % M\n+        ((pow(A, X, M * (A-1))-1) // (A-1)) % M\n     )"
+    },
+    {
+      "summary": "The buggy code uses integer division (/), which can lead to incorrect results for non-integer inputs, whereas the correct code uses floor division (//) to ensure the sum is calculated as an integer.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N, K = map(int, input().split())\n A = set(map(int, input().split()))\n \n-sum = int((K * (K + 1)) / 2)\n+sum = K * (K + 1) // 2\n for a in A:\n     if 1 <= a <= K:\n         sum -= a"
+    },
+    {
+      "summary": "The buggy code rounds the division result to three decimal places but does not format it to display exactly three decimal places, which can lead to missing trailing zeros.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n A, B = map(int, input().split())\n \n-print(round(B/A, 3))\n+print('{:.03f}'.format(round(B/A, 3)))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    6
+  ],
+  "useful_diffs_count": 2
+}

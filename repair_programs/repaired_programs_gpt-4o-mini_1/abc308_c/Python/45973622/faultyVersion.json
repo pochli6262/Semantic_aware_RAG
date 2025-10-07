@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the calculation of the first element of the tuple being appended to the list L. The expression (A*10**100)/(A+B) can lead to inaccurate floating-point representation due to the large size of 10**100. To fix it while preserving the sorting order, I replaced it with (A/(A+B)) which is a valid ratio and will still sort appropriately without risking floating-point precision issues.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append(((A)/(A+B), -i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(-j+1, end=' ')\nprint()"
+}

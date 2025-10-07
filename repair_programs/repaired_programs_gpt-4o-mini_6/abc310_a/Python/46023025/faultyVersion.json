@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculated the total cost by subtracting the discount from the regular price instead of correctly adding the lowest dish price to the discounted drink price. The correction ensures that we add the price of the cheapest dish to the coupon price Q instead of incorrectly using a subtraction operation. This reasoning aligns with the analysis of the problem statement and highlights the need to accumulate costs properly.",
+  "fixed_code": "n, p, q = map(int, input().split(' '))\nd = list(map(int, input().split(' ')))\nprint(min(p, q + min(d)))"
+}

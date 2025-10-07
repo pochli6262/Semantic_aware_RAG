@@ -1,0 +1,31 @@
+{
+  "task": "abc301_e/Python/45949713",
+  "query_summary": "The start coordinates were never updated because of a typo—`s=[i,j]` was used instead of `start=[i,j]`, leaving `start` at its default [0,0] and producing incorrect distances.",
+  "oracle_summary": "The start coordinates were never updated because of a typo—`s=[i,j]` was used instead of `start=[i,j]`, leaving `start` at its default [0,0] and producing incorrect distances.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the initial value of `hp` passed to the `dfs` function is `0`, which causes the condition `if hp < dic[i]` to always be false for the first node, preventing the correct handling of the health points needed for traversal.",
+      "diff": "--- \n+++ \n@@ -33,5 +33,5 @@\n     for nex in G[i]:\n         dfs(nex,hp-1)\n \n-dfs(0,0)\n+dfs(0,-1)\n print(count)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range of `N` in the last loop where it calculates `ans`, while the correct code should iterate over `N+1` to ensure all elements of `ruiseki_l` and `ruiseki_r` are considered.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+\n class Input_kyopro:\n     def II(self): return int(input())\n     def MI(self): return map( int,input().split())\n@@ -25,8 +26,6 @@\n for i in range(N):\n     ruiseki_r[i+1]=min(ruiseki_r[i+1],ruiseki_r[i])\n ans=float('inf')\n-for i in range(N):\n+for i in range(N+1):\n     ans=min(ans,ruiseki_l[i]+ruiseki_r[-i-1]+s)\n print(ans)\n-\n-    "
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the values of `m` and `M` when `d` is negative, leading to incorrect results in the distance comparison and adjustments thereafter.",
+      "diff": "--- \n+++ \n@@ -708,8 +708,7 @@\n \n m = a\n M = a+d*(n-1)\n-if(d < 0):\n-    a = a+d*(n-1)\n+\n ans = min(abs(m-x),abs(M-x))\n if(d==0):\n     print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `j` is equal to `k` when it should check if `j` is less than or equal to `k`, leading to incorrect results in the calculation of the minimum distance.",
+      "diff": "--- \n+++ \n@@ -50,7 +50,7 @@\n     a=INF\n     for i in range(max(0,k-m),k):\n         for j in path[i]:\n-            if j==k:\n+            if j<=k:\n                 continue\n             a=min(a,dp[i]+rdp[j]+1)\n     if a!=INF:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the input coordinates (x1, y1, x2, y2) are assigned in the wrong order, causing the calculations to reference the wrong dimensions of the grid.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n H,W,K=map(int, input().split())\n-x1,y1,x2,y2=map(int, input().split())\n+y1,x1,y2,x2=map(int, input().split())\n \n dp = [[0]*4 for i in range(K+1)]\n mod=998244353"
+    }
+  ],
+  "useful_diffs_indices": [
+    3
+  ],
+  "useful_diffs_count": 1
+}

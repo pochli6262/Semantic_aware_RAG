@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the original line was the use of integer division (//) instead of ceiling division to calculate the number of attacks required. This could lead to incorrect results, especially when A is not a multiple of B. I fixed it by changing the calculation to use the formula for ceiling division, which ensures we account for any remaining stamina after full attacks. The correction aligns with the understanding from the problem summary that suggests an off-by-one error due to the wrong division type.",
+  "fixed_code": "A,B = map(int,input().split())\nif A%B == 0:\n  print(int(A/B))\nelse:\n  print(int(A//B)+1)\n"
+}

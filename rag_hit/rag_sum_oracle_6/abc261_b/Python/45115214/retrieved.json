@@ -1,0 +1,35 @@
+{
+  "task": "abc261_b/Python/45115214",
+  "query_summary": "The buggy code omits counting the symmetric draw case ('D' vs 'D'), so valid matrices with draws are wrongly judged incorrect.",
+  "oracle_summary": "The buggy code omits counting the symmetric draw case ('D' vs 'D'), so valid matrices with draws are wrongly judged incorrect.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses `XY[j][0]` in the inequality, instead of the correct `XY[j][1]`, which leads to inaccurate calculations for determining if points are collinear.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n   for j in range(i+1,N):\n     for k in range(j+1,N):\n       #print(i,j,k)\n-      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][0]-XY[i][0])*(XY[k][0]-XY[i][0]):\n+      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][1]-XY[i][1])*(XY[k][0]-XY[i][0]):\n         count+=1\n print(count)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not adjust the matrix input values by subtracting 1, which is necessary for the logic that determines the correct sequence and modular conditions.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, M = map(int, input().split())\n-B = [[int(i) for i in input().split()] for _ in range(N)]\n+B = [[int(i) - 1 for i in input().split()] for _ in range(N)]\n \n flg = True\n for i in range(N):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it reads the input as a string instead of a list of integers, which leads to incorrect comparisons in the counting logic.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n-A = input()\n+A = list(map(int,input().split()))\n count = 0\n for i in range(2*N-2):\n   if A[i] == A[i+2]:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for a vertical bingo by referencing the wrong index (using `boolss[i][n]` instead of `boolss[n][j]`), which results in incorrect vertical bingo detection.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         bingo = True\n     vertical = True\n     for n in range(N):\n-        if boolss[i][n] == False:\n+        if boolss[n][j] == False:\n             vertical = False\n             break\n     if vertical:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

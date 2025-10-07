@@ -1,0 +1,1 @@
+The inner loop only iterates i from 1 to N instead of over the full range 1..2*N+1, so the program never considers or outputs numbers greater than N.

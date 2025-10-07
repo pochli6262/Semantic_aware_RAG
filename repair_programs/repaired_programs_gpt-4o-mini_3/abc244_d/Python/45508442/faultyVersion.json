@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code checks if the input strings S and T are in the list A using the 'in' statement, but it evaluates to 'True' or 'False' directly and checks for equality. This approach does not accurately fulfill the intention of determining whether both strings are either in A or not in A. To fix this, we need to check if both conditions are met separately rather than equating the boolean results.",
+  "fixed_code": "A = [\"RGB\",\"GBR\",\"BRG\"]\n\nS = input()\nT = input()\nprint('Yes' if (S in A and T in A) or (S not in A and T not in A) else 'No')"
+}

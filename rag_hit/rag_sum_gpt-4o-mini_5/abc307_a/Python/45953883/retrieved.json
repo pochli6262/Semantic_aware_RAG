@@ -1,0 +1,31 @@
+{
+  "task": "abc307_a/Python/45953883",
+  "query_summary": "The likely bug is that the program does not correctly account for the total number of steps in each week, as it sums all steps instead of only those for the specific week being processed, leading to erroneous outputs.",
+  "oracle_summary": "The bug is simply using print(res) which prints the Python list representation instead of print(*res) to output the elements space-separated as required.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the difference between the cumulative sum and the current sum is greater than 4 instead of the correct value of 3.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n     cum_sum[i + 1] = cum_sum[i] + A[i]\n ans = 0\n for i in range(N):\n-    if 4 < cum_sum[N] - cum_sum[i]:\n+    if 3 < cum_sum[N] - cum_sum[i]:\n         ans += 1\n     else:\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The buggy code incorrectly prints the index of the first element that causes the cumulative sum to exceed M, instead of printing the index after the loop, which reflects how many elements were summed before exceeding M.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n while i < N:\n   sum += H[i]\n   if sum > M:\n-    print(i)\n     break\n   i += 1\n+print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range `N` instead of `1` to `N-1` in the final loop, which leads to potential index out-of-bounds errors and incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n         B.append(B[i-1] + C[i-1])\n \n ans = 10 ** 20\n-for j in range(N):\n+for j in range(1, N):\n     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])\n \n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

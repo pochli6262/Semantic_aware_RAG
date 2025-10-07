@@ -1,0 +1,1 @@
+There is a leftover debug print (print(i)) inside the loop that emits each input element and produces extra incorrect output.

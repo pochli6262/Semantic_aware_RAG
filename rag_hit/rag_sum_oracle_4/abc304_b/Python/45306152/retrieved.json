@@ -1,0 +1,32 @@
+{
+  "task": "abc304_b/Python/45306152",
+  "query_summary": "An off-by-one error in the loop range (using range(6) instead of range(7)) causes the code to miss the highest magnitude case so some inputs never meet the condition and produce no output.",
+  "oracle_summary": "An off-by-one error in the loop range (using range(6) instead of range(7)) causes the code to miss the highest magnitude case so some inputs never meet the condition and produce no output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly includes the case where `i` is 0, which results in `0**0` being evaluated, leading to an incorrect behavior since `0**0` is generally considered indeterminate or defined to be 1 in some contexts.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-for i in range(n+1):\n+for i in range(1,n+1):\n   if i**i > n: break\n   if i**i == n:\n     print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a fixed range of 10 instead of the variable `n` to determine the countdown limit.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n n = input()\n n = int(n)\n-for i in range(10,-1,-1):\n+for i in range(n,-1,-1):\n     print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `k` is less than `N` instead of less than or equal to `N`, which may cause it to miss valid outputs.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for i in range(n, 1, -1):\n   k = i **3\n   k_str = str(k)\n-  if (k < N) and (k_str == k_str[::-1]):\n+  if (k <= N) and (k_str == k_str[::-1]):\n     print(k)\n     exit()\n print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the final value of `ans` by subtracting `n` instead of the square of the integer square root of `n`.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n for i in range(1, int(n**0.5)+1):\n     ans += n//i\n \n-ans = ans*2 - n\n+ans = ans*2 - (int(n**0.5))**2\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the loop to `range(919)` instead of `range(920)`, causing it to miss checking the number 919.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n \n-for i in range(919):\n+for i in range(920):\n   if i <= 99:\n     continue\n   elif i < n:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

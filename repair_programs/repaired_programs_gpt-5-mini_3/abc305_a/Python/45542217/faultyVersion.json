@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the branch that rounds N up when the remainder a >= 3. The original line ans = N + a - 1 gives incorrect results when a == 4 (e.g. N=9 gives 12 instead of 10). The correct increment is (5 - a), so I replaced that line with ans = N + (5 - a) to round to the nearest multiple of 5 correctly.",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a <3:\n        ans=N-a\n    else:\n        ans=N+(5-a)\n    print(ans)\n"
+}

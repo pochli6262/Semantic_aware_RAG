@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used range(n-1) which incorrectly assumes each input list a has length n. This can cause wrong indexing or missed pairs when a has a different length. I changed that line to iterate over the actual length of a (len(a)-1), so we process consecutive pairs from the input list correctly.",
+  "fixed_code": "n,m = map(int,input().split())\nhuneka = [[1] * n for _ in range(n)]\nfor _ in range(m):\n    a = list(map(int,input().split()))\n    for i in range (len(a)-1):\n        x,y = a[i],a[i+1]\n        hunaka[x-1][y-1]=0\n        hunaka[y-1][x-1]=0\nans = sum(sum(row) for row in hunaka) - n\nprint(ans/2)"
+}

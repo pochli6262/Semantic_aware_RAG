@@ -1,0 +1,32 @@
+{
+  "task": "abc298_e/Python/46008577",
+  "query_summary": "The final sum uses the cumulative probability T_dp[i+1][-1] instead of the incremental probability T_dp[i+1][-1]−T_dp[i][-1], thus overcounting cases where Taro had already finished before step i+1.",
+  "oracle_summary": "The final sum uses the cumulative probability T_dp[i+1][-1] instead of the incremental probability T_dp[i+1][-1]−T_dp[i][-1], thus overcounting cases where Taro had already finished before step i+1.",
+  "retrieved": [
+    {
+      "summary": "The buggy code has an indexing error in the final sum calculation within the `solve` function, where it incorrectly sums `dp[N][j][K]` for `j` in the range `N` instead of `N+1`, which leads to missing the contribution of the last player's combinations.",
+      "diff": "--- \n+++ \n@@ -51,7 +51,7 @@\n                 # exclude i\n                 dp[i][min(r, j)][k] = (dp[i][min(r, j)][k] + dp[i-1][j][k]) % MOD\n \n-    return sum(dp[N][j][K] for j in range(N)) % MOD\n+    return sum(dp[N][j][K] for j in range(N+1)) % MOD\n \n \n def main():"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the first element of the Fibonacci-like sequence `f[1]` to 1 instead of the correct value of 2, which leads to incorrect calculations in the subsequent computations for `f` and consequently affects the values stored in `dp`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n \n \n f = [0]*(200001)\n-f[1] = 1\n+f[1] = 2\n f[2] = 3\n mod = 998244353\n for i in range(3,200001):"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the last element of the `dp_` array by multiplying `dp[m+1]` with `m` instead of `m+1`, leading to an incorrect final calculation.",
+      "diff": "--- \n+++ \n@@ -37,7 +37,7 @@\n         dp_[i+1] += dp[i]*(m-i)\n         dp_[i+1] %= mod\n         # print(m-i)\n-      dp_[m+1] += dp[m+1]*m\n+      dp_[m+1] += dp[m+1]*(m+1)\n       dp_[m+1] %= mod\n     dp = dp_\n     # print(dp)"
+    },
+    {
+      "summary": "The buggy code incorrectly runs the loop in the last section from 0 to `t+1`, instead of from 0 to `t`, leading to an off-by-one error and potentially incorrect calculations when updating `x`.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n   x*=t*(t-1)\n   x%=mod  \n   t-=1\n-for i in range(t+1):\n+for i in range(t):\n   x*=i+1\n   x%=mod\n print(x)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the entire `dp` list at the end, which may not be intended as it reveals intermediate state values instead of just the final result.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     dp.append(1+dp[-1]*(100-P)*inv+dp[-2]*P*inv)\n     dp[-1]%=mod\n print(dp[-1])\n-print(dp)\n+#print(dp)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

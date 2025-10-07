@@ -1,0 +1,4 @@
+{
+  "explanation": "The program used inconsistent checks for running out of time: inside the loop it treats t <= 0 as failure, but after the final travel it used t < 0. If time reaches exactly 0 at the end that should also be a failure. I fixed the final check to use <= 0 so it matches the earlier condition and correctly reports failure when t becomes zero or negative.",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= sum(a[pos : x - 1])\n    if t <= 0:\n        print(\"No\")\n        exit()\n    else:\n        t += y\n        pos = x - 1\nt -= sum(a[pos:])\nif t <= 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program had n hardcoded as 100. It should read an integer from input. I replaced the line 'n=100' with 'n = int(input())' so the code rounds the given input to the nearest multiple of 5 as intended.",
+  "fixed_code": "n = int(input())\n\nif n%5<3:\n    ans=n-(n%5)\nelse:\n    ans=n+5-(n%5)\nprint(ans)"
+}

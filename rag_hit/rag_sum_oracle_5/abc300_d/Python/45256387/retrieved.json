@@ -1,0 +1,31 @@
+{
+  "task": "abc300_d/Python/45256387",
+  "query_summary": "The buggy version hardcodes n = 10**12 instead of reading n from input, so it ignores the intended input value.",
+  "oracle_summary": "The buggy version hardcodes n = 10**12 instead of reading n from input, so it ignores the intended input value.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to include the last prime number in the range by iterating only up to `k+1` instead of `k+2`, resulting in missing prime numbers needed for calculations.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n k = int((n//2) ** (1/3))\n prl[0] = 2\n cur = 1\n-for i in range(3,k+1):\n+for i in range(3,k+2):\n     if pr_jg(i):\n         prl[cur] = i\n         cur += 1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to account for the case when the input number `n` is even, which may lead to incorrect results when checking for primality or factorization, as it only considers odd primes.",
+      "diff": "--- \n+++ \n@@ -17,11 +17,12 @@\n sys.stdin.readline()\n for s in sys.stdin.readlines():\n     n = int(s)\n-    p = search_p(n)\n+    p = 2 if n%2<1 else search_p(n)\n     if p:\n         while n%p<1:\n             n//=p\n     print('Yes' if p and n>1 else 'No')\n+\n sys.stdout.flush()\n te = ts + dsum * 1000\n while time.perf_counter_ns() < te:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to add the final prime factor (if greater than 1) to the set of prime factors, which can lead to incorrect results when calculating the number of divisors.",
+      "diff": "--- \n+++ \n@@ -13,6 +13,8 @@\n         i+=1\n     else:\n         i+=2\n+if K!=1:\n+    pr.add(K)\n \n div=[]\n div2=[]"
+    },
+    {
+      "summary": "The buggy code incorrectly generates a list of prime numbers only up to 100 instead of 200, causing it to potentially miss some valid sums that could be prime.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n                 primes.remove(i)\n                 break\n     return primes\n-setx=set(prime(100))\n+setx=set(prime(200))\n \n A,B,C,D=map(int,input().split())\n for i in range(A,B+1):"
+    },
+    {
+      "summary": "The buggy code does not account for the case when K is even, which can lead to incorrect results since it does not reduce K by a factor of 2 before further calculations.",
+      "diff": "--- \n+++ \n@@ -48,6 +48,8 @@\n     if K%4==0 or K%5==0:\n         print(-1)\n         continue\n+    if K%2==0:\n+        K//=2\n     pk=prime(K)\n     pk[3]+=2\n     l=9*K"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

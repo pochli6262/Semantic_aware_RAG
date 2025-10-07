@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop summed days using s[l + i], which advances the start index by 1 each week. It should advance by 7 days per week. I fixed the indexing to s[7*i + l] so each week's sum uses the correct 7-day block.",
+  "fixed_code": "n = int(input())\ns = list(map(int,input().split()))\n\nfor i in range(n):\n  ans = 0\n  for l in range(7):\n    ans += s[7*i + l]\n\n  print(str(ans),\"\",end = \"\")\n"
+}

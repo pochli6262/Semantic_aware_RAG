@@ -1,0 +1,4 @@
+{
+  "explanation": "The inner loop used `break` when i == j, which prematurely exited the j-loop and skipped checking many valid j values; it should skip only the self-pair and continue checking other j, so I changed `break` to `continue`. This fixes the logic so all distinct pairs (i,j) are checked.",
+  "fixed_code": "N = int(input())\nS = []\nfor i in range(N):\n  s = input()\n  S.append(s)\n  \nflag = False\n\nfor i in range(N):\n  for j in range(N):\n    if i == j:\n      continue\n    \n    a = S[i] + S[j]\n    \n    if a == a[::-1]:\n      flag = True\n        \nprint('Yes' if flag else 'No')"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc242_a/Python/45767519",
+  "query_summary": "The conditional for the random-selection case wrongly tests \"X <= C\" instead of \"X <= B\", so ranks between A+1 and B are not handled correctly.",
+  "oracle_summary": "The second branch uses X <= C instead of X <= B, erroneously applying the middle-case formula for X values up to C rather than only up to B.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the `Max[Len[i]]` array inside the loop that checks the condition `if Max[Len[i] + 1] > A[i]`, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -21,10 +21,9 @@\n \tfor i in range(N - 1, -1, -1):\n \t\tif Max[Len[i] + 1] > A[i]:\n \t\t\tans.append(i + 1)\n-\t\tMax[Len[i]] = max(Max[Len[i]], A[i])\n+\t\t\tMax[Len[i]] = max(Max[Len[i]], A[i])\n \tprint(len(ans))\n \tans = ans[::-1]\n \tprint(*ans)\n-\n for test in range(int(input())):\n \tsolve()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the lists `a` and `b` before using them in the `upper_bound` and `lower_bound` functions, which can lead to incorrect results when counting elements.",
+      "diff": "--- \n+++ \n@@ -26,6 +26,9 @@\n         else:\n             b.append(x)\n \n+    a.sort()\n+    b.sort()\n+\n     ans = 0\n     for i in a:\n         ans += upper_bound(b, i + 2 * T) - lower_bound(b, i)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the `count` array when `r` equals `l` without considering the case when `B` is greater than zero, leading to inaccurate counts in such scenarios.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n         r %= N\n     right[l] = r\n     count[l] += (r - l) % N\n-    if r == l:\n+    if r == l and B > 0:\n         count[l] += N\n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

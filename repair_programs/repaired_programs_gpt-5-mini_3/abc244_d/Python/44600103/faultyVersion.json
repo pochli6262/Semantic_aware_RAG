@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop was hard-coded to iterate exactly 3 positions (for i in range(3)), which fails if the inputs aren't exactly length 3. I changed the loop to iterate over the actual length of S (for i in range(len(S))) so the code correctly compares all positions of the input strings/lists.",
+  "fixed_code": "S = list(map(str, input().split()))\nT = list(map(str, input().split()))\ndiff = 0\nfor i in range(len(S)):\n    if S[i] != T[i]:\n        diff += 1\n\nif diff % 2 == 0:\n    print('Yes')\nelse:\n    print('No')"
+}

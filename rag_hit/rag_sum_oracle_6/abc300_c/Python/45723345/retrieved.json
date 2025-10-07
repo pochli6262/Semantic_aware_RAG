@@ -1,0 +1,33 @@
+{
+  "task": "abc300_c/Python/45723345",
+  "query_summary": "The results array is incorrectly sized as H+1 instead of min(H, W)+1, causing extra outputs (wrong length) when the width is smaller than the height.",
+  "oracle_summary": "The results array is incorrectly sized as H+1 instead of min(H, W)+1, causing extra outputs (wrong length) when the width is smaller than the height.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly takes the height (H) and width (W) in the input arguments in the wrong order compared to the correct code.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n def input():\n     return sys.stdin.readline().rstrip()\n MOD=998244353\n-H,W,K=map(int,input().split())\n+W,H,K=map(int,input().split())\n dp=[[0,0,0,0]]\n x1,y1,x2,y2=map(int,input().split())\n if x1!=x2:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `range(b+1, W)` for the variable `d`, which should instead be `range(c+1, W)` to ensure that the indices for `c` and `d` are properly chosen for comparison.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for a in range(H-1):\n \tfor b in range(a+1, H):\n \t\tfor c in range(W-1):\n-\t\t\tfor d in range(b+1, W):\n+\t\t\tfor d in range(c+1, W):\n \t\t\t\tif A[a][c] + A[b][d] > A[b][c] + A[a][d]:\n \t\t\t\t\tFlag = False\n if Flag:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the values of `a` and `b` using only a simple comparison, which can lead to incorrect results; it should compare the pairs `(a,h)` and `(b,w)` to handle the dimensions correctly.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n h,w,a,b = map(int,input().split())\n def f(h,w,a,b):\n-  if a > b:\n+  if (a,h) > (b,w):\n     return [(y,x) for x,y in f(w,h,b,a)]\n   if h == 1:\n     return [(0,y) for y in range(w)]"
+    },
+    {
+      "summary": "The problem in the buggy code is that the expressions for `H` and `W` in the `check` function are not correctly enclosed in parentheses, which affects the precedence of operations and can lead to incorrect calculations for `pos`.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n def check(i, total):\n-    pos = H//pow(2,i) * W//pow(2,i) * pow(2,i*2)\n+    pos = (H//pow(2,i)) * (W//pow(2,i)) * pow(2,i*2)\n     if pos >= total:\n         return True\n     else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc240_d/Python/45435904",
+  "query_summary": "The program likely fails to correctly handle the condition where multiple consecutive balls of the same value should disappear, resulting in an inaccurate count of remaining balls after each insertion.",
+  "oracle_summary": "The second condition should be an elif; using two separate ifs makes the else attach to the second if, so when Q is empty the code appends and then immediately treats the same value as a continuation (incrementing/popping the count) instead of skipping the second branch.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the lengths of the deques in `A` only for indices 0 to n-1 instead of 0 to n, potentially leading to missing checks for the deque at index n, which can cause an incorrect output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n     if t==2:\n         A[x].append(i)\n \n-for i in range(n):\n+for i in range(n+1):\n     if len(A[i])>0:\n         print(-1)\n         exit()"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for conditions within the while loop, allowing the loop to continue even when there are multiple vertices in the deque, which can lead to invalid outputs or unintended behavior.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n dq = deque([i for i in range(1,N+1) if deg[i] == 0])\n \n P = []\n-while dq:\n+while dq and len(dq) < 2:\n     x = dq.popleft()\n     P.append(x)\n     for to_x in to[x]:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition using `!=` instead of `==` in the loop that populates the `ans` list, resulting in an incorrect order of numbers when `X` is positioned in relation to the other elements.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n         Q.append(i + 1)\n \n for i in range(N - 1):\n-    if i % 2 != (X - N // 2) % 2:\n+    if i % 2 == (X - N // 2) % 2:\n         ans.append(Q.pop())\n     else:\n         ans.append(Q.popleft())"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly increments the `memo` array for values found in `A[v]`, leading to incorrect tracking of how many unique values have been encountered, instead of setting them to 1 when found.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n             u = q.pop()\n             for v in E[u]:\n                 if -1 < A[v] <= K:\n-                    memo[A[v]] += 1\n+                    memo[A[v]] = 1\n                 elif A[v] == -1:\n                     cnt += 1\n                 q.append(v)"
+    },
+    {
+      "summary": "The bug in the code is that the condition `if len(d) == 0 and n-1-i < j:` improperly checks if the dictionary `d` is empty instead of simply verifying if `j` is valid, which leads to incorrect results when handling cases where there are no more entries to process.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+\n from collections import deque\n n = int(input())\n a = [list(map(int,input().split())) for i in range(n)]\n@@ -34,7 +35,7 @@\n                         b.append(j)\n                         break\n \n-                if len(d) == 0 and n-1-i <j:\n+                if n-1-i < j:\n                     ans = -1\n \n             else:\n@@ -66,3 +67,4 @@\n \n else:\n     print(ans)\n+"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

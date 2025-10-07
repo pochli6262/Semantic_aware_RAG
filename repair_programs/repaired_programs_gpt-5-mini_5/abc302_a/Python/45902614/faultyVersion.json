@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used float division int(x/y)+1 which both loses precision for very large integers and incorrectly adds 1 when x is exactly divisible by y. I replaced it with integer ceiling division (x + y - 1) // y so the result is correct for all integer inputs without floating point rounding errors.",
+  "fixed_code": "x, y = map(int, input().split())\nprint((x + y - 1) // y)"
+}

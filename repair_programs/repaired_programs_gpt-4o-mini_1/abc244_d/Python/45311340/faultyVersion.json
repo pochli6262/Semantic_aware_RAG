@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition 'if S in A == T in A:' incorrectly combines the membership check with the equality comparison. This logic does not work as intended. It should instead check if both S and T are in A separately, hence I changed the condition to 'if S in A and T in A:'.",
+  "fixed_code": "S=input()\nT=input()\nA=[\"R G B\",\"B R G\",\"G B R\"]\nif S in A and T in A:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

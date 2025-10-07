@@ -1,0 +1,32 @@
+{
+  "task": "abc242_a/Python/45438303",
+  "query_summary": "The bug in the program is that it incorrectly calculates the probability by using the total number of participants (B - A) instead of the number of participants ranked between (A + 1) and B (inclusive).",
+  "oracle_summary": "The middle condition is off by one: it uses X < B instead of X <= B, causing X == B to incorrectly print 0 instead of C/(B−A).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    },
+    {
+      "summary": "The buggy code incorrectly adds the value of B to the count instead of adding the value of the current element L[i] that satisfies the condition.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,5 @@\n count=0\n for i in range(A):\n   if L[i] <= B:\n-    count+=B\n+    count+=L[i]\n print(count)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it erroneously prints the variable `Acnt` during the execution, which could lead to incorrect or undesirable output, while the correct code omits this print statement.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n Q = [x + y for x, y in zip(Q, A)]\n Acnt -=1\n ans = max(ans,Acnt)\n-print(\"A :\",Acnt)\n+#print(\"A :\",Acnt)\n \n while Acnt>=0:\n   while all(x >= 0 for x in Q):"
+    },
+    {
+      "summary": "The buggy code does not account for the case where both A and B are equal to 2, which should return 2 instead of -1 when their sum is 4.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n A,B = map(int,input().split())\n if A + B == 3:\n   print(\"3\")\n-elif A + B == 4:\n+elif A + B == 4 and A != B:\n   print(\"2\")\n elif A + B == 5:\n   print(\"1\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

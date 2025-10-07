@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was using the equality operator '==' instead of the assignment operator '=' when attempting to mark an item as consumed. That meant the item remained available and could be reused. I fixed the line to assign 0 to the map entry so the item is removed after use.",
+  "fixed_code": "from collections import defaultdict\nN,M,H,K = map(int,input().split())\nS = list(input())\nitem = defaultdict(int)\nfor i in range(M):\n    x,y = map(int,input().split())\n    item[(x,y)] = 1\n    \nnow = [0,0]\nfor i in range(N):\n    move = S[i]\n    if move == \"R\":\n        now[0] += 1\n    elif move == \"L\":\n        now[0] -= 1 \n    elif move == \"U\":\n        now[1] += 1\n    elif move == \"D\":\n        now[1] -= 1\n    H -= 1\n    if H < 0:\n        print(\"No\")\n        break\n    if item[(now[0],now[1])] == 1 and  H < K:\n        H = K\n        item[(now[0],now[1])] = 0\n\nelse:\n    print(\"Yes\")"
+}

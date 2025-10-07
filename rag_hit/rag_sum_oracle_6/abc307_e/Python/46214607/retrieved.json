@@ -1,0 +1,33 @@
+{
+  "task": "abc307_e/Python/46214607",
+  "query_summary": "The program fails to reduce the result modulo 998244353 before printing, so the computed value (which can be negative or out of range) is not output mod 998244353.",
+  "oracle_summary": "The program fails to reduce the result modulo 998244353 before printing, so the computed value (which can be negative or out of range) is not output mod 998244353.",
+  "retrieved": [
+    {
+      "summary": "The buggy code has an incorrect length of the `MOD` list, which causes an \"index out of range\" error when attempting to access `MOD[c]` in the nested loop at line calculating `ans`, as it is missing the last modulus value `1000000021`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = [int(input()) for i in range(N)]\n \n-MOD = [998244353, 1000000007, 1000000009]\n+MOD = [998244353, 1000000007, 1000000009, 1000000021]\n M = len(MOD)\n \n C = [[A[i] % MOD[c] for i in range(N)] for c in range(M)]"
+    },
+    {
+      "summary": "The buggy code uses an incorrect modulus value (10^9 + 7) instead of the required modulus value (998244353), which can lead to incorrect calculations and results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         return 0\n     return (g1[n] * g2[r] % mod) * g2[n-r] % mod\n \n-mod = 10**9 + 7\n+mod = 998244353\n N = 2*10**5\n g1 = [1]*(N+1)\n g2 = [1]*(N+1)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a modulus of 998244353 instead of the correct value of 10**9 + 7.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n from itertools import groupby\n N = int(input())\n S = list(input())\n-mod = 998244353\n+mod = 10**9 + 7\n for i in range(0, N, 2):\n     if S[i] == \"A\":\n         S[i] = \"B\""
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the sum of integers less than a single-digit number by printing `N` instead of the sum `N*(N+1)//2`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for i in range(1,19):\n   if i==1:\n     if N<9:\n-      print(N)\n+      print(N*(N+1)//2)\n       exit()\n     ans += (9*10)//2\n   else:\n@@ -19,5 +19,3 @@\n       ans += (a%mod)*((a+1)%mod)//2\n       ans %= mod\n print(ans)\n-  \n-  "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly subtracts 998244353 from the input number instead of computing the modulus.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n # ABC266 B - Modulo Number\n n = int(input())\n-print(n-998244353)\n+print(n%998244353)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

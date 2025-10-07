@@ -1,0 +1,1 @@
+The program emits debugging and extra output (like "A:{A},T:{T}") and also mishandles the final/tie case by printing the last character (S[i]) for odd N instead of correctly determining the winner.

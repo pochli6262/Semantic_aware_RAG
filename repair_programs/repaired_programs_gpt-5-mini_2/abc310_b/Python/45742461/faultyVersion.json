@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition mistakenly compared s[i][0] (price) to s[j][1] (the count 'c') instead of s[j][0] (the other item's price). I fixed that one index so the price-to-price comparison is correct: s[j][1] -> s[j][0].",
+  "fixed_code": "n,m=map(int,input().split())\ns=[]\nfor i in range(n):\n  p,c,*f=map(int,input().split())\n  s.append([p,c,f])\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i][0]>=s[j][0] and set(s[j][2])>=set(s[i][2]) \\\n            and (s[i][0]>s[j][0] or set(s[j][2])-set(s[i][2])):\n      print(\"Yes\")\n      exit()\nprint(\"No\")"
+}

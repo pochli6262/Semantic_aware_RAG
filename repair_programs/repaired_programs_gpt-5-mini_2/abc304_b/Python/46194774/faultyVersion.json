@@ -1,0 +1,4 @@
+{
+  "explanation": "The final else block did nothing (it contained 'None'), so inputs >= 10^8 were not handled. The program's intent is to round down N to the appropriate power-of-ten bucket; for the largest range it should print N rounded down to the nearest 1,000,000. I fixed the single incorrect line by replacing the 'None' with the correct print statement: print(N // 1000000 * 1000000). Only that one line was changed.",
+  "fixed_code": "N = int(input())\n\nif N <= 10 ** 3 - 1:\n    print(N)\nelif 10 ** 3 <= N <= 10 ** 4 - 1:\n    print(N // 10 * 10)\nelif 10 ** 4 <= N <= 10 ** 5 - 1:\n    print(N // 100 * 100)\nelif 10 ** 5 <= N <= 10 ** 6 - 1:\n    print(N // 1000 * 1000)\nelif 10 ** 6 <= N <= 10 ** 7 - 1:\n    print(N // 10000 * 10000)\nelif 10 ** 7 <= N <= 10 ** 8 - 1:\n    print((N // 100000) * 100000)\nelse:\n    print(N // 1000000 * 1000000)\n"
+}

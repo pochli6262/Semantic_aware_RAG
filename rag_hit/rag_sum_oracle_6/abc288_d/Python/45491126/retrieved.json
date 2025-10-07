@@ -1,0 +1,33 @@
+{
+  "task": "abc288_d/Python/45491126",
+  "query_summary": "The bug is that the left prefix index is clamped before division (max(0, l−k−1)//K+1), which turns cases with l−k−1<0 into index 1 instead of the correct 0, yielding wrong sums; it should use (l−k−1)//K+1 without clamping.",
+  "oracle_summary": "The bug is that the left prefix index is clamped before division (max(0, l−k−1)//K+1), which turns cases with l−k−1<0 into index 1 instead of the correct 0, yielding wrong sums; it should use (l−k−1)//K+1 without clamping.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly references a variable `k` instead of `K` in the condition `(N+k) % l == 0`, which causes unintended behavior and may lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n         if (N+K) % (2*l) == 0:\n             print(\"Yes\")\n             continue\n-        elif (N+k) % l == 0:\n+        elif (N+K) % l == 0:\n             for i in range(l):\n                 if S[i] != S[l-i-1]:\n                     break"
+    },
+    {
+      "summary": "The buggy code incorrectly references `A[2]` instead of `A[K-1]` when computing `A[i]` for indices beyond `K+1`, leading to an incorrect result.",
+      "diff": "--- \n+++ \n@@ -19,6 +19,6 @@\n     A[(i-1)%(K+1)] = (T-S[i]) % 2\n \n for i in range(K+1,N):\n-    A[i] = (S[0]-A[2]-S[i]) % 2\n+    A[i] = (S[0]-A[K-1]-S[i]) % 2\n \n print(\"!\",*A)"
+    },
+    {
+      "summary": "The buggy code incorrectly sums the elements that are strictly less than K instead of including those that are equal to K, leading to an incorrect calculation of the total sum.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n dis = 0\n for a in sa:\n-  if a < K:\n+  if a <= K:\n     dis += a\n \n print((K + 1) * K // 2 - dis)"
+    },
+    {
+      "summary": "The buggy code incorrectly sets `K` to `K - xcount` when `K` is greater than `xcount`, whereas it should set `K` to `N - K` in that case to maintain the correct count of remaining \"Y\" transformations.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n             S[i]=\"Y\"\n         elif S[i]==\"Y\":\n             S[i]=\"X\"\n-    K=K-xcount\n+    K=N-K\n \n hq=[]\n from heapq import *"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the range in the second loop for odd K, causing it to access an out-of-bounds index in the array A when K is not properly handled.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     for i in range(1, K-1, 2):\n         now += A[i+1] - A[i]\n     ans = now\n-    for i in range(2, K-1, 2):\n+    for i in range(2, K, 2):\n         now += A[i-1] - A[i-2]\n         now -= A[i] - A[i-1]\n         ans = min(ans, now)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

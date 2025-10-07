@@ -1,0 +1,4 @@
+{
+  "explanation": "The program prints nothing for values greater than 100 that are not multiples of 100 because there is no final else branch. I fixed this by replacing the final print line with a print for the matching case plus an else that prints \"No\" so every input now yields an output. Only that single line was changed.",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100:\n    print(\"No\")\nelif X%100 == 0:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

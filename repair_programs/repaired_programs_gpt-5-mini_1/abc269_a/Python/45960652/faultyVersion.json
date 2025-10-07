@@ -1,0 +1,4 @@
+{
+  "explanation": "The arithmetic line used (c - d) but the intended operation is to add c and d. I fixed the single incorrect character (the minus) on that line so the program computes (a + b) * (c + d) instead of (a + b) * (c - d). Only that one line was changed.",
+  "fixed_code": "a,b,c,d=map(int,input().split())\nprint((a+b)*(c+d))\nprint('takahashi')# coding: utf-8\n# Your code here!"
+}

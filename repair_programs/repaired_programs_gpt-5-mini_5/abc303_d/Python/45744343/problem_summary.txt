@@ -1,0 +1,1 @@
+The initialization for the first character mistakenly swaps the costs for the "Caps Lock off" and "Caps Lock on" states, assigning each cost to the wrong state.

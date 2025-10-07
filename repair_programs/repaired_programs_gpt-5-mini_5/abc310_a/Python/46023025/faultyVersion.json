@@ -1,0 +1,4 @@
+{
+  "explanation": "The original print line treated q as a discount amount and computed the coupon option as p - q + min(d). However Q in the problem is the discounted drink price (not an amount to subtract from P). The correct total when using the coupon is Q + min(D_i). I fixed the single incorrect line to use q + min(d) instead of p - q + min(d).",
+  "fixed_code": "n, p, q = map(int, input().split(' '))\nd = list(map(int, input().split(' ')))\nprint(min(p, q + min(d)))"
+}

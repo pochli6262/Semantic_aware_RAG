@@ -1,0 +1,4 @@
+{
+  "explanation": "The program used itertools.product(S, repeat = N), which allows repeated use of the same string and does not enforce a rearrangement (permutation) of the input list. I replaced that single line with itertools.permutations(S, N) so the code iterates over all orderings that use each input string exactly once. This fixes the logic so only rearrangements (no repeats) are considered.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.permutations(S, N)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)\n"
+}

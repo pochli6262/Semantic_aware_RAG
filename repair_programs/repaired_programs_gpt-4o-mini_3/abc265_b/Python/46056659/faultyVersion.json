@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition where we check if T is greater than A[i]. The program should check if T is less than A[i] instead, because we need to ensure that the current remaining time (T) is sufficient to cover the current consumption (A[i]). I corrected this line by changing the comparison operator from '>' to '<'.",
+  "fixed_code": "N,M,T=list(map(int, input().split()))\nA=list(map(int, input().split()))\nd={}\nfor _ in range(M):\n    x,y=list(map(int, input().split()))\n    d[x]=y\n\nfor i in range(N-1):\n    if i+1 in d:\n        T+=d[i+1]\n    if A[i]<T:\n        print(\"No\")\n        exit()\n    T-=A[i]\nprint(\"Yes\")"
+}

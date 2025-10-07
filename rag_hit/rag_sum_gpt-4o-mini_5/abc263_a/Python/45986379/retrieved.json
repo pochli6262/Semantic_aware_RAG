@@ -1,0 +1,32 @@
+{
+  "task": "abc263_a/Python/45986379",
+  "query_summary": "The likely bug is that the program incorrectly checks for a Full house by only verifying that there are exactly two unique numbers and whether the third and fourth cards are different, without properly counting the occurrences of each number.",
+  "oracle_summary": "It only checks K[2] != K[3] when there are two distinct values, missing the symmetric boundary K[1] != K[2], so it wrongly rejects valid cases like [a, a, b, b].",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate entries in the spawned list using `or not s in spawned`, instead of `or s in spawned`, leading to the acceptance of duplicate card inputs.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n for i in range(n):\n     s = input()\n \n-    if not s[0] in one or not s[1] in two or not s in spawned:\n+    if not s[0] in one or not s[1] in two or s in spawned:\n         print(\"No\")\n         exit(0)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output as \"Yes\" if K is non-negative, without checking if K is also even, which is necessary for the correct condition.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     while N > 0:\n         K -= N % 3\n         N //= 3\n-    if K >=0:\n+    if K >= 0 and K % 2 == 0:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly includes '1' in the set of valid ranks, which leads to accepting invalid card inputs that should be rejected.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[]\n b=['H', 'D', 'C', 'S']\n first = set(b)\n-second = set(['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n+second = set(['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])\n tmp = set()\n answer = \"Yes\"\n for i in range(n):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if a player has exactly two yellow cards to output \"Yes\" instead of checking if they have two or more yellow cards.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     elif c == 2:\n       cards[x] += 2\n     else:\n-      if cards[x] == 2:\n+      if cards[x] >= 2:\n         print('Yes')\n       else:\n         print('No')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

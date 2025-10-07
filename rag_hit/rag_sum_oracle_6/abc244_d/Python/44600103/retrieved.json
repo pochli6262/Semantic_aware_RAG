@@ -1,0 +1,35 @@
+{
+  "task": "abc244_d/Python/44600103",
+  "query_summary": "The condition is inverted: it prints “Yes” for an even number of mismatches, whereas it should print “Yes” only when there are zero or an odd number of differences (and “No” for 2).",
+  "oracle_summary": "The condition is inverted: it prints “Yes” for an even number of mismatches, whereas it should print “Yes” only when there are zero or an odd number of differences (and “No” for 2).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition `i >= 2*Odd-1` instead of the correct condition `i >= Odd+1` when determining if to print \"Yes\" for the odd numbers.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     for i in A:\n         if i % 2 == 1:\n             Odd += 1\n-            if Odd % 2 == 0 and i >= 2*Odd-1:\n+            if Odd % 2 == 0 and i >= Odd+1:\n                 print(\"Yes\")\n                 Test = 1\n                 break"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output as \"Yes\" if K is non-negative, without checking if K is also even, which is necessary for the correct condition.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     while N > 0:\n         K -= N % 3\n         N //= 3\n-    if K >=0:\n+    if K >= 0 and K % 2 == 0:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if `b` is greater than 0 instead of allowing `b` to be equal to 0, which should also result in a 'Yes' output if the bitwise condition is satisfied.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for _ in range(T):\n     a,s=map(int,input().split())\n     b=s-2*a\n-    if b>0 and a&b==0:\n+    if b>=0 and a&b==0:\n         print('Yes')\n     else:\n         print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not handle the case where the input string has a length of 2 but is not 'oo', incorrectly printing 'Yes' without properly differentiating that case from the valid inputs.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n if (len(s) == 2 and s == 'oo'):\n     print('No')\n     exit()\n-else:\n+elif(len(s) == 2):\n     print('Yes')\n     exit()\n if (len(s) == 1):"
+    },
+    {
+      "summary": "The issue in the buggy code is that it outputs \"YES\" and \"NO\" in uppercase, while the correct code is designed to output \"Yes\" and \"No\" with capitalization for the first letter only.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n S = input()\n list = [ \"ACE\",\"BDF\",\"CEG\",\"DFA\",\"EGB\",\"FAC\",\"GBD\"]\n \n-print(\"YES\" if S in list else \"NO\")\n+print(\"Yes\" if S in list else \"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

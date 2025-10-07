@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition used to decide when to round up was off by one. The code used n%5 >= 2, which rounds up when the remainder is 2 (i.e. gap to next multiple is 3). The usual rule is to round up only when the gap to the next multiple of 5 is less than 3 — equivalently when n%5 is 3 or 4. I fixed the condition to n%5 >= 3.",
+  "fixed_code": "n=int(input())\nprint((n//5)*5+5 if n%5>=3 else (n//5)*5)"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where the program checks if 'x' is greater than 9. The original comparison 'if x>9:' should be changed to 'if x>=10:' to ensure that values like 10, which can be transformed, are included. This allows valid numbers from 10 and above to be processed correctly for the rotation logic.",
+  "fixed_code": "a,n = map(int,input().split())\nnums =[-1]*(10**6)\nfrom collections import deque\nq = deque()\nq.append(a)\nnums[a] = 1\nwhile q:\n    x = q.popleft()\n    y = x*a\n    if y<10**6 and nums[y] ==-1:\n        nums[y] = nums[x]+1\n        q.append(y)\n    if x>=10:\n        X = str(x)\n        Z = X[-1]+X[:-1]\n        z = int(Z)\n        if z<10**6 and nums[z] ==-1:\n            nums[z] = nums[x]+1\n            q.append(z)\nprint(nums[n])"
+}

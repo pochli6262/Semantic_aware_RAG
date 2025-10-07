@@ -1,0 +1,4 @@
+{
+  "explanation": "The line with the bug incorrectly calculates the success rate using a fixed multiplier (10**100), which can lead to floating-point precision issues instead of using the actual success rates directly for comparison. By correcting the line to use the tuple (A / (A + B), i) instead, we ensure that Python's sorting mechanism can accurately compare the success rates without unnecessary scaling. This approach is inspired by the need for direct comparison rather than approximation shown in the Diff patterns.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append((A / (A + B), -i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(-j+1, end=' ')\nprint()"
+}

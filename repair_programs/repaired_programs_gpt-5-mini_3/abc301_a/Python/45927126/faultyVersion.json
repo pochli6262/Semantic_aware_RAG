@@ -1,0 +1,4 @@
+{
+  "explanation": "The program decided the winner between 'T' and 'A' by checking if count(T) > count(A). This treats ties as an 'A' win because the condition is strict '>'. The intended behavior is that 'T' should win in case of a tie as well, so the comparison must allow equality. I changed the comparison from '>' to '>=' so that when counts are equal the program prints 'T'.",
+  "fixed_code": "N = int(input())\nS = input()\n\ncnt = 0\nfor i in S:\n    if i == \"T\":\n        cnt += 1\n\nif cnt >= N - cnt:\n    print(\"T\")\nelse:\n    print(\"A\")"
+}

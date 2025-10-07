@@ -1,0 +1,32 @@
+{
+  "task": "abc310_b/Python/46010800",
+  "query_summary": "The inner loop uses \"for j in range(i)\" so the code only checks pairs with j < i and therefore misses many ordered (i, j) pairs that should be compared.",
+  "oracle_summary": "The bug is an incorrect inner-loop bound: it iterates over j in range(i) instead of range(n), so some required pairwise comparisons (j >= i) are never checked.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses `(j+d)%n+1` instead of `(j+i)%n+1` in the nested loop, causing it to fail to generate the correct pairs for the given conditions.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n print(\"Yes\")\n for i in range(1,d+1):\n     for j in range(n):\n-        print(j+1,(j+d)%n+1)\n+        print(j+1,(j+i)%n+1)\n         "
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly allows the inner loop condition to check `j >= i` instead of `j > i`, which causes it to potentially count invalid pairs when `i` equals `j`.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n t=0\n j=N-1\n for i in range(N):\n-  while j>=i:\n+  while j>i:\n     if A[j]+A[i]>=K:\n       t+=1\n     else:\n@@ -26,7 +26,6 @@\n   dp2[0]=dp[0]*t*(t-1)%mod\n   dp2[1]=(dp[0]*t*2 +dp[1]*(t*(t-1)+t*2)) %mod\n   dp=dp2.copy()\n-\n   t-=1\n   \n ans1=dp[0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop bounds are incorrect; it iterates `for i in range(2, 10**6)` and `for j in range(2, 10**6)` which should be `for i in range(2, 10**6 + 1)` and `for j in range(1, 10**6 + 1)` to ensure all required indices are processed correctly.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n x10=[1]*(10**6+1)\n y59=[1]*(10**6+1)\n mody=978902437\n-for i in range(1,N+1):\n+for i in range(1,10**6+1):\n   x10[i]=x10[i-1]*10\n   x10[i]%=mod\n   y59[i]=y59[i-1]*59"
+    },
+    {
+      "summary": "The problem in the buggy code is that a necessary condition in the second for loop inside the `check` function is missing, which checks if consecutive elements in the first row of `b` differ by 1.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,10 @@\n   for i in range(m - 1):\n     if ((temp[i + 1] + 6) % 7) != ((temp[i] + 6) % 7) + 1:\n       return False\n+    if temp[i + 1] != temp[i] + 1:\n+      return False\n+\n+    \n \n \n   return True"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3
+  ],
+  "useful_diffs_count": 2
+}

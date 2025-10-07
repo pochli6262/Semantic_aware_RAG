@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop that fills '?' bits was iterating from the least-significant bit toward the most-significant bit (for i in range(m - 1, -1, -1)). That causes the greedy algorithm to set lower-value bits first and possibly prevent setting higher-value bits later, producing a suboptimal (too-small) result. I fixed the loop to iterate from the most-significant bit to the least-significant bit (for i in range(m)) so we try to set larger-value bits first and maximize the value without exceeding n. Only that single line was changed.",
+  "fixed_code": "if __name__ == '__main__':\n    s = str(input())\n    n = int(input())\n    m = len(s)\n    res = 0\n    for i in range(m):\n        if s[i] == \"1\":\n            res += (1 << (m - 1 - i))\n    if res > n:\n        res = -1\n    else:\n        for i in range(m):\n            if s[i] == \"?\" and res + (1 << (m - 1 - i)) <= n:\n                res += (1 << (m - 1 - i))\n    print(res)\n"
+}

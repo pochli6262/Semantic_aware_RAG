@@ -1,0 +1,1 @@
+The bug likely lies in the condition where it incorrectly compares the product price `s[j][1]` instead of `s[j][0]` in the first part of the if statement.

@@ -1,0 +1,1 @@
+The program mistakenly checks if t > i (the loop index) instead of checking if t > a[i] when deciding whether there's enough time to make the next move.

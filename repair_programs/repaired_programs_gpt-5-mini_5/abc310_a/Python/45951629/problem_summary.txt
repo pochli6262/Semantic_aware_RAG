@@ -1,0 +1,1 @@
+The code computes the discounted total as P - Q + D[i] instead of Q + D[i], i.e. it incorrectly uses P - Q in place of Q.

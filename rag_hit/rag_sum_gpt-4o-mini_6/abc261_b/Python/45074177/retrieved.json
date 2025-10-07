@@ -1,0 +1,32 @@
+{
+  "task": "abc261_b/Python/45074177",
+  "query_summary": "The likely bug is that the program does not correctly handle the cases where Player i beats Player j but Player j does not lose to Player i, or vice versa, leading to incorrect conclusions about the match results.",
+  "oracle_summary": "It omits the check for A[i][j] == 'L' and A[j][i] == 'W', so valid loss–win pairs are wrongly flagged as incorrect.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints 'No' instead of 'Lose' when the winning conditions are not met.",
+      "diff": "--- \n+++ \n@@ -11,4 +11,4 @@\n if N%2==1:\n   print('Win')\n else:\n-  print('No')\n+  print('Lose')"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output when the string of characters consists entirely of 'A's by not correctly handling the case when no 'B's are present, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         i += 1\n     while j > 0 and c[j] == 'B':\n         j -= 1\n-    if i - j == 1 and c[-1] == 'B':\n+    if i == j == 0 or (i - j == 1 and c[-1] == 'B'):\n         print('B')\n     else:\n         print('A')"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition in the second 'elif' statement incorrectly uses 'A < N' instead of 'A <= N', which could lead to incorrect results when A is equal to N.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \tN, A, B = map(int, input().split())\n \tif A <= N // 2:\n \t\tprint(\"Yes\" if B <= ((N + 1) // 2) * (N - A) else \"No\")\n-\telif A < N:\n+\telif A <= N:\n \t\tprint(\"Yes\" if B <= (N - A) ** 2 else \"No\")\n \telse:\n \t\tprint(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

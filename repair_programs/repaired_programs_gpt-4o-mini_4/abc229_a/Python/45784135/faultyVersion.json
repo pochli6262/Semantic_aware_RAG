@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program only checks for black squares in the same columns. To determine if all black squares are connected, we need to check if any black square is in the same row or can be reached through adjacent side connections. The corrected line checks for any black squares that share a side either in the same row or column. The logic is inspired by understanding the necessity of connectivity in both dimensions, similar to how diff patterns show an awareness of broader checks rather than limited comparisons.",
+  "fixed_code": "s1=input()\ns2=input()\n\nif (s1[0] == '#' and s2[0] == '#') or (s1[1] == '#' and s2[1] == '#') or (s1[0] == '#' and s1[1] == '#') or (s2[0] == '#' and s2[1] == '#'):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

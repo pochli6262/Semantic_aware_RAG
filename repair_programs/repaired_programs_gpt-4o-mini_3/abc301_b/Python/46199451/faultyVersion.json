@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is in the line where the range function is used in the extend method. The original code is trying to create a range between two elements using their values. However, the range function should use the indices to correctly capture the values. Specifically, the extension for the case where a[i + 1] >= a[i] should be 'ans_list.extend(range(a[i], a[i + 1]))', instead of using a generator expression. This allows for correctly appending values from a[i] to a[i + 1].",
+  "fixed_code": "n = int(input())\na = list(map(int, input().split()))\n\nans_list = []\nfor i in range(n - 1):\n    # print(a[i + 1] - a[i])\n    if a[i + 1] >= a[i]:\n        ans_list.extend(range(a[i], a[i + 1]))\n    elif a[i + 1] < a[i]:\n        ans_list.extend(range(a[i], a[i + 1], -1))\nans_list.append(a[-1])\nprint(ans_list)"
+}

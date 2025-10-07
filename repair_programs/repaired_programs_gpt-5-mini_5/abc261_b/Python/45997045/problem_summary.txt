@@ -1,0 +1,1 @@
+The code incorrectly checks for equality between a[i][j] and a[j][i] (except 'D') rather than verifying the required complementary relations (W vs L and L vs W), so mismatches like 'W' vs 'D' are not detected as contradictions.

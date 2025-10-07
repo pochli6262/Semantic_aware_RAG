@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition `if judge(a) + judge(b) == 2:`. That only detects the case where both a and b are in the first group (both return 1), but misses the case where both are in the second group (both return 2). The correct check is to see whether a and b belong to the same group, i.e. `judge(a) == judge(b)`. I replaced that single line accordingly.",
+  "fixed_code": "a, b = map(int, input().split())\n\nif b-a != 1:\n  print(\"No\")\n  \ncnt = 0\n\ndef judge(s):\n  if s in (1,3,4,6,7,9):\n    return 1\n  else:\n    return 2\n    \nif judge(a) == judge(b):\n  print(\"No\")\nelse:\n  print(\"Yes\")"
+}

@@ -1,0 +1,1 @@
+The code only checks the 'W'/'L' relation when A[i][j]=='W' and A[j][i]=='L' and fails to accept the symmetric case A[i][j]=='L' and A[j][i]=='W', causing valid tables to be flagged incorrect.

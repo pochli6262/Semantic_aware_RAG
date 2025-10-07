@@ -1,0 +1,29 @@
+{
+  "task": "abc310_a/Python/45739812",
+  "query_summary": "The code computes the coupon cost as P - Q + d instead of the correct cost Q + d.",
+  "oracle_summary": "The bug is a wrong arithmetic expression—a typo using \"P - Q + d\" instead of the correct \"Q + d\"—so the candidate value p is computed incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that both the 'short' and 'long' variables are mistakenly setting the 'short' variable for the second input 'q' instead of the 'long' variable, leading to incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     short=li[5]\n \n if q=='A':\n-    short=0\n+    long=0\n elif q=='B':\n     long=li[0]\n elif q=='C':"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the total amount of money by multiplying `money` (which is derived from `P[3]` and `P[4]`) by `r`, instead of using a different amount for that portion of the calculation, resulting in incorrect output when `r` is greater than 0.",
+      "diff": "--- \n+++ \n@@ -15,4 +15,4 @@\n         continue\n     q, r = divmod(po, 2)\n     money = min(P[3]*2, P[4])\n-    print(money * q +  money * r)\n+    print(money * q +  min(P[3], P[4]) * r)"
+    },
+    {
+      "summary": "The buggy code incorrectly adds the penalty instead of subtracting it when M is less than X.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n if M >= X:\n     print(T)\n else:\n-    print(T + (X - M) * D)\n+    print(T - (X - M) * D)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses the strict inequality `<` instead of the non-strict inequality `<=` in the condition to determine if the value of `i` is the first valid element, which causes it to miss cases where `i - p` equals `d`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n ret = -1\n p = -d-1\n for i in t:\n-  if i-p<d:\n+  if i-p<=d:\n     ret = i\n     break\n   p=i"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly computes the contribution of the value `A[i]` to the result by using `S[l] + A[i]` instead of the correct term involving `r * A[i]`.",
+      "diff": "--- \n+++ \n@@ -12,5 +12,5 @@\n     m = (l + r) // 2\n     if A[i] + B[m] <= P : l = m\n     else : r = m\n-  res += (S[l] + A[i] if l >= 0 else 0) + P * (M - r)\n+  res += (S[l] + r * A[i] if l >= 0 else 0) + P * (M - r)\n print(res)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

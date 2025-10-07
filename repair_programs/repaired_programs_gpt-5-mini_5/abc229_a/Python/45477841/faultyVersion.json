@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if only detected one diagonal-disconnected pattern (S1 == \".#\" and S2 == \"#.\") but missed the symmetric case (S1 == \"#.\" and S2 == \".#\"). I fixed the condition to check either diagonal pattern using an OR. This mirrors the fix pattern in Diff 2 which changed an AND to an OR to accept either alternative.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1==\".#\" and S2==\"#.\") or (S1==\"#.\" and S2==\".#\"):\n  print(\"No\")\nelse:\n  print(\"Yes\")\n"
+}

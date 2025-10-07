@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop 'for i in range(k):' can raise an IndexError if k is greater than n (there are fewer input strings than k). I changed the loop to iterate up to min(k, n) so it never tries to access s[i] out of range.",
+  "fixed_code": "n, k = map(int, input().split())\ns = [input() for _ in range(n)]\ns.sort()\nfor i in range(min(k, n)):\n  print(s[i])"
+}

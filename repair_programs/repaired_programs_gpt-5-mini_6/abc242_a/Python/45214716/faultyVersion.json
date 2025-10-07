@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was an off-by-one error in the probability denominator: for ranks A+1 through B (inclusive) there are B-A candidates, not B-A+1. I fixed the line that computed the probability by changing the denominator from (b-a+1) to (b-a). No other lines were changed.",
+  "fixed_code": "a,b,c,x=map(int,input().split())\nif a>=x:\n    print(1)\nelif b>=x>a:\n    print(c/(b-a))\nelse:\n    print(0)"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc307_b/Python/45786032",
+  "query_summary": "The bug is accidental list-bracketing: using [s[i]+s[j]][::-1] reverses a one-element list (producing a list) instead of reversing the concatenated string, causing a type mismatch and the palindrome check to fail.",
+  "oracle_summary": "The bug is accidental list-bracketing: using [s[i]+s[j]][::-1] reverses a one-element list (producing a list) instead of reversing the concatenated string, causing a type mismatch and the palindrome check to fail.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the inner loop's range for `j` does not include the last character of the substring, causing it to miss checking palindromic substrings of length greater than 1.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s=list(input())\n ans=0\n for i in range(len(s)):\n-    for j in range(i+1,len(s)):\n+    for j in range(i+1,len(s)+1):\n         if s[i:j]==list(reversed(s[i:j])):\n             ans=max(j-i,ans)\n print(ans)"
+    },
+    {
+      "summary": "The buggy code constructs the string `t` incorrectly when `k` is equal to or greater than `n`, leading to an unintended combination of characters from the original string and its reverse.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if k < n:\n         t = s_inv[:k]\n     else:\n-        t = s_inv + s_inv[-(k-n):]\n+        t = s_inv[:k-n] + s_inv\n     return \"Yes\" if all(is_palindrome(x) for x in [s+t, t+s]) else \"No\"\n \n t = int(input())\n@@ -16,3 +16,4 @@\n     s = input()\n     print(solve(n, k, s))\n     \n+    "
+    },
+    {
+      "summary": "The buggy code incorrectly references `S[i-k]` instead of `S[~(i-k)]` when constructing the string `T`, leading to incorrect character indexing and potentially wrong results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n   n,k = map(int,input().split())\n   S = input()\n   k %= 2*n\n-  T = \"\".join(S[~i] if i < n else S[i-k] for i in range(k))\n+  T = \"\".join(S[~i] if i < n else S[~(i-k)] for i in range(k))\n   if S+T == (S+T)[::-1] and T+S == (T+S)[::-1]:\n     print(\"Yes\")\n   else:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `s[j]!=\"?\"!=t[j]` instead of `s[j]!=\"?\" and s[j]!=t[j]` when comparing characters, which leads to incorrect results when checking for mismatches.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         ng.add(i)\n print(\"Yes\" if len(ng)==0 else \"No\")\n for j in range(n):\n-    if t[j]!=\"?\" and s[j]!=t[j]:\n+    if s[j]!=t[j] and s[j]!=\"?\"!=t[j]:\n         ng.add(j)\n     else:\n         ng.discard(j)"
+    },
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

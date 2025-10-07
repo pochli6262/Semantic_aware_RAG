@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used range(63) which iterates indices 0..62 and therefore omits A_63 (the most significant bit). I changed the loop bound to range(64) so indices 0..63 are processed and the full 64-bit sum is computed. This is an off-by-one fix similar in spirit to the loop-bound corrections seen in the retrieved diffs.",
+  "fixed_code": "import sys\ninput = lambda: sys.stdin.readline().strip()\n\na = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n    if a[i] == 0:\n        continue\n    else:\n        ans += (2 ** i)\nprint(ans)"
+}

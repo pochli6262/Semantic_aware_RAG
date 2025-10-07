@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue in the buggy program is that it checks if 'I[i][0] >= I[j][0]', but 'I[i][0] > I[j][0]' should have been used to ensure we are comparing strictly greater values. The logic is meant to check if the first element of list I (which likely represents some priority or value) of the ith index is greater than that of the jth index without allowing equality to falsely trigger a 'Yes'. Changing this single line fixed the comparison error.",
+  "fixed_code": "N, M = map(int, input().split())\nI = [list(map(int, input().split())) for _ in range(N)]\n\nfor i in range(N):\n    for j in range(N):\n        if i == j:\n            continue\n        if I[i][0] > I[j][0]:\n            fj = set(I[j][2:])\n            fi = set(I[i][2:])\n            if len((fj | fi)) == len(fj):\n                if I[i][0] > I[j][0] or len((fj | fi)) - len(fj) > 0:\n                    print('Yes')\n                    exit()\nprint('No')"
+}

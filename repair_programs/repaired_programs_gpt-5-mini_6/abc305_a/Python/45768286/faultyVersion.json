@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line print(abs(5-int(input())%5)) computed a distance (and even the wrong distance) instead of the position of the nearest 5-km water station; it also produces incorrect output when N is itself a multiple of 5. I replaced it with an expression that rounds N to the nearest multiple of 5: add 2 then integer-divide by 5 and multiply back by 5. This implements nearest-rounding for integers (inspired by typical fixes to rounding/division logic seen in the diffs).",
+  "fixed_code": "print((int(input()) + 2) // 5 * 5)"
+}

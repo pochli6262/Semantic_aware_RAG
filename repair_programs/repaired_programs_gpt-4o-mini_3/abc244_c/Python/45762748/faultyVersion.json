@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the loop that collects the user input, specifically the line: 'bad.add(int(input()))'. This line adds a new input to the 'bad' set without checking for duplicates. This may result in breaking the loop early or adding unwanted values. Instead, we should continue to check for valid numbers that haven't been added yet. I have replaced 'bad.add(int(input()))' with 'bad.add(i)' to add the current number being checked instead of a new input.",
+  "fixed_code": "N=int(input())\nbad=set()\nfor _ in range(N+1):\n    for i in range(1,N+1):\n        if i not in bad:\n            bad.add(i)\n            print(i)\n            bad.add(i)\n            break\n"
+}

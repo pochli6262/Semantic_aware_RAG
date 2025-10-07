@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the program is in the line where the variable 'B' is being used to calculate 'answer'. The division 'C / (B - A)' will result in an inaccurate outcome if 'B' equals 'A' since that would lead to division by zero. So, I changed the line to ensure we correctly calculate the value when we need to divide by the difference between 'B' and 'A'. The correction maintains the logic intended by the original code.",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X < A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A)\n  print('{:.03f}'.format(answer))"
+}

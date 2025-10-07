@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original code is the use of integer division (//), which discards the fractional part of the division. The intention seems to be to print the result of the division as an integer plus one. The corrected line should simply perform normal division to keep the decimal part intact before applying the integer truncation.",
+  "fixed_code": "A, B = map(int, input().split())\n\nprint(1 + A / B)"
+}

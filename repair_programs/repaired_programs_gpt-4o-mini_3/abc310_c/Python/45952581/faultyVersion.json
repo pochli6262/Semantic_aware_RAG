@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program is that when adding the reversed string to the set 'Z', it should be checking if the reversed string is already in the set 'Z' too, to ensure we count pairs of palindromic strings correctly. The line 'Z.add(S[::-1])' is correct but the check 'if S in Z' should also check against reversed strings. Thus, we only need to modify the line where we check for the existence of 'S' in 'Z'.",
+  "fixed_code": "N = int(input())\n\nZ = set()\n\ncount = 0\nfor i in range(N):\n    S = input()\n    if S in Z or S[::-1] in Z:\n        count += 1\n    Z.add(S)\n    Z.add(S[::-1])\n\nprint(count)"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc246_a/Python/45745121",
+  "query_summary": "The bug likely lies in the print statement, which outputs a list instead of the required coordinates as space-separated values.",
+  "oracle_summary": "It prints the list object (e.g., “[x, y]”) instead of outputting the two coordinates as space-separated integers, producing the wrong output format.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it prints the result list as a single object instead of unpacking the individual elements, resulting in the output being displayed as a list rather than a space-separated string.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     result.append(i)\n for i in range(r + 1, n + 1):\n     result.append(i)\n-print(result)\n+print(*result)"
+    },
+    {
+      "summary": "The buggy code fails to output the even numbers in a space-separated format, instead printing them as a list.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n for i in range(n):\n   if a[i] % 2 ==0:\n     x.append(a[i])\n-print(x)\n+print(*x,sep = ' ')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the conditions for printing \"Yes\", as it only checks for specific differences in coordinates, missing additional valid cases that should be accounted for.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x1,y1,x2,y2 = map(int,input().split())\n-if (abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3) :\n+if ((abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3)) or ((abs(x1-x2)==2 and abs(y1-y2)==4) or (abs(x1-x2)==4 and abs(y1-y2)==2)) or  ((abs(x1-x2)==0 and (abs(y1-y2)==2 or abs(y1-y2)==4)) or  ((abs(x1-x2)==2 or abs(x1-x2)==4) and abs(y1-y2)==0)):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the final output set before printing, which may lead to the results being displayed in an unsorted manner.",
+      "diff": "--- \n+++ \n@@ -29,4 +29,4 @@\n     j += 1\n     ans.add(-total[i][1])\n \n-print(*ans, sep='\\n')\n+print(*sorted(ans), sep='\\n')"
+    },
+    {
+      "summary": "The buggy code fails to format the output as a space-separated string of numbers instead of a default list representation.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n L-=1\n \n A[L:R] = A[L:R][::-1]\n-print(A)\n+print(\" \".join(map(str, A)))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

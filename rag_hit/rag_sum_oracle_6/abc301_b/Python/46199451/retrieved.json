@@ -1,0 +1,32 @@
+{
+  "task": "abc301_b/Python/46199451",
+  "query_summary": "The program prints the Python list object (with brackets and commas) instead of outputting the sequence of numbers space-separated, because it uses print(ans_list) instead of print(*ans_list).",
+  "oracle_summary": "The program prints the Python list object (with brackets and commas) instead of outputting the sequence of numbers space-separated, because it uses print(ans_list) instead of print(*ans_list).",
+  "retrieved": [
+    {
+      "summary": "The buggy code contains a print statement inside the loop, which causes it to output the intermediate state of the `ans` list after each iteration instead of only the final length after all operations are complete.",
+      "diff": "--- \n+++ \n@@ -14,5 +14,5 @@\n         bai = ans.pop() + 1\n         ans.pop()\n         ans.append(bai)\n-    print(ans)\n+    # print(ans)\n print(len(ans))"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop for printing the pairs incorrectly uses `for i in range(len(ans)//2)`, which assumes every two elements are a valid pair, rather than `for i in range(0,len(ans),2)` that correctly iterates through the list in steps of two.",
+      "diff": "--- \n+++ \n@@ -20,5 +20,5 @@\n             break    \n     ans.append(tmp)\n \n-for i in range(len(ans)//2):\n+for i in range(0,len(ans),2):\n     print(ans[i],ans[i+1])"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints the elements of the `ans` list as separate values instead of concatenating them into a single string, resulting in an incorrect output format.",
+      "diff": "--- \n+++ \n@@ -12,4 +12,4 @@\n   pre = S[i]\n \n print(len(ans))\n-print(*ans)\n+print(''.join(ans))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the result list as a single object instead of unpacking the individual elements, resulting in the output being displayed as a list rather than a space-separated string.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     result.append(i)\n for i in range(r + 1, n + 1):\n     result.append(i)\n-print(result)\n+print(*result)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the list `acc` directly, which results in a list being displayed in brackets, instead of printing the elements separated by spaces as intended in the correct code.",
+      "diff": "--- \n+++ \n@@ -8,4 +8,4 @@\n     acc.append(last)\n     last = adict[last]\n acc.reverse()\n-print(acc)\n+print(*acc)"
+    }
+  ],
+  "useful_diffs_indices": [
+    4,
+    5
+  ],
+  "useful_diffs_count": 2
+}

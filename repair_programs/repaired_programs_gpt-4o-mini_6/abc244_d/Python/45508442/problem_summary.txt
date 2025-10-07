@@ -1,0 +1,1 @@
+The bug likely occurs because the program incorrectly checks for an overlap of hat permutations instead of evaluating whether one can transform the initial hat configuration S into the target configuration T through allowed operations.

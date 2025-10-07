@@ -1,0 +1,1 @@
+The code unconditionally adds 1 to A // B, causing an off-by-one error when A is divisible by B instead of computing the ceiling of A/B.

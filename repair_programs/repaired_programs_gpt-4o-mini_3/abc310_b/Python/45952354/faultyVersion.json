@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the nested loop for checking `F[j] >= F[i]` is incorrect. It should be checking `F[i] >= F[j]` instead. This ensures that we are comparing the freshness levels correctly as intended by the logic of the program.",
+  "fixed_code": "N, M = map(int, input().split())\nP = [None] * N\nC = [None] * N\nF = [None] * N\nfor i in range(N):\n    tmp = list(map(int, input().split()))\n    P[i], C[i], F[i] = tmp[0], tmp[1], set(tmp[2:])\n\nflag = False\nfor i in range(N):\n    for j in range(N):\n        if P[i] >= P[i] and F[i] >= F[j] and (P[i] > P[j] or (F[i] - F[j])): \n            flag = True\n            break\n    if flag:\n        break\n\nif flag:\n    print('Yes')\nelse:\n    print('No')"
+}

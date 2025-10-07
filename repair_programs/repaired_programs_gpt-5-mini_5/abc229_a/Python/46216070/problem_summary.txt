@@ -1,0 +1,1 @@
+The if condition is wrong: it uses "or ['.#','#.']" without repeating the comparison, so the second list is truthy and the condition always evaluates True, making the program always print "No".

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition used to check for a Full house was incorrect. It should ensure that there are exactly three cards of one kind and exactly two cards of another kind. The incorrect logical condition led to false positives for non-Full house sets. The fix is inspired by the need to correctly identify a combination of three identical cards and two identical cards, adjusting the logical checks accordingly.",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif (a[0]==a[1] and a[1]==a[2] and a[3]==a[4]) or (a[0]==a[1] and a[2]==a[3] and a[3]==a[4]):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

@@ -1,0 +1,1 @@
+The likely bug is that the program does not correctly handle cases where the black squares from sheets A and B overlap in the cut-out area, leading to incorrect results when checking if the cut-out matches sheet X.

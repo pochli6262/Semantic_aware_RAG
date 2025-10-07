@@ -1,0 +1,31 @@
+{
+  "task": "abc307_a/Python/45953883",
+  "query_summary": "The bug likely lies in the accumulation of steps for each week, resulting in incorrect totals being assigned to the `res` list.",
+  "oracle_summary": "The bug is simply using print(res) which prints the Python list representation instead of print(*res) to output the elements space-separated as required.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it accumulates results in the `ans` list across different iterations of the outer loop instead of resetting it for each row, leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = [list(map(int, input().split())) for _ in range(N)]\n-ans = []\n for i in range(N):\n+    ans = []\n     for j in range(N):\n         if A[i][j] == 1:\n             ans.append(j+1)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the difference between the cumulative sum and the current sum is greater than 4 instead of the correct value of 3.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n     cum_sum[i + 1] = cum_sum[i] + A[i]\n ans = 0\n for i in range(N):\n-    if 4 < cum_sum[N] - cum_sum[i]:\n+    if 3 < cum_sum[N] - cum_sum[i]:\n         ans += 1\n     else:\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `max` instead of `sum` to calculate the result over the specified range in the list `A`, leading to an incorrect output.",
+      "diff": "--- \n+++ \n@@ -7,5 +7,5 @@\n \n res = 0\n for i in range(0, 24) :\n-  res = max(res, max(A[9 + i : 19 + i]))\n+  res = max(res, sum(A[9 + i : 18 + i]))\n print(res)"
+    },
+    {
+      "summary": "The buggy code incorrectly records the values of the indices that are being swapped instead of recording their original 1-based values, resulting in incorrect output.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     else:\n         j = A[i] - 1\n         num += 1\n-        ans.append([A[j], A[i]])\n+        ans.append([i + 1, j + 1])\n         A[i], A[j] = A[j], A[i]\n \n print(num)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the contribution of gaps between indices by using `(len(tmp)-j)` instead of the correct factor of `((j+1)*(len(tmp)-j))`.",
+      "diff": "--- \n+++ \n@@ -9,5 +9,5 @@\n     for j in range(len(i)-1):\n         tmp.append(i[j+1]-i[j]-1)\n     for j in range(len(tmp)):\n-        ans += tmp[j]*(len(tmp)-j)    \n+        ans += tmp[j]*((j+1)*(len(tmp)-j))    \n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

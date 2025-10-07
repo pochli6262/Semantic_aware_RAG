@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line mistakenly initializes the set of missing digits to only include numbers from 1 to 9 instead of the full range of digits from 0 to 9. This caused the program to miss the possibility of the digit '0' being the missing one. I fixed it by changing the line to initialize the set with range(0, 10). This change was inspired by the bugs identified in the problem summary and the need for a complete range of digits.",
+  "fixed_code": "S = input()\nnum = set([i for i in range(0, 10)])\n\nfor s in S:\n    num.discard(int(s))\n\nprint(*num)"
+}

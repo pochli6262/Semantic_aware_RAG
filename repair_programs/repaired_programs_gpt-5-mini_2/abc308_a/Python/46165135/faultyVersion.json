@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the second loop relied on implicit truthiness (S[i] % 25) and a potentially unclear use of 'not' with chained comparisons. This can be ambiguous and error-prone. I made the check explicit: test divisibility with 'S[i] % 25 != 0' and parenthesized the range test 'not (100 <= S[i] <= 675)'. This preserves the original intent (reject values that are not multiples of 25 or outside the range) while avoiding precedence/clarity issues.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nres = 'Yes'\n\nfor i in range(len(S) - 1):\n    if S[i] >= S[i + 1]:\n        res = 'No'\n        break\n      \nfor i in range(len(S)):\n    if S[i] % 25 != 0 or not (100 <= S[i] <= 675):\n        res = 'No'\n        break\n      \nprint(res)"
+}

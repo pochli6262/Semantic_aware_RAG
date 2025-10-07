@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only checked for connectivity between black squares in the first and second columns but ignored potential connections in the same row. I modified the condition to also consider cases where both black squares are in the same row. This was inspired by the need for comprehensive connectivity checks as implied by the problem statement and similar diff patterns indicating logic adjustments for comprehensive checks.",
+  "fixed_code": "s1=input()\ns2=input()\n\nif (s1[0]=='#' and s1[1]=='#') or (s2[0]=='#' and s2[1]=='#') or (s1[0]=='#' and s2[0]=='#') or (s1[1]=='#' and s2[1]=='#'):\n    print('Yes')\nelse:\n    print('No')"
+}

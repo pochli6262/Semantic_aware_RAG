@@ -1,0 +1,29 @@
+{
+  "task": "abc302_c/Python/45989052",
+  "query_summary": "The program incorrectly handles the case where the permutation check for adjacent strings does not reset the `ok` flag after finding a mismatch, thereby potentially missing valid sequences.",
+  "oracle_summary": "The code uses break instead of terminating the program (exit/return) after printing \"Yes\", so execution continues and the final \"No\" is printed anyway.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code fails to check if the character sequences from strings S and T are the same at corresponding positions, which can lead to incorrect results when determining if S can be transformed into T based on their character counts.",
+      "diff": "--- \n+++ \n@@ -30,6 +30,8 @@\n             tf = False\n         if S_count[i][1] == 1 and T_count[i][1] >= 2:\n             tf = False\n+        if S_count[i][0] != T_count[i][0]:\n+            tf = False\n \n if tf:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from `0` to `n-m` instead of `0` to `n-m+1`, potentially missing the last valid substring comparison.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n elif n == m:\n     print('Yes' if a == b else 'No')\n else:\n-    for i in range(n-m):\n+    for i in range(n-m+1):\n         t = a[i:i+m]\n         if t == b:\n             print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only through the first N-1 elements of the sorted union of sets A and B, potentially missing valid pairs that span both sets when the total number of elements is N + M.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n A = set(map(int, input().split()))\n B = set(map(int, input().split()))\n C = sorted(list(A | B))\n-for i in range(N - 1):\n+for i in range(N + M - 1):\n   if C[i] in A and C[i + 1] in A:\n     print('Yes')\n     exit()"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks if the first characters of the segments `l[o]` and `m[o]` are the same, instead of explicitly comparing them, leading to potential incorrect comparisons in the condition that verifies if elements of `l` can be transformed into corresponding elements of `m`.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n for o in range(len(l)):\n   if l[o]==m[o]:\n     continue\n-  elif list(l[o])<list(m[o]) and len(l[o])>=2:\n+  elif l[o][0]==m[o][0] and l[o]<m[o] and len(l[o])>=2:\n     continue\n   else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

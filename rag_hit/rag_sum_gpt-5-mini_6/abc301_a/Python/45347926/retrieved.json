@@ -1,0 +1,32 @@
+{
+  "task": "abc301_a/Python/45347926",
+  "query_summary": "The code never stops when a player first reaches N/2, so both t_win and a_win can become True (e.g., with \"AT\") and it may print both \"T\" and \"A\".",
+  "oracle_summary": "The bug is that the loop doesn't break when a team first reaches N/2, so counting continues and can overwrite or miscompute the early-win condition.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints 'No' instead of 'Lose' when the winning conditions are not met.",
+      "diff": "--- \n+++ \n@@ -11,4 +11,4 @@\n if N%2==1:\n   print('Win')\n else:\n-  print('No')\n+  print('Lose')"
+    },
+    {
+      "summary": "The problem with the buggy code is that it incorrectly outputs 1 when `s` equals both the beginning and the end of `t`, instead of outputting 0, as it fails to check both conditions simultaneously in the first if statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = input()\n t = input()\n \n-if s == t:\n+if s == t[:n] and s == t[-n:]:\n     print(0)\n elif s == t[:n]:\n     print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the condition for printing the result when there is exactly one pair of \"1\"s (`w2==1`) but no other groups of \"1\"s (`no_w2==0`), leading to erroneous outputs in such cases.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n     print(3)\n   elif len(L)==0:\n     print(0)\n-  elif w2==1:\n+  elif w2==1 and no_w2==0:\n     print(num_1//2+1)\n   else:\n     print(num_1//2)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `tate` in the `else` block by using `N // 2 - A` instead of the correct formula `N - N // 2 - A`.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n     else:\n         yoko = N - A\n         A -= N // 2\n-        tate = N // 2 - A\n+        tate = N - N//2 - A\n         if tate*yoko >= B:\n             print(\"Yes\")\n         else:"
+    },
+    {
+      "summary": "The issue in the buggy code lies in the order of conditions used to set the flags `before_A` and `last_B`, which should check for characters in strings `t` and `s` respectively, causing incorrect logic when determining conditions for outputting `-1`.",
+      "diff": "--- \n+++ \n@@ -34,7 +34,7 @@\n     if s[i] == \"A\" and t[i] == \"B\" and before_A is False:\n         print(-1)\n         exit()\n-    if s[i] == \"A\":\n+    if t[i] == \"A\":\n         before_A = True\n     if s[i] == \"B\" and t[i] == \"A\":\n         last_B = True"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

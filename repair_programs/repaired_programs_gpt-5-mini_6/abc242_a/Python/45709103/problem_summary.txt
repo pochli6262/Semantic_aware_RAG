@@ -1,0 +1,1 @@
+The condition for the random-selection range uses "x > a+1" instead of "x > a" (or "x >= a+1"), so a participant ranked A+1 is incorrectly treated as guaranteed a T‑shirt instead of having probability C/(B−A).

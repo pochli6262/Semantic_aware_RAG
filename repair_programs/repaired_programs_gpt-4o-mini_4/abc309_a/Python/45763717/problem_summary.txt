@@ -1,0 +1,1 @@
+The bug likely arises from incorrectly checking for adjacency using the sets, which does not account for the actual horizontal adjacency of numbers on the board.

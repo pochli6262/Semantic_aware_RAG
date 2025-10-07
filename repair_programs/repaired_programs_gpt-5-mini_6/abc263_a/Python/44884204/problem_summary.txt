@@ -1,0 +1,1 @@
+The code only checks the case where the three-of-a-kind appears in the first three sorted cards and therefore fails to detect the valid full house when the last three cards (positions 2–4) form the three-of-a-kind.

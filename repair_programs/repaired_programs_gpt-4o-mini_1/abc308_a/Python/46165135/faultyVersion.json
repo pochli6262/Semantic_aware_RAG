@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the second loop is incorrect. Specifically, the check 'if S[i] % 25 or not 100 <= S[i] <= 675:' should correctly check if S[i] is not a multiple of 25 or if it is not within the range 100 to 675. The logic should be reversed to use 'and' instead of 'or'. I corrected it to 'if S[i] % 25 != 0 or not (100 <= S[i] <= 675):'.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nres = 'Yes'\n\nfor i in range(len(S) - 1):\n    if S[i] >= S[i + 1]:\n        res = 'No'\n        break\n      \nfor i in range(len(S)):\n    if S[i] % 25 != 0 or not (100 <= S[i] <= 675):\n        res = 'No'\n        break\n      \nprint(res)"
+}

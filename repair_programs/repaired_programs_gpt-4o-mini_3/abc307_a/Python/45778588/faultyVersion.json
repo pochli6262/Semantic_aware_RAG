@@ -1,0 +1,4 @@
+{
+  "explanation": "The problem originates from using `int(N/7)` in the loop's range. This results in flooring the division instead of performing an integer division. It needs to be replaced with `N // 7` to ensure that the loop iterates the correct number of times based on how many complete groups of 7 are present in the list.",
+  "fixed_code": "N = int(input())\nl = list(map(int,input().split()))\nlis = []\nd = []\nb = 0\nfor j in range(N // 7):\n  for k in l[7*b:7*(b+1)]:\n      lis.append(k)\n  d.append(sum(lis))\n  lis.clear()\n  b += 1\nprint(*d)"
+}

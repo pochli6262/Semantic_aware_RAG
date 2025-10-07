@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition only checked that there are exactly two distinct values (len(set(x)) == 2). That allows distributions like [1,1,1,2] (counts 3 and 1), but many problems that use this pattern expect two distinct values each appearing the same number of times (e.g., two pairs). I fixed the single line by requiring that, in addition to having exactly two distinct values, each distinct value appears exactly twice: all(x.count(v) == 2 for v in set(x)).",
+  "fixed_code": "x=list(map(int,input().split()))\nif len(set(x))==2 and all(x.count(v)==2 for v in set(x)):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

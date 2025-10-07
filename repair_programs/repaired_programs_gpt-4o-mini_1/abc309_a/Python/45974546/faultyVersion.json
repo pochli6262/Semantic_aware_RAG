@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition where we check if the input matches an edge in the graph G. The original code checked for both elements in the tuple (R[0] == g[0] and R[1] == g[1]), which means it would only return 'Yes' if the input exactly matched a tuple in the same order. However, since edges can be bidirectional, we should also check for the reverse condition (R[0] == g[1] and R[1] == g[0]). I fixed this by modifying the conditional statement to include this second case.",
+  "fixed_code": "G = [[1, 2], [2, 3], [4, 5], [5, 6], [7, 8], [8, 9], [1, 4], [4, 7], [2, 5], [5, 8], [3, 6], [6, 9]]\n\nR = list(map(int, input().split()))\n\nflag = False\nfor g in G:\n    if (R[0] == g[0] and R[1] == g[1]) or (R[0] == g[1] and R[1] == g[0]):\n        flag = True\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

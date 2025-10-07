@@ -1,0 +1,1 @@
+The inverse-rotation check is wrong: it uses "c > 11" instead of verifying c has multiple digits and that the rotated predecessor wouldn't end in 0, so valid rotations (e.g. c == 11) are incorrectly skipped.

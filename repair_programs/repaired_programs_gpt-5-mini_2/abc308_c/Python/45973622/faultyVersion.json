@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the line that builds the sorting key: it used the single-slash division operator (/) after multiplying by 10**100, which produces a floating-point result. That can cause precision errors or inconsistent ordering for very large numbers. Changing to integer division (//) keeps the scaled ratio as an exact integer, ensuring correct and stable comparisons.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append(((A*10**100)//(A+B), -i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(-j+1, end=' ')\nprint()"
+}

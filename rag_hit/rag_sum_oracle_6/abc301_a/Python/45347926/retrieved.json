@@ -1,0 +1,33 @@
+{
+  "task": "abc301_a/Python/45347926",
+  "query_summary": "The bug is that the loop doesn't break when a team first reaches N/2, so counting continues and can overwrite or miscompute the early-win condition.",
+  "oracle_summary": "The bug is that the loop doesn't break when a team first reaches N/2, so counting continues and can overwrite or miscompute the early-win condition.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints 'No' instead of 'Lose' when the winning conditions are not met.",
+      "diff": "--- \n+++ \n@@ -11,4 +11,4 @@\n if N%2==1:\n   print('Win')\n else:\n-  print('No')\n+  print('Lose')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses \"j + nex >= N\" instead of \"j + nex > N\" which can lead to an out-of-bounds error when checking the substring.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n             nex = 1\n             while not b:\n                 nex += 1\n-                if j + nex >= N:\n+                if j + nex > N:\n                     break\n                 if S[0:j] < S[j:j + nex]:\n                     print(\"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the height `h` when `N` is odd and `A` is less than or equal to `N // 2 + 1`, resulting in the wrong condition for some test cases.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         else:\n             h = N - A\n     else:\n-        if A <= N // 2 + 1:\n+        if A <= N // 2:\n             h = N // 2 + 1\n         else:\n             h = N - A"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of N after each loop, which is unnecessary and leads to additional output before determining if N is equal to 1.",
+      "diff": "--- \n+++ \n@@ -2,8 +2,8 @@\n \n while N % 2 == 0:\n     N //= 2\n-print(N)\n+\n while N % 3 == 0:\n     N //= 3\n-print(N)\n+\n print(\"Yes\" if N == 1 else \"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `tate` in the `else` block by using `N // 2 - A` instead of the correct formula `N - N // 2 - A`.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n     else:\n         yoko = N - A\n         A -= N // 2\n-        tate = N // 2 - A\n+        tate = N - N//2 - A\n         if tate*yoko >= B:\n             print(\"Yes\")\n         else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

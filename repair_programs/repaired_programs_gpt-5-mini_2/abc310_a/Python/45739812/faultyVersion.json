@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the walrus assignment line: it uses P - Q + d but should subtract d as well. Using + d produces the wrong value; I changed the + to - so p is computed as P - Q - d, which matches the intended subtraction of both Q and d from P.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nres = P\n\nfor d in D:\n    if (p := P - Q - d) < res:\n        res = p\n\nprint(res)\n"
+}

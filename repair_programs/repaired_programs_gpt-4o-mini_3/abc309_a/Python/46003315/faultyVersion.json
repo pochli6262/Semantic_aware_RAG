@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program is in the condition used to determine if the answer should be 'Yes' or 'No'. The condition checks if 'ax == ay' and 'by - ay == 1', which does not correctly verify if the numbers A and B are in a valid consecutive vertical arrangement. The correct comparison should ensure both positions are in the same column, and the row indices must differ by exactly 1. Therefore, the line was changed to check if 'by - ay == 1 or ay - by == 1' instead.",
+  "fixed_code": "import sys\nimport string\nimport numpy as np\nfrom collections import defaultdict, deque\nfrom math import dist\nimport itertools\nimport operator\n\nINF = -1000000000000000000\n\nA, B = map(int, input().split())\nax = (A - 1) // 3\nay = (A - 1) % 3\nbx = (B - 1) // 3\nby = (B - 1) % 3\n\nprint(\"Yes\" if ax == bx and (by - ay == 1 or ay - by == 1) else \"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line contains a logical error in the condition. The condition (Pi > Pj or Fi < Fj) should test the relationship between the two products and their feature sets correctly. The correct condition should ensure that if product i is not less than product j, the features of product i are a proper subset of product j. I corrected it to ensure that Fi < Fj is used as intended to indicate that Fi is a proper subset of Fj.",
+  "fixed_code": "N, M = map(int, input().split())\nproduct = [list(map(int, input().split())) for _ in range(N)]\nproduct.sort(reverse=True)\nanswer = False\n\nfor i in range(N):\n    for j in range(i+1, N):\n        Pi = product[i][0]\n        Pj = product[j][0]\n        Fi = set(product[i][2:])\n        Fj = set(product[j][2:])\n        if Fi <= Fj and (Pi > Pj or Fi < Fj):\n            answer = True\n            \nprint(\"Yes\" if answer else \"No\")"
+}

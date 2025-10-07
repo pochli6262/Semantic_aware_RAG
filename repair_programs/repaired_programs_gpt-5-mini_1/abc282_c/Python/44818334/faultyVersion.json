@@ -1,0 +1,4 @@
+{
+  "explanation": "The parity check was reversed. The original line replaced commas when there had been an odd number of quotes seen (cnt%2==1). The intended behavior is to replace commas when they are outside quoted sections (i.e. when the count of quotes seen so far is even). I fixed that single line by changing the parity check from cnt%2==1 to cnt%2==0.",
+  "fixed_code": "n=int(input())\ns=input()\ns=list(s)\ncnt=0\nfor i in range(n):\n    if s[i]=='\"':\n        cnt+=1\n    if s[i]==\",\":\n        if cnt%2==0:\n            s[i]=\".\"\nans=\"\"\nfor i in range(n):\n    ans+=s[i]\nprint(ans)"
+}

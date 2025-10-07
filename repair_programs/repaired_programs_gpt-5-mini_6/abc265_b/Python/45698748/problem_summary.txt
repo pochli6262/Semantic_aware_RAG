@@ -1,0 +1,1 @@
+The final check uses "t < 0" so the program incorrectly accepts cases where t == 0 (but a move that makes time 0 should be treated as failure).

@@ -1,0 +1,1 @@
+The inner loop overwrites dp[i+1][j] on each k iteration (using dp[i][j] or dp[i][j - k*a[i]]) instead of OR-ing with its current value, so a True previously set for some k can be lost.

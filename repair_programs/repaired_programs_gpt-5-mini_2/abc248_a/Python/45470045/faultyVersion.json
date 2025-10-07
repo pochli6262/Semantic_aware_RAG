@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop started at 1 (for i in range(1, 10)) so the digit 0 was never checked. That means if 0 was the missing digit the program would never print it. I fixed the range to include 0 by using range(10), which iterates i from 0 through 9.",
+  "fixed_code": "s = input()\n\nA = [int(x) for x in s]\n\nfor i in range(10):\n    if i not in A:\n        print(i)\n        exit()\n"
+}

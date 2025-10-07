@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was the win-threshold expression N/2+1: using floating division (and adding 1) made the early-stop condition wrong (it failed for odd N). I replaced the threshold with integer arithmetic N//2 + 1 so the program correctly detects when a player has an insurmountable majority (this is the one logical fix inspired by the analysis of the threshold; it corresponds to changing the incorrect N/2+1 usage to integer division +1).",
+  "fixed_code": "N = int(input())\nS = list(input())\nT=0\nA=0\nfor i in range(N):\n   if(i == N-1):\n       if(N % 2 == 0):\n           if(T>A):print('T')\n           else:print('A')\n       else:\n            print(S[i])\n   if(S[i] == 'T'):T+=1\n   elif(S[i] == 'A'):A+=1\n   print(f'A:{A},T:{T}')\n   if(A>=(N//2+1)):\n        print('A')\n        break\n   elif(T>=(N//2+1)):\n        print('T')\n        break"
+}

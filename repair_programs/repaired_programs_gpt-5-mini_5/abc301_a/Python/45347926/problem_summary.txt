@@ -1,0 +1,1 @@
+When N is even the loop can set both t_win and a_win so the program may print both "T" and "A" because it doesn't correctly record which player reached N/2 first.

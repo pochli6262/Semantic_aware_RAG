@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code skipped checking diagonal cells (the line 'if i == j: continue'), but the problem requires every diagonal element a[i][i] to be 'D'. By skipping them the program could accept matrices with incorrect diagonal entries. I fixed that single line so that when i == j it now checks whether a[i][j] != 'D' and, if so, sets ans to \"incorrect\"; otherwise it continues. This preserves the single-line change requirement and leaves all other lines identical.",
+  "fixed_code": "n = int(input())\na = [list(input()) for _ in range(n)]\nb = []\nfor i in range(n):\n  tmp = []\n  for j in range(n):\n    tmp.append(a[j][i])\n  b.append(tmp)\nans = \"correct\"\nfor i in range(n):\n  for j in range(n):\n    if i == j: a[i][j] != 'D' and (ans := \"incorrect\"); continue\n    if a[i][j] == b[i][j] == 'D':\n      continue\n    if a[i][j] == b[i][j]:\n      ans = \"incorrect\"\n      break\nprint(ans)"
+}

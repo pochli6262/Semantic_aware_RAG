@@ -1,0 +1,29 @@
+{
+  "task": "abc263_a/Python/45986379",
+  "query_summary": "The condition uses K[2] != K[3], which only detects the case where the three-of-a-kind comes before the pair and fails when the three-of-a-kind is the last three cards.",
+  "oracle_summary": "It only checks K[2] != K[3] when there are two distinct values, missing the symmetric boundary K[1] != K[2], so it wrongly rejects valid cases like [a, a, b, b].",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the string `K` as \"ABCDEABCDE\" instead of \"ABCDEAEDCBA\", which affects the logic determining if both `S` and `T` are present in `K`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-K = \"ABCDEABCDE\"\n+K = \"ABCDEAEDCBA\"\n S = input()\n T = input()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output as \"Yes\" if K is non-negative, without checking if K is also even, which is necessary for the correct condition.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     while N > 0:\n         K -= N % 3\n         N //= 3\n-    if K >=0:\n+    if K >= 0 and K % 2 == 0:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if the sum of the list `A` is greater than or equal to zero instead of checking if it is greater than or equal to `K` in the second conditional statement.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n         print(\"Yes\")\n         A.sort()\n         print(*A)\n-    elif sum(A)>=0:\n+    elif sum(A)>=K:\n         print(\"Yes\")\n         A.sort(reverse=True)\n         print(*A)"
+    },
+    {
+      "summary": "The buggy code does not account for the additional condition that both B and C must be non-zero while A and D are greater than zero, leading to incorrect output in certain cases.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,7 @@\n N, A, B, C, D = map(int, input().split())\n if abs(B - C) > 1:\n     print(\"No\")\n+elif B == 0 and C == 0 and A > 0 and D > 0:\n+    print(\"No\")\n else:\n     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The variable 'black' is being defined outside the 'solve()' function and is not passed to it as a parameter. To fix this issue, we should pass the 'black' variable to the 'solve()' function instead of using it as a global variable. This is the single line I changed: I added 'black' as a parameter to the 'solve' function.",
+  "fixed_code": "def solve(black: int) -> None:\n    if black >= 3:\n        print(\"Yes\")\n        return\n\n    if (s1[0] == \"#\" and s2[1] == \"#\") or (s1[1] == \"#\" and s2[0] == \"#\"):\n        print(\"No\")\n    return\n\n\ns1 = input()\ns2 = input()\n\nblack = s1.count(\"#\")\nblack += s2.count(\"#\")\n\nsolve(black)"
+}

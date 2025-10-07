@@ -1,0 +1,4 @@
+{
+  "explanation": "When X is between A and B inclusive, the probability should be C divided by the count of integers in [A, B], which is (B - A + 1). The original code used (B - A) which omitted the inclusive endpoint, producing an incorrect denominator. I fixed that single line to use (B - A + 1).",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X < A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A + 1)\n  print(answer)\n"
+}

@@ -1,0 +1,1 @@
+The program only checks whether exactly two positions match (printing "Yes" for all other cases) and therefore fails to implement the correct permutation-parity logic required for 10^18 swaps.

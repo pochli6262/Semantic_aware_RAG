@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly constructs the `rotate_list` by including the first row twice, leading to an improper shift of the outer squares.

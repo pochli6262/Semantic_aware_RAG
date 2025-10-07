@@ -1,0 +1,1 @@
+The likely bug is that the second loop incorrectly checks the condition for the last element of the list using the index from the first loop instead of the current index of the second loop.

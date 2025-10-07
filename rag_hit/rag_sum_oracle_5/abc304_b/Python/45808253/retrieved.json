@@ -1,0 +1,29 @@
+{
+  "task": "abc304_b/Python/45808253",
+  "query_summary": "The bug is a typo in the 5-digit case that sets l[1] = 1 instead of l[1] = 0, so the second-most-significant digit isn't zeroed out.",
+  "oracle_summary": "The bug is a typo in the 5-digit case that sets l[1] = 1 instead of l[1] = 0, so the second-most-significant digit isn't zeroed out.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that the condition `N==4` in the first `if` statement should be replaced with `N<=4` to correctly handle the case when `N` is equal to or less than 4.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N=int(input())\n-if N%3==2 or N==4:\n+if N%3==2 or N<=4 :\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the variable `l`, which can introduce discrepancies in the resulting output when it should only construct and print the formatted answer based on `l`.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n     l += 1\n     l %= 1000000\n     n -= 1\n-print(l)\n+#print(l)\n ans = [\"\" for i in range(9)]\n l_s = list(str(l))\n ans[0] = l_s[0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly outputs the final result with 'print(l)' instead of 'print('!', l)' as required to indicate the final answer.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n \ta = input()\n \tif a=='0': l = m\n \telse     : r = m\n-print(l)\n+print('!', l)"
+    },
+    {
+      "summary": "The buggy code has the output order of the final print statements reversed, causing it to print the index `i` before the resulting string `S`, instead of printing the string followed by the index.",
+      "diff": "--- \n+++ \n@@ -52,5 +52,5 @@\n for x in range(i+N,2*N):\n   ans.append(T[x])\n S = ''.join(ans)\n+print(S)\n print(i)\n-print(S)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly formats the output string for numbers between 10 and 41 by using \"AGC00\" instead of \"AGC0\".",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n elif int(N) <10:\n     print(\"AGC00\"+ N)\n else:\n-    print(\"AGC00\"+ N)\n+    print(\"AGC0\"+ N)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

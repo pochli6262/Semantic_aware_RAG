@@ -1,0 +1,29 @@
+{
+  "task": "abc282_e/Python/45514577",
+  "query_summary": "The buggy code sorts edges in ascending order and thus builds a minimum spanning tree, whereas it should sort in descending order (reverse=True) to build the maximum spanning tree and maximize the sum.",
+  "oracle_summary": "The buggy code sorts edges in ascending order and thus builds a minimum spanning tree, whereas it should sort in descending order (reverse=True) to build the maximum spanning tree and maximize the sum.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the result as long as there is at least one vertex in the topological sort, without checking if all vertices have been included; the correct code verifies that all vertices have been processed to ensure a valid topological ordering.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n         if in_edges[u] == 0:\n             heapq.heappush(H, u)\n \n-if ans:\n+if ans and len(ans) == N:\n     print(*ans)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code does not properly handle the condition for extracting elements from the priority queue (`box`) because it uses an `if` statement instead of a `while` loop, leading to incorrect accumulation of the `bsum` and `jsum` values.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     jsum+=i+1\n ans=INF\n for i in range(len(dp)):\n-    if box[0][0]<=i:\n+    while box[0][0]<=i:\n         _,j=heappop(box)\n         bsum+=B[j]\n         jsum-=j+1"
+    },
+    {
+      "summary": "The bug in the code is that the score of vertex `v` is incorrectly updated by subtracting the vertex index `u` instead of the value `A[u]`.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n     for v in G[u]:\n         cnt += A[v]\n         G[v].remove(u)\n-        score[v] -= u\n+        score[v] -= A[u]\n         heappush(Q, (score[v], v))\n     ans = max(ans, cnt)\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the value of `y` inside the loop that generates the `dir` list, which should use the absolute value of `M - i**2` to ensure `y` is non-negative.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n dir = []\n \n for i in range(M+1):\n-    x,y = i,int((M-i)**0.5)\n+    x,y = i,int(abs(M-i**2)**0.5)\n     if x**2 + y**2 == M:\n         dir.append([x,y])\n         dir.append([-x,y])\n@@ -24,7 +24,7 @@\n \n while len(Q):\n     a,b = Q.popleft()\n-    \n+\n     for aa,bb in dir:\n         nex1,nex2 = a+aa,b+bb\n         if 0 <= nex1 <= N-1 and 0 <= nex2 <= N-1:"
+    },
+    {
+      "summary": "The buggy code incorrectly formats the output by printing the node indices as they are (0-based) instead of converting them to 1-based format, which is corrected in the working code.",
+      "diff": "--- \n+++ \n@@ -52,4 +52,4 @@\n   ans = ans[:-1]\n \n print(len(ans))\n-print(' '.join(map(str, ans)))\n+print(' '.join(map(str, [a + 1 for a in ans])))"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,29 @@
+{
+  "task": "abc301_a/Python/45433034",
+  "query_summary": "The program emits debugging and extra output (like \"A:{A},T:{T}\") and also mishandles the final/tie case by printing the last character (S[i]) for odd N instead of correctly determining the winner.",
+  "oracle_summary": "A leftover debug print (print(f'A:{A},T:{T}')) inside the loop produces extraneous output and breaks the program's expected output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to print the last list in T when N is odd, resulting in incomplete output.",
+      "diff": "--- \n+++ \n@@ -10,3 +10,6 @@\n for s, t in zip(S,T):\n     print(*s)\n     print(*t)\n+\n+if N % 2 == 1:\n+    print(*T[-1])"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `0` when the string `T` matches `S` either at the start or the end, instead of only when it matches both, leading to incorrect output when `S` is found at both positions.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n T = input()\n \n \n-if T == S:\n+if T[:N] == S and T[-N:] == S:\n   print(0)\n elif T[:N] == S:\n   print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly appends characters from `S` to `ans` when they match, instead of appending \"0\", which leads to an invalid output.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n ans = []\n for s, t in zip(S, T):\n     if s == t:\n-        ans.append(s)\n+        ans.append(\"0\")\n     elif ds > 0 and s == \"1\":\n         ans.append(\"0\")\n         ds -= 1"
+    },
+    {
+      "summary": "The buggy code has an incorrect indexing issue where it should reference `S[N-i-1]` instead of `S[i]` when determining the value to append to the `ans` string.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(N):\n   if int(S[N-i-1]) != (cur // 2**i) % 2:\n     X = (1 << N) - (1 << i)\n-    if S[i] == '1':\n+    if S[N-i-1] == '1':\n       ans += 'A' * (N-i)\n       cur = cur ^ X\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `ans` list with values of \"0\" at matched indices instead of leaving them unchanged, which leads to incorrect output when characters at the same index in strings `s` and `t` are equal.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n miss=0\n for i in range(n):\n   if s[i]==t[i]:\n-    ans[i]=s[i]\n+    ans[i]=\"0\"\n     L[i]=True\n   else:\n     miss+=1"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

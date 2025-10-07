@@ -1,0 +1,4 @@
+{
+  "explanation": "The single incorrect line was the final print condition: it compared ax == ay (A's row to A's column) instead of comparing A's row to B's row. I changed ax == ay to ax == bx so the code checks that A and B are on the same row and that B's column is exactly one to the right of A. (This aligns with the simple check B-A == 1 used in related fixes for horizontal adjacency.)",
+  "fixed_code": "import sys\nimport string\nimport numpy as np\nfrom collections import defaultdict, deque\nfrom math import dist\nimport itertools\nimport operator\n\nINF = -1000000000000000000\n\nA, B = map(int, input().split())\nax = (A - 1) // 3\nay = (A - 1) % 3\nbx = (B - 1) // 3\nby = (B - 1) % 3\n\nprint(\"Yes\" if ax == bx and by - ay == 1 else \"No\")"
+}

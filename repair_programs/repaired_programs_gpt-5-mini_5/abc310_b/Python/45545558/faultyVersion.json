@@ -1,0 +1,4 @@
+{
+  "explanation": "The code treated identical products as 'strictly superior' because it only checked p[i] >= p[j] and f[j].issuperset(f[i]) but didn't require a strict advantage (either a strictly higher price or a strictly larger function set). I fixed the condition by adding a strictness check: (p[i] > p[j] or f[j] > f[i]). This follows the intent shown in the retrieved diffs (notably the pattern in Diff 1 / Diff 3 that enforces the additional strict condition).",
+  "fixed_code": "n, m = map(int, input().split())\n\np = []\nc = []\nf = []\n\nfor i in range(n):\n    l = list(map(int, input().split()))\n    p.append(l[0])\n    c.append(l[1])\n    f.append(set(l[2:]))\n\nfor i in range(n):\n    for j in range(n):\n        if p[i] >= p[j]:\n            if f[j].issuperset(f[i]) and (p[i] > p[j] or f[j] > f[i]):\n                print(\"Yes\")\n                exit(0)\n\n\nprint(\"No\")"
+}

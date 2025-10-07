@@ -1,0 +1,32 @@
+{
+  "task": "abc302_a/Python/46001200",
+  "query_summary": "Off-by-one error: the code unconditionally adds 1 to A//B instead of using (A-1)//B+1, so it overcounts when A is exactly divisible by B.",
+  "oracle_summary": "Off-by-one error: the code unconditionally adds 1 to A//B instead of using (A-1)//B+1, so it overcounts when A is exactly divisible by B.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly adds the value of B to the count instead of adding the value of the current element L[i] that satisfies the condition.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,5 @@\n count=0\n for i in range(A):\n   if L[i] <= B:\n-    count+=B\n+    count+=L[i]\n print(count)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the modulo in the second print statement by applying it to the result of the `pow` function multiplied by `(A-1)-1` instead of just `(A-1)`.",
+      "diff": "--- \n+++ \n@@ -4,5 +4,5 @@\n     print(X % M)\n else:\n     print(\n-        (pow(A, X, M * (A-1)-1) // (A-1)) % M\n+        ((pow(A, X, M * (A-1))-1) // (A-1)) % M\n     )"
+    },
+    {
+      "summary": "The buggy code uses the bitwise XOR operator (^) instead of the exponentiation operator (**), resulting in incorrect output for calculating A raised to the power of B.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n A, B = map(int, input().split())\n-print(A^B)\n+print(A**B)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of `A` when `A` is equal to `B`, while the correct code should print `1`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n x=abs(A-B)\n ans=0\n if A==B:\n-    print(A)\n+    print(1)\n     exit()\n def make_divisors(n):\n     lower_divisors , upper_divisors = [], []"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the length of `C` for the multiplier by using `len(str(C))` instead of `len(str(C)) + 1`, resulting in an off-by-one error in the final output.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,5 @@\n \n # A = list(str(A))\n # print(A)\n-D = len(str(C))\n+D = len(str(C))+1\n print(A*(10**D)+C)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

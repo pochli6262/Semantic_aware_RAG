@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition `elif b>=x>a:`. Python does not allow chaining comparison in this way. Instead, I corrected it to `elif b>=x and x>a:`. This properly checks that both conditions are true separately.",
+  "fixed_code": "a,b,c,x=map(int,input().split())\nif a>=x:\n    print(1)\nelif b>=x and x>a:\n    print(c/(b-a+1))\nelse:\n    print(0)"
+}

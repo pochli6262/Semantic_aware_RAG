@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-condition only checked vertical adjacency (both blacks in the same column) and missed cases where connectivity is broken only when there are exactly two black squares placed diagonally. I replaced the condition with one that detects the two diagonal-only configurations and returns No for them; for all other cases it prints Yes. This fix is a minimal logical extension similar to the pattern in Diff 4 where an extra condition was added to cover a missed case.",
+  "fixed_code": "s1=input()\ns2=input()\n\nif not ((s1[0]==\"#\" and s2[1]==\"#\" and s1[1]==\".\" and s2[0]==\".\") or (s1[1]==\"#\" and s2[0]==\"#\" and s1[0]==\".\" and s2[1]==\".\")):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

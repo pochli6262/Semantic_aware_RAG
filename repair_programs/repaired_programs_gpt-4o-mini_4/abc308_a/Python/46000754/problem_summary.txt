@@ -1,0 +1,1 @@
+The bug likely occurs because the program checks the sorted condition and the range/multiples conditions independently for each element, leading to premature 'No' outputs even if only one element fails while allowing valid combinations of elements.

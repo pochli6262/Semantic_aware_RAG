@@ -1,0 +1,31 @@
+{
+  "task": "abc302_a/Python/45783782",
+  "query_summary": "The bug comes from using float division with int(A/B) in the divisible case (risking precision/rounding errors), instead of using pure integer arithmetic like (A+B-1)//B.",
+  "oracle_summary": "The bug comes from using float division with int(A/B) in the divisible case (risking precision/rounding errors), instead of using pure integer arithmetic like (A+B-1)//B.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not account for the case where both A and B are equal to 2, which should return 2 instead of -1 when their sum is 4.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n A,B = map(int,input().split())\n if A + B == 3:\n   print(\"3\")\n-elif A + B == 4:\n+elif A + B == 4 and A != B:\n   print(\"2\")\n elif A + B == 5:\n   print(\"1\")"
+    },
+    {
+      "summary": "The buggy code rounds the division result to three decimal places but does not format it to display exactly three decimal places, which can lead to missing trailing zeros.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n A, B = map(int, input().split())\n \n-print(round(B/A, 3))\n+print('{:.03f}'.format(round(B/A, 3)))"
+    },
+    {
+      "summary": "The buggy code uses the bitwise XOR operator (^) instead of the exponentiation operator (**), resulting in incorrect output for calculating A raised to the power of B.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n A, B = map(int, input().split())\n-print(A^B)\n+print(A**B)"
+    },
+    {
+      "summary": "The buggy code contains duplicate conditional checks (`elif A==1 and B==2:` appears twice), which can lead to incorrect logic and undesired behavior.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n A,B = (map(int,input().split()))\n if A==1 and B==2:\n     print(3)\n+elif A==3 and B==1:\n+    print(2)\n elif A==1 and B==3:\n     print(2)\n elif A==2 and B==1:"
+    },
+    {
+      "summary": "The buggy code includes a print statement for the list `C`, which could expose potentially sensitive data or interfere with the program's intended output format.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N, A, B = map(int, input().split())\n C = list(map(int, input().split()))\n-print(C)\n+#print(C)\n for i in range(len(C)):\n   if C[i] == A + B:\n     print(i+1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    6
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,31 @@
+{
+  "task": "abc265_b/Python/45487693",
+  "query_summary": "The program incorrectly allows a move that reduces the time limit to exactly zero because it checks t - s[...] < 0 instead of rejecting when t - s[...] <= 0.",
+  "oracle_summary": "The code incorrectly checks t − s[now−1] < 0 instead of <= 0, allowing the case where time becomes exactly zero to be treated as valid.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `0` when the strings `s` and `t` are equal, instead of checking for the combined conditions of `t` starting and ending with `s`.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s=input()\n t=input()\n \n-if t == s:\n+if (t.find(s)==0)and(t.rfind(s)==m-n):\n   print(0)\n elif t.find(s)==0:\n   print(1)"
+    },
+    {
+      "summary": "The problem with the buggy code is that it incorrectly outputs 1 when `s` equals both the beginning and the end of `t`, instead of outputting 0, as it fails to check both conditions simultaneously in the first if statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = input()\n t = input()\n \n-if s == t:\n+if s == t[:n] and s == t[-n:]:\n     print(0)\n elif s == t[:n]:\n     print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `s[j]!=\"?\"!=t[j]` instead of `s[j]!=\"?\" and s[j]!=t[j]` when comparing characters, which leads to incorrect results when checking for mismatches.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         ng.add(i)\n print(\"Yes\" if len(ng)==0 else \"No\")\n for j in range(n):\n-    if t[j]!=\"?\" and s[j]!=t[j]:\n+    if s[j]!=t[j] and s[j]!=\"?\"!=t[j]:\n         ng.add(j)\n     else:\n         ng.discard(j)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for printing \"No\", leading to incorrect output when both `s[i]` and `t[i]` are the same and their count exceeds 2.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,6 @@\n   d[s[i]] += 1\n   d[t[i]] += 1\n for i in range(n):\n-  if d[s[i]] >= 2 and d[t[i]] >= 2:\n+  if (s[i] == t[i] and d[s[i]] > 2) or (s[i] != t[i] and d[s[i]] >= 2 and d[t[i]] >= 2):\n     exit(print(\"No\"))\n print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

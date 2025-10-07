@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue arises from the way the comparison for determining the winner is structured. The original line `print(\"T\" if T_W > A_W or T_W == A_W and S[-1] == \"A\" else \"A\")` does not correctly respect operator precedence, potentially yielding erroneous results. The corrected line adds parentheses around the condition `T_W == A_W and S[-1] == \"A\"` to ensure it is evaluated in the correct order. This means that if T_W is equal to A_W, we then check if the last character is 'A'. This fix clarifies the conditions being checked for determining the winner.",
+  "fixed_code": "N = int(input())\nS = input().split()\nT_W = S.count('T')\nA_W = S.count('A')\nprint(\"T\" if T_W > A_W or (T_W == A_W and S[-1] == \"A\") else \"A\")"
+}

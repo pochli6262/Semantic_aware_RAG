@@ -1,0 +1,1 @@
+The program incorrectly calculates the probability of receiving a T-shirt for participants ranked between A+1 and B, as it fails to account for the total number of participants eligible for selection.

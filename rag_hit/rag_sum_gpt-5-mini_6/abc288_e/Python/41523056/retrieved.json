@@ -1,0 +1,29 @@
+{
+  "task": "abc288_e/Python/41523056",
+  "query_summary": "The cost table is filled using the wrong indices (e.g., cost[i][0] = c[i] and cost[i][j] = min(..., c[i-j])), so the C_j values are incorrectly mapped.",
+  "oracle_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly computes the index `j` by using the formula `(n - 1 - i + d) % n`, rather than the correct formula `(d - i) % n`, which leads to incorrect pairs being generated.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n     for d in S:\n         for i in range(n):\n             # ズレが異なるパターン同士は重なり合うことはないので、解として追記していく\n-            j = (n - 1 - i + d) % n\n+            j = (d - i) % n\n             ans.append((i+1, j+1))\n     return ans\n "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly returns the minimum value from `costlist[1:]` instead of the entire `costlist`, which leads to potentially missing the minimum cost in the calculations.",
+      "diff": "--- \n+++ \n@@ -26,6 +26,6 @@\n \n     costlist.append(cost1i)\n     costlist.append(cost2i)\n-  return (min(costlist[1:]))\n+  return (min(costlist))\n       \n print(changecost(mask,cost1,cost2))"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `C` with the expression `C = [X // S] * N`, leading to incorrect results in subsequent calculations because it does not account for the required multiplication with `N`.",
+      "diff": "--- \n+++ \n@@ -345,7 +345,7 @@\n W = list(map(int, input().split()))\n dp = [[-1] * N for _ in range(60)]  # dp[i][j]: j番目の要素から2^i回遷移したときの到達地点\n S = sum(W)\n-C = [X // S] * N\n+C = [(X // S) * N] * N\n nokori = X - S * (X // S)\n acc = [0]\n for w in W:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly initializes the variable `ans` with `1 << 32` instead of `1 << 64`, which leads to an incorrect comparison for finding the minimum value of `cost`.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n     cost[l] += n - 2*(r - l)\n     cost[r] -= n - 2*(r - l)\n \n-ans = 1 << 32\n+ans = 1 << 64\n for i in range(1, n + 1):\n     cost[i] += cost[i - 1]\n     if cost[i] < ans:"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the `cost` array at index `t+1` instead of updating it at index `t` when the condition `2*(t-s) < N` is true.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n             ans += t-s\n             d = N + 2*s - 2*t\n             cost[s] += d\n-            cost[t+1] -= d\n+            cost[t] -= d\n         else:\n             ans += N+s-t\n             d = - N - 2*s + 2*t"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

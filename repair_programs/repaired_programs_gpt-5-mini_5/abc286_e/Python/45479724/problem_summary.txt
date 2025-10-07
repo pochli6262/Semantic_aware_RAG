@@ -1,0 +1,1 @@
+When combining paths of equal length, the code erroneously uses min to pick the souvenir total instead of choosing the maximum, so it picks the smaller total value for equal-length shortest routes.

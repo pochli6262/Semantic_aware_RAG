@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only checked three orientations of A (original + 2 rotations) because it used range(3). We must check all four possible rotations (0°, 90°, 180°, 270°), so changing range(3) to range(4) ensures every rotation is tested. This is a one-line fix that directly addresses the bug described.",
+  "fixed_code": "N = int(input())\nA = [list(map(int, input().split())) for _ in range(N)]\nB = [list(map(int, input().split())) for _ in range(N)]\nA_t = A\nl = 0\n\nfor i in range(4):\n  #print(A_t)\n  for j in range(N):\n    for k in range(N):\n      if (A_t[j][k] == 1) and (B[j][k] != 1):\n          #print(A_t[j][k],B[j][k] )\n          l += 1\n\n  if l == 0:\n    print('Yes')\n    #print(B)\n    #print(A_t)\n    exit()\n  A_t = []\n  for x in zip(*A[::-1]):\n    A_t.append(list(x))\n  A = A_t\n\n  l = 0\nprint('No')"
+}

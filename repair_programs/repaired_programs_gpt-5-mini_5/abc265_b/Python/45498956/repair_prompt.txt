@@ -1,0 +1,196 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+Takahashi is exploring a cave in a video game.
+
+The cave consists of N rooms arranged in a row. The rooms are numbered Room 1,2,\ldots,N from the entrance.
+
+Takahashi is initially in Room 1, and the **time limit** is T.  
+For each 1 \leq i \leq N-1, he may consume a time of A\_i to move from Room i to Room (i+1). There is no other way to move between rooms.
+He cannot make a move that makes the time limit 0 or less.
+
+There are M bonus rooms in the cave. The i-th bonus room is Room X\_i; when he arrives at the room, the time limit increases by Y\_i.
+
+Can Takahashi reach Room N?
+
+### Constraints
+
+* 2 \leq N \leq 10^5
+* 0 \leq M \leq N-2
+* 1 \leq T \leq 10^9
+* 1 \leq A\_i \leq 10^9
+* 1 < X\_1 < \ldots < X\_M < N
+* 1 \leq Y\_i \leq 10^9
+* All values in input are integers.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+N M T
+A_1 A_2 \ldots A_{N-1}
+X_1 Y_1
+X_2 Y_2
+\vdots
+X_M Y_M
+```
+
+### Output
+
+If Takahashi can reach Room N, print `Yes`; otherwise, print `No`.
+
+---
+
+### Sample Input 1
+
+```
+4 1 10
+5 7 5
+2 10
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+* Takahashi is initially in Room 1, and the time limit is 10.
+* He consumes a time of 5 to move to Room 2. Now the time limit is 5. Then, the time limit increases by 10; it is now 15.
+* He consumes a time of 7 to move to Room 3. Now the time limit is 8.
+* He consumes a time of 5 to move to Room 4. Now the time limit is 3.
+
+---
+
+### Sample Input 2
+
+```
+4 1 10
+10 7 5
+2 10
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+He cannot move from Room 1 to Room 2.
+
+## Your Analysis (1-sentence bug summary)
+The code incorrectly checks "t > i" (the loop index) before subtracting the move cost, instead of checking whether the current time t is greater than the required cost a[i].
+
+## Buggy Program
+n,m,t=map(int,input().split())
+a=list(map(int,input().split()))
+v=[0]*n
+for i in range(m):
+  x,y=map(int,input().split())
+  v[x-1]=y
+for i in range(n-1):
+  t+=v[i]
+  if t>i:
+    t-=a[i]
+  else:
+    print('No')
+    break
+else:
+  print('Yes')
+    
+    
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -5,7 +5,7 @@
+   a=0
+   for n in range(N):
+     a+=X[n][m]
+-  if a<=A[m]:
++  if a<A[m]:
+     print ("No")
+     exit(0)
+ print ('Yes')
+
+### Diff 2
+--- 
++++ 
+@@ -20,6 +20,8 @@
+ 
+ l = itertools.permutations(list(range(n)))
+ 
++Takahashi.sort()
++
+ for i in l:
+     # print(i)
+     test = [[0]*2 for _ in range(m)]
+@@ -30,6 +32,7 @@
+         test[j].sort()
+ 
+     test.sort()
++    # print(Takahashi, test)
+ 
+     if Takahashi == test:
+         print('Yes')
+
+### Diff 3
+--- 
++++ 
+@@ -37,7 +37,7 @@
+         if now >= Ns:
+             v += Ns
+             now -= Ns
+-    v += now + 1
++    v += now
+     return v <= N * Ns
+ 
+         
+
+### Diff 4
+--- 
++++ 
+@@ -5,7 +5,7 @@
+ table = [2,4,8,6]
+ def solve(N, M, K):
+     if M-K == 1:
+-        return 0 if N >= K-1 else pow(2, N, 10)
++        return 0 if N >= K else table[(N+3)%4]	# 多分ここがafter_contestに引っかかってる
+     if N >= M:
+ 		# N<MになるまでNからM-Kを引く操作を高速に行う。
+ 		# NからN-Mより大きいM-Kの倍数で引く
+
+### Diff 5
+--- 
++++ 
+@@ -30,7 +30,7 @@
+ x10=[1]*(10**6+1)
+ y59=[1]*(10**6+1)
+ mody=978902437
+-for i in range(1,N+1):
++for i in range(1,10**6+1):
+   x10[i]=x10[i-1]*10
+   x10[i]%=mod
+   y59[i]=y59[i-1]*59
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

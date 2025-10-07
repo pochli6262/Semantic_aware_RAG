@@ -1,0 +1,35 @@
+{
+  "task": "abc305_a/Python/46173794",
+  "query_summary": "Off-by-one logic error: the condition uses n%5>=2 instead of n%5>2, so values with remainder 2 are incorrectly rounded up.",
+  "oracle_summary": "Off-by-one logic error: the condition uses n%5>=2 instead of n%5>2, so values with remainder 2 are incorrectly rounded up.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the final value of `ans` by subtracting `n` instead of the square of the integer square root of `n`.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n for i in range(1, int(n**0.5)+1):\n     ans += n//i\n \n-ans = ans*2 - n\n+ans = ans*2 - (int(n**0.5))**2\n print(ans)"
+    },
+    {
+      "summary": "The buggy code does not handle the case when the input `n` is 0, which results in an infinite loop since the while condition `n != 0` will never be false.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,8 @@\n n = int(input()) - 1\n \n goodint = []\n-\n+if n == 0:\n+    print(0)\n while n != 0:\n     goodint.append(n % 5)\n     n //= 5"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the value of `n-1` repeatedly for each iteration, instead of printing a decreasing sequence from `n-1` down to `0`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,5 @@\n n=int(input())\n for i in range(n):\n-  print(n-1)\n+    print(n-i)\n+\n print(0)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if `i*3` is equal to zero instead of checking if `i` is divisible by 3 using `i % 3 == 0`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n=int(input())\n \n for i in range(1, n+1):\n-  if i*3==0:\n+  if i%3==0:\n     print(\"x\", end=\"\")\n   else:\n     print(\"o\", end=\"\")"
+    },
+    {
+      "summary": "The bug in the code is that the condition for counting elements in the final sum incorrectly uses `a[i] >= 5` instead of the correct condition `a[i] >= 4`.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,5 @@\n     a[j]+=a[i]\n ans=0\n for i in range(n):\n-  ans+= a[i]>=5\n+  ans+= a[i]>=4\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

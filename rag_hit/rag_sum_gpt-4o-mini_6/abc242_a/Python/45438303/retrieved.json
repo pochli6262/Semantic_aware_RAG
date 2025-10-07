@@ -1,0 +1,33 @@
+{
+  "task": "abc242_a/Python/45438303",
+  "query_summary": "The likely bug is that the program incorrectly computes the probability for participants ranked between (A+1) and B by using the total range (B-A) instead of the actual number of participants in that range.",
+  "oracle_summary": "The middle condition is off by one: it uses X < B instead of X <= B, causing X == B to incorrectly print 0 instead of C/(B−A).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code does not account for the case where both A and B are equal to 2, which should return 2 instead of -1 when their sum is 4.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n A,B = map(int,input().split())\n if A + B == 3:\n   print(\"3\")\n-elif A + B == 4:\n+elif A + B == 4 and A != B:\n   print(\"2\")\n elif A + B == 5:\n   print(\"1\")"
+    },
+    {
+      "summary": "The issue in the buggy code is that it incorrectly appends values to the list `ans` without checking if they exceed the upper limit `B`, leading to potential values outside the specified range.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B,D=map(int,input().split())\n ans=[A]\n-while A<=B:\n+while A+D<=B:\n   ans.append(A+D)\n   A+=D\n print(*ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the output as `max(B-A+1,0)` instead of `max((A-B+1)//2,0)`, which leads to incorrect results for the given range of values.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n     a,b=map(int,input().split())\n     A=max(A,a)\n     B=min(B,b)\n-    print(max(B-A+1,0))   \n+    print(max((A-B+1)//2,0))   "
+    },
+    {
+      "summary": "The buggy code incorrectly uses a step of 2 in the range function instead of the intended step value D, resulting in incorrect iteration behavior.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n A,B,D=map(int,input().split())\n-for i in range(A,B,2):\n+for i in range(A,B,D):\n     print(i,end=\" \")\n print(B)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

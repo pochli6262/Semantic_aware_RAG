@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line `A_t = A` where the variable A_t is assigned to A directly, which leads to both A and A_t referencing the same list in memory. When A_t gets modified in the loop, A is also modified because they are the same list. To fix this, we should assign A_t as a copy of A using `A_t = [row[:] for row in A]` to avoid modifying A when A_t is changed.",
+  "fixed_code": "N = int(input())\nA = [list(map(int, input().split())) for _ in range(N)]\nB = [list(map(int, input().split())) for _ in range(N)]\nA_t = [row[:] for row in A]\nl = 0\n\nfor i in range(3):\n  #print(A_t)\n  for j in range(N):\n    for k in range(N):\n      if (A_t[j][k] == 1) and (B[j][k] != 1):\n          #print(A_t[j][k],B[j][k] )\n          l += 1\n\n  if l == 0:\n    print('Yes')\n    #print(B)\n    #print(A_t)\n    exit()\n  A_t = []\n  for x in zip(*A[::-1]):\n    A_t.append(list(x))\n  A = A_t\n\n  l = 0\nprint('No')"
+}

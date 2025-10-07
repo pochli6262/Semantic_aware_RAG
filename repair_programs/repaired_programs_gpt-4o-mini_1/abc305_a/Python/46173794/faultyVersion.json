@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code incorrectly handles the case when n is a multiple of 5. The logic should return n itself when n is a multiple of 5 instead of rounding it up to n + 5. I fixed this by updating the condition to return n directly when n is divisible by 5.",
+  "fixed_code": "n=int(input())\nprint((n//5)*5+5 if n%5>=2 and n%5!=0 else (n//5)*5)"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where the value to be added to `ans` is computed. The expression should use 2 raised to the power of `i` instead of `A[i]`, as we want to calculate the contribution of `A[i]` at position `i` to the final answer. Therefore, the corrected line is `ans += A[i] * 2 ** i`.",
+  "fixed_code": "A = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n  ans += A[i] * 2 ** i\nprint(ans)"
+}

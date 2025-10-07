@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug occurs in the calculation of the prefix sums when attempting to access elements in the list S in the second loop. The index used to access S is sometimes leading to out-of-bounds errors, particularly when `l` is not a multiple of K. The corrected line updates the access to use the integer division 'l // K' instead of using the 'max(0, l-k-1) // K + 1' which could incorrectly access S. This ensures we are properly indexing the prefix sums for each k value properly.",
+  "fixed_code": "N, K = map(int,input().split())\nA=list(map(int,input().split()))\nQ=int(input())\nS = [[0] for i in range(K)]\nfor i in range(N):\n    S[i%K].append(S[i%K][-1]+A[i])\n    \nfor i in range(Q):\n    l, r = map(lambda x:int(x)-1,input().split())\n    s=set()\n    for k in range(K):\n        s.add(S[k][(r-k)//K+1] - S[k][l//K])\n    if len(s)==1:\n        print('Yes')\n    else:\n        print('No')"
+}

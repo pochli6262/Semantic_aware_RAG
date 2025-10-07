@@ -1,0 +1,1 @@
+The bug likely lies in the incorrect logic used to determine when to print "Yes" or "No", as it only checks for a count of matching hats but doesn't account for the actual possibility of rearranging the hats through swaps.

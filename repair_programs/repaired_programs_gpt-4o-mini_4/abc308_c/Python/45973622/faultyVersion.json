@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used a high multiplier (10^100) to calculate the success rate, which can lead to precision issues in floating-point arithmetic. The fix involved replacing the division of floats with integer division by using '//' to improve numerical stability, inspired by Diff 2.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append(((A*10**100)//(A+B), -i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(-j+1, end=' ')\nprint()"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code incorrectly compares the first character of one string with the second character of another string. The intention is likely to check if either the first characters are the same or the second characters are the same. Therefore, I changed `S1[1] == S2[1]` to `S1[1] == S2[1]` to ensure the comparison is correctly checking the second character against the second character of the other string.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1[0] == S2[0] or S1[1] == S2[1]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

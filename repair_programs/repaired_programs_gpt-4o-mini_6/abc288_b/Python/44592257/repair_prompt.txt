@@ -1,0 +1,186 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+There were N participants in a contest. The participant ranked i-th had the nickname S\_i.  
+Print the nicknames of the top K participants in **lexicographical order**.
+
+What is lexicographical order?
+
+Simply put, the lexicographical order is the order of words in a dictionary. As a formal description, below is an algorithm to order distinct strings S and T.
+
+Let S\_i denote the i-th character of a string S. We write S \lt T if S is lexicographically smaller than T, and S \gt T if S is larger.
+
+1. Let L be the length of the shorter of S and T. For i=1,2,\dots,L, check whether S\_i equals T\_i.
+2. If there is an i such that S\_i \neq T\_i, let j be the smallest such i. Compare S\_j and T\_j. If S\_j is alphabetically smaller than T\_j, we get S \lt T; if S\_j is larger, we get S \gt T.
+3. If there is no i such that S\_i \neq T\_i, compare the lengths of S and T. If S is shorter than T, we get S \lt T; if S is longer, we get S \gt T.
+
+### Constraints
+
+* 1 \leq K \leq N \leq 100
+* K and N are integers.
+* S\_i is a string of length 10 consisting of lowercase English letters.
+* S\_i \neq S\_j if i \neq j.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N K
+S_1
+S_2
+\vdots
+S_N
+```
+
+### Output
+
+Print the nicknames, separated by newlines.
+
+---
+
+### Sample Input 1
+
+```
+5 3
+abc
+aaaaa
+xyz
+a
+def
+```
+
+### Sample Output 1
+
+```
+aaaaa
+abc
+xyz
+```
+
+This contest had five participants. The participants ranked first, second, third, fourth, and fifth had the nicknames `abc`, `aaaaa`, `xyz`, `a`, and `def`, respectively.
+
+The nicknames of the top three participants were `abc`, `aaaaa`, `xyz`, so print these in lexicographical order: `aaaaa`, `abc`, `xyz`.
+
+---
+
+### Sample Input 2
+
+```
+4 4
+z
+zyx
+zzz
+rbg
+```
+
+### Sample Output 2
+
+```
+rbg
+z
+zyx
+zzz
+```
+
+---
+
+### Sample Input 3
+
+```
+3 1
+abc
+arc
+agc
+```
+
+### Sample Output 3
+
+```
+abc
+```
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the program sorts all participants' nicknames before selecting only the top K participants, instead of sorting only the top K after selecting them.
+
+## Buggy Program
+n, k = map(int, input().split())
+s = [input() for _ in range(n)]
+s.sort()
+for i in range(k):
+  print(s[i])
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -3,5 +3,5 @@
+ for i in range(N):
+   S[i],C[i] = input().split()
+   C[i] = int(C[i])
+-  S.sort()
++S.sort()
+ print(S[sum(C) % N])
+
+### Diff 2
+--- 
++++ 
+@@ -23,4 +23,4 @@
+             break
+         i += 1
+     else:
+-        print(A[i-1])
++        print(A[i-1]+1)
+
+### Diff 3
+--- 
++++ 
+@@ -6,4 +6,4 @@
+     result.append(i)
+ for i in range(r + 1, n + 1):
+     result.append(i)
+-print(result)
++print(*result)
+
+### Diff 4
+--- 
++++ 
+@@ -3,4 +3,4 @@
+ for i in range(min(len(a),k)):
+     if i!=a[i]:
+         exit(print(i))
+-print(k)
++print(min(len(a),k))
+
+### Diff 5
+--- 
++++ 
+@@ -10,8 +10,6 @@
+ for i in range(k):
+   aksort[i] = sorted(ak[i])
+ 
+-print(aksort)
+-print(asort)
+ for i in range(n):
+   if asort[i] != aksort[i%k][i//k]:
+     print("No")
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

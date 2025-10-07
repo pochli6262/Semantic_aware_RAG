@@ -1,0 +1,4 @@
+{
+  "explanation": "The wrong line computed the coupon total as P - Q + d, which is incorrect; the discounted drink costs Q (not P - Q), so the total with a dish should be Q + d. I fixed the line to assign p := Q + d so we compare the correct total. (No retrieved diff directly applied; this is a simple arithmetic correction.)",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nres = P\n\nfor d in D:\n    if (p := Q + d) < res:\n        res = p\n\nprint(res)\n"
+}

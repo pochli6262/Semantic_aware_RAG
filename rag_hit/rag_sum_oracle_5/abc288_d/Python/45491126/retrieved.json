@@ -1,0 +1,32 @@
+{
+  "task": "abc288_d/Python/45491126",
+  "query_summary": "The bug is that the left prefix index is clamped before division (max(0, l−k−1)//K+1), which turns cases with l−k−1<0 into index 1 instead of the correct 0, yielding wrong sums; it should use (l−k−1)//K+1 without clamping.",
+  "oracle_summary": "The bug is that the left prefix index is clamped before division (max(0, l−k−1)//K+1), which turns cases with l−k−1<0 into index 1 instead of the correct 0, yielding wrong sums; it should use (l−k−1)//K+1 without clamping.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly references a variable `k` instead of `K` in the condition `(N+k) % l == 0`, which causes unintended behavior and may lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n         if (N+K) % (2*l) == 0:\n             print(\"Yes\")\n             continue\n-        elif (N+k) % l == 0:\n+        elif (N+K) % l == 0:\n             for i in range(l):\n                 if S[i] != S[l-i-1]:\n                     break"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the `count` array when `r` equals `l` without considering the case when `B` is greater than zero, leading to inaccurate counts in such scenarios.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n         r %= N\n     right[l] = r\n     count[l] += (r - l) % N\n-    if r == l:\n+    if r == l and B > 0:\n         count[l] += N\n \n "
+    },
+    {
+      "summary": "The bug in the code is that the loop iterating over `range(k // 2)` should incrementally add values to `l[i + 1]` and `r[i + 1]` using `i` starting from 0 instead of in reversed order.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n r = [a[i + 1] - a[i] for i in reversed(range(1, k - 1, 2))]\n l = [0] + l\n r = [0] + r\n-for i in reversed(range(k // 2)):\n+for i in range(k // 2):\n     l[i + 1] += l[i]\n     r[i + 1] += r[i]\n for i in range(k // 2 + 1):"
+    },
+    {
+      "summary": "The buggy code incorrectly references `A[2]` instead of `A[K-1]` when computing `A[i]` for indices beyond `K+1`, leading to an incorrect result.",
+      "diff": "--- \n+++ \n@@ -19,6 +19,6 @@\n     A[(i-1)%(K+1)] = (T-S[i]) % 2\n \n for i in range(K+1,N):\n-    A[i] = (S[0]-A[2]-S[i]) % 2\n+    A[i] = (S[0]-A[K-1]-S[i]) % 2\n \n print(\"!\",*A)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates through the range of `len(s)-k-1` instead of `len(s)-k`, leading to an off-by-one error in the loop that calculates the maximum answer when there are more segments than the maximum allowed.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in s:\n   l.append(l[-1]+len(i))\n if len(s)-1>k:\n-  for i in range(len(s)-k-1):\n+  for i in range(len(s)-k):\n     ans=max(ans,l[i+k+1]-l[i]+k)\n else:\n   ans=l[-1]+len(s)-1"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

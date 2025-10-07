@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code does not handle the case when A_i is zero, which results in a division by zero error when calculating the success rate. I fixed this by changing the division line to use a conditional expression that ensures that if A_i is zero, the success rate is set to 0 instead of causing an error. This approach is inspired by the need to handle edge cases that the original line does not account for.",
+  "fixed_code": "import sys\n\nn = int(input())\nans = []\nfor i in range(1, n + 1):\n\ta, b = map(int, sys.stdin.readline().strip().split())\n\tsum = a + b\n\tres = a / (sum) if sum > 0 else 0\n\tans.append([res, -i])\n\nans.sort(reverse = True)\nfor i in range (0, len(ans)):\n\tprint(-ans[i][1], end = \" \")"
+}

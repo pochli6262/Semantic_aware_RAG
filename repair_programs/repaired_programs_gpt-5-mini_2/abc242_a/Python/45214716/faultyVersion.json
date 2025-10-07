@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that the code prints c/(b-a+1) in the middle branch, but c is not the number of favorable integers. The correct numerator is the count of integers from x to b inclusive, which is (b - x + 1). I replaced the single incorrect line to compute (b - x + 1)/(b - a + 1).",
+  "fixed_code": "a,b,c,x=map(int,input().split())\nif a>=x:\n    print(1)\nelif b>=x>a:\n    print((b-x+1)/(b-a+1))\nelse:\n    print(0)"
+}

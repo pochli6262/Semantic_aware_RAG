@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly referenced 'yl[j]', which was not updated correctly in the context of the loop. Instead, it should have used 'yl[j-1]' to access the streak bonus related to the current counter value. This fix was inspired by the need to ensure the correct indexing when dealing with the dynamic programming table. Specifically, this aligns with the structure of the bonuses dependent on the counter's value.",
+  "fixed_code": "n,m = map(int, input().split())\nxl = list(map(int, input().split()))\ncyl = [list(map(int, input().split())) for _ in range(m)]\nyl = [0] * n  \nfor c,y in cyl:\n    yl[c-1] = y\n\ndp = [[0] * (n) for i in range(n)]\n\nfor i in range(n):\n    if i == 0:\n        dp[i][0] = xl[0] + yl[0]\n    else:\n        for j in range(1,i+1):\n            dp[i][j] = dp[i-1][j-1] + xl[i] + yl[j-1]  # Corrected line\n        if i != 1:\n            dp[i][0] = max(dp[i-2]) + xl[i] + yl[j-1]\nprint(max(dp[n-1]))"
+}

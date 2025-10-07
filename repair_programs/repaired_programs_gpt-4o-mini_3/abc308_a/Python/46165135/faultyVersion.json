@@ -1,0 +1,4 @@
+{
+  "explanation": "The second validation condition incorrectly combines two checks using 'or'. It should check if a number is either not a multiple of 25 or not within the specified range of 100 to 675. The logical condition should ensure that both checks must be false for the input to be valid. Thus, the correct logic is 'S[i] % 25 != 0 and (S[i] < 100 or S[i] > 675)' to ensure that both conditions are satisfied for a valid number.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nres = 'Yes'\n\nfor i in range(len(S) - 1):\n    if S[i] >= S[i + 1]:\n        res = 'No'\n        break\n      \nfor i in range(len(S)):\n    if S[i] % 25 != 0 or not 100 <= S[i] <= 675:\n        res = 'No'\n        break\n      \nprint(res)"
+}

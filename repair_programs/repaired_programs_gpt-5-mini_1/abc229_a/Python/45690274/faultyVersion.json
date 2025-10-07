@@ -1,0 +1,4 @@
+{
+  "explanation": "The function never prints anything in the case where black < 3 and the two black squares are not on the main diagonals. The final line of the function is `return`, so control just exits without output. The correct behavior is to print \"Yes\" in that final branch, so I replaced the last `return` with `print(\"Yes\")`.",
+  "fixed_code": "def solve() -> None:\n    if black >= 3:\n        print(\"Yes\")\n        return\n\n    if (s1[0] == \"#\" and s2[1] == \"#\") or (s1[1] == \"#\" and s2[0] == \"#\"):\n        print(\"No\")\n    print(\"Yes\")\n\n\ns1 = input()\ns2 = input()\n\nblack = s1.count(\"#\")\nblack += s2.count(\"#\")\n\nsolve()\n"
+}

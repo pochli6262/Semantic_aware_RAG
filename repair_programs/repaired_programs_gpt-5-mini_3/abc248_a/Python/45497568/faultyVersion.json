@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code initialized num with range(1, 10), so the digit 0 was never included in the set of candidate digits. As a result 0 could never be printed even if it did not appear in the input. I fixed the initialization to include 0 by using range(10).",
+  "fixed_code": "S = input()\nnum = set([i for i in range(10)])\n\nfor s in S:\n    num.discard(int(s))\n\nprint(*num)"
+}

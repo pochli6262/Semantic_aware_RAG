@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line computed one term with modular exponentiation but left the other term unmodded and never reduced the final sum modulo 998244353, potentially producing negative or incorrect results. I fixed it by taking the entire sum modulo mod. (This mirrors the idea in the diffs to apply % MOD to final results.)",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nanswer=((-1)**(N%2)*(M-1)+pow(M-1,N,mod))%mod\nprint(answer)"
+}

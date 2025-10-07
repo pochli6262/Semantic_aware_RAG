@@ -1,0 +1,31 @@
+{
+  "task": "abc265_d/Python/46180053",
+  "query_summary": "The likely bug is that the program assumes the cumulative sums contain the required sums without ensuring the indices for x, y, z, and w adhere to the constraints of increasing order and proper bounds.",
+  "oracle_summary": "The bug is that the cumulative sum omits the initial 0 (using cumsum(A) instead of cumsum([0]+A)), causing an off-by-one in prefix sums and missing cases where the segment starts at index 0.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for the presence of sums in the `sum_set` by iterating through `range(w)` instead of `range(1, w + 1)`, leading to an off-by-one error when counting valid sums.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n \n cnt = 0\n for i in range(w):\n-    if i in sum_set:\n+    if i+1 in sum_set:\n         cnt+=1\n \n print(cnt)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the condition `X - a in Aset` instead of the correct condition `a + X in Aset`, leading to an incorrect result for determining whether there exists a pair of elements in the list whose sum equals X.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n Aset = set(A)\n ok = False\n for a in A:\n-    if X-a in Aset:\n+    if a + X in Aset:\n         ok = True\n         break\n if ok:"
+    },
+    {
+      "summary": "The bug in the code is that the condition checks if the sum of the remaining elements is greater than 4, instead of greater than or equal to 4, which leads to an incorrect count.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     P = 0\n     \n     for n in range(N):\n-      if sum(A[n:]) > 4:\n+      if sum(A[n:]) >= 4:\n         P += 1\n     \n     print(P)"
+    },
+    {
+      "summary": "The buggy code checks if `x` and `y` are greater than the sums of `X` and `Y` respectively, instead of their absolute values, leading to incorrect results for negative target values.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n       dp_y[i + 1][j - Y[i]] = True\n \n \n-if x > sum(X) or y > sum(Y):\n+if abs(x) > sum(X) or abs(y) > sum(Y):\n   print(\"No\")\n else:\n   if dp_x[-1][x + 2 * (sum(X) + 1)] and dp_y[-1][y + 2 * (sum(Y) + 1)]:"
+    },
+    {
+      "summary": "The issue in the buggy code is that the computation of `xN` mistakenly includes an additional `abs` around `sxA`, causing an incorrect calculation of the target value for `xN`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n xA = A[2::2]\n sxA = sum(xA)\n-xN = abs(abs(x - A[0]) - sxA)\n+xN = abs(x - A[0] - sxA)\n xdp = [0] * (xN + 1)\n xdp[0] = 1\n for dx in xA:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

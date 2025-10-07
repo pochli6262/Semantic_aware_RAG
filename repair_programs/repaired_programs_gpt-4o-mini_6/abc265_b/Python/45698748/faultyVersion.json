@@ -1,0 +1,4 @@
+{
+  "explanation": "The line that checks if `t` becomes less than or equal to zero after subtracting the time taken to move between rooms is the root of the bug. The program should check for `<= 0` to determine if the movement from the current position to the next room is possible, but this should only apply to the time without any accumulated bonuses. By adjusting this condition, we ensure correct logic flow. This is similar to the correction seen in Diff 1, where a comparison is made with a strict less-than operator instead of less than or equal to.",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= sum(a[pos : x - 1])\n    if t < 0:\n        print(\"No\")\n        exit()\n    else:\n        t += y\n        pos = x - 1\nt -= sum(a[pos:])\nif t < 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

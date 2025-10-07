@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition used a strict comparison (X < A), which incorrectly treated rank A as not guaranteed a T-shirt. The rule says all participants who ranked A-th or higher get a T-shirt, so the check must be inclusive (X <= A). I changed that single comparison to include equality; no other lines were modified.",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X <= A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A)\n  print(answer)"
+}

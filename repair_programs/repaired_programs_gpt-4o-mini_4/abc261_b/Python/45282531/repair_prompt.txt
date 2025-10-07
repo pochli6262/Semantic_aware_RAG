@@ -1,0 +1,173 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+N players played a round-robin tournament.
+
+You are given an N-by-N table A containing the results of the matches. Let A\_{i,j} denote the element at the i-th row and j-th column of A.  
+A\_{i,j} is `-` if i=j, and `W`, `L`, or `D` otherwise.  
+A\_{i,j} is `W` if Player i beat Player j, `L` if Player i lost to Player j, and `D` if Player i drew with Player j.
+
+Determine whether the given table is contradictory.
+
+The table is said to be contradictory when some of the following holds:
+
+* There is a pair (i,j) such that Player i beat Player j, but Player j did not lose to Player i;
+* There is a pair (i,j) such that Player i lost to Player j, but Player j did not beat Player i;
+* There is a pair (i,j) such that Player i drew with Player j, but Player j did not draw with Player i.
+
+### Constraints
+
+* 2 \leq N \leq 1000
+* A\_{i,i} is `-`.
+* A\_{i,j} is `W`, `L`, or `D`, for i\neq j.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+N
+A_{1,1}A_{1,2}\ldots A_{1,N}
+A_{2,1}A_{2,2}\ldots A_{2,N}
+\vdots
+A_{N,1}A_{N,2}\ldots A_{N,N}
+```
+
+### Output
+
+If the given table is not contradictory, print `correct`; if it is contradictory, print `incorrect`.
+
+---
+
+### Sample Input 1
+
+```
+4
+-WWW
+L-DD
+LD-W
+LDW-
+```
+
+### Sample Output 1
+
+```
+incorrect
+```
+
+Player 3 beat Player 4, while Player 4 also beat Player 3, which is contradictory.
+
+---
+
+### Sample Input 2
+
+```
+2
+-D
+D-
+```
+
+### Sample Output 2
+
+```
+correct
+```
+
+There is no contradiction.
+
+## Your Analysis (1-sentence bug summary)
+The likely bug is that the program does not account for the 'D' (draw) condition properly when checking for contradictions between players.
+
+## Buggy Program
+N = int(input())
+A = [list(input()) for _ in range(N)]
+
+for i in range(N):
+  for j in range(N):
+    if A[i][j] == 'W' and A[j][i] =='W' or A[i][j] == 'L' and A[j][i] =='L':
+      print('incorrect')
+      exit()
+print('correct')
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -9,4 +9,4 @@
+   if A[i] != B[i]:
+     for j in range(N):
+       if A[i][j] != B[i][j]:
+-        print(i,j)
++        print(i+1,j+1)
+
+### Diff 2
+--- 
++++ 
+@@ -1,7 +1,7 @@
+ N = int(input())
+ A = [list(map(int, input().split())) for _ in range(N)]
+-ans = []
+ for i in range(N):
++    ans = []
+     for j in range(N):
+         if A[i][j] == 1:
+             ans.append(j+1)
+
+### Diff 3
+--- 
++++ 
+@@ -9,7 +9,7 @@
+ idx=0
+ for k in range(i,N):
+   if idx>=N: break
+-  if A[k]!=S[idx]: idx+=2
++  if A[k]==S[idx]: idx+=2
+   else: idx+=1
+ if idx>=N: print("No")
+ else: print("Yes")
+
+### Diff 4
+--- 
++++ 
+@@ -9,7 +9,7 @@
+             fj = set(I[j][2:])
+             fi = set(I[i][2:])
+             if len((fj | fi)) == len(fj):
+-                if I[i][0] > I[j][0] or len((fj | fi)) - len(fj) > 0:
++                if I[i][0] > I[j][0] or len((fj | fi)) - len(fi) > 0:
+                     print('Yes')
+                     exit()
+ print('No')
+
+### Diff 5
+--- 
++++ 
+@@ -11,7 +11,7 @@
+     else:
+         B[2*i-N]=A[i]
+ for i in range(N):
+-    if i%2!=0:
++    if i%2==0:
+         continue
+     if B[i-1]<B[i] and B[i]>B[i+1]:
+         continue
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

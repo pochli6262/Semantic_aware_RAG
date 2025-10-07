@@ -1,0 +1,185 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+N players played a round-robin tournament.
+
+You are given an N-by-N table A containing the results of the matches. Let A\_{i,j} denote the element at the i-th row and j-th column of A.  
+A\_{i,j} is `-` if i=j, and `W`, `L`, or `D` otherwise.  
+A\_{i,j} is `W` if Player i beat Player j, `L` if Player i lost to Player j, and `D` if Player i drew with Player j.
+
+Determine whether the given table is contradictory.
+
+The table is said to be contradictory when some of the following holds:
+
+* There is a pair (i,j) such that Player i beat Player j, but Player j did not lose to Player i;
+* There is a pair (i,j) such that Player i lost to Player j, but Player j did not beat Player i;
+* There is a pair (i,j) such that Player i drew with Player j, but Player j did not draw with Player i.
+
+### Constraints
+
+* 2 \leq N \leq 1000
+* A\_{i,i} is `-`.
+* A\_{i,j} is `W`, `L`, or `D`, for i\neq j.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+N
+A_{1,1}A_{1,2}\ldots A_{1,N}
+A_{2,1}A_{2,2}\ldots A_{2,N}
+\vdots
+A_{N,1}A_{N,2}\ldots A_{N,N}
+```
+
+### Output
+
+If the given table is not contradictory, print `correct`; if it is contradictory, print `incorrect`.
+
+---
+
+### Sample Input 1
+
+```
+4
+-WWW
+L-DD
+LD-W
+LDW-
+```
+
+### Sample Output 1
+
+```
+incorrect
+```
+
+Player 3 beat Player 4, while Player 4 also beat Player 3, which is contradictory.
+
+---
+
+### Sample Input 2
+
+```
+2
+-D
+D-
+```
+
+### Sample Output 2
+
+```
+correct
+```
+
+There is no contradiction.
+
+## Your Analysis (1-sentence bug summary)
+The code never checks for mutual 'D' entries, so valid draws (A[i][k]=='D' and A[k][i]=='D') aren't counted and are incorrectly treated as contradictions.
+
+## Buggy Program
+N = int(input())
+A = [list(input()) for _ in range(N)]
+count = 0
+for i in range(N):
+  for k in range(N):
+    if (i == k) and (A[i][k] == '-') :
+      count += 1
+    if (i != k) and (A[i][k] == 'W') and (A[k][i] == 'L'):
+      count += 1
+    if (i != k) and (A[k][i] == 'W') and (A[i][k] == 'L'):
+      count += 1
+if count == N**2:
+  print("correct")
+else:
+  print("incorrect")
+  
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -8,8 +8,10 @@
+     a += 1
+   if N % 2 == 0 and N / 2 == t:
+     t_win = True
++    break
+   elif N % 2 == 0 and N / 2 == a:
+     a_win = True
++    break
+ if t > a:
+   t_win = True
+ elif a > t:
+
+### Diff 2
+--- 
++++ 
+@@ -13,7 +13,7 @@
+         bingo = True
+     vertical = True
+     for n in range(N):
+-        if boolss[i][n] == False:
++        if boolss[n][j] == False:
+             vertical = False
+             break
+     if vertical:
+
+### Diff 3
+--- 
++++ 
+@@ -24,7 +24,7 @@
+                 # print("backwards")
+                 return i + 1
+             
+-        if (a - N) % (N - 1) == 0 and a != N ** 2:
++        if (a - N) % (N - 1) == 0 and a != N ** 2 and a != 1:
+             forwards += 1
+             if forwards == N:
+                 # print("forwards")
+
+### Diff 4
+--- 
++++ 
+@@ -120,7 +120,7 @@
+     if not ok:
+         return check(A, B)
+ 
+-    if sum(Ta) == 2:
++    if N - sum(Ta) == 2:
+         X = [a for a in A if a % 2 == 0]
+         Y = [a for a in B if a % 2 == 0]
+         return X == Y
+
+### Diff 5
+--- 
++++ 
+@@ -31,7 +31,7 @@
+     N = int(input())
+ 
+ if N == 1:
+-    print(1)
++    print("!", 1)
+     exit()
+ x = 0
+ for i in range(1, N):
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

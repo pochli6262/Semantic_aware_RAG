@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the condition for checking draws. The original code checks if kama[ipp][i] is 'D' for a draw, but it should also accept 'D' as a draw when comparing 'D' against 'D'. The original check incorrectly used 'elif kama[i][ipp] == 'D':' instead of 'if kama[ipp][i] != 'D':' so I changed the second condition check to match the correct logic for draws.",
+  "fixed_code": "n = int(input())\nkama = [list(input()) for i in range(n)]\nfor i in range(n):\n    for ipp in range(n):\n        if kama[i][ipp] == \"W\":\n            if kama[ipp][i] != \"L\":\n                print(\"incorrect\")\n                exit()\n        elif kama[i][ipp] == \"D\":\n            if kama[ipp][i] != \"D\":\n                print(\"incorrect\")\n                exit()\n        elif kama[i][ipp] == \"L\":\n            if kama[ipp][i] == \"W\":\n                print(\"incorrect\")\n                exit()\nprint(\"correct\")"
+}

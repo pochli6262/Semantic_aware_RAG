@@ -1,0 +1,4 @@
+{
+  "explanation": "The original implementation incorrectly breaks the inner loop when i == j, causing it to stop checking the other elements. Instead, it should continue to the next iteration of the loop when i equals j. The corrected line allows the inner loop to continue checking all pairs of strings without breaking. This fix aligns with the provided bug summary and ensures all distinct pairs are evaluated correctly.",
+  "fixed_code": "N = int(input())\nS = []\nfor i in range(N):\n  s = input()\n  S.append(s)\n  \nflag = False\n\nfor i in range(N):\n  for j in range(N):\n    if i == j:\n      continue\n    \n    a = S[i] + S[j]\n    \n    if a == a[::-1]:\n      flag = True\n        \nprint('Yes' if flag else 'No')"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc229_f/Python/46038453",
+  "query_summary": "The DP transition for dp[i+1][1][0] wrongly adds B[i−1] when coming from dp[i][0][0], overcounting the cost—it should be dp[i][0][0] (no +B[i−1]).",
+  "oracle_summary": "The DP transition for dp[i+1][1][0] wrongly adds B[i−1] when coming from dp[i][0][0], overcounting the cost—it should be dp[i][0][0] (no +B[i−1]).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly sets the value of `inf` to `1 << 3` instead of `1 << 60`, which can lead to incorrect minimum comparisons and results in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N,M=map(int,input().split())\n A=list(map(int,input().split()))\n-inf=1<<3\n+inf=1<<60\n dp=[[[inf]*(M+1) for _ in range(2)] for _ in range(N+1)]\n dp[0][1][0]=0\n for i in range(N):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not check for infinite distances when updating the shortest paths in the Floyd-Warshall algorithm and in the dynamic programming step, which can lead to incorrect results when there are unreachable nodes.",
+      "diff": "--- \n+++ \n@@ -9,6 +9,7 @@\n for j in range(N):\n   for i in range(N):\n     for k in range(N):\n+      if D[i][j]==INF or D[j][k]==INF:continue\n       D[i][k]=min(D[i][k],D[i][j]+D[j][k])\n #dp[bit][i]:bitを訪問済、最後がiの最短距離\n dp=[[INF for _ in range(N)] for _ in range(1<<N)]\n@@ -20,6 +21,7 @@\n       continue\n     nbit=bit|(1<<j)\n     for i in range(N):\n+      if dp[bit][i]==INF or D[i][j]==INF:continue\n       dp[nbit][j]=min(dp[nbit][j],dp[bit][i]+D[i][j])\n \n ans=min(dp[-1])"
+    },
+    {
+      "summary": "The buggy code contains a logical error in the `dp` updating section where it redundantly assigns `dp[pl+1][i][j]` to the same value twice, which could lead to incorrect state transitions.",
+      "diff": "--- \n+++ \n@@ -72,7 +72,7 @@\n     nexi,nexx,nexy = dp[i][x][y]\n     #print (nexx,nexy)\n \n-    print (nexx,nexy)\n+    #print (nexx,nexy)\n \n     diff = None\n     if x != nexx:"
+    },
+    {
+      "summary": "The buggy code mistakenly iterates over the edges of the graph instead of all possible vertices when updating the DP table, which leads to incorrect calculations of the shortest paths.",
+      "diff": "--- \n+++ \n@@ -28,7 +28,7 @@\n     for u in range(n):\n         if s & (1 << u) == 0:\n             continue\n-        for v, w in graph[u]:\n+        for v in range(n):\n             dp[s | (1 << v)][v] = min(dp[s | (1 << v)][v], dp[s][u] + d[u][v])\n \n ans = INF"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not apply the modulus operation to the final sum output, which can lead to incorrect results when the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -24,4 +24,4 @@\n     dp[i+1][0] %= MOD\n     dp[i+1][1] %= MOD\n \n-print(sum(dp[N]))\n+print(sum(dp[N]) % MOD)"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    9
+  ],
+  "useful_diffs_count": 2
+}

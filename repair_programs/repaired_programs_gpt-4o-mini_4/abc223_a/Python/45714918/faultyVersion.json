@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly allows for the case when X is 0, while it should not since there must be at least one 100-yen coin in the purse. The condition to check whether the input is valid should ensure that X is greater than 0 and also divisible by 100. I fixed this by changing the condition to 'if x > 0 and x % 100 == 0' to ensure that X is not zero and is a multiple of 100, thus allowing only valid amounts in the purse. This logic is supported by the conditions indicated in the problem statement and is a common pattern found in programming fixes.",
+  "fixed_code": "x = int(input())\nprint('Yes' if x > 0 and x % 100 == 0 else 'No')"
+}

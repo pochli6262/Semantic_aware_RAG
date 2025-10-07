@@ -1,0 +1,1 @@
+The code mixes a modular pow with a non-modular term and never reduces the final sum modulo 998244353, so it can produce incorrect or negative outputs.

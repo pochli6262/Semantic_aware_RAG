@@ -1,0 +1,1 @@
+The program incorrectly checks the conditions for determining connectivity among black squares, leading to incorrect outputs for some grid configurations.

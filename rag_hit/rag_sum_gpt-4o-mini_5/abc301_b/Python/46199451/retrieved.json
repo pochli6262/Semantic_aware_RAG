@@ -1,0 +1,31 @@
+{
+  "task": "abc301_b/Python/46199451",
+  "query_summary": "The program incorrectly uses the index `i` instead of the value `i` when extending `ans_list`, preventing the correct intermediate values from being inserted between the adjacent elements.",
+  "oracle_summary": "The program prints the Python list object (with brackets and commas) instead of outputting the sequence of numbers space-separated, because it uses print(ans_list) instead of print(*ans_list).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the value of `a[now]` instead of `a[i]` when appending to the `ans` list, which results in the wrong pair of indices being recorded.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n for i in range(n):\n   while a[i] != i:\n     now = a[i]\n-    ans.append([now+1,a[now]+1])\n+    ans.append([i+1,a[i]+1])\n     a[i], a[now] = a[now], a[i]\n     \n print(len(ans))"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly appends the range (n - 1, n - 3) in the first if condition, where it should append (n - 2, n - 2) instead.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     if p[j] != j + 1 and j < n - 2:\n         ind = p.index(j + 1)\n         if ind == n - 1:\n-            ans.append((n - 1, n - 3))\n+            ans.append((n - 2, n - 2))\n             p = p[: n - 3] + [p[n - 1]] + p[n - 3 : n - 1]\n         else:\n             ans.append((ind + 1, j))"
+    },
+    {
+      "summary": "The bug in the code is that the `r` array is incorrectly indexing `a` as `a[n - i]` instead of `a[n - i - 1]`, leading to an out-of-bounds error when `i` equals `n-1`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n for i in range(1, n):\n     l[i] = min(l[i - 1] + 1, a[i])\n for i in range(1, n):\n-    r[i] = min(r[i - 1] + 1, a[n - i])\n+    r[i] = min(r[i - 1] + 1, a[n - i - 1])\n ans = 1\n for i in range(n):\n     if ans < min(l[i], r[n - i - 1]):"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates only halfway through the array instead of the entire array, which leads to missing potential maximum values in the calculation of `ans`.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     t.append(min(t[-1] + 1, a))\n \n ans = 0\n-for i in range(N // 2 + 1):\n+for i in range(N):\n     ans = max(ans, min(s[i+1], t[N-i]))\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code does not properly handle the case where the second-to-last element in `ans2` is greater than the last element, which may affect the logical flow of processing and result in incorrect outputs.",
+      "diff": "--- \n+++ \n@@ -26,6 +26,8 @@\n             if ans2[-2] < ans2[-1]:\n                 f2 = True\n                 f = False\n+            if ans2[-2] > ans2[-1]:\n+                f = False\n \n for b, i in B:\n     if i <= li or b > ans2[0]:"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The code wrongly prints 0 when n is a multiple of 5. That single line should output n (the original number) instead of 0 so multiples of 5 remain unchanged. I fixed it by replacing print(0) with print(n).",
+  "fixed_code": "n = int(input())\nif n%5 ==0:\n  print(n)\nelif n % 5 >=3:\n  print(n+5-n%5)\nelse:\n  print(n-n%5)"
+}

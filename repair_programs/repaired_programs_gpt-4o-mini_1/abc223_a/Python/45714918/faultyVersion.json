@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code does not handle the case where the input is not a valid integer, which can cause a ValueError when calling int(input()). I fixed it by ensuring we only attempt to convert input to an integer after confirming the input is indeed a valid integer with a try-except block that handles the error appropriately.",
+  "fixed_code": "try:\n    x = int(input())\n    print('Yes' if x % 100 == 0 else 'No')\nexcept ValueError:\n    print('Invalid input, please enter an integer.')"
+}

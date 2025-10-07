@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue arises in how the program determines the range of valid indices for the sums. Specifically, when checking if the value of 'y' is within bounds using 'if y >= N', it should check 'if y >= N + 1' to properly account for the way ranges are calculated from the cumulative sums, similar to the changes seen in Diff 1. By correcting this, we ensure we do not exceed the bounds when accessing the sums.",
+  "fixed_code": "from bisect import bisect_left as bl\nN,P,Q,R = list(map(int,input().split()))\nA = list(map(int,input().split()))\nasum = [0]\nfor n in range(N):\n    asum.append(asum[-1]+A[n])\nfor x in range(N):\n    a = asum[x]\n    y = bl(asum,P+a)\n    if y >= N + 1 or asum[y]-a != P: continue\n    a = asum[y]\n    z = bl(asum,Q+a)\n    if z >= N + 1 or asum[z]-a != Q: continue\n    a = asum[z]\n    w = bl(asum,R+a)\n    if w >= N + 1 or asum[w]-a != R: continue\n    print(\"Yes\")\n    break\nelse:\n    print(\"No\")"
+}

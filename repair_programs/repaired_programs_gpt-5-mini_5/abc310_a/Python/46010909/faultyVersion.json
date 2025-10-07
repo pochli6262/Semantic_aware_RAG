@@ -1,0 +1,4 @@
+{
+  "explanation": "The original last line computed p - q + a (i.e. subtracting the coupon discount from the regular price and then adding the dish price), which is incorrect. The coupon makes the drink cost Q, so the total with coupon should be Q + min(D_i). I fixed the line to compute min(P, Q + a). This corrects the formula from p-q+a to q+a.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = min(d_list)\n\nprint(min(p, q + a))"
+}

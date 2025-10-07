@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly computes the total cost with the discount by subtracting Q from P, which results in an incorrect calculation for the total price. The correct line should simply add Q to the dish price instead of subtracting it from P. This fix clarifies that when using the coupon, the cost of the drink is 'Q' plus the price of the chosen dish. This concept aligns with the bug summary rather than the retrieved diffs since none of them were directly related to this specific calculation mistake.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nans = P\nfor i in range(N):\n    ret = Q + D[i]\n    ans = min(ans, ret)\n\nprint(ans)"
+}

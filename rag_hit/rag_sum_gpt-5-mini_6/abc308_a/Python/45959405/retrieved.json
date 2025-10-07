@@ -1,0 +1,32 @@
+{
+  "task": "abc308_a/Python/45959405",
+  "query_summary": "The code never checks that each S_i lies between 100 and 675 (inclusive), so it doesn't enforce the required range condition.",
+  "oracle_summary": "The code omitted the required boundary check on the first and last elements (that arr[0] must be ≥100 and arr[-1] must be ≤675), so invalid inputs could still pass.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the range `000 <= int(s) <= 349` instead of the correct `1 <= int(s) <= 349`, which could allow for invalid comparisons with zero.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = s.replace(\"ABC\",\"\")\n if int(s) ==316:\n   print(\"No\")\n-elif 000 <= int(s) <= 349:\n+elif 1 <= int(s) <= 349:\n   print(\"Yes\")  \n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the input 's' is less than or equal to \"ABC349\" instead of ensuring it falls within the correct range starting from \"ABC001\".",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n s = input()\n-if s <= \"ABC349\" and s != \"ABC316\":\n+if \"ABC001\"<= s <= \"ABC349\" and s != \"ABC316\":\n     print(\"Yes\")\n else :\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly compares characters in the string `S` to the integer `0` instead of the string `\"0\"`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input().strip()\n \n for i in range(1, 9):\n-  if S[2 * i - 1] != 0:\n+  if S[2 * i - 1] != \"0\":\n     print(\"No\")\n     exit()\n print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly allows the value of `S` to be 0, which should be excluded from the valid conditions, leading to potentially misleading results.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = int(input()[3:6])\n-if S != 316 and S < 350:\n+if S != 316 and S!= 0 and S < 350:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the variable `s` during the iteration, failing to account for the previously calculated values of `s`, which should include the already counted units.",
+      "diff": "--- \n+++ \n@@ -12,5 +12,5 @@\n     if d - 4 * s < D[i]:\n         print('No')\n         exit()\n-    s = D[i]\n+    s = D[i] + 4 * s\n print('Yes')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

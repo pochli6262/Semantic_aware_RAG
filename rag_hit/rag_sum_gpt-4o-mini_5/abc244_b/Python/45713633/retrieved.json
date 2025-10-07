@@ -1,0 +1,29 @@
+{
+  "task": "abc244_b/Python/45713633",
+  "query_summary": "The program incorrectly updates the direction during rotation, resulting in an incorrect calculation of Takahashi's final coordinates.",
+  "oracle_summary": "The rotate() method incorrectly sets dx to the position y instead of the direction dy, using self.y instead of self.dy and thus rotating the heading wrongly.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the y-coordinate when the input is \"D\" by adding 1 instead of subtracting 1.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     elif s==\"U\":\n         y += 1\n     elif s==\"D\":\n-        y += 1\n+        y -= 1\n     \n     return x, y\n "
+    },
+    {
+      "summary": "The buggy code incorrectly updates the variable `g` in the loop by subtracting values rather than using a fixed value of 1 when computing changes between consecutive `x` coordinates, which leads to incorrect game outcomes.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n     px,py = xy[i-1]\n     if y != py:\n       continue\n-    g ^= x-px-2\n+    g ^= 1\n \n if g:\n   print(\"Takahashi\")"
+    },
+    {
+      "summary": "The buggy code incorrectly computes the value of `X` when the move is \"R\" by using `X *= 2 + 1` instead of the correct formula `X = 2 * X + 1`.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n     if s == \"L\":\n         X*=2\n     elif s == \"R\":\n-        X*=2+1\n+        X=2*X+1\n     else:\n         X//=2\n print(X)"
+    },
+    {
+      "summary": "The buggy code incorrectly adds the scaled sine value to the x-coordinate calculation instead of subtracting it, resulting in an incorrect calculation of the x-coordinate.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n a, b, c = map(int, input().split())\n \n \n-x = a * round(math.cos(math.radians(c)), 8) + b * round(math.sin(math.radians(c)), 8)\n+x = a * round(math.cos(math.radians(c)), 8) - b * round(math.sin(math.radians(c)), 8)\n y = a * round(math.sin(math.radians(c)), 8) + b * round(math.cos(math.radians(c)), 8)\n \n print(x, y)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the result by failing to add the appropriate offset based on the x-coordinate distance when the absolute difference in x-coordinates is greater than that in y-coordinates.",
+      "diff": "--- \n+++ \n@@ -7,6 +7,6 @@\n     Tx -= 1\n \n if abs(Tx-Sx) > abs(Ty-Sy):\n-    print(abs(Tx-Sx))\n+    print(abs(Ty-Sy) + (abs(Tx-Sx)-abs(Ty-Sy))//2)\n else:\n     print(abs(Ty-Sy))"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

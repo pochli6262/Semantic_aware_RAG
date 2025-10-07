@@ -1,0 +1,1 @@
+The rotate method mistakenly uses self.y (the position) when updating direction—self.dx is set to self.y instead of using self.dy—so the direction rotation is incorrect.

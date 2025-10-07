@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is that the condition used to check if there are enough occurrences of `x` in `D` should be checking if the length of `D[x]` is less than `k`, rather than greater than or equal to `k`. The comparison for accessing the k-th occurrence is adjusted by maintaining proper indexing. The corrected line ensures that we get the (k-1) index appropriately.",
+  "fixed_code": "import sys\nfrom collections import defaultdict\nMOD = 998_244_353\nINF = 10**18\n\nN, Q = map(int, sys.stdin.readline().rstrip().split())\nA = list(map(int, sys.stdin.readline().rstrip().split()))\nD = defaultdict(list)\nfor i in range(N):\n    D[A[i]].append(i + 1)\n\nprint(D)\n\nfor q in range(Q):\n    x, k = list(map(int, sys.stdin.readline().rstrip().split()))\n    if len(D[x]) < k:\n        print(-1)\n    else:\n        print(D[x][k - 1])"
+}

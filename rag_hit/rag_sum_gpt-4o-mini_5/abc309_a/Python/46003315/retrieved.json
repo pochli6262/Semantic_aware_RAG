@@ -1,0 +1,33 @@
+{
+  "task": "abc309_a/Python/46003315",
+  "query_summary": "The bug likely occurs because the condition for checking horizontal adjacency is incorrectly verifying the row and column values.",
+  "oracle_summary": "The code used the wrong variables and condition—it compared ax to ay and required by-ay==1 instead of comparing rows (ax==bx) and checking the columns differ by 1 (abs(ay-by)==1).",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to check that consecutive elements in the same row differ by 1, which is necessary for the correct validation of the matrix structure.",
+      "diff": "--- \n+++ \n@@ -27,6 +27,8 @@\n         if j != 0:\n             if ((B[i][j] - 1) % 7) - ((B[i][j-1] - 1) % 7) != 1:\n                 ans = \"No\"\n+            if B[i][j] - B[i][j-1] != 1:\n+                ans = \"No\"\n \n print(ans)\n                 "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `np.max` instead of `np.min` when calculating the distance, resulting in an incorrect comparison for determining the output.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n \n M = int(input())\n uv = np.array([list(map(int, readline().split())) for _ in range(M)])\n-dist = np.max(coef @ uv.T + cons, axis=1)\n+dist = np.min(coef @ uv.T + cons, axis=1)\n \n Q = int(input())\n ab = np.array([list(map(int, readline().split())) for _ in range(Q)])"
+    },
+    {
+      "summary": "The buggy code incorrectly uses integer division (`//`) instead of multiplication when calculating contributions from `B[3]` and `B[4]`, leading to erroneous logic in the conditional check.",
+      "diff": "--- \n+++ \n@@ -30,6 +30,6 @@\n     B[3]-=A[2]\n     B[0]+=A[2]\n \n-    if A[1]>B[1]+B[2]+B[3]//2+B[4]//2 or A[0]+2*A[1]>B[0]+2*B[1]+3*B[2]+4*B[3]+5*B[4]:\n+    if A[1]>B[1]+B[2]+B[3]*2+B[4]*2 or A[0]+2*A[1]>B[0]+2*B[1]+3*B[2]+4*B[3]+5*B[4]:\n         ans=\"No\"\n     print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it performs a float division when calculating `Ny2` (using `/` instead of `//`), which can lead to incorrect comparisons since it should be an integer for the subsequent logic.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n     Nx,A,B=map(int,input().split())\n     Ny=Nx\n-    Ny2=Ny/2\n+    Ny2=int(Ny/2)\n     Nx-=A\n     if(Ny2<A):\n         Ny-=(A-Ny2)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

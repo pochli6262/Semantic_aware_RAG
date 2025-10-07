@@ -1,0 +1,1 @@
+The likely bug is that the condition in the inner loop incorrectly checks `P[i] >= P[i]` instead of comparing `P[i]` to `P[j]`, and it also improperly checks for function superiority with `F[j] >= F[i]` instead of checking if `F[j] contains F[i]`.

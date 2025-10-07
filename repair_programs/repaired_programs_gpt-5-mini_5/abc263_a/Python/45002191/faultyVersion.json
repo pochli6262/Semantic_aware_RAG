@@ -1,0 +1,4 @@
+{
+  "explanation": "The original `if` line only checked that there are exactly two distinct card values, which incorrectly accepts cases like four-of-a-kind plus a single. I replaced that single line with a condition that also checks the counts of each distinct value are 2 and 3 (by computing counts for each unique value and ensuring the sorted list equals [2, 3]). This fixes the logic while changing exactly one line.",
+  "fixed_code": "x=list(map(int,input().split()))\nif len(set(x))==2 and sorted([x.count(i) for i in set(x)])==[2,3]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

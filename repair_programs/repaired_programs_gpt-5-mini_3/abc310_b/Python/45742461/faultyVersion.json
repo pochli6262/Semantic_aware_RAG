@@ -1,0 +1,4 @@
+{
+  "explanation": "The code was comparing s[i][0] (price of product i) with s[j][1], but s[j][1] is the count of features for product j, not its price. The intended comparison is between the two products' prices (both at index 0). I changed s[j][1] to s[j][0] so the price comparison is correct.",
+  "fixed_code": "n,m=map(int,input().split())\ns=[]\nfor i in range(n):\n  p,c,*f=map(int,input().split())\n  s.append([p,c,f])\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i][0]>=s[j][0] and set(s[j][2])>=set(s[i][2]) \\\n            and (s[i][0]>s[j][0] or set(s[j][2])-set(s[i][2])):\n      print(\"Yes\")\n      exit()\nprint(\"No\")"
+}

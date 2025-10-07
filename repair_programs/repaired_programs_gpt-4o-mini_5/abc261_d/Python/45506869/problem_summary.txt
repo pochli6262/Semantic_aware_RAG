@@ -1,0 +1,1 @@
+The program likely has an issue with the way it initializes and updates the dynamic programming table, potentially leading to incorrect calculations of the maximum money earned after coin tosses.

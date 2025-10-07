@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line that calculates the index of the minimum value. The function `list.index()` is being called on a variable named `list`, which is also a built-in name in Python. This can lead to unexpected behavior. To fix this, I renamed the `list` variable to `values` to avoid shadowing the built-in name.",
+  "fixed_code": "N=int(input())\nvalues=[]\nfor i in range(20):\n  values.append(abs(N-i*5))\nIn=values.index(min(values))\nprint(In*5)"
+}

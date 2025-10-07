@@ -1,0 +1,29 @@
+{
+  "task": "abc235_d/Python/44598432",
+  "query_summary": "The likely bug is that the program incorrectly initializes the distance array, leading to incorrect tracking of the minimum number of operations needed to reach the target number from 1.",
+  "oracle_summary": "The buggy code always applies the rotation, even when it creates a leading zero and reduces the digit count, whereas it should only rotate when the number of digits is preserved (len(str(M)) == len(str(rot(M)))).",
+  "retrieved": [
+    {
+      "summary": "The issue in the buggy code is that the final loop iterates from 0 to N instead of from 0 to N+1, leading to an off-by-one error when computing the minimum value of `ans`.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n    dpR[j]= min(dpR[j+1]+A[j],R*(N-j))\n \n ans=10**18\n-for i in range(N):\n+for i in range(N+1):\n    ans = min(ans,dpL[i]+dpR[i])\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly loops from `N-2` to `1` instead of from `N-1` to `1`, leading to potential index errors and incorrect calculations in the `ans` list.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n for i in map(int, input().split()):\n     ans[i-1] = 0\n-for i in range(N-2, 0, -1):\n+for i in range(N-1, 0, -1):\n     ans[i-1] = min(ans[i-1], ans[i]+1)\n \n print('\\n'.join(map(str, ans)))"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from `N-1` to `1` in the second loop, which causes an index out-of-bounds error and prevents the last element from being processed.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     v[i]=(i+1)*L\n   else:\n     v[i]=x\n-for i in range(N-1,0,-1):\n+for i in range(N-1,-1,-1):\n   p=v[i]+(N-1-i)*R\n   result=min(result,p)\n print(result)"
+    },
+    {
+      "summary": "The buggy code contains an error in the final print statement where it incorrectly compares `a` with `i//2` instead of `I//2`.",
+      "diff": "--- \n+++ \n@@ -12,4 +12,4 @@\n   for i in L:\n    for j in L:\n     d[b][i]=min(d[b][i],d[b^1<<i][j]+D[j][i]+I*(i==j))\n-a=min(d[-1]);print([a,\"No\"][a>i//2])\n+a=min(d[-1]);print([a,\"No\"][a>I//2])"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `i+j+1 != k` instead of `i+j+1 > k`, leading to incorrect results when calculating the minimum distances in the specified range for the variable `k`.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n     ans=1<<60\n     for i in range(max(0, k-M+1),k):\n         for j in range(M):\n-            if Pos[i][j]==\"1\" and i+j+1 != k:\n+            if Pos[i][j]==\"1\" and i+j+1 > k:\n                 ans=min(ans, dis1[i]+1+dis2[i+j+1])\n     \n     if ans==1<<60: ans=-1"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,1 @@
+The code incorrectly enforces strictly increasing order with `check_num < S[i]` instead of allowing non-decreasing (<=), so equal consecutive values are wrongly rejected.

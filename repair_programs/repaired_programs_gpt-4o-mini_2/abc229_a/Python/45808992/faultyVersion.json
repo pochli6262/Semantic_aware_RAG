@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue with the original code is that it only checks if either input is '##' to print 'Yes'. This means that if any input contains '##', it prints 'Yes' regardless of the intention for other input strings. To fix it, I changed the logic in the line checking for '##' to ensure that it should only print 'Yes' when both S1 and S2 are not equal to '##'. The actual check should be for 'No' to print when both inputs are '.#' and '#.' or vice versa. Thus, I made the appropriate correction to improve the logic.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1 == '##' and S2 == '##':\n    print('Yes')\nelif S1 == '.#' and S2 == '#.':\n    print('No')\nelif S1 == '#.' and S2 == '.#':\n    print('No')"
+}

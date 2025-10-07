@@ -1,0 +1,4 @@
+{
+  "explanation": "The code was incorrectly rounding grades down when the remainder was less than 3 by doing ans = n - (n%5). For the typical rounding rule (only round up to the next multiple of 5 when the difference is less than 3), values with remainder 0,1,2 should remain unchanged. I fixed the single incorrect line by keeping ans = n when n%5 < 3 instead of subtracting the remainder.",
+  "fixed_code": "n=100\n\nif n%5<3:\n    ans=n\nelse:\n    ans=n+5-(n%5)\nprint(ans)"
+}

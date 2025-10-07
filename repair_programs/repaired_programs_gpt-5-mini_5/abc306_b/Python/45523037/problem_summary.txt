@@ -1,0 +1,1 @@
+The loop uses range(63) so it fails to process the final element A_63 (an off-by-one error), missing adding 2^63 when that bit is 1.

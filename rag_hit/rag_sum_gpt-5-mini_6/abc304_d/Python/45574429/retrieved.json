@@ -1,0 +1,29 @@
+{
+  "task": "abc304_d/Python/45574429",
+  "query_summary": "The program prints the maximum count before the minimum (outputs M then n) instead of printing the minimum first and then the maximum.",
+  "oracle_summary": "The final print arguments are swapped: the code outputs (max, min) instead of the required (min, max) by calling print(M, n) instead of print(n, M).",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the initial value of `ans` is set to `10**9` instead of `10**10`, which may cause it to return an incorrect minimum value.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n A.sort()\n B.sort()\n \n-ans = 10**9\n+ans = 10**10\n \n for i, a in enumerate(A):\n     idx = bisect_left(B, a)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the intermediate results of the bisect calculations within the loop, which is unnecessary and may lead to confusion.",
+      "diff": "--- \n+++ \n@@ -2,9 +2,8 @@\n n, m = map(int,input().split())\n A = sorted(map(int,input().split()))\n \n-print(A)\n ans = 0\n for i in range(n):\n     ans = max(ans, bisect.bisect_left(A, A[i] + m) - i)\n-    print(bisect.bisect_left(A, A[i] + m) - i)\n+    \n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to n in the final print statement, missing the nth node, whereas the corrected code iterates from 1 to n+1 to include all nodes in the output.",
+      "diff": "--- \n+++ \n@@ -59,5 +59,5 @@\n       ans[j]=i+1\n     new.append(j)\n     \n-for i in range(1,n):\n+for i in range(1,n+1):\n   print(ans[i])"
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to print the variable `pair`, which is undefined after a conditional block, instead of the minimum value `mn`.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n   mn = min(pair, mn)\n \n if mn <= num[0]:\n-  print(num[0], pair)\n+  print(num[0], mn)\n   exit()\n import bisect\n use = []"
+    },
+    {
+      "summary": "The buggy code incorrectly sets the upper limit for the binary search in the print statement to \\(10^{9}\\) instead of \\(10^{9} + 1\\), which may lead to incorrect results for certain inputs.",
+      "diff": "--- \n+++ \n@@ -20,4 +20,4 @@\n         B_num = 0\n     return A_num >= B_num\n \n-print(bisect(10 ** 9, -1, solve))\n+print(bisect(10 ** 9 + 1, -1, solve))"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

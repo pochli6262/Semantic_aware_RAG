@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition line used `or` incorrectly: `if [s1, s2]==[\"#.\",\".#\"] or[\".#\",\"#.\"]:` evaluates the second operand `['.#', '#.']` as a truthy list, so the whole condition is always true when the first comparison is false. I fixed it by comparing [s1, s2] to the second list as well: `or [s1, s2] == ['.#', '#.']` so both comparisons are boolean expressions.",
+  "fixed_code": "s1 = input()\ns2 = input()\n\nif [s1, s2] == [\"#.\", \".#\"] or [s1, s2] == [\".#\", \"#.\"]:\n    print('No')\n    exit()\nelse:\n    print('Yes')\n"
+}

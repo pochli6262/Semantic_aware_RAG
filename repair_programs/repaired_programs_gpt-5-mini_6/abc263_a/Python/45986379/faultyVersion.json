@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition only checked K[2] != K[3], which detects the full-house arrangement when the three-of-a-kind comes before the pair ([x,x,x,y,y]) but misses the case when the three-of-a-kind is the last three cards ([x,x,y,y,y]). I fixed the condition to accept either split point by checking (K[1] != K[2] or K[2] != K[3]), so with len(set(K)) == 2 we correctly detect both patterns.",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and (K[1] != K[2] or K[2] != K[3]):\n    print('Yes')\nelse:\n    print('No')"
+}

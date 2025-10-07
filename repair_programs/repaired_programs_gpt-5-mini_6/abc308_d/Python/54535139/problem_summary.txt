@@ -1,0 +1,1 @@
+The code marks adjacent cells as seen before checking whether their letter matches the next character of "snuke" and never unmarks them (no backtracking), so non-matching visits permanently prune valid paths.

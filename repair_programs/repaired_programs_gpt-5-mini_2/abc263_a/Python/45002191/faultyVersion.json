@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code checked whether the number of distinct elements was exactly 2 (len(set(x)) == 2). That only correctly captures the case with exactly two distinct values. If the intention is to detect that all input values are distinct (no duplicates), you must compare the number of distinct elements to the total number of elements. I changed the conditional to compare len(set(x)) with len(x).",
+  "fixed_code": "x=list(map(int,input().split()))\nif len(set(x))==len(x):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

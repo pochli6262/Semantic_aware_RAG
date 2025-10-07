@@ -1,0 +1,1 @@
+The bug likely lies in the loop iterating over the move string `S[:-1]`, which omits the final move, potentially causing Takahashi to finish the moves without accounting for the last move's health deduction or item consumption.

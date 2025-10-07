@@ -1,0 +1,33 @@
+{
+  "task": "abc301_d/Python/45718315",
+  "query_summary": "The bug is that when encountering a fixed '1' the code only adjusts min_val but forgets to add mask to ans and subtract mask from n, so forced '1' bits are not counted or applied.",
+  "oracle_summary": "The bug is that when encountering a fixed '1' the code only adjusts min_val but forgets to add mask to ans and subtract mask from n, so forced '1' bits are not counted or applied.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes the variable `ans` with `1 << 32`, which limits the minimum value calculation, instead of using `1 << 64` as in the correct code.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N=int(input())\n S=list(input())\n C=list(map(int,input().split()))\n-ans=1<<32\n+ans=1<<64\n oi=[0]*(N+1)\n io=[0]*(N+1)\n oi_=[0]*(N+1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the variable `ans` to 100 instead of a sufficiently large value (100000) to ensure that the correct minimum value can be found.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n s = [list(input()) for _ in range(n)]\n-ans = 100\n+ans = 100000\n for i in range(10):\n   num = str(i)\n \n@@ -9,10 +9,8 @@\n     for k in range(n):\n       if slot[k] == False and s[k][(j)%10] == num:\n         slot[k] = True\n-\n         break\n     if all(slot):\n       ans = min(ans,j)\n-\n       break\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the final output does not apply the modulo operation to the sum of `ans1` and `ans2`, which can lead to incorrect results if this sum exceeds the modulo value.",
+      "diff": "--- \n+++ \n@@ -26,4 +26,4 @@\n     if s[i] == \"?\":\n       ans2 *= 2\n       ans2 %= MOD\n-print(ans1 + ans2)\n+print((ans1 + ans2) % MOD)"
+    },
+    {
+      "summary": "The buggy code incorrectly includes the last index of the list `ans` computation in the loop, which leads to an incorrect calculation of minimum values, while the correct code restricts the loop to `N-1`, ensuring only valid indices are considered.",
+      "diff": "--- \n+++ \n@@ -27,7 +27,7 @@\n         OI[i] = OI[i - 1]\n \n ans = set()\n-for i in range(N):\n+for i in range(N-1):\n     ans.add((OI[-1]-OI[i])+(IO[i]))\n     ans.add(IO[-1]-IO[i]+(OI[i]))\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `s` is a list of characters, but it needs to be a string for the string comparison and count operations to work correctly.",
+      "diff": "--- \n+++ \n@@ -23,6 +23,8 @@\n for _ in range(inp()):\n     n=inp()\n     s=insr()\n+    s=\"\".join(s)\n+    # print(s)\n     if s.count(\"1\")%2 or s==\"011\" or s=='110':\n         print(-1)\n         continue"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,164 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+Takahashi has recorded the number of steps he walked for N weeks. He walked A\_i steps on the i-th day.
+
+Find the total number of steps Takahashi walked each week.  
+More precisely, find the sum of the steps for the first week (the 1-st through 7-th day), the sum of the steps for the second week (the 8-th through 14-th day), and so on.
+
+### Constraints
+
+* 1 \leq N \leq 10
+* 0 \leq A\_i \leq 10^5
+* All input values are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N
+A_1 A_2 \ldots A_{7N}
+```
+
+### Output
+
+Let B\_i be the number of steps walked for the i-th week. Print B\_1,B\_2,\ldots,B\_N in this order, separated by spaces.
+
+---
+
+### Sample Input 1
+
+```
+2
+1000 2000 3000 4000 5000 6000 7000 2000 3000 4000 5000 6000 7000 8000
+```
+
+### Sample Output 1
+
+```
+28000 35000
+```
+
+For the first week, he walked 1000+2000+3000+4000+5000+6000+7000=28000 steps, and for the second week, he walked 2000+3000+4000+5000+6000+7000+8000=35000 steps.
+
+---
+
+### Sample Input 2
+
+```
+3
+14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230 78164 6286 20899 86280 34825 34211 70679 82148
+```
+
+### Sample Output 2
+
+```
+314333 419427 335328
+```
+
+## Your Analysis (1-sentence bug summary)
+The program prints the Python list representation (with brackets and commas) instead of the required space-separated week sums.
+
+## Buggy Program
+N = int(input())
+A = list(map(int,input().split()))
+
+res = [0]*N
+SUM = 0
+for i in range(len(A)):
+    SUM += A[i]
+    if (i + 1)%7==0:
+        res[i//7] = SUM
+        SUM = 0
+
+print(res)
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -4,7 +4,7 @@
+ for i in range(1,19):
+   if i==1:
+     if N<9:
+-      print(N)
++      print(N*(N+1)//2)
+       exit()
+     ans += (9*10)//2
+   else:
+@@ -19,5 +19,3 @@
+       ans += (a%mod)*((a+1)%mod)//2
+       ans %= mod
+ print(ans)
+-  
+-  
+
+### Diff 2
+--- 
++++ 
+@@ -3,7 +3,7 @@
+ 
+ for i in map(int, input().split()):
+     ans[i-1] = 0
+-for i in range(N-2, 0, -1):
++for i in range(N-1, 0, -1):
+     ans[i-1] = min(ans[i-1], ans[i]+1)
+ 
+ print('\n'.join(map(str, ans)))
+
+### Diff 3
+--- 
++++ 
+@@ -18,7 +18,7 @@
+         B.append(B[i-1] + C[i-1])
+ 
+ ans = 10 ** 20
+-for j in range(N):
++for j in range(1, N):
+     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])
+ 
+ print(ans)
+
+### Diff 4
+--- 
++++ 
+@@ -1,7 +1,7 @@
+ N = int(input())
+ A = list(map(int,input().split()))
+ 
+-for i in range(N):
++for i in range(2001):
+     if i not in A:
+         print(i)
+         break
+
+### Diff 5
+--- 
++++ 
+@@ -4,4 +4,4 @@
+ if sum(A) > 0:
+     print(-sum(A))
+ else:
+-    print(sum(A))
++    print(-sum(A))
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

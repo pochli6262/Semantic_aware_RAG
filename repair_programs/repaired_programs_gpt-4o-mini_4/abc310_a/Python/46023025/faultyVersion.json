@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculated the total payment when using the coupon by subtracting the discount from the regular price instead of adding the dish price to the discounted drink price. This was addressed by changing the line to correctly compute the total cost when using the coupon. The correction mirrors the logic found in the sample outputs where the drink price with the dish was simply added. Therefore, the line should be updated to 'min(p, q + min(d))'.",
+  "fixed_code": "n, p, q = map(int, input().split(' '))\nd = list(map(int, input().split(' ')))\nprint(min(p, q + min(d)))"
+}

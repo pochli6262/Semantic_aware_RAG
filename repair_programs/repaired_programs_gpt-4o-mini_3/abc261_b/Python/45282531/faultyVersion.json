@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the conditional statement that checks the relationship between the elements of the matrix. Specifically, the operator precedence causes logical issues in the check for incorrect results. The condition should explicitly group the checks for 'W' and 'L' using parentheses to correctly evaluate the 'and' and 'or' conditions. I added parentheses to ensure that the conditions are correctly evaluated as intended.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\n\nfor i in range(N):\n  for j in range(N):\n    if (A[i][j] == 'W' and A[j][i] == 'W') or (A[i][j] == 'L' and A[j][i] == 'L'):\n      print('incorrect')\n      exit()\nprint('correct')"
+}

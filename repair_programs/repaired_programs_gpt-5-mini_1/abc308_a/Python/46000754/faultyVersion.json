@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was a wrong comparison in the if-condition: it used sorted(S) == S which evaluates True when S is sorted, causing the function to immediately print 'No' for valid (sorted) input. I changed that to sorted(S) != S so it prints 'No' only when S is not sorted. Only that single line was modified.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nfor i in range(N):\n    if sorted(S) != S or not(100 <= S[i] <= 675) or S[i]%25 != 0:\n        print('No')\n        exit()\nelse:\n    print('Yes')\n"
+}

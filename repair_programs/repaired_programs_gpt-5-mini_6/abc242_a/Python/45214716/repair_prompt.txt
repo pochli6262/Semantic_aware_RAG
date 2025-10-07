@@ -1,0 +1,177 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+In a certain programming contest, T-shirts are awarded to participants according to the following rules.
+
+* All participants who ranked A-th or higher get a T-shirt.
+* Additionally, from the participants who ranked between (A+1)-th and B-th (inclusive), C participants chosen uniformly at random get a T-shirt.
+
+There were 1000 participants in this contest, and all of them got different ranks.  
+Iroha-chan, who participated in this contest, ranked X-th.  
+Find the probability that she gets a T-shirt.
+
+### Constraints
+
+* All values in input are integers.
+* 1 \le A < B \le 1000
+* 1 \le C \le B-A
+* 1 \le X \le 1000
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+A B C X
+```
+
+### Output
+
+Print the answer.
+Your output will be considered correct if the absolute or relative error from the judge's answer is at most 10^{−6}.
+
+---
+
+### Sample Input 1
+
+```
+30 500 20 103
+```
+
+### Sample Output 1
+
+```
+0.042553191489
+```
+
+Iroha-chan ranked 103-rd.  
+She will get a T-shirt if she is among the 20 participants chosen uniformly at random from the 470 participants who ranked between 31-st and 500-th, which happens with probability \frac{20}{470}=0.04255319\dots.
+
+---
+
+### Sample Input 2
+
+```
+50 500 100 1
+```
+
+### Sample Output 2
+
+```
+1.000000000000
+```
+
+Iroha-chan ranked 1-st. This time, she is guaranteed to get a T-shirt.
+
+---
+
+### Sample Input 3
+
+```
+1 2 1 1000
+```
+
+### Sample Output 3
+
+```
+0.000000000000
+```
+
+Iroha-chan ranked 1000-th. This time, she will never get a T-shirt.
+
+## Your Analysis (1-sentence bug summary)
+The program uses (b - a + 1) as the denominator when computing the probability for ranks A+1..B, causing an off-by-one error instead of using (b - a).
+
+## Buggy Program
+a,b,c,x=map(int,input().split())
+if a>=x:
+    print(1)
+elif b>=x>a:
+    print(c/(b-a+1))
+else:
+    print(0)
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -2,6 +2,6 @@
+ max_A=max(A,B,C)
+ sum_B=A+B+C
+ if sum_B-max_A>=max_A:
+-    print(sum_B//2)
++    print(max_A)
+ else:
+     print(-1)
+
+### Diff 2
+--- 
++++ 
+@@ -1,7 +1,7 @@
+ a,b,c,d=map(int,input().split())
+ if a<c:
+     print("Takahashi")
+-if a==c:
++elif a==c:
+     if b<=d:
+         print("Takahashi")
+     else:
+
+### Diff 3
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ a,x,m=map(int,input().split())
+-if a==1:print(x)
++if a==1:print(x% m)
+ else:
+ 	t=pow(a,x,(a-1)*m)
+ 	if t==0:t+=(a-1)*m
+
+### Diff 4
+--- 
++++ 
+@@ -3,7 +3,7 @@
+ s = sum(alist)
+ mx = max(alist)
+ mn = min(alist)
+-for i in range(100):
++for i in range(101):
+     if s + i - min(mn, i) - max(mx, i) >= x:
+         print(i)
+         exit()
+
+### Diff 5
+--- 
++++ 
+@@ -1,8 +1,9 @@
+ n, a, b = map(int, input().split())
+ if a <= b:
+-    print(n)
++    print(max(n - a + 1, 0))
+ else:
+     if n < a:
+         print(0)
+     else:
+         print((n // a - 1) * b + min(b - 1, n % a) + 1)
++
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

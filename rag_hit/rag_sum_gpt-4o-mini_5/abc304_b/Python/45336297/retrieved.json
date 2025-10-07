@@ -1,0 +1,33 @@
+{
+  "task": "abc304_b/Python/45336297",
+  "query_summary": "The program incorrectly handles the truncation logic for the ranges above 10^3 by not using the correct power of ten for truncation, particularly missing the need to handle the exact boundaries correctly for each range.",
+  "oracle_summary": "The bug is due to a missing final conditional branch handling numbers up to 10**9-1, so inputs in that range produce no corresponding output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses a fixed range of 10 instead of the variable `n` to determine the countdown limit.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n n = input()\n n = int(n)\n-for i in range(10,-1,-1):\n+for i in range(n,-1,-1):\n     print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the loop to `range(919)` instead of `range(920)`, causing it to miss checking the number 919.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n \n-for i in range(919):\n+for i in range(920):\n   if i <= 99:\n     continue\n   elif i < n:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `k` is less than `N` instead of less than or equal to `N`, which may cause it to miss valid outputs.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n for i in range(n, 1, -1):\n   k = i **3\n   k_str = str(k)\n-  if (k < N) and (k_str == k_str[::-1]):\n+  if (k <= N) and (k_str == k_str[::-1]):\n     print(k)\n     exit()\n print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the number of digits in `n` using `math.floor(math.log10(n)) + 1`, which can lead to errors for `n = 0`, whereas the correct code uses `k = len(str(n))` to handle this case properly.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n \n def main():\n     n = int(input())\n-    k = math.floor(math.log10(n)) + 1\n+    k = len(str(n))\n     y = pow(10**k - 1, MOD - 2, MOD)\n     ans = ((n % MOD) * (pow(10, n * k, MOD) - 1) * y) % MOD\n     print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to 9 instead of 1 to 10 when checking divisors of `n`, resulting in potentially missing valid divisors of `n`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n ans = \"\"\n for i in range(n + 1):\n     judge = False\n-    for j in range(1,9):\n+    for j in range(1,10):\n         if n % j == 0:\n             if i % (n / j) == 0:\n                 judge = True"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

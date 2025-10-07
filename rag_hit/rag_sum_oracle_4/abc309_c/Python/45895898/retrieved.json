@@ -1,0 +1,32 @@
+{
+  "task": "abc309_c/Python/45895898",
+  "query_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "oracle_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the condition `if YB == 0:` in the last block does not account for `YB <= 0`, which could lead to incorrect results when `YB` is zero.",
+      "diff": "--- \n+++ \n@@ -36,7 +36,7 @@\n             pass\n         elif YB < YC:\n             if XB == XC:\n-                if YB == 0:\n+                if YB <= 0:\n                     ans += 2\n             else:\n                 ans += 2"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes `min_x` to `max(l)` instead of `max(l) - 1`, leading to potential infinite loops or incorrect outputs in the binary search.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n             return False\n     return True\n \n-min_x = max(l)\n+min_x = max(l)-1\n max_x = sum(l) + n - 1\n while True:\n     mid = (min_x + max_x) // 2"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the input string `S` when it lacks the characters 'p' and 'd', instead of the correct output which should be a string of 'd' characters of length N.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n S = input()\n s = set()\n if \"p\" not in S or \"d\" not in S:\n-    print(S)\n+    print(\"d\" * N)\n     exit()\n idxP = S.index(\"p\")\n dp = str.maketrans({\"d\": \"p\", \"p\": \"d\"})"
+    },
+    {
+      "summary": "The buggy code incorrectly writes the final answer using the string format \" \".join(map(str, ans)) instead of correctly formatting it with a preceding \"! \" for proper output as required.",
+      "diff": "--- \n+++ \n@@ -73,7 +73,7 @@\n ans[ind] = 1\n for i in range(n-1):\n     ans[res[i]] = i+2\n-write(\" \".join(map(str, ans)))\n+write(\"! \" + \" \".join(map(str, ans)))\n sys.stdout.flush()\n if TEST:\n     assert _a==ans"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case where the periodic number computed after decrementing should have the same length as the original substring, which can lead to incorrect periodic values being added to the set.",
+      "diff": "--- \n+++ \n@@ -36,7 +36,7 @@\n             periodic = int(str_N[:i] * (len_N // i))\n             # print(periodic, 1)\n             if periodic > N:\n-                if int(str_N[:i]) % 10 == 0:\n+                if len(str_N[:i]) != len(str(int(str_N[:i]) - 1)):\n                     periodic = 0\n                 else:\n                     periodic = int(str(int(str_N[:i]) - 1) * (len_N // i))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

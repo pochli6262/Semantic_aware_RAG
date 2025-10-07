@@ -1,0 +1,33 @@
+{
+  "task": "abc300_c/Python/45723345",
+  "query_summary": "The bug likely occurs because the program does not correctly account for the condition that requires at least one of the specified surrounding cells to be `.` when determining the size of a cross, potentially leading to incorrect cross size calculations.",
+  "oracle_summary": "The results array is incorrectly sized as H+1 instead of min(H, W)+1, causing extra outputs (wrong length) when the width is smaller than the height.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the value of `sh` when adjusting for row-based transformations, leading to improper handling of the row indexing.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n   if sh<=a:\n     sh=a-sh\n   else:\n-    sh=w-(sh-a)\n+    sh=h-(sh-a)\n   if rw<=b:\n     rw=b-rw\n   else:\n@@ -35,6 +35,7 @@\n x=sh-rh\n y=sw-rw\n \n+\n for i in range(h):\n   ansh[rh]=i\n   rh+=x\n@@ -44,14 +45,13 @@\n   answ[rw]=i\n   rw+=y\n   rw%=w\n-\n+  \n   \n ans=[[0]*w for _ in range(h)]\n \n for i in range(h):\n   for j in range(w):\n     ans[i][j]=c[ansh[i]][answ[j]]\n-\n-  \n+    \n for i in ans:\n   print(''.join(i))"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the equality operator `==` instead of the assignment operator `=` when attempting to set `s[i][j]` to `0` if its value is `1`.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n             s[i][j] = max(s[i][j-1], s[i-1][j])+1\n         \n         if s[i][j] == 1:\n-            s[i][j] == 0\n+            s[i][j] = 0\n \n         if ans < s[i][j]:\n              ans = s[i][j]"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `range(b+1, W)` for the variable `d`, which should instead be `range(c+1, W)` to ensure that the indices for `c` and `d` are properly chosen for comparison.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for a in range(H-1):\n \tfor b in range(a+1, H):\n \t\tfor c in range(W-1):\n-\t\t\tfor d in range(b+1, W):\n+\t\t\tfor d in range(c+1, W):\n \t\t\t\tif A[a][c] + A[b][d] > A[b][c] + A[a][d]:\n \t\t\t\t\tFlag = False\n if Flag:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the input coordinates (x1, y1, x2, y2) are assigned in the wrong order, causing the calculations to reference the wrong dimensions of the grid.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n H,W,K=map(int, input().split())\n-x1,y1,x2,y2=map(int, input().split())\n+y1,x1,y2,x2=map(int, input().split())\n \n dp = [[0]*4 for i in range(K+1)]\n mod=998244353"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not correctly update the maximum value `mx` during the processing of the vertical strings, as the `if mx < p` condition is placed incorrectly, resulting in potentially missing a valid maximum score.",
+      "diff": "--- \n+++ \n@@ -39,6 +39,6 @@\n       if 0<=leng<=K : p += dic[s[i]]\n       else :\n         p += dic[s[i]] - dic[s[i-K]]\n-        if mx < p : mx = p\n+      if leng >= K and mx < p : mx = p\n   if mx > ans : ans = mx\n print(K-ans if ans!=-1 else -1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program computed the coupon option incorrectly as p - q + min(d), treating q as a discount amount rather than the discounted drink price. The correct total when using the coupon is q + min(d) (discounted drink price plus cheapest dish). I replaced the single incorrect expression with this correct formula.",
+  "fixed_code": "n, p, q = map(int, input().split(' '))\nd = list(map(int, input().split(' ')))\nprint(min(p, q + min(d)))"
+}

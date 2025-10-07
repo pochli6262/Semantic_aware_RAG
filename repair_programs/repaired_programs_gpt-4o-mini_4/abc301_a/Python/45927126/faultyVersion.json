@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program only counts the total wins of Takahashi without considering the order of wins in case of a tie. In the line that compares counts to determine the winner, it fails to check who reached that count first when both have the same total wins. This behavior can be fixed by modifying the logic to track the cumulative wins and check who reached the max first. The correction was inspired by the diff patterns that focused on adjusting win-related conditions.",
+  "fixed_code": "N = int(input())\nS = input()\n\ncntT = 0\ncntA = 0\n\nfor i in S:\n    if i == 'T':\n        cntT += 1\n    else:\n        cntA += 1\n    if cntT > cntA:\n        winner = 'T'\n    elif cntA > cntT:\n        winner = 'A'\n\nif cntT == cntA:\n    print(winner)\nelse:\n    print('T' if cntT > cntA else 'A')"
+}

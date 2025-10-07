@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition checking for 'X%100 == 0' was incorrect because it does not address values greater than or equal to 100 that are not multiples of 100. The condition should be updated to ensure that we also check for numbers that are at least 100 but not equal to zero. Thus, I corrected the line to check for 'X >= 100 and X%100 == 0', which ensures that we only print 'Yes' for numbers equal to or greater than 100 that are also multiples of 100.",
+  "fixed_code": "X = int(input())\nif X == 0:\n    print(\"No\")\nelif X < 100:\n    print(\"No\")\nelif X >= 100 and X%100 == 0:\n    print(\"Yes\")"
+}

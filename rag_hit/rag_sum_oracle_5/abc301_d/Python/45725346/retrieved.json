@@ -1,0 +1,31 @@
+{
+  "task": "abc301_d/Python/45725346",
+  "query_summary": "The bug was caused by an incorrect expression \"(res + 1) << d\" (wrong operator grouping) instead of \"res + (1 << d)\", so the shift is applied to the wrong value and produces an incorrect increment.",
+  "oracle_summary": "The bug was caused by an incorrect expression \"(res + 1) << d\" (wrong operator grouping) instead of \"res + (1 << d)\", so the shift is applied to the wrong value and produces an incorrect increment.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the outer loop iterates up to `2*10**5+10` instead of the required `3*10**5+10`, which can lead to index errors or incorrect calculations when accessing elements based on the frequency of input values.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n     d[a[i]] += 1\n last = [1]\n tot = 1\n-for i in range(1, 2*10**5+10):\n+for i in range(1, 3*10**5+10):\n     cnt = len(last) - 1\n     new = []\n     di = d[i]"
+    },
+    {
+      "summary": "The buggy code has a misplaced parenthesis in the list comprehension inside the `solve` function, which leads to incorrect calculation of the values being printed.",
+      "diff": "--- \n+++ \n@@ -49,7 +49,7 @@\n \n def solve(n, m):\n     for i in range(n):\n-        print(*[(i // P * j // P + i + j) % P + 1 for j in range(m)])\n+        print(*[((i // P) * (j // P) + i + j) % P + 1 for j in range(m)])\n \n def main():\n     n, m = read_int_tuple()"
+    },
+    {
+      "summary": "The buggy code incorrectly interprets the binary string as is, instead of reversing it before conversion to an integer and failing to account for the increment, leading to an incorrect final result.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n         print(len(a),*a,flush=True)\n \n     S = input()\n-    ans = int(S,2)\n+    ans = int(S[::-1],2) + 1\n     print(ans,flush=True)\n if __name__ == '__main__':\n     main()  "
+    },
+    {
+      "summary": "The buggy code fails to correctly initialize the variable `res`, which should be set to `max(0, n - 1)` instead of just `n - 1`, potentially leading to negative results for certain input cases.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n         d.append(p)\n ans = 0\n for _ in range(2):\n-    res = n - 1\n+    res = max(0, n - 1)\n     frm = 0\n     if _ == 1:\n         cnt = 0"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not check if the elements in the array `a` are valid indices pointing to themselves (i.e., `a[a[i]] != a[i]`), which can lead to incorrect results or errors when computing the answer.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n \n for i in range(n):\n \n-    if a[i]<i :\n+    if a[i]<i or a[a[i]] != a[i]:\n         print(0)\n         exit()\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    3
+  ],
+  "useful_diffs_count": 1
+}

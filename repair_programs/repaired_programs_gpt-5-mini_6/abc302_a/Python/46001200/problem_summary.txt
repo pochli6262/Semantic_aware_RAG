@@ -1,0 +1,1 @@
+The code always adds 1 to A//B, causing an off-by-one error that gives one too many attacks when A is exactly divisible by B.

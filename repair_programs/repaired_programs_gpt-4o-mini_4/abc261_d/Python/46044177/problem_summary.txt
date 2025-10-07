@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly accumulates streak bonuses by failing to properly reset or update the bonuses based on the conditions of the coin toss (heads or tails).

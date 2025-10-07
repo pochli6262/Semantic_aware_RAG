@@ -1,0 +1,153 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+n = int(input())
+kama = [list(input()) for i in range(n)]
+for i in range(n):
+    for ipp in range(n):
+        if kama[i][ipp] == "W":
+            if kama[ipp][i] != "L":
+                print("incorrect")
+                exit()
+        elif kama[i][ipp] == "D":
+            if kama[ipp][i] != "D":
+                print("incorrect")
+                exit()
+        elif kama[i][ipp] == "L":
+            if kama[ipp][i] == "W":
+                print("incorrect")
+                exit()
+print("correct")
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+n = int(input())
+s = input()
+a,b,c = 0,0,0
+for i in range(n):
+  if s[i] == 'A':
+    a = 1
+  if s[i] == 'B':
+    b = 1
+  if s[i] == 'C':
+    c = 1
+  if a*b*c == 1:
+    print(i)
+    exit()
+
+--- Correct Code ---
+n = int(input())
+s = input()
+a,b,c = 0,0,0
+for i in range(n):
+  if s[i] == 'A':
+    a = 1
+  if s[i] == 'B':
+    b = 1
+  if s[i] == 'C':
+    c = 1
+  if a*b*c == 1:
+    print(i+1)
+    exit()
+
+
+### Example 2
+--- Buggy Code ---
+H, W, N = (int(i) for i in input().split())
+A = [int(i) for i in input().split()]
+
+D = [0] * 26
+
+for i in range(N):
+    D[A[i]] += 1
+
+s = 0
+for i in range(25, -1, -1):
+    d = (H // 2 ** i) * (W // 2 ** i)
+    if d - 4 * s < D[i]:
+        print('No')
+        exit()
+    s = D[i]
+print('Yes')
+
+
+--- Correct Code ---
+H, W, N = (int(i) for i in input().split())
+A = [int(i) for i in input().split()]
+
+D = [0] * 26
+
+for i in range(N):
+    D[A[i]] += 1
+
+s = 0
+for i in range(25, -1, -1):
+    d = (H // 2 ** i) * (W // 2 ** i)
+    if d - 4 * s < D[i]:
+        print('No')
+        exit()
+    s = D[i] + 4 * s
+print('Yes')
+
+
+### Example 3
+--- Buggy Code ---
+N = int(input())
+S = input()
+se = set()
+se.add((0, 0))
+now = (0, 0)
+for i in range(N):
+  if S[i] == "L":
+    now = (now[0] - 1, now[1])
+  if S[i] == "R":
+    now = (now[0] + 1, now[1])
+  if S[i] == "U":
+    now = (now[0], now[1] + 1)
+  if S[i] == "D":
+    now = (now[0], now[1] - 1)
+  se.add(now)
+if len(se) == N + 1:
+  print("Yes")
+else:
+  print("No")
+
+--- Correct Code ---
+N = int(input())
+S = input()
+se = set()
+se.add((0, 0))
+now = (0, 0)
+for i in range(N):
+  if S[i] == "L":
+    now = (now[0] - 1, now[1])
+  if S[i] == "R":
+    now = (now[0] + 1, now[1])
+  if S[i] == "U":
+    now = (now[0], now[1] + 1)
+  if S[i] == "D":
+    now = (now[0], now[1] - 1)
+  se.add(now)
+if len(se) != N + 1:
+  print("Yes")
+else:
+  print("No")
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

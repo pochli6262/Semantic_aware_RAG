@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the line with the condition for the if statement. The condition n <= 10**(3 + i) - 1 would not properly identify the range for n to correctly calculate the desired output. The correct condition should check if n < 10**(3 + i), meaning the number should be less than the next power of 10. I fixed it by changing <= to <.",
+  "fixed_code": "n = int(input())\n\nfor i in range(6):\n    if n < 10**(3 + i):\n        print((n // (10**i)) * 10**i)\n        break"
+}

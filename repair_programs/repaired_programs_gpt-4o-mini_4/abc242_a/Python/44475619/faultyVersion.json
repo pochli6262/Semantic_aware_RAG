@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line is where the probability is calculated using print(D/C). This does not correctly reflect the probability of Iroha-chan getting a T-shirt if her rank is between A+1 and B. The correct calculation should depend on the participants ranked between A+1 and B, which is (B - A), and Iroha-chan has a chance of being one of the C selected participants, yielding a probability of C / (B - A). This correction was inspired by the necessity to assess how many participants are available to choose from, which aligns with how the probability should be calculated. Hence, the line should be changed to print(C / (B - A)).",
+  "fixed_code": "inp=input().split()\nA=inp[0]\nA=int(A)\nB=inp[1]\nB=int(B)\nC=inp[2]\nC=int(C)\nX=inp[3]\nX=int(X)\nD=B-A\nif A>=X:\n    print(1)\nelif B<X:\n    print(0)\nelse:    \n    print(C / D)"
+}

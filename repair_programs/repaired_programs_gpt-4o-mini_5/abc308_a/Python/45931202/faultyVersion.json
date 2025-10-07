@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the loop checks if the current element is greater than or equal to the next element using `>=`, which is incorrect for a monotonically non-decreasing sequence. It should use `>` instead of `>=` to ensure that duplicate values are allowed. This correction is inspired by the need to properly validate the non-decreasing condition and align with the problem statement's requirements.",
+  "fixed_code": "S = list(map(int,input().split()))\nfor i in range(len(S)-1):\n    if S[i] > S[i+1] or S[i] % 25 or S[i] < 100 or S[i] > 675:\n        print(\"No\")\n        exit()\n\nif S[-1] % 25 or S[-1] < 100 or S[-1] > 675:\n    print(\"No\")\nelse: print(\"Yes\")"
+}

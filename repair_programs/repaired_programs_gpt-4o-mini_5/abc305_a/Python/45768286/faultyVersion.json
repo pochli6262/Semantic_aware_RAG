@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculates the nearest water station by using the modulo operation without determining the closest multiple of 5. The fix is to find the nearest water station by adjusting N to the next or previous multiple of 5. This was inspired by recognizing that the absolute difference was not sufficient to determine proximity. Hence, I modified it to calculate the closest multiple of 5 using floor and ceiling adjustments.",
+  "fixed_code": "print(round(int(input()) / 5) * 5)"
+}

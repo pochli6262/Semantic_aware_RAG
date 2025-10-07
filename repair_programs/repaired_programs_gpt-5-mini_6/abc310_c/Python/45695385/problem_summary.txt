@@ -1,0 +1,1 @@
+The program mishandles palindromic strings: when a string equals its reversal it only inserts one element into the set but still divides the set size by two, causing palindromic sticks to be undercounted (possibly to zero).

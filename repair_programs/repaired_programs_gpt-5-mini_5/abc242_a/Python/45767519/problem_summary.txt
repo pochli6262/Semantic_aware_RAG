@@ -1,0 +1,1 @@
+The branch that should handle ranks between A+1 and B mistakenly tests "X <= C" (using C instead of B), so ranks in the random-selection range are misclassified.

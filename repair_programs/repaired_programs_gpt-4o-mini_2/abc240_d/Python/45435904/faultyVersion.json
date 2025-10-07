@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition that checks if `Q[-1][1] == a`. This condition incorrectly checks if the count of the last element equals the value of the element itself, which causes elements to be removed prematurely from the deque. The corrected line changes it to check if the count equals the number of occurrences to ensure that we remove the element only when the occurrences match its frequency and not its value. This prevents premature removal from the queue.",
+  "fixed_code": "from collections import deque\nN = int(input())\nA = list(map(int, input().split()))\n\nQ = deque()\nans = 0\n\nfor a in A:\n    ans += 1\n    if len(Q) == 0:\n        Q.append([a,1])\n    if Q[-1][0] != a:\n        Q.append([a,1])\n    else:\n        Q[-1][1] += 1\n        if Q[-1][1] == Q[-1][0]:  # Corrected line\n            Q.pop()\n            ans -= a\n    print(ans)"
+}

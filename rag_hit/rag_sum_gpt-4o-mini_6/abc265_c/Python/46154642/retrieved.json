@@ -1,0 +1,33 @@
+{
+  "task": "abc265_c/Python/46154642",
+  "query_summary": "The program incorrectly checks for the character \"W\" instead of \"R\", which leads to an unhandled case during movement.",
+  "oracle_summary": "The code mistakenly checks for 'W' instead of 'R' when handling right moves, so cells with 'R' are never recognized and right movement is mishandled.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `h` to zero in the second while loop that checks for the \"^\" character, which results in an infinite loop instead of starting at the last row (H-1).",
+      "diff": "--- \n+++ \n@@ -44,7 +44,7 @@\n     elif flg:\n       S[h][w] = \"*\"\n     h += 1\n-  h = 0\n+  h = H-1\n   flg = False\n   while h >= 0:\n     if S[h][w] not in (\"*\", \".\"):"
+    },
+    {
+      "summary": "The buggy code incorrectly constructs the movement string by using the wrong order of characters in the mapping (\"DLRU\" instead of the correct \"LDUR\").",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n L = []\n for i in range(n)[::-1]:\n   s,t = (dp[i]>>x&1)^1,(dp[i]>>y&1)^1\n-  L.append(\"DLRU\"[s*2+t])\n+  L.append(\"LDUR\"[s*2+t])\n   if s:\n     x -= D[i]\n   if t:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for the uppercase \"W\" instead of the lowercase \"w\", leading to an incorrect score calculation when counting characters.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s=list(map(str,input()))\n ans=0\n for i in range(len(s)):\n-  if s[i]==\"W\":\n+  if s[i]==\"w\":\n     ans+=2\n   else:\n     ans+=1"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case where the current state in the Aho-Corasick automaton does not have a valid transition for a character, which leads to missing the correct state during the string scanning process.",
+      "diff": "--- \n+++ \n@@ -55,6 +55,8 @@\n     y=e1[y][u]\n   else:\n     y=e2[y]\n+    while y!=0 and e1[y][u]==-1:\n+      y=e2[y]\n     if e1[y][u]!=-1:\n       y=e1[y][u]\n   if x[y]:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

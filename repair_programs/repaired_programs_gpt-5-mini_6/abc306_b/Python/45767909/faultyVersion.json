@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop line used A[i] as the exponent (computing A[i] * 2**A[i]) which is wrong — it should use the index i as the exponent to compute A_0 2^0 + A_1 2^1 + ... + A_63 2^63. I fixed that single line by replacing 2 ** A[i] with 2 ** i. (This is analogous to fixes addressing wrong exponent/operand use in the retrieved diffs.)",
+  "fixed_code": "A = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n  ans += A[i] * 2 ** i\nprint(ans)"
+}

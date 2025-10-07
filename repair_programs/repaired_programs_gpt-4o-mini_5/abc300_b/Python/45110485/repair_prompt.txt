@@ -1,0 +1,315 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 200 points
+
+### Problem Statement
+
+> Takahashi is developing an RPG. He has decided to write a code that checks whether two maps are equal.
+
+We have grids A and B with H horizontal rows and W vertical columns. Each cell in the grid has a symbol `#` or `.` written on it.  
+The symbols written on the cell at the i-th row from the top and j-th column from the left in A and B are denoted by A\_{i, j} and B\_{i, j}, respectively.
+
+The following two operations are called a **vertical shift** and **horizontal shift**.
+
+* For each j=1, 2, \dots, W, simultaneously do the following:
+  + simultaneously replace A\_{1,j}, A\_{2,j}, \dots, A\_{H-1, j}, A\_{H,j} with A\_{2,j}, A\_{3,j}, \dots, A\_{H,j}, A\_{1,j}.
+* For each i = 1, 2, \dots, H, simultaneously do the following:
+  + simultaneously replace A\_{i,1}, A\_{i,2}, \dots, A\_{i,W-1}, A\_{i,W} with A\_{i, 2}, A\_{i, 3}, \dots, A\_{i,W}, A\_{i,1}.
+
+Is there a pair of non-negative integers (s, t) that satisfies the following condition? Print `Yes` if there is, and `No` otherwise.
+
+* After applying a vertical shift s times and a horizontal shift t times, A is equal to B.
+
+Here, A is said to be equal to B if and only if A\_{i, j} = B\_{i, j} for all integer pairs (i, j) such that 1 \leq i \leq H and 1 \leq j \leq W.
+
+### Constraints
+
+* 2 \leq H, W \leq 30
+* A\_{i,j} is `#` or `.`, and so is B\_{i,j}.
+* H and W are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+H W
+A_{1,1}A_{1,2}\dots A_{1,W}
+A_{2,1}A_{2,2}\dots A_{2,W}
+\vdots
+A_{H,1}A_{H,2}\dots A_{H,W}
+B_{1,1}B_{1,2}\dots B_{1,W}
+B_{2,1}B_{2,2}\dots B_{2,W}
+\vdots
+B_{H,1}B_{H,2}\dots B_{H,W}
+```
+
+### Output
+
+Print `Yes` if there is a conforming integer pair (s, t); print `No` otherwise.
+
+---
+
+### Sample Input 1
+
+```
+4 3
+..#
+...
+.#.
+...
+#..
+...
+.#.
+...
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+By choosing (s, t) = (2, 1), the resulting A is equal to B.  
+We describe the procedure when (s, t) = (2, 1) is chosen. Initially, A is as follows.
+
+```
+..#
+...
+.#.
+...
+```
+
+We first apply a vertical shift to make A as follows.
+
+```
+...
+.#.
+...
+..#
+```
+
+Then we apply another vertical shift to make A as follows.
+
+```
+.#.
+...
+..#
+...
+```
+
+Finally, we apply a horizontal shift to make A as follows, which equals B.
+
+```
+#..
+...
+.#.
+...
+```
+
+---
+
+### Sample Input 2
+
+```
+3 2
+##
+##
+#.
+..
+#.
+#.
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+No choice of (s, t) makes A equal B.
+
+---
+
+### Sample Input 3
+
+```
+4 5
+#####
+.#...
+.##..
+..##.
+...##
+#...#
+#####
+...#.
+```
+
+### Sample Output 3
+
+```
+Yes
+```
+
+---
+
+### Sample Input 4
+
+```
+10 30
+..........##########..........
+..........####....###.....##..
+.....##....##......##...#####.
+....####...##..#####...##...##
+...##..##..##......##..##....#
+#.##....##....##...##..##.....
+..##....##.##..#####...##...##
+..###..###..............##.##.
+.#..####..#..............###..
+#..........##.................
+................#..........##.
+######....................####
+....###.....##............####
+.....##...#####......##....##.
+.#####...##...##....####...##.
+.....##..##....#...##..##..##.
+##...##..##.....#.##....##....
+.#####...##...##..##....##.##.
+..........##.##...###..###....
+...........###...#..####..#...
+```
+
+### Sample Output 4
+
+```
+Yes
+```
+
+## Your Analysis (1-sentence bug summary)
+The bug likely lies in the way the shifted grid `mp2` is being built, as it is overwriting the contents of `mp1` during the vertical shift instead of preserving the correct mapping of symbols from `tableA`.
+
+## Buggy Program
+def fprint(arys):
+    for i in range(len(arys)):
+        print(*arys[i])
+    print("-"*len(arys)*5)
+    return
+
+h, w = map(int, input().split())
+tableA = [[] for i in range(h)]
+tableB = [[] for i in range(h)]
+mp1 = [[""]*w for i in range(h)]
+mp2 = [[""]*w for i in range(h)]
+for i in range(h):
+    s = list(input())
+    tableA[i].extend(s)
+for i in range(h):
+    s = list(input())
+    tableB[i].extend(s)
+
+for dy in range(h):
+    for dx in range(w):
+        if dy == 0 and dx == 0:
+            continue
+        for i in range(h):
+            for j in range(w):
+                k = (j-dx)%w
+                mp1[i][k] = tableA[i][j]
+        for j in range(w):
+            for i in range(h):
+                k = (i-dy)%h
+                mp2[k][j] = mp1[i][j]
+        #print(dy, dx)
+        #fprint(mp2)
+        if mp2 == tableB:
+            print("Yes")
+            exit()
+else:
+    print("No")
+
+
+
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -120,7 +120,7 @@
+     if not ok:
+         return check(A, B)
+ 
+-    if sum(Ta) == 2:
++    if N - sum(Ta) == 2:
+         X = [a for a in A if a % 2 == 0]
+         Y = [a for a in B if a % 2 == 0]
+         return X == Y
+
+### Diff 2
+--- 
++++ 
+@@ -24,7 +24,7 @@
+   if len(A_[i])!=len(B_[i]):
+     print('No')
+     exit()
+-  max_ = max(0, len(A_[i]))
++  max_ = max(max_, len(A_[i]))
+ 
+ if max_>=2: 
+   print('Yes')
+
+### Diff 3
+--- 
++++ 
+@@ -51,7 +51,7 @@
+ new_X=renew(X)
+ PX=X[1]
+ ans="No"
+-if PA[0]>PX[0] or PA[1]>PX[1] or PB[0]>PX[0] or PB[1]>PX[0]:
++if PA[0]>PX[0] or PA[1]>PX[1] or PB[0]>PX[0] or PB[1]>PX[1]:
+   pass
+ else:
+   h1,w1,h2,w2,h3,w3=PA[0],PA[1],PB[0],PB[1],PX[0],PX[1]
+
+### Diff 4
+--- 
++++ 
+@@ -697,7 +697,7 @@
+         else:
+             ans.append('No')
+     else:
+-        if a[i] and b[i-1]:
++        if a[i] and b[i]:
+             ans.append('Yes')
+         else:
+             ans.append('No')
+
+### Diff 5
+--- 
++++ 
+@@ -35,7 +35,7 @@
+                 return 0
+             if st(a[l:i])!=st(b[l:i]):
+                 return 0
+-            if i<3 and a[:i]!=b[:i]:
++            if i-l<3 and a[l:i]!=b[l:i]:
+                 return 0
+             l=i+1
+ 
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

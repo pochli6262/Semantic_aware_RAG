@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was the special-case printing of 1 when the condition medicines <= K was met at i == 0. That incorrectly outputs the literal day 1 even when the earliest relevant day is based on AB[0][0]. The correct behavior is to print AB[i][0] + 1 (i.e. the day after the first A value) in that branch as well. I fixed the single line to print AB[i][0] + 1 instead of 1.",
+  "fixed_code": "N, K = map(int, input().split())\nAB = [tuple(map(int, input().split())) for _ in range(N)]\n\nAB.sort()\nmedicines = 0\nfor i in range(N):\n    medicines += AB[i][1]\n\nfor i in range(N):\n    if medicines <= K:\n        if i == 0:\n            print(AB[i][0] + 1)\n            exit(0)\n        else:\n            print(AB[i - 1][0] + 1)\n            exit(0)\n    medicines -= AB[i][1]"
+}

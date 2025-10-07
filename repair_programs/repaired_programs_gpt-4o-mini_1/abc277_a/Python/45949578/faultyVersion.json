@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that the for loop only prints the index and breaks when it finds the first occurrence of X in the list P, but it doesn't correctly handle the case where X is not found at all, which raises an exception when trying to find the index after the loop. To fix this, I added an else statement to the for loop which prints a message if X is not found in the list P.",
+  "fixed_code": "N, X = map(int, input().split())\nP = list(map(int, input().split()))\n\nfor i in range(N):\n  if P[i] == X:\n    print(i)\n    break\nelse:\n  print(-1)"
+}

@@ -1,0 +1,1 @@
+The program incorrectly computes (a + b) * (a - d) — it uses a instead of c for the second factor, so it should be (a + b) * (c - d).

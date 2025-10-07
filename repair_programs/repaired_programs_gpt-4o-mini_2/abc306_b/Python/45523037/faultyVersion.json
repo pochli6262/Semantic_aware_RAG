@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug arises due to the assumption that the input list 'a' will always have 63 elements. If fewer elements are provided, the code will raise an IndexError. The line that creates 'a' should use range(len(a)) instead of a fixed range of 63. This ensures that the loop only iterates over the actual indices of the list 'a'. I fixed it by changing the for loop's range to 'range(len(a))'.",
+  "fixed_code": "import sys\ninput = lambda: sys.stdin.readline().strip()\n\na = list(map(int, input().split()))\n\nans = 0\nfor i in range(len(a)):\n    if a[i] == 0:\n        continue\n    else:\n        ans += (2 ** i)\nprint(ans)"
+}

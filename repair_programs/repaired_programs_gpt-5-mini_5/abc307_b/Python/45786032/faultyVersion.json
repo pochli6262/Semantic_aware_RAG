@@ -1,0 +1,4 @@
+{
+  "explanation": "The code compared the concatenated string to [s[i]+s[j]][::-1], which creates a single-element list and then reverses it (still a list), so the comparison was always between a string and a list and never true. I fixed it by reversing the concatenated string itself using (s[i]+s[j])[::-1], so the palindrome check works. (This fix directly addresses the incorrect use of list brackets around the string.)",
+  "fixed_code": "n,*s=open(0).read().split()\nn=int(n)\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i]+s[j]==(s[i]+s[j])[::-1]:\n      print(\"Yes\")\n      exit()\nprint(\"No\")\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where the remaining time 't' is updated after handling the current command. The original implementation adds the 'y' to 't' before checking the remaining time. This should only occur after subtracting the travel time correctly. The corrected version ensures 't' is updated correctly after the subtraction of the travel time and only after properly handling the current position. The fixed line is: `t += y`.",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= sum(a[pos : x - 1])\n    if t <= 0:\n        print(\"No\")\n        exit()\n    else:\n        pos = x - 1\n        t += y\nt -= sum(a[pos:])\nif t < 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

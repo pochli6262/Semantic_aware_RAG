@@ -1,0 +1,4 @@
+{
+  "explanation": "The program was printing the Python list object (with brackets and commas) because the line print(ans_list) prints the list representation. I replaced it with print(*ans_list) so the list is unpacked and printed as space-separated integers. This fix follows the common pattern seen in the retrieved diffs (e.g., diff 5 using print(*...)).",
+  "fixed_code": "n = int(input())\na = list(map(int, input().split()))\n\nans_list = []\nfor i in range(n - 1):\n    # print(a[i + 1] - a[i])\n    if a[i + 1] >= a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1]))\n    elif a[i + 1] < a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1], -1))\nans_list.append(a[-1])\nprint(*ans_list)\n"
+}

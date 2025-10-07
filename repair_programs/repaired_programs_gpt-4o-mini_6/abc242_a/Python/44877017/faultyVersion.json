@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line calculating the probability in participants ranked between A+1 and B does not account for the eligible participants correctly. It should consider that the selection is made uniformly from the total number of eligible participants, which is (B - A). The corrected line updates the logic to properly compute the selection probability based on the rank of Iroha-chan. This understanding aligns with the provided example and clarifies how many participants fall within the eligible range. The diff patterns suggest similar corrections regarding how probabilities and selections are calculated based on range and participant counts.",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 1.0\nelif x <= b:\n   res = c / (b - a)\n\nprint('%.9f' % (res))"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program read the two lines including spaces (e.g. \"R G B\") so indexing compared spaces and letters, producing wrong mismatch counts and incorrect rotation checks. I fixed this by replacing the second input line with a single line that reads t and then removes spaces from both s and t (so both become compact three-character strings like \"RGB\"). This preserves the rest of the logic (including the rotation check using \"t in s+s\").",
+  "fixed_code": "s = input()\nt = input(); s = s.replace(' ', ''); t = t.replace(' ', '')\ncnt = 0\nfor i in range(3):\n    if s[i] != t[i]:\n        cnt += 1\nif cnt == 0:\n    print(\"Yes\")\nelif cnt == 3:\n    if t in s + s:\n        print(\"Yes\")\nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc242_a/Python/44475619",
+  "query_summary": "In the else branch, it divides D by C instead of C by D, reversing the intended ratio.",
+  "oracle_summary": "In the else branch, it divides D by C instead of C by D, reversing the intended ratio.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the length of `C` for the multiplier by using `len(str(C))` instead of `len(str(C)) + 1`, resulting in an off-by-one error in the final output.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,5 @@\n \n # A = list(str(A))\n # print(A)\n-D = len(str(C))\n+D = len(str(C))+1\n print(A*(10**D)+C)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the sum of B and C is greater than zero instead of ensuring it's not equal to zero, which fails to account for valid scenarios where A or D equals N-1.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n import math\n N,A,B,C,D=(int(x) for x in input().split())\n n=math.floor(N/2)\n-if abs(B-C)<=1 and B<=n and C<=n and B+C>0:\n+if (abs(B-C)<=1 and B<=n and C<=n and B+C!=0) or A==N-1 or D==N-1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    },
+    {
+      "summary": "The buggy code does not account for the additional condition that both B and C must be non-zero while A and D are greater than zero, leading to incorrect output in certain cases.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,7 @@\n N, A, B, C, D = map(int, input().split())\n if abs(B - C) > 1:\n     print(\"No\")\n+elif B == 0 and C == 0 and A > 0 and D > 0:\n+    print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

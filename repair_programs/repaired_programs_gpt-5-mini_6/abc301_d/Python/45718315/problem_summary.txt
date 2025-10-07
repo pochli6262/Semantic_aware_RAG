@@ -1,0 +1,1 @@
+The function wrongly mutates n and adjusts min_val inside the bit-by-bit loop, causing the greedy check to compare against a modified n/min_val instead of the original remaining threshold and producing incorrect decisions for setting '?' bits.

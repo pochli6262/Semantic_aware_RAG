@@ -1,0 +1,172 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+We have the following 3 \times 3 board with integers from 1 through 9 written on it.
+
+![](https://img.atcoder.jp/abc309/86862b285a60054303435965fe642c67.jpg)
+
+You are given two integers A and B between 1 and 9, where A < B.
+
+Determine if the two squares with A and B written on them are adjacent horizontally.
+
+### Constraints
+
+* 1 \le A < B \le 9
+* A and B are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+A B
+```
+
+### Output
+
+Print `Yes` if the two squares with A and B written on them are adjacent horizontally, and `No` otherwise.
+
+---
+
+### Sample Input 1
+
+```
+7 8
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The two squares with 7 and 8 written on them are adjacent horizontally, so print `Yes`.
+
+---
+
+### Sample Input 2
+
+```
+1 9
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+---
+
+### Sample Input 3
+
+```
+3 4
+```
+
+### Sample Output 3
+
+```
+No
+```
+
+## Your Analysis (1-sentence bug summary)
+The second branch prints "YES" (all caps) instead of the expected "Yes", causing incorrect case-sensitive output.
+
+## Buggy Program
+#a = int(input());
+list_A_B = list(map(int, input().split()));
+A = list_A_B[0]
+B = list_A_B[1]
+#x = int(input());
+
+if A%3 == 1 and B == A+1:
+    print('Yes')
+elif A%3 == 2 and B == A+1:
+    print('YES')
+else:
+    print('No')
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -5,6 +5,6 @@
+ ans = "No"
+ C = sorted(A + B)
+ for i in range(len(C)-1):
+-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):
++  if C[i] in A and C[i+1] in A:
+     ans = "Yes"
+ print(ans)
+
+### Diff 2
+--- 
++++ 
+@@ -24,7 +24,7 @@
+   if len(A_[i])!=len(B_[i]):
+     print('No')
+     exit()
+-  max_ = max(0, len(A_[i]))
++  max_ = max(max_, len(A_[i]))
+ 
+ if max_>=2: 
+   print('Yes')
+
+### Diff 3
+--- 
++++ 
+@@ -1,6 +1,6 @@
+ A,B = map(int,input().split())
+ 
+-if B-A == 1 or A-B == 9:
++if B-A == 1 or B-A == 9:
+   print("Yes")
+ else:
+   print("No")
+
+### Diff 4
+--- 
++++ 
+@@ -11,7 +11,7 @@
+     else:
+         B[2*i-N]=A[i]
+ for i in range(N):
+-    if i%2!=0:
++    if i%2==0:
+         continue
+     if B[i-1]<B[i] and B[i]>B[i+1]:
+         continue
+
+### Diff 5
+--- 
++++ 
+@@ -36,7 +36,7 @@
+     B[1]+=B[4]
+     B[4]=0
+   B[3]-=A[2]
+-  A[0]+=A[2]
++  B[0]+=A[2]
+   if A[1]>B[1]+B[2]+2*B[3]+2*B[4]:
+     print('No')
+     continue
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

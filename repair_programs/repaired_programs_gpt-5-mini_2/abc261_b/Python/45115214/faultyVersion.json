@@ -1,0 +1,4 @@
+{
+  "explanation": "The input lines may contain trailing whitespace which would produce extra characters in the row arrays and make character comparisons (e.g. to 'W', 'L', '-') fail. The problematic line was the one constructing A. I fixed it by stripping each input line (input().strip()) so each row contains exactly the intended characters before turning it into a list. No other lines were changed.",
+  "fixed_code": "N = int(input())\nA = [list(input().strip()) for _ in range(N)]\ncount = 0\nfor i in range(N):\n  for k in range(N):\n    if (i == k) and (A[i][k] == '-') :\n      count += 1\n    if (i != k) and (A[i][k] == 'W') and (A[k][i] == 'L'):\n      count += 1\n    if (i != k) and (A[k][i] == 'W') and (A[i][k] == 'L'):\n      count += 1\nif count == N**2:\n  print(\"correct\")\nelse:\n  print(\"incorrect\")"
+}

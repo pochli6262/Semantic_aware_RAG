@@ -1,0 +1,31 @@
+{
+  "task": "abc265_d/Python/46180053",
+  "query_summary": "The code builds cumulative sums from numpy.cumsum without including the initial 0 prefix sum, so it fails to detect segments that start at index 0.",
+  "oracle_summary": "The bug is that the cumulative sum omits the initial 0 (using cumsum(A) instead of cumsum([0]+A)), causing an off-by-one in prefix sums and missing cases where the segment starts at index 0.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for the presence of sums in the `sum_set` by iterating through `range(w)` instead of `range(1, w + 1)`, leading to an off-by-one error when counting valid sums.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n \n cnt = 0\n for i in range(w):\n-    if i in sum_set:\n+    if i+1 in sum_set:\n         cnt+=1\n \n print(cnt)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the loop condition `if i < Q + 2:` instead of `if i < Q + 1:` when updating the `cumsum` array, which can cause an \"index out of range\" error.",
+      "diff": "--- \n+++ \n@@ -53,4 +53,4 @@\n for i, x in enumerate(pre):\n     if x != -1:\n         ans[i] += cumsum[-1] - cumsum[pre[i]-1]\n-print(f\"{ans[1:]}\")\n+print(*ans[1:])"
+    },
+    {
+      "summary": "The issue in the buggy code is that the computation of `xN` mistakenly includes an additional `abs` around `sxA`, causing an incorrect calculation of the target value for `xN`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n xA = A[2::2]\n sxA = sum(xA)\n-xN = abs(abs(x - A[0]) - sxA)\n+xN = abs(x - A[0] - sxA)\n xdp = [0] * (xN + 1)\n xdp[0] = 1\n for dx in xA:"
+    },
+    {
+      "summary": "The buggy code improperly concatenates segments of the list 'A' by incorrectly using the indices for the slice that combines elements, resulting in missing elements from the list in the output.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N,P,Q,R,S = map(int, input().split())\n A = list(map(int, input().split()))\n \n-ans = A[:P-1] + A[R-1:S] + A[P-1:Q] + A[S:]\n+ans = A[:P-1] + A[R-1:S] + A[Q:R-1]+ A[P-1:Q] + A[S:]\n print(*ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the difference between the cumulative sum and the current sum is greater than 4 instead of the correct value of 3.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n     cum_sum[i + 1] = cum_sum[i] + A[i]\n ans = 0\n for i in range(N):\n-    if 4 < cum_sum[N] - cum_sum[i]:\n+    if 3 < cum_sum[N] - cum_sum[i]:\n         ans += 1\n     else:\n         break"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

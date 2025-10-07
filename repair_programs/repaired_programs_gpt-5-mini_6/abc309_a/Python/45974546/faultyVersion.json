@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the definition of G: it included vertical neighbor pairs (e.g. [1,4], [2,5], [3,6], etc.), so the program could treat vertical adjacencies as horizontal. I fixed that line by removing the vertical pairs and leaving only the horizontal neighbor pairs [1,2], [2,3], [4,5], [5,6], [7,8], [8,9]. This matches the problem requirement to check only horizontal adjacency.",
+  "fixed_code": "G = [[1, 2], [2, 3], [4, 5], [5, 6], [7, 8], [8, 9]]\n\nR = list(map(int, input().split()))\n\nflag = False\nfor g in G:\n    if R[0] == g[0] and R[1] == g[1]:\n        flag = True\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")\n"
+}

@@ -1,0 +1,29 @@
+{
+  "task": "abc300_b/Python/45723196",
+  "query_summary": "It reads the two dimensions by taking the first and last characters of the input string instead of splitting tokens, causing incorrect parsing for multi-digit numbers or spaces.",
+  "oracle_summary": "It reads the two dimensions by taking the first and last characters of the input string instead of splitting tokens, causing incorrect parsing for multi-digit numbers or spaces.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for zero values using `if x==0 or y==0`, while the correct code checks for negative values with `if x<=0 or y<=0`, allowing for proper handling of inputs that are zero or negative.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x, y, a, b, c = map(int, input().split())\n def solve_two(x, y, a, b):\n-    if x==0 or y==0:\n+    if x<=0 or y<=0:\n         return False\n     res = ((a+x-1)//x+(b+x-1)//x <= y) or ((a+y-1)//y+(b+y-1)//y <= x)\n     return res\n@@ -16,4 +16,3 @@\n \n ans = solve_three(x, y, a, b, c)\n print('Yes' if ans else 'No')\n-"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition involving variable 'a' multiplied by 'b' instead of 'a' multiplied by 'd' in the second conditional statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n if abs(b-c) >= 2:\n     print(\"No\")\n-elif b + c == 0 and a*b != 0:\n+elif b + c == 0 and a*d != 0:\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the difference between `b` and `a` is non-zero rather than specifically checking if it equals 1 or 9.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b = map(int, input().split())\n \n-if b - a or b - a == 9:\n+if b - a == 1 or b - a == 9:\n   print('Yes')\n else:\n   print('No')"
+    },
+    {
+      "summary": "The issue in the buggy code is that it incorrectly checks `b != 0` instead of `d != 0` in the conditional statement when both `b` and `c` are zero.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n,a,b,c,d = map(int, input().split())\n-print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and b != 0)) else \"Yes\")\n+print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and d != 0)) else \"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the last digits of `a` and `b` differ by exactly 1, instead of allowing for the special case where they wrap around and differ by 9.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b = map(int,input().split())\n-if abs(a % 10 - b % 10) == 1:\n+if abs(a % 10 - b % 10) in [1,9]:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly generates the range of integers due to the wrong indices within the extend function. The proper indices should be the current value plus one and the next value. This correction aligns with examples that reflect the correct insertion logic as described in the problem. This fix is inspired by the logic found in Diff 1, which reflects a proper method of generating integers between two adjacent terms.",
+  "fixed_code": "n = int(input())\na = list(map(int, input().split()))\n\nans_list = []\nfor i in range(n - 1):\n    # print(a[i + 1] - a[i])\n    if a[i + 1] >= a[i]:\n        ans_list.extend(range(a[i] + 1, a[i + 1]))\n    elif a[i + 1] < a[i]:\n        ans_list.extend(range(a[i] - 1, a[i + 1], -1))\nans_list.append(a[-1])\nprint(ans_list)"
+}

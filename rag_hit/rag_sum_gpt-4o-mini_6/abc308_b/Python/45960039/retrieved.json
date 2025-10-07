@@ -1,0 +1,29 @@
+{
+  "task": "abc308_b/Python/45960039",
+  "query_summary": "The program incorrectly prints the price of sushi for each plate of color not found in the dictionary instead of accumulating the prices for all plates before displaying the total.",
+  "oracle_summary": "The bug is that the code calls print(p[0]) for unknown items instead of adding p[0] to the running total (s), so the default price is never accumulated and is wrongly printed.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly updates the list `d` in the loop by not properly adding `1` to the sum of `d`, which affects the final output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n, m = map(int, input().split())\n d = [1]\n while len(d) < n:\n-  d = d + [sum(d)] + d\n+  d = d + [sum(d) + 1] + d\n d = d[:n - 1]\n d += [sum(d) + 1]\n for i in range(1, n):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the result list as a single object instead of unpacking the individual elements, resulting in the output being displayed as a list rather than a space-separated string.",
+      "diff": "--- \n+++ \n@@ -6,4 +6,4 @@\n     result.append(i)\n for i in range(r + 1, n + 1):\n     result.append(i)\n-print(result)\n+print(*result)"
+    },
+    {
+      "summary": "The buggy code incorrectly counts the number of elements in the list `S` that are less than or equal to `X`, instead of summing those elements as intended.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n \n for s in S:\n   if s <= X:\n-    count += 1\n+    count += s\n \n print(count)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `i + 1` when a person runs out of money, instead of the correct index `i`, which should represent the zero-based index of the person.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(N):\n     total -= H[i]\n     if total < 0:\n-        print(i + 1)\n+        print(i)\n         break\n else:\n     print(N)"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the index of the first element that causes the cumulative sum to exceed M, instead of printing the index after the loop, which reflects how many elements were summed before exceeding M.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n while i < N:\n   sum += H[i]\n   if sum > M:\n-    print(i)\n     break\n   i += 1\n+print(i)"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

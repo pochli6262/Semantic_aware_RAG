@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue arises because the program assumes that the input list A will always contain at least 64 elements (for the range 0 to 63) which may lead to an IndexError if the input list has fewer elements. To fix this, I replaced the loop range from '63' to 'len(A)' to ensure it only iterates up to the length of the list A.",
+  "fixed_code": "A = list(map(int,input().split()))\nS = 0\n\nimport math\n\nfor i in range(len(A)):\n    S = S + A[i]*(pow(2,i))\n    \nprint(S)"
+}

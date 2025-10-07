@@ -1,0 +1,33 @@
+{
+  "task": "abc302_a/Python/45902614",
+  "query_summary": "The likely bug is that the program incorrectly calculates the number of attacks by performing integer division and then adding one, rather than properly accounting for the remainder when dividing stamina by the attack reduction.",
+  "oracle_summary": "The code uses float division with int(x/y)+1 rather than performing integer ceiling division, causing off-by-one and floating-point rounding errors (e.g., when x is an exact multiple of y).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly adds 1 instead of 0.5, causing improper rounding of the input value when converting it to an integer.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n X = input()\n-print(int(float(X)+1))\n+print(int(float(X)+0.5))\n \n    "
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses float division (`/`) instead of integer division (`//`), leading to incorrect calculations when determining the total cost.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x,y,n = map(int,input().split())\n \n if x*3 > y:\n-  print(n/3 * y + n%3 * x)\n+  print(n//3 * y + n%3 * x)\n else:\n   print(x*n)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the division operator (/) instead of the floor division operator (//) when calculating the quotient of x by 10 in the first condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x = int(input())\n \n if x % 10 == 0:\n-  print(int(x / 10))\n+  print(int(x // 10))\n else:\n   print(int(x // 10 + 1))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks specific conditions for returning -1 instead of accurately determining if any number is greater than the sum of the other two, which is required to identify an invalid triangle.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n x,y,z = map(int, input().split())\n-print(-1 if x == y == 0 and z == 1 or x == z == 0 and y == 1 or y == z == 0 and x == 1 else max(x, y, z))\n+print(-1 if x > y + z or y > x + z or z > x + y else max(x, y, z))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not convert the final result to an integer, potentially leading to a floating-point output instead of the intended integer value.",
+      "diff": "--- \n+++ \n@@ -12,4 +12,4 @@\n     x *= p\n     p *= 10\n \n-print(x)\n+print(int(x))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

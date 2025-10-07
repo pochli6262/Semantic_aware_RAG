@@ -1,0 +1,4 @@
+{
+  "explanation": "The problem in the original code is that when the user inputs values for A and B, the values are expected to be in the dictionary 'p'. If either A or B is not in 'p', it would raise a KeyError. Therefore, we need to check if A is in 'p' before checking if B is in 'p[A]'. The fixed line is: 'if A in p and B in p[A]:'.",
+  "fixed_code": "p = {1:(2, 4), 2:(1, 5, 3), 3:(2, 6), 4:(1, 5, 7), 5:(2, 4, 6, 8), 6:(3, 5, 9), 7:(4, 8), 8:(5, 7, 9), 9:(6, 8)}\n\nA, B = map(int, input().split())\n\nif A in p and B in p[A]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

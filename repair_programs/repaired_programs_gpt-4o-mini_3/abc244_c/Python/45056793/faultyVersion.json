@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where the program removes an item from the list 'ans'. The original code attempts to remove 'tmp' from 'ans' without checking if 'tmp' is actually present in the list. This can lead to a ValueError if 'tmp' is not in 'ans'. The fix is to change 'ans.remove(tmp)' to 'ans.remove(tmp) if tmp in ans else None' to prevent the error if 'tmp' has already been popped from the list.",
+  "fixed_code": "n=int(input())\nans=[i for i in range(1,n+2)]\nwhile True:\n  print(ans.pop(0), flush=True)\n  tmp=int(input())\n  if tmp==0:\n    exit()\n  else:\n    ans.remove(tmp) if tmp in ans else None"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc307_d/Python/45471496",
+  "query_summary": "The code fails to restore the previous text buffer after popping a matching \"(\", so when handling a ') 'it loses/doesn't resume the prior accumulated characters (temp), causing incorrect/missing output.",
+  "oracle_summary": "The code fails to restore the previous text buffer after popping a matching \"(\", so when handling a ') 'it loses/doesn't resume the prior accumulated characters (temp), causing incorrect/missing output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not handle the case where there are unmatched parentheses, potentially leading to a failure to correctly manage the state of the `a` list and set `t`, which represents the characters inside the parentheses.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n     elif i==\")\":\n       #  print(a)\n         for j in a[-1]:\n-            print(t)\n+         #   print(t)\n             t.remove(j)\n         a.pop(-1)\n     elif i==\"(\":"
+    },
+    {
+      "summary": "The buggy code does not correctly handle consecutive \"U\" commands, leading to incorrect popping from the deque.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n q = deque()\n for s in S:\n     if q:\n-        if s == \"U\":\n+        if s == \"U\" and q[-1] != \"U\":\n             q.pop()\n         else:\n             q.append(s)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates 'right' as the difference between the counts of '(' and ')', instead of using the absolute difference, which leads to incorrect handling of unmatched parentheses.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n S = list(input())\n \n res = 0\n-right = S.count('(') - S.count(')')\n+right = abs(S.count('(') - S.count(')'))\n # print(right)\n left = 0\n for i in range(2*N):"
+    },
+    {
+      "summary": "The buggy code incorrectly starts the loop from the second-to-last index instead of the last index, causing it to miss a potential period if it is the last character in the string.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n S = input()\n \n-for i in range(len(S)-1,0,-1):\n+for i in range(len(S)-1,-1,-1):\n   if S[i] == \".\":\n     print(S[i+1:])\n     break"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the input string `S` when it lacks the characters 'p' and 'd', instead of the correct output which should be a string of 'd' characters of length N.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n S = input()\n s = set()\n if \"p\" not in S or \"d\" not in S:\n-    print(S)\n+    print(\"d\" * N)\n     exit()\n idxP = S.index(\"p\")\n dp = str.maketrans({\"d\": \"p\", \"p\": \"d\"})"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3
+  ],
+  "useful_diffs_count": 2
+}

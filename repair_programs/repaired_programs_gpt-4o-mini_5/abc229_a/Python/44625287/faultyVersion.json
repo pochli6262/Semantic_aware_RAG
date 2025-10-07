@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks for specific patterns in the concatenated string, which does not account for all possible black square configurations and their adjacency. This approach fails in cases where black squares are reachable through connections not represented by the specific strings checked. The correct approach involves checking actual adjacency rather than predefined strings. This idea is inspired by the logic in the diff patterns that focus on evaluating connectivity based on the structure rather than fixed string comparisons.",
+  "fixed_code": "S = [input(), input()]\n\nreachable = [[False] * 2 for _ in range(2)]\n\nfor i in range(2):\n    for j in range(2):\n        if S[i][j] == '#':\n            reachable[i][j] = True\n\n# Check connectivity\nif (reachable[0][0] and (reachable[0][1] or reachable[1][0])) or (reachable[1][1] and (reachable[1][0] or reachable[0][1])):\n    print('Yes')\nelse:\n    print('No')"
+}

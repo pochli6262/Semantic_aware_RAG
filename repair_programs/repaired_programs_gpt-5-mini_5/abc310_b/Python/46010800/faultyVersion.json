@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop 'for j in range(i):' only iterated j values smaller than i, so the program missed valid comparisons where the potentially superior product has a smaller index (j > i). I changed that line to iterate all products ('for j in range(n):'); comparing an item with itself cannot satisfy the strict condition, so no extra checks are needed.",
+  "fixed_code": "n , m = map(int,input().split())\np = [None] * n\n#c = [None] * n\nf = [None] * n\n#e1 = {}\nfor i in range(n):\n    e = list(map(int,input().split()))\n    p[i] = e[0]\n#    c[i] = e[1]\n    f[i] = set(e[2:])\nfor i in range(n):\n    for j in range(n):\n        if p[i] >= p[j] and f[j].issuperset(f[i]) and (p[i] > p[j] or len(f[j]) > len(f[i])):\n#            print(\"i=\",i+1,\"j=\",j+1,f[j],\"<=\",f[i])\n            print(\"Yes\")\n            exit()  \n#    e1[p[i]] = f[i]\nprint(\"No\")"
+}

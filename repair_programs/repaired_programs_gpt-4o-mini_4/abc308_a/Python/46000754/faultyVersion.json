@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks if either the sorted condition or the range/multiples conditions fails at any point independently, which causes premature 'No' outputs. The faulty line was: `if sorted(S) == S or not(100 <= S[i] <= 675) or S[i]%25 != 0:`. To fix this, the sorted check should be done outside of the loop to ensure that all elements are checked first. This idea is inspired by how other diff patterns handle structured checks rather than independent checks.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nif sorted(S) != S or not all(100 <= s <= 675 and s % 25 == 0 for s in S):\n    print('No')\n    exit()\nelse:\n    print('Yes')"
+}

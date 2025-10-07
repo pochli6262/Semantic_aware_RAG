@@ -1,0 +1,1 @@
+The bug likely lies in the way the shifted grid `mp2` is being built, as it is overwriting the contents of `mp1` during the vertical shift instead of preserving the correct mapping of symbols from `tableA`.

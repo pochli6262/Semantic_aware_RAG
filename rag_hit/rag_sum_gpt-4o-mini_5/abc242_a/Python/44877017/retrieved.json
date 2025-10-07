@@ -1,0 +1,29 @@
+{
+  "task": "abc242_a/Python/44877017",
+  "query_summary": "The program incorrectly calculates the probability of receiving a T-shirt for participants ranked between A+1 and B, as it fails to account for the total number of participants eligible for selection.",
+  "oracle_summary": "When x <= a, the buggy code sets res to 100.0 instead of 1.0, erroneously outputting a percentage rather than a probability.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly compares the ratios Y/A and X/B in the conditional statement, which may lead to incorrect variable swaps and subsequent calculations.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n for i in range(T):\n   N,A,B,X,Y,Z=map(int, input().split())\n   Y,Z=min(Y,A*X),min(Z,B*X)\n-  if Y/A>X/B:\n+  if Y/A>Z/B:\n     Y,Z,A,B=Z,Y,B,A\n   ans=10**20\n   if N//A<2*A:"
+    },
+    {
+      "summary": "The buggy code incorrectly outputs half of the total sum of A, B, and C instead of the maximum value among A, B, and C when the condition is met.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n max_A=max(A,B,C)\n sum_B=A+B+C\n if sum_B-max_A>=max_A:\n-    print(sum_B//2)\n+    print(max_A)\n else:\n     print(-1)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for equal remainders, using modulo 6 instead of verifying if the sum is divisible by 3 and if all values are even or odd.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     c = min(x1,x2,x3)\n     b = x1+x2+x3-a-c\n \n-    if not(a % 6 == b % 6 == c % 6):\n+    if not( (a+b+c)%3==0 and a%2==b%2==c%2):\n         print(-1)\n         continue\n "
+    },
+    {
+      "summary": "The buggy code fails to account for the case where the remaining value after full cycles is less than 'a', leading to incorrect calculations of the score.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n def d(a, b, c, x):\n     t = x // (a + c)\n-    return t * (a * b) + (x - ((a + c) * t)) * b\n+    return t * (a * b) + min(a, (x - ((a + c) * t))) * b\n \n \n A, B, C, D, E, F, X = map(int, input().split())"
+    },
+    {
+      "summary": "The buggy code incorrectly reports the index of the found element without adjusting it to a 1-based index, as required by the correct code.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n for i in range(len(C)):\n     #print(\"{} {}\".format(i,C[i]))\n     if C[i] == sumAB:\n-        print(i)\n+        print(i+1)\n         exit\n     \n     "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

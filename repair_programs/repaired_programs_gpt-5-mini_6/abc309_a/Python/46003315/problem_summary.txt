@@ -1,0 +1,1 @@
+The row-equality check uses ax == ay instead of comparing A's row to B's row (ax == bx), so the horizontal-adjacency condition is wrong.

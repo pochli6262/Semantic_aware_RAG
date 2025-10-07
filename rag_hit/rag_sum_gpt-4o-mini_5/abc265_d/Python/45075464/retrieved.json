@@ -1,0 +1,33 @@
+{
+  "task": "abc265_d/Python/45075464",
+  "query_summary": "The likely bug is that the program incorrectly calculates the indices for the tuple (x, y, z, w) since it does not ensure that the found indices strictly satisfy the inequality constraints of 0 ≤ x < y < z < w ≤ N.",
+  "oracle_summary": "The code wrongly rejects w == N by checking w >= N instead of w > N, even though asum has length N+1, causing valid matches that end at the array’s end to be missed.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it only checks if \\( z \\) is between \\( x \\) and \\( y \\) in one direction, missing the case where \\( z \\) could be between them in the reverse order.",
+      "diff": "--- \n+++ \n@@ -16,4 +16,4 @@\n LLMI = lambda: list(map((1).__rsub__, LL()))\n \n n, x, y, z = LL()\n-print(\"Yes\" if x < z < y else \"No\")\n+print(\"Yes\" if x < z < y or y < z < x else \"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the calculation of `add` mistakenly uses `n` instead of `n * N`, leading to incorrect values in the list `B`.",
+      "diff": "--- \n+++ \n@@ -12,14 +12,16 @@\n n = X // u\n b = (X // u) * u\n need = X - b\n+\n X = []\n for i in range(1, N+1):\n-    add = n\n+    add = n * N\n     ok = R[i-1] + need\n     idx = bisect.bisect_left(R, ok)\n     add += idx - (i-1)\n     B.append(add)\n     X.append(idx % N)\n+\n \n \n dp = [X]"
+    },
+    {
+      "summary": "The buggy code mistakenly uses the expression `bit&((1<<N)-1) == (1<<N)-1`, which might lead to incorrect results due to operator precedence; it should be wrapped in parentheses to ensure the bitwise AND operation is evaluated before the equality check.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n         xv, yv = S[v]\n         if dp[bit+(1<<v)][v] == 10**20:\n             q.append((bit+(1<<v), v))\n-        if d + ((xu-xv)**2+(yu-yv)**2)**0.5 < dp[bit+(1<<v)][v]:\n+        if d + ((xu-xv)**2+(yu-yv)**2)**0.5/s < dp[bit+(1<<v)][v]:\n             dp[bit+(1<<v)][v] = d + ((xu-xv)**2+(yu-yv)**2)**0.5/s\n     if bit&((1<<N)-1) == (1<<N)-1 and d + (xu**2+yu**2)**0.5/s < ans:\n         ans = d + (xu**2+yu**2)**0.5/s"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `bisect_right` instead of `bisect_left` to find the upper bound, resulting in an off-by-one error in the count of indices within the specified range.",
+      "diff": "--- \n+++ \n@@ -11,5 +11,5 @@\n for it in range(Q):\n   L, R, X = map(int, input().split())\n   L -= 1\n-  have = bisect_right(at[X - 1], R) - bisect_left(at[X - 1], L)\n+  have = bisect_left(at[X - 1], R) - bisect_left(at[X - 1], L)\n   print(have)"
+    },
+    {
+      "summary": "The bug in the code is that the final answer is incorrectly incremented by 1 instead of 2 in the last condition (`if table[0][y] >= w...`), leading to incorrect outputs in certain cases.",
+      "diff": "--- \n+++ \n@@ -89,7 +89,7 @@\n             ans += 2**k\n \n     if table[0][y] >= w:\n-        ans += 1\n+        ans += 2\n         print(ans)\n     else:\n         print(-1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

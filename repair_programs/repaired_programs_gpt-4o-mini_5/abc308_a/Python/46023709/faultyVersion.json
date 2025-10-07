@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checks the conditions for the integers but does not correctly enforce the requirement for non-decreasing order. Instead of checking if 'check_num < S[i]', it should be checking if it's 'check_num <= S[i]' to allow for repeated values that still satisfy the non-decreasing condition. This aligns with the logical reasoning that if the sequence is monotonic non-decreasing, equal values are allowed, which corresponds to the understanding of the sequence logic in 'Diff 1'.",
+  "fixed_code": "S=list(map(int,input().split()))\ncheck_S=sorted(S)\ncheck=\"True\"\ncheck_num=0\nfor i in range (len(S)):\n    if check_num<=S[i] and 100<=S[i]<=675 and S[i]%25==0:\n        check_num=S[i]\n    else:\n        check=\"False\"\nif check==\"True\":\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

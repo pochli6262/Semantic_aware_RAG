@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original code arises when the value `x` is not found in the list `p`, leading to a ValueError when calling `p.index(x)`. To fix this, I modified the line to use a conditional expression that checks if `x` is in `p` before trying to find its index. This prevents the error and instead returns -1 if `x` is not present.",
+  "fixed_code": "n, x = map(int, input().split())\np = list(map(int, input().split()))\nprint(p.index(x) if x in p else -1)"
+}

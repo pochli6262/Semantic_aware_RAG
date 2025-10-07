@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line only detected one diagonal pattern (S1 == \".#\" and S2 == \"#.\"), missing the symmetric case where the diagonals are reversed (S1 == \"#.\" and S2 == \".#\"). I fixed that single line to check both diagonal orders using an or, so the program correctly treats either diagonal arrangement the same way.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1==\".#\" and S2==\"#.\") or (S1==\"#.\" and S2==\".#\"):\n  print(\"No\")\nelse:\n  print(\"Yes\")"
+}

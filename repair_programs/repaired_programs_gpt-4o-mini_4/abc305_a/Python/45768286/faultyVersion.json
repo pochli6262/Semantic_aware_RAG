@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculates the distance to the nearest water station by only considering the next station instead of evaluating both the previous and next stations. I corrected it by calculating the closest water station from both directions using integer division to find the stations, similar to patterns seen in Diff 4 and Diff 5, ensuring we check both the lower and upper bounds appropriately.",
+  "fixed_code": "print((int(input()) // 5) * 5 + 5 if int(input()) % 5 >= 3 else (int(input()) // 5) * 5)"
+}

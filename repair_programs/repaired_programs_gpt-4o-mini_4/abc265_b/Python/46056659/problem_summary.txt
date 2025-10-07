@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly checks for and adjusts the time limit after moving from one room to the next, possibly causing it to prematurely conclude that Takahashi cannot reach Room N.

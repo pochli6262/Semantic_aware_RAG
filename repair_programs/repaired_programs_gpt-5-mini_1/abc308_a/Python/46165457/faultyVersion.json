@@ -1,0 +1,4 @@
+{
+  "explanation": "The code was comparing the entire list S to its sorted version S_sort inside the loop (if S==S_sort:). That check doesn't make sense per-iteration — it either is true for all i or false for all i, causing incorrect counting (e.g. an unsorted list adds 1 to bad for every i). The fix is to compare the current element to the corresponding element in the sorted list: if S[i]==S_sort[i]:. This makes the check per-index and allows the subsequent per-element validations to work as intended.",
+  "fixed_code": "S = list(map(int, input().split()))\nS_sort = S.copy()\nS_sort.sort()\nbad=0\nfor i in range(8):\n    if S[i]==S_sort[i]:\n            if S[i]>=675 or S[i]<=100:\n                bad+=1\n            else:\n                for j in range(8):\n                    if not S[j]%25==0:\n                        bad+=1\n    else:\n        bad+=1\n    \nif bad==0:\n    print('Yes')\nelse:\n    print('No')"
+}

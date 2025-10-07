@@ -1,0 +1,33 @@
+{
+  "task": "abc309_a/Python/45974546",
+  "query_summary": "The bug is caused by an incorrect initialization of G — it contains extra pair entries (edges) that shouldn't be present, causing incorrect matches (false positives).",
+  "oracle_summary": "The bug is caused by an incorrect initialization of G — it contains extra pair entries (edges) that shouldn't be present, causing incorrect matches (false positives).",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list `g1`, missing some valid combinations (like \"BA\", \"CB\", \"DC\", \"ED\", and \"AE\") which are necessary for the correct logic to determine membership.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n T = input()\n \n-g1 = [\"AB\", \"BC\", \"CD\", \"DE\", \"EA\"]\n+g1 = [\"AB\",\"BA\", \"BC\", \"CB\", \"CD\", \"DC\", \"DE\", \"ED\", \"EA\", \"AE\"]\n \n if S in g1 and T in g1:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly determines whether two nodes belong to the same connected component by failing to check if both nodes have been assigned a valid component identifier, leading to erroneous output for certain queries.",
+      "diff": "--- \n+++ \n@@ -47,7 +47,7 @@\n     u, v = map(int,input().split())\n     u -= 1\n     v -= 1\n-    if K[u] == K[v]:\n+    if K[u] == K[v] and K[u] != -1:\n         print(\"Yes\")\n     else:\n         print(\"No\")"
+    },
+    {
+      "summary": "The buggy code does not correctly account for undirected edges in the graph by only setting g1 and g2 for directed connections, rather than both directions.",
+      "diff": "--- \n+++ \n@@ -7,11 +7,13 @@\n for _ in range(m):\n     u, v = map(int, input().split())\n     g1[u - 1][v - 1] = 1\n+    g1[v - 1][u - 1] = 1\n \n g2 = [[0 for _ in range(n)] for _ in range(n)]\n for _ in range(m):\n     u, v = map(int, input().split())\n     g2[u - 1][v - 1] = 1\n+    g2[v - 1][u - 1] = 1\n \n isok = False\n for p in itertools.permutations(range(n), n):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

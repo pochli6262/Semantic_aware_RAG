@@ -1,0 +1,33 @@
+{
+  "task": "abc242_a/Python/44877017",
+  "query_summary": "The code incorrectly sets res = 100.0 when x <= a (treating guaranteed probability as 100 instead of 1), so it outputs 100.000... instead of 1.000....",
+  "oracle_summary": "When x <= a, the buggy code sets res to 100.0 instead of 1.0, erroneously outputting a percentage rather than a probability.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the value of `ans` by using the wrong formula, specifically by not properly accounting for `a` in the numerator, leading to an incorrect result.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n a,b=map(int,input().split())\n-ans=(1000*b+5)//a/1000\n+ans=(1000*b+a/2)//a/1000\n print(\"{:.3f}\".format(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `a` using integer division instead of floor division, leading to incorrect calculations when determining the values in the array `x`.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n     S.append(s[i])\n \n x = [0] * (d + 1)\n-a = -(n * d) // 2\n+a = -(n * d // 2)\n for i in range(2 * m - 1):\n     if L[i] - a >= n * d:\n         x[0] -= n * S[i]"
+    },
+    {
+      "summary": "The buggy code fails to handle the case where `a` is equal to `b`, resulting in a missing output of `1` for that scenario.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,7 @@\n \n if(a-b>0):\n     print((a-b)//c+1)\n+elif(a==b):\n+    print(1)\n else:\n     print(0)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition `c[i] * a[i] > 0` instead of `c[i] - a[i]*X > 0`, which affects the logic determining whether to set `s` to 0 in the case where `a[i] == b[i]`.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     r = X\n     for i in range(n):\n         if a[i] == b[i]:\n-            if c[i] * a[i] > 0:\n+            if c[i] - a[i]*X > 0:\n                 s = 0\n                 break\n         elif b[i] - a[i] > 0:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses integer division (`int(a / b)`) instead of floor division (`a // b`), which can lead to incorrect results when `a` and `b` are not perfectly divisible.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,6 @@\n import math\n a, b = list(map(int, input().split(' ')))\n+\n \n if a < b:\n   tmp = b\n@@ -8,7 +9,7 @@\n \n ans = 0\n while b > 0:\n-  ans += int(a / b)\n+  ans += a // b\n   a = a % b\n   tmp = a\n   a = b"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed 'takahashi' in all lowercase, but the expected output is capitalized 'Takahashi'. I fixed the capitalization on that single line.",
+  "fixed_code": "a,b,c,d=map(int,input().split())\nprint((a+b)*(c-d))\nprint('Takahashi')# coding: utf-8\n# Your code here!"
+}

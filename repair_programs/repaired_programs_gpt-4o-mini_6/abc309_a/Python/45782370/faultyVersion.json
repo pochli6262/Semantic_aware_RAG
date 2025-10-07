@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks if B is in the neighbors of A, which only considers one direction. To determine horizontal adjacency, we need to check if either A is directly next to B or vice versa. The corrected line uses the condition 'if abs(B - A) == 1' to check if they're adjacent horizontally, which is consistent with the correct logic presented in various diffs, particularly Diff 3 and the general idea of checking absolute differences.",
+  "fixed_code": "p = {1:(2, 4), 2:(1, 5, 3), 3:(2, 6), 4:(1, 5, 7), 5:(2, 4, 6, 8), 6:(3, 5, 9), 7:(4, 8), 8:(5, 7, 9), 9:(6, 8)}\n\nA, B = map(int, input().split())\n\nif abs(B - A) == 1:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

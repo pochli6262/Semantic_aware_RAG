@@ -1,0 +1,4 @@
+{
+  "explanation": "The inner summation used s[l + i], which shifts by 1 element per week instead of jumping by 7; it should index the start of each week as 7*i. I replaced ans += s[l+i] with ans += s[7*i + l] so each week's seven consecutive days are summed correctly.",
+  "fixed_code": "n = int(input())\ns = list(map(int,input().split()))\n\nfor i in range(n):\n  ans = 0\n  for l in range(7):\n    ans += s[7*i + l]\n\n  print(str(ans),\"\",end = \"\")\n"
+}

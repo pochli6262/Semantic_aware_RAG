@@ -1,0 +1,1 @@
+The program uses p.index(x), which returns a zero-based index, whereas the problem requires the 1-based position.

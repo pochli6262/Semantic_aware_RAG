@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed 'takahashi' in lowercase but the problem requires 'Takahashi' with a capital T. I fixed that single line to use the correct capitalization (in line with the pattern shown in Diff 2 which changes 'takahashi' to 'Takahashi').",
+  "fixed_code": "a,b,c,d = input().split()\na = int(a)\nb = int(b)\nc = int(c)\nd = int(d)\n\nprint((a+b)*(c-d))\nprint('Takahashi')"
+}

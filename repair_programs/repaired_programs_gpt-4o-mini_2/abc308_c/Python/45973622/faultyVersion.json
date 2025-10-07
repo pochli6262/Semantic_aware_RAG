@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the sorting line where the negative index was being used to sort based on a tuple that was being constructed with the value and the negative index. This approach does not account for the possibility of having more than one value with the same score, leading to incorrect ordering. By fixing the comparison to sort solely by the calculated score instead of using an arbitrary negative index, the problem is resolved. The line 'L.append(((A*10**100)/(A+B), -i))' is corrected to 'L.append(((A*10**100)/(A+B), i))' to ensure proper sorting behavior, as we want the original index (i) for tie-breaking and the natural order of indices for output.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append(((A*10**100)/(A+B), i))\nL.sort(key=lambda x: (-x[0], x[1]))\nfor i, j in L:\n    print(j+1, end=' ')\nprint()"
+}

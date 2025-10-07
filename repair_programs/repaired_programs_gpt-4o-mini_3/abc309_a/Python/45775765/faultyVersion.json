@@ -1,0 +1,4 @@
+{
+  "explanation": "The program is meant to check for specific pairs of integers (A, B) and print 'Yes' if the pair matches any of the predefined pairs. However, it fails to cover a scenario where pairs that differ by 1 (like 1 and 2, 2 and 3, etc.) should also be considered valid. The only line that needs correction is the `if` statements which can be made more generic. Instead of checking exact pairs, we can check if the absolute difference between A and B is 1. This will effectively check for all adjacent pairs. Therefore, I've changed the condition to check `abs(A - B) == 1`.",
+  "fixed_code": "A,B = map(int,input().split())\nif abs(A - B) == 1:\n  print(\"Yes\")\nelif (A,B) ==(4,5):\n  print(\"Yes\")\nelif (A,B) == (5,6):\n  print(\"Yes\")\nelif (A,B) ==(7,8):\n  print(\"Yes\")\nelif (A,B) ==(8,9):\n  print(\"Yes\")"
+}

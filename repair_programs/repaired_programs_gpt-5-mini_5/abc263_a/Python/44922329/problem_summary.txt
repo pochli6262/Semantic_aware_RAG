@@ -1,0 +1,1 @@
+The loop uses range(12) with i+=1, so it only counts values 1–12 and ignores the value 13, causing an off-by-one error when a card is 13.

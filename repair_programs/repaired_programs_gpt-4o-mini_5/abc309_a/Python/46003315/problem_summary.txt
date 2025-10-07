@@ -1,0 +1,1 @@
+The bug likely occurs because the condition for checking horizontal adjacency is incorrectly verifying the row and column values.

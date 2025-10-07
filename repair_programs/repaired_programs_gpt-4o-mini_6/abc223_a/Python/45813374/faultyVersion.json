@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly checks if n is less than 100 to print 'No', which doesn't account for the requirement that Takahashi must have at least one 100-yen coin and only uses multiples of 100. Thus, the condition should check if n is a valid multiple of 100 and greater than or equal to 100 to return 'Yes'. The diff patterns (particularly Diff 1 and Diff 5) inspired the fix by indicating a need to check for valid specific amounts instead of arbitrary cuts that lead to incorrect outputs.",
+  "fixed_code": "n=int(input())\n\nif n < 100 or n % 100 != 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

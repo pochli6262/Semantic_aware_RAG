@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly checks for a Full house by asserting that there must be exactly two unique numbers and checking if the third and fourth cards differ, rather than counting the frequencies of each number. The correct approach is to verify that there are three of one number and two of another. This fix aligns with the understanding from the problem summary that it needs proper counting instead, similar to the logic present in Diff 5, which emphasizes the need to count occurrences correctly.",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and K.count(K[0]) == 3:\n    print('Yes')\nelse:\n    print('No')"
+}

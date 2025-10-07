@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is with the logical condition in the if statement. The original condition checks for both 'W' and 'L' in the same catergory, which is incorrect. The correct logic should use '==' for checking both 'W' and 'L' in terms of the expected outcomes, thus, it should check if both indices have opposite values (i.e. 'W' and 'L', or 'L' and 'W'). I fixed it by changing the condition to correctly check if A[i][j] and A[j][i] are different.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\n\nfor i in range(N):\n  for j in range(N):\n    if (A[i][j] == 'W' and A[j][i] != 'L') or (A[i][j] == 'L' and A[j][i] != 'W'):\n      print('incorrect')\n      exit()\nprint('correct')"
+}

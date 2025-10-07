@@ -1,0 +1,1 @@
+The if-condition uses the wrong logical operators/parentheses so it can be true when only a triple or only a pair exists (the second clause incorrectly uses OR and duplicates checks instead of requiring both a triple and a pair).

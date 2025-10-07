@@ -1,0 +1,4 @@
+{
+  "explanation": "The program printed 'takahashi' in all lowercase. The expected output (as in related examples) uses a capitalized 'Takahashi'. I fixed the capitalization by changing the last print string to 'Takahashi'.",
+  "fixed_code": "a,b,c,d = input().split()\na = int(a)\nb = int(b)\nc = int(c)\nd = int(d)\n\nprint((a+b)*(c-d))\nprint('Takahashi')"
+}

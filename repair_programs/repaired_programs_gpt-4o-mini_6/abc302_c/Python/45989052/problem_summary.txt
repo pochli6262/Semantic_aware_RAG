@@ -1,0 +1,1 @@
+The program incorrectly handles the case where the permutation check for adjacent strings does not reset the `ok` flag after finding a mismatch, thereby potentially missing valid sequences.

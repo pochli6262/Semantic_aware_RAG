@@ -1,0 +1,4 @@
+{
+  "explanation": "In the second loop the condition used S[i] even though the loop variable is j. That references the previous i (or its last value) instead of the current element, causing incorrect checks. I fixed it by replacing S[i] with S[j] so the loop correctly validates each element.",
+  "fixed_code": "S = list(map(int,input().split()))\nans = \"Yes\"\nfor i in range(len(S)-1):\n  if not(S[i] <= S[i+1]):\n    ans = \"No\"\nfor j in range(len(S)):\n  if not(S[j] % 25 == 0 and 100 <= S[j] <= 675):\n    ans = \"No\"\nprint(ans)"
+}

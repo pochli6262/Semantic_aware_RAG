@@ -1,0 +1,31 @@
+{
+  "task": "abc244_c/Python/45762748",
+  "query_summary": "The inner loop searches only 1..N instead of 1..2N+1, preventing selection of valid numbers above N and causing failure once 1..N are all marked bad.",
+  "oracle_summary": "The inner loop searches only 1..N instead of 1..2N+1, preventing selection of valid numbers above N and causing failure once 1..N are all marked bad.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for missing integers in the input list A only up to N instead of the full range of possible values (0 to 2000), potentially missing valid output values.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(2001):\n     if i not in A:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates with a range of `N-3` instead of `N-2`, causing it to miss the last possible valid substring that can start at index `N-3`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n S = input()\n \n-for i in range(N-3):\n+for i in range(N-2):\n   if S[i] == \"A\" and S[i+1] == \"B\" and S[i+2] == \"C\":\n     print(i+1)\n     exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop iterates from 100000 to 999999, missing the last valid 6-digit number (1000000), which should be included in the range.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n cnt=0\n #AABCDDEFE\n-for i in range(100000,999999):\n+for i in range(100000,1000000):\n     cnt+=1\n     if cnt==N:\n         print(int(str(i)[0]+str(i)[0]+str(i)[1]+str(i)[2]+str(i)[3]+str(i)[3]+str(i)[4]+str(i)[5]+str(i)[4]))"
+    },
+    {
+      "summary": "The buggy code incorrectly loops from `N-2` to `1` instead of from `N-1` to `1`, leading to potential index errors and incorrect calculations in the `ans` list.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n for i in map(int, input().split()):\n     ans[i-1] = 0\n-for i in range(N-2, 0, -1):\n+for i in range(N-1, 0, -1):\n     ans[i-1] = min(ans[i-1], ans[i]+1)\n \n print('\\n'.join(map(str, ans)))"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range `N` instead of `1` to `N-1` in the final loop, which leads to potential index out-of-bounds errors and incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n         B.append(B[i-1] + C[i-1])\n \n ans = 10 ** 20\n-for j in range(N):\n+for j in range(1, N):\n     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])\n \n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

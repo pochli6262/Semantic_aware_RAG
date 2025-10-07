@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the single line is that the original logic incorrectly rounds up numbers that leave a remainder of 2, 3, or 4 when divided by 5. Instead, we should round up only if n%5 is greater than or equal to 3. I changed this condition from 'n%5>=2' to 'n%5>=3'.",
+  "fixed_code": "n=int(input())\nprint((n//5)*5+5 if n%5>=3 else (n//5)*5)"
+}

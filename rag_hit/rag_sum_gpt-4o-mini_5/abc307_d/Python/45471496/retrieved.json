@@ -1,0 +1,33 @@
+{
+  "task": "abc307_d/Python/45471496",
+  "query_summary": "The buggy program fails to correctly handle and delete nested parentheses, resulting in incorrect output when processing strings with multiple levels of parentheses.",
+  "oracle_summary": "The code fails to restore the previous text buffer after popping a matching \"(\", so when handling a ') 'it loses/doesn't resume the prior accumulated characters (temp), causing incorrect/missing output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not handle the case where there are unmatched parentheses, potentially leading to a failure to correctly manage the state of the `a` list and set `t`, which represents the characters inside the parentheses.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n     elif i==\")\":\n       #  print(a)\n         for j in a[-1]:\n-            print(t)\n+         #   print(t)\n             t.remove(j)\n         a.pop(-1)\n     elif i==\"(\":"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates 'right' as the difference between the counts of '(' and ')', instead of using the absolute difference, which leads to incorrect handling of unmatched parentheses.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n S = list(input())\n \n res = 0\n-right = S.count('(') - S.count(')')\n+right = abs(S.count('(') - S.count(')'))\n # print(right)\n left = 0\n for i in range(2*N):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for an empty string instead of checking for the closing bracket ')' in the second condition within the inner loop.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n           dp[i+1][j+1] += dp[i][j]\n           dp[i+1][j+1] %= mod\n           \n-      if S[i] == '' or S[i] == '?':\n+      if S[i] == ')' or S[i] == '?':\n         if j >= half:\n           dp[i+1][j] += dp[i][j]\n           dp[i+1][j] %= mod"
+    },
+    {
+      "summary": "The buggy code incorrectly formats the output by printing the node indices as they are (0-based) instead of converting them to 1-based format, which is corrected in the working code.",
+      "diff": "--- \n+++ \n@@ -52,4 +52,4 @@\n   ans = ans[:-1]\n \n print(len(ans))\n-print(' '.join(map(str, ans)))\n+print(' '.join(map(str, [a + 1 for a in ans])))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `stack_kakko[-1]` instead of popping from `stack_kakko` when processing a closing parenthesis, which leads to incorrect indexing and potentially mismatched parentheses handling.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n         if c == '(':\n             stack_kakko.append(i)\n         elif c == ')':\n-            peak = stack_kakko[-1]\n+            peak = stack_kakko.pop()\n             while stack_i[-1] > peak:\n                 idx = stack_i.pop()\n                 a_set.discard(s[idx])"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    5
+  ],
+  "useful_diffs_count": 3
+}

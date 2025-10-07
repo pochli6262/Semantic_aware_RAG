@@ -1,0 +1,4 @@
+{
+  "explanation": "The code created a sorted copy check_S but never used it; the if line was still checking S[i], so the code required the original input order to be increasing. I fixed that single line to check elements from the sorted list (check_S[i]) instead of S[i], so the sequence is validated in sorted order.",
+  "fixed_code": "S=list(map(int,input().split()))\ncheck_S=sorted(S)\ncheck=\"True\"\ncheck_num=0\nfor i in range (len(S)):\n    if check_num<check_S[i] and 100<=check_S[i]<=675 and check_S[i]%25==0:\n        check_num=check_S[i]\n    else:\n        check=\"False\"\nif check==\"True\":\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

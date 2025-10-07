@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition that checks if the sets 'fj' and 'fi' indicate a proper relationship between the two elements. The condition 'len((fj | fi)) == len(fj)' checks if 'fi' contains only elements from 'fj', which is not the intended logic. It should check if 'fj' is a subset of 'fi'. The corrected line uses 'fj.issubset(fi)' instead.",
+  "fixed_code": "N, M = map(int, input().split())\nI = [list(map(int, input().split())) for _ in range(N)]\n\nfor i in range(N):\n    for j in range(N):\n        if i == j:\n            continue\n        if I[i][0] >= I[j][0]:\n            fj = set(I[j][2:])\n            fi = set(I[i][2:])\n            if fj.issubset(fi):  # Corrected line\n                if I[i][0] > I[j][0] or len((fj | fi)) - len(fj) > 0:\n                    print('Yes')\n                    exit()\nprint('No')"
+}

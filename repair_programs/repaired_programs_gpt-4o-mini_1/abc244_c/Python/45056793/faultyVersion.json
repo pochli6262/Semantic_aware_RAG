@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the way the code attempted to remove the element from the list `ans`. The `remove` method should be called on a list containing the element to be removed but the condition that checks if `tmp` exists in `ans` was not enforced. This can lead to a ValueError if user inputs a number not in the list. The corrected version adds a check to ensure that `tmp` is indeed in `ans` before attempting to remove it.",
+  "fixed_code": "n=int(input())\nans=[i for i in range(1,n+2)]\nwhile True:\n  print(ans.pop(0), flush=True)\n  tmp=int(input())\n  if tmp==0:\n    exit()\n  else:\n    if tmp in ans:\n      ans.remove(tmp)"
+}

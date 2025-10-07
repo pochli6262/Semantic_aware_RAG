@@ -1,0 +1,1 @@
+The code prints p[0] for each plate color not in ds instead of adding p[0] to the running total s, producing extra output and an incorrect final sum.

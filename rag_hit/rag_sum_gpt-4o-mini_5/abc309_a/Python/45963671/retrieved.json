@@ -1,0 +1,33 @@
+{
+  "task": "abc309_a/Python/45963671",
+  "query_summary": "The bug likely lies in the incorrect logic used to determine adjacency, as it does not properly account for the arrangement of numbers on the 3x3 board.",
+  "oracle_summary": "The program fails to terminate after detecting b-a != 1 (missing an exit/return), so execution continues and can produce incorrect output.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it only checks if the player's score equals 2 when determining if the output should be \"Yes,\" instead of checking if the score is greater than or equal to 2.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     elif s[0] == 2:\n         cnts[player] += 2\n     elif s[0] == 3:\n-        if cnts[player] == 2:\n+        if cnts[player] >= 2:\n             print(\"Yes\")\n         else:\n             print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the difference between `b` and `a` is non-zero rather than specifically checking if it equals 1 or 9.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b = map(int, input().split())\n \n-if b - a or b - a == 9:\n+if b - a == 1 or b - a == 9:\n   print('Yes')\n else:\n   print('No')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition involving variable 'a' multiplied by 'b' instead of 'a' multiplied by 'd' in the second conditional statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n if abs(b-c) >= 2:\n     print(\"No\")\n-elif b + c == 0 and a*b != 0:\n+elif b + c == 0 and a*d != 0:\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The issue in the buggy code is that it incorrectly checks `b != 0` instead of `d != 0` in the conditional statement when both `b` and `c` are zero.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n,a,b,c,d = map(int, input().split())\n-print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and b != 0)) else \"Yes\")\n+print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and d != 0)) else \"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

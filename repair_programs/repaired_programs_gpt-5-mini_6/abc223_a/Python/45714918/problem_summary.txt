@@ -1,0 +1,1 @@
+The program incorrectly prints "Yes" for X = 0 because it only checks divisibility by 100 and doesn't enforce that there's at least one 100-yen coin (X > 0).

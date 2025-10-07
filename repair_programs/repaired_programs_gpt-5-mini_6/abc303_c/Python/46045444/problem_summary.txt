@@ -1,0 +1,1 @@
+The code initializes each item's count with m (item[(x,y)] = m) instead of 1, so a single health item can be "used" up to m times instead of only once.

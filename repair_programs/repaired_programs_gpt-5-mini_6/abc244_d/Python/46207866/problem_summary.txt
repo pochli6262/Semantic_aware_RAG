@@ -1,0 +1,1 @@
+The program wrongly uses the parity of the count of mismatched positions instead of the parity (sign) of the permutation from S to T, so it can produce incorrect results.

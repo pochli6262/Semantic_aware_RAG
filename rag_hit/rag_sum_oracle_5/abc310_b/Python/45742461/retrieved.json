@@ -1,0 +1,32 @@
+{
+  "task": "abc310_b/Python/45742461",
+  "query_summary": "The bug is a wrong index in the first comparison: the code mistakenly uses s[j][1] (the other item's cost) instead of s[j][0] (the other item's price), so it compares the wrong field.",
+  "oracle_summary": "The bug is a wrong index in the first comparison: the code mistakenly uses s[j][1] (the other item's cost) instead of s[j][0] (the other item's price), so it compares the wrong field.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    },
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the differences between consecutive elements by resetting them each time instead of accumulating the differences, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n mn=[0]*3\n d=[0]*3\n for i in range(n-1):\n-    d[i%3]=s[i+1]-s[i]\n+    d[i%3]=s[i+1]-s[i]+d[i%3]\n     mn[i%3]=min(mn[i%3],d[i%3])\n # print(mn)\n if -sum(mn)>s[0]:"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

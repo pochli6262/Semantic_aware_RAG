@@ -1,0 +1,32 @@
+{
+  "task": "abc310_a/Python/45739812",
+  "query_summary": "The bug is a wrong arithmetic expression—a typo using \"P - Q + d\" instead of the correct \"Q + d\"—so the candidate value p is computed incorrectly.",
+  "oracle_summary": "The bug is a wrong arithmetic expression—a typo using \"P - Q + d\" instead of the correct \"Q + d\"—so the candidate value p is computed incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is in the final calculation of the `else` block for the case when `D` is negative, where it incorrectly computes `abs((X-A)%D)-D` instead of `abs((X-A)%D-D)`, leading to incorrect output for certain input cases.",
+      "diff": "--- \n+++ \n@@ -17,4 +17,4 @@\n     elif A+D*(N-1) > X:\n         print((A+D*(N-1))-X)\n     else:\n-        print(min(abs((X-A)%D), abs((X-A)%D)-D))\n+        print(min(abs((X-A)%D), abs((X-A)%D-D)))"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a strict less than operator ('<') instead of a less than or equal to operator ('<=') when checking the difference between consecutive elements, which causes it to miss situations where the difference is exactly equal to 'd'.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n ans = -1\n for i in range(1, len(t)):\n-  if t[i] - t[i-1] < d:\n+  if t[i] - t[i-1] <= d:\n     ans = t[i]\n     break\n print(ans)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `ans` instead of `p` in the calculation of the minimum value in the `while` loop, which leads to an inaccurate result.",
+      "diff": "--- \n+++ \n@@ -4,6 +4,6 @@\n ans=0\n i=0\n while d*i<n:\n-    ans+=min(ans,sum(f[d*i:d*(i+1)]))\n+    ans+=min(p,sum(f[d*i:d*(i+1)]))\n     i+=1\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the value 16 instead of 18 in its conditional statement for the variable `d`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n p, q, r, s = [int(x) for x in input().split()]\n d = (p - r) ** 2 + (q - s) ** 2\n-if d in (2, 4, 10, 16, 20):\n+if d in (2, 4, 10, 16, 18, 20):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the less-than operator (`<`) instead of the less-than-or-equal operator (`<=`), which results in failing to consider the case where `x` is equal to `p[i] + h`.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,6 @@\n p = list(map(int, input().split()))\n \n for i in range(n):\n-  if x < p[i]+h:\n+  if x <= p[i]+h:\n     print(i+1)\n     break"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

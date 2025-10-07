@@ -1,0 +1,1 @@
+In the random-selection branch the code computes and prints (B−A)/C (D/C) instead of the correct probability C/(B−A), i.e., the numerator and denominator are swapped.

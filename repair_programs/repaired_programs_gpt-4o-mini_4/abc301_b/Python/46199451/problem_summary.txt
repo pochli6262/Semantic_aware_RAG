@@ -1,0 +1,1 @@
+The program incorrectly generates and inserts the range of integers between adjacent elements by using the wrong indices, which results in off-by-one errors and incorrect sequence construction.

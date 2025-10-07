@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue was in the calculation of the answer for the arrangements, particularly the way it accounted for the circular condition. The correct formula for a circle involves using M-1 for the adjacent person's choices while ensuring the first person's choice does not repeat with the last person's choice. Inspired by the understanding that in a circular arrangement where N = 2, if M equals 1, there's no valid arrangement (0 ways). Thus, the program needs to ensure that both adjacent constraints and circular conditions are accurately represented. The revised line accounts for these conditions correctly.",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nif N > M:\n    answer = (M - 1) * pow(M - 2, N - 1, mod)\nelse:\n    answer = 0 if N == M else (M - 1) * (M ** (N - 2))\nprint(answer % mod)"
+}

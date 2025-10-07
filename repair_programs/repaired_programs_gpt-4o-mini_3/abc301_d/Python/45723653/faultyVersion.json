@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the code occurs in the check for the starting range of the loop for adding to 'res' from '?'. It should only check 'n' once as it will be modified by the addition. Changing the condition for the range loop to '2 ** m - 1' makes sure we start just below 2^m so we can check the binary representation correctly.",
+  "fixed_code": "if __name__ == '__main__':\n    s = str(input())\n    n = int(input())\n    m = len(s)\n    res = 0\n    for i in range(m):\n        if s[i] == \"1\":\n            res += (1 << (m - 1 - i))\n    if res > n:\n        res = -1\n    else:\n        for i in range(m - 1, -1, -1):\n            if s[i] == \"?\" and res + (1 << (m - 1 - i)) <= n:\n                res += (1 << (m - 1 - i))\n    print(res)"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition checked was incorrect because it required two separate conditions to be true using 'and'. The correction ensures that both conditions are checked appropriately using 'or' to allow for either case of identical numbers. The correct logic was to match either the first three numbers being the same or the last two being the same, considering that the input could represent cases of one group of three equal numbers or one group of two.",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif (a[0]==a[1] and a[1]==a[2]) or (a[3]==a[4]):\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

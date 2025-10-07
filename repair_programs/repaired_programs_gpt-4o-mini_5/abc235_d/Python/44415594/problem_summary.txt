@@ -1,0 +1,1 @@
+The program likely suffers from incorrect initialization and handling of the `numSet` array, which may lead to improper tracking of the minimum number of moves.

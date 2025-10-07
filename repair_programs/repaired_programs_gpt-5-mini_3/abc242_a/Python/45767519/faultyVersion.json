@@ -1,0 +1,4 @@
+{
+  "explanation": "The second conditional checked X <= C by mistake. The correct condition is whether X is between A+1 and B (i.e. X <= B). I changed the line to compare X to B so the middle-case probability uses the intended range.",
+  "fixed_code": "from collections import Counter, defaultdict, deque\nfrom bisect import bisect_left, bisect_right\nfrom heapq import heapify, heappush, heappop\n\n\ndef solve():\n    A, B, C, X = map(int, input().split())\n\n    if X >= 1 and X <= A:\n        res = 1/1\n    elif X > A and X <= B:\n        N = B - A\n        res = C / N\n    else:\n        res = 0/1\n\n    print(f\"{res:.7f}\")\n\n\nsolve()\n"
+}

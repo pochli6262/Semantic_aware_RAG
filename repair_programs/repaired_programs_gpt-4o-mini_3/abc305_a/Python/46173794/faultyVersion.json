@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly adds 5 when n is exactly divisible by 5 and n % 5 is greater than or equal to 2. The condition should check if n % 5 is greater than 0 instead, so it handles numbers that are exactly divisible by 5 correctly without adding an unnecessary 5 to the result.",
+  "fixed_code": "n=int(input())\nprint((n//5)*5 + 5 if n % 5 > 0 else (n//5)*5)"
+}

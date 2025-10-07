@@ -1,0 +1,1 @@
+The code incorrectly treats identical products as "strictly superior" because it only checks P_i >= P_j and f_j ⊇ f_i but omits the required strict condition (P_i > P_j or f_j being a strict superset of f_i).

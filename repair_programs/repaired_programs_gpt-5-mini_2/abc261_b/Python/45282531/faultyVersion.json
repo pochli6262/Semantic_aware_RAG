@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line only checked the specific case where both entries were 'W' or both were 'L', which misses other kinds of inconsistencies (mismatched pairs like 'W' vs not 'L', 'L' vs not 'W', 'D' vs not 'D') and also did not enforce that the diagonal entries must be '-'. I replaced that single line with a condition that (1) requires A[i][i] == '-' for diagonals and (2) for i != j enforces the proper symmetric relations: 'W' <-> 'L', 'L' <-> 'W', and 'D' <-> 'D'.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\n\nfor i in range(N):\n  for j in range(N):\n    if (i == j and A[i][j] != '-') or (i != j and ((A[i][j] == 'W' and A[j][i] != 'L') or (A[i][j] == 'L' and A[j][i] != 'W') or (A[i][j] == 'D' and A[j][i] != 'D'))):\n      print('incorrect')\n      exit()\nprint('correct')"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc308_d/Python/54535139",
+  "query_summary": "The bug is that neighbor cells are marked as visited before checking if they match the expected \"snuke\" character, prematurely blocking valid traversal.",
+  "oracle_summary": "The bug is that neighbor cells are marked as visited before checking if they match the expected \"snuke\" character, prematurely blocking valid traversal.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for the right neighbor (j > W-1) instead of checking if j is less than W-1 (j < W-1).",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n       if i > 0: d.discard(C[i-1][j])\n       if j > 0: d.discard(C[i][j-1])\n       if i < H-1: d.discard(C[i+1][j])\n-      if j > W-1: d.discard(C[i][j+1])\n+      if j < W-1: d.discard(C[i][j+1])\n       C[i][j] = d.pop()\n   for i in range(H):\n     print(\"\".join(C[i]))"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly references `G[i]` instead of `G[x]` when iterating through the neighbors in the graph, causing it to explore the wrong node's neighbors during the depth-first search.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n             if(x in seen):\n                 continue\n             seen.add(x)\n-            for j in G[i]:\n+            for j in G[x]:\n                 if (j not in seen):\n                     stack.append(j)\n print(cnt)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `seen` list for tracking visited nodes, causing it to not account for the correct range of nodes during depth-first search, which may lead to incorrect results or infinite recursion.",
+      "diff": "--- \n+++ \n@@ -22,7 +22,7 @@\n prev = [-1 for _ in range(N+1)]\n seen = [False for _ in range(N+1)]\n dfs(X, prev, seen)\n-print(prev)\n+#print(prev)\n \n # ゴールから dist の数値を頼りに逆にたどり、最後に配列を反転させて経路を取得する。\n root = list()"
+    },
+    {
+      "summary": "The buggy code does not check if the newly placed rectangle overlaps with any previously placed rectangles, which can lead to incorrect placements and invalid configurations.",
+      "diff": "--- \n+++ \n@@ -21,6 +21,8 @@\n                     cnt += 1\n                     for di in range(a):\n                         for dj in range(b):\n+                            if S[i+di][j+dj]:\n+                                return False\n                             S[i+di][j+dj] = True\n                 else:\n                     return False"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for the condition of `s` being less than or equal to zero instead of just being less than zero, potentially allowing invalid states to be processed in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     d.append(a-b)\n     s-=b\n \n-if s<=0:\n+if s<0:\n   print(\"No\")\n   exit()\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

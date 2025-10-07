@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly calculates the number of participants eligible for a T-shirt in the range (A+1)-th to B-th using 'b-a+1' instead of the correct total number of participants in that range, which is 'B - A'. This mistake results in the wrong denominator for the probability calculation. I fixed it by changing the line that computes the probability in the 'elif' block to use 'B - A' instead of 'b - a + 1'.",
+  "fixed_code": "a, b, c, x = map(int, input().split())\nif x <= a:\n    print(1)\nelif a < x <= b:\n    print(c / (b - a))\nelse:\n    print(0)"
+}

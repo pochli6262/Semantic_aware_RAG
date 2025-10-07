@@ -1,0 +1,1 @@
+The program prints the dictionary D as debug output before answering queries, producing extra output that breaks the required output format.

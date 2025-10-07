@@ -1,0 +1,4 @@
+{
+  "explanation": "The original print line used A//B + 1 which is wrong when A is exactly divisible by B: it adds 1 unconditionally and gives an off-by-one result. To compute the integer ceiling of A/B for positive integers, use (A + B - 1)//B. I fixed only the print line to perform ceiling division correctly.",
+  "fixed_code": "A,B = map(int,input().split())\nprint((A + B - 1)//B)"
+}

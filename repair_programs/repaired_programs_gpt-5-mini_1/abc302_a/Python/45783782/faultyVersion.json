@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was using int(A/B) when A is exactly divisible by B. int(A/B) first performs floating-point division and then converts to int, which can lose precision for very large integers (or be slightly off due to floating-point rounding). The correct approach is to use integer division A//B which yields the exact integer result without converting through float. I fixed that single line by replacing print(int(A/B)) with print(A//B).",
+  "fixed_code": "A,B = map(int,input().split())\nif A%B == 0:\n  print(A//B)\nelse:\n  print(int(A//B)+1)\n"
+}

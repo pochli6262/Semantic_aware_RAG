@@ -1,0 +1,4 @@
+{
+  "explanation": "The program only accepted the case where A[i][j] == 'W' and A[j][i] == 'L', but it missed the symmetric case where A[i][j] == 'L' and A[j][i] == 'W'. That caused valid results to be reported as incorrect. I fixed the first condition to accept both W/L and L/W pairings.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\n\nfor i in range(N):\n\tfor j in range(N):\n\t\tif i != j and ((A[i][j] == 'W' and A[j][i] == 'L') or (A[i][j] == 'L' and A[j][i] == 'W')):\n\t\t\tcontinue\n\t\telif i != j and A[i][j] == 'D' and A[j][i] == 'D':\n\t\t\tcontinue\n\t\telif i == j:\n\t\t\tcontinue\n\t\telse:\n\t\t\tprint('incorrect')\n\t\t\texit()\nprint('correct')"
+}

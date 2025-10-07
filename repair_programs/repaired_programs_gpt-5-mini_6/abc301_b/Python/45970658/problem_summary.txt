@@ -1,0 +1,1 @@
+There's a stray debug print inside the loop (print(i)) that outputs each input element and produces extra unwanted lines before the final sequence.

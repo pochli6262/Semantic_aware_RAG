@@ -1,0 +1,1 @@
+The program incorrectly inserts numbers between adjacent terms by using non-inclusive upper bounds in the range function, which prevents the correct values from being added.

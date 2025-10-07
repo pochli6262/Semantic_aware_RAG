@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where the code calculates the sum of elements in the list 'a' from 'pos' to 'x - 1'. Specifically, the range should sum only the elements that have been consumed up to 'x - 1'. It should subtract the elements from 'pos' to 'x' instead. Thus, the fixed line uses 'x' instead of 'x - 1' to match the intended range of the movement.",
+  "fixed_code": "n, m, t = map(int, input().split())\na = list(map(int, input().split()))\npos = 0\n\nfor i in range(m):\n    x, y = map(int, input().split())\n    t -= sum(a[pos : x])\n    if t <= 0:\n        print(\"No\")\n        exit()\n    else:\n        t += y\n        pos = x - 1\nt -= sum(a[pos:])\nif t < 0:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

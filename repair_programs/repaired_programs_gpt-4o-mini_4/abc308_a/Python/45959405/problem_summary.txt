@@ -1,0 +1,1 @@
+The program incorrectly checks the divisibility by 25 for each element separately instead of ensuring all elements are multiples of 25 before printing the result.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program mistakenly checks for contradictions using the transposed version of the results table instead of analyzing the original results for each pair of players. The erroneous comparison was between 'a[i][j]' and 'b[i][j]' which uses the transposed index. This has been corrected to compare 'a[i][j]' with 'a[j][i]' for consistency with the problem statement. This fix was inspired by the understanding that the relationships should be checked directly, not via the transposed matrix.",
+  "fixed_code": "n = int(input())\na = [list(input()) for _ in range(n)]\nans = \"correct\"\nfor i in range(n):\n  for j in range(n):\n    if i == j:\n      continue\n    if a[i][j] == 'W' and a[j][i] != 'L':\n      ans = \"incorrect\"\n      break\n    if a[i][j] == 'L' and a[j][i] != 'W':\n      ans = \"incorrect\"\n      break\n    if a[i][j] == 'D' and a[j][i] != 'D':\n      ans = \"incorrect\"\n      break\nprint(ans)"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc309_a/Python/45763717",
+  "query_summary": "The likely bug is that the condition incorrectly checks for adjacency by using the absolute difference, which does not accurately determine if the two squares are horizontally adjacent on the board.",
+  "oracle_summary": "The bug is a wrong conditional: it uses \"abs(a-b) in [1,3]\" (allowing difference 3) instead of \"abs(a-b) == 1\", so pairs with difference 3 are incorrectly accepted.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the condition `abs(a-b)== 1 or 9`, which always evaluates to true due to the truthiness of the number 9, instead of checking if the absolute difference between `a` and `b` is exactly 1 or 9.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n a,b=map(int,input().split())\n-if abs(a-b)== 1 or 9:\n+if b - a == 1 or b - a == 9:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition `A-B == 9` instead of the correct condition `B-A == 9`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n A,B = map(int,input().split())\n \n-if B-A == 1 or A-B == 9:\n+if B-A == 1 or B-A == 9:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the last digits of `a` and `b` differ by 1, instead of checking if `b` is exactly 1 greater than `a` or if `a` is 1 and `b` is 10.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n a,b=map(int,input().split())\n-if abs(a%10-b%10)==1:\n+if b-a==1 or (a==1 and b==10):\n     print('Yes')\n else:print('No')"
+    },
+    {
+      "summary": "The issue in the buggy code is that it incorrectly checks `b != 0` instead of `d != 0` in the conditional statement when both `b` and `c` are zero.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n,a,b,c,d = map(int, input().split())\n-print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and b != 0)) else \"Yes\")\n+print(\"No\" if abs(b - c) > 1 or (b == c == 0 and (a != 0 and d != 0)) else \"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the difference between `b` and `a` is non-zero rather than specifically checking if it equals 1 or 9.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n a, b = map(int, input().split())\n \n-if b - a or b - a == 9:\n+if b - a == 1 or b - a == 9:\n   print('Yes')\n else:\n   print('No')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

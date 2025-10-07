@@ -1,0 +1,29 @@
+{
+  "task": "abc307_a/Python/45989937",
+  "query_summary": "The bug is an incorrect index calculation—using s[l + i] instead of s[l + i*7] so the code advances by 1 each iteration instead of jumping by 7 and thus selects wrong elements.",
+  "oracle_summary": "The bug is an incorrect index calculation—using s[l + i] instead of s[l + i*7] so the code advances by 1 each iteration instead of jumping by 7 and thus selects wrong elements.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly iterates `x` from 1 to `10**7`, skipping the possibility of checking `x = 0` and thus missing one valid square case (0).",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = [int(x) for x in input()]\n s.sort()\n ans = 0\n-for x in range(1, 10**7):\n+for x in range(10**7):\n     t = [int(c) for c in str(x * x)]\n     if len(t) > n:\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the inner loop to digits from 1 to 8, which causes it to miss the divisor 9 for `n` values where 9 is a valid divisor.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = [\"-\"] * (n+1)\n \n for i in range(n+1):\n-  for j in range(1, 9):\n+  for j in range(1, 10):\n     if n % j == 0 and i % (n/j) == 0:\n       s[i] = str(j)\n       break"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the modified string `s` before constructing the list `L` which leads to confusion about the final output of the program since the printed list of counts is based on the altered string instead.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n             s[i] = 'B'\n         else:\n             s[i] = 'A'\n-print(s)\n+\n L = []\n cur = s[0]\n cnt = 0\n@@ -19,7 +19,6 @@\n         L.append(cnt)\n         cnt = 1\n L.append(cnt)\n-print(L)\n \n ans = 1\n for l in L:"
+    },
+    {
+      "summary": "The buggy code incorrectly accumulates the count of zero sequences in the final answer without resetting the zero count after processing a non-zero number, resulting in an incorrect total count.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,8 @@\n for i in range(n):\n   if s[i]!=0:\n     ans+=1\n+    ans+=(ze+1)//2\n+    ze=0\n   else:\n     ze+=1\n print(ans+(ze+1)//2)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value of `sum` is incorrectly set to 10000 instead of a larger value (10^10), which may lead to incorrect results when calculating the minimum cost.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n, s, m, l = map(int,input().split())\n-sum = 10000\n+sum = 10**10\n \n for j in range(20):\n   for k in range(15):"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

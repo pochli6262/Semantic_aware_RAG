@@ -1,0 +1,1 @@
+The code checks medicines <= K before subtracting and removes one medicine per iteration instead of grouping by equal a_i (and so can miss the case where the total first becomes <=K only after removing the last/remaining medicines), producing wrong or no output.

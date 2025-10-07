@@ -1,0 +1,32 @@
+{
+  "task": "abc307_e/Python/46214607",
+  "query_summary": "The code mixes a modular pow with an unmodded (M-1) and never reduces the final sum modulo 998244353, so the output can be negative or incorrect modulo.",
+  "oracle_summary": "The program fails to reduce the result modulo 998244353 before printing, so the computed value (which can be negative or out of range) is not output mod 998244353.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the modular exponentiation by using `M-1` instead of the correct `M` in `pow(m, z, M-1)`, leading to an incorrect final result.",
+      "diff": "--- \n+++ \n@@ -26,4 +26,4 @@\n     g%=M\n   f+=g\n   f%=M\n-print((f*pow(pow(m,z,M-1),M-2,M))%M)\n+print((f*pow(pow(m,z,M),M-2,M))%M)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly initializes `ans` to `pow(1, N, MOD)`, when it should be initialized to `pow(2, N, MOD)`.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n MOD = 998244353\n N = int(input())\n-ans = pow(1, N, MOD)\n+ans = pow(2, N, MOD)\n for i in range(N+2, N*2+1):\n     ans *= i\n     ans %= MOD"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `if(M and 2**i):` instead of the bitwise operator `&`, which prevents the condition from correctly checking if the i-th bit of M is set.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n MOD = 998244353\n ret = 0\n for i in range(60):\n-    if(M and 2**i):\n+    if(M & 2**i):\n         tmp = N // ((2**i)*2)\n         ret = ret + tmp*(2**i)\n         tmp = N % ((2**i)*2)"
+    },
+    {
+      "summary": "The buggy code has an incorrect length of the `MOD` list, which causes an \"index out of range\" error when attempting to access `MOD[c]` in the nested loop at line calculating `ans`, as it is missing the last modulus value `1000000021`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = [int(input()) for i in range(N)]\n \n-MOD = [998244353, 1000000007, 1000000009]\n+MOD = [998244353, 1000000007, 1000000009, 1000000021]\n M = len(MOD)\n \n C = [[A[i] % MOD[c] for i in range(N)] for c in range(M)]"
+    },
+    {
+      "summary": "The buggy code uses an incorrect modulus value (10^9 + 7) instead of the required modulus value (998244353), which can lead to incorrect calculations and results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         return 0\n     return (g1[n] * g2[r] % mod) * g2[n-r] % mod\n \n-mod = 10**9 + 7\n+mod = 998244353\n N = 2*10**5\n g1 = [1]*(N+1)\n g2 = [1]*(N+1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

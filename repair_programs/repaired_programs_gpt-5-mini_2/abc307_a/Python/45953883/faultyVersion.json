@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that `res` was initialized with length `N`, which is the number of input elements, rather than the number of 7-element groups. Indexing into `res` using `i//7` can go out of range. I fixed the initialization to allocate one entry per 7-element group: `res = [0]*((N+6)//7)` (ceiling division by 7).",
+  "fixed_code": "N = int(input())\nA = list(map(int,input().split()))\n\nres = [0]*((N+6)//7)\nSUM = 0\nfor i in range(len(A)):\n    SUM += A[i]\n    if (i + 1)%7==0:\n        res[i//7] = SUM\n        SUM = 0\n\nprint(res)"
+}

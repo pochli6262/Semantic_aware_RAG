@@ -1,0 +1,1 @@
+The likely bug in the program is that it does not properly account for the number of coins available for each denomination when updating the dynamic programming table.

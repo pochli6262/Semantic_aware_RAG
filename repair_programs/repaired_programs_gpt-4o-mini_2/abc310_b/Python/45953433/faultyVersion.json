@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original code is in the inner loop where it uses 'range(N)' instead of 'range(M)'. This means it checks pairs of elements within the same range N instead of ensuring it checks the appropriate columns, which should be up to M. I changed it to 'for j in range(M):' to reflect that.",
+  "fixed_code": "N, M = map(int, input().split())\nI = [list(map(int, input().split())) for _ in range(N)]\n\nfor i in range(N):\n    for j in range(M):  # Fixed this line\n        if i == j:\n            continue\n        if I[i][0] >= I[j][0]:\n            fj = set(I[j][2:])\n            fi = set(I[i][2:])\n            if len((fj | fi)) == len(fj):\n                if I[i][0] > I[j][0] or len((fj | fi)) - len(fj) > 0:\n                    print('Yes')\n                    exit()\nprint('No')"
+}

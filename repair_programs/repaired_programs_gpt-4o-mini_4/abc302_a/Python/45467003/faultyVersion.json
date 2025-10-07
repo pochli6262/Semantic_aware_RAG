@@ -1,0 +1,4 @@
+{
+  "explanation": "The single incorrect line was calculating the number of attacks as '1 + A // B'. This fails for cases where A is not an exact multiple of B, as it does not account for the need for an additional attack. The correct approach is to use integer division with ceiling logic, which can be achieved with the expression '(A + B - 1) // B'. This pattern corrects the issue, inspired by the problem statement's requirement for calculating the number of attacks. The diff patterns don't apply directly, but the relevant logic for integer division correction was considered.",
+  "fixed_code": "A, B = map(int, input().split())\n\nprint((A + B - 1) // B)"
+}

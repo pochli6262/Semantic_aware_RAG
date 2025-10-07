@@ -1,0 +1,1 @@
+The program sizes and prints the answer array using H instead of N = min(H, W), so it outputs the wrong number of counts when H and W differ.

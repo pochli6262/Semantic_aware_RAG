@@ -1,0 +1,1 @@
+The code incorrectly computes the discounted total as p - q + min(D) instead of q + min(D), i.e., it uses the wrong arithmetic for the coupon case.

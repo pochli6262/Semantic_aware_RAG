@@ -1,0 +1,4 @@
+{
+  "explanation": "The second loop used the expression `if S[i] % 25 or not 100 <= S[i] <= 675:`. While this works due to integer truthiness (0 is False, nonzero is True), it's ambiguous and error-prone. The intended check is to mark 'No' when the number is NOT divisible by 25, which should be written explicitly as `S[i] % 25 != 0`. I changed only that one line to make the intent clear and correct.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nres = 'Yes'\n\nfor i in range(len(S) - 1):\n    if S[i] >= S[i + 1]:\n        res = 'No'\n        break\n      \nfor i in range(len(S)):\n    if S[i] % 25 != 0 or not 100 <= S[i] <= 675:\n        res = 'No'\n        break\n      \nprint(res)\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program contained a typo where 'Friday' was spelled as 'Friay', which caused it to fail to provide the correct output when the input was 'Friday'. I corrected the spelling to 'Friday' to match the expected input. This fix was inspired by the general observation of typographical errors in the related known fixes, although no specific diff patterns directly addressed this issue.",
+  "fixed_code": "s=input()\nif s==\"Monday\":\n    print(5)\nif s==\"Tuesday\":\n    print(4)\nif s==\"Wednesday\":\n    print(3)\nif s==\"Thursday\":\n    print(2)\nif s==\"Friday\":\n    print(1)"
+}

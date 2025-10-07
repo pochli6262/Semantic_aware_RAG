@@ -1,0 +1,29 @@
+{
+  "task": "abc300_b/Python/45110485",
+  "query_summary": "The buggy code skips the (dy, dx) = (0, 0) case, so it never checks whether tableA already equals tableB without any shift.",
+  "oracle_summary": "The buggy code skips the (dy, dx) = (0, 0) case, so it never checks whether tableA already equals tableB without any shift.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate elements in list A using `len(set(A)) == len(A)` instead of checking for the presence of duplicates with `len(set(A)) != len(A)`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if X != Y:\n         print(\"No\")\n         return\n-    if len(set(A)) == len(A):\n+    if len(set(A)) != len(A):\n         print(\"Yes\")\n         return\n     ct = 0"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a condition `if rowsum[r] >= 0 or colsum[c] >= rowsum[r]:` which can lead to incorrect calculations during the adjustments of the matrix, instead of the intended condition `if rowsum[r] > 0 or colsum[c] >= rowsum[r]:` found in the correct code.",
+      "diff": "--- \n+++ \n@@ -51,7 +51,7 @@\n c = W-1\n \n while r >= 0 and c >= 0 and colsum[c] < 0:\n-    if rowsum[r] >= 0 or colsum[c] >= rowsum[r]:\n+    if rowsum[r] > 0 or colsum[c] >= rowsum[r]:\n         for i in range(r):\n             x = B[i][c]\n             if x != 0:\n@@ -97,7 +97,6 @@\n         rowsum[r] = 0\n         r -= 1\n \n-\n for i in range(H):\n     for j in range(W):\n         A[rowidx[i]][colidx[j]] = B[i][j]"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the value of `B[0]` after processing `A[2]`, leading to potential miscalculations in subsequent checks regarding the resource allocation logic.",
+      "diff": "--- \n+++ \n@@ -36,7 +36,7 @@\n     B[1]+=B[4]\n     B[4]=0\n   B[3]-=A[2]\n-  A[0]+=A[2]\n+  B[0]+=A[2]\n   if A[1]>B[1]+B[2]+2*B[3]+2*B[4]:\n     print('No')\n     continue"
+    },
+    {
+      "summary": "The buggy code lacks a base case check in the `solve` function to return 0 when both A and B are zero, which is included in the correct code.",
+      "diff": "--- \n+++ \n@@ -8,6 +8,8 @@\n     dx=[1,1,0,-1,-1,-1,0,1]\n     dy=[0,1,1,1,0,-1,-1,-1]\n     def solve(A,B,S):\n+        if (A,B)==(0,0):\n+            return 0\n         S=S[:]\n         if A<0:\n             A=-A"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the case where both B and C are zero, using \"if N == 0\" instead of the corrected \"if N <= 1\".",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n             else:\n                 print(\"No\")\n         elif A == 0 and D == 0:\n-            if N == 0:\n+            if N <= 1:\n                 print(\"Yes\")\n             else:\n                 print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

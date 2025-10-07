@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition incorrectly checks if the number of unique card values is greater than 2, which does not accurately determine if the set is a Full house. The correct approach is to check if there are exactly one value appearing three times and another value appearing twice. I replaced the line checking the length of `count.values()` with a check that ensures both a count of 3 and a count of 2 exists in the values. This correction aligns with the typical logic used in similar conditions in the diffs.",
+  "fixed_code": "from collections import defaultdict\n\ncount = defaultdict(int)\n\nA=list(map(int, input().split()))\n\nfor i in range(len(A)):\n  count[A[i]] += 1\n\na = count.values()\na = list(a)\n\nif sorted(a) == [2, 3]:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

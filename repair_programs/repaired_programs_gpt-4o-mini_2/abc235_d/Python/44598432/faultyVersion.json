@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was caused by the initialization of the list 'd' using the expression 'd=[10**3]*10**len(str(N))', which created a single list with repeated references rather than distinct elements. This resulted in incorrect behavior when updating 'd' since all indices pointed to the same list element. I corrected it by using a list comprehension to create a new list with distinct elements instead.",
+  "fixed_code": "from queue import Queue\n\na,N=map(int,input().split())\n\ndef rot(N):\n    M=str(N)\n    return int(M[1:]+M[0])\n\nd=[10**3 for _ in range(10**len(str(N)))]\nd[N]=0\nq=Queue()\nq.put(N)\nwhile not q.empty():\n    M=q.get()\n    if M==1:\n        break\n    if M%a==0 and d[M//a]>d[M]+1:\n        d[M//a]=d[M]+1\n        q.put(M//a)\n    if d[rot(M)]>d[M]+1:\n        d[rot(M)]=d[M]+1\n        q.put(rot(M))\nprint(d[1] if d[1]!=10**3 else -1)"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the sorting and output part of the program. The current code sorts in reverse order using the first element of each tuple in list L, which causes incorrect ordering. To fix the issue, I need to adjust the sorting by using the first element in a way that correctly maintains the desired order of indices (by sorting based on A*10**100/(A+B) and retaining original indices). The correction involves changing the structure of tuple being appended to L to better reflect the intended sorting order, particularly removing the negation when it comes to `-i` because we want to use the index directly and sort it based on the calculated value.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append((A*10**100)/(A+B), i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(j+1, end=' ')\nprint()"
+}

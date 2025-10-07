@@ -1,0 +1,29 @@
+{
+  "task": "abc263_a/Python/44884204",
+  "query_summary": "The program only checks for a full house with the triple first and pair last (indices 0–2 and 3–4), missing the symmetric case where the pair comes first and the triple last (indices 0–1 and 2–4).",
+  "oracle_summary": "The program only checks for a full house with the triple first and pair last (indices 0–2 and 3–4), missing the symmetric case where the pair comes first and the triple last (indices 0–1 and 2–4).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if a player has exactly two yellow cards to output \"Yes\" instead of checking if they have two or more yellow cards.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     elif c == 2:\n       cards[x] += 2\n     else:\n-      if cards[x] == 2:\n+      if cards[x] >= 2:\n         print('Yes')\n       else:\n         print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it doesn't stop the execution of the `main()` function after printing \"No\" when it encounters an 'x', leading to the possibility of printing \"Yes\" or \"No\" afterwards inappropriately.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n             ok = True\n         elif s[i] == \"x\":\n             print(\"No\")\n-            break\n+            return\n \n     if ok == True:\n         print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if the sum of the list `A` is greater than or equal to zero instead of checking if it is greater than or equal to `K` in the second conditional statement.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n         print(\"Yes\")\n         A.sort()\n         print(*A)\n-    elif sum(A)>=0:\n+    elif sum(A)>=K:\n         print(\"Yes\")\n         A.sort(reverse=True)\n         print(*A)"
+    },
+    {
+      "summary": "The buggy code incorrectly references a variable `k` instead of `K` in the condition `(N+k) % l == 0`, which causes unintended behavior and may lead to incorrect results.",
+      "diff": "--- \n+++ \n@@ -41,7 +41,7 @@\n         if (N+K) % (2*l) == 0:\n             print(\"Yes\")\n             continue\n-        elif (N+k) % l == 0:\n+        elif (N+K) % l == 0:\n             for i in range(l):\n                 if S[i] != S[l-i-1]:\n                     break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the sum of `firstB` and `secondB` is even instead of calculating the difference between `secondB` and `firstB` to determine evenness.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     firstB = s.index(\"B\")\n     secondB = s.rindex(\"B\")\n \n-    if firstB+secondB % 2 == 0:\n+    if (secondB-firstB) % 2 == 0:\n         print(\"No\")\n         return\n     "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

@@ -1,0 +1,172 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+We have the following 3 \times 3 board with integers from 1 through 9 written on it.
+
+![](https://img.atcoder.jp/abc309/86862b285a60054303435965fe642c67.jpg)
+
+You are given two integers A and B between 1 and 9, where A < B.
+
+Determine if the two squares with A and B written on them are adjacent horizontally.
+
+### Constraints
+
+* 1 \le A < B \le 9
+* A and B are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+A B
+```
+
+### Output
+
+Print `Yes` if the two squares with A and B written on them are adjacent horizontally, and `No` otherwise.
+
+---
+
+### Sample Input 1
+
+```
+7 8
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The two squares with 7 and 8 written on them are adjacent horizontally, so print `Yes`.
+
+---
+
+### Sample Input 2
+
+```
+1 9
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+---
+
+### Sample Input 3
+
+```
+3 4
+```
+
+### Sample Output 3
+
+```
+No
+```
+
+## Your Analysis (1-sentence bug summary)
+The program incorrectly checks for adjacency using a static list of pairs instead of correctly mapping the positions of numbers on the 3x3 board.
+
+## Buggy Program
+G = [[1, 2], [2, 3], [4, 5], [5, 6], [7, 8], [8, 9], [1, 4], [4, 7], [2, 5], [5, 8], [3, 6], [6, 9]]
+
+R = list(map(int, input().split()))
+
+flag = False
+for g in G:
+    if R[0] == g[0] and R[1] == g[1]:
+        flag = True
+
+if flag:
+    print("Yes")
+else:
+    print("No")
+
+
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -1,7 +1,7 @@
+ S = input()
+ T = input()
+ 
+-g1 = ["AB", "BC", "CD", "DE", "EA"]
++g1 = ["AB","BA", "BC", "CB", "CD", "DC", "DE", "ED", "EA", "AE"]
+ 
+ if S in g1 and T in g1:
+     print("Yes")
+
+### Diff 2
+--- 
++++ 
+@@ -5,7 +5,7 @@
+ for a in range(H-1):
+ 	for b in range(a+1, H):
+ 		for c in range(W-1):
+-			for d in range(b+1, W):
++			for d in range(c+1, W):
+ 				if A[a][c] + A[b][d] > A[b][c] + A[a][d]:
+ 					Flag = False
+ if Flag:
+
+### Diff 3
+--- 
++++ 
+@@ -1,5 +1,5 @@
+ N, M = map(int, input().split())
+-B = [[int(i) for i in input().split()] for _ in range(N)]
++B = [[int(i) - 1 for i in input().split()] for _ in range(N)]
+ 
+ flg = True
+ for i in range(N):
+
+### Diff 4
+--- 
++++ 
+@@ -11,4 +11,4 @@
+ if Flag == 1:
+     print('Yes')
+ else:
+-    print('NO')
++    print('No')
+
+### Diff 5
+--- 
++++ 
+@@ -7,7 +7,7 @@
+     for w in range(W):
+         for i in range(h+1, H):
+             for j in range(w+1, W):
+-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False
++                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False
+ 
+ if flag : print("Yes")
+ else : print("No")
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

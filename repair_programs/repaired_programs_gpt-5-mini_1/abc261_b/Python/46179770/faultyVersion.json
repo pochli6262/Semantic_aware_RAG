@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the branch handling 'L'. The original line used 'if kama[ipp][i] == \"W\":', which printed \"incorrect\" when the opponent's entry was 'W' — the logic was inverted. It should instead print \"incorrect\" when the opponent's entry is NOT 'W'. I changed that single comparison to '!= \"W\"' so the symmetry check is correct.",
+  "fixed_code": "n = int(input())\nkama = [list(input()) for i in range(n)]\nfor i in range(n):\n    for ipp in range(n):\n        if kama[i][ipp] == \"W\":\n            if kama[ipp][i] != \"L\":\n                print(\"incorrect\")\n                exit()\n        elif kama[i][ipp] == \"D\":\n            if kama[ipp][i] != \"D\":\n                print(\"incorrect\")\n                exit()\n        elif kama[i][ipp] == \"L\":\n            if kama[ipp][i] != \"W\":\n                print(\"incorrect\")\n                exit()\nprint(\"correct\")"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc309_b/Python/45722179",
+  "query_summary": "The likely bug is that the program incorrectly constructs the `rotate_list` by including the first row twice, leading to an improper shift of the outer squares.",
+  "oracle_summary": "The bug is caused by an unintended duplicate loop that appends the top row twice to rotate_list, corrupting the rotation order and misaligning the reassignment.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it accumulates results in the `ans` list across different iterations of the outer loop instead of resetting it for each row, leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = [list(map(int, input().split())) for _ in range(N)]\n-ans = []\n for i in range(N):\n+    ans = []\n     for j in range(N):\n         if A[i][j] == 1:\n             ans.append(j+1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly skips the even-indexed rows, preventing them from being processed and swapped, leading to an incomplete transformation of the matrix.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[[i*n+j+1 for j in range(n)]for i in range(n)]\n # for i in a:print(i)\n for i in range(n):\n-    if i%2==0:continue\n+    # if i%2==0:continue\n     for j in range(n//2):\n         a[i][2*j],a[i][2*j+1]=a[i][2*j+1],a[i][2*j]\n for i in a:print(*i)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the print statement inside the loop is incorrectly displaying the intermediate state of the list `A`, which may clutter the output, while the intention seems to be to only print the final value of `A[N-1]`.",
+      "diff": "--- \n+++ \n@@ -19,5 +19,5 @@\n     temp = A[i]//s\n     A[i] -= temp * s\n     A[i+1] += temp * t\n-    print(A)\n+    # print(A)\n print(A[N-1])"
+    },
+    {
+      "summary": "The buggy code incorrectly records the values of the indices that are being swapped instead of recording their original 1-based values, resulting in incorrect output.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     else:\n         j = A[i] - 1\n         num += 1\n-        ans.append([A[j], A[i]])\n+        ans.append([i + 1, j + 1])\n         A[i], A[j] = A[j], A[i]\n \n print(num)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the contribution of gaps between indices by using `(len(tmp)-j)` instead of the correct factor of `((j+1)*(len(tmp)-j))`.",
+      "diff": "--- \n+++ \n@@ -9,5 +9,5 @@\n     for j in range(len(i)-1):\n         tmp.append(i[j+1]-i[j]-1)\n     for j in range(len(tmp)):\n-        ans += tmp[j]*(len(tmp)-j)    \n+        ans += tmp[j]*((j+1)*(len(tmp)-j))    \n print(ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

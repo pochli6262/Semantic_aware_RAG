@@ -1,0 +1,4 @@
+{
+  "explanation": "The code always added 1 to A//B, which is incorrect when A is exactly divisible by B (off-by-one). The correct answer is the ceiling of A/B, which can be computed as (A + B - 1) // B. I replaced the print line to perform ceiling division instead of unconditionally adding 1.",
+  "fixed_code": "A,B = map(int,input().split())\nprint((A + B - 1)//B)"
+}

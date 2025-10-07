@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checks for adjacency using the conditions around the modulus operator and comparisons that don't accurately reflect whether numbers are adjacent horizontally on the board. The correct logic is to check if A and B are consecutive numbers (B - A == 1) and ensure they are not in the last column (i.e., if A is 3, 6, or 9). The change is inspired by the simpler checks in Diff 2 that highlight the need for checking direct adjacency without unnecessary complexity.",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A-1:\n    print('No')\nelif B-A==1:\n    print('Yes')\nelse:\n    print('No')"
+}

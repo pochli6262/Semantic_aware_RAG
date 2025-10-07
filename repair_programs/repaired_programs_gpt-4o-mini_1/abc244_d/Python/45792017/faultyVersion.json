@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line that checks if `t` (the string `t`) is a substring of `s + s`. In the current code, if `cnt == 3`, it checks if `t` is present in the concatenated string `s + s`, which is incorrect. It should check if `s` is in `t + t` since `t` must be a cyclic permutation of `s` when all characters are different. I changed the line to correctly check if `s` is in `t + t`.",
+  "fixed_code": "s = input()\nt = input()\ncnt = 0\nfor i in range(3):\n    if s[i] != t[i]:\n        cnt += 1\nif cnt == 0:\n    print(\"Yes\")\nelif cnt == 3:\n    if s in t + t:\n        print(\"Yes\")\nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program is in the calculation of 'res' for the case where 'X' is greater than A but less than or equal to C. The calculation of 'res' should involve dividing C by N and not just C alone. The corrected line updates 'res' to 'res = C / (B - A)'. This fixes the incorrect formula used to calculate the result in that branch.",
+  "fixed_code": "from collections import Counter, defaultdict, deque\nfrom bisect import bisect_left, bisect_right\nfrom heapq import heapify, heappush, heappop\n\ndef solve():\n    A, B, C, X = map(int, input().split())\n\n    if X >= 1 and X <= A:\n        res = 1/1\n    elif X > A and X <= C:\n        N = B - A\n        res = C / N\n    else:\n        res = 0/1\n\n    print(f\"{res:.7f}\")\n\n\nsolve()"
+}

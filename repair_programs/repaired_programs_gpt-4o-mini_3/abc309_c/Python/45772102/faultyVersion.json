@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original program occurs in the logic where it checks if the total medicines are less than or equal to K. The condition 'if medicines <= K' should be checked after decrementing the medicines for the current iteration, not before. This ensures we are checking the correct remaining medicines after potentially subtracting the current medicine count. The corrected line adjusts the indexing to allow for this to happen properly.",
+  "fixed_code": "N, K = map(int, input().split())\nAB = [tuple(map(int, input().split())) for _ in range(N)]\n\nAB.sort()\nmedicines = 0\nfor i in range(N):\n    medicines += AB[i][1]\n\nfor i in range(N):\n    medicines -= AB[i][1]\n    if medicines <= K:\n        if i == 0:\n            print(1)\n            exit(0)\n        else:\n            print(AB[i - 1][0] + 1)\n            exit(0)\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition used S[i] % 25 directly, relying on its truthiness. While that often works, the intent is to explicitly check that the remainder is non-zero (i.e. not divisible by 25). I replaced S[i] % 25 with S[i] % 25 != 0 to make the check explicit and correct.",
+  "fixed_code": "S = list(map(int,input().split()))\nfor i in range(len(S)-1):\n    if S[i] >= S[i+1] or S[i] % 25 != 0 or S[i] < 100 or S[i] > 675:\n        print(\"No\")\n        exit()\n\nif S[-1] % 25 or S[-1] < 100 or S[-1] > 675:\n    print(\"No\")\nelse: print(\"Yes\")"
+}

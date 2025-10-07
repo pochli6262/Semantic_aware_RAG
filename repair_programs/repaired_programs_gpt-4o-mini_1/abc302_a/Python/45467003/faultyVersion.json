@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug occurs because the input values for A and B are not validated, which can lead to a division by zero error if B is 0. To fix the bug, we need to ensure that B is not zero before performing the division operation.",
+  "fixed_code": "A, B = map(int, input().split())\n\nif B == 0:\n    print('Error: Division by zero is not allowed')\nelse:\n    print(1 + A // B)"
+}

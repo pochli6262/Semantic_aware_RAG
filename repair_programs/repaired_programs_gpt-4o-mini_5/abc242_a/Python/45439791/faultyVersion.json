@@ -1,0 +1,4 @@
+{
+  "explanation": "The line that calculates the probability was incorrect. It used the total number of ranks from A to B, which is (B - A), instead of the actual number of participants eligible for random selection, which is (B - A + 1). I corrected this to reflect the actual count of eligible ranks in the formula. This fix was inspired by understanding that the participants eligible for T-shirts range from (A + 1) to B. Therefore, the number of participants eligible for selection is (B - A).",
+  "fixed_code": "A, B, C, X = map(int, input().split())\n\nif X < A:\n  print(1)\nelif X > B:\n  print(0)\nelse:\n  answer = C / (B - A + 1)\n  print(answer)"
+}

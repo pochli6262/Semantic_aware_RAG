@@ -1,0 +1,136 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+a,b,c,x=map(int,input().split())
+if a>=x:
+    print(1)
+elif b>=x>a:
+    print(c/(b-a+1))
+else:
+    print(0)
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+T = int(input())
+for i in range(T):
+    x1,x2,x3 = map(int,input().split())
+
+    #a > b > c
+    a = max(x1,x2,x3)
+    c = min(x1,x2,x3)
+    b = x1+x2+x3-a-c
+
+    if not(a % 6 == b % 6 == c % 6):
+        print(-1)
+        continue
+
+    ans = 0
+    if a - b > b - c:
+        ans = (b - c) // 2 
+    else:
+        ans = (a - b) // 2 
+    a = a + ans * 3
+    b = b + ans * 5
+    c = c + ans * 7
+
+    if b == a:
+        ans = ans + (b - c) // 6 * 2
+
+    if b == c:
+        ans = ans + (a - b) // 6 * 2
+    
+    print(ans)
+
+
+
+    
+
+
+
+--- Correct Code ---
+T = int(input())
+for i in range(T):
+    x1,x2,x3 = map(int,input().split())
+
+    #a > b > c
+    a = max(x1,x2,x3)
+    c = min(x1,x2,x3)
+    b = x1+x2+x3-a-c
+
+    if not( (a+b+c)%3==0 and a%2==b%2==c%2):
+        print(-1)
+        continue
+
+    ans = 0
+    if a - b > b - c:
+        ans = (b - c) // 2 
+    else:
+        ans = (a - b) // 2 
+    a = a + ans * 3
+    b = b + ans * 5
+    c = c + ans * 7
+
+    if b == a:
+        ans = ans + (b - c) // 6 * 2
+
+    if b == c:
+        ans = ans + (a - b) // 6 * 2
+    
+    print(ans)
+
+
+### Example 2
+--- Buggy Code ---
+A,B,C=map(int,input().split())
+max_A=max(A,B,C)
+sum_B=A+B+C
+if sum_B-max_A>=max_A:
+    print(sum_B//2)
+else:
+    print(-1)
+
+--- Correct Code ---
+A,B,C=map(int,input().split())
+max_A=max(A,B,C)
+sum_B=A+B+C
+if sum_B-max_A>=max_A:
+    print(max_A)
+else:
+    print(-1)
+
+
+### Example 3
+--- Buggy Code ---
+a,x,m=map(int,input().split())
+if a==1:print(x)
+else:
+	t=pow(a,x,(a-1)*m)
+	if t==0:t+=(a-1)*m
+	print((t-1)//(a-1))
+
+--- Correct Code ---
+a,x,m=map(int,input().split())
+if a==1:print(x% m)
+else:
+	t=pow(a,x,(a-1)*m)
+	if t==0:t+=(a-1)*m
+	print((t-1)//(a-1))
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

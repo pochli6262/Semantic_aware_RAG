@@ -1,0 +1,29 @@
+{
+  "task": "abc244_d/Python/46207866",
+  "query_summary": "The buggy code treats “Yes” as any even number of mismatches (0 or 2) using cnt%2==0, instead of only when there are exactly 0 or 3 mismatches between corresponding entries.",
+  "oracle_summary": "The buggy code treats “Yes” as any even number of mismatches (0 or 2) using cnt%2==0, instead of only when there are exactly 0 or 3 mismatches between corresponding entries.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly determines the answer as \"No\" if any character count is not exactly 2, without considering that counts of 0 should be ignored.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n \n ans = \"Yes\"\n for i in range(1,max(cnt)+1):\n-    if cnt.count(i) != 2:\n+    if (cnt.count(i) != 2) and (cnt.count(i) != 0) :\n         ans = \"No\"\n         break\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly determines \"Yes\" if two consecutive characters are either \"a\" or \"b\", without checking that they are different, which is necessary to satisfy the desired condition.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n S = input()\n ok = [\"a\", \"b\"]\n for i in range(N-1):\n-    if S[i] in ok and S[i+1] in ok:\n+    if S[i] in ok and S[i+1] in ok and S[i] != S[i+1]:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code fails to handle the special case where the input string is \"BA\", causing it to incorrectly evaluate as \"Yes\" instead of \"No\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,8 @@\n N = int(input())\n S=input()\n ck=0\n+if S==\"BA\":\n+    exit(print(\"No\"))\n for i in range(N):\n     if S[i]!=S[-1-i]:\n         ck=1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses a `break` statement instead of a `continue` statement, prematurely exiting the loop when it encounters a '0' instead of allowing the loop to continue checking subsequent characters.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n count=0\n for i in range(1, 16, 2): \n     if S[i] == '0':\n-        break\n+      continue\n     else:\n         count+=1\n if count==0:"
+    },
+    {
+      "summary": "The buggy code fails to correctly handle the specific case where `cnt` is 2, `adj` is 1, and `n` is 4 with both ends (first and last characters) being '0', leading to incorrect output in that scenario.",
+      "diff": "--- \n+++ \n@@ -17,6 +17,8 @@\n     if(cnt==2 and adj==1):\n       if(n==2 or n==3):\n         print(-1)\n+      elif(n==4 and s[0]=='0' and s[3]=='0'):\n+        print(3)\n       else:\n         print(2)\n     else:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

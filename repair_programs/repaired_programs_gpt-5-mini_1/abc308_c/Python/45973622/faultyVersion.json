@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was using floating-point division (/) when building the comparison key: (A*10**100)/(A+B). That converts the very large numerator to a float, losing precision or producing infinity, which breaks ordering. I replaced '/' with integer floor division '//' so the key remains an exact integer and comparisons work as intended. Only that single line was changed.",
+  "fixed_code": "N = int(input())\nL = []\nfor i in range(N):\n    A, B = map(int, input().split())\n    L.append(((A*10**100)//(A+B), -i))\nL.sort(reverse=True)\nfor i, j in L:\n    print(-j+1, end=' ')\nprint()\n"
+}

@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly calculates the probability by using the total number of participants between ranks A and B instead of the actual number of participants eligible for random selection, which is limited to (B - A).

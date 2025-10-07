@@ -1,0 +1,4 @@
+{
+  "explanation": "The single line that was incorrect was 'b = min([p - q + a[i] for i in range(n)])'. This line mistakenly calculates the minimum total cost by subtracting the coupon price from the regular price instead of adding the price of the selected dish to the discounted drink price. The corrected line should compute the total cost when using the coupon: 'b = min([q + a[i] for i in range(n)])'. This aligns with the logic that the total cost with a coupon is the coupon price plus the price of a selected dish. This fix was inspired by the problem statement's requirements regarding the computation of the total cost. ",
+  "fixed_code": "def getIntMap():\n    return map(int, input().split())\n\n\ndef getIntList():\n    return list(map(int, input().split()))\n\n\ndef main():\n    n, p, q = getIntMap()\n    a = getIntList()\n    b = min([q + a[i] for i in range(n)])\n\n    print(b if b < p else p)\n\n\nif __name__ == \"__main__\":\n    main()"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that int(x/y)+1 does not compute the integer ceiling of x/y correctly (for example when x is divisible by y it gives one too large). I replaced that expression with the standard integer ceiling formula for positive integers: (x + y - 1) // y.",
+  "fixed_code": "x, y = map(int, input().split())\nprint((x + y - 1) // y)"
+}

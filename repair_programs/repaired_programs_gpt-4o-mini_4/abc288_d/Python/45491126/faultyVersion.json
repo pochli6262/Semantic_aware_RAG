@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculates the range indices for accessing the prefix sums, specifically when determining the upper index for the left side of the range. The condition max(0, l-k-1) should be adjusted to (l-k), ensuring that it properly references the starting point of the segment being summed up. This aligns with the intention of checking the valid range of elements corresponding to the prefix sums, similar to corrections seen in some of the retrieved diffs, which aimed at fixing boundary issues.",
+  "fixed_code": "N, K = map(int,input().split())\nA=list(map(int,input().split()))\nQ=int(input())\nS = [[0] for i in range(K)]\nfor i in range(N):\n    S[i%K].append(S[i%K][-1]+A[i])\n    \nfor i in range(Q):\n    l, r = map(lambda x:int(x)-1,input().split())\n    s=set()\n    for k in range(K):\n        s.add(S[k][(r-k)//K+1] - S[k][max(0, (l-k)//K)]))\n    if len(s)==1:\n        print('Yes')\n    else:\n        print('No')"
+}

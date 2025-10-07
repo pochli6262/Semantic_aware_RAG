@@ -1,0 +1,4 @@
+{
+  "explanation": "The program was printing the duplicate count (number of later occurrences) instead of the number of distinct sticks. Since count = N - (number of distinct stick classes), the final print should output N - count. I fixed the last line accordingly (changing print(count) to print(N - count)).",
+  "fixed_code": "N = int(input())\n\nZ = set()\n\ncount = 0\nfor i in range(N):\n    S = input()\n    if S in Z:\n        count += 1\n    Z.add(S)\n    Z.add(S[::-1])\n\nprint(N - count)\n"
+}

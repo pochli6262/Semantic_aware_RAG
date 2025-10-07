@@ -1,0 +1,32 @@
+{
+  "task": "abc302_b/Python/45763953",
+  "query_summary": "Off-by-one error in the \"right-up diagonal\" loop: it uses range(5, h) instead of range(4, h), so diagonals starting at row index 4 are never checked.",
+  "oracle_summary": "Off-by-one error in the \"right-up diagonal\" loop: it uses range(5, h) instead of range(4, h), so diagonals starting at row index 4 are never checked.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the maximum value by skipping the check for unvisited cells (those with `dp[i][h][w] == -1`) during the final maximum search, leading to potentially incorrect results.",
+      "diff": "--- \n+++ \n@@ -29,6 +29,8 @@\n for i in range(trial+1):\n     for h in range(H):\n         for w in range(W):\n+            if dp[i][h][w] == -1:\n+                continue\n             maxv = max(maxv,dp[i][h][w]+A[h][w]*(K-i))\n             \n print(maxv)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the variable `h` to zero in the second while loop that checks for the \"^\" character, which results in an infinite loop instead of starting at the last row (H-1).",
+      "diff": "--- \n+++ \n@@ -44,7 +44,7 @@\n     elif flg:\n       S[h][w] = \"*\"\n     h += 1\n-  h = 0\n+  h = H-1\n   flg = False\n   while h >= 0:\n     if S[h][w] not in (\"*\", \".\"):"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the second loop for checking vertical \"#\" symbols by using `for j in range(ly,ry):`, which should be `for j in range(ly,ry+1):` to include the last column in the range.",
+      "diff": "--- \n+++ \n@@ -30,7 +30,7 @@\n   for i in range(lx,rx+1):\n     if not pre_h[i*N**2+ly*N+ry]:\n       ans=min(ans,dp(lx,ly,i-1,ry)+dp(i+1,ly,rx,ry))\n-  for j in range(ly,ry):\n+  for j in range(ly,ry+1):\n     if not pre_w[j*N**2+lx*N+rx]:\n       ans=min(ans,dp(lx,ly,rx,j-1)+dp(lx,j+1,rx,ry))\n   di[C]=ans ; return ans"
+    },
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly takes the height (H) and width (W) in the input arguments in the wrong order compared to the correct code.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n def input():\n     return sys.stdin.readline().rstrip()\n MOD=998244353\n-H,W,K=map(int,input().split())\n+W,H,K=map(int,input().split())\n dp=[[0,0,0,0]]\n x1,y1,x2,y2=map(int,input().split())\n if x1!=x2:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

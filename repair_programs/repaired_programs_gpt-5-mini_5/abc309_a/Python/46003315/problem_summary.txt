@@ -1,0 +1,1 @@
+The program mistakenly tests ax == ay and by - ay == 1 — comparing a row to a column and only checking that B is immediately to the right — instead of checking ax == bx and abs(by - ay) == 1.

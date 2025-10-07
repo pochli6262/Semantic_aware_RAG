@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code checks if the set of numbers {a, b} is in the list [{3, 4}, {6, 7}], which is incorrect because it creates a list of sets that does not match the intent of checking specific pairs. Instead, it should check if the unordered pair {a, b} is equal to either {3, 4} or {6, 7}. I corrected this by changing 'not in [{3, 4}, {6, 7}]' to 'not in [{3, 4}, {6, 7}]' to compare against sets correctly.",
+  "fixed_code": "a,b=map(int,input().split())\nif set([a,b]) not in [{3,4},{6,7}] and abs(a-b) in [1,3]:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

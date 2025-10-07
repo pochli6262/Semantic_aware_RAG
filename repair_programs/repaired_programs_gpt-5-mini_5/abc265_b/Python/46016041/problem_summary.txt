@@ -1,0 +1,1 @@
+The program applies bonus time for the current room before moving (checking nowP in S and popping queB) instead of adding bonuses after arriving at the next room (i.e., using the arrival room X_i).

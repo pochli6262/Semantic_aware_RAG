@@ -1,0 +1,4 @@
+{
+  "explanation": "The code used the variable name `sum` (sum = a + b), which shadows Python's built-in `sum` and is poor practice; the buggy line referenced that variable when computing the ratio. I fixed the single incorrect line by computing the ratio directly as a / (a + b) instead of using the variable named `sum`. This changes only one line and leaves all other lines identical.",
+  "fixed_code": "import sys\n\nn = int(input())\nans = []\nfor i in range(1, n + 1):\n\ta, b = map(int, sys.stdin.readline().strip().split())\n\tsum = a + b\n\tres = a / (a + b)\n\tans.append([res, -i])\n\nans.sort(reverse = True)\nfor i in range (0, len(ans)):\n\tprint(-ans[i][1], end = \" \")"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc305_a/Python/45435091",
+  "query_summary": "The program hardcodes n=100 instead of reading the integer from input (n=int(input())), so it doesn't use the intended user-provided value.",
+  "oracle_summary": "The program hardcodes n=100 instead of reading the integer from input (n=int(input())), so it doesn't use the intended user-provided value.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the final value of `ans` by subtracting `n` instead of the square of the integer square root of `n`.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n for i in range(1, int(n**0.5)+1):\n     ans += n//i\n \n-ans = ans*2 - n\n+ans = ans*2 - (int(n**0.5))**2\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates from 1 to 9 instead of 1 to 10 when checking divisors of `n`, resulting in potentially missing valid divisors of `n`.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n ans = \"\"\n for i in range(n + 1):\n     judge = False\n-    for j in range(1,9):\n+    for j in range(1,10):\n         if n % j == 0:\n             if i % (n / j) == 0:\n                 judge = True"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the variable `ans` to 100 instead of a sufficiently large value (100000) to ensure that the correct minimum value can be found.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n s = [list(input()) for _ in range(n)]\n-ans = 100\n+ans = 100000\n for i in range(10):\n   num = str(i)\n \n@@ -9,10 +9,8 @@\n     for k in range(n):\n       if slot[k] == False and s[k][(j)%10] == num:\n         slot[k] = True\n-\n         break\n     if all(slot):\n       ans = min(ans,j)\n-\n       break\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly uses '○' instead of the intended character 'o' for non-multiples of 3 in the output string.",
+      "diff": "--- \n+++ \n@@ -2,5 +2,5 @@\n \n ans = \"\"\n for i in range(1, n+1):\n-    ans += 'x' if i % 3 == 0 else '○'\n+    ans += 'x' if i % 3 == 0 else 'o'\n print(ans)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly only checks if `n` is greater than or equal to 5, failing to include a condition to also print \"Yes\" when `n` equals 1.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-if n >= 5:\n+if n >= 5 or n == 1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    10
+  ],
+  "useful_diffs_count": 2
+}

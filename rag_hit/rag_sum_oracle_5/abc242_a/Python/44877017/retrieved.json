@@ -1,0 +1,33 @@
+{
+  "task": "abc242_a/Python/44877017",
+  "query_summary": "When x <= a, the buggy code sets res to 100.0 instead of 1.0, erroneously outputting a percentage rather than a probability.",
+  "oracle_summary": "When x <= a, the buggy code sets res to 100.0 instead of 1.0, erroneously outputting a percentage rather than a probability.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if `b <= x` instead of the correct condition `b < x` to determine the output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n for i in range(n):\n \tb = min(b,d-c[i][0])\n \td = max(d,c[i][1])\n-if b<=x:\n+if b<x:\n \tprint(0)\n else:\n \tprint(b)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the value of `ans` by using the wrong formula, specifically by not properly accounting for `a` in the numerator, leading to an incorrect result.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n a,b=map(int,input().split())\n-ans=(1000*b+5)//a/1000\n+ans=(1000*b+a/2)//a/1000\n print(\"{:.3f}\".format(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates `max_k` as `ceil((b-1)/a)` instead of `ceil(b/a)`, leading to an incorrect upper limit for the loop, which may cause incorrect results.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n     a, b = map(int, input().split())\n \n \n-    max_k = ceil((b-1)/a)\n+    max_k = ceil(b/a)\n \n     ans = 10**18\n     for k in range(1, max_k + 1):"
+    },
+    {
+      "summary": "The buggy code fails to handle the case where `a` is equal to `b`, resulting in a missing output of `1` for that scenario.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,7 @@\n \n if(a-b>0):\n     print((a-b)//c+1)\n+elif(a==b):\n+    print(1)\n else:\n     print(0)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses integer division (`int(a / b)`) instead of floor division (`a // b`), which can lead to incorrect results when `a` and `b` are not perfectly divisible.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,6 @@\n import math\n a, b = list(map(int, input().split(' ')))\n+\n \n if a < b:\n   tmp = b\n@@ -8,7 +9,7 @@\n \n ans = 0\n while b > 0:\n-  ans += int(a / b)\n+  ans += a // b\n   a = a % b\n   tmp = a\n   a = b"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

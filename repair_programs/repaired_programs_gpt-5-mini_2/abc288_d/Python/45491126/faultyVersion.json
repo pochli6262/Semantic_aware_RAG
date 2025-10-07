@@ -1,0 +1,4 @@
+{
+  "explanation": "The index calculation for the prefix-sum subtraction used max() at the wrong place. The original line did max(0, l-k-1)//K+1 which applies max before the integer division, producing incorrect (and sometimes negative) indices. I fixed it by computing the division first and then applying max: max(0, (l-k-1)//K + 1). This ensures we get a non-negative count for the number of elements of residue class k before index l, and therefore a correct prefix index.",
+  "fixed_code": "N, K = map(int,input().split())\nA=list(map(int,input().split()))\nQ=int(input())\nS = [[0] for i in range(K)]\nfor i in range(N):\n    S[i%K].append(S[i%K][-1]+A[i])\n    \nfor i in range(Q):\n    l, r = map(lambda x:int(x)-1,input().split())\n    s=set()\n    for k in range(K):\n        s.add(S[k][(r-k)//K+1] - S[k][max(0, (l-k-1)//K + 1)])\n    if len(s)==1:\n        print('Yes')\n    else:\n        print('No')"
+}

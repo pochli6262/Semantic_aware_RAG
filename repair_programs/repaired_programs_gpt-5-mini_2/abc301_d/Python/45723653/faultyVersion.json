@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the loop that decides which '?' bits to set. It iterates from the least-significant bit to the most-significant bit (for i in range(m - 1, -1, -1)), so it greedily sets low-value bits first and may block setting higher-value bits that would yield a larger final number. The correct greedy strategy is to consider bits from most-significant to least-significant, so I changed that single line to iterate from 0 to m-1: for i in range(m):.",
+  "fixed_code": "if __name__ == '__main__':\n    s = str(input())\n    n = int(input())\n    m = len(s)\n    res = 0\n    for i in range(m):\n        if s[i] == \"1\":\n            res += (1 << (m - 1 - i))\n    if res > n:\n        res = -1\n    else:\n        for i in range(m):\n            if s[i] == \"?\" and res + (1 << (m - 1 - i)) <= n:\n                res += (1 << (m - 1 - i))\n    print(res)\n"
+}

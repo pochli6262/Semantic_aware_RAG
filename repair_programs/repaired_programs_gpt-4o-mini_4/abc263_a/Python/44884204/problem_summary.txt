@@ -1,0 +1,1 @@
+The likely bug is that the program only checks one specific arrangement of the sorted cards and does not account for other valid configurations of a Full house, leading to incorrect results for some valid inputs.

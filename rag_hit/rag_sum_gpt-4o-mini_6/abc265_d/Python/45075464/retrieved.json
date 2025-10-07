@@ -1,0 +1,33 @@
+{
+  "task": "abc265_d/Python/45075464",
+  "query_summary": "The program likely has a bug in the handling of the indices when checking the conditions for the sums, causing it to potentially miss valid tuples or access out-of-bounds indices.",
+  "oracle_summary": "The code wrongly rejects w == N by checking w >= N instead of w > N, even though asum has length N+1, causing valid matches that end at the array’s end to be missed.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly references and modifies indices when appending tuples to `ans`, leading to potential out-of-range errors or incorrect results.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n for j in range(1, N):\n     i = P_list.index(j) + 1\n     if i == N:\n-        ans.append((N-1, N-2))\n+        ans.append((N-1, N-3))\n         P_list = P_list[:N-3] + [P_list[N-2], P_list[N-1], P_list[N-3]]\n         i = N-1\n         if P_list == list(range(1, N+1)):"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `bisect_right` instead of `bisect_left` to find the upper bound, resulting in an off-by-one error in the count of indices within the specified range.",
+      "diff": "--- \n+++ \n@@ -11,5 +11,5 @@\n for it in range(Q):\n   L, R, X = map(int, input().split())\n   L -= 1\n-  have = bisect_right(at[X - 1], R) - bisect_left(at[X - 1], L)\n+  have = bisect_left(at[X - 1], R) - bisect_left(at[X - 1], L)\n   print(have)"
+    },
+    {
+      "summary": "The buggy code incorrectly appends the pair of indices `[N-2, N-1]` instead of `[N-2, N-2]` when the last element equals the current index, leading to potential index out-of-bounds errors and incorrect results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n             P.pop()\n             P.insert(N-3, i)\n             ind = N-3\n-            res.append([N-2, N-1])\n+            res.append([N-2, N-2])\n         index1 = ind\n         index2 = ind+1\n         value1 = j"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the count of intervals overlapping with each interval by subtracting one additional from the index, leading to an off-by-one error in the result.",
+      "diff": "--- \n+++ \n@@ -11,5 +11,5 @@\n res=0\n for i in range(N):\n     j=bisect.bisect_right(left,A[i][1])\n-    res+=j-1-1\n+    res+=j-1-i\n print(res)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for even indices instead of odd indices in the second loop, causing it to misidentify whether the rearranged list `B` satisfies the required conditions.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     else:\n         B[2*i-N]=A[i]\n for i in range(N):\n-    if i%2!=0:\n+    if i%2==0:\n         continue\n     if B[i-1]<B[i] and B[i]>B[i+1]:\n         continue"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

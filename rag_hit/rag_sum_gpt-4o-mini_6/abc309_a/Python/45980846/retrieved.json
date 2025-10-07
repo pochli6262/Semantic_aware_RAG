@@ -1,0 +1,31 @@
+{
+  "task": "abc309_a/Python/45980846",
+  "query_summary": "The program incorrectly checks for adjacency both horizontally and vertically, leading to incorrect results for the specified condition of horizontal adjacency only.",
+  "oracle_summary": "The bug is an extra OR clause that incorrectly checks grid[j][i] and grid[j+1][i] (swapping i and j), causing unintended vertical/transposed pair matches and false positives instead of only checking horizontal adjacent elements.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for a vertical bingo by referencing the wrong index (using `boolss[i][n]` instead of `boolss[n][j]`), which results in incorrect vertical bingo detection.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n         bingo = True\n     vertical = True\n     for n in range(N):\n-        if boolss[i][n] == False:\n+        if boolss[n][j] == False:\n             vertical = False\n             break\n     if vertical:"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the `blocks` array using `i % n` and `j % n` instead of using `i // n` and `j // n` to determine the correct block index.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n         if not rows[i][num - 1] and not cols[j][num - 1] and not blocks[i // n][j // n][num - 1]:\n               rows[i][num - 1] = True\n               cols[j][num - 1] = True\n-              blocks[i % n][j % n][num - 1] = True\n+              blocks[i // n][j // n][num - 1] = True\n         else:\n             valid = False\n             break"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the expected value of `B[i][j]` by using an incorrect formula, leading to potential false negatives when checking if the matrix satisfies a specific pattern.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n i0 = (B[0][0])//7\n for i in range(N):\n     for j in range(M):\n-        if B[i][j] != (i+i0)*7 + j + j0 +1 or B[i][j] > lim:\n+        if B[i][j] != B[0][0] + i*7 + j or B[i][j] > lim:\n             flag = False\n if flag:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the length of each block set, resulting in a failure to properly validate that all blocks contain the required unique values.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n if (\n     all(len(r) == 9 for r in row)\n     and all(len(c) == 9 for c in col)\n-    and all(len(b) == 9 for b in block)\n+    and all(all(len(b) == 9 for b in br) for br in block)\n ):\n     print(\"Yes\")\n else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code sorted the list s in ascending order (s.sort()) but then printed the first k elements. If the intention was to output the top k items in descending order, the sort direction was wrong. I fixed the single incorrect line by sorting in reverse order (s.sort(reverse=True)), which returns the largest items first so the loop printing s[0]..s[k-1] yields the top k elements.",
+  "fixed_code": "n, k = map(int, input().split())\ns = [input() for _ in range(n)]\ns.sort(reverse=True)\nfor i in range(k):\n  print(s[i])"
+}

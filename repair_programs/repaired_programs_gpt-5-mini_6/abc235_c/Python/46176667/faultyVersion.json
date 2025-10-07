@@ -1,0 +1,4 @@
+{
+  "explanation": "The program contained a stray debug statement print(D) that printed the whole dictionary of positions and broke the required output format. I replaced that single debug print line with pass so the code no longer emits extraneous output while preserving program behavior. This is a straightforward removal of a debugging print (no external diff was needed).",
+  "fixed_code": "import sys\nfrom collections import defaultdict\nMOD = 998_244_353\nINF = 10**18\n\nN, Q = map(int, sys.stdin.readline().rstrip().split())\nA = list(map(int, sys.stdin.readline().rstrip().split()))\nD = defaultdict(list)\nfor i in range(N):\n    D[A[i]].append(i + 1)\n\npass\n\nfor q in range(Q):\n    x, k = list(map(int, sys.stdin.readline().rstrip().split()))\n    if len(D[x]) >= k:\n        print(D[x][k - 1])\n    else:\n        print(-1)\n"
+}

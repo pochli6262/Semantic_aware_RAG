@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used range(int(N/7)), which discards any remaining elements when N is not a multiple of 7. To include the final partial group of up to 6 elements, use ceiling division (N+6)//7 so every group of up to 7 elements is processed.",
+  "fixed_code": "N = int(input())\nl = list(map(int,input().split()))\nlis = []\nd = []\nb = 0\nfor j in range((N+6)//7):\n  for k in l[7*b:7*(b+1)]:\n      lis.append(k)\n  d.append(sum(lis))\n  lis.clear()\n  b += 1\nprint(*d)"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The program rounded up when the remainder modulo 5 was >= 2, which incorrectly maps values with remainder 2 to the next water station. The correct rule is to round up only when the remainder is 3 or 4 (i.e., n%5 >= 3). I changed that single comparison from >= 2 to >= 3.",
+  "fixed_code": "n=int(input())\nprint((n//5)*5+5 if n%5>=3 else (n//5)*5)\n"
+}

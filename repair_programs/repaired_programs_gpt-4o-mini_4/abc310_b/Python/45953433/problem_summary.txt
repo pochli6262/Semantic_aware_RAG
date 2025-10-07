@@ -1,0 +1,1 @@
+The likely bug is that the logic for checking whether product j has all functions of product i is implemented incorrectly, leading to false positives when evaluating the sets of functions.

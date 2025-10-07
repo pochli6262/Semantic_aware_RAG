@@ -1,0 +1,33 @@
+{
+  "task": "abc244_d/Python/46207866",
+  "query_summary": "The bug likely lies in the incorrect logic for determining the possibility of achieving the desired hat configuration after the specified number of swaps, as the program only checks the count of mismatched hats modulo 2 instead of considering all possible permutations of swaps.",
+  "oracle_summary": "The buggy code treats “Yes” as any even number of mismatches (0 or 2) using cnt%2==0, instead of only when there are exactly 0 or 3 mismatches between corresponding entries.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the parity of the number of cycles (`cnt`) instead of calculating it as `n-cnt`, which is needed to determine if the maximum number of swaps is even or odd.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,6 @@\n p = [0]*n\n for i,j in enumerate(a):\n     p[i] = b2i[j]\n-\n visited = [0]*n\n cnt = 0\n for v0 in range(n):\n@@ -26,4 +25,4 @@\n         visited[v] = 1\n         v = p[v]\n     cnt += 1\n-print('Yes' if cnt%2 == 0 else 'No')\n+print('Yes' if (n-cnt)%2 == 0 else 'No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly determines the answer as \"No\" if any character count is not exactly 2, without considering that counts of 0 should be ignored.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n \n ans = \"Yes\"\n for i in range(1,max(cnt)+1):\n-    if cnt.count(i) != 2:\n+    if (cnt.count(i) != 2) and (cnt.count(i) != 0) :\n         ans = \"No\"\n         break\n print(ans)"
+    },
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that the second for loop incorrectly uses `S[-i]` and `T[-i]` instead of the correct `S[-1-i]` and `T[-1-i]`, leading to incorrect tail comparison logic.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n         break\n \n for i in range(N):\n-    if S[-i] != T[-i]:\n+    if S[-1-i] != T[-1-i]:\n         is_tail = False\n         break\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses `T[i:j+1]` instead of `T[i:j]` when checking for a substring match with `S`, leading to incorrect results when `S` is found at the end of `T`.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n T = 'oxx' * 100\n for i in range(len(T)):\n     for j in range(i + 1, len(T)):\n-        if T[i:j+1] == S:\n+        if T[i:j] == S:\n             print('Yes')\n             exit()\n print('No')"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

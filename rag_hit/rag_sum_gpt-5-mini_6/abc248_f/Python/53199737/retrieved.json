@@ -1,0 +1,32 @@
+{
+  "task": "abc248_f/Python/53199737",
+  "query_summary": "The program prints the whole con[-1] row including the m=0 entry, outputting N numbers instead of the required N-1 answers (it should omit the first element).",
+  "oracle_summary": "The program incorrectly prints the entire last row of con (including index 0), whereas it should omit the first element and output con[-1][1:] instead.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the `print(ans * N % M)` statement is incorrectly placed inside the loop, resulting in the output being printed multiple times instead of just once after all iterations are complete.",
+      "diff": "--- \n+++ \n@@ -1,12 +1,13 @@\n N, M = map(int, input().split())\n- \n+\n P = 1\n ans = 0\n- \n+\n for y in range(2, N + 1):\n   P = P * (N + 1 - y) % M\n   f = P * pow(N, N - y, M)\n- \n+\n   ans += f * (y - 1) * y // 2\n   ans %= M\n-  print(ans * N % M)\n+\n+print(ans * N % M)"
+    },
+    {
+      "summary": "The buggy code incorrectly loops from `N-2` to `1` instead of from `N-1` to `1`, leading to potential index errors and incorrect calculations in the `ans` list.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n for i in map(int, input().split()):\n     ans[i-1] = 0\n-for i in range(N-2, 0, -1):\n+for i in range(N-1, 0, -1):\n     ans[i-1] = min(ans[i-1], ans[i]+1)\n \n print('\\n'.join(map(str, ans)))"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the index of the first element that causes the cumulative sum to exceed M, instead of printing the index after the loop, which reflects how many elements were summed before exceeding M.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n while i < N:\n   sum += H[i]\n   if sum > M:\n-    print(i)\n     break\n   i += 1\n+print(i)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it starts the loop from `2**m` instead of `2**m - 1`, leading it to miss generating combinations corresponding to `m` bits where exactly `n` bits are set to 1.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, m = map(int, input().split())\n \n-for i in range(2**m, 0, -1):\n+for i in range(2**m-1, 0, -1):\n   co = bin(i)[2:].zfill(m)\n   if co.count(\"1\") == n:\n     print(*[t+1 for t in range(m) if co[t]==\"1\"])"
+    },
+    {
+      "summary": "The buggy code does not handle the case when K equals 0 properly, which can lead to incorrect results in the dynamic programming calculation.",
+      "diff": "--- \n+++ \n@@ -12,6 +12,8 @@\n     for j in range(M):\n         dp[i+1][j] += s[max(j-K+1, 0)] - s[0]\n         dp[i+1][j] += s[M] - s[min(j+K, M)]\n+        if K == 0:\n+            dp[i+1][j] -= dp[i][j]\n         dp[i+1][j] %= mod\n \n print(sum(dp[N-1])%mod)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3
+  ],
+  "useful_diffs_count": 2
+}

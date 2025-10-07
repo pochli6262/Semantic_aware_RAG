@@ -1,0 +1,34 @@
+{
+  "task": "abc304_b/Python/45306152",
+  "query_summary": "The likely bug is that the loop incorrectly uses the variable `i` for truncating digits, leading to inappropriate truncation based on the position instead of correctly determining which digit to truncate according to the specified ranges.",
+  "oracle_summary": "An off-by-one error in the loop range (using range(6) instead of range(7)) causes the code to miss the highest magnitude case so some inputs never meet the condition and produce no output.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly includes the case where `i` is 0, which results in `0**0` being evaluated, leading to an incorrect behavior since `0**0` is generally considered indeterminate or defined to be 1 in some contexts.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-for i in range(n+1):\n+for i in range(1,n+1):\n   if i**i > n: break\n   if i**i == n:\n     print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the loop to `range(919)` instead of `range(920)`, causing it to miss checking the number 919.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n \n-for i in range(919):\n+for i in range(920):\n   if i <= 99:\n     continue\n   elif i < n:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a fixed range of 10 instead of the variable `n` to determine the countdown limit.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n n = input()\n n = int(n)\n-for i in range(10,-1,-1):\n+for i in range(n,-1,-1):\n     print(i)"
+    },
+    {
+      "summary": "The buggy code incorrectly generates a range of numbers by starting from `i*n` instead of `i*n + 1`, resulting in an off-by-one error in the printed output.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n x[0::2]=k[n//2:]\n x[1::2]=k[:n//2]\n for i in x:\n-    print(*list(range(i*n,(i+1)*n)))\n+    print(*list(range(i*n+1,(i+1)*n+1)))"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop incorrectly iterates up to 919 instead of 920, causing it to miss potential valid numbers.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n-for i in range(n,919):\n+for i in range(n,920):\n     c = str(i)\n     if int(c[0])*int(c[1])==int(c[2]):\n         print(i)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "useful_diffs_count": 4
+}

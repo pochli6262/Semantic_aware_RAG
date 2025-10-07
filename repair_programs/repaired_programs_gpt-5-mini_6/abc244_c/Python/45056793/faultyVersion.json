@@ -1,0 +1,4 @@
+{
+  "explanation": "The list ans was initialized with range(1, n+2), which produces numbers 1..(n+1). The game requires the full set 1..(2n+1). I changed the range to range(1, 2*n+2) so ans contains all legal moves from 1 through 2n+1. (This fix is a simple correction of the range boundary.)",
+  "fixed_code": "n=int(input())\nans=[i for i in range(1,2*n+2)]\nwhile True:\n  print(ans.pop(0), flush=True)\n  tmp=int(input())\n  if tmp==0:\n    exit()\n  else:\n    ans.remove(tmp)\n"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only iterated i from 0..5, so numbers >= 10^8 (100,000,000) never satisfied any if and nothing was printed. Extending the loop to range(7) (i from 0..6) ensures the condition is checked up to 10^9-1 and covers the intended larger inputs. I fixed the loop range by changing range(6) to range(7).",
+  "fixed_code": "n = int(input())\n\nfor i in range(7):\n    if n <= 10**(3 + i) - 1:\n        print((n // (10**i)) * 10**i)\n        break"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original second line computed (a + b) * (a - d) by mistakenly using 'a - d' as the second factor. According to the problem it should compute (a + b) * (c - d). I fixed the single incorrect line by replacing 'a - d' with 'c - d'. No other lines were changed.",
+  "fixed_code": "a, b, c, d  = map(int, input().split())\nprint(((a + b) * (c - d)))\nprint(\"Takahashi\")"
+}

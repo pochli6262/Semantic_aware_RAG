@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line sort the entire list of nicknames 's' instead of sorting only the top K participant nicknames based on their rankings. To fix this, we need to first select the top K participants and then sort that selection lexicographically. The pattern in the diffs did not directly correspond to this issue, but it does show the importance of using the right scope on variables when they need to be processed in a certain manner.",
+  "fixed_code": "n, k = map(int, input().split())\ns = [input() for _ in range(n)]\ns = s[:k]\ns.sort()\nfor i in range(k):\n  print(s[i])"
+}

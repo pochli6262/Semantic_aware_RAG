@@ -1,0 +1,4 @@
+{
+  "explanation": "The single incorrect line in the buggy program is the calculation of the probability for participants ranked between A+1 and B. The original line 'res = c / (b - a)' incorrectly uses '(b - a)', which represents the number of ranks from A to B, while it should use '(b - a - 1)' to correctly reflect the actual participants ranked from (A+1) to B. The fix is inspired by a clear need to specify the correct range of participants eligible for selection, ensuring the computation aligns with the problem's requirements.",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 100.0\nelif x <= b:\n   res = c / (b - a - 1)\n\nprint('%.9f' % (res))"
+}

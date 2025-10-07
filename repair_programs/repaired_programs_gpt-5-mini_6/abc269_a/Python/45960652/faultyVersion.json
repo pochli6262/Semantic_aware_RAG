@@ -1,0 +1,4 @@
+{
+  "explanation": "The second print used 'takahashi' (lowercase) but the problem requires 'Takahashi' with a capital T. I fixed that single line by capitalizing the string. This change is analogous to the fix shown in Diff 2 which replaced \"takahashi\" with \"Takahashi\".",
+  "fixed_code": "a,b,c,d=map(int,input().split())\nprint((a+b)*(c-d))\nprint('Takahashi')# coding: utf-8\n# Your code here!"
+}

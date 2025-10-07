@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition only checked one diagonal arrangement (S1 == \".#\" and S2 == \"#.\") but missed the other diagonal (S1 == \"#.\" and S2 == \".#\"). I fixed the if condition to check both diagonal cases, so it prints \"No\" when the two '#' are placed diagonally in either orientation.",
+  "fixed_code": "S1 = input()\nS2 = input()\n\nif (S1==\".#\" and S2==\"#.\") or (S1==\"#.\" and S2==\".#\"):\n  print(\"No\")\nelse:\n  print(\"Yes\")\n"
+}

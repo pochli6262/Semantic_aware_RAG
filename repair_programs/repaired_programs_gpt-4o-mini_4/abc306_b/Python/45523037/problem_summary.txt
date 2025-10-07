@@ -1,0 +1,1 @@
+The likely bug is that the loop only iterates from 0 to 62, missing the calculation for the last element A_63.

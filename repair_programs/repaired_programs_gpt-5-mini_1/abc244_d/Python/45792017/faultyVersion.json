@@ -1,0 +1,4 @@
+{
+  "explanation": "When cnt == 3 and t is not in s+s, the original code entered the 'elif cnt == 3:' branch but had no corresponding else to print 'No' inside that branch, so the program produced no output. I fixed this by moving the membership check into the elif condition (changing only that one line). That way, if cnt == 3 but t is not in s+s the outer else runs and prints 'No'; if cnt == 3 and t is in s+s the inner block prints 'Yes'.",
+  "fixed_code": "s = input()\nt = input()\ncnt = 0\nfor i in range(3):\n    if s[i] != t[i]:\n        cnt += 1\nif cnt == 0:\n    print(\"Yes\")\nelif cnt == 3 and t in s + s:\n    if t in s + s:\n        print(\"Yes\")\nelse:\n    print(\"No\")"
+}

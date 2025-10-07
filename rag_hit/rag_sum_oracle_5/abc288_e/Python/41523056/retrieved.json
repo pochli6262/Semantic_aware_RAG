@@ -1,0 +1,31 @@
+{
+  "task": "abc288_e/Python/41523056",
+  "query_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "oracle_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if `j` is equal to `k` when it should check if `j` is less than or equal to `k`, leading to incorrect results in the calculation of the minimum distance.",
+      "diff": "--- \n+++ \n@@ -50,7 +50,7 @@\n     a=INF\n     for i in range(max(0,k-m),k):\n         for j in path[i]:\n-            if j==k:\n+            if j<=k:\n                 continue\n             a=min(a,dp[i]+rdp[j]+1)\n     if a!=INF:"
+    },
+    {
+      "summary": "The buggy code uses an incorrect value for `INF`, which leads to potential issues when comparing values and affects the logic for determining maximum and second maximum values.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n # cf. https://atcoder.jp/contests/abc345/editorial/9580\n-INF = 10**10\n+INF = 10**15\n \n def solve(n, k, c, v):\n     C1 = [-1]*(k+1) # 最大の価値になる色"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` table by setting `dp[0][-1] = 1` instead of `dp[0][m] = 1`, leading to out-of-bounds access and incorrect calculations in the dynamic programming approach.",
+      "diff": "--- \n+++ \n@@ -20,7 +20,7 @@\n         r = max(r, pos[a] + 1)\n \n dp = [[0] * (m + 2) for _ in range(m + 1)]\n-dp[0][-1] = 1\n+dp[0][m] = 1\n for a in range(n - 1, min_aaa, -1):\n     ndp1 = [[0] * (m + 2) for _ in range(m + 1)]  # l が増える方向の累積和\n     ndp2 = [[0] * (m + 2) for _ in range(m + 1)]  # r が減る方向の累積和"
+    },
+    {
+      "summary": "The buggy code incorrectly attempts to access `DP[r]` for the final output, which should actually be the minimum of `DP[r-1]` and `DP[r]`, as the logic is designed to minimize the cost of adjusting values in the list.",
+      "diff": "--- \n+++ \n@@ -33,4 +33,4 @@\n             NDP[j+1]=min(NDP[j+1],DP[j]+abs(now-(x+1)))\n     DP=NDP\n \n-print(DP[r])\n+print(min(DP[r-1],DP[r]))"
+    },
+    {
+      "summary": "The buggy code uses `break` instead of `continue` when `dp[j][k]` is zero, which prematurely terminates the innermost loop instead of skipping to the next iteration, potentially missing valid computations.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     # 置けるマス、置ける数は合計 L 個\n     for j in range(n+1)[::-1]:\n         for k in range(j,n+1)[::-1]:\n-            if dp[j][k] == 0: break\n+            if dp[j][k] == 0: continue\n             # i 個を l セット置く\n             r = finv[i]\n             for l in range(1,n+1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

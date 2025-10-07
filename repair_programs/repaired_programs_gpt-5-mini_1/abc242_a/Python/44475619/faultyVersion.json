@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was using floating-point division (/) in the final print, which produces a float and is likely unintended when counting or working with integer quantities. I replaced print(D/C) with integer division print(D//C) so the result is an integer.",
+  "fixed_code": "inp=input().split()\nA=inp[0]\nA=int(A)\nB=inp[1]\nB=int(B)\nC=inp[2]\nC=int(C)\nX=inp[3]\nX=int(X)\nD=B-A\nif A>=X:\n    print(1)\nelif B<X:\n    print(0)\nelse:    \n    print(D//C)"
+}

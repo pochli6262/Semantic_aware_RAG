@@ -1,0 +1,4 @@
+{
+  "explanation": "The code used itertools.product(S, repeat = N), which generates sequences allowing repeated use of the same string. The intended check is to find an ordering (a permutation) of the given N strings where each adjacent pair differs by exactly one character, so repeats are not allowed. I changed that single line to use itertools.permutations(S, N) so each element is used at most once in each sequence.",
+  "fixed_code": "import itertools\nS = []\nN,M = map(int,input().split())\nfor _ in range(N):\n  s = list(input())\n  S.append(s)\ncom = itertools.permutations(S, N)\nfor co in com:\n  ans = \"Yes\"\n  for k in range(len(co)-1):\n    no = 0\n    for j in range(M):\n      if co[k][j] != co[k+1][j]:\n        no+=1\n    if no != 1:\n      ans = \"No\"\n  if ans == \"Yes\":\n    print(ans)\n    exit()\nprint(ans)"
+}

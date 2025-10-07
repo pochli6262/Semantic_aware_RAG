@@ -1,0 +1,1 @@
+The factorization loop uses floating-point division (curN /= p) instead of integer division, turning curN into a float and breaking subsequent divisibility checks.

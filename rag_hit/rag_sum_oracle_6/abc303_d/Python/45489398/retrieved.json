@@ -1,0 +1,32 @@
+{
+  "task": "abc303_d/Python/45489398",
+  "query_summary": "The bug was using an INF value that was too small (1e10) so legitimate DP costs could exceed it and be treated as \"infinite,\" corrupting the DP transitions and final result.",
+  "oracle_summary": "The bug was using an INF value that was too small (1e10) so legitimate DP costs could exceed it and be treated as \"infinite,\" corrupting the DP transitions and final result.",
+  "retrieved": [
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    },
+    {
+      "summary": "The buggy code incorrectly updates the DP array for cases where transformations of length greater than one occur, specifically by not properly taking the minimum value of the existing DP entry and the new calculated value in certain conditions.",
+      "diff": "--- \n+++ \n@@ -69,7 +69,7 @@\n                                     DPX[j][l]=min(DPX[j][l],DPX[j-1][k]+DP[sx][k+1][l])\n                                     \n             if DPX[len(y)-1][last]!=1<<60:\n-                DP[ord(x)-97][first][last]=DPX[len(y)-1][last]+1\n+                DP[ord(x)-97][first][last]=min(DP[ord(x)-97][first][last],DPX[len(y)-1][last]+1)\n \n         for j in range(26):\n             if DP[j][first][last]!=1<<60:"
+    },
+    {
+      "summary": "The buggy code uses an incorrect initial value for the `INF` variable (set to `10**9` instead of `10**15`), which can lead to incorrect calculations in the dynamic programming logic that depends on a proper large value to initialize the `dp` arrays.",
+      "diff": "--- \n+++ \n@@ -23,7 +23,7 @@\n         nxt_edge[i] = r\n         \n \n-INF = 10**9\n+INF = 10**15\n def cond(d):\n     dp = [INF] * (N+1)\n     dp[0] = 0"
+    },
+    {
+      "summary": "The code incorrectly sets the infinite cost `INF` to 99 instead of a much larger value (like `10**18`), which can cause incorrect comparisons and lead to out-of-bounds errors or inaccurate results in the dynamic programming logic.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n \n \n def solve(N: int, H: int, X: \"list[int]\", P: \"list[int]\", F: \"list[int]\"):\n-    INF = 99\n+    INF = 10**18\n     L = []\n     cur = 0\n     for i in range(N):"
+    },
+    {
+      "summary": "The bug in the code is that it initializes `dp[0][0]` to 1 instead of `dp[0][D-(1<<-~d)]`, which leads to incorrect state transitions and ultimately incorrect results.",
+      "diff": "--- \n+++ \n@@ -125,7 +125,7 @@\n \n D=1<<(2*d+1)\n dp=[[0]*D for i in range(n+1)]\n-dp[0][0]=1\n+dp[0][D-(1<<-~d)]=1\n for i in range(n):\n     c=a[i]\n     for b in range(D):"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    4
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,33 @@
+{
+  "task": "abc229_f/Python/46038453",
+  "query_summary": "The DP transition for dp[i+1][1][0] wrongly adds B[i−1] when coming from dp[i][0][0], overcounting the cost—it should be dp[i][0][0] (no +B[i−1]).",
+  "oracle_summary": "The DP transition for dp[i+1][1][0] wrongly adds B[i−1] when coming from dp[i][0][0], overcounting the cost—it should be dp[i][0][0] (no +B[i−1]).",
+  "retrieved": [
+    {
+      "summary": "The buggy code contains a logical error in the `dp` updating section where it redundantly assigns `dp[pl+1][i][j]` to the same value twice, which could lead to incorrect state transitions.",
+      "diff": "--- \n+++ \n@@ -72,7 +72,7 @@\n     nexi,nexx,nexy = dp[i][x][y]\n     #print (nexx,nexy)\n \n-    print (nexx,nexy)\n+    #print (nexx,nexy)\n \n     diff = None\n     if x != nexx:"
+    },
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    },
+    {
+      "summary": "The buggy code incorrectly reuses the previous state's dp array without creating a copy, leading to unintended side effects when updating values in the dynamic programming table.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,6 @@\n         del(tmp[0])\n         S.append(tmp) \n \n-\n     INF = 10**18\n     # dp[i] : i番目の袋から出した後\n     # dp[i][j] : j文字目まで完成しているときの最小スコア\n@@ -15,7 +14,7 @@\n     \n     for i in range(1, N+1):\n         # 何も取り出さないとき\n-        dp[i] = dp[i-1]\n+        dp[i] = dp[i-1].copy()\n \n         for s in S[i-1]:\n             # j:足す前の文字数"
+    },
+    {
+      "summary": "The buggy code mistakenly iterates over the edges of the graph instead of all possible vertices when updating the DP table, which leads to incorrect calculations of the shortest paths.",
+      "diff": "--- \n+++ \n@@ -28,7 +28,7 @@\n     for u in range(n):\n         if s & (1 << u) == 0:\n             continue\n-        for v, w in graph[u]:\n+        for v in range(n):\n             dp[s | (1 << v)][v] = min(dp[s | (1 << v)][v], dp[s][u] + d[u][v])\n \n ans = INF"
+    },
+    {
+      "summary": "The buggy code uses `break` instead of `continue` when `dp[j][k]` is zero, which prematurely terminates the innermost loop instead of skipping to the next iteration, potentially missing valid computations.",
+      "diff": "--- \n+++ \n@@ -42,7 +42,7 @@\n     # 置けるマス、置ける数は合計 L 個\n     for j in range(n+1)[::-1]:\n         for k in range(j,n+1)[::-1]:\n-            if dp[j][k] == 0: break\n+            if dp[j][k] == 0: continue\n             # i 個を l セット置く\n             r = finv[i]\n             for l in range(1,n+1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    4
+  ],
+  "useful_diffs_count": 3
+}

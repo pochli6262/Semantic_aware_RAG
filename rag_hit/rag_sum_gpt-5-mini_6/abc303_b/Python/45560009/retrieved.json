@@ -1,0 +1,33 @@
+{
+  "task": "abc303_b/Python/45560009",
+  "query_summary": "The program produces a floating-point result because it uses the '/' operator to divide by 2, causing a float output instead of the required integer.",
+  "oracle_summary": "The bug is using the floating-point division operator (\"/\") instead of integer floor division (\"//\"), causing the final count to be returned as a float instead of an integer.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it uses division (`/`) instead of floor division (`//`) when calculating the ratio, which may lead to incorrect results due to floating-point precision issues.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n p=[]\n for i in range(n):\n     a,b=map(int,input().split())\n-    p.append(((a*(10**100))/(a+b),i+1))\n+    p.append(((a*(10**100))//(a+b),i+1))\n p.sort(reverse=True)\n \n l=[]"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The buggy code uses floating-point division (/) instead of integer division (//), which results in incorrect output format and data type for the printed results.",
+      "diff": "--- \n+++ \n@@ -3,4 +3,4 @@\n \n for i in range(N):\n   if A[i]%K == 0:\n-    print(A[i]/K)\n+    print(A[i]//K,end=\" \")"
+    },
+    {
+      "summary": "The buggy code uses integer division (/), which can lead to incorrect results for non-integer inputs, whereas the correct code uses floor division (//) to ensure the sum is calculated as an integer.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N, K = map(int, input().split())\n A = set(map(int, input().split()))\n \n-sum = int((K * (K + 1)) / 2)\n+sum = K * (K + 1) // 2\n for a in A:\n     if 1 <= a <= K:\n         sum -= a"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the result of the division by not accounting for the case where the result should be rounded up when there is a remainder.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n,m,p=map(int,input().split())\n-print((n-m)//p)\n+print((n-m)//p+1)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

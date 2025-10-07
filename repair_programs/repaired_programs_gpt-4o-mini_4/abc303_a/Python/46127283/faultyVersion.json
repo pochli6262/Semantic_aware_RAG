@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checked `s[i]` against `0` and `t[i]` against `o` in the condition that checks for similar characters. The corrected version ensures that both `s[i]` and `t[i]` are checked for similarity with `0` and `o` as per the problem definition. The syntax of the condition was inspired by the overall need for proper comparisons found in similar corrections in the provided diffs, although they do not directly relate to this issue.",
+  "fixed_code": "n = int(input())\ns = input()\nt = input()\n\np = 0\n\nfor i in range(n):\n    if s[i] == \"1\" or s[i] == \"l\":\n        if t[i] == \"1\" or t[i] == \"l\":\n            p += 1\n        \n    elif s[i] == \"0\" or t[i] == \"o\":\n        if t[i] == \"0\" or s[i] == \"o\":\n            p += 1\n            \n    elif s[i] == t[i]:\n        p += 1\n    \nif p == n:\n    print(\"Yes\")\n    \nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only iterated i from 0 to 5 (range(6)), so for sufficiently large n (e.g. n with many digits) none of the if conditions would be met and the program would produce no output. I increased the loop range so it covers larger values of i and the condition will be reached for bigger n.",
+  "fixed_code": "n = int(input())\n\nfor i in range(10):\n    if n <= 10**(3 + i) - 1:\n        print((n // (10**i)) * 10**i)\n        break\n"
+}

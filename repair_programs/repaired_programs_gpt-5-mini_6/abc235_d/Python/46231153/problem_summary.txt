@@ -1,0 +1,1 @@
+The BFS is incorrectly initialized from a (q.append(a) and nums[a]=1) instead of starting from the initial number 1, so the search uses the wrong starting state.

@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the transition that sets dp[i][0]. The original line used max(dp[i-2]) and added xl[i] + yl[j], incorrectly referencing two-steps-back and reusing j; the correct transition for a tail is to reset the streak and take the maximum over the previous row, i.e. dp[i][0] = max(dp[i-1]). I fixed that single line to use max(dp[i-1]) and removed the incorrect additions and dp[i-2] reference.",
+  "fixed_code": "n,m = map(int, input().split())\nxl = list(map(int, input().split()))\ncyl = [list(map(int, input().split())) for _ in range(m)]\nyl = [0] * n  \nfor c,y in cyl:\n    yl[c-1] = y\n\ndp = [[0] * (n) for i in range(n)]\n\nfor i in range(n):\n    if i == 0:\n        dp[i][0] = xl[0] + yl[0]\n    else:\n        for j in range(1,i+1):\n            dp[i][j] = dp[i-1][j-1] + xl[i] + yl[j]\n        if i != 1:\n            dp[i][0] = max(dp[i-1])\nprint(max(dp[n-1]))"
+}

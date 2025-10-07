@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code computed (-1)**(N%2)*(M-1) + pow(M-1, N, mod) but did not reduce the final result modulo 998244353. That can produce a negative or out-of-range value. I fixed it by taking the entire expression modulo mod so the printed answer is in the required range [0, mod-1].",
+  "fixed_code": "N,M=map(int,input().split())\nmod=998244353\n\nanswer=((-1)**(N%2)*(M-1)+pow(M-1,N,mod))%mod\nprint(answer)"
+}

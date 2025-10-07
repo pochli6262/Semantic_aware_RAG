@@ -1,0 +1,167 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+There is an ultramarathon course totaling 100\;\mathrm{km}.
+Water stations are set up every 5\;\mathrm{km} along the course, including the start and goal, for a total of 21.
+
+Takahashi is at the N\;\mathrm{km} point of this course.
+Find the position of the nearest water station to him.
+
+Under the constraints of this problem, it can be proven that the nearest water station is uniquely determined.
+
+### Constraints
+
+* 0\leq N\leq100
+* N is an integer.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+N
+```
+
+### Output
+
+Print the distance between the start and the water station nearest to Takahashi, in kilometers, in a single line.
+
+---
+
+### Sample Input 1
+
+```
+53
+```
+
+### Sample Output 1
+
+```
+55
+```
+
+Takahashi is at the 53\;\mathrm{km} point of the course.
+The water station at the 55\;\mathrm{km} point is 2\;\mathrm{km} away, and there is no closer water station.
+Therefore, you should print 55.
+
+---
+
+### Sample Input 2
+
+```
+21
+```
+
+### Sample Output 2
+
+```
+20
+```
+
+Takahashi could also go back the way.
+
+---
+
+### Sample Input 3
+
+```
+100
+```
+
+### Sample Output 3
+
+```
+100
+```
+
+There are also water stations at the start and goal.
+Additionally, Takahashi may already be at a water station.
+
+## Your Analysis (1-sentence bug summary)
+The program incorrectly calculates the nearest water station by using the index of the smallest distance rather than the actual position of the station.
+
+## Buggy Program
+N=int(input())
+list=[]
+for i in range(20):
+  list.append(abs(N-i*5))
+In=list.index(min(list))
+print(In*5)
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ A = list(map(int, input().split()))
+ 
+ total = 0
+-min_diff = float('inf')
++min_diff = 0
+ 
+ for i in range(N):
+     total += A[i]
+
+### Diff 2
+--- 
++++ 
+@@ -9,4 +9,4 @@
+ for i in B:
+   ans -= i*(i-1)/2*(N-i)
+   ans -= i*(i-1)*(i-2)/6
+-print(ans)
++print(int(ans))
+
+### Diff 3
+--- 
++++ 
+@@ -9,5 +9,5 @@
+     for j in range(len(i)-1):
+         tmp.append(i[j+1]-i[j]-1)
+     for j in range(len(tmp)):
+-        ans += tmp[j]*(len(tmp)-j)    
++        ans += tmp[j]*((j+1)*(len(tmp)-j))    
+ print(ans)
+
+### Diff 4
+--- 
++++ 
+@@ -5,4 +5,4 @@
+ 	for j in range(N):
+ 		if A[j]:
+ 			ans.append(j+1)
+-	print(ans)
++	print(*ans)
+
+### Diff 5
+--- 
++++ 
+@@ -11,7 +11,7 @@
+ for i in range(N):
+   w=0
+   x=A[i]
+-  for k in range(k):
++  for k in range(30):
+     if (x>>k)&1:
+       w-=v[k]*2**k
+       w+=(N-v[k])*2**k
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

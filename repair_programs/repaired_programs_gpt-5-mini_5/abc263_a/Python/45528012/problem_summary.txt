@@ -1,0 +1,1 @@
+The if-condition is wrong: it uses a duplicated/or'ed check so it effectively tests only "first three equal OR last two equal" instead of the two full-house patterns (three+two in either order).

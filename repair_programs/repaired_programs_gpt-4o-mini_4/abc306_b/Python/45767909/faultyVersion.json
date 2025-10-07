@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly calculates the contribution of each A[i] by using A[i] as the exponent instead of the index i. This was identified as the bug in the problem summary. The corrected line uses the index i to calculate 2 raised to the power of i, aligning with the problem statement. No specific diff directly inspired this correction but it reflects an essential understanding of the problem logic.",
+  "fixed_code": "A = list(map(int, input().split()))\n\nans = 0\nfor i in range(64):\n  ans += A[i] * 2 ** i\nprint(ans)"
+}

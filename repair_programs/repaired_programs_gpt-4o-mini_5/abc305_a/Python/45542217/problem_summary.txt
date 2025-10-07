@@ -1,0 +1,1 @@
+The likely bug is that the program does not correctly account for when Takahashi is closer to the next water station less than 3 km ahead, potentially leading to incorrect output when N is not an exact multiple of 5.

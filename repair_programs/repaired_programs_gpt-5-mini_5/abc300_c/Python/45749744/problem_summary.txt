@@ -1,0 +1,1 @@
+The code sizes the answer array as n+1 using only the number of rows instead of using N = min(H, W), so cross sizes/indexing can be wrong when the number of columns is smaller or when min(H,W) ≠ H.

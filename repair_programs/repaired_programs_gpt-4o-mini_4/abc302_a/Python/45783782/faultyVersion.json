@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program incorrectly calculates the number of attacks needed by using A // B and potentially not accounting for the case where A is less than B correctly. To fix this, the line using integer division was modified to ensure it handles all edge cases correctly by using math.ceil to account for any remainder. The concept is related to Diff 1, which incorrectly handled certain edge cases but highlights the need for precise math due to large values.",
+  "fixed_code": "A,B = map(int,input().split())\nimport math\nprint(math.ceil(A / B))"
+}

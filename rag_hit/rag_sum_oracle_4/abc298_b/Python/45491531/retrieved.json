@@ -1,0 +1,29 @@
+{
+  "task": "abc298_b/Python/45491531",
+  "query_summary": "The code checks only three rotations (90°, 180°, 270°) and omits the 0°/360° orientation by looping 3 times instead of 4, so it can miss a valid match.",
+  "oracle_summary": "The code checks only three rotations (90°, 180°, 270°) and omits the 0°/360° orientation by looping 3 times instead of 4, so it can miss a valid match.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses the bitwise XOR operator (`^`) instead of the equality operator (`==`) to compare elements of the array with their expected parity based on their index.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=list(map(int,input().split()))\n l=0\n while l<n:\n-  if a[l]^(l&1):\n+  if a[l]==(l&1):\n     l+=1\n   else:\n     break"
+    },
+    {
+      "summary": "The buggy code fails to handle the specific case where the input length `n` is 2, which should return \"No\" if the first element of `a` does not match the first element of `b`.",
+      "diff": "--- \n+++ \n@@ -7,6 +7,8 @@\n     if a[0] != b[0]:\n       if a[0] == \"A\":\n          return False\n+      if n == 2:\n+         return False\n \n     return True\n "
+    },
+    {
+      "summary": "The buggy code fails to check if the value of `c` exceeds half of `n + 1`, which is necessary to determine if the solution is valid.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,9 @@\n     \n     c = (b + n - a - 1) // (n - a)\n \n+    if c > (n + 1) // 2:\n+        return 0\n+\n     if a + c <= n:\n         return 1\n     "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b` is odd or even instead of validating whether `b` is equal to `2a` or `2a + 1`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n # l = [input() for _ in range(a)]\n # l = [list(map(int, input().split())) for _ in range(a)]\n \n-if b % 2 <= 1:\n+if b==a*2 or b==a*2+1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the parity of the number of cycles (`cnt`) instead of calculating it as `n-cnt`, which is needed to determine if the maximum number of swaps is even or odd.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,6 @@\n p = [0]*n\n for i,j in enumerate(a):\n     p[i] = b2i[j]\n-\n visited = [0]*n\n cnt = 0\n for v0 in range(n):\n@@ -26,4 +25,4 @@\n         visited[v] = 1\n         v = p[v]\n     cnt += 1\n-print('Yes' if cnt%2 == 0 else 'No')\n+print('Yes' if (n-cnt)%2 == 0 else 'No')"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

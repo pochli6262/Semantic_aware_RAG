@@ -1,0 +1,4 @@
+{
+  "explanation": "The first if-branch printed 'No' for the case A%3==0 and B==A+1, but that case should also be accepted (i.e. produce 'Yes') like the later condition that accepts B==A+1 or B==A+3. I fixed the single incorrect line by changing that print from 'No' to 'Yes', so the program now prints 'Yes' for B==A+1 or B==A+3 and 'No' otherwise.",
+  "fixed_code": "A,B=map(int, input().split())\nif A%3==0 and B==A+1:\n    print('Yes')\nelif A==B-1 or A==B-3:\n    print('Yes')\nelse:\n    print('No')"
+}

@@ -1,0 +1,1 @@
+The code keeps an opening parenthesis inside the temporary buffer and concatenates it with following letters (creating tokens like "(b"), then only checks L[-1][0] == "(" to detect openings, which misrepresents parentheses boundaries and can misidentify matches.

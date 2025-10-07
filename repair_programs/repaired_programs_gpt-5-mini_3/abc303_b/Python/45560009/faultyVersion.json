@@ -1,0 +1,4 @@
+{
+  "explanation": "The program counts unordered pairs by summing the adjacency matrix, subtracting the diagonal, and dividing by 2. The buggy line used the float division operator '/' which produces a float result; the problem expects an integer count. I fixed it by using integer division '//' so the output is an integer.",
+  "fixed_code": "n,m = map(int,input().split())\nhunaka = [[1] * n for _ in range(n)]\nfor _ in range(m):\n    a = list(map(int,input().split()))\n    for i in range (n-1):\n        x,y = a[i],a[i+1]\n        hunaka[x-1][y-1]=0\n        hunaka[y-1][x-1]=0\nans = sum(sum(row) for row in hunaka) - n\nprint(ans//2)"
+}

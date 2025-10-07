@@ -1,0 +1,29 @@
+{
+  "task": "abc304_b/Python/46153900",
+  "query_summary": "The likely bug is that the function is incorrectly named `range`, which conflicts with the built-in Python function of the same name, leading to unexpected behavior.",
+  "oracle_summary": "The bug is using round(N, -range(N)) — which rounds to the nearest multiple — instead of truncating with integer division and multiplication, so values get incorrectly rounded rather than floored.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly limits the loop to `range(919)` instead of `range(920)`, causing it to miss checking the number 919.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n \n-for i in range(919):\n+for i in range(920):\n   if i <= 99:\n     continue\n   elif i < n:"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a fixed range of 10 instead of the variable `n` to determine the countdown limit.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n n = input()\n n = int(n)\n-for i in range(10,-1,-1):\n+for i in range(n,-1,-1):\n     print(i)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculated the contribution to `ans` by not handling the case where the computed range could result in a negative value, leading to incorrect counts when `min(R, 2 * x - 1)` is less than `max(L, x)`.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,5 @@\n for i in range(len(n)):\n     x = x // 2\n     if n[i] == '1':\n-        ans += min(R, 2 * x - 1) - max(L, x) + 1\n+        ans += max(-1, min(R, 2 * x - 1) - max(L, x)) + 1\n print(ans)"
+    },
+    {
+      "summary": "The buggy code has an incorrect upper limit of the range in the for loop, which is 917 instead of the correct value 920, causing it to miss valid numbers that meet the condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n \n-for i in range(N,917):\n+for i in range(N,920):\n     s = str(i)\n     if int(s[0]) * int(s[1]) == int(s[2]):\n         print(i)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the output as `max(B-A+1,0)` instead of `max((A-B+1)//2,0)`, which leads to incorrect results for the given range of values.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n     a,b=map(int,input().split())\n     A=max(A,a)\n     B=min(B,b)\n-    print(max(B-A+1,0))   \n+    print(max((A-B+1)//2,0))   "
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

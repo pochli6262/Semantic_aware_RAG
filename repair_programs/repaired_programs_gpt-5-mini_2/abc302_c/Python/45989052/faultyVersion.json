@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that print(\"No\") was always executed after the for-loop, even when the loop had already printed \"Yes\" and broken out. Changing that single line to a for-else form (else: print(\"No\")) makes the \"No\" print run only if the loop completes without encountering a break (i.e., no valid permutation was found).",
+  "fixed_code": "import itertools\n\ndef diff(A, B):\n  res = 0\n  for a, b in zip(A, B):\n    if a != b:\n      res += 1\n  return res\n\nN, M = map(int, input().split())\nS = [input() for _ in range(N)]\n\nfor T in itertools.permutations(S):\n  ok = True\n  for i in range(N-1):\n    if diff(T[i], T[i+1]) != 1:\n      ok = False\n  if ok:\n    print(\"Yes\")\n    break\nelse: print(\"No\")\n"
+}

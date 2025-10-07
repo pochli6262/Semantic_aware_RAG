@@ -1,0 +1,32 @@
+{
+  "task": "abc310_c/Python/45695385",
+  "query_summary": "The bug is that the code checks len(s) == 1 instead of testing if s is a palindrome (s == t), so palindromic strings longer than one character are handled incorrectly.",
+  "oracle_summary": "The bug is that the code checks len(s) == 1 instead of testing if s is a palindrome (s == t), so palindromic strings longer than one character are handled incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The problem with the buggy code is that it incorrectly outputs 1 when `s` equals both the beginning and the end of `t`, instead of outputting 0, as it fails to check both conditions simultaneously in the first if statement.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s = input()\n t = input()\n \n-if s == t:\n+if s == t[:n] and s == t[-n:]:\n     print(0)\n elif s == t[:n]:\n     print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates through the range of `len(s)-k-1` instead of `len(s)-k`, leading to an off-by-one error in the loop that calculates the maximum answer when there are more segments than the maximum allowed.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in s:\n   l.append(l[-1]+len(i))\n if len(s)-1>k:\n-  for i in range(len(s)-k-1):\n+  for i in range(len(s)-k):\n     ans=max(ans,l[i+k+1]-l[i]+k)\n else:\n   ans=l[-1]+len(s)-1"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `0` when the strings `s` and `t` are equal, instead of checking for the combined conditions of `t` starting and ending with `s`.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n s=input()\n t=input()\n \n-if t == s:\n+if (t.find(s)==0)and(t.rfind(s)==m-n):\n   print(0)\n elif t.find(s)==0:\n   print(1)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `ans` list with values of \"0\" at matched indices instead of leaving them unchanged, which leads to incorrect output when characters at the same index in strings `s` and `t` are equal.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n miss=0\n for i in range(n):\n   if s[i]==t[i]:\n-    ans[i]=s[i]\n+    ans[i]=\"0\"\n     L[i]=True\n   else:\n     miss+=1"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the length of string `s` is greater than that of string `t`, leading to incorrect results for cases where `t` is longer than `s`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s = input()\n t = input()\n \n-if len(s) > len(t) or (len(s) == len(t) and s != t):\n+if len(t) > len(s) or (len(s) == len(t) and s != t):\n     print(\"No\")\n     exit()\n else:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,1 @@
+The DP transition for dp[i+1][1][0] wrongly adds B[i-1] in both branches, erroneously charging the B-edge deletion cost even when the previous vertex has the opposite color so that edge need not be removed.

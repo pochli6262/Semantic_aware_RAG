@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the code is in the line that calculates the minimum between p-q+a and p. The calculation should consider the constraint of 'p' minus 'q' plus 'a' correctly, where 'a' is calculated as the minimum of the 'd_list'. The correct calculation should ensure that the minimum sum of resources does not exceed 'p'. Therefore, the correct line is 'print(min(p-q+a, p))' changed to 'print(min(p, p-q+a))' to properly compare and return the correct value.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = min(d_list)\n\nprint(min(p, p-q+a))"
+}

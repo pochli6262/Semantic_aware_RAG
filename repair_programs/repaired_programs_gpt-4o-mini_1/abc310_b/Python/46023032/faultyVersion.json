@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the condition 'if Fi <= Fj and (Pi > Pj or Fi < Fj):'. The condition 'Fi < Fj' should be adjusted to ensure that we're correctly checking the relationship between the feature sets. The original condition allows for incorrect logic in determining the relationship between Fi and Fj. The corrected line is now 'if Fi <= Fj and Pi > Pj:'. This ensures that we're only checking for the desired condition that both feature sets and price conditions are met correctly.",
+  "fixed_code": "N, M = map(int, input().split())\nproduct = [list(map(int, input().split())) for _ in range(N)]\nproduct.sort(reverse=True)\nanswer = False\n\nfor i in range(N):\n    for j in range(i+1, N):\n        Pi = product[i][0]\n        Pj = product[j][0]\n        Fi = set(product[i][2:])\n        Fj = set(product[j][2:])\n        if Fi <= Fj and Pi > Pj:\n            answer = True\n            \nprint(\"Yes\" if answer else \"No\")"
+}

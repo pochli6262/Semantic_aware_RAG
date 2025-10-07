@@ -1,0 +1,32 @@
+{
+  "task": "abc309_a/Python/46003315",
+  "query_summary": "The code used the wrong variables and condition—it compared ax to ay and required by-ay==1 instead of comparing rows (ax==bx) and checking the columns differ by 1 (abs(ay-by)==1).",
+  "oracle_summary": "The code used the wrong variables and condition—it compared ax to ay and required by-ay==1 instead of comparing rows (ax==bx) and checking the columns differ by 1 (abs(ay-by)==1).",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses `np.max` instead of `np.min` when calculating the distance, resulting in an incorrect comparison for determining the output.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n \n M = int(input())\n uv = np.array([list(map(int, readline().split())) for _ in range(M)])\n-dist = np.max(coef @ uv.T + cons, axis=1)\n+dist = np.min(coef @ uv.T + cons, axis=1)\n \n Q = int(input())\n ab = np.array([list(map(int, readline().split())) for _ in range(Q)])"
+    },
+    {
+      "summary": "The buggy code fails to check that consecutive elements in the same row differ by 1, which is necessary for the correct validation of the matrix structure.",
+      "diff": "--- \n+++ \n@@ -27,6 +27,8 @@\n         if j != 0:\n             if ((B[i][j] - 1) % 7) - ((B[i][j-1] - 1) % 7) != 1:\n                 ans = \"No\"\n+            if B[i][j] - B[i][j-1] != 1:\n+                ans = \"No\"\n \n print(ans)\n                 "
+    },
+    {
+      "summary": "The buggy code incorrectly uses integer division (`//`) instead of multiplication when calculating contributions from `B[3]` and `B[4]`, leading to erroneous logic in the conditional check.",
+      "diff": "--- \n+++ \n@@ -30,6 +30,6 @@\n     B[3]-=A[2]\n     B[0]+=A[2]\n \n-    if A[1]>B[1]+B[2]+B[3]//2+B[4]//2 or A[0]+2*A[1]>B[0]+2*B[1]+3*B[2]+4*B[3]+5*B[4]:\n+    if A[1]>B[1]+B[2]+B[3]*2+B[4]*2 or A[0]+2*A[1]>B[0]+2*B[1]+3*B[2]+4*B[3]+5*B[4]:\n         ans=\"No\"\n     print(ans)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the sum of B and C is greater than zero instead of ensuring it's not equal to zero, which fails to account for valid scenarios where A or D equals N-1.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n import math\n N,A,B,C,D=(int(x) for x in input().split())\n n=math.floor(N/2)\n-if abs(B-C)<=1 and B<=n and C<=n and B+C>0:\n+if (abs(B-C)<=1 and B<=n and C<=n and B+C!=0) or A==N-1 or D==N-1:\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the initial value of `ans` is set to `10**9` instead of `10**10`, which may cause it to return an incorrect minimum value.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n A.sort()\n B.sort()\n \n-ans = 10**9\n+ans = 10**10\n \n for i, a in enumerate(A):\n     idx = bisect_left(B, a)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2
+  ],
+  "useful_diffs_count": 2
+}

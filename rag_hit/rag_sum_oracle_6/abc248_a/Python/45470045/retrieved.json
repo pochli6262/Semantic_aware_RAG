@@ -1,0 +1,33 @@
+{
+  "task": "abc248_a/Python/45470045",
+  "query_summary": "The loop starts at 1 instead of 0, so it never checks for a missing digit 0 and fails when 0 is the smallest absent digit.",
+  "oracle_summary": "The loop starts at 1 instead of 0, so it never checks for a missing digit 0 and fails when 0 is the smallest absent digit.",
+  "retrieved": [
+    {
+      "summary": "The code incorrectly checks for the first missing integer in the range 0 to 2000 instead of 0 to 2001.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n A = list(map(int, input().split()))\n \n-for i in range(2000):\n+for i in range(2001):\n     if i not in A:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `0` instead of `1` when the first character in the string appears only once.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s= input()\n \n if s.count(s[0])==1:\n-        print(0)\n+        print(1)\n else:\n     for i in range(1,len(s)):\n         if s[0] != s[i]:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for numbers up to 1999 instead of 2000, causing it to potentially miss the case where 2000 is missing from the set.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = set(map(int, input().split()))\n \n-for i in range(2000):\n+for i in range(2001):\n   if i not in A:\n     print(i)\n     break"
+    },
+    {
+      "summary": "The bug in the code is that it attempts to append the input to the list first and only checks for the zero condition afterwards, which causes the zero to be included in the list before breaking the loop.",
+      "diff": "--- \n+++ \n@@ -1,9 +1,10 @@\n a_s = []\n while True:\n     a = int(input())\n+    a_s.append(a)\n     if a == 0:\n         break\n-    a_s.append(a)\n+\n \n for a in reversed(a_s):\n     print(a)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for valid input characters by only allowing digits \"1\" to \"9\", instead of including \"0\" in its validation criteria.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = list(input())\n-x = [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n+x = [\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]\n if len(S) != 8:\n     print(\"No\")\n     exit()"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3,
+    5
+  ],
+  "useful_diffs_count": 3
+}

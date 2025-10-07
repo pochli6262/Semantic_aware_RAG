@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the line where we calculate 'ret'. The calculation incorrectly adds 'D[i]' to 'P - Q'. The correct logic should be to add 'Q' instead of 'D[i]', as we are looking for the minimum between 'P' and the value adjusted by 'Q'. This ensures we are comparing values correctly based on the problem's requirements.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nans = P\nfor i in range(N):\n    ret = P - D[i] + Q\n    ans = min(ans, ret)\n\nprint(ans)"
+}

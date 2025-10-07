@@ -1,0 +1,1 @@
+The outer loop uses range(int(N/7)) instead of iterating N times, so it processes N/7 weeks (often zero) rather than the N weeks.

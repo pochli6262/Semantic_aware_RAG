@@ -1,0 +1,1 @@
+The program likely has a bug in the `dfs` function where it incorrectly counts the size of crosses since it considers cells adjacent to the center in all 8 possible directions rather than checking the specific pattern required for a cross.

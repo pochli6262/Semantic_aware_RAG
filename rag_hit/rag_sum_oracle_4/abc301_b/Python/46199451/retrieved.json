@@ -1,0 +1,31 @@
+{
+  "task": "abc301_b/Python/46199451",
+  "query_summary": "The program prints the Python list object (with brackets and commas) instead of outputting the sequence of numbers space-separated, because it uses print(ans_list) instead of print(*ans_list).",
+  "oracle_summary": "The program prints the Python list object (with brackets and commas) instead of outputting the sequence of numbers space-separated, because it uses print(ans_list) instead of print(*ans_list).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the value of `a[now]` instead of `a[i]` when appending to the `ans` list, which results in the wrong pair of indices being recorded.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n for i in range(n):\n   while a[i] != i:\n     now = a[i]\n-    ans.append([now+1,a[now]+1])\n+    ans.append([i+1,a[i]+1])\n     a[i], a[now] = a[now], a[i]\n     \n print(len(ans))"
+    },
+    {
+      "summary": "The buggy code incorrectly replaces the value of `a[i+1]` instead of updating it by adding the computed result to the existing value.",
+      "diff": "--- \n+++ \n@@ -3,6 +3,6 @@\n \n for i in range(n-1):\n   s,t = map(int,input().split())\n-  a[i+1] = t*(a[i]//s)\n+  a[i+1] += t*(a[i]//s)\n \n print(a[-1])"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the minimum length of the missing elements when the condition is met, resulting in off-by-one errors in the print statements.",
+      "diff": "--- \n+++ \n@@ -20,6 +20,6 @@\n  if len(b) == n:\n   print(1)\n  else:\n-  print(min(len(b)+1,n-len(b)+3))\n+  print(min(len(b)+1,n-len(b)+1))\n \n "
+    },
+    {
+      "summary": "The buggy code incorrectly breaks the inner loop instead of continuing when both `x` and `y` are zero, causing an error in generating valid patterns.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n   for x in range(-1, 2, 1):\n     for y in range(-1, 2, 1):\n       if x==y==0:\n-        break\n+        continue\n       b = \"\"\n       for j in range(n):\n         b = b + a[(i[0] + x*j)%n][(i[1] + y*j)%n]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it assigns `x` to `A[i]` in the loop, which may not be the second element to the right of the last index if the loop completes without finding a larger element, leading to incorrect filtering of the list.",
+      "diff": "--- \n+++ \n@@ -9,6 +9,6 @@\n         x = A[i]\n         break\n else:\n-    x = A[i]\n+    x = A[i+1]\n \n print(*[a for a in A if a!=x])"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

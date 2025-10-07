@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly computes the total value of souvenirs for routes by not properly accounting for the souvenirs purchased at intermediate cities when there are multiple direct flight paths with the same number of flights.

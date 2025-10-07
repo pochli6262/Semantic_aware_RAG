@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition `if S in A == T in A:` uses chained comparisons, which Python interprets as (S in A) and (A == T) and (T in A). That is not the intended test and will usually be False because A (a list) is never equal to T (a string). I replaced the chained comparison with an explicit logical AND to check that both S and T are members of A: `if S in A and T in A:`.",
+  "fixed_code": "S=input()\nT=input()\nA=[\"R G B\",\"B R G\",\"G B R\"]\nif S in A and T in A:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

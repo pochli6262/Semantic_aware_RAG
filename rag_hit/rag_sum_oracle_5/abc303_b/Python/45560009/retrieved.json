@@ -1,0 +1,31 @@
+{
+  "task": "abc303_b/Python/45560009",
+  "query_summary": "The bug is using the floating-point division operator (\"/\") instead of integer floor division (\"//\"), causing the final count to be returned as a float instead of an integer.",
+  "oracle_summary": "The bug is using the floating-point division operator (\"/\") instead of integer floor division (\"//\"), causing the final count to be returned as a float instead of an integer.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly computes the value for `ans[i][j]` by using the expression `i//23*j//23`, which does not properly account for the multiplication of the two integer divisions, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -6,6 +6,6 @@\n     ans[-1].append(1)\n for i in range(n):\n   for j in range(m):\n-    ans[i][j]=(i+j+i//23*j//23)%23+1\n+    ans[i][j]=(i+j+(i//23)*(j//23))%23+1\n for i in range(n):\n   print(' '.join(map(str,ans[i])))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses float division (`/`) instead of integer division (`//`), leading to incorrect calculations when determining the total cost.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x,y,n = map(int,input().split())\n \n if x*3 > y:\n-  print(n/3 * y + n%3 * x)\n+  print(n//3 * y + n%3 * x)\n else:\n   print(x*n)"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the result of the division by not accounting for the case where the result should be rounded up when there is a remainder.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n n,m,p=map(int,input().split())\n-print((n-m)//p)\n+print((n-m)//p+1)"
+    },
+    {
+      "summary": "The bug in the code is that the initial value of `ans` is incorrectly set to `10**15` instead of the correct value `10**20`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n total[0]=L[0][0]+L[0][1]\n for i in range(1,n):\n   total[i]=total[i-1]+L[i][0]+L[i][1]\n-ans=10**15\n+ans=10**20\n m=10**10\n for i in range(min(n,x)):\n   num=0"
+    },
+    {
+      "summary": "The buggy code calculates `single_sz` incorrectly when `n - (n - m) * 2` results in a negative value, which can lead to incorrect array indexing and unintended behavior when summing the squares.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n a.sort(reverse=True)\n \n single_sz = n - (n-m)*2\n-print(single_sz)\n+#print(single_sz)\n \n ans = 0\n for i in range(single_sz):"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

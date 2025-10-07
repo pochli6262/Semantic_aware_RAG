@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly initializes the dynamic programming table and handles the updates for non-zero counter states, leading to incorrect calculations of the maximum amount of money.

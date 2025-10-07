@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition used the logical operator `or`, which returns True if either the first characters match or the second characters match. The intended check was to ensure both positions match (i.e., the two-character strings are identical), so the operator should be `and`. I fixed that single line by replacing `or` with `and`.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif S1[0] == S2[0] and S1[1] == S2[1]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

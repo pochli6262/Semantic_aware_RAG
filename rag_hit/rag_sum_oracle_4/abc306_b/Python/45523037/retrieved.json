@@ -1,0 +1,31 @@
+{
+  "task": "abc306_b/Python/45523037",
+  "query_summary": "An off-by-one error: the for loop uses range(63) instead of range(64), so the bit at index 63 is never processed and the highest-value bit is omitted.",
+  "oracle_summary": "An off-by-one error: the for loop uses range(63) instead of range(64), so the bit at index 63 is never processed and the highest-value bit is omitted.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly calculates the value of `a[i][j]` by adding `i // 23` and `j // 23` instead of multiplying them, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n \n for i in range(n):\n     for j in range(m):\n-        a[i][j] = (i // 23 + j // 23 + i + j) % 23 + 1\n+        a[i][j] = ((i // 23) * (j // 23) + i + j) % 23 + 1\n \n for v in a:\n     print(*v)"
+    },
+    {
+      "summary": "The buggy code incorrectly interprets the binary string as is, instead of reversing it before conversion to an integer and failing to account for the increment, leading to an incorrect final result.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n         print(len(a),*a,flush=True)\n \n     S = input()\n-    ans = int(S,2)\n+    ans = int(S[::-1],2) + 1\n     print(ans,flush=True)\n if __name__ == '__main__':\n     main()  "
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly updates the variable `f` by using `x` instead of `sum_f * x`, which leads to an incorrect accumulation of values during the iteration.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     f = 0\n     for c in s:\n         x = int(c)\n-        f = (f * 10 + x) % MOD\n+        f = (f * 10 + sum_f * x) % MOD\n         sum_f += f\n     print(f)\n "
+    },
+    {
+      "summary": "The buggy code incorrectly returns 0 for cases where `n` is less than `k` and `m` is equal to `k + 1`, instead of returning a value based on `n`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     n, m, k = map(int, input().split())\n \n     if m == k + 1:\n-        print(0)\n+        print((6, 2, 4, 8)[n % 4] if n < k else 0)\n     elif n < m:\n         print((6, 2, 4, 8)[n % 4])\n     else:"
+    },
+    {
+      "summary": "The problem in the buggy code is that the variable `s` is a list of characters, but it needs to be a string for the string comparison and count operations to work correctly.",
+      "diff": "--- \n+++ \n@@ -23,6 +23,8 @@\n for _ in range(inp()):\n     n=inp()\n     s=insr()\n+    s=\"\".join(s)\n+    # print(s)\n     if s.count(\"1\")%2 or s==\"011\" or s=='110':\n         print(-1)\n         continue"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

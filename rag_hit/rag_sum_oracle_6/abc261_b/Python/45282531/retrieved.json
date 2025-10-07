@@ -1,0 +1,32 @@
+{
+  "task": "abc261_b/Python/45282531",
+  "query_summary": "It fails to enforce that draws are reciprocal, allowing cases like A[i][j]=='D' and A[j][i] != 'D' (or vice versa) to be considered correct.",
+  "oracle_summary": "It fails to enforce that draws are reciprocal, allowing cases like A[i][j]=='D' and A[j][i] != 'D' (or vice versa) to be considered correct.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The bug in the code is that the comparison in the last loop incorrectly checks if `A[k]` is not equal to `S[idx]`, instead of checking for equality.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n idx=0\n for k in range(i,N):\n   if idx>=N: break\n-  if A[k]!=S[idx]: idx+=2\n+  if A[k]==S[idx]: idx+=2\n   else: idx+=1\n if idx>=N: print(\"No\")\n else: print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for even indices instead of odd indices in the second loop, causing it to misidentify whether the rearranged list `B` satisfies the required conditions.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n     else:\n         B[2*i-N]=A[i]\n for i in range(N):\n-    if i%2!=0:\n+    if i%2==0:\n         continue\n     if B[i-1]<B[i] and B[i]>B[i+1]:\n         continue"
+    },
+    {
+      "summary": "The buggy code incorrectly determines the output when the string of characters consists entirely of 'A's by not correctly handling the case when no 'B's are present, leading to incorrect results.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         i += 1\n     while j > 0 and c[j] == 'B':\n         j -= 1\n-    if i - j == 1 and c[-1] == 'B':\n+    if i == j == 0 or (i - j == 1 and c[-1] == 'B'):\n         print('B')\n     else:\n         print('A')"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `XY[j][0]` in the inequality, instead of the correct `XY[j][1]`, which leads to inaccurate calculations for determining if points are collinear.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n   for j in range(i+1,N):\n     for k in range(j+1,N):\n       #print(i,j,k)\n-      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][0]-XY[i][0])*(XY[k][0]-XY[i][0]):\n+      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][1]-XY[i][1])*(XY[k][0]-XY[i][0]):\n         count+=1\n print(count)"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

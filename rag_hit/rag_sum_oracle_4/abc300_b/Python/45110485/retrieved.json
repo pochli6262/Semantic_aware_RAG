@@ -1,0 +1,33 @@
+{
+  "task": "abc300_b/Python/45110485",
+  "query_summary": "The buggy code skips the (dy, dx) = (0, 0) case, so it never checks whether tableA already equals tableB without any shift.",
+  "oracle_summary": "The buggy code skips the (dy, dx) = (0, 0) case, so it never checks whether tableA already equals tableB without any shift.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate elements in list A using `len(set(A)) == len(A)` instead of checking for the presence of duplicates with `len(set(A)) != len(A)`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if X != Y:\n         print(\"No\")\n         return\n-    if len(set(A)) == len(A):\n+    if len(set(A)) != len(A):\n         print(\"Yes\")\n         return\n     ct = 0"
+    },
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that the comparison in the if statement incorrectly uses the less-than operator instead of the greater-than operator, leading to an erroneous condition for setting the flag to False.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     for w in range(W):\n         for i in range(h+1, H):\n             for j in range(w+1, W):\n-                if A[h][w] + A[i][j] < A[i][w] + A[h][j] : flag = False\n+                if A[h][w] + A[i][j] > A[i][w] + A[h][j] : flag = False\n \n if flag : print(\"Yes\")\n else : print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if sum(Ta) == 2:` is incorrectly checking the count of odd numbers instead of ensuring that there are exactly two even numbers present in the list. This condition should be `if N - sum(Ta) == 2:`.",
+      "diff": "--- \n+++ \n@@ -120,7 +120,7 @@\n     if not ok:\n         return check(A, B)\n \n-    if sum(Ta) == 2:\n+    if N - sum(Ta) == 2:\n         X = [a for a in A if a % 2 == 0]\n         Y = [a for a in B if a % 2 == 0]\n         return X == Y"
+    },
+    {
+      "summary": "The buggy code checks if `x` and `y` are greater than the sums of `X` and `Y` respectively, instead of their absolute values, leading to incorrect results for negative target values.",
+      "diff": "--- \n+++ \n@@ -31,7 +31,7 @@\n       dp_y[i + 1][j - Y[i]] = True\n \n \n-if x > sum(X) or y > sum(Y):\n+if abs(x) > sum(X) or abs(y) > sum(Y):\n   print(\"No\")\n else:\n   if dp_x[-1][x + 2 * (sum(X) + 1)] and dp_y[-1][y + 2 * (sum(Y) + 1)]:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    10
+  ],
+  "useful_diffs_count": 3
+}

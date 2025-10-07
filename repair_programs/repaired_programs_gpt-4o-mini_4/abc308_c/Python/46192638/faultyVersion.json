@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code incorrectly negates the success rate by multiplying by -1, resulting in an incorrect sorting order. This bug was identified by inspecting the program's logic and understanding that success rates should be positive values. I fixed it by removing the negative sign before the calculation of the success rate, ensuring that rates are correctly sorted in descending order. This change aligns the code with standard practices for sorting based on calculated metrics, which was supported by patterns seen in Diff 1 where signs were adjusted.",
+  "fixed_code": "import sys\n\ninput = sys.stdin.readline\n# sys.setrecursionlimit(10**6)\n\ndef main():\n    N = int(input())\n    l = []\n    for i in range(N):\n        a, b = map(int, input().split())\n        l.append((a * 10 ** 100 / (a + b), i + 1))\n    l.sort(reverse=True)\n    for i in range(N):\n        print(l[i][1], end=' ')\n    print()\n\nif __name__ == '__main__':\n    main()"
+}

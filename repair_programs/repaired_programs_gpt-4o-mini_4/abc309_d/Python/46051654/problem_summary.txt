@@ -1,0 +1,1 @@
+The bug likely arises from incorrect indexing when adding edges to the adjacency list, resulting in an improperly constructed graph that fails to reflect the intended connections between vertices.

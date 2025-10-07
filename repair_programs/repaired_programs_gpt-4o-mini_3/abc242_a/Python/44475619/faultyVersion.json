@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line calculating D. The current code calculates D as B - A, but this is not correctly reflecting the intended logic, which expects D to be the difference between B and A divided by C. To fix this, I changed the line to 'D = (B - A) / C' so that D represents the correct value that can also be used for division in the final print statement.",
+  "fixed_code": "inp=input().split()\nA=inp[0]\nA=int(A)\nB=inp[1]\nB=int(B)\nC=inp[2]\nC=int(C)\nX=inp[3]\nX=int(X)\nD=(B-A)/C\nif A>=X:\n    print(1)\nelif B<X:\n    print(0)\nelse:\n    print(D)"
+}

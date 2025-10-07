@@ -1,0 +1,33 @@
+{
+  "task": "abc309_c/Python/46182298",
+  "query_summary": "The binary search uses the wrong comparison (calc(m) < k instead of calc(m) <= k), causing incorrect updates of l/r and an off-by-one error in the final result.",
+  "oracle_summary": "The binary search uses the wrong comparison (calc(m) < k instead of calc(m) <= k), causing incorrect updates of l/r and an off-by-one error in the final result.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the initial value of `l` is set to `0`, which may cause the binary search to incorrectly handle cases where `m` should be larger than `0`, leading to potential incorrect calculations and an empty candidate set.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n \n cand = set()\n for a in range(10**6+1):\n-    l,r = 0, 10**6+10\n+    l,r = -1, 10**6+10\n     while r-l>1:\n         m = (l+r)//2\n "
+    },
+    {
+      "summary": "The buggy code incorrectly sets the upper limit of the binary search range to \\(10^{12}\\) instead of the required \\(10^{16}\\}.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n for _ in range(n):\n     num = int(input())\n     l = 0\n-    r = 10 ** 12\n+    r = 10 ** 16\n     md = (l + r) // 2\n     while l + 1 < r:\n         ret = calc(md)"
+    },
+    {
+      "summary": "The issue in the buggy code is that the upper limit for the binary search (`r`) is incorrectly set to `1 << 30` instead of `1 << 40`, which results in an insufficient search range.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, m, k = map(int, input().split())\n a = list(map(int, input().split()))\n-r = 1 << 30\n+r = 1 << 40\n l = 0\n while r - l > 1:\n     mid = (r + l) // 2"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the condition for printing 0, as it compares `n` with `m-1` and `k` instead of just checking if `m-1 == k` and ensuring `n >= m-1`.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n=int(input())\n for _ in range(n):\n   n, m,k = map(int, input().split())\n-  if n==m-1==k:\n+  if m-1==k and n>=m-1:\n     print(0)\n     continue\n   if n >= m:"
+    },
+    {
+      "summary": "The buggy code incorrectly divides the elements divisible by `k` by 2 instead of `k`, leading to incorrect results in the output.",
+      "diff": "--- \n+++ \n@@ -4,6 +4,6 @@\n \n for i in range(n):\n   if a[i] % k == 0:\n-    ans.append(a[i]//2)\n+    ans.append(a[i]//k)\n \n print(*ans)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

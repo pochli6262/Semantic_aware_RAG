@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop only iterated 3 times (for i in range(3)), so the code checked only 3 orientations of A (0°, 90°, 180°) but skipped the 270° rotation. Changing the loop to iterate 4 times ensures all four rotations (0°, 90°, 180°, 270°) are checked.",
+  "fixed_code": "N = int(input())\nA = [list(map(int, input().split())) for _ in range(N)]\nB = [list(map(int, input().split())) for _ in range(N)]\nA_t = A\nl = 0\n\nfor i in range(4):\n  #print(A_t)\n  for j in range(N):\n    for k in range(N):\n      if (A_t[j][k] == 1) and (B[j][k] != 1):\n          #print(A_t[j][k],B[j][k] )\n          l += 1\n\n  if l == 0:\n    print('Yes')\n    #print(B)\n    #print(A_t)\n    exit()\n  A_t = []\n  for x in zip(*A[::-1]):\n    A_t.append(list(x))\n  A = A_t\n\n  l = 0\nprint('No')"
+}

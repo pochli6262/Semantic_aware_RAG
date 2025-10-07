@@ -1,0 +1,1 @@
+The condition uses "S in A == T in A", which is parsed as a chained comparison rather than comparing the two membership booleans, so it doesn't correctly test whether S and T are in A.

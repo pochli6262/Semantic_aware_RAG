@@ -1,0 +1,1 @@
+The binary search upper bound is set to maxday instead of maxday+1, causing an off-by-one error when the first day with total pills ≤ K is maxday+1.

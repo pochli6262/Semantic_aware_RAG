@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was in the condition checking for 'D'. The original line checked if kama[ipp][i] != 'D', which is incorrect because when player i draws with player ipp, it should also be 'D' for both, not just for ipp. The corrected line ensures that if kama[i][ipp] is 'D', kama[ipp][i] should also be 'D'. This establishes the correct relationship between the outcomes between players.",
+  "fixed_code": "n = int(input())\nkama = [list(input()) for i in range(n)]\nfor i in range(n):\n    for ipp in range(n):\n        if kama[i][ipp] == 'W':\n            if kama[ipp][i] != 'L':\n                print('incorrect')\n                exit()\n        elif kama[i][ipp] == 'D':\n            if kama[ipp][i] != 'D':\n                print('incorrect')\n                exit()\n        elif kama[i][ipp] == 'L':\n            if kama[ipp][i] == 'W':\n                print('incorrect')\n                exit()\nprint('correct')"
+}

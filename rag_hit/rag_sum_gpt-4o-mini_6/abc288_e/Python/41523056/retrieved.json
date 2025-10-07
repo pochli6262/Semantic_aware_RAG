@@ -1,0 +1,31 @@
+{
+  "task": "abc288_e/Python/41523056",
+  "query_summary": "The likely bug is that the program incorrectly calculates the costs associated with the items being purchased, particularly in how it manages the cumulative costs while accounting for unsold items.",
+  "oracle_summary": "The bug is that INF is set too small (1e12), so unreachable DP states (value INF) can be smaller than actual feasible costs when they exceed 1e12, leading the final minimum to be incorrect; it should be a much larger value (e.g., 1e20).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the comparison operator `>` instead of `>=` for price comparison, which may lead to incorrect logic in determining if one item is \"better\" than another.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n             # F\n             F_j = PCF[j][2:PCF[j][1]+2]\n             # すべて満たす条件\n-            if (P_i > P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n+            if (P_i >= P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n                 ans = True # True == 1\n                 # print(i,j,F_i,F_j)\n "
+    },
+    {
+      "summary": "The buggy code uses an incorrect value for `INF`, which leads to potential issues when comparing values and affects the logic for determining maximum and second maximum values.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n # cf. https://atcoder.jp/contests/abc345/editorial/9580\n-INF = 10**10\n+INF = 10**15\n \n def solve(n, k, c, v):\n     C1 = [-1]*(k+1) # 最大の価値になる色"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly prints the variable `buy` instead of the maximum value between `logo` and `buy` at the end, which fails to account for any purchases made before the last day.",
+      "diff": "--- \n+++ \n@@ -18,6 +18,6 @@\n             buy = 0\n             plain = m\n     \n-    print(buy)\n+    print(max(logo, buy))\n \n solve_C()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to reset the counters `used_m` and `used_r` to zero after handling a special character, which leads to incorrect calculations of remaining resources for subsequent purchases.",
+      "diff": "--- \n+++ \n@@ -26,5 +26,7 @@\n     else:\n         muji += used_m\n         rogo += used_r\n+        used_m = 0\n+        used_r = 0\n \n print(buy_t)"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly returns the minimum value from `costlist[1:]` instead of the entire `costlist`, which leads to potentially missing the minimum cost in the calculations.",
+      "diff": "--- \n+++ \n@@ -26,6 +26,6 @@\n \n     costlist.append(cost1i)\n     costlist.append(cost2i)\n-  return (min(costlist[1:]))\n+  return (min(costlist))\n       \n print(changecost(mask,cost1,cost2))"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

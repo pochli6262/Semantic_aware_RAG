@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that when the deque Q is empty we append [a,1] but then the following standalone if still runs and treats the newly appended element again, causing the insertion to be counted twice. I changed the second if to an elif so that when we just handled the empty-deque case we don't fall through and increment the same element a second time. This fixes the double-counting described in the analysis.",
+  "fixed_code": "from collections import deque\nN = int(input())\nA = list(map(int, input().split()))\n\nQ = deque()\nans = 0\n\nfor a in A:\n    ans += 1\n    if len(Q) == 0:\n        Q.append([a,1])\n    elif Q[-1][0] != a:\n        Q.append([a,1])\n    else:\n        Q[-1][1] += 1\n        if Q[-1][1] == a:\n            Q.pop()\n            ans -= a\n    print(ans)\n"
+}

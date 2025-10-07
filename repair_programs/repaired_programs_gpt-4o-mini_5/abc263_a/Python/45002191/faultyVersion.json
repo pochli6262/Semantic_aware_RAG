@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line incorrectly checks if the number of unique values in the set of cards is 2. This does not guarantee that there are three cards of one number and two of another. Instead, we need to count the occurrences of each number and check for the specific condition of having counts of {3, 2}. I corrected it by counting how many times each number appears and checking if the counts match the required full house structure, inspired by understanding of conditions from the problem description.",
+  "fixed_code": "x=list(map(int,input().split()))\nfrom collections import Counter\ncounts = Counter(x).values()\nif sorted(counts) == [2, 3]:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

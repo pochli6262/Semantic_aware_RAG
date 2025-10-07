@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the if statement is incorrect. The original code printed 'Yes' if the count of matching positions was not equal to 2, but according to the problem description, it seems we should print 'Yes' when there are exactly 2 matches. Thus, I corrected the line to check for equality instead of inequality.",
+  "fixed_code": "S=list(input().split())\nT=list(input().split())\ncount=0\nfor i in range(3):\n  if S[i]==T[i]:\n    count+=1\nprint(\"Yes\") if count==2 else print(\"No\")"
+}

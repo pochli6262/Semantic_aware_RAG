@@ -1,0 +1,33 @@
+{
+  "task": "abc229_a/Python/44625287",
+  "query_summary": "The condition checks the wrong patterns, using '.#.#' and '#.#.' (alternating) instead of the intended '.##.' and '#..#', leading to incorrect \"No\" cases.",
+  "oracle_summary": "The condition checks the wrong patterns, using '.#.#' and '#.#.' (alternating) instead of the intended '.##.' and '#..#', leading to incorrect \"No\" cases.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to account for the condition where the string 'xxx' is present, which may also need to result in a 'No' output.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n     print('No')\n elif 'oo' in S:\n     print('No')\n+elif 'xxx' in S:\n+    print('No')  \n else:\n     print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly allows strings that contain \"<\" and \"=\" but do not end with \">\", leading to potentially incorrect output when the conditions for a valid string format are not met.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = input()\n-if \"<\" in S and \"=\" in S:\n+if \"<\" in S and \"=\" in S and \">\" == S[-1]:\n     if S.count(\"<\") == S.count(\">\") :\n         print(\"Yes\")\n     else :"
+    },
+    {
+      "summary": "The buggy code fails to account for the case where the input substring is '0', which should also result in \"No\".",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S = input()\n-if int(S[3:]) == 316 or int(S[3:]) > 349:\n+if int(S[3:]) == 316 or int(S[3:]) > 349 or int(S[3:]) == 0:\n     print(\"No\")\n else:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code is missing an `else` statement for the second `if` block, which causes it to incorrectly print \"No\" when the second condition is not met, instead of maintaining the proper logic flow.",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n if S[0].isupper():\n   if (len(S)>= 2 and S[1:].islower()) or len(S) == 1:\n     print(\"Yes\")\n+  else:\n+    print(\"No\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list of valid strings (YES) by including \"CFG\" instead of the correct string \"CEG\".",
+      "diff": "--- \n+++ \n@@ -1,6 +1,7 @@\n+\n S = input()\n \n-YES = [\"ACE\", \"BDF\", \"CFG\", \"DFA\", \"EGB\", \"FAC\", \"GBD\"]\n+YES = [\"ACE\", \"BDF\", \"CEG\", \"DFA\", \"EGB\", \"FAC\", \"GBD\"]\n \n if S in YES:\n     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

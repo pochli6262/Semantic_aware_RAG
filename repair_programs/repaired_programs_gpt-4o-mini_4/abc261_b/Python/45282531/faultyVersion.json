@@ -1,0 +1,4 @@
+{
+  "explanation": "The problematic line is part of the conditional checks that determine contradictions between players' results. It does not account for the case where Player i draws with Player j but Player j does not draw with Player i. This results in incorrect logic when confirming if A[i][j] == 'D' and A[j][i] is not 'D'. I fixed it to include this draw condition in the contradiction check. This was influenced by the pattern in the known fixes which pointed out missing logical conditions. ",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\n\nfor i in range(N):\n  for j in range(N):\n    if (A[i][j] == 'W' and A[j][i] =='W') or (A[i][j] == 'L' and A[j][i] =='L') or (A[i][j] == 'D' and A[j][i] != 'D'):\n      print('incorrect')\n      exit()\nprint('correct')"
+}

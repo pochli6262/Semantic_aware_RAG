@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue is with the 'get_x' and 'get_y' properties. They should not be defined with 'get_' prefix. They should be defined as 'x' and 'y' properties directly to access the x and y attributes correctly. I removed 'get_' from both property names.",
+  "fixed_code": "class Motion:\n    def __init__(self) -> None:\n        self.dx = 1\n        self.dy = 0\n        self.x = 0\n        self.y = 0\n\n    def rotate(self) -> None:\n        self.dx, self.dy = self.y, -self.dx\n\n    def move(self) -> None:\n        self.x += self.dx\n        self.y += self.dy\n\n    @property\n    def x(self) -> int:\n        return self.x\n\n    @property\n    def y(self) -> int:\n        return self.y\n\n\nn = int(input())\nt = input()\n\nmotion = Motion()\nfor c in t:\n    if c == \"S\":\n        motion.move()\n    else:\n        motion.rotate()\n\nprint(f\"{motion.x} {motion.y}\")"
+}

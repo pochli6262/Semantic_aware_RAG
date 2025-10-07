@@ -1,0 +1,33 @@
+{
+  "task": "abc265_b/Python/45698748",
+  "query_summary": "The likely bug is that the program incorrectly updates the position after processing bonus rooms, potentially skipping some necessary movements and making erroneous time calculations.",
+  "oracle_summary": "The final check uses t < 0 instead of t <= 0, wrongly accepting cases where the remaining time is exactly zero as success.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The bug in the code is that it initializes the `t` array at index 0 with the value `1` instead of `0`, which leads to incorrect calculations for the minimum numbers of operations needed.",
+      "diff": "--- \n+++ \n@@ -14,9 +14,9 @@\n             break\n     else:\n         ok.append(True)\n-\n+        \n t = [1 << 30] * (1 << n)\n-t[0] = 1\n+t[0] = 0\n msk = (1 << n) - 1\n for i in range((1 << n) - 1):\n     j = msk ^ i"
+    },
+    {
+      "summary": "The buggy code only checks for specific values of `floors_to_move` (2 and -3), while the correct code checks for a broader range of valid movements between floors.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n X, Y = map(int, input().split())\n floors_to_move = Y - X\n \n-if floors_to_move == 2 or floors_to_move == -3:\n+if 0 < floors_to_move <= 2 or -3 <= floors_to_move < 0:\n     print('Yes')\n else:\n     print('No')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it only checks if the player's score equals 2 when determining if the output should be \"Yes,\" instead of checking if the score is greater than or equal to 2.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     elif s[0] == 2:\n         cnts[player] += 2\n     elif s[0] == 3:\n-        if cnts[player] == 2:\n+        if cnts[player] >= 2:\n             print(\"Yes\")\n         else:\n             print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the variable `r`, leading to an incorrect output when `r` equals 0, which should instead be set to 7.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,8 @@\n A = [list(map(int,input().split())) for _ in range(n)]\n start = A[0][0]\n r = start- (start//7)*7\n+if r == 0:\n+  r = 7\n if r+m-1>7:\n   print(\"No\")\n   exit()"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

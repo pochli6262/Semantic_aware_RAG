@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect line is 'res = c / (b - a)', which does not properly calculate the probability of Iroha-chan receiving a T-shirt when ranked between A+1 and B. The denominator should represent the number of participants eligible for selection, which is (B - A). This can be inspired by the way probabilities are calculated and the condition checks referenced in the problem statement about choosing C from participants ranked (A+1) to B. The corrected line will ensure the probability calculation accurately reflects the chosen participants out of the eligible ranks.",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 100.0\nelif x <= b:\n   res = c / (b - a + 1)\n\nprint('%.9f' % (res))"
+}

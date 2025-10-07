@@ -1,0 +1,4 @@
+{
+  "explanation": "The logic for the 'L' case was inverted. When kama[i][ipp] == 'L', the counterpart kama[ipp][i] must be 'W'; the original code incorrectly flagged the case as incorrect only when the counterpart was 'W' (using ==), which is reversed. I changed that condition to check != 'W' so it prints 'incorrect' when the counterpart is not 'W'.",
+  "fixed_code": "n = int(input())\nkama = [list(input()) for i in range(n)]\nfor i in range(n):\n    for ipp in range(n):\n        if kama[i][ipp] == \"W\":\n            if kama[ipp][i] != \"L\":\n                print(\"incorrect\")\n                exit()\n        elif kama[i][ipp] == \"D\":\n            if kama[ipp][i] != \"D\":\n                print(\"incorrect\")\n                exit()\n        elif kama[i][ipp] == \"L\":\n            if kama[ipp][i] != \"W\":\n                print(\"incorrect\")\n                exit()\nprint(\"correct\")"
+}

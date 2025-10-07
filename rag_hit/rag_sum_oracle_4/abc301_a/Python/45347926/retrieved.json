@@ -1,0 +1,29 @@
+{
+  "task": "abc301_a/Python/45347926",
+  "query_summary": "The bug is that the loop doesn't break when a team first reaches N/2, so counting continues and can overwrite or miscompute the early-win condition.",
+  "oracle_summary": "The bug is that the loop doesn't break when a team first reaches N/2, so counting continues and can overwrite or miscompute the early-win condition.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses \"j + nex >= N\" instead of \"j + nex > N\" which can lead to an out-of-bounds error when checking the substring.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n             nex = 1\n             while not b:\n                 nex += 1\n-                if j + nex >= N:\n+                if j + nex > N:\n                     break\n                 if S[0:j] < S[j:j + nex]:\n                     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints 'No' instead of 'Lose' when the winning conditions are not met.",
+      "diff": "--- \n+++ \n@@ -11,4 +11,4 @@\n if N%2==1:\n   print('Win')\n else:\n-  print('No')\n+  print('Lose')"
+    },
+    {
+      "summary": "The issue in the buggy code lies in the order of conditions used to set the flags `before_A` and `last_B`, which should check for characters in strings `t` and `s` respectively, causing incorrect logic when determining conditions for outputting `-1`.",
+      "diff": "--- \n+++ \n@@ -34,7 +34,7 @@\n     if s[i] == \"A\" and t[i] == \"B\" and before_A is False:\n         print(-1)\n         exit()\n-    if s[i] == \"A\":\n+    if t[i] == \"A\":\n         before_A = True\n     if s[i] == \"B\" and t[i] == \"A\":\n         last_B = True"
+    },
+    {
+      "summary": "The buggy code incorrectly appends characters from `S` to `ans` when they match, instead of appending \"0\", which leads to an invalid output.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n ans = []\n for s, t in zip(S, T):\n     if s == t:\n-        ans.append(s)\n+        ans.append(\"0\")\n     elif ds > 0 and s == \"1\":\n         ans.append(\"0\")\n         ds -= 1"
+    },
+    {
+      "summary": "The bug in the code is that the condition to break the inner while loop should check if `cur` is `-1` instead of `cur` being not equal to `-1`.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n count = 0\n for i in range(N-1, -1, -1):\n     while S[i] != T[cur]:\n-        if cur != -1:\n+        if cur == -1:\n             break\n         cur -= 1\n     else:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

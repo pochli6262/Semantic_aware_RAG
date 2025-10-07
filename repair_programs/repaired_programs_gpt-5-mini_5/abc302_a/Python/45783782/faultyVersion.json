@@ -1,0 +1,4 @@
+{
+  "explanation": "The line print(int(A/B)) used floating-point division (A/B) and then converted to int. For very large integers this can lose precision and produce an incorrect result. I replaced it with integer floor-division (A//B) which is exact for integers. (No diff pattern was directly applicable; this is a straightforward integer-division fix.)",
+  "fixed_code": "A,B = map(int,input().split())\nif A%B == 0:\n  print(A//B)\nelse:\n  print(int(A//B)+1)\n"
+}

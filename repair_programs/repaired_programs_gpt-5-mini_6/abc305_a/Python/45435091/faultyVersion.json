@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program hardcoded n=100, so it always computed the answer for 100 instead of reading N from input. I replaced that single line with reading and converting the input to an integer (n = int(input())). This fix is exactly the change needed and is in line with the pattern seen in Diff 4 which adds n = int(input()).",
+  "fixed_code": "n = int(input())\n\nif n%5<3:\n    ans=n-(n%5)\nelse:\n    ans=n+5-(n%5)\nprint(ans)"
+}

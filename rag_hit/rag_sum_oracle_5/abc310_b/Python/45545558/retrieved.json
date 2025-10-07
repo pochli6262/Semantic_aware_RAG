@@ -1,0 +1,31 @@
+{
+  "task": "abc310_b/Python/45545558",
+  "query_summary": "The bug is an overly permissive dominance check that treats products with equal price and features as dominating because it omits the required strict condition (p[i] > p[j] or len(f[j]) > len(f[i])).",
+  "oracle_summary": "The bug is an overly permissive dominance check that treats products with equal price and features as dominating because it omits the required strict condition (p[i] > p[j] or len(f[j]) > len(f[i])).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the comparison operator `>` instead of `>=` for price comparison, which may lead to incorrect logic in determining if one item is \"better\" than another.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n             # F\n             F_j = PCF[j][2:PCF[j][1]+2]\n             # すべて満たす条件\n-            if (P_i > P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n+            if (P_i >= P_j) and (set(F_j) >= set(F_i)) and ((P_i > P_j) or (set(F_j) > set(F_i))):\n                 ans = True # True == 1\n                 # print(i,j,F_i,F_j)\n "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the same type of elements (1 or 2) by comparing the second element of tuples in the sorted list without specifying which type it should match, leading to potentially false positives.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n c.sort()\n for i in range(n + m - 1):\n-    if c[i][1] == c[i+1][1]:\n+    if c[i][1] == 1 and c[i+1][1] == 1:\n         print(\"Yes\")\n         exit()\n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the sum of the `prices` list is less than or equal to `A[-1]`, instead of checking if the sum of the list `X` is less than or equal to `A[-1]` in the final condition.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n     X = [x // prices[i] for x in X]\n     prices = [p // prices[i] for p in prices]\n \n-if valid and sum(prices) <= A[-1]:\n+if valid and sum(X) <= A[-1]:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks if `p[x]` is equal to 2, instead of checking if `p[x]` is greater than or equal to 2.",
+      "diff": "--- \n+++ \n@@ -11,7 +11,7 @@\n         p[x] += 2\n         \n     else:\n-        if p[x] == 2:\n+        if p[x] >= 2:\n             print(\"Yes\")\n         else:\n             print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The ascending branch used a generator expression that re-used the loop variable name 'i' (ans_list.extend(i for i in range(...))). That shadows the outer loop variable and can cause incorrect behavior. I replaced that generator expression with the range object directly so extend receives the intended iterable. Only that single line was changed.",
+  "fixed_code": "n = int(input())\na = list(map(int, input().split()))\n\nans_list = []\nfor i in range(n - 1):\n    # print(a[i + 1] - a[i])\n    if a[i + 1] >= a[i]:\n        ans_list.extend(range(a[i], a[i + 1]))\n    elif a[i + 1] < a[i]:\n        ans_list.extend(i for i in range(a[i], a[i + 1], -1))\nans_list.append(a[-1])\nprint(ans_list)"
+}

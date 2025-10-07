@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks if 'b' is equal to 'a + 1' and if 'a' is not at the end of a row (i.e., 'a % 3 != 0'). However, this only covers cases where 'a' is not the last number in a row and fails for cases where 'b' could still be horizontally adjacent but for other positions. The fix is inspired by Diff 1 and Diff 3 which properly checks for horizontal adjacency by simply checking if 'b' is 'a + 1' and considers the modulo conditions that allow for counting 'b' as adjacent when it reaches the new row start (whether it carries over or wraps around).",
+  "fixed_code": "a,b=map(int,input().split())\n\nif b==a+1 and a%3!=0:\n  print('Yes')\nelse:\n  print('No')"
+}

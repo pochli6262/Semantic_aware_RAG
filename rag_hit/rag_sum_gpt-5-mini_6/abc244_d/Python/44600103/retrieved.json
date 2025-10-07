@@ -1,0 +1,31 @@
+{
+  "task": "abc244_d/Python/44600103",
+  "query_summary": "The program incorrectly uses the parity of the number of differing positions (diff) instead of the parity (sign) of the permutation that maps S to T.",
+  "oracle_summary": "The condition is inverted: it prints “Yes” for an even number of mismatches, whereas it should print “Yes” only when there are zero or an odd number of differences (and “No” for 2).",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to check if the character sequences from strings S and T are the same at corresponding positions, which can lead to incorrect results when determining if S can be transformed into T based on their character counts.",
+      "diff": "--- \n+++ \n@@ -30,6 +30,8 @@\n             tf = False\n         if S_count[i][1] == 1 and T_count[i][1] >= 2:\n             tf = False\n+        if S_count[i][0] != T_count[i][0]:\n+            tf = False\n \n if tf:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code incorrectly references `S[i-k]` instead of `S[~(i-k)]` when constructing the string `T`, leading to incorrect character indexing and potentially wrong results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n   n,k = map(int,input().split())\n   S = input()\n   k %= 2*n\n-  T = \"\".join(S[~i] if i < n else S[i-k] for i in range(k))\n+  T = \"\".join(S[~i] if i < n else S[~(i-k)] for i in range(k))\n   if S+T == (S+T)[::-1] and T+S == (T+S)[::-1]:\n     print(\"Yes\")\n   else:"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if the shifted character from string S matches the corresponding character in string T without handling the wrap-around behavior of the alphabet for characters outside the range of valid letters.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n k = ord(S[0]) - ord(T[0])\n \n for i in range(1, len(S)):\n-    if chr(ord(S[i]) - k) != T[i]:\n+    if ((ord(S[i]) - k) - ord('a')) % 26 != ord(T[i]) - ord('a'):\n         print('No')\n         exit()\n print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the ASCII values of the first characters of `S` and `T` before checking if the transformations between the characters are consistent, which is unnecessary and misleading for the problem's output.",
+      "diff": "--- \n+++ \n@@ -1,8 +1,6 @@\n S = input()\n T = input()\n k = ord(T[0]) - ord(S[0]) if ord(T[0]) - ord(S[0]) >= 0 else ord(T[0]) - ord(S[0])+26\n-print(ord(S[0]))\n-print(ord(T[0]))\n for i in range(len(S)-1):  \n     l = ord(T[i+1]) - ord(S[i+1]) if ord(T[i+1]) - ord(S[i+1]) >= 0 else ord(T[i+1]) - ord(S[i+1])+26\n     if not (k==l):"
+    },
+    {
+      "summary": "The buggy code fails to consider the circular nature of the alphabet when comparing the characters of strings S and T, leading to incorrect results for characters that wrap around (e.g., 'z' and 'a').",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n cnt=set()\n N=len(S)\n for i in range(N):\n-    cnt.add(ord(S[i])-ord(T[i]))\n+    cnt.add((ord(S[i])-ord(T[i]))%26)\n     \n if len(cnt)==1:\n     print(\"Yes\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

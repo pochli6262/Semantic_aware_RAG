@@ -1,0 +1,29 @@
+{
+  "task": "abc282_c/Python/44818334",
+  "query_summary": "The program incorrectly replaces commas that are inside quoted segments rather than those outside because the parity check on the quote count is reversed.",
+  "oracle_summary": "The code replaces commas when inside quotes (cnt%2==1) instead of outside quotes, so the parity check should be cnt%2==0.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly removes all spaces from the input strings, leading to potential loss of distinct entries that should be treated separately.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n n = int(input())\n l = set()\n for i in range(n):\n-    l.add(input().replace(\" \", \"\"))\n+    l.add(input())\n print(len(l))"
+    },
+    {
+      "summary": "The buggy code incorrectly replaces \"A\" with \"B\" instead of \"BB,\" which breaks the intended transformation logic between \"A\" and \"BB.\"",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n S = input()\n \n while \"A\" in S:\n-    S = S.replace(\"A\", \"B\")\n+    S = S.replace(\"A\", \"BB\")\n while \"BB\" in S:\n     S = S.replace(\"BB\", \"A\")\n print(S)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to update the maximum count (`ans`) after exiting the loop when a sequence of non-negative characters ends, which leads to an incorrect result if the string does not end with a '-' character.",
+      "diff": "--- \n+++ \n@@ -14,6 +14,7 @@\n     else:\n         if flag == 1:\n             cnt+=1\n+ans=max(ans,cnt)\n flag=0\n cnt=0\n for i in range(n):\n@@ -26,8 +27,8 @@\n     else:\n         if flag == 1:\n             cnt+=1\n+ans=max(ans,cnt)\n if ans == 0:\n     print(-1)\n else:\n     print(ans)\n-    "
+    },
+    {
+      "summary": "The buggy code incorrectly counts the occurrences of \"A\" and \"B\" in each segment split by \"C\" without considering the specific transformation rules, leading to an incorrect output.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N = int(input())\n S = input()\n d = S.split(\"C\")\n-d = [\"A\" * p.count(\"A\") + \"B\" * p.count(\"B\") for p in d]\n+d = [\"A\" * (p.count(\"A\") + p.count(\"B\") // 2) + \"B\" * (p.count(\"B\") % 2) for p in d]\n print(\"C\".join(d))"
+    },
+    {
+      "summary": "The buggy code does not handle the case where there are unmatched parentheses, potentially leading to a failure to correctly manage the state of the `a` list and set `t`, which represents the characters inside the parentheses.",
+      "diff": "--- \n+++ \n@@ -12,7 +12,7 @@\n     elif i==\")\":\n       #  print(a)\n         for j in a[-1]:\n-            print(t)\n+         #   print(t)\n             t.remove(j)\n         a.pop(-1)\n     elif i==\"(\":"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

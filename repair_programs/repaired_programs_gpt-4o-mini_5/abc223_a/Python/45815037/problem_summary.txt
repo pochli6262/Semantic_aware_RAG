@@ -1,0 +1,1 @@
+The program incorrectly allows for the possibility of outputting "Yes" for values of X that are less than 100, which should only print "No."

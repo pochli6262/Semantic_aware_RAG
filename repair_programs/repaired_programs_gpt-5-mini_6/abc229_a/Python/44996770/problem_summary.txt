@@ -1,0 +1,1 @@
+The second conditional mistakenly uses s[1][1] without comparing it to '#' (i.e., `and s[1][1]` instead of `and s[1][1] == "#"`) so the string's truthiness causes incorrect logic.

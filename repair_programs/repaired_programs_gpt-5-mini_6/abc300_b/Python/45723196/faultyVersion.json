@@ -1,0 +1,4 @@
+{
+  "explanation": "The code read the first input line as a raw string and then took a[0] and a[-1], which only gives the first and last characters (wrong for multi-digit H or W). I changed the line that reads the first line to parse both integers properly into a list using map(int, ...), so a[0] and a[-1] become the correct integer values. This fixes the incorrect dimension parsing while changing exactly one line.",
+  "fixed_code": "a = list(map(int, input().split()))\nb = int(a[0])\nc = int(a[-1])\nd = []\ne = []\nfor j in range(b):\n    d.append(input())\nfor j in range(b):\n    e.append(input()) \ndef f(x, y):\n    for i in range(b):\n        for j in range(c):\n            if d[(i+x)%b][(j+y)%c] == e[i][j]:\n                pass \n            else:\n                return 0\n    return 1\nans = 0\nfor i in range(b):\n    for j in range(c):\n        if f(i, j):\n            ans = 1\nif ans:\n    print('Yes')\nelse:\n    print('No')"
+}

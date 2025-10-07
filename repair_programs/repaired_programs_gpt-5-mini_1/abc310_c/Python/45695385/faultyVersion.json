@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was caused by reusing the loop variable name i for the outer loop and the inner loops. The inner loops assign to i and overwrite the outer loop variable, which is unsafe and leads to incorrect behavior. I fixed it by renaming the outer loop variable to _ so it won't be clobbered by the inner loops. Only that single line was changed.",
+  "fixed_code": "n=int(input())\nk=set([])\nfor _ in range(n):\n  s=input()\n  S=[]\n  for i in range(len(s)):\n    S.append(s[i])\n  t=\"\"\n  for i in range(len(s)):\n    t+=S[len(s)-1-i]\n  \n  if not s in k:\n    if len(s)==1:\n      k.add(s)\n      k.add(s+str(1))\n    else:\n      k.add(s)\n      k.add(t)\n\nprint(int(len(k)/2))"
+}

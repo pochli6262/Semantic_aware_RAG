@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that after appending the first group when Q was empty, the next if still executed and treated that newly appended group as if it were a different value, causing the count to be incremented twice. Changing the second if to elif ensures the second branch is only considered when Q was not empty, preventing double-counting. (This fix is a simple conditional ordering adjustment — no other logic changed.)",
+  "fixed_code": "from collections import deque\nN = int(input())\nA = list(map(int, input().split()))\n\nQ = deque()\nans = 0\n\nfor a in A:\n    ans += 1\n    if len(Q) == 0:\n        Q.append([a,1])\n    elif Q[-1][0] != a:\n        Q.append([a,1])\n    else:\n        Q[-1][1] += 1\n        if Q[-1][1] == a:\n            Q.pop()\n            ans -= a\n    print(ans)\n"
+}

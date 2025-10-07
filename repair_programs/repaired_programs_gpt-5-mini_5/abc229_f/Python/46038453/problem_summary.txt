@@ -1,0 +1,1 @@
+The transition for dp[i+1][1][0] incorrectly adds B[i-1] to both predecessor states, charging the B-edge deletion even when the previous vertex is color 0 and no deletion is needed.

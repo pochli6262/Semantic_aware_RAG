@@ -1,0 +1,4 @@
+{
+  "explanation": "The code multiplied by 10**100 and then used normal division, which forced Python to convert a gigantic integer to a float. That conversion overflows to infinity (or loses precision), so all keys become equal/incorrect and the sort fails. I fixed it by removing the unnecessary huge scaling and using the direct float key -a/(a+b), which preserves the correct ordering without causing overflow.",
+  "fixed_code": "import sys\n\ninput = sys.stdin.readline\n# sys.setrecursionlimit(10**6)\n\ndef main():\n    N = int(input())\n    l = []\n    for i in range(N):\n        a, b = map(int, input().split())\n        l.append((-a / (a + b), i + 1))\n    l.sort()\n    for i in range(N):\n        print(l[i][1], end=' ')\n    print()\n\nif __name__ == '__main__':\n    main()\n"
+}

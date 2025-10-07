@@ -1,0 +1,1 @@
+The second loop mistakenly uses i instead of j, so it repeatedly checks the wrong element (not each S[j]) when validating the multiple-of-25 and range conditions.

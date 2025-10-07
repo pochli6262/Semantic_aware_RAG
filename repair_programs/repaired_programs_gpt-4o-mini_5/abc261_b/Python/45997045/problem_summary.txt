@@ -1,0 +1,1 @@
+The program mistakenly attempts to check for contradictions based on the transposed version of the results table instead of properly analyzing the original results for each pair of players.

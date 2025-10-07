@@ -1,0 +1,1 @@
+The program incorrectly checks the condition for comparing '0' and 'o' by referencing `s[i]` and `t[i]` in the same check instead of checking `s[i]`.

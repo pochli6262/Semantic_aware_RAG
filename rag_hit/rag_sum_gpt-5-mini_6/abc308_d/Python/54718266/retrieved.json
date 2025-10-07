@@ -1,0 +1,32 @@
+{
+  "task": "abc308_d/Python/54718266",
+  "query_summary": "The final condition incorrectly checks grid[h][w] (a truthy character) instead of the visited flag for (h,w), so the program will always print \"Yes\" when it reaches that check.",
+  "oracle_summary": "The final condition mistakenly checks grid[h][w] (a non-empty character, truthy) instead of bool[h][w], so it tests the cell's content rather than whether it was reached.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes the variable `h` to zero in the second while loop that checks for the \"^\" character, which results in an infinite loop instead of starting at the last row (H-1).",
+      "diff": "--- \n+++ \n@@ -44,7 +44,7 @@\n     elif flg:\n       S[h][w] = \"*\"\n     h += 1\n-  h = 0\n+  h = H-1\n   flg = False\n   while h >= 0:\n     if S[h][w] not in (\"*\", \".\"):"
+    },
+    {
+      "summary": "The buggy code incorrectly prints the coordinates of the current position during the filling of the grid, which can lead to confusion, while the correct code comments out that print statement.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n         dirPath = (dirPath+1)%4\n     x = x + dir[dirPath][0]\n     y = y + dir[dirPath][1]\n-    print(x,y)\n+    # print(x,y)\n \n     grid[x][y] = i\n "
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints the grid rows using `print(*clm)` instead of `print(\"\".join(clm))`, which leads to incorrect formatting of the output.",
+      "diff": "--- \n+++ \n@@ -25,4 +25,4 @@\n     elif y==-1:\n         y=H-1\n for clm in grid:\n-    print(*clm)\n+    print(\"\".join(clm))"
+    },
+    {
+      "summary": "The buggy code incorrectly specifies the movement directions for breadth-first search (BFS) by including all four possible directions instead of just allowing movement down or right, which is why it fails to traverse the grid correctly.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n         pending = -1\n         dist = [[pending] * w for _ in range(h)]\n         dist[sy][sx] = 1  # Initialize\n-        dxy = [(-1, 0), (1, 0), (0, -1), (0, 1)]\n+        dxy = [(1, 0), (0, 1)]\n \n         while d:\n             y, x = d.popleft()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the conditions for printing \"Yes\", as it only checks for specific differences in coordinates, missing additional valid cases that should be accounted for.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x1,y1,x2,y2 = map(int,input().split())\n-if (abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3) :\n+if ((abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3)) or ((abs(x1-x2)==2 and abs(y1-y2)==4) or (abs(x1-x2)==4 and abs(y1-y2)==2)) or  ((abs(x1-x2)==0 and (abs(y1-y2)==2 or abs(y1-y2)==4)) or  ((abs(x1-x2)==2 or abs(x1-x2)==4) and abs(y1-y2)==0)):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

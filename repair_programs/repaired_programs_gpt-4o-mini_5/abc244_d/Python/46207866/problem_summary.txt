@@ -1,0 +1,1 @@
+The bug likely lies in the incorrect logic for determining the possibility of achieving the desired hat configuration after the specified number of swaps, as the program only checks the count of mismatched hats modulo 2 instead of considering all possible permutations of swaps.

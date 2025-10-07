@@ -1,0 +1,1 @@
+The likely bug is that the loop for calculating weekly sums incorrectly iterates based on integer division of N by 7, instead of iterating N times for each week.

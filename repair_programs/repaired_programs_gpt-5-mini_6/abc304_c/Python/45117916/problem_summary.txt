@@ -1,0 +1,1 @@
+The code always checks membership in dict[0] instead of checking the actual root of person 1's group, so if the component containing person 1 has a different root index those infected will be misclassified.

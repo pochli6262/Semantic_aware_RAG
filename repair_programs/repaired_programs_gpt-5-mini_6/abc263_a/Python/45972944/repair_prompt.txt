@@ -1,0 +1,167 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+We have five cards with integers A, B, C, D, and E written on them, one on each card.
+
+This set of five cards is called a Full house if and only if the following condition is satisfied:
+
+* the set has three cards with a same number written on them, and two cards with another same number written on them.
+
+Determine whether the set is a Full house.
+
+### Constraints
+
+* 1 \leq A,B,C,D,E\leq 13
+* Not all of A, B, C, D, and E are the same.
+* All values in input are integers.
+
+---
+
+### Input
+
+Input is given from Standard Input in the following format:
+
+```
+A B C D E
+```
+
+### Output
+
+If the set is a Full house, print `Yes`; otherwise, print `No`.
+
+---
+
+### Sample Input 1
+
+```
+1 2 1 2 1
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+The set has three cards with 1 written on them and two cards with 2 written on them, so it is a Full house.
+
+---
+
+### Sample Input 2
+
+```
+12 12 11 1 2
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+The condition is not satisfied.
+
+## Your Analysis (1-sentence bug summary)
+The program prints "YES" in all caps instead of the required "Yes".
+
+## Buggy Program
+from collections import defaultdict
+
+count = defaultdict(int)
+
+A=list(map(int, input().split()))
+
+for i in range(len(A)):
+  count[A[i]] += 1
+
+a = count.values()
+a = list(a)
+
+if  2 < len(count.values()):
+  print("No")
+elif a[0] == 3 or a[1] == 3:
+  print("YES")
+else:
+  print("No")
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -7,6 +7,6 @@
+ if A%3 == 1 and B == A+1:
+     print('Yes')
+ elif A%3 == 2 and B == A+1:
+-    print('YES')
++    print('Yes')
+ else:
+     print('No')
+
+### Diff 2
+--- 
++++ 
+@@ -5,7 +5,7 @@
+ D = defaultdict(set)
+ 
+ for i in range(N):
+-    D[A[i]].add(i)
++    D[A[i]].add(i+1)
+ 
+ m = max(A)
+ 
+
+### Diff 3
+--- 
++++ 
+@@ -1,5 +1,7 @@
+ N, A, B, C, D = map(int, input().split())
+ if abs(B - C) > 1:
+     print("No")
++elif B == 0 and C == 0 and A > 0 and D > 0:
++    print("No")
+ else:
+     print("Yes")
+
+### Diff 4
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ a=[]
+ b=['H', 'D', 'C', 'S']
+ first = set(b)
+-second = set(['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])
++second = set(['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'])
+ tmp = set()
+ answer = "Yes"
+ for i in range(n):
+
+### Diff 5
+--- 
++++ 
+@@ -13,7 +13,7 @@
+ for i in range(n):
+     for j in range(n):
+         if p[i] >= p[j]:
+-            if f[j].issuperset(f[i]):
++            if f[j].issuperset(f[i]) and (p[i] > p[j] or len(f[j]) > len(f[i])):
+                 print("Yes")
+                 exit(0)
+ 
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

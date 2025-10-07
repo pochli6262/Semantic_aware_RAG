@@ -1,0 +1,1 @@
+The program incorrectly counts valid results as contradictions, leading to the wrong output when assessing the tournament's consistency.

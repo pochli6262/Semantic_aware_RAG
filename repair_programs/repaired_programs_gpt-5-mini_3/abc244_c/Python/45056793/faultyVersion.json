@@ -1,0 +1,4 @@
+{
+  "explanation": "The list ans was created with range(1, n+2), which produces numbers 1 through n+1 (one too many). The program expects the numbers 1..n, so having the extra element leads to incorrect behavior when the interactive responses try to remove values. I fixed the range to end at n+1 so ans contains exactly 1..n.",
+  "fixed_code": "n=int(input())\nans=[i for i in range(1,n+1)]\nwhile True:\n  print(ans.pop(0), flush=True)\n  tmp=int(input())\n  if tmp==0:\n    exit()\n  else:\n    ans.remove(tmp)"
+}

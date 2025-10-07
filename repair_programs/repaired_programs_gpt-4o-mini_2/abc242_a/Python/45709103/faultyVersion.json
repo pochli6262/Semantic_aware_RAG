@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition in the first if statement should check if x is greater than or equal to a + 1 instead of just greater than. This is because the valid range starts from a + 1 inclusive for the calculation to make sense. I fixed it by changing 'if x>a+1' to 'if x>=a+1'.",
+  "fixed_code": "a,b,c,x=list(map(int,input().split()))\nans=1.0\nif x>=a+1 and x<=b:\n    ans=c/(b-a)\nelif x>b:\n    ans=0.0\nprint('%.10f'%ans)"
+}

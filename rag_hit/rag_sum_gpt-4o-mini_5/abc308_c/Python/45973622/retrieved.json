@@ -1,0 +1,32 @@
+{
+  "task": "abc308_c/Python/45973622",
+  "query_summary": "The bug likely arises from the use of a fixed multiplier in the calculation of success rates, which can lead to precision issues and incorrect sorting due to the resulting floating-point arithmetic.",
+  "oracle_summary": "The bug was caused by using floating-point division (/) instead of integer floor division (//), producing inexact values and wrong ordering due to precision/rounding errors.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly prints the answer as a float instead of converting it to an integer, which is necessary for accurate output when the result is expected to be a whole number.",
+      "diff": "--- \n+++ \n@@ -9,4 +9,4 @@\n for i in B:\n   ans -= i*(i-1)/2*(N-i)\n   ans -= i*(i-1)*(i-2)/6\n-print(ans)\n+print(int(ans))"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses division (`/`) instead of floor division (`//`) when calculating the ratio, which may lead to incorrect results due to floating-point precision issues.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n p=[]\n for i in range(n):\n     a,b=map(int,input().split())\n-    p.append(((a*(10**100))/(a+b),i+1))\n+    p.append(((a*(10**100))//(a+b),i+1))\n p.sort(reverse=True)\n \n l=[]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses floating-point division (/) instead of integer division (//) when calculating the value to be appended to the list X, which can lead to incorrect results due to the nature of floating-point arithmetic.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     X = []\n     for i in range(N):\n         a, b = map(int, input().split())\n-        X.append((-a*10**100 / (a+b), i))\n+        X.append((-a*10**100 // (a+b), i))\n \n     X.sort()\n     print(*[i+1 for x, i in X])"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range `N` instead of `1` to `N-1` in the final loop, which leads to potential index out-of-bounds errors and incorrect calculations.",
+      "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n         B.append(B[i-1] + C[i-1])\n \n ans = 10 ** 20\n-for j in range(N):\n+for j in range(1, N):\n     ans = min(ans, A[j]-A[0] + B[N]-B[j], B[j]-B[0] + A[N]-A[j])\n \n print(ans)"
+    },
+    {
+      "summary": "The buggy code fails to format the output as a space-separated string of numbers instead of a default list representation.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n L-=1\n \n A[L:R] = A[L:R][::-1]\n-print(A)\n+print(\" \".join(map(str, A)))"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3
+  ],
+  "useful_diffs_count": 2
+}

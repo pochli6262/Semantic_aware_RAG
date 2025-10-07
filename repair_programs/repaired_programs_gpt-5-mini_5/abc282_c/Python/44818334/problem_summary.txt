@@ -1,0 +1,1 @@
+The code replaces commas when cnt%2==1 (i.e., inside quoted/enclosed segments) instead of when cnt%2==0, so it wrongly changes commas inside quotes rather than those outside.

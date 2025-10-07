@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition in the print statement checks if 'ax == ay' (which compares the x-coordinates) and 'by - ay == 1' (which incorrectly checks the vertical adjacency). The correct condition should check if 'by == ay' and 'bx - ax == 1' to ensure that the points are horizontally adjacent on the same row. This is the fixed condition.",
+  "fixed_code": "import sys\nimport string\nimport numpy as np\nfrom collections import defaultdict, deque\nfrom math import dist\nimport itertools\nimport operator\n\nINF = -1000000000000000000\n\nA, B = map(int, input().split())\nax = (A - 1) // 3\nay = (A - 1) % 3\nbx = (B - 1) // 3\nby = (B - 1) % 3\n\nprint(\"Yes\" if by == ay and bx - ax == 1 else \"No\")"
+}

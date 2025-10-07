@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition if x>a+1 and x<=b: has an off-by-one error: it wrongly excludes the case x == a+1. The intended check is whether x is strictly greater than a and at most b, i.e. if x>a and x<=b. I fixed that single line to correct the range check.",
+  "fixed_code": "a,b,c,x=list(map(int,input().split()))\nans=1.0\nif x>a and x<=b:\n    ans=c/(b-a)\nelif x>b:\n    ans=0.0\nprint('%.10f'%ans)\n"
+}

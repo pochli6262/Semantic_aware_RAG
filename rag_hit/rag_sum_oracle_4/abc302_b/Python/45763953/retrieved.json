@@ -1,0 +1,32 @@
+{
+  "task": "abc302_b/Python/45763953",
+  "query_summary": "Off-by-one error in the \"right-up diagonal\" loop: it uses range(5, h) instead of range(4, h), so diagonals starting at row index 4 are never checked.",
+  "oracle_summary": "Off-by-one error in the \"right-up diagonal\" loop: it uses range(5, h) instead of range(4, h), so diagonals starting at row index 4 are never checked.",
+  "retrieved": [
+    {
+      "summary": "The buggy code uses an incorrect logical operator in the while loop condition, resulting in an infinite loop instead of terminating when the number of iterations reaches 'n'.",
+      "diff": "--- \n+++ \n@@ -26,7 +26,7 @@\n     ti.add(b)\n     ki=set()\n     x=0\n-    while (not(len(ti)==0))or(x!=n):\n+    while (not(len(ti)==0))and(x!=n):\n         x+=1\n         for i in ti:\n             for j in do:"
+    },
+    {
+      "summary": "The buggy code contains a logical error in the `dp` updating section where it redundantly assigns `dp[pl+1][i][j]` to the same value twice, which could lead to incorrect state transitions.",
+      "diff": "--- \n+++ \n@@ -72,7 +72,7 @@\n     nexi,nexx,nexy = dp[i][x][y]\n     #print (nexx,nexy)\n \n-    print (nexx,nexy)\n+    #print (nexx,nexy)\n \n     diff = None\n     if x != nexx:"
+    },
+    {
+      "summary": "The buggy code incorrectly writes the final answer using the string format \" \".join(map(str, ans)) instead of correctly formatting it with a preceding \"! \" for proper output as required.",
+      "diff": "--- \n+++ \n@@ -73,7 +73,7 @@\n ans[ind] = 1\n for i in range(n-1):\n     ans[res[i]] = i+2\n-write(\" \".join(map(str, ans)))\n+write(\"! \" + \" \".join(map(str, ans)))\n sys.stdout.flush()\n if TEST:\n     assert _a==ans"
+    },
+    {
+      "summary": "The issue in the buggy code arises from an incorrect loop range when updating the `dp` array, specifically in the inner loop where it should iterate until `N-1` instead of `N`, causing potential out-of-bounds access.",
+      "diff": "--- \n+++ \n@@ -29,7 +29,7 @@\n       hhh = hh + d\n       if hhh == H:\n         for k in range(hhh-F[n+1],hhh+1):\n-          dp[n+1][h-d][k] = min(dp[n+1][hhh][k],dp[n][h][hh] + P[n+1])\n+          dp[n+1][h-d][k] = min(dp[n+1][h-d][k],dp[n][h][hh] + P[n+1])\n       elif hhh >= F[n+1]:\n         dp[n+1][h-d][hhh-F[n+1]] = min(dp[n+1][h-d][hhh-F[n+1]],dp[n][h][hh] + P[n+1])\n       "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly initializes the counter `cnt` as 1 if `ins[0]` is truthy, instead of checking if `ins[0]` is greater than or equal to zero.",
+      "diff": "--- \n+++ \n@@ -15,7 +15,7 @@\n     ins[x-1] = max(ins[x-1], y)\n q = [(0, ins[0])]\n visit = [0]*N\n-cnt = 1 if ins[0] else 0\n+cnt = 1 if ins[0] >= 0 else 0\n while len(q):\n     s, i = q.pop()    \n     for v in tree[s]:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The outer loop used range(n) but the inner loop adds s[l+i] for l in 0..6. When i > n-7 this accesses past the end of s and raises an IndexError. I changed the outer loop to iterate only over valid start indices for 7-element windows: range(n-6), so s[l+i] stays in bounds.",
+  "fixed_code": "n = int(input())\ns = list(map(int,input().split()))\n\nfor i in range(n-6):\n  ans = 0\n  for l in range(7):\n    ans += s[l+i]\n\n  print(str(ans),\"\",end = \"\")"
+}

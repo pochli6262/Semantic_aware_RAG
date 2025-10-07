@@ -1,0 +1,1 @@
+The program incorrectly evaluates the winner based on the total number of games won instead of accounting for who reached that number of wins first in case of a tie.

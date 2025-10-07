@@ -1,0 +1,1 @@
+The program contains a typo where "Friday" is incorrectly spelled as "Friay," causing it to fail to provide the correct output for that input.

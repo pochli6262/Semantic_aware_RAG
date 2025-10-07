@@ -1,0 +1,32 @@
+{
+  "task": "abc310_b/Python/46010800",
+  "query_summary": "The bug is an incorrect inner-loop bound: it iterates over j in range(i) instead of range(n), so some required pairwise comparisons (j >= i) are never checked.",
+  "oracle_summary": "The bug is an incorrect inner-loop bound: it iterates over j in range(i) instead of range(n), so some required pairwise comparisons (j >= i) are never checked.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses `(j+d)%n+1` instead of `(j+i)%n+1` in the nested loop, causing it to fail to generate the correct pairs for the given conditions.",
+      "diff": "--- \n+++ \n@@ -5,5 +5,5 @@\n print(\"Yes\")\n for i in range(1,d+1):\n     for j in range(n):\n-        print(j+1,(j+d)%n+1)\n+        print(j+1,(j+i)%n+1)\n         "
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly appends the range (n - 1, n - 3) in the first if condition, where it should append (n - 2, n - 2) instead.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n     if p[j] != j + 1 and j < n - 2:\n         ind = p.index(j + 1)\n         if ind == n - 1:\n-            ans.append((n - 1, n - 3))\n+            ans.append((n - 2, n - 2))\n             p = p[: n - 3] + [p[n - 1]] + p[n - 3 : n - 1]\n         else:\n             ans.append((ind + 1, j))"
+    },
+    {
+      "summary": "The bug in the code is that the condition `if len(d) == 0 and n-1-i < j:` improperly checks if the dictionary `d` is empty instead of simply verifying if `j` is valid, which leads to incorrect results when handling cases where there are no more entries to process.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,4 @@\n+\n from collections import deque\n n = int(input())\n a = [list(map(int,input().split())) for i in range(n)]\n@@ -34,7 +35,7 @@\n                         b.append(j)\n                         break\n \n-                if len(d) == 0 and n-1-i <j:\n+                if n-1-i < j:\n                     ans = -1\n \n             else:\n@@ -66,3 +67,4 @@\n \n else:\n     print(ans)\n+"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the range of `n`, which causes it to access an invalid index in the permutation, leading to an out-of-bounds error when trying to access `p[j]`.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n ans = 0\n for p in P:\n   s = 0\n-  for j in range(n):\n+  for j in range(1,n):\n     c = graph[p[j-1]][p[j]]\n     if c == 0:\n       break"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    5
+  ],
+  "useful_diffs_count": 2
+}

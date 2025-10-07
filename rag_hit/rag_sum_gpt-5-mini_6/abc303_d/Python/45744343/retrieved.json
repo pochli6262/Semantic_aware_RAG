@@ -1,0 +1,33 @@
+{
+  "task": "abc303_d/Python/45744343",
+  "query_summary": "The DP has its caps-lock states reversed (so X and Y are used in swapped places), causing the initialization and transitions to apply the wrong costs for 'a' versus Shift+'a'.",
+  "oracle_summary": "The bug is a wrong cost in the DP transition for dp[1][j] when s[j] == \"A\": the code uses z + x instead of the correct z + y, producing an incorrect update.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly initializes and manipulates the `dp2` array, resulting in incorrect computations for cases with uppercase letters or question marks.",
+      "diff": "--- \n+++ \n@@ -34,7 +34,7 @@\n       else:\n         dp[i+1][j+1]+=dp[i][j]*(25-j+1)*pow(26-cnt,-1,mod)%mod\n         dp2[i+1]+=dp[i][j]*(1-(25-j+1)*pow(26-cnt,-1,mod))%mod\n-    dp2[-1]+=dp[i][-1]\n+    dp2[i+1]+=dp[i][-1]\n     check[ord(s[i])-x]+=1\n     cnt+=1\n   else:"
+    },
+    {
+      "summary": "The buggy code fails to initialize `DP2[1]` correctly, resulting in incorrect values for the DP states when `S` starts with fixed characters, instead of initializing `DP2` immediately after setting up `DP[1]`.",
+      "diff": "--- \n+++ \n@@ -25,6 +25,8 @@\n else:\n     i, j = f(S[0]), f(S[1])\n     DP[1][i][j] = 1 if i != j else 0\n+for i in range(26):\n+    DP2[1][i] = sum(DP[1][i]) % mod\n \n \n for n in range(2, N):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it initializes the `dp` array with a very large value (`10**10`) that is insufficient to represent the maximum possible value needed for comparisons, resulting in incorrect minimum calculations.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(n):\n     v[i] = max(0, y[i] - (x[i] + y[i]) // 2)\n m = sum(z)\n-dp = [[10**10] * (m + 1) for _ in range(n + 1)]\n+dp = [[10**30] * (m + 1) for _ in range(n + 1)]\n dp[0][0] = 0\n for i in range(1, n + 1):\n     for j in range(m + 1):"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the `dp` array for the indices representing combinations of the second set of values, specifically overwriting the value for `dp[i+1][int('110',2)]` with `dp[i+1][int('011',2)]` instead of maintaining the correct state.",
+      "diff": "--- \n+++ \n@@ -40,7 +40,7 @@\n     dp[i+1][int('100',2)] = min(dp[i][int('100',2)],d[int('100',2)])\n     dp[i+1][int('011',2)] = min(dp[i][int('011',2)],d[int('011',2)],dp[i][int('001',2)]+d[int('010',2)],dp[i][int('010',2)]+d[int('001',2)])\n     dp[i+1][int('101',2)] = min(dp[i][int('101',2)],d[int('101',2)],dp[i][int('001',2)]+d[int('100',2)],dp[i][int('100',2)]+d[int('001',2)])\n-    dp[i+1][int('011',2)] = min(dp[i][int('110',2)],d[int('110',2)],dp[i][int('010',2)]+d[int('100',2)],dp[i][int('100',2)]+d[int('010',2)])\n+    dp[i+1][int('110',2)] = min(dp[i][int('110',2)],d[int('110',2)],dp[i][int('010',2)]+d[int('100',2)],dp[i][int('100',2)]+d[int('010',2)])\n     dp[i+1][int('111',2)] = min(dp[i][int('111',2)], d[int('111',2)]\\\n                                 ,dp[i][int('011',2)]+d[int('100',2)],dp[i][int('101',2)]+d[int('010',2)],dp[i][int('110',2)]+d[int('001',2)]\\\n                                 ,dp[i][int('001',2)]+d[int('110',2)],dp[i][int('010',2)]+d[int('101',2)],dp[i][int('100',2)]+d[int('011',2)])"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the `dp` array for the first row, inadvertently setting `dp[0][j] = 0` for all `j`, which leads to erroneous calculations in subsequent iterations.",
+      "diff": "--- \n+++ \n@@ -5,8 +5,6 @@\n dp = [ [-inf] * (M + 1) for _ in range(N + 1) ]\n for i in range(N + 1):\n     dp[i][0] = 0\n-for j in range(M + 1):\n-    dp[0][j] = 0\n \n for i in range(1, N + 1):\n     a = A[i - 1]"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 3
+}

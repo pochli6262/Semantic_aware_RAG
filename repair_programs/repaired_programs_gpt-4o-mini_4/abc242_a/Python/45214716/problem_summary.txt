@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly computes the number of participants eligible for selection from the ranks between A+1 and B, leading to an erroneous probability calculation.

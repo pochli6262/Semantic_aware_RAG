@@ -1,0 +1,1 @@
+The program incorrectly determines the connectivity of black squares by only checking for specific string combinations rather than evaluating the adjacency of the black squares.

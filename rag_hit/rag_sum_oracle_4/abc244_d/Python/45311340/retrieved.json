@@ -1,0 +1,32 @@
+{
+  "task": "abc244_d/Python/45311340",
+  "query_summary": "Missing parentheses cause Python to parse \"S in A == T in A\" as a chained comparison (S in A and A == T and T in A) instead of comparing the booleans (S in A) == (T in A), yielding incorrect behavior.",
+  "oracle_summary": "Missing parentheses cause Python to parse \"S in A == T in A\" as a chained comparison (S in A and A == T and T in A) instead of comparing the booleans (S in A) == (T in A), yielding incorrect behavior.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the list `g1`, missing some valid combinations (like \"BA\", \"CB\", \"DC\", \"ED\", and \"AE\") which are necessary for the correct logic to determine membership.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n S = input()\n T = input()\n \n-g1 = [\"AB\", \"BC\", \"CD\", \"DE\", \"EA\"]\n+g1 = [\"AB\",\"BA\", \"BC\", \"CB\", \"CD\", \"DC\", \"DE\", \"ED\", \"EA\", \"AE\"]\n \n if S in g1 and T in g1:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'Yes' or 'No' for every character in the input string without stopping after the first match, while the correct code is designed to terminate the loop after the first match.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,7 @@\n for s in S:\n   if s=='R':\n     print('Yes')\n+    break\n   elif s=='M':\n     print('No')\n-  \n+    break"
+    },
+    {
+      "summary": "The problem in the buggy code is an extra space at the end of the string 'GBD ' which causes the condition to fail when that specific input is provided.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n S=input()\n-if S=='ACE' or S=='BDF' or S=='CEG' or S=='DFA' or S=='EGB' or S=='FAC' or S=='GBD ':\n+if S=='ACE' or S=='BDF' or S=='CEG' or S=='DFA' or S=='EGB' or S=='FAC' or S=='GBD':\n   print('Yes')\n else:\n   print('No')"
+    },
+    {
+      "summary": "The buggy code fails to consider the circular nature of the alphabet when comparing the characters of strings S and T, leading to incorrect results for characters that wrap around (e.g., 'z' and 'a').",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n cnt=set()\n N=len(S)\n for i in range(N):\n-    cnt.add(ord(S[i])-ord(T[i]))\n+    cnt.add((ord(S[i])-ord(T[i]))%26)\n     \n if len(cnt)==1:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the string `K` as \"ABCDEABCDE\" instead of \"ABCDEAEDCBA\", which affects the logic determining if both `S` and `T` are present in `K`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-K = \"ABCDEABCDE\"\n+K = \"ABCDEAEDCBA\"\n S = input()\n T = input()\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    4
+  ],
+  "useful_diffs_count": 2
+}

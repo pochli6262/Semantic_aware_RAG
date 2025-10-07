@@ -1,0 +1,34 @@
+{
+  "task": "abc298_e/Python/46008577",
+  "query_summary": "The likely bug is that the program incorrectly calculates the transition probabilities for the states in the dynamic programming table, especially when updating the win probabilities after taking turns.",
+  "oracle_summary": "The final sum uses the cumulative probability T_dp[i+1][-1] instead of the incremental probability T_dp[i+1][-1]−T_dp[i][-1], thus overcounting cases where Taro had already finished before step i+1.",
+  "retrieved": [
+    {
+      "summary": "The buggy code does not handle the case when K equals 0 properly, which can lead to incorrect results in the dynamic programming calculation.",
+      "diff": "--- \n+++ \n@@ -12,6 +12,8 @@\n     for j in range(M):\n         dp[i+1][j] += s[max(j-K+1, 0)] - s[0]\n         dp[i+1][j] += s[M] - s[min(j+K, M)]\n+        if K == 0:\n+            dp[i+1][j] -= dp[i][j]\n         dp[i+1][j] %= mod\n \n print(sum(dp[N-1])%mod)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to apply the modulo operation to the final result when summing the dp values, potentially causing incorrect output for large sums.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n                 dp[i][j] += dp[i-1][1]\n                 dp[i][j] %= MOD\n \n-    print(sum(dp[-1]))\n+    print(sum(dp[-1]) % MOD)\n \n if __name__ == \"__main__\":\n     main()"
+    },
+    {
+      "summary": "The bug in the buggy code is that the inner loop iterates from `mini = 1` to `n`, instead of from `mini = 0` to `n`, which may lead to incorrect index access when updating the `dp` table.",
+      "diff": "--- \n+++ \n@@ -14,7 +14,7 @@\n   ai = a[i]\n   new = [[0]*(n+1) for i in range(k+1)] \n   for j in range(k+1):\n-    for mini in range(1, n+1):\n+    for mini in range(n+1):\n       if mini >= ai and j >= 1:\n         new[j][mini] += dp[j-1][mini]\n       if mini >= ai:"
+    },
+    {
+      "summary": "The buggy code has an indexing error in the final sum calculation within the `solve` function, where it incorrectly sums `dp[N][j][K]` for `j` in the range `N` instead of `N+1`, which leads to missing the contribution of the last player's combinations.",
+      "diff": "--- \n+++ \n@@ -51,7 +51,7 @@\n                 # exclude i\n                 dp[i][min(r, j)][k] = (dp[i][min(r, j)][k] + dp[i-1][j][k]) % MOD\n \n-    return sum(dp[N][j][K] for j in range(N)) % MOD\n+    return sum(dp[N][j][K] for j in range(N+1)) % MOD\n \n \n def main():"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses an incorrect value for the modulo variable `MOD`, which should be `998244353` instead of `9998244353`.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n acc = [[0]*(n+1) for _ in range(n+1)]\n dp[0][0] = 1\n acc[0] = [1]*(n+1)\n-MOD = 9998244353\n+MOD = 998244353\n \n for x in range(1,n+1):\n     dpx = dp[x]"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4,
+    6,
+    9
+  ],
+  "useful_diffs_count": 4
+}

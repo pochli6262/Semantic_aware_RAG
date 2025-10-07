@@ -1,0 +1,1 @@
+The bug likely lies in the logic that incorrectly assumes the only scenario where travel between black squares is not possible is when the input is specifically ".#" for S1 and "#." for S2, rather than checking all configurations of black and white squares.

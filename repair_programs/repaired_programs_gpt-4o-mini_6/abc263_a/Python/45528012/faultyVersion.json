@@ -1,0 +1,4 @@
+{
+  "explanation": "The incorrect logical condition in the original code allows for cases where three cards match with the two remaining cards not forming a valid pair, which does not satisfy the definition of a Full house. I replaced the logical `or` in the condition with `and`, ensuring that it correctly checks for both the three matching cards and the two matching cards. The fix is inspired by the pattern of ensuring correct logical conditions found in the related diffs.",
+  "fixed_code": "a=list(map(int,input().split()))\na.sort()\nif ((a[0]==a[1] and a[1]==a[2]) and (a[3]==a[4])):  # Changed 'or' to 'and'\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

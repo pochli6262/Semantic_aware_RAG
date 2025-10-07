@@ -1,0 +1,4 @@
+{
+  "explanation": "The function fell through without producing output when there were exactly two black squares that were adjacent: the lone `return` after the diagonal check caused the function to exit silently instead of printing Yes for the non-diagonal (adjacent) case. I replaced that single `return` line with an `else: print(\"Yes\")` so that when the diagonal check is false (i.e., the two blacks are adjacent) the function prints \"Yes\". This is a one-line fix that preserves the original control flow and intent.",
+  "fixed_code": "def solve() -> None:\n    if black >= 3:\n        print(\"Yes\")\n        return\n\n    if (s1[0] == \"#\" and s2[1] == \"#\") or (s1[1] == \"#\" and s2[0] == \"#\"):\n        print(\"No\")\n    else: print(\"Yes\")\n\n\ns1 = input()\ns2 = input()\n\nblack = s1.count(\"#\")\nblack += s2.count(\"#\")\n\nsolve()"
+}

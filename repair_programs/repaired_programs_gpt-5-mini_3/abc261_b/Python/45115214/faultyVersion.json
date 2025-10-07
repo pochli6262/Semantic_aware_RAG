@@ -1,0 +1,4 @@
+{
+  "explanation": "One of the off-diagonal checks used the operands in a confusing order. The third conditional was written as (A[k][i] == 'W') and (A[i][k] == 'L'), which is logically the same as checking (A[i][k] == 'L') and (A[k][i] == 'W') but the swapped order made the intent unclear. I replaced that line with the clearer, directly mirrored condition so the code explicitly checks the (i,k) entry for 'L' and the (k,i) entry for 'W'.",
+  "fixed_code": "N = int(input())\nA = [list(input()) for _ in range(N)]\ncount = 0\nfor i in range(N):\n  for k in range(N):\n    if (i == k) and (A[i][k] == '-') :\n      count += 1\n    if (i != k) and (A[i][k] == 'W') and (A[k][i] == 'L'):\n      count += 1\n    if (i != k) and (A[i][k] == 'L') and (A[k][i] == 'W'):\n      count += 1\nif count == N**2:\n  print(\"correct\")\nelse:\n  print(\"incorrect\")"
+}

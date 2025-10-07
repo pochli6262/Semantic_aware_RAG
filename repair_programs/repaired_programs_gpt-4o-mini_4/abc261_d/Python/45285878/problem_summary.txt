@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly accesses indices in the `yl` list, which can lead to out-of-bounds errors or incorrect bonus calculations during the dynamic programming process.

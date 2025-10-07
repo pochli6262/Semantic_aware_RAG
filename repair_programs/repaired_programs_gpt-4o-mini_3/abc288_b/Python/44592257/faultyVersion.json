@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is that the program is attempting to print the first k elements from the sorted list. However, the requirement is to print only the first k distinct elements. Since duplicates might exist, using `s[i]` directly will not ensure distinct outputs. The fix involves modifying the loop to uniquely print the elements.",
+  "fixed_code": "n, k = map(int, input().split())\ns = [input() for _ in range(n)]\ns = sorted(set(s))\nfor i in range(k):\n  print(s[i])"
+}

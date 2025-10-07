@@ -1,0 +1,1 @@
+The program uses X < A instead of X <= A, so a participant with rank exactly A is incorrectly treated as part of the random draw rather than guaranteed a T-shirt.

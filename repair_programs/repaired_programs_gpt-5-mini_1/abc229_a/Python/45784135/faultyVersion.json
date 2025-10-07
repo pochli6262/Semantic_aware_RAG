@@ -1,0 +1,4 @@
+{
+  "explanation": "The original if-line accessed s1[1] and s2[1] without ensuring the strings have length >= 2, which raises an IndexError when either input is shorter than 2 characters. I fixed that single line by adding length checks before accessing index 1 so the code only indexes s1[1] and s2[1] when both strings are long enough.",
+  "fixed_code": "s1=input()\ns2=input()\n\nif (s1[0]==\"#\" and s2[0]==\"#\") or (len(s1)>1 and len(s2)>1 and s1[1]==\"#\" and s2[1]==\"#\"):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

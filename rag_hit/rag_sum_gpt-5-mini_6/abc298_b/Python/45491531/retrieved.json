@@ -1,0 +1,29 @@
+{
+  "task": "abc298_b/Python/45491531",
+  "query_summary": "The program never tests the original (zero-rotation) matrix — it only checks after rotating up to three times, so it can miss a valid match without rotation.",
+  "oracle_summary": "The code checks only three rotations (90°, 180°, 270°) and omits the 0°/360° orientation by looping 3 times instead of 4, so it can miss a valid match.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks the condition for the elements in the first row of the matrix by using a modulo operation that allows 0, instead of correctly identifying the elements that should not be divisible by 7.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(m-1):\n     if b[0][i]+1 != b[0][i+1]:\n         ans = False\n-    if b[0][i]%7+1 != b[0][i+1]%7:\n+    if b[0][i]%7 == 0:\n         ans = False\n     \n for i in range(n-1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly uses the bitwise XOR operator (`^`) instead of the equality operator (`==`) to compare elements of the array with their expected parity based on their index.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=list(map(int,input().split()))\n l=0\n while l<n:\n-  if a[l]^(l&1):\n+  if a[l]==(l&1):\n     l+=1\n   else:\n     break"
+    },
+    {
+      "summary": "The buggy code fails to check that consecutive elements in the same row differ by 1, which is necessary for the correct validation of the matrix structure.",
+      "diff": "--- \n+++ \n@@ -27,6 +27,8 @@\n         if j != 0:\n             if ((B[i][j] - 1) % 7) - ((B[i][j-1] - 1) % 7) != 1:\n                 ans = \"No\"\n+            if B[i][j] - B[i][j-1] != 1:\n+                ans = \"No\"\n \n print(ans)\n                 "
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `b` is odd or even instead of validating whether `b` is equal to `2a` or `2a + 1`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n # l = [input() for _ in range(a)]\n # l = [list(map(int, input().split())) for _ in range(a)]\n \n-if b % 2 <= 1:\n+if b==a*2 or b==a*2+1:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks if the values of `b` and `c` are equal or differ by 1 without considering the absolute difference, which results in failing to correctly identify valid cases for the \"XY\" condition.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n \n def check(a,b,c,d):\n     #XY\n-    if b-c==1: return 1\n+    if abs(b-c)==1: return 1\n     #YY,XX\n     if b == c:\n         if b==0:"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

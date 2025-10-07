@@ -1,0 +1,4 @@
+{
+  "explanation": "The check for the 'L' case was inverted: when kama[i][ipp] == 'L' the opposite entry kama[ipp][i] must be 'W', so we should flag a contradiction when it is not 'W'. The original line used '==' and only flagged when the opposite was 'W' (the exact opposite). I fixed it by changing '==' to '!=' so the program now correctly prints 'incorrect' when the opposite entry is anything other than 'W'.",
+  "fixed_code": "n = int(input())\nkama = [list(input()) for i in range(n)]\nfor i in range(n):\n    for ipp in range(n):\n        if kama[i][ipp] == \"W\":\n            if kama[ipp][i] != \"L\":\n                print(\"incorrect\")\n                exit()\n        elif kama[i][ipp] == \"D\":\n            if kama[ipp][i] != \"D\":\n                print(\"incorrect\")\n                exit()\n        elif kama[i][ipp] == \"L\":\n            if kama[ipp][i] != \"W\":\n                print(\"incorrect\")\n                exit()\nprint(\"correct\")"
+}

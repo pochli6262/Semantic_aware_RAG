@@ -1,0 +1,31 @@
+{
+  "task": "abc246_a/Python/45745121",
+  "query_summary": "It prints the list object (e.g., “[x, y]”) instead of outputting the two coordinates as space-separated integers, producing the wrong output format.",
+  "oracle_summary": "It prints the list object (e.g., “[x, y]”) instead of outputting the two coordinates as space-separated integers, producing the wrong output format.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses `XY[j][0]` in the inequality, instead of the correct `XY[j][1]`, which leads to inaccurate calculations for determining if points are collinear.",
+      "diff": "--- \n+++ \n@@ -10,6 +10,6 @@\n   for j in range(i+1,N):\n     for k in range(j+1,N):\n       #print(i,j,k)\n-      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][0]-XY[i][0])*(XY[k][0]-XY[i][0]):\n+      if (XY[k][1]-XY[i][1])*(XY[j][0]-XY[i][0])!=(XY[j][1]-XY[i][1])*(XY[k][0]-XY[i][0]):\n         count+=1\n print(count)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not sort the final output set before printing, which may lead to the results being displayed in an unsorted manner.",
+      "diff": "--- \n+++ \n@@ -29,4 +29,4 @@\n     j += 1\n     ans.add(-total[i][1])\n \n-print(*ans, sep='\\n')\n+print(*sorted(ans), sep='\\n')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the conditions for printing \"Yes\", as it only checks for specific differences in coordinates, missing additional valid cases that should be accounted for.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x1,y1,x2,y2 = map(int,input().split())\n-if (abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3) :\n+if ((abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3)) or ((abs(x1-x2)==2 and abs(y1-y2)==4) or (abs(x1-x2)==4 and abs(y1-y2)==2)) or  ((abs(x1-x2)==0 and (abs(y1-y2)==2 or abs(y1-y2)==4)) or  ((abs(x1-x2)==2 or abs(x1-x2)==4) and abs(y1-y2)==0)):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code outputs the indices of selected elements in an unsorted order, while the corrected code ensures the output indices are presented in sorted order.",
+      "diff": "--- \n+++ \n@@ -24,4 +24,4 @@\n     Li1.append(CM+1)\n     C[CM] = -10\n \n-print(*set(Li1), sep=\"\\n\")\n+print(*sorted(Li1), sep=\"\\n\")"
+    },
+    {
+      "summary": "The buggy code incorrectly checks if `a_list[i] // y` is greater than zero instead of checking if it is equal to zero in the condition for printing \"First\".",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     if a_list[i] // x == 0 and a_list[i] // y > 0:\n         print(\"Second\")\n         exit()\n-    elif a_list[i] // x > 0 and a_list[i] // y > 0:\n+    elif a_list[i] // x > 0 and a_list[i] // y == 0:\n         print(\"First\")\n         exit()\n     elif a_list[i] // x > 0:"
+    }
+  ],
+  "useful_diffs_indices": [
+    5
+  ],
+  "useful_diffs_count": 1
+}

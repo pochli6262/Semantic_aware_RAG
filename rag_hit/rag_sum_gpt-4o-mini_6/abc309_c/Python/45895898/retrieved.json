@@ -1,0 +1,31 @@
+{
+  "task": "abc309_c/Python/45895898",
+  "query_summary": "The likely bug is that the condition in the `cal` function incorrectly determines whether the total number of pills exceeds `K`, leading to incorrect day calculations.",
+  "oracle_summary": "The bug is an off-by-one error: the binary search upper bound was initialized to maxday instead of maxday+1, causing the search to miss the correct day when the answer equals maxday.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly uses the condition `if num + b < K` instead of `if num + b <= K`, which leads to an off-by-one error when determining whether to update the day variable.",
+      "diff": "--- \n+++ \n@@ -48,7 +48,7 @@\n     num = 0\n \n     for a, b in reversed(Q):\n-        if num + b < K:\n+        if num + b <= K:\n             num += b\n         else:\n             day = a + 1"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition in the while loop for adjusting `total`, leading to an incorrect calculation of the adjustment needed to ensure that `(total - M) % N == 0`.",
+      "diff": "--- \n+++ \n@@ -45,7 +45,7 @@\n     # print(ans)\n \n     idx = 0\n-    while total%N != 0:\n+    while (total-M)%N != 0:\n         ans[idx] += 1\n         idx += 1\n         total += 1"
+    },
+    {
+      "summary": "The buggy code incorrectly includes a condition that breaks the loop if the length of `next` exceeds 10^6, which disrupts the logic needed to find the K smallest sums.",
+      "diff": "--- \n+++ \n@@ -18,8 +18,6 @@\n heapq.heapify(next)\n while len(ans) != K:\n     x = heapq.heappop(next)\n-    if len(next) > 10**6:\n-        break\n     for a in A:\n         if a+x in flag:\n             continue"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly limits the value of `k` to a maximum of 100 instead of the intended 200, which can lead to insufficient depth in the calculation.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n     n,x,k = list(map(int, input().split(' ')))\n     # print(n,x,k)\n     n += 1\n-    k = min(100,k)\n+    k = min(200,k)\n     ans = 0\n     depth = k\n     prev = -1"
+    },
+    {
+      "summary": "The problem in the buggy code is that the condition `if YB == 0:` in the last block does not account for `YB <= 0`, which could lead to incorrect results when `YB` is zero.",
+      "diff": "--- \n+++ \n@@ -36,7 +36,7 @@\n             pass\n         elif YB < YC:\n             if XB == XC:\n-                if YB == 0:\n+                if YB <= 0:\n                     ans += 2\n             else:\n                 ans += 2"
+    }
+  ],
+  "useful_diffs_indices": [
+    1
+  ],
+  "useful_diffs_count": 1
+}

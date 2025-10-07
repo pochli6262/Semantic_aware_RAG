@@ -1,0 +1,32 @@
+{
+  "task": "abc302_c/Python/45989052",
+  "query_summary": "The code uses break instead of terminating the program (exit/return) after printing \"Yes\", so execution continues and the final \"No\" is printed anyway.",
+  "oracle_summary": "The code uses break instead of terminating the program (exit/return) after printing \"Yes\", so execution continues and the final \"No\" is printed anyway.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for consecutive elements being from the same list (A or B) by including an unnecessary condition that checks for both lists, which may lead to incorrect results when pairs from the same list are not adjacent.",
+      "diff": "--- \n+++ \n@@ -5,6 +5,6 @@\n ans = \"No\"\n C = sorted(A + B)\n for i in range(len(C)-1):\n-  if (C[i] in A and C[i+1] in A) or (C[i] in B and C[i+1] in B):\n+  if C[i] in A and C[i+1] in A:\n     ans = \"Yes\"\n print(ans)"
+    },
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    },
+    {
+      "summary": "The buggy code incorrectly calculates the maximum size of the sets `A_[i]` within the loop, resulting in incorrect logic for deciding whether to print 'Yes' or 'No'; specifically, it uses `max_(0, len(A_[i]))` instead of `max(max_, len(A_[i]))`.",
+      "diff": "--- \n+++ \n@@ -24,7 +24,7 @@\n   if len(A_[i])!=len(B_[i]):\n     print('No')\n     exit()\n-  max_ = max(0, len(A_[i]))\n+  max_ = max(max_, len(A_[i]))\n \n if max_>=2: \n   print('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for duplicate elements in list A using `len(set(A)) == len(A)` instead of checking for the presence of duplicates with `len(set(A)) != len(A)`.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     if X != Y:\n         print(\"No\")\n         return\n-    if len(set(A)) == len(A):\n+    if len(set(A)) != len(A):\n         print(\"Yes\")\n         return\n     ct = 0"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints 'NO' instead of 'No', which is inconsistent with the correct code output.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n   if Flag == False:\n     break\n   if Y[i] < A[i]:\n-    print('NO')\n+    print('No')\n     Flag = False\n     break\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    5
+  ],
+  "useful_diffs_count": 2
+}

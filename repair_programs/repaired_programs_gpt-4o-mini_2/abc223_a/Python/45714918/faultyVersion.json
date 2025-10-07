@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the code is that the input is being converted to an integer without checking if the input is a valid integer or handling potential errors. If a user enters a non-integer value, the program will raise a ValueError. The fix is to ensure that the input is retrieved and processed correctly in a single line. I replaced 'x = int(input())' with 'x = int(input(\"Enter a number: \"))' to make it clear to the user what input is expected.",
+  "fixed_code": "x = int(input(\"Enter a number: \"))\nprint('Yes' if x%100==0 else 'No')"
+}

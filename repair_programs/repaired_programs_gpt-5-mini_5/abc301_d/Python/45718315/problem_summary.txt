@@ -1,0 +1,1 @@
+The function only accumulates bits set for '?' and never adds the contribution of fixed '1' bits (the base min_val) to the final returned answer.

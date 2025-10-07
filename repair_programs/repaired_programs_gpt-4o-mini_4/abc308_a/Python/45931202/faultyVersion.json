@@ -1,0 +1,4 @@
+{
+  "explanation": "The program incorrectly checks for a monotonically non-decreasing sequence using '>=' instead of '<='. This mistake causes it to print 'No' even when the sequence is non-decreasing. I've updated the condition to use '<=' instead, based on the initial problem statement and understanding of the sequence properties.",
+  "fixed_code": "S = list(map(int,input().split()))\nfor i in range(len(S)-1):\n    if S[i] <= S[i+1] or S[i] % 25 or S[i] < 100 or S[i] > 675:\n        print(\"No\")\n        exit()\n\nif S[-1] % 25 or S[-1] < 100 or S[-1] > 675:\n    print(\"No\")\nelse: print(\"Yes\")"
+}

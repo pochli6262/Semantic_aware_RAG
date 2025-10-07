@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used range(20), which iterates i = 0..19 and omits i = 20 (the 100 km water station). This off-by-one error causes wrong results for positions near 100 km. I changed the loop to range(21) to include the i=20 station. This fix is inspired by common off-by-one corrections in the retrieved diffs (e.g. changing range endpoints or using n+1).",
+  "fixed_code": "N=int(input())\nlist=[]\nfor i in range(21):\n  list.append(abs(N-i*5))\nIn=list.index(min(list))\nprint(In*5)\n"
+}

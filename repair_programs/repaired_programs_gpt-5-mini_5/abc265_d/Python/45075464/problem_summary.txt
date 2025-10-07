@@ -1,0 +1,1 @@
+The code wrongly treats w==N as invalid (using a >=N check), so it rejects valid solutions where the third segment ends at the array end.

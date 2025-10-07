@@ -1,0 +1,4 @@
+{
+  "explanation": "The calculation for the second print statement is not correct. It should include 'c' in the formula (similar to how 'b' is included), as the output calculation should be based on all variables provided. Therefore, the correct expression should be ((a + b) * (a - c)).",
+  "fixed_code": "a, b, c, d  = map(int, input().split())\nprint(((a + b) * (a - c)))\nprint(\"Takahashi\")"
+}

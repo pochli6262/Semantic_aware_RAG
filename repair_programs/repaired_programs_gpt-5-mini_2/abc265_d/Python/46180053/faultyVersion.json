@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code used SA = numpy.cumsum(A), which omits the initial prefix sum 0. Some valid solutions start at index 0 (no elements), so 0 must be included among the cumulative sums. I fixed that single line by computing the cumulative sums of [0] + A (i.e. prepending 0), so SA contains the zero prefix as well as all subsequent prefix sums.",
+  "fixed_code": "# Aの累積和を出すと、Ax がわかれば、あとは\tSA[x] + P  SA[x] + P + Q, SA[x] + P + Q + Z \n# の数字が累積和中に出現するか調べればよい\tただそのまま配列を走査すると、O(N)かかり\n# X の走査と併せて O(N**2) となってしまうので、累積和の値をset または dict に突っ込んで\n# 存在判定するとよい\nimport numpy\n\nN, P, Q, R = map(int, input().split())\nA = list(map(int, input().split()))\n\nSA = numpy.cumsum([0] + A)\nsa_set = set()\nfor sa in SA:\n  sa_set.add(sa)\n  \nfor sa in SA:\n  if sa + P in sa_set and sa + P + Q in sa_set and sa + P + Q + R in sa_set:\n    print(\"Yes\")\n    exit()\nprint(\"No\")"
+}

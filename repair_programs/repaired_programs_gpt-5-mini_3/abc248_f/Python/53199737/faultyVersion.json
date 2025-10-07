@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was an off-by-one in the allocation of the `sep` table: it was created with N rows but the DP accesses entries up to index N in some cases. That can lead to an IndexError for larger N. I fixed it by allocating N+1 rows for `sep` (so `sep` is (N+1) x (N+1)). Only that single line was changed.",
+  "fixed_code": "N, mod = map(int, input().split())\n\ncon = [[0]*N for _ in range(N)]\nsep = [[0]*(N+1) for _ in range(N+1)]\ncon[0][0] = 1\nsep[0][1] = 1\nfor n in range(N)[1:]:\n    con[n][0] = 1\n    for m in range(n+1)[1:]:\n        con[n][m] = con[n-1][m] + con[n-1][m-1]*3 + sep[n-1][m]\n        con[n][m] %= mod\n    for m in range(n+2)[2:]:\n        sep[n][m] = con[n-1][m-2]*2 + sep[n-1][m-1]\n        sep[n][m] %= mod\n\nprint(*con[-1])"
+}

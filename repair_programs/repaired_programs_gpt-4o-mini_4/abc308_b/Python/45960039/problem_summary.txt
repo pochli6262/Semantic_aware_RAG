@@ -1,0 +1,1 @@
+The likely bug is that the program prints the value of P\_0 for every plate color not found in the dictionary instead of accumulating the total sushi price, resulting in incorrect output.

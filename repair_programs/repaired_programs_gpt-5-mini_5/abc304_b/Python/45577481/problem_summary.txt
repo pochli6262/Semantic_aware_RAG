@@ -1,0 +1,1 @@
+The final branch (n < 1e9) uses 100000 (10^5) instead of 1000000 (10^6), so numbers in [10^8, 10^9) are truncated incorrectly.

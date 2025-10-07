@@ -1,0 +1,4 @@
+{
+  "explanation": "The elif condition mistakenly checked t[i] == \"o\" instead of checking s[i] == \"o\", so the 0/o similarity branch could be entered incorrectly and compared t against itself. I fixed that single line to test s[i] for both '0' and 'o', making the code symmetric (check s in the elif, then check t inside) and correctly implementing the 0/o similarity rule. This change follows the bug summary identifying the wrong variable in that condition.",
+  "fixed_code": "n = int(input())\ns = input()\nt = input()\n\np = 0\n\nfor i in range(n):\n    if s[i] == \"1\" or s[i] == \"l\":\n        if t[i] == \"1\" or t[i] == \"l\":\n            p += 1\n        \n    elif s[i] == \"0\" or s[i] == \"o\":\n        if t[i] == \"0\" or t[i] == \"o\":\n            p += 1\n            \n    elif s[i] == t[i]:\n        p += 1\n    \nif p == n:\n    print(\"Yes\")\n    \nelse:\n    print(\"No\")\n"
+}

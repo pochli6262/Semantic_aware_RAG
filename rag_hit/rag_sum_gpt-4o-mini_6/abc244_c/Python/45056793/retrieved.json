@@ -1,0 +1,33 @@
+{
+  "task": "abc244_c/Python/45056793",
+  "query_summary": "The program incorrectly initializes the list of available integers using the range that does not account for the total number of integers, leading to potential out-of-range errors when trying to declare a number.",
+  "oracle_summary": "The list ans is initialized with numbers 1..n+1 instead of 1..2n+1, making it too small and missing half the required values.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks for missing integers in the input list A only up to N instead of the full range of possible values (0 to 2000), potentially missing valid output values.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = list(map(int,input().split()))\n \n-for i in range(N):\n+for i in range(2001):\n     if i not in A:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The code incorrectly checks for the first missing integer in the range 0 to 2000 instead of 0 to 2001.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n A = list(map(int, input().split()))\n \n-for i in range(2000):\n+for i in range(2001):\n     if i not in A:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly generates a range of numbers by starting from `i*n` instead of `i*n + 1`, resulting in an off-by-one error in the printed output.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n x[0::2]=k[n//2:]\n x[1::2]=k[:n//2]\n for i in x:\n-    print(*list(range(i*n,(i+1)*n)))\n+    print(*list(range(i*n+1,(i+1)*n+1)))"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the loop to `range(919)` instead of `range(920)`, causing it to miss checking the number 919.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n = int(input())\n \n-for i in range(919):\n+for i in range(920):\n   if i <= 99:\n     continue\n   elif i < n:"
+    },
+    {
+      "summary": "The buggy code has an incorrect upper limit of the range in the for loop, which is 917 instead of the correct value 920, causing it to miss valid numbers that meet the condition.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N = int(input())\n \n-for i in range(N,917):\n+for i in range(N,920):\n     s = str(i)\n     if int(s[0]) * int(s[1]) == int(s[2]):\n         print(i)"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3
+  ],
+  "useful_diffs_count": 3
+}

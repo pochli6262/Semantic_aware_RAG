@@ -1,0 +1,4 @@
+{
+  "explanation": "The line `q.append(0)` in the `dfs` function incorrectly starts the BFS from node 0 instead of the specified start node `s`. I fixed it by changing that line to `q.append(s)` so that the traversal starts from the correct node.",
+  "fixed_code": "from collections import deque\nn1, n2, m = map(int,input().split())\n\n g1, g2 = [[] for _ in range(n1)],[[] for _ in range(n2)]\n g = [[] for _ in range(n1+n2)]\n\nfor _ in range(m):\n    a,b = [int(e) -1 for e in input().split()]\n    g[a].append(b)\n    g[b].append(a)\n\ndef dfs(s):\n    dd = [-1] * (n1+n2)\n    dd[s] = 0\n    q = deque()\n    q.append(s)  # Corrected line\n    while q:\n        now = q.popleft()\n        for b in g[now]:\n            if dd[b] == -1:\n                dd[b] = dd[now]+1\n                q.append(b)\n    return dd\n\nlen1 = max(dfs(0))\nlen2 = max(dfs(n1+n2-1))\nprint(len1+len2+1)"
+}

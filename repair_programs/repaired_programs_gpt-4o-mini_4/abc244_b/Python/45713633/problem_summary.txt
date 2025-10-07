@@ -1,0 +1,1 @@
+The likely bug is that the rotation method incorrectly updates the direction, leading to incorrect movement calculations.

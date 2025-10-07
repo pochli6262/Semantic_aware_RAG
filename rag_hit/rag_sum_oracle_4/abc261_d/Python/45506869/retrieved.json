@@ -1,0 +1,32 @@
+{
+  "task": "abc261_d/Python/45506869",
+  "query_summary": "The DP table is initialized with -MOD (a finite large negative) instead of -INF, so unreachable states can contribute to transitions and skew the maximum result.",
+  "oracle_summary": "The DP table is initialized with -MOD (a finite large negative) instead of -INF, so unreachable states can contribute to transitions and skew the maximum result.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly accumulates values in the `dp` list using addition instead of maximizing the result, leading to incorrect calculations in the dynamic programming solution for the problem.",
+      "diff": "--- \n+++ \n@@ -82,7 +82,7 @@\n     for i in range(1, N+1):\n         for a in A:\n             if i - a >= 0:\n-                dp[i] = a + (i - a) - dp[i-a]\n+                dp[i] = max(dp[i], a + (i - a) - dp[i-a])\n \n     # print(dp)\n     print(dp[-1])"
+    },
+    {
+      "summary": "The buggy code incorrectly handles the case when `mod <= B` by not ensuring the printed result is non-negative, leading to potential negative output.",
+      "diff": "--- \n+++ \n@@ -41,5 +41,5 @@\n     q-=1\n     b = q * B\n     if(mod > B):print(b + B)\n-    else:print(b+mod)\n+    else:print(max(0,b+mod))\n "
+    },
+    {
+      "summary": "The buggy code incorrectly subtracts `a_mod*f` instead of `a_mod*e` when calculating the `judge` score, which affects the final outcome.",
+      "diff": "--- \n+++ \n@@ -51,7 +51,7 @@\n if a_mod >= d:\n     judge -= d*e\n else:\n-    judge -= a_mod*f\n+    judge -= a_mod*e\n \n if judge > 0:\n     print('Takahashi')"
+    },
+    {
+      "summary": "The buggy code incorrectly iterates over the input string `S` using the range `len(S)-1`, which leads to skipping the last character in the output.",
+      "diff": "--- \n+++ \n@@ -707,7 +707,7 @@\n N,K = MI()\n S = input()\n ans = []\n-for i in range(len(S)):\n+for i in range(len(S)-1):\n     if S[i] == \"o\" and ans.count(\"o\") <= K-1:\n         ans.append(\"o\")\n     else:"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the list `C` with the expression `C = [X // S] * N`, leading to incorrect results in subsequent calculations because it does not account for the required multiplication with `N`.",
+      "diff": "--- \n+++ \n@@ -345,7 +345,7 @@\n W = list(map(int, input().split()))\n dp = [[-1] * N for _ in range(60)]  # dp[i][j]: j番目の要素から2^i回遷移したときの到達地点\n S = sum(W)\n-C = [X // S] * N\n+C = [(X // S) * N] * N\n nokori = X - S * (X // S)\n acc = [0]\n for w in W:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    9
+  ],
+  "useful_diffs_count": 2
+}

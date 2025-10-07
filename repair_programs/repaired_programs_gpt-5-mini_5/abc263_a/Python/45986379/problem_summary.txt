@@ -1,0 +1,1 @@
+The condition K[2] != K[3] only detects the case where the three-of-a-kind appear in the first three sorted positions, so it falsely rejects full houses where the triple is in the last three positions (e.g. a a b b b).

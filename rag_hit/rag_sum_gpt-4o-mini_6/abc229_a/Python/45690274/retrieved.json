@@ -1,0 +1,31 @@
+{
+  "task": "abc229_a/Python/45690274",
+  "query_summary": "The bug likely stems from incorrectly interpreting the condition for determining connectivity between black squares, which could lead to incorrect outputs when there are exactly two black squares that are not adjacent.",
+  "oracle_summary": "The buggy code lacks the else branch after the diagonal-check, so when black < 3 and that condition is false it produces no output instead of printing \"Yes.\"",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly determines the color of the square based on minimum distances to the edges instead of properly calculating the distance from the center square of an 8x8 chessboard.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n r, c = map(int, input().split())\n \n-if min(r,c, 15-r, 15-c) % 2 == 1:\n+if max(abs(r-8), abs(c-8)) % 2 == 1:\n     print('black')\n else:\n     print('white')"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes the second loop by using the wrong index range, which leads to out-of-bounds access of the string `S` and improper handling of the sliding window logic for counting \"w\" and \"b\".",
+      "diff": "--- \n+++ \n@@ -21,6 +21,6 @@\n         exit()\n     S_dict[S[wb]] -= 1\n     S_dict[S[wb + white + black]] += 1\n-    print(S_dict)\n+    #print(S_dict)\n \n print(\"No\")"
+    },
+    {
+      "summary": "The buggy code incorrectly returns 'B' when there is exactly one occurrence of 'AB', rather than checking the total count of 'A' and 'BA' to determine the correct return value.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n     if S[-1] == 'A':\n         return 'A'\n     else:\n-        if S.count('AB') == 1:\n+        if S.count('A') == 0 or S.count('BA') == 0:\n             return 'B'\n         else:\n             return 'A'"
+    },
+    {
+      "summary": "The buggy code incorrectly uses the condition `s[j]!=\"?\"!=t[j]` instead of `s[j]!=\"?\" and s[j]!=t[j]` when comparing characters, which leads to incorrect results when checking for mismatches.",
+      "diff": "--- \n+++ \n@@ -8,7 +8,7 @@\n         ng.add(i)\n print(\"Yes\" if len(ng)==0 else \"No\")\n for j in range(n):\n-    if t[j]!=\"?\" and s[j]!=t[j]:\n+    if s[j]!=t[j] and s[j]!=\"?\"!=t[j]:\n         ng.add(j)\n     else:\n         ng.discard(j)"
+    },
+    {
+      "summary": "The problem in the buggy code is that the expression `B1+B2 % 2` does not correctly group the addition and modulus operations due to operator precedence, leading to an incorrect evaluation of the condition.",
+      "diff": "--- \n+++ \n@@ -1,12 +1,11 @@\n S = input()\n-\n K = S.find('K')\n B1 = S.find('B')\n B2 = S.rfind('B')\n R1 = S.find('R')\n R2 = S.rfind('R')\n \n-if B1+B2 % 2 != 0 and R1 < K < R2:\n+if ((B1+B2) % 2) != 0 and (R1 < K < R2):\n     print('Yes')\n else:\n     print('No')"
+    }
+  ],
+  "useful_diffs_indices": [
+    4
+  ],
+  "useful_diffs_count": 1
+}

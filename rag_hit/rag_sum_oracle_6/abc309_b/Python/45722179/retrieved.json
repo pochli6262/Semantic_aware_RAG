@@ -1,0 +1,32 @@
+{
+  "task": "abc309_b/Python/45722179",
+  "query_summary": "The bug is caused by an unintended duplicate loop that appends the top row twice to rotate_list, corrupting the rotation order and misaligning the reassignment.",
+  "oracle_summary": "The bug is caused by an unintended duplicate loop that appends the top row twice to rotate_list, corrupting the rotation order and misaligning the reassignment.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly records the values of the indices that are being swapped instead of recording their original 1-based values, resulting in incorrect output.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     else:\n         j = A[i] - 1\n         num += 1\n-        ans.append([A[j], A[i]])\n+        ans.append([i + 1, j + 1])\n         A[i], A[j] = A[j], A[i]\n \n print(num)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly skips the even-indexed rows, preventing them from being processed and swapped, leading to an incomplete transformation of the matrix.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n a=[[i*n+j+1 for j in range(n)]for i in range(n)]\n # for i in a:print(i)\n for i in range(n):\n-    if i%2==0:continue\n+    # if i%2==0:continue\n     for j in range(n//2):\n         a[i][2*j],a[i][2*j+1]=a[i][2*j+1],a[i][2*j]\n for i in a:print(*i)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it accumulates results in the `ans` list across different iterations of the outer loop instead of resetting it for each row, leading to incorrect output.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = [list(map(int, input().split())) for _ in range(N)]\n-ans = []\n for i in range(N):\n+    ans = []\n     for j in range(N):\n         if A[i][j] == 1:\n             ans.append(j+1)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly attempts to access the output from the original 'list' variable instead of the sorted 'name' variable, leading to an incorrect result.",
+      "diff": "--- \n+++ \n@@ -10,4 +10,4 @@\n     name.append(list[j])\n name.sort()\n m = T % N\n-print(list[m][0])\n+print(name[m][0])"
+    },
+    {
+      "summary": "The problem in the buggy code is that the print statement inside the loop is incorrectly displaying the intermediate state of the list `A`, which may clutter the output, while the intention seems to be to only print the final value of `A[N-1]`.",
+      "diff": "--- \n+++ \n@@ -19,5 +19,5 @@\n     temp = A[i]//s\n     A[i] -= temp * s\n     A[i+1] += temp * t\n-    print(A)\n+    # print(A)\n print(A[N-1])"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3
+  ],
+  "useful_diffs_count": 2
+}

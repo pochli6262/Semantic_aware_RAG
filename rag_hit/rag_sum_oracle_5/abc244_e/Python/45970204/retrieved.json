@@ -1,0 +1,33 @@
+{
+  "task": "abc244_e/Python/45970204",
+  "query_summary": "It fails to apply the final modulus, printing dp[k][t-1][0] without taking % 998244353, so the output may be unmodded and incorrect.",
+  "oracle_summary": "It fails to apply the final modulus, printing dp[k][t-1][0] without taking % 998244353, so the output may be unmodded and incorrect.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it fails to prevent exceeding the bounds of the array `dp` when filling values for cases where `s[i]` is 1, potentially leading to an IndexError or incorrect results, as it does not correctly manage the upper limit for `j`.",
+      "diff": "--- \n+++ \n@@ -37,6 +37,8 @@\n         dp[i+1][n] %= MOD\n     else:\n         for j in range(n):\n+            if j == (m+1):\n+                break\n             dp[i+1][j+1] += dp[i][j]\n     \n     # print(dp)"
+    },
+    {
+      "summary": "The buggy code incorrectly initializes and manipulates the `dp2` array, resulting in incorrect computations for cases with uppercase letters or question marks.",
+      "diff": "--- \n+++ \n@@ -34,7 +34,7 @@\n       else:\n         dp[i+1][j+1]+=dp[i][j]*(25-j+1)*pow(26-cnt,-1,mod)%mod\n         dp2[i+1]+=dp[i][j]*(1-(25-j+1)*pow(26-cnt,-1,mod))%mod\n-    dp2[-1]+=dp[i][-1]\n+    dp2[i+1]+=dp[i][-1]\n     check[ord(s[i])-x]+=1\n     cnt+=1\n   else:"
+    },
+    {
+      "summary": "The buggy code fails to take the modulo operation after updating the `dp` array, which can lead to incorrect values due to potential overflow.",
+      "diff": "--- \n+++ \n@@ -8,8 +8,10 @@\n   if t == \"+\":\n     for j in reversed(range(k+1-x)):\n       dp[j+x] += dp[j]\n+      dp[j+x] %= mod\n   else:\n     for j in range(k+1-x):\n       dp[j+x] -= dp[j]\n+      dp[j+x] %= mod\n   print(dp[k])\n   # print(dp)"
+    },
+    {
+      "summary": "The buggy code fails to apply the modulus operation on the final result of the sum, potentially leading to incorrect output when the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -28,5 +28,5 @@\n   \n \n # print(dp)\n-print(sum(dp[n][:n]))\n+print(sum(dp[n][:n])%mod)\n "
+    },
+    {
+      "summary": "The buggy code does not handle the case when K equals 0 properly, which can lead to incorrect results in the dynamic programming calculation.",
+      "diff": "--- \n+++ \n@@ -12,6 +12,8 @@\n     for j in range(M):\n         dp[i+1][j] += s[max(j-K+1, 0)] - s[0]\n         dp[i+1][j] += s[M] - s[min(j+K, M)]\n+        if K == 0:\n+            dp[i+1][j] -= dp[i][j]\n         dp[i+1][j] %= mod\n \n print(sum(dp[N-1])%mod)"
+    }
+  ],
+  "useful_diffs_indices": [
+    3,
+    4,
+    6
+  ],
+  "useful_diffs_count": 3
+}

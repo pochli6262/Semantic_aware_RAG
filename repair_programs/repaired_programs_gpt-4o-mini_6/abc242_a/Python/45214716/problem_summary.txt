@@ -1,0 +1,1 @@
+The bug likely arises from an incorrect range calculation when selecting the C participants from the (A+1)-th to B-th ranks, as the program uses `(b-a+1)` instead of the actual number of participants in that range `(b-a)`.

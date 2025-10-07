@@ -1,0 +1,4 @@
+{
+  "explanation": "The formula for the middle case returned c/(b-a), which gives the fractional part but not the percentage expected by the problem. It should multiply by 100 to produce a percentage. I fixed the single incorrect line to: res = c * 100.0 / (b - a).",
+  "fixed_code": "#!/usr/bin/env python3\n\nimport sys\n\na, b, c, x = map(int, input().split())\n\nres = 0.0\nif x <= a:\n   res = 100.0\nelif x <= b:\n   res = c * 100.0 / (b - a)\n\nprint('%.9f' % (res))\n"
+}

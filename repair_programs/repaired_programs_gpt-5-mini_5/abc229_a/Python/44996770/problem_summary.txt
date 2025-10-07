@@ -1,0 +1,1 @@
+The connectivity check mistakenly uses s[1][1] without comparing it to '#' (i.e., "and s[1][1]" is used), so that term is always truthy and the diagonal-case condition evaluates incorrectly.

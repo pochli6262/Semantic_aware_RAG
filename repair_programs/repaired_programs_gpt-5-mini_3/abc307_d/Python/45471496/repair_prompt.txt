@@ -1,0 +1,265 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+from collections import deque
+N = int(input())
+S = input()
+
+L = deque()
+temp = []
+for s in S:
+    if s != "(" and s != ")":
+        temp.append(s)
+    elif s == "(":
+        if temp:
+            L.append("".join(temp))
+        temp.clear()
+        temp.append("(")
+    elif s == ")":
+        if temp:
+            L.append("".join(temp))
+            temp.clear()
+        if L and L[-1][0] == "(":
+            L.pop()
+        else:
+            L.append(")")
+
+if temp:
+    L.append("".join(temp))
+
+print("".join(L))
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+from collections import deque
+
+N, M = map(int, input().split())
+E = [[] for _ in range(N)]
+for _ in range(M):
+  u, v = map(int, input().split())
+  E[u - 1].append(v - 1)
+  E[v - 1].append(u - 1)
+
+S = tuple(map(int, input()))
+
+stack = deque([(0, None, True)])
+visited = [False] * N
+P = []
+while stack:
+  q, p, first = stack.pop()
+  if visited[q]:
+    if not first and P[-1] != q: P.append(q)
+    continue
+  visited[q] = True
+  P.append(q)
+
+  if first:
+    for e in E[q]:
+      if e == p: continue
+      stack.append((q, None, False))
+      stack.append((e, q, True))
+
+L = [None] * N
+for i, p in enumerate(P):
+  L[p] = i
+
+C = [0] * N
+ans = []
+for i, p in enumerate(P[1:], 1):
+  pprev = P[i - 1]
+
+  ans.append(p)
+  C[p] += 1
+  C[p] %= 2
+
+  if C[pprev] != S[pprev] and L[pprev] == i - 1:
+    ans.append(pprev)
+    C[pprev] += 1
+    C[pprev] %= 2
+
+    ans.append(p)
+    C[p] += 1
+    C[p] %= 2
+
+if C[0] != S[0]:
+  ans = ans[:-1]
+
+print(len(ans))
+print(' '.join(map(str, ans)))
+
+
+--- Correct Code ---
+from collections import deque
+
+N, M = map(int, input().split())
+E = [[] for _ in range(N)]
+for _ in range(M):
+  u, v = map(int, input().split())
+  E[u - 1].append(v - 1)
+  E[v - 1].append(u - 1)
+
+S = tuple(map(int, input()))
+
+stack = deque([(0, None, True)])
+visited = [False] * N
+P = []
+while stack:
+  q, p, first = stack.pop()
+  if visited[q]:
+    if not first and P[-1] != q: P.append(q)
+    continue
+  visited[q] = True
+  P.append(q)
+
+  if first:
+    for e in E[q]:
+      if e == p: continue
+      stack.append((q, None, False))
+      stack.append((e, q, True))
+
+L = [None] * N
+for i, p in enumerate(P):
+  L[p] = i
+
+C = [0] * N
+ans = []
+for i, p in enumerate(P[1:], 1):
+  pprev = P[i - 1]
+
+  ans.append(p)
+  C[p] += 1
+  C[p] %= 2
+
+  if C[pprev] != S[pprev] and L[pprev] == i - 1:
+    ans.append(pprev)
+    C[pprev] += 1
+    C[pprev] %= 2
+
+    ans.append(p)
+    C[p] += 1
+    C[p] %= 2
+
+if C[0] != S[0]:
+  ans = ans[:-1]
+
+print(len(ans))
+print(' '.join(map(str, [a + 1 for a in ans])))
+
+
+### Example 2
+--- Buggy Code ---
+from collections import deque
+
+N = int(input())
+s = list(input())
+index = {chr(ord('a') + x): deque() for x in range(26)}
+for i in range(N):
+    index[s[i]].append(i)
+
+l, r = 0, N
+while r - l > 1:
+    for x in range(ord(s[l]) - ord('a')):
+        c = chr(ord('a') + x)
+        while len(index[c]) > 0:
+            i = index[c].pop()
+            if l < i < r:
+                s[l], s[i] = s[i], s[l]
+                l, r = l+1, i
+                break
+            elif i < l:
+                index[c] = []
+        else:
+            continue
+        break
+    l += 1
+print(''.join(s))
+
+--- Correct Code ---
+from collections import deque
+
+N = int(input())
+s = list(input())
+index = {chr(ord('a') + x): deque() for x in range(26)}
+for i in range(N):
+    index[s[i]].append(i)
+
+l, r = 0, N
+while r - l > 1:
+    for x in range(ord(s[l]) - ord('a')):
+        c = chr(ord('a') + x)
+        while len(index[c]) > 0:
+            i = index[c].pop()
+            if l < i < r:
+                s[l], s[i] = s[i], s[l]
+                r = i
+                break
+            elif i < l:
+                index[c] = []
+        else:
+            continue
+        break
+    l += 1
+print(''.join(s))
+
+
+### Example 3
+--- Buggy Code ---
+from collections import deque
+
+n = int(input())
+input_list = [int(x) for x in input().split(' ')]
+
+
+tfe = deque()
+
+temp = None
+for x in input_list:
+    temp = x
+    if tfe and tfe[-1] == temp:
+        while tfe and tfe[-1] == temp:
+            temp += 1
+            tfe.pop()
+    else:
+        tfe.append(temp)
+    
+        
+
+--- Correct Code ---
+from collections import deque
+
+n = int(input())
+input_list = [int(x) for x in input().split(' ')]
+
+
+tfe = deque()
+
+temp = None
+for x in input_list:
+    temp = x
+    if tfe and tfe[-1] == temp:
+        while tfe and tfe[-1] == temp:
+            temp += 1
+            tfe.pop()
+        tfe.append(temp)
+    else:
+        tfe.append(temp)
+print(len(tfe))
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

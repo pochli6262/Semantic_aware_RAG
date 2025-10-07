@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly checks connectivity between black squares by only comparing corresponding columns instead of verifying if any two black squares can actually connect through adjacent positions.

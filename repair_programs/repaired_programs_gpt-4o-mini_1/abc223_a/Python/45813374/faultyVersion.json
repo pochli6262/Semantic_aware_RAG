@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the comparison being made in the if statement. To check if the value of n is 100 or greater, the condition should check for 'n < 100' for 'No' and 'n >= 100' for 'Yes'. This was fixed by changing the 'if n<100:' line to 'if n<=100:'.",
+  "fixed_code": "n=int(input())\n\nif n<=100:\n    print(\"No\")\nelse:\n    print(\"Yes\")"
+}

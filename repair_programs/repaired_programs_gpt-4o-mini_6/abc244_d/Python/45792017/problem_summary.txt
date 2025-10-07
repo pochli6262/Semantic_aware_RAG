@@ -1,0 +1,1 @@
+The likely bug is that the program incorrectly checks for the possibility of achieving the target hat configuration by only verifying if the target string is a substring of the concatenated source string, instead of checking if the specific hat exchange operations can lead to the desired arrangement.

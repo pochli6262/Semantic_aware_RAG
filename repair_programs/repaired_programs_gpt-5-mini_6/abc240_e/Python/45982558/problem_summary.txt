@@ -1,0 +1,1 @@
+The code's leaf check uses "len(graph[v]) == 1 and visited[v]" which misclassifies leaves (notably failing for a single-node tree and wrongly treating a degree-1 root), so leaf nodes aren't detected correctly.

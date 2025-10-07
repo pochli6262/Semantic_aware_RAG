@@ -1,0 +1,29 @@
+{
+  "task": "abc263_a/Python/45002191",
+  "query_summary": "It wrongly prints Yes for any input with exactly two distinct numbers, even when neither repeats, instead of requiring that at least one of those numbers appears at least twice.",
+  "oracle_summary": "It wrongly prints Yes for any input with exactly two distinct numbers, even when neither repeats, instead of requiring that at least one of those numbers appears at least twice.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the conditions for printing \"Yes\", as it only checks for specific differences in coordinates, missing additional valid cases that should be accounted for.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n x1,y1,x2,y2 = map(int,input().split())\n-if (abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3) :\n+if ((abs(x1-x2)==1 or abs(x1-x2)==3) and (abs(y1-y2)==1 or abs(y1-y2)==3)) or ((abs(x1-x2)==2 and abs(y1-y2)==4) or (abs(x1-x2)==4 and abs(y1-y2)==2)) or  ((abs(x1-x2)==0 and (abs(y1-y2)==2 or abs(y1-y2)==4)) or  ((abs(x1-x2)==2 or abs(x1-x2)==4) and abs(y1-y2)==0)):\n   print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not handle the case where the input string has a length of 2 but is not 'oo', incorrectly printing 'Yes' without properly differentiating that case from the valid inputs.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n if (len(s) == 2 and s == 'oo'):\n     print('No')\n     exit()\n-else:\n+elif(len(s) == 2):\n     print('Yes')\n     exit()\n if (len(s) == 1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it prints \"YES\" instead of the correctly capitalized \"Yes\" in the output.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n n, x, y, z = map(int, input().split())\n \n if x<z<y or y<z<x:\n-  print(\"YES\")\n+  print(\"Yes\")\n else:\n   print(\"No\")"
+    },
+    {
+      "summary": "The buggy code fails to account for the specific case where the input string has exactly two characters that are different, which should also result in \"No\".",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n \n if (s[0]=='A') and (s[-1]=='B'):\n     print('No')\n+elif (len(s)==2) and (s[0]!=s[-1]):\n+    print('No')\n else:\n     print('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the conditions for the differences between `x` and `y` without allowing for non-negative results, leading to incorrect outputs for certain input values.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x,y = map(int,input().split())\n \n-if y-x == 2 or x-y == 3:\n+if 0 <= y-x <= 2 or 0 <= x-y <= 3:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [],
+  "useful_diffs_count": 0
+}

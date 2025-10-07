@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks if there are exactly two unique numbers and whether the third and fourth cards are different, which does not accurately check for three of one kind and two of another. The fix involves changing this check to count the occurrences of each number and verify that one number appears three times and another appears twice. This approach was inspired by the importance of counting occurrences from the patterns in Diff 1 and other related diffs.",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif (K.count(K[0]) == 3 and K.count(K[1]) == 2) or (K.count(K[0]) == 2 and K.count(K[1]) == 3):\n    print('Yes')\nelse:\n    print('No')"
+}

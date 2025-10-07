@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code sorted all N nicknames and then took the first K, which can select the wrong participants. We must first take the top K participants (the first K inputs) and then sort only those. I changed the single line that previously did c.sort() to first slice c to the first b elements and then sort that slice (combined into one line). This fixes the selection order without altering other code. (No diffs applied directly; the change follows the pattern of selecting/slicing before sorting.)",
+  "fixed_code": "a,b=map(int,input().split())\nc=[]\nfor i in range(a):\n    c.append(str(input()))\nc=c[0:b]; c.sort()\nfor i in c:\n  print(i)\n"
+}

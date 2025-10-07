@@ -1,0 +1,33 @@
+{
+  "task": "abc308_a/Python/45959405",
+  "query_summary": "The program incorrectly allows an input sequence that fails to satisfy the monotonicity condition by not breaking the loop early when it detects an invalid condition.",
+  "oracle_summary": "The code omitted the required boundary check on the first and last elements (that arr[0] must be ≥100 and arr[-1] must be ≤675), so invalid inputs could still pass.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks for strictly less-than (`<`) instead of allowing for equal values (`<=`), which fails to identify non-decreasing sequences.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n n = input()\n \n for i in range(len(n)-1):\n-    if int(n[i]) < int(n[i+1]):\n+    if int(n[i]) <= int(n[i+1]):\n         print(\"No\")\n         break\n     "
+    },
+    {
+      "summary": "The problem in the buggy code is that it fails to check an additional condition for the sequence of numbers in `b0` when they are both multiples of 7, which is necessary to ensure the correctness of the output.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n ans = 'Yes'\n \n for i in range(m-1):\n-  if b0[i+1] - b0[i] != 1:\n+  if b0[i+1] - b0[i] != 1 or (b0[i]%7 == 0 and b0[i+1]%7 == 1):\n     ans = 'No'\n \n for i in range(n-1):"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The problem in the buggy code is that it does not adjust the matrix input values by subtracting 1, which is necessary for the logic that determines the correct sequence and modular conditions.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,5 @@\n N, M = map(int, input().split())\n-B = [[int(i) for i in input().split()] for _ in range(N)]\n+B = [[int(i) - 1 for i in input().split()] for _ in range(N)]\n \n flg = True\n for i in range(N):"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the elements in the first row of the matrix by using a modulo operation that allows 0, instead of correctly identifying the elements that should not be divisible by 7.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n for i in range(m-1):\n     if b[0][i]+1 != b[0][i+1]:\n         ans = False\n-    if b[0][i]%7+1 != b[0][i+1]%7:\n+    if b[0][i]%7 == 0:\n         ans = False\n     \n for i in range(n-1):"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

@@ -1,0 +1,1 @@
+The bug likely occurs because the program incorrectly computes the total amount by using the smallest dish price added to the discount price instead of correctly summing the minimum dish price with the drink price when applying the coupon.

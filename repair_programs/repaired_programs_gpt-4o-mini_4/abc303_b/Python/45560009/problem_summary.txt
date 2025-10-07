@@ -1,0 +1,1 @@
+The program likely miscalculates the number of pairs that may be in a bad mood by incorrectly updating the `hunaka` matrix instead of tracking which pairs of people have stood next to each other.

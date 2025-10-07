@@ -1,0 +1,4 @@
+{
+  "explanation": "The original condition checked len(set(K)) == 2 and K[2] != K[3], which is wrong: K[2] != K[3] requires the third and fourth elements to be different. The intent is to check whether the four numbers form two identical pairs (e.g. a,a,b,b). Checking only len(set(K)) == 2 is insufficient (it allows 1,2,2,2). I fixed the if condition to ensure the first two are equal and the last two are equal in addition to having exactly two distinct values.",
+  "fixed_code": "K = sorted(list(map(int, input().split())))\n\nif len(set(K)) == 2 and K[0] == K[1] and K[2] == K[3]:\n    print('Yes')\nelse:\n    print('No')"
+}

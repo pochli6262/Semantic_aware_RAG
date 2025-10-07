@@ -1,0 +1,35 @@
+{
+  "task": "abc310_f/Python/50729164",
+  "query_summary": "The program likely contains a bug in its handling of the modular arithmetic, particularly in the way it computes and stores values, which could lead to incorrect results when summing probabilities.",
+  "oracle_summary": "The bug was that the transition for choosing values >10 was omitted — the dp[i+1][bit] += dp[i][bit] * max(0, a[i]-10) * inv term was missing, so contributions from those choices were never added.",
+  "retrieved": [
+    {
+      "summary": "The buggy code fails to apply the modulus operation on the final result of the sum, potentially leading to incorrect output when the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -28,5 +28,5 @@\n   \n \n # print(dp)\n-print(sum(dp[n][:n]))\n+print(sum(dp[n][:n])%mod)\n "
+    },
+    {
+      "summary": "The buggy code fails to take the modulo operation on the final result of the sum of the `dp` array, potentially leading to incorrect outputs when the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -37,4 +37,4 @@\n     # print(newdp)\n     dp = newdp\n \n-print(sum(dp))\n+print(sum(dp) % MOD)"
+    },
+    {
+      "summary": "The buggy code fails to apply the modulo operation to the final sum of `dp[N-1]`, which can lead to incorrect results if the sum exceeds the modulus value.",
+      "diff": "--- \n+++ \n@@ -27,4 +27,4 @@\n     \n     old_a, old_b = A, B\n \n-print(sum(dp[N-1]))\n+print(sum(dp[N-1]) % MOD)"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the last element of the `dp_` array by multiplying `dp[m+1]` with `m` instead of `m+1`, leading to an incorrect final calculation.",
+      "diff": "--- \n+++ \n@@ -37,7 +37,7 @@\n         dp_[i+1] += dp[i]*(m-i)\n         dp_[i+1] %= mod\n         # print(m-i)\n-      dp_[m+1] += dp[m+1]*m\n+      dp_[m+1] += dp[m+1]*(m+1)\n       dp_[m+1] %= mod\n     dp = dp_\n     # print(dp)"
+    },
+    {
+      "summary": "The buggy code incorrectly limits the range in the second loop to `-10` to `9`, which should be `-10` to `10` to properly include all possible sums.",
+      "diff": "--- \n+++ \n@@ -13,7 +13,7 @@\n     if -1000 <= ns <= 1000:\n       ndp[ns] += dp[s]\n       ndp[ns] %= MOD\n-  for s in range(-10, 10):\n+  for s in range(-10, 11):\n     if s == 0: continue\n     ns = s + a\n     if -1000 <= ns <= 1000:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 5
+}

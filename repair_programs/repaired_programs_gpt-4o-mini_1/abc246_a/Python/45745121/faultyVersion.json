@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the line where 'xy3' is assigned the input from the user. It should be taking the second pair of inputs again from the user, so the correct line should not reassign 'array' after it was assigned to 'xy1' first. I corrected it by ensuring 'xy3' is correctly pointed to the input from the user.",
+  "fixed_code": "array = list(map(int,input().split()))\nxy1 = array\narray = list(map(int,input().split()))\nxy2 = array\nxy3 = list(map(int,input().split()))\nx = []\nfor i in range(2):\n  if xy1[i] == xy2[i]:\n    x.append(xy3[i])\n  elif xy1[i] == xy3[i]:\n    x.append(xy2[i])\n  else:\n    x.append(xy1[i])\nprint(x)"
+}

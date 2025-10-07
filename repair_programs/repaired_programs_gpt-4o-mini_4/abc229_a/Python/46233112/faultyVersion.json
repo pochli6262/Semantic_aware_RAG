@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line checks if the first columns or the second columns of both strings are equal, which does not ensure that all black squares can be connected through adjacent squares. The fix involves checking for possible connections between all black squares based on their adjacency. The correct checks are to determine if the two vertically adjacent squares or the two horizontally adjacent ones are both black. This conceptual change was inspired by the idea of ensuring connectivity through adjacency as described in the problem summary.",
+  "fixed_code": "S1 = input()\nS2 = input()\nif (S1[0] == '#' and S1[1] == '#') or (S2[0] == '#' and S2[1] == '#') or (S1[0] == '#' and S2[0] == '#') or (S1[1] == '#' and S2[1] == '#'):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

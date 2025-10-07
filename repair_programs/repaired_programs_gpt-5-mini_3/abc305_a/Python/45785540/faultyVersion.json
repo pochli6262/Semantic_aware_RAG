@@ -1,0 +1,4 @@
+{
+  "explanation": "The code incorrectly prints 0 when n is already a multiple of 5. The intended behavior is to return the number itself if it's already divisible by 5. I changed the line that printed 0 to print n so multiples of 5 are returned unchanged.",
+  "fixed_code": "n = int(input())\nif n%5 ==0:\n  print(n)\nelif n % 5 >=3:\n  print(n+5-n%5)\nelse:\n  print(n-n%5)"
+}

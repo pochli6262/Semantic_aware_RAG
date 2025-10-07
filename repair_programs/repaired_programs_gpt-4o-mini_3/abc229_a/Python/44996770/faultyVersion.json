@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the condition that checks if the second cell has a '#' character. It should check if one of the pairs of conditions for '#' being at (s[0][1] and s[1][0]) is true. The line was missing an equality check for s[1][1]. I changed the condition to check that properly.",
+  "fixed_code": "S1 = input()\nS2 = input()\nk = []\ns = []\nk.append(S1[0])\nk.append(S1[1])\ns.append(k)\nk = []\nk.append(S2[0])\nk.append(S2[1])\ns.append(k)\no = 0\nif s[0][0] == \"#\":\n  o +=1\nif s[0][1] == \"#\":\n  o += 1\nif s[1][0] == \"#\":\n  o += 1\nif s[1][1] == \"#\":\n  o += 1\n  \n# answer\nif o == 1 or o >= 3:\n  print(\"Yes\")\nelse:\n  if (s[0][0] == \"#\" and s[1][1] == \"#\") or (s[0][1] == \"#\" and s[1][0] == \"#\"):\n    print(\"No\")\n  else:\n    print(\"Yes\")"
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc300_b/Python/45110485",
+  "query_summary": "The bug likely lies in the way the shifted grid `mp2` is being built, as it is overwriting the contents of `mp1` during the vertical shift instead of preserving the correct mapping of symbols from `tableA`.",
+  "oracle_summary": "The buggy code skips the (dy, dx) = (0, 0) case, so it never checks whether tableA already equals tableB without any shift.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that the line `after.append(after_row)` is incorrectly indented, causing it to be executed in the wrong loop and resulting in a malformed `after` list.",
+      "diff": "--- \n+++ \n@@ -17,7 +17,7 @@\n                 for shift_c in range(w1):\n                     if bit_c>>shift_c &1==0:\n                         after_row.append(a[shift_r][shift_c])\n-                    after.append(after_row)\n+                after.append(after_row)\n         if after==b:\n             print(\"Yes\")\n             exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses an asterisk (*) to unpack and print the rows of the grid, which results in spaces between characters, instead of using `''.join(i)` to print them without spaces.",
+      "diff": "--- \n+++ \n@@ -25,4 +25,4 @@\n   \n \n for i in Z:\n-  print(*i)\n+  print(''.join(i))"
+    },
+    {
+      "summary": "The buggy code incorrectly uses a condition `if rowsum[r] >= 0 or colsum[c] >= rowsum[r]:` which can lead to incorrect calculations during the adjustments of the matrix, instead of the intended condition `if rowsum[r] > 0 or colsum[c] >= rowsum[r]:` found in the correct code.",
+      "diff": "--- \n+++ \n@@ -51,7 +51,7 @@\n c = W-1\n \n while r >= 0 and c >= 0 and colsum[c] < 0:\n-    if rowsum[r] >= 0 or colsum[c] >= rowsum[r]:\n+    if rowsum[r] > 0 or colsum[c] >= rowsum[r]:\n         for i in range(r):\n             x = B[i][c]\n             if x != 0:\n@@ -97,7 +97,6 @@\n         rowsum[r] = 0\n         r -= 1\n \n-\n for i in range(H):\n     for j in range(W):\n         A[rowidx[i]][colidx[j]] = B[i][j]"
+    },
+    {
+      "summary": "The buggy code incorrectly updates the variable `g` in the loop by subtracting values rather than using a fixed value of 1 when computing changes between consecutive `x` coordinates, which leads to incorrect game outcomes.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n     px,py = xy[i-1]\n     if y != py:\n       continue\n-    g ^= x-px-2\n+    g ^= 1\n \n if g:\n   print(\"Takahashi\")"
+    },
+    {
+      "summary": "The bug in the code is that it incorrectly calculates the value of `sh` when adjusting for row-based transformations, leading to improper handling of the row indexing.",
+      "diff": "--- \n+++ \n@@ -19,7 +19,7 @@\n   if sh<=a:\n     sh=a-sh\n   else:\n-    sh=w-(sh-a)\n+    sh=h-(sh-a)\n   if rw<=b:\n     rw=b-rw\n   else:\n@@ -35,6 +35,7 @@\n x=sh-rh\n y=sw-rw\n \n+\n for i in range(h):\n   ansh[rh]=i\n   rh+=x\n@@ -44,14 +45,13 @@\n   answ[rw]=i\n   rw+=y\n   rw%=w\n-\n+  \n   \n ans=[[0]*w for _ in range(h)]\n \n for i in range(h):\n   for j in range(w):\n     ans[i][j]=c[ansh[i]][answ[j]]\n-\n-  \n+    \n for i in ans:\n   print(''.join(i))"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    10
+  ],
+  "useful_diffs_count": 2
+}

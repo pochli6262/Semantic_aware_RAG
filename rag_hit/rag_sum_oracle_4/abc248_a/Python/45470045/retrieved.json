@@ -1,0 +1,32 @@
+{
+  "task": "abc248_a/Python/45470045",
+  "query_summary": "The loop starts at 1 instead of 0, so it never checks for a missing digit 0 and fails when 0 is the smallest absent digit.",
+  "oracle_summary": "The loop starts at 1 instead of 0, so it never checks for a missing digit 0 and fails when 0 is the smallest absent digit.",
+  "retrieved": [
+    {
+      "summary": "The code incorrectly checks for the first missing integer in the range 0 to 2000 instead of 0 to 2001.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n A = list(map(int, input().split()))\n \n-for i in range(2000):\n+for i in range(2001):\n     if i not in A:\n         print(i)\n         break"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints `0` instead of `1` when the first character in the string appears only once.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n s= input()\n \n if s.count(s[0])==1:\n-        print(0)\n+        print(1)\n else:\n     for i in range(1,len(s)):\n         if s[0] != s[i]:"
+    },
+    {
+      "summary": "The buggy code incorrectly prints `1` when the two input strings are identical instead of printing the length of the second string `t`.",
+      "diff": "--- \n+++ \n@@ -5,4 +5,4 @@\n         print(i + 1)\n         exit()\n \n-print(1)\n+print(len(t))"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for numbers up to 1999 instead of 2000, causing it to potentially miss the case where 2000 is missing from the set.",
+      "diff": "--- \n+++ \n@@ -1,7 +1,7 @@\n N = int(input())\n A = set(map(int, input().split()))\n \n-for i in range(2000):\n+for i in range(2001):\n   if i not in A:\n     print(i)\n     break"
+    },
+    {
+      "summary": "The problem in the buggy code is that it doesn't account for the case where the two input strings may differ in length, leading to an index out of range error when comparing characters beyond the length of the shorter string.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-s, t = input(), input()\n+s, t = input() + \"0\", input()\n \n for i in range(len(s)):\n     if s[i] != t[i]:"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    4
+  ],
+  "useful_diffs_count": 2
+}

@@ -1,0 +1,32 @@
+{
+  "task": "abc242_a/Python/45214716",
+  "query_summary": "In the middle case (a < x ≤ b), the code uses an off-by-one denominator c/(b−a+1) instead of the correct c/(b−a).",
+  "oracle_summary": "In the middle case (a < x ≤ b), the code uses an off-by-one denominator c/(b−a+1) instead of the correct c/(b−a).",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if `b <= x` instead of the correct condition `b < x` to determine the output.",
+      "diff": "--- \n+++ \n@@ -21,7 +21,7 @@\n for i in range(n):\n \tb = min(b,d-c[i][0])\n \td = max(d,c[i][1])\n-if b<=x:\n+if b<x:\n \tprint(0)\n else:\n \tprint(b)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for equal remainders, using modulo 6 instead of verifying if the sum is divisible by 3 and if all values are even or odd.",
+      "diff": "--- \n+++ \n@@ -7,7 +7,7 @@\n     c = min(x1,x2,x3)\n     b = x1+x2+x3-a-c\n \n-    if not(a % 6 == b % 6 == c % 6):\n+    if not( (a+b+c)%3==0 and a%2==b%2==c%2):\n         print(-1)\n         continue\n "
+    },
+    {
+      "summary": "The buggy code fails to handle the case where `a` is equal to `b`, resulting in a missing output of `1` for that scenario.",
+      "diff": "--- \n+++ \n@@ -6,5 +6,7 @@\n \n if(a-b>0):\n     print((a-b)//c+1)\n+elif(a==b):\n+    print(1)\n else:\n     print(0)"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for a valid solution by using `(c-a*y1//x1)%b` instead of verifying the congruence condition with `y1 % x1`.",
+      "diff": "--- \n+++ \n@@ -16,7 +16,7 @@\n         y1,y2=y2,y1\n     \n     while x2:x1,y1,x2,y2=x2,y2,x1%x2,(y1-y2*(x1//x2))%b\n-    if (c-a*y1//x1)%b:return (0,0,0)\n+    if y1%x1:return (0,0,0)\n     return (1,y1//x1,(c-a*y1//x1)//b)\n     \n x,y=map(int,input().split())"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for zero values using `if x==0 or y==0`, while the correct code checks for negative values with `if x<=0 or y<=0`, allowing for proper handling of inputs that are zero or negative.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x, y, a, b, c = map(int, input().split())\n def solve_two(x, y, a, b):\n-    if x==0 or y==0:\n+    if x<=0 or y<=0:\n         return False\n     res = ((a+x-1)//x+(b+x-1)//x <= y) or ((a+y-1)//y+(b+y-1)//y <= x)\n     return res\n@@ -16,4 +16,3 @@\n \n ans = solve_three(x, y, a, b, c)\n print('Yes' if ans else 'No')\n-"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    3
+  ],
+  "useful_diffs_count": 2
+}

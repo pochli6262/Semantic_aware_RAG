@@ -1,0 +1,4 @@
+{
+  "explanation": "The condition compared s[i][0] (price of product i) to s[j][1] (the function count of product j) instead of to s[j][0] (the price of product j). I changed s[j][1] to s[j][0] so the price comparison uses the other product's price. This matches the intended condition P_i >= P_j (as in the referenced fix patterns).",
+  "fixed_code": "n,m=map(int,input().split())\ns=[]\nfor i in range(n):\n  p,c,*f=map(int,input().split())\n  s.append([p,c,f])\nfor i in range(n):\n  for j in range(n):\n    if i!=j and s[i][0]>=s[j][0] and set(s[j][2])>=set(s[i][2]) \\\n            and (s[i][0]>s[j][0] or set(s[j][2])-set(s[i][2])):\n      print(\"Yes\")\n      exit()\nprint(\"No\")"
+}

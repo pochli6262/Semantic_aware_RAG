@@ -1,0 +1,32 @@
+{
+  "task": "abc303_d/Python/45744343",
+  "query_summary": "The bug is a wrong cost in the DP transition for dp[1][j] when s[j] == \"A\": the code uses z + x instead of the correct z + y, producing an incorrect update.",
+  "oracle_summary": "The bug is a wrong cost in the DP transition for dp[1][j] when s[j] == \"A\": the code uses z + x instead of the correct z + y, producing an incorrect update.",
+  "retrieved": [
+    {
+      "summary": "The problem in the buggy code is that it initializes the `dp` array with a very large value (`10**10`) that is insufficient to represent the maximum possible value needed for comparisons, resulting in incorrect minimum calculations.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n for i in range(n):\n     v[i] = max(0, y[i] - (x[i] + y[i]) // 2)\n m = sum(z)\n-dp = [[10**10] * (m + 1) for _ in range(n + 1)]\n+dp = [[10**30] * (m + 1) for _ in range(n + 1)]\n dp[0][0] = 0\n for i in range(1, n + 1):\n     for j in range(m + 1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks specific conditions for returning -1 instead of accurately determining if any number is greater than the sum of the other two, which is required to identify an invalid triangle.",
+      "diff": "--- \n+++ \n@@ -1,2 +1,2 @@\n x,y,z = map(int, input().split())\n-print(-1 if x == y == 0 and z == 1 or x == z == 0 and y == 1 or y == z == 0 and x == 1 else max(x, y, z))\n+print(-1 if x > y + z or y > x + z or z > x + y else max(x, y, z))"
+    },
+    {
+      "summary": "The bug in the code is in the loop iterating over `diff` for cases where `a` is -1; it should iterate from 0 to `2*D+1` instead of `2*D+2`, which causes it to access out-of-bounds indices in the bitmask representation.",
+      "diff": "--- \n+++ \n@@ -1,5 +1,6 @@\n N,D = map(int, input().split())\n A =[int(i) for i in input().split()]\n+\n \n mod = 998244353\n S = 1<<(2*D+2)\n@@ -21,7 +22,7 @@\n             if s&1==0:\n                 continue\n             t = s>>1\n-            for diff in range(0,2*D+2):\n+            for diff in range(0,2*D+1):\n                 if t>>diff&1:\n                     continue\n                 dp[i+1][t|(1<<diff)] += dp[i][s]"
+    },
+    {
+      "summary": "The problem in the buggy code is that the nested loop for `j` should iterate from `0` to `k+1` instead of `0` to `k`, which results in incorrect bounds when updating the `dp` array.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n dp[0][0][0] = 0\n \n for i in range(n):\n-    for j in range(k):\n+    for j in range(k+1):\n         for l in range(d):\n             if dp[i][j][l] == -1:\n                 continue"
+    },
+    {
+      "summary": "The problem in the buggy code is that the loop iterates only once instead of 'k' times, which is necessary to compute the correct values in the dynamic programming array `dp`.",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n dp = [0 for _ in range(4)]\n dp[0] = 1\n \n-for _ in range(1):\n+for _ in range(k):\n     \n     dp = [\n         dp[1]*(w-1) + dp[2]*(h-1),"
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    9
+  ],
+  "useful_diffs_count": 2
+}

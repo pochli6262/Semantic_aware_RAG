@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue was with the variable name 'sum', which is a built-in function in Python. Using it as a variable name shadowed the built-in function, causing potential issues later in the code. I changed the variable name from 'sum' to 'total' to avoid this conflict.",
+  "fixed_code": "import sys\n\nn = int(input())\nans = []\nfor i in range(1, n + 1):\n\ta, b = map(int, sys.stdin.readline().strip().split())\n\ttotal = a + b\n\tres = a / (total)\n\tans.append([res, -i])\n\nans.sort(reverse = True)\nfor i in range (0, len(ans)):\n\tprint(-ans[i][1], end = \" \")"
+}

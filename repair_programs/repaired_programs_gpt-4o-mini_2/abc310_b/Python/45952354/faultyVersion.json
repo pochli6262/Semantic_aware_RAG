@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug in the original code occurs in the conditional statement inside the nested loop: 'if P[i] >= P[i] and F[j] >= F[i] and (P[i] > P[j] or (F[i] - F[j])):'. The condition 'P[i] >= P[i]' is always true and should compare 'P[i]' with 'P[j]', so it should be 'P[j] >= P[i]' instead. This ensures that we are properly comparing the properties of different elements and does not always evaluate to true based on the same variable.",
+  "fixed_code": "N, M = map(int, input().split())\nP = [None] * N\nC = [None] * N\nF = [None] * N\nfor i in range(N):\n    tmp = list(map(int, input().split()))\n    P[i], C[i], F[i] = tmp[0], tmp[1], set(tmp[2:])\n\nflag = False\nfor i in range(N):\n    for j in range(N):\n        if P[j] >= P[i] and F[j] >= F[i] and (P[i] > P[j] or (F[i] - F[j])):\n            flag = True\n            break\n    if flag:\n        break\n\nif flag:\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

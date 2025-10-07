@@ -1,0 +1,178 @@
+You are a Python expert.
+
+A user gives you the following Python program which is buggy.
+
+## Problem Description (from dataset)
+Score : 100 points
+
+### Problem Statement
+
+Given eight integers S\_1,S\_2,\dots, and S\_8,
+print `Yes` if they satisfy all of the following three conditions, and `No` otherwise.
+
+* The sequence (S\_1,S\_2,\dots,S\_8) is monotonically non-decreasing. In other words, S\_1 \leq S\_2 \leq \dots \leq S\_8.
+* S\_1,S\_2,\dots, and S\_8 are all between 100 and 675, inclusive.
+* S\_1,S\_2,\dots, and S\_8 are all multiples of 25.
+
+### Constraints
+
+* 0\leq S\_i \leq 1000
+* All input values are integers.
+
+---
+
+### Input
+
+The input is given from Standard Input in the following format:
+
+```
+S_1 S_2 \dots S_8
+```
+
+### Output
+
+Print the answer.
+
+---
+
+### Sample Input 1
+
+```
+125 175 250 300 400 525 600 650
+```
+
+### Sample Output 1
+
+```
+Yes
+```
+
+They satisfy all of the three conditions.
+
+---
+
+### Sample Input 2
+
+```
+100 250 300 400 325 575 625 675
+```
+
+### Sample Output 2
+
+```
+No
+```
+
+They violate the first condition because S\_4 > S\_5.
+
+---
+
+### Sample Input 3
+
+```
+0 23 24 145 301 413 631 632
+```
+
+### Sample Output 3
+
+```
+No
+```
+
+They violate the second and third conditions.
+
+## Your Analysis (1-sentence bug summary)
+The bug likely occurs because the program checks the sorted condition and the range/multiples conditions independently for each element, leading to premature 'No' outputs even if only one element fails while allowing valid combinations of elements.
+
+## Buggy Program
+S = list(map(int, input().split()))
+
+N = len(S)
+for i in range(N):
+    if sorted(S) == S or not(100 <= S[i] <= 675) or S[i]%25 != 0:
+        print('No')
+        exit()
+else:
+    print('Yes')
+
+## Related Known Fixes (retrieved diffs)
+### Diff 1
+--- 
++++ 
+@@ -3,10 +3,9 @@
+ 
+ for s in S:
+   num[S.count(s)] += 1
+-  
+ for n in num:
+-  if n % 2 != 0:
++  if  2 * num.index(n) != n:
+     print('No')
+     exit()
+-    
++
+ print('Yes')
+
+### Diff 2
+--- 
++++ 
+@@ -1,7 +1,7 @@
+ S = input().strip()
+ 
+ for i in range(1, 9):
+-  if S[2 * i - 1] != 0:
++  if S[2 * i - 1] != "0":
+     print("No")
+     exit()
+ print("Yes")
+
+### Diff 3
+--- 
++++ 
+@@ -3,6 +3,8 @@
+ n = int(s)
+ if n > 349:
+   print("No")
++elif n == 0:
++  print("No")
+ elif n == 316:
+   print("No")
+ else:
+
+### Diff 4
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ 
+ if S[0]:
+     exit(print("No"))
+-column = [S[6], S[3], S[1] | S[8], S[0] | S[4], S[2] | S[8], S[5], S[9]]
++column = [S[6], S[3], S[1] | S[7], S[0] | S[4], S[2] | S[8], S[5], S[9]]
+ for i in range(7):
+     for j in range(i + 1, 7):
+         for k in range(j + 1, 7):
+
+### Diff 5
+--- 
++++ 
+@@ -2,7 +2,7 @@
+ if S[0].isupper() and S[-1].isupper():
+     T = S[1:-1]
+     if T.isdigit():
+-        if 100000 <= int(T) <= 999999:
++        if 100000 <= int(T) <= 999999 and len(T) == 6:
+             print('Yes')
+         else:
+             print('No')
+
+Your task:
+1) Identify the single incorrect line according to the problem summary and the retrieved diffs.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line — all other lines must remain identical.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain what was wrong in that single line and how you fixed it (mention which diff patterns inspired the fix if applicable).",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

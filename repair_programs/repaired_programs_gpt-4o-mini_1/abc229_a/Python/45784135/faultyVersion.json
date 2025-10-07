@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that the second character of the strings (s1[1] and s2[1]) was being checked without ensuring that the string length was adequate. If the input string length is less than 2, it will raise an IndexError. I fixed it by checking the length of the strings before accessing s1[1] and s2[1]. Specifically, I added conditions to check if the length is greater than 1 before comparing the second character.",
+  "fixed_code": "s1=input()\ns2=input()\n\nif (s1[0] == '#' and s2[0] == '#') or (len(s1) > 1 and len(s2) > 1 and s1[1] == '#' and s2[1] == '#'):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+}

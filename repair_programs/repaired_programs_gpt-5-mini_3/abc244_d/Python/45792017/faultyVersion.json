@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that when cnt == 3 and t was not found in s+s the program produced no output (the inner if had no else). I fixed that by changing the `elif cnt == 3:` line to perform a single-line conditional print so it prints \"Yes\" if t is a rotation of s and otherwise prints \"No\".",
+  "fixed_code": "s = input()\nt = input()\ncnt = 0\nfor i in range(3):\n    if s[i] != t[i]:\n        cnt += 1\nif cnt == 0:\n    print(\"Yes\")\nelif cnt == 3: print(\"Yes\") if t in s + s else print(\"No\")\nelse:\n    print(\"No\")"
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line miscalculates the nearest water station when Takahashi is not at a station. The logic needs to ensure that if N is not exactly divisible by 5, it finds the nearest station correctly by checking both upwards and downwards distances without unnecessary adjustments. The fix aligns with handling the computation for indexing water stations properly, inspired by the common pattern in distance calculation. I modified the calculation to directly choose the nearest station using simple floor and ceiling logic without additional offsets.",
+  "fixed_code": "N=int(input())\na=N%5   \n\nif a==0:\n    print(N)\nelse:\n    if a <3:\n        ans=N-a\n    else:\n        ans=N+a\n    print(ans)"
+}

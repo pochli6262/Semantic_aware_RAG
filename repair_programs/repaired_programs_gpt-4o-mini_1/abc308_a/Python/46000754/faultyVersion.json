@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line 'if sorted(S) == S' incorrectly checks if the list S is sorted by comparing it to its sorted version during each iteration of the loop. This condition should be checked once before the loop starts rather than on every iteration. I moved it outside the loop to ensure that the list S is checked for sorted order only once, which improves efficiency and correctly captures the intended logic.",
+  "fixed_code": "S = list(map(int, input().split()))\n\nN = len(S)\nif sorted(S) == S:\n    print('No')\n    exit()\nfor i in range(N):\n    if not(100 <= S[i] <= 675) or S[i] % 25 != 0:\n        print('No')\n        exit()\nelse:\n    print('Yes')"
+}

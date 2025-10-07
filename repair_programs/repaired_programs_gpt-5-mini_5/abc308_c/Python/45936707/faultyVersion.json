@@ -1,0 +1,4 @@
+{
+  "explanation": "The code compared success rates using floating-point division (res = a / (sum)), which can produce precision errors for large integers or equal rational values. I replaced the float with an exact rational using Python's Fraction class (via __import__('fractions').Fraction) so comparisons are exact and sorting is correct. This fixes the ordering bug without adding a new import line (inspired by the general fix pattern of replacing approximate comparisons with exact ones).",
+  "fixed_code": "import sys\n\nn = int(input())\nans = []\nfor i in range(1, n + 1):\n\ta, b = map(int, sys.stdin.readline().strip().split())\n\tsum = a + b\n\tres = __import__('fractions').Fraction(a, sum)\n\tans.append([res, -i])\n\nans.sort(reverse = True)\nfor i in range (0, len(ans)):\n\tprint(-ans[i][1], end = \" \")\n"
+}

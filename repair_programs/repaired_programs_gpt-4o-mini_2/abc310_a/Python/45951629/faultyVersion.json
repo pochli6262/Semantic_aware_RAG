@@ -1,0 +1,4 @@
+{
+  "explanation": "The issue lies in the calculation of 'ret'. The formula should take into account the initial value of 'P' and add 'D[i]' instead, instead of subtracting 'Q'. The corrected line changes 'ret = P - Q + D[i]' to 'ret = P + D[i]'.",
+  "fixed_code": "N, P, Q = map(int, input().split())\nD = list(map(int, input().split()))\n\nans = P\nfor i in range(N):\n    ret = P + D[i]\n    ans = min(ans, ret)\n\nprint(ans)"
+}

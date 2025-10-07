@@ -1,0 +1,4 @@
+{
+  "explanation": "The original program only checks if A and B are specific adjacent pairs instead of checking if they are adjacent horizontally on the board. The condition was incorrectly checking if A and B were adjacent (B-A == 1) but mistakenly included a condition that was invalid (A-B == 9), which doesn't apply here since it violates the constraint A < B. The correct condition should simply check if the difference is 1 (B-A == 1) to indicate horizontal adjacency. This change was inspired by diff patterns that checked differences instead of specific pairs.",
+  "fixed_code": "A,B = map(int,input().split())\nif B-A == 1:\n  print(\"Yes\")\nelse:\n  print(\"No\")"
+}

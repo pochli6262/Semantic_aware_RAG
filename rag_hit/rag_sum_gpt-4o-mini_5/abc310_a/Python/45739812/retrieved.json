@@ -1,0 +1,34 @@
+{
+  "task": "abc310_a/Python/45739812",
+  "query_summary": "The likely bug is that the program incorrectly calculates the total cost by subtracting the discount price Q from P and then adding the dish price d, instead of directly summing the cost of the dish with the discounted drink price when using the coupon.",
+  "oracle_summary": "The bug is a wrong arithmetic expression—a typo using \"P - Q + d\" instead of the correct \"Q + d\"—so the candidate value p is computed incorrectly.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly calculates the total amount of money by multiplying `money` (which is derived from `P[3]` and `P[4]`) by `r`, instead of using a different amount for that portion of the calculation, resulting in incorrect output when `r` is greater than 0.",
+      "diff": "--- \n+++ \n@@ -15,4 +15,4 @@\n         continue\n     q, r = divmod(po, 2)\n     money = min(P[3]*2, P[4])\n-    print(money * q +  money * r)\n+    print(money * q +  min(P[3], P[4]) * r)"
+    },
+    {
+      "summary": "The buggy code incorrectly adds the penalty instead of subtracting it when M is less than X.",
+      "diff": "--- \n+++ \n@@ -4,4 +4,4 @@\n if M >= X:\n     print(T)\n else:\n-    print(T + (X - M) * D)\n+    print(T - (X - M) * D)"
+    },
+    {
+      "summary": "The bug in the code is that it uses a strict less than comparison (`<`) instead of a less than or equal comparison (`<=`), which can lead to missing the correct index when the sum equals X.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n N, H, X = map(int,input().split())\n P = list(map(int,input().split()))\n for i in range(N):\n-    if X < H + P[i]:\n+    if X <= H + P[i]:\n         print(i+1)\n         break"
+    },
+    {
+      "summary": "The buggy code incorrectly sums the elements that are strictly less than K instead of including those that are equal to K, leading to an incorrect calculation of the total sum.",
+      "diff": "--- \n+++ \n@@ -6,7 +6,7 @@\n \n dis = 0\n for a in sa:\n-  if a < K:\n+  if a <= K:\n     dis += a\n \n print((K + 1) * K // 2 - dis)"
+    },
+    {
+      "summary": "The problem in the buggy code is that it uses a strict greater-than comparison (`H + P[i] > X`) instead of a greater-than-or-equal-to comparison (`H + P[i] >= X`), which causes it to miss cases where the sum is exactly equal to `X`.",
+      "diff": "--- \n+++ \n@@ -4,7 +4,7 @@\n min_num = 999999\n result = 0\n for i in range(N):\n-    if H + P[i] > X:\n+    if H + P[i] >= X:\n         if min_num > H + P[i]:\n             min_num = H + P[i]\n             result = i + 1"
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "useful_diffs_count": 4
+}

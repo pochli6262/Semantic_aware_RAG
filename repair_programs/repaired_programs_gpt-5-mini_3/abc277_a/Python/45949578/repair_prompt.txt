@@ -1,0 +1,98 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+N, X = map(int, input().split())
+P = list(map(int, input().split()))
+
+for i in range(N):
+  if P[i] == X:
+    print(i)
+    break
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+N,H,X = map(int,input().split())
+P = input()
+P = P.split()
+
+for i in range(N) :
+  PP = int(P[i])
+  if (X - H) < PP :
+    print(i+1)
+    break
+
+--- Correct Code ---
+N,H,X = map(int,input().split())
+P = input()
+P = P.split()
+
+for i in range(N) :
+  PP = int(P[i])
+  if (X - H) <= PP :
+    print(i+1)
+    break
+
+
+### Example 2
+--- Buggy Code ---
+N, X = map(int, input().split())
+S = list(map(int, input().split()))
+ans = 0
+for i in range(N):
+  if S[i] <= X:
+    ans += 1
+print(ans)
+
+--- Correct Code ---
+N, X = map(int, input().split())
+S = list(map(int, input().split()))
+ans = 0
+for i in range(N):
+  if S[i] <= X:
+    ans += S[i]
+print(ans)
+
+
+### Example 3
+--- Buggy Code ---
+#0502
+
+N, H, X = map(int, input().split())
+P = list(map(int, input().split()))
+
+for i in range(N):
+    if H + P[i] > X:
+        print(i + 1)
+        exit()
+
+
+
+--- Correct Code ---
+#0502
+
+N, H, X = map(int, input().split())
+P = list(map(int, input().split()))
+
+for i in range(N):
+    if H + P[i] >= X:
+        print(i + 1)
+        exit()
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

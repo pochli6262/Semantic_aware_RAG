@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code calculates the minimum of p - q + a and p using 'min(p-q+a, p)'. However, this does not account for the case where the result should not be negative, as the expression p - q + a could yield a value less than p but still not satisfy the constraint of being non-negative. Thus, the corrected line should ensure that the result does not go below 0 by using 'max(min(p - q + a, p), 0)'.",
+  "fixed_code": "n, p, q = map(int,input().split())\nd_list = [int(e) for e in input().split()]\n\na = min(d_list)\n\nprint(max(min(p - q + a, p), 0))"
+}

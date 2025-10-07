@@ -1,0 +1,33 @@
+{
+  "task": "abc263_a/Python/45002191",
+  "query_summary": "The program only checks that there are exactly two distinct values, so it will incorrectly accept cases like four-of-a-kind plus a singleton instead of ensuring the counts are specifically 3 and 2.",
+  "oracle_summary": "It wrongly prints Yes for any input with exactly two distinct numbers, even when neither repeats, instead of requiring that at least one of those numbers appears at least twice.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly checks if the set is non-empty instead of checking if it contains exactly one element.",
+      "diff": "--- \n+++ \n@@ -1,3 +1,3 @@\n N=int(input())\n A = set(map(int, input().split()))\n-print('Yes' if len(A) else 'No')\n+print('Yes' if len(A)==1 else 'No')"
+    },
+    {
+      "summary": "The buggy code fails to account for the specific case where the input string has exactly two characters that are different, which should also result in \"No\".",
+      "diff": "--- \n+++ \n@@ -3,5 +3,7 @@\n \n if (s[0]=='A') and (s[-1]=='B'):\n     print('No')\n+elif (len(s)==2) and (s[0]!=s[-1]):\n+    print('No')\n else:\n     print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks for the condition `X - a in Aset` instead of the correct condition `a + X in Aset`, leading to an incorrect result for determining whether there exists a pair of elements in the list whose sum equals X.",
+      "diff": "--- \n+++ \n@@ -3,7 +3,7 @@\n Aset = set(A)\n ok = False\n for a in A:\n-    if X-a in Aset:\n+    if a + X in Aset:\n         ok = True\n         break\n if ok:"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly checks the conditions for the differences between `x` and `y` without allowing for non-negative results, leading to incorrect outputs for certain input values.",
+      "diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n x,y = map(int,input().split())\n \n-if y-x == 2 or x-y == 3:\n+if 0 <= y-x <= 2 or 0 <= x-y <= 3:\n     print(\"Yes\")\n else:\n     print(\"No\")"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly prints \"No\" and exits immediately for every pair combination that doesn't find a set containing both elements, instead of waiting to check all sets before concluding.",
+      "diff": "--- \n+++ \n@@ -10,7 +10,7 @@\n     if cmb[0] in i and cmb[1] in i:\n       flag=True\n       break\n-    else:\n+  else:\n       print(\"No\")\n       exit()\n print(\"Yes\" if flag else \"No\") "
+    }
+  ],
+  "useful_diffs_indices": [
+    1,
+    2,
+    4
+  ],
+  "useful_diffs_count": 3
+}

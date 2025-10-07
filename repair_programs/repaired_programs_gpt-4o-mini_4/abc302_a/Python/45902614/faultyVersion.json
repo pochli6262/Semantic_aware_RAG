@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line `print(int(x/y)+1)` incorrectly calculates the number of attacks needed by adding 1 to the integer division result, which does not account for cases where A is not perfectly divisible by B. This is fixed by using the expression `(x + y - 1) // y` which ensures that we round up correctly when A is not a multiple of B. The rounding logic is commonly used for similar problems, as seen in other diff patterns like those involving range checks.",
+  "fixed_code": "x, y = map(int, input().split())\nprint((x + y - 1) // y)"
+}

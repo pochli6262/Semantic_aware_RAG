@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code only checks for specific values of A modulo 3 (1 and 2) but doesn't handle the case when A modulo 3 equals 0. Additionally, the input handling was incorrectly commented out, making it impossible to provide input. I uncommented the first input line to ensure the input values can be read during execution.",
+  "fixed_code": "# a = int(input());\nlist_A_B = list(map(int, input().split()));\nA = list_A_B[0]\nB = list_A_B[1]\n# x = int(input());\n\nif A % 3 == 1 and B == A + 1:\n    print('Yes')\nelif A % 3 == 2 and B == A + 1:\n    print('YES')\nelif A % 3 == 0 and B == A + 1:\n    print('YES')\nelse:\n    print('No')"
+}

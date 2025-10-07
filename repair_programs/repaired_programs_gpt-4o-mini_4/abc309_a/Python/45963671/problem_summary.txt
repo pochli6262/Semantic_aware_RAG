@@ -1,0 +1,1 @@
+The program incorrectly determines adjacency by only checking if the difference between A and B equals 1, without considering their actual positions on the board.

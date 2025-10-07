@@ -1,0 +1,4 @@
+{
+  "explanation": "The original line used `i` as the divisor and multiplier for truncating the number, which does not correctly calculate the required truncation based on the specified ranges. Instead, the line was modified to fix the range and ensure correct digit truncation according to the problem statement. The fix is inspired by the logic of considering the powers of ten based on the significant digits we need to truncate, which aligns with a common solution pattern seen in mathematical truncation implementations.",
+  "fixed_code": "n = int(input())\n\nfor i in range(7):\n    if n <= 10**(3 + i) - 1:\n        print((n // (10**(i + 1))) * 10**(i + 1))\n        break"
+}

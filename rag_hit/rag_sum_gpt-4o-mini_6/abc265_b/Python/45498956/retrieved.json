@@ -1,0 +1,31 @@
+{
+  "task": "abc265_b/Python/45498956",
+  "query_summary": "The likely bug is that the program incorrectly updates the time limit by adding bonuses before checking if there is enough time to move, which might result in an incorrect output when Takahashi cannot move to the next room.",
+  "oracle_summary": "The loop wrongly compares t to the loop index i (t > i) instead of to the required cost a[i] (t > a[i]), causing an incorrect feasibility check.",
+  "retrieved": [
+    {
+      "summary": "The bug in the code is that it incorrectly checks for \"a <= A[m]\" instead of the correct condition \"a < A[m]\" when determining if the output should be \"No\".",
+      "diff": "--- \n+++ \n@@ -5,7 +5,7 @@\n   a=0\n   for n in range(N):\n     a+=X[n][m]\n-  if a<=A[m]:\n+  if a<A[m]:\n     print (\"No\")\n     exit(0)\n print ('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly checks the condition for the variable `r`, leading to an incorrect output when `r` equals 0, which should instead be set to 7.",
+      "diff": "--- \n+++ \n@@ -2,6 +2,8 @@\n A = [list(map(int,input().split())) for _ in range(n)]\n start = A[0][0]\n r = start- (start//7)*7\n+if r == 0:\n+  r = 7\n if r+m-1>7:\n   print(\"No\")\n   exit()"
+    },
+    {
+      "summary": "The problem in the buggy code is that the list `Takahashi` is not sorted before it is compared to `test`, which can result in incorrect comparison outcomes.",
+      "diff": "--- \n+++ \n@@ -20,6 +20,8 @@\n \n l = itertools.permutations(list(range(n)))\n \n+Takahashi.sort()\n+\n for i in l:\n     # print(i)\n     test = [[0]*2 for _ in range(m)]\n@@ -30,6 +32,7 @@\n         test[j].sort()\n \n     test.sort()\n+    # print(Takahashi, test)\n \n     if Takahashi == test:\n         print('Yes')"
+    },
+    {
+      "summary": "The buggy code incorrectly uses `break` instead of `continue` in the outer loop after checking `if i+m > n`, which prevents further iterations that may be necessary for correct DP table updates.",
+      "diff": "--- \n+++ \n@@ -9,13 +9,14 @@\n     if dp[i][0]:\n         for k in range(m):\n             tl=t[k:]\n+\n             if i-k<0 or i+(m-k)>n:\n                 continue\n             for j in range(1,len(tl)+1):\n                 if s[i:i+j]==tl[:j]:\n                     dp[i+j][len(tl)-j]=True\n     if i+m>n:\n-        break\n+        continue\n     for j in range(1,m+1):\n         if dp[i][j]:\n             for k in range(1,m+1):"
+    },
+    {
+      "summary": "The problem in the buggy code is that it only checks if the player's score equals 2 when determining if the output should be \"Yes,\" instead of checking if the score is greater than or equal to 2.",
+      "diff": "--- \n+++ \n@@ -9,7 +9,7 @@\n     elif s[0] == 2:\n         cnts[player] += 2\n     elif s[0] == 3:\n-        if cnts[player] == 2:\n+        if cnts[player] >= 2:\n             print(\"Yes\")\n         else:\n             print(\"No\")"
+    }
+  ],
+  "useful_diffs_indices": [
+    2
+  ],
+  "useful_diffs_count": 1
+}

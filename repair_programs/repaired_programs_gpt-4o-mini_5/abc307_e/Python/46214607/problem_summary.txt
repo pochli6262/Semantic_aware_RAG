@@ -1,0 +1,1 @@
+The bug likely lies in the calculation of the answer, which does not correctly account for the circular arrangement of people when considering adjacent constraints.

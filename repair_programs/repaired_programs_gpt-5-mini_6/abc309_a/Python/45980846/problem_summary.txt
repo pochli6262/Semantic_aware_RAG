@@ -1,0 +1,1 @@
+The code incorrectly checks vertical adjacency as well as horizontal (comparing grid[j][i] with grid[j+1][i]), so it can print "Yes" for vertically adjacent numbers even though only horizontal adjacency should be considered.

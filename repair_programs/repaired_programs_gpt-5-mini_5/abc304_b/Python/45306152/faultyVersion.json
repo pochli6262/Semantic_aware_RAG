@@ -1,0 +1,4 @@
+{
+  "explanation": "The loop used range(6), which iterates i from 0 to 5 and therefore never handles i=6 (the case for N between 10^8 and 10^9-1). I fixed it by extending the range to include 6 using range(7), so the condition for truncating the hundred-thousands digit and below will be reached.",
+  "fixed_code": "n = int(input())\n\nfor i in range(7):\n    if n <= 10**(3 + i) - 1:\n        print((n // (10**i)) * 10**i)\n        break\n"
+}

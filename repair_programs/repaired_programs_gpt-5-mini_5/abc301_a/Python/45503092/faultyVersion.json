@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug was that S = input().split() produced a list (with the whole string as a single element) instead of the game-result string, so S.count('T') and S.count('A') returned wrong values and S[-1] was the full string rather than the last character. I fixed that line to read the raw string (stripping trailing newline) with input().strip(), leaving the rest of the logic unchanged.",
+  "fixed_code": "N = int(input())\nS = input().strip()\n\nT_W = S.count('T')\nA_W = S.count('A')\nprint(\"T\" if T_W > A_W or T_W == A_W and S[-1] == \"A\" else \"A\")"
+}

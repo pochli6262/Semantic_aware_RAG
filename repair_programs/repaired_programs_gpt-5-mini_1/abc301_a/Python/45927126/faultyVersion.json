@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the comparison: the code uses 'if cnt > N - cnt:' which treats a tie (equal counts of 'T' and 'A') as an 'A' victory. The intended behavior is to treat a tie as 'T' (so 'T' wins when cnt >= number of 'A's). I fixed the comparison operator to '>=' so ties are handled correctly.",
+  "fixed_code": "N = int(input())\nS = input()\n\ncnt = 0\nfor i in S:\n    if i == \"T\":\n        cnt += 1\n\nif cnt >= N - cnt:\n    print(\"T\")\nelse:\n    print(\"A\")"
+}

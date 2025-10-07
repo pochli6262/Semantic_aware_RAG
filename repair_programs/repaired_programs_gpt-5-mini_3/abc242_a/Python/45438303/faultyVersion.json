@@ -1,0 +1,4 @@
+{
+  "explanation": "The middle branch printed C/(B-A) directly which may produce a float with arbitrary formatting. The other branches use 12 decimal places, so to match the required output precision I formatted the middle-case result to 12 decimal places. I changed only that print line to use '{:.12f}'.format(...).",
+  "fixed_code": "A,B,C,X = map(int,input().split())\nif X <= A:\n  print(1.000000000000)\nelif X < B:\n  print(\"{:.12f}\".format(C/(B-A)))\nelse:\n  print(0.000000000000)"
+}

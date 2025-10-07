@@ -1,0 +1,1 @@
+The program incorrectly checks for adjacent squares by using an invalid index for the second dimension in the nested loops, leading to incorrect results.

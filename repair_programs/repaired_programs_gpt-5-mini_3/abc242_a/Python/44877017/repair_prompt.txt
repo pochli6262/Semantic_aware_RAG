@@ -1,0 +1,151 @@
+You are a Python repair assistant.
+
+A user gives you the following buggy program.
+
+## Buggy Program
+#!/usr/bin/env python3
+
+import sys
+
+a, b, c, x = map(int, input().split())
+
+res = 0.0
+if x <= a:
+   res = 100.0
+elif x <= b:
+   res = c / (b - a)
+
+print('%.9f' % (res))
+
+
+
+## Related Example Fixes (retrieved from similar problems)
+These examples are only references. 
+They must NOT be copied directly, but can inspire how similar bugs were fixed.
+
+### Example 1
+--- Buggy Code ---
+import sys
+
+a, b = input().split()
+
+n = min(len(a), len(b))
+
+for i in range(1, n):
+    if int(a[-i])+int(b[-i]) > 9:
+        print("Hard")
+        sys.exit()
+print("Easy")
+    
+
+--- Correct Code ---
+import sys
+
+a, b = input().split()
+
+n = min(len(a), len(b))
+
+for i in range(1, n+1):
+    if int(a[-i])+int(b[-i]) > 9:
+        print("Hard")
+        sys.exit()
+print("Easy")
+
+
+### Example 2
+--- Buggy Code ---
+a,b=map(int,input().split())
+ans=(1000*b+5)//a/1000
+print("{:.3f}".format(ans))
+
+
+--- Correct Code ---
+a,b=map(int,input().split())
+ans=(1000*b+a/2)//a/1000
+print("{:.3f}".format(ans))
+
+
+### Example 3
+--- Buggy Code ---
+import sys
+input = lambda :sys.stdin.readline()[:-1]
+ni = lambda :int(input())
+na = lambda :list(map(int,input().split()))
+yes = lambda :print("yes");Yes = lambda :print("Yes");YES = lambda : print("YES")
+no = lambda :print("no");No = lambda :print("No");NO = lambda : print("NO")
+#######################################################################
+
+ok = 10
+ng = 0
+n = ni()
+a,b,c = zip(*[na() for i in range(n)])
+eps = 10**(-10)
+while ok-ng>10**(-8):
+    X = (ok+ng)/2
+    s = 1
+    l = 0
+    r = X
+    for i in range(n):
+        if a[i] == b[i]:
+            if c[i] * a[i] > 0:
+                s = 0
+                break
+        elif b[i] - a[i] > 0:
+            l = max(l, (c[i]-a[i]*X)/(b[i]-a[i]))
+        else:
+            r = min(r, (c[i]-a[i]*X)/(b[i]-a[i]))
+    if l <= r+eps and s:
+        ok = X
+    else:
+        ng = X
+
+print(ok)
+
+
+--- Correct Code ---
+import sys
+input = lambda :sys.stdin.readline()[:-1]
+ni = lambda :int(input())
+na = lambda :list(map(int,input().split()))
+yes = lambda :print("yes");Yes = lambda :print("Yes");YES = lambda : print("YES")
+no = lambda :print("no");No = lambda :print("No");NO = lambda : print("NO")
+#######################################################################
+
+ok = 10
+ng = 0
+n = ni()
+a,b,c = zip(*[na() for i in range(n)])
+eps = 10**(-10)
+while ok-ng>10**(-8):
+    X = (ok+ng)/2
+    s = 1
+    l = 0
+    r = X
+    for i in range(n):
+        if a[i] == b[i]:
+            if c[i] - a[i]*X > 0:
+                s = 0
+                break
+        elif b[i] - a[i] > 0:
+            l = max(l, (c[i]-a[i]*X)/(b[i]-a[i]))
+        else:
+            r = min(r, (c[i]-a[i]*X)/(b[i]-a[i]))
+    if l <= r+eps and s:
+        ok = X
+    else:
+        ng = X
+
+print(ok)
+
+
+Your task:
+1) Identify the single incorrect line in the buggy program.
+2) Assume EXACTLY ONE line is wrong.
+3) Provide the corrected version of the ENTIRE program, changing only that single line.
+4) Do not restructure or rewrite unrelated code.
+5) Respond ONLY in JSON format:
+
+{
+  "explanation": "Explain the bug and how you fixed it.",
+  "fixed_code": "The FULL program with only that ONE line corrected."
+}

@@ -1,0 +1,4 @@
+{
+  "explanation": "The rotate method used self.y (the position) instead of self.dy (the direction's y-component). That made rotation use the current y-coordinate rather than the direction vector, producing incorrect direction updates. I fixed the line to use self.dy so the direction rotates correctly: (dx, dy) -> (dy, -dx).",
+  "fixed_code": "class Motion:\n    def __init__(self) -> None:\n        self.dx = 1\n        self.dy = 0\n        self.x = 0\n        self.y = 0\n\n    def rotate(self) -> None:\n        self.dx, self.dy = self.dy, -self.dx\n\n    def move(self) -> None:\n        self.x += self.dx\n        self.y += self.dy\n\n    @property\n    def get_x(self) -> int:\n        return self.x\n\n    @property\n    def get_y(self) -> int:\n        return self.y\n\n\nn = int(input())\nt = input()\n\nmotion = Motion()\nfor c in t:\n    if c == \"S\":\n        motion.move()\n    else:\n        motion.rotate()\n\nprint(f\"{motion.get_x} {motion.get_y}\")"
+}

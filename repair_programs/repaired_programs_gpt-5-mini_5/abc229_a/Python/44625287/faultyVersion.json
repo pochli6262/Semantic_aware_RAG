@@ -1,0 +1,4 @@
+{
+  "explanation": "The program was comparing the wrong concatenated patterns ('.#.#' and '#.#.') which actually represent adjacent black squares; the disconnected diagonal cases are '#..#' (top-left and bottom-right) and '.##.' (top-right and bottom-left). I replaced the incorrect condition with checks for '#..#' and '.##.' so diagonal-only black squares are detected as disconnected.",
+  "fixed_code": "S = input() + input()\n\nif S == '#..#' or S == '.##.' :\n    print('No')\nelse:\n    print('Yes')\n"
+}

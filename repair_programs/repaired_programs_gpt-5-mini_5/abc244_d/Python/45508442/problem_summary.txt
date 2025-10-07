@@ -1,0 +1,1 @@
+The code checks membership against strings like "RGB" but reads lines with spaces (e.g., "R G B"), so S and T will never match the entries in A and the test is wrong.

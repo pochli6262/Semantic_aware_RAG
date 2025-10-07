@@ -1,0 +1,32 @@
+{
+  "task": "abc244_d/Python/46208474",
+  "query_summary": "The buggy code increments the counter on equal elements (S[i] == T[i]) instead of on mismatches (S[i] != T[i]), thus counting matches rather than mismatches.",
+  "oracle_summary": "The buggy code increments the counter on equal elements (S[i] == T[i]) instead of on mismatches (S[i] != T[i]), thus counting matches rather than mismatches.",
+  "retrieved": [
+    {
+      "summary": "The buggy code incorrectly references `S[i-k]` instead of `S[~(i-k)]` when constructing the string `T`, leading to incorrect character indexing and potentially wrong results.",
+      "diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n   n,k = map(int,input().split())\n   S = input()\n   k %= 2*n\n-  T = \"\".join(S[~i] if i < n else S[i-k] for i in range(k))\n+  T = \"\".join(S[~i] if i < n else S[~(i-k)] for i in range(k))\n   if S+T == (S+T)[::-1] and T+S == (T+S)[::-1]:\n     print(\"Yes\")\n   else:"
+    },
+    {
+      "summary": "The buggy code fails to check if the character sequences from strings S and T are the same at corresponding positions, which can lead to incorrect results when determining if S can be transformed into T based on their character counts.",
+      "diff": "--- \n+++ \n@@ -30,6 +30,8 @@\n             tf = False\n         if S_count[i][1] == 1 and T_count[i][1] >= 2:\n             tf = False\n+        if S_count[i][0] != T_count[i][0]:\n+            tf = False\n \n if tf:\n     print(\"Yes\")"
+    },
+    {
+      "summary": "The buggy code uses inconsistent capitalization ('NO' instead of 'No') when printing the output, leading to potential mismatches in expected output formatting.",
+      "diff": "--- \n+++ \n@@ -32,7 +32,7 @@\n B.append((t,str(cnt)))\n \n if (len(A) != len(B)):\n-    print('NO')\n+    print('No')\n     exit()\n for i in range(len(A)):\n     c1 = A[i][0]"
+    },
+    {
+      "summary": "The problem in the buggy code is that it incorrectly defines the string `K` as \"ABCDEABCDE\" instead of \"ABCDEAEDCBA\", which affects the logic determining if both `S` and `T` are present in `K`.",
+      "diff": "--- \n+++ \n@@ -1,4 +1,4 @@\n-K = \"ABCDEABCDE\"\n+K = \"ABCDEAEDCBA\"\n S = input()\n T = input()\n "
+    },
+    {
+      "summary": "The buggy code incorrectly checks the conditions for comparing the counts of character sequences, specifically failing to consider the situation where the count from the first string is greater than the corresponding count from the second string, which should result in \"No\".",
+      "diff": "--- \n+++ \n@@ -41,7 +41,6 @@\n lit.append((kari,cnt))\n \n \n-\n if len(lis)!=len(lit):\n     print(\"No\")\n     exit()\n@@ -52,7 +51,7 @@\n         exit()\n     else:\n         if lis[i][1]!=lit[i][1]:\n-            if lis[i][1]==1 or lit[i][1]==1:\n+            if lis[i][1]==1 or lis[i][1]>lit[i][1]:\n                 print(\"No\")\n                 exit()\n "
+    }
+  ],
+  "useful_diffs_indices": [
+    2,
+    5
+  ],
+  "useful_diffs_count": 2
+}

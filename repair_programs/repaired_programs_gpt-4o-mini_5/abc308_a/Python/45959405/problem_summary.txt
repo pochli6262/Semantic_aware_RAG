@@ -1,0 +1,1 @@
+The program incorrectly allows an input sequence that fails to satisfy the monotonicity condition by not breaking the loop early when it detects an invalid condition.

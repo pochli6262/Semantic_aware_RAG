@@ -1,0 +1,4 @@
+{
+  "explanation": "The bug is in the range of the loop. The original code attempts to access the 8th element (index 7) when the input array might have fewer than 8 elements, leading to an IndexError. I changed the loop to iterate from 1 to 7 to match the length of the array minus one, allowing for safe indexing.",
+  "fixed_code": "arr = list(map(int, input().split()))\nfl = True\nfor i in range(1, len(arr)):\n    if arr[i - 1] > arr[i]:\n        fl = False\n    if arr[i - 1] % 25 != 0 or arr[i] % 25 != 0:\n        fl = False\nprint(\"Yes\" if fl else \"No\")"
+}

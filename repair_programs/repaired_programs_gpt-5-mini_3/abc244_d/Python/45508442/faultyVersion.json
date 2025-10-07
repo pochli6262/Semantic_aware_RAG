@@ -1,0 +1,4 @@
+{
+  "explanation": "The original code compared whether S and T were both members of a hard-coded list A, which is not the intended check. The goal is to determine whether T is a rotation of S. The simplest correct check is to see whether T appears in S+S. I fixed the print line to test T in S+S and print 'Yes' or 'No' accordingly.",
+  "fixed_code": "A = [\"RGB\",\"GBR\",\"BRG\"]\n\nS = input()\nT = input()\nprint('Yes' if T in S+S else 'No')"
+}
